@@ -15,7 +15,10 @@ from typing import List, Dict, Optional, Tuple
 from dataclasses import dataclass
 from pathlib import Path
 
-from pbo import PBO, normalize_simplex, compute_mixture_embedding, cosine_similarity
+try:
+    from backend.pbo import PBO, normalize_simplex, cosine_similarity
+except ImportError:
+    from pbo import PBO, normalize_simplex, cosine_similarity
 
 
 # ============================================================================
@@ -284,6 +287,50 @@ class StageRefiner:
                 negative_phrases.append(phrase)
 
         return positive_phrases, negative_phrases
+
+    def generate_images_from_proposals(
+        self,
+        proposals: List[np.ndarray],
+        sdxl_runner,  # SDXLRunner instance
+        seed_base: int = 42,
+        **kwargs
+    ):
+        """
+        Generate images for each proposal using SDXL.
+
+        This method bridges StageRefiner with SDXLRunner for Stage 3+ integration.
+
+        Args:
+            proposals: List of weight vectors (from propose_next_4())
+            sdxl_runner: SDXLRunner instance (from backend.sdxl_runner)
+            seed_base: Base seed for generation (each proposal gets seed_base + i)
+            **kwargs: Additional arguments for SDXLRunner.generate_from_mixture()
+
+        Returns:
+            List of PIL Images
+
+        Example:
+            >>> from backend.sdxl_runner import SDXLRunner
+            >>> runner = SDXLRunner(model_id="stabilityai/stable-diffusion-xl-base-1.0")
+            >>> refiner = StageRefiner(...)
+            >>> proposals = refiner.propose_next_4()
+            >>> images = refiner.generate_images_from_proposals(proposals, runner)
+        """
+        print(f"\n[StageRefiner] Generating {len(proposals)} images from proposals...")
+
+        images = []
+        for i, w in enumerate(proposals):
+            print(f"\n  Proposal {i+1}/{len(proposals)}:")
+            img = sdxl_runner.generate_from_mixture(
+                w=w,
+                concepts=self.concepts,
+                seed=seed_base + i,
+                **kwargs
+            )
+            images.append(img)
+
+        print(f"\n[StageRefiner] ✅ Generated {len(images)} images")
+        return images
 
     def to_dict(self) -> Dict:
         """Serialize state"""
