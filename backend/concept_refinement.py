@@ -941,6 +941,49 @@ class ConceptRefinementSession:
             'neutral': neutral,
             'negative': negative
         }
+
+    def get_current_weights_for_pbo(self) -> np.ndarray:
+        """
+        Get current UI weights as numpy array for PBO stabilization.
+
+        Returns:
+            weights: np.ndarray of shape (K,) with current ema_w values
+        """
+        if not self.concepts:
+            return np.array([])
+
+        K = len(self.concepts)
+        weights = np.zeros(K, dtype=np.float32)
+
+        for i, concept in enumerate(self.concepts):
+            state = self.concept_states.get(concept.id)
+            if state:
+                weights[i] = state.ema_w
+
+        # Ensure simplex (should already be, but safety check)
+        w_sum = weights.sum()
+        if w_sum > 1e-8:
+            weights = weights / w_sum
+        else:
+            weights = np.ones(K, dtype=np.float32) / K
+
+        return weights
+
+    def get_negative_concept_ids(self) -> set:
+        """
+        Get concept IDs that user has expressed negative preference for.
+
+        Returns:
+            set of concept IDs where dislike_count > like_count
+        """
+        negatives = set()
+
+        for concept in self.concepts:
+            state = self.concept_states.get(concept.id)
+            if state and state.dislike_count > state.like_count:
+                negatives.add(concept.id)
+
+        return negatives
     
     def get_image_effects(self) -> Dict[str, float]:
         """Get effect scores for all images"""
