@@ -1,5 +1,6 @@
 import os
 import uuid
+import numpy as np
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
@@ -3953,14 +3954,78 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
         print(f"[PBO Refine] Round {request.round_number} → {request.round_number + 1}")
         print(f"[PBO Refine] Selected: {request.selected_image_id}")
         
-        # Step 1: Record selection as preference
-        refiner.on_favorite(
-            favorite_image_id=request.selected_image_id,
-            all_image_ids=request.all_image_ids
-        )
-        print(f"[PBO Refine] Recorded {len(request.all_image_ids) - 1} duels")
+        # Step 1: Record selection in tracking (CRITICAL: must come before starting new round)
+        # Load tracker to record selection from previous round
+        session = sessions.get(request.session_id)
+        if not session:
+            raise HTTPException(404, f"Session not found: {request.session_id}")
         
-        # Step 2: Propose new weight mixtures
+        session_folder = session['folder']
+        
+        # Get descriptor
+        preferences_file = os.path.join(session_folder, "preferences.json")
+        descriptor = None
+        if os.path.exists(preferences_file):
+            with open(preferences_file, 'r') as f:
+                prefs = json.load(f)
+                descriptor = prefs.get('descriptor')
+        
+        from backend.tracking import create_tracker
+        tracker_for_selection = create_tracker(
+            session_path=Path(session_folder),
+            session_id=request.session_id,
+            stage=request.stage,
+            descriptor=descriptor or "No descriptor"
+        )
+        
+        # Record the selection from the current round (before starting new round)
+        # Find index of selected image in all_image_ids
+        try:
+            selected_index = request.all_image_ids.index(request.selected_image_id)
+        except ValueError:
+            selected_index = 0  # Fallback
+        
+        all_indices = list(range(len(request.all_image_ids)))
+        tracker_for_selection.record_selection(selected_index, all_indices)
+        print(f"[PBO Refine] ✅ Recorded selection in tracking: index {selected_index}")
+        
+        # Step 2: Load the actual weight vectors from the current round
+        # (Don't rely on incidence_matrix - use the actual proposals!)
+        refinement_stage = f"{request.stage}_refinement"
+        refinement_folder = os.path.join(session_folder, refinement_stage)
+        current_round_folder = os.path.join(refinement_folder, f"round_{request.round_number}")
+        weights_file = os.path.join(current_round_folder, "weights.json")
+        
+        if not os.path.exists(weights_file):
+            raise HTTPException(400, f"Weights file not found for round {request.round_number}")
+        
+        with open(weights_file, 'r') as f:
+            weights_data = json.load(f)
+        
+        proposals_from_round = [np.array(w, dtype=np.float32) for w in weights_data['proposals']]
+        print(f"[PBO Refine] Loaded {len(proposals_from_round)} weight vectors from round {request.round_number}")
+        
+        # Step 3: Record selection as PBO preference using ACTUAL weight vectors
+        # Add each proposal as a candidate, then add duels
+        candidate_ids = []
+        for i, (img_id, w) in enumerate(zip(request.all_image_ids, proposals_from_round)):
+            cand_id = refiner.pbo.add_candidate(w, candidate_id=f"round{request.round_number}_img{i}")
+            candidate_ids.append(cand_id)
+            refiner.image_to_candidate[img_id] = cand_id
+        
+        # Add strong duels: selected > others
+        favorite_index = request.all_image_ids.index(request.selected_image_id)
+        favorite_cand_id = candidate_ids[favorite_index]
+        
+        duels_added = 0
+        for i, cand_id in enumerate(candidate_ids):
+            if i != favorite_index:
+                refiner.pbo.add_preference(favorite_cand_id, cand_id, strength=1.0)
+                duels_added += 1
+        
+        print(f"[PBO Refine] Recorded {duels_added} duels in PBO (favorite: {favorite_cand_id})")
+        
+        # Step 4: Propose new weight mixtures
         proposals = refiner.propose_next_4(
             negatives=None,
             w_current=None,
@@ -3968,17 +4033,11 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
         )
         print(f"[PBO Refine] Proposed {len(proposals)} new mixtures")
         
-        # Step 3: Load ORIGINAL reference image (from exploration stage, not refinement)
-        session = sessions.get(request.session_id)
-        if not session:
-            raise HTTPException(404, f"Session not found: {request.session_id}")
-        
-        session_folder = session['folder']
+        # Step 5: Load ORIGINAL reference image (from exploration stage, not refinement)
+        # (session_folder and descriptor already loaded above)
         
         # Get the originally selected image from exploration stage
-        preferences_file = os.path.join(session_folder, "preferences.json")
         reference_image_id = None
-        descriptor = None
         
         if os.path.exists(preferences_file):
             with open(preferences_file, 'r') as f:
@@ -3986,8 +4045,6 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
                 # Get the selection from base stage
                 selections = prefs.get('selections', {})
                 reference_image_id = selections.get(request.stage)  # e.g., "impression_2_0"
-                # Get descriptor
-                descriptor = prefs.get('descriptor')
         
         if not reference_image_id:
             raise HTTPException(400, f"No reference image found for {request.stage} stage")
@@ -4009,27 +4066,19 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
         else:
             print(f"[PBO Refine] ⚠️ Reference not found: {reference_image_path}")
         
-        # Step 3.5: Initialize/load tracking for this round
-        from backend.tracking import create_tracker
-        tracker = create_tracker(
-            session_path=Path(session_folder),
-            session_id=request.session_id,
-            stage=request.stage,
-            descriptor=descriptor or "No descriptor"
-        )
+        # Step 6: Start new round in tracking (reuse tracker from earlier)
         # Set concepts if not already set
-        if not tracker.data.get("concepts"):
-            tracker.set_concepts(refiner.concepts)
+        if not tracker_for_selection.data.get("concepts"):
+            tracker_for_selection.set_concepts(refiner.concepts)
         
         # Start new round
-        tracker.start_round(
+        tracker_for_selection.start_round(
             round_number=request.round_number + 1,
             reference_image=os.path.basename(reference_image_path) if reference_image else None
         )
         
-        # Step 4: Generate images with SDXL
-        refinement_stage = f"{request.stage}_refinement"
-        refinement_folder = os.path.join(session_folder, refinement_stage)
+        # Step 7: Generate images with SDXL
+        # (refinement_stage and refinement_folder already defined in Step 2)
         round_folder = os.path.join(refinement_folder, f"round_{request.round_number + 1}")
         
         # Prepare image paths for tracking
@@ -4046,11 +4095,11 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
             verbose=False,
             init_image=reference_image,
             descriptor=descriptor,  # User description from preferences
-            tracker=tracker,  # Track all generation details
+            tracker=tracker_for_selection,  # Track all generation details
             generated_image_paths=image_paths_for_tracking  # Image paths for tracking
         )
         
-        # Step 5: Save images
+        # Step 7: Save images
         os.makedirs(round_folder, exist_ok=True)
         
         image_paths = []
@@ -4063,7 +4112,7 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
             rel_path = f"/sessions/{request.session_id}/{refinement_stage}/round_{request.round_number + 1}/{image_filename}"
             image_paths.append(rel_path)
         
-        # Step 6: Save weight vectors for this round
+        # Step 8: Save weight vectors for this round
         weights_file = os.path.join(round_folder, "weights.json")
         with open(weights_file, "w") as f:
             json.dump({

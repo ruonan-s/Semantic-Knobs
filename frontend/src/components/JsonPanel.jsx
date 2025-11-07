@@ -1,6 +1,9 @@
 import React from 'react';
 
 function JsonPanel({ jsonData, onClose, imageId }) {
+  // Check if this is tag weights data
+  const isTagWeights = jsonData && jsonData.tag_weights !== undefined;
+  
   return (
     <div style={{
       position: 'fixed',
@@ -27,7 +30,9 @@ function JsonPanel({ jsonData, onClose, imageId }) {
           margin: 0,
           fontSize: '18px',
           fontWeight: '600'
-        }}>JSON Script - {imageId}</h3>
+        }}>
+          {isTagWeights ? 'Tag Weights' : 'JSON Script'} - {imageId}
+        </h3>
         <button
           onClick={onClose}
           style={{
@@ -44,19 +49,78 @@ function JsonPanel({ jsonData, onClose, imageId }) {
         </button>
       </div>
       
-      <div style={{
-        backgroundColor: '#f8f9fa',
-        border: '1px solid #e9ecef',
-        borderRadius: '6px',
-        padding: '15px',
-        fontSize: '14px',
-        fontFamily: 'SF Mono, Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace',
-        lineHeight: '1.5',
-        whiteSpace: 'pre-wrap',
-        overflow: 'auto'
-      }}>
-        {JSON.stringify(jsonData, null, 2)}
-      </div>
+      {isTagWeights ? (
+        // Display tag weights in a nice format
+        <div>
+          <div style={{
+            marginBottom: '15px',
+            padding: '10px',
+            backgroundColor: '#e3f2fd',
+            borderRadius: '6px',
+            fontSize: '13px'
+          }}>
+            <div><strong>Round:</strong> {jsonData.round}</div>
+            <div><strong>Concepts with weight &gt; 0:</strong> {jsonData.total_concepts}</div>
+          </div>
+          
+          <div style={{
+            backgroundColor: '#f8f9fa',
+            border: '1px solid #e9ecef',
+            borderRadius: '6px',
+            padding: '15px',
+            fontSize: '14px',
+            fontFamily: 'SF Mono, Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace',
+            lineHeight: '1.8',
+            whiteSpace: 'pre-wrap',
+            overflow: 'auto'
+          }}>
+            {jsonData.tag_weights}
+          </div>
+          
+          <details style={{ marginTop: '20px' }}>
+            <summary style={{
+              cursor: 'pointer',
+              padding: '10px',
+              backgroundColor: '#f5f5f5',
+              borderRadius: '4px',
+              fontSize: '13px',
+              fontWeight: '600'
+            }}>
+              Show Raw Data
+            </summary>
+            <div style={{
+              marginTop: '10px',
+              backgroundColor: '#f8f9fa',
+              border: '1px solid #e9ecef',
+              borderRadius: '6px',
+              padding: '15px',
+              fontSize: '12px',
+              fontFamily: 'SF Mono, Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace',
+              lineHeight: '1.5',
+              whiteSpace: 'pre-wrap',
+              overflow: 'auto',
+              maxHeight: '300px'
+            }}>
+              {JSON.stringify(jsonData.raw_data, null, 2)}
+            </div>
+          </details>
+        </div>
+      ) : (
+        // Display regular JSON
+        <div style={{
+          backgroundColor: '#f8f9fa',
+          border: '1px solid #e9ecef',
+          borderRadius: '6px',
+          padding: '15px',
+          fontSize: '14px',
+          fontFamily: 'SF Mono, Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace',
+          lineHeight: '1.5',
+          whiteSpace: 'pre-wrap',
+          overflow: 'auto'
+        }}>
+          {JSON.stringify(jsonData, null, 2)}
+        </div>
+      )}
     </div>
   );
 }

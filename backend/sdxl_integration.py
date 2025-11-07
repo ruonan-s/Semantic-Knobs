@@ -66,7 +66,7 @@ def concepts_to_sdxl_phrases(
         1. Normalize weights to simplex (sum to 1)
         2. Compute gains via z-score mapping: gains = 1.0 + lambda * z_scores
         3. Select Top-K positives (highest weights)
-        4. Select deficit negatives (lowest weights below uniform/2)
+        4. Select deficit negatives (lowest weights below uniform/2, excluding top-K)
 
     Args:
         w: Weight vector (K,)
@@ -121,15 +121,16 @@ def concepts_to_sdxl_phrases(
 
     # Step 4: Select deficit negatives
     # Deficit = (1/K - w) for concepts below uniform/2
+    # IMPORTANT: Exclude concepts already in positive prompts to avoid conflicts
     uniform_weight = 1.0 / K
     deficit_threshold = uniform_weight / 2.0
 
-    # Find concepts with weight below threshold
+    # Find concepts with weight below threshold, excluding top-K positives
     deficit_indices = []
     deficits = []
 
     for idx in range(K):
-        if w_norm[idx] < deficit_threshold:
+        if idx not in top_indices and w_norm[idx] < deficit_threshold:
             deficit = uniform_weight - w_norm[idx]
             deficit_indices.append(idx)
             deficits.append(deficit)

@@ -100,7 +100,10 @@ class GenerationTracker:
             seed: Random seed used
             generation_params: Dict with strength, steps, guidance_scale, etc.
         """
-        from backend.sdxl_integration import normalize_simplex, compute_gains
+        try:
+            from backend.sdxl_integration import normalize_simplex, compute_gains
+        except ImportError:
+            from sdxl_integration import normalize_simplex, compute_gains
         
         # Get current round
         if not self.data["rounds"]:
@@ -448,7 +451,10 @@ def extract_proposal_data(
     
     Returns dict suitable for JSON serialization.
     """
-    from backend.sdxl_integration import normalize_simplex, compute_gains
+    try:
+        from backend.sdxl_integration import normalize_simplex, compute_gains
+    except ImportError:
+        from sdxl_integration import normalize_simplex, compute_gains
     
     w_norm = normalize_simplex(w.copy())
     gains = compute_gains(w_norm)

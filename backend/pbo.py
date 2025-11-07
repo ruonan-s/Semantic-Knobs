@@ -465,8 +465,10 @@ class PBO:
         # Multi-start initialization
         starts = self._generate_starts(w_current)
 
-        # Acquisition strategies
-        strategies = ['thompson', 'ei', 'variance', 'diverse']
+        # Acquisition strategies - FORCE DIVERSITY while learning
+        # Problem: Too many similar proposals -> GP gets stuck
+        # Solution: Use different strategies that promote diversity
+        strategies = ['exploit', 'diverse', 'thompson', 'ei']  # Reordered: exploit, then 3 exploration variants
         proposals = []
 
         for strategy in strategies[:q]:
@@ -504,29 +506,56 @@ class PBO:
         return proposals[:q]
 
     def _generate_starts(self, w_current: Optional[np.ndarray]) -> List[np.ndarray]:
-        """Generate multi-start initialization points"""
+        """Generate multi-start initialization points using GP knowledge"""
         starts = []
 
-        # Current UI weights
+        # PRIORITY 1: Use top-performing candidates from GP
+        # These are the candidates that the model has learned are good!
+        if self.fitted and len(self.candidates) >= 2:
+            # Get all candidates and their predicted utilities
+            candidate_weights = []
+            candidate_ids = []
+            for cid, cand in self.candidates.items():
+                candidate_weights.append(cand.w)
+                candidate_ids.append(cid)
+            
+            if len(candidate_weights) > 0:
+                candidate_weights = np.array(candidate_weights)
+                Z_candidates = np.array([compute_mixture_embedding(w, self.MU) for w in candidate_weights])
+                mu_candidates, _ = self._predict(Z_candidates)
+                
+                # Sort by predicted utility (best first)
+                top_indices = np.argsort(-mu_candidates)[:min(3, len(candidate_weights))]
+                
+                # Add top-performing candidates as start points
+                for idx in top_indices:
+                    starts.append(candidate_weights[idx])
+
+        # PRIORITY 2: Current UI weights (if provided)
         if w_current is not None:
             starts.append(normalize_simplex(w_current))
-
-        # Top-K boosted (emphasize top 3 concepts)
-        if w_current is not None:
+            
+            # Top-K boosted (emphasize top 3 concepts from current)
             top_k = np.argsort(-w_current)[:3]
             w_boost = np.zeros(self.K, dtype=np.float32)
             w_boost[top_k] = 1.0 / len(top_k)
             starts.append(normalize_simplex(w_boost))
 
-        # Dirichlet samples around current
-        if w_current is not None:
-            alpha = 40.0 * normalize_simplex(w_current)
-            for _ in range(3):
-                w_dir = self.rng.dirichlet(alpha + EPS)
-                starts.append(normalize_simplex(w_dir))
-
-        # Uniform Dirichlet samples
-        for _ in range(3):
+        # PRIORITY 3: Dirichlet samples around learned preferences
+        # If we have GP knowledge, sample around top candidates
+        # Otherwise, sample around w_current
+        if len(starts) > 0:
+            # Use the best starts as seeds for Dirichlet sampling
+            for seed_w in starts[:2]:  # Use top 2 starts as seeds
+                # LOWER concentration (20.0) to allow MORE exploration
+                # Too high concentration causes all samples to be too similar!
+                alpha = 20.0 * normalize_simplex(seed_w)
+                for _ in range(2):
+                    w_dir = self.rng.dirichlet(alpha + EPS)
+                    starts.append(normalize_simplex(w_dir))
+        
+        # Add some random exploration
+        for _ in range(2):
             w_unif = self.rng.dirichlet(np.ones(self.K))
             starts.append(normalize_simplex(w_unif))
 
@@ -545,19 +574,36 @@ class PBO:
 
         # Sample pool from starts
         pool = []
-        per_start = max(1, pool_size // (len(starts) + 1))
+        
+        # Strategy-specific noise AND pool composition
+        if strategy == 'exploit':
+            noise_std = 0.15  # Moderate focus (not too tight)
+            pct_from_starts = 0.7  # 70% from learned starts
+        elif strategy == 'thompson':
+            noise_std = 0.3  # Balanced
+            pct_from_starts = 0.5  # 50% from starts, 50% random
+        elif strategy == 'ei':
+            noise_std = 0.35  # Slightly more exploration
+            pct_from_starts = 0.4  # 40% from starts
+        else:  # diverse
+            noise_std = 0.5  # Maximum exploration (back to original!)
+            pct_from_starts = 0.3  # Only 30% from starts, 70% random for diversity
+        
+        # Generate samples from start points
+        per_start = max(1, int(pool_size * pct_from_starts) // len(starts))
 
         for w_start in starts:
             # Convert to logits
             phi_start = np.log(w_start + EPS) * SOFTMAX_TAU_W
 
-            # Add noise
+            # Add strategy-specific noise
             for _ in range(per_start):
-                phi_noisy = phi_start + self.rng.randn(self.K) * 0.5
+                phi_noisy = phi_start + self.rng.randn(self.K) * noise_std
                 w = logit_to_weights(phi_noisy)
                 pool.append(w)
 
-        # Add random samples
+        # Fill remaining pool with random samples
+        # This proportion varies by strategy (more for diverse, less for exploit)
         while len(pool) < pool_size:
             w_rand = self.rng.dirichlet(np.ones(self.K))
             w = logit_to_weights(np.log(w_rand + EPS))
@@ -578,7 +624,12 @@ class PBO:
             mu = mu - penalty
 
         # Compute acquisition scores
-        if strategy == 'thompson':
+        if strategy == 'exploit':
+            # Pure exploitation - maximize posterior mean (learned preference)
+            # This converges toward what the user has selected
+            scores = mu
+        
+        elif strategy == 'thompson':
             # Thompson sampling - sample from posterior
             samples = mu + std * self.rng.randn(len(mu))
             scores = samples

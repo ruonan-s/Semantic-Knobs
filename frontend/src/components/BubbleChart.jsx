@@ -60,23 +60,23 @@ function BubbleChart({ concepts, onConceptClick }) {
       const maxRadius = 110;
       const radius = minRadius + Math.sqrt(normalizedWeight) * (maxRadius - minRadius);
 
-      // Determine color and status
-      let color;
-      let status;
-      const hasNetDislikes = concept.state.dislike_count > concept.state.like_count;
+      // Use gradient color based on weight (lighter = lower weight, darker = higher weight)
+      // Removed color-coding by likes/dislikes - only size matters
+      const normalizedForColor = Math.max(0, Math.min(1, normalizedWeight));
       
-      if (hasNetDislikes) {
-        color = '#E57373'; // Light red for negative
-        status = 'negative';
-      } else if (weight >= w_base + delta) {
-        color = '#81C784'; // Light green for positive
-        status = 'positive';
+      // Gradient from light blue to deep blue
+      const lightness = 75 - (normalizedForColor * 30); // 75% to 45%
+      const saturation = 40 + (normalizedForColor * 30); // 40% to 70%
+      const color = `hsl(210, ${saturation}%, ${lightness}%)`;
+      
+      // Status based on weight only
+      let status;
+      if (weight >= w_base + delta) {
+        status = 'high-weight';
       } else if (weight <= w_base - delta) {
-        color = '#E57373'; // Light red for negative
-        status = 'negative';
+        status = 'low-weight';
       } else {
-        color = '#B39DDB'; // Light purple for neutral
-        status = 'neutral';
+        status = 'medium-weight';
       }
 
       // Initial spiral positioning
@@ -311,19 +311,8 @@ function BubbleChart({ concepts, onConceptClick }) {
             {tooltip.bubble.label}
           </div>
           
-          <div style={{ marginBottom: '6px', display: 'flex', justifyContent: 'space-between' }}>
+          <div style={{ marginBottom: '6px' }}>
             <span><strong>Weight:</strong> {(tooltip.bubble.weight * 100).toFixed(2)}%</span>
-            <span style={{ 
-              marginLeft: '12px',
-              padding: '2px 8px', 
-              borderRadius: '4px',
-              fontSize: '11px',
-              fontWeight: 'bold',
-              backgroundColor: tooltip.bubble.status === 'positive' ? '#4CAF50' :
-                             tooltip.bubble.status === 'negative' ? '#f44336' : '#999'
-            }}>
-              {tooltip.bubble.status.toUpperCase()}
-            </span>
           </div>
           
           <div style={{ marginBottom: '8px', fontSize: '11px', opacity: 0.9 }}>
@@ -374,52 +363,57 @@ function BubbleChart({ concepts, onConceptClick }) {
         fontSize: '12px',
         boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
       }}>
-        <div style={{ fontWeight: 'bold', marginBottom: '8px', fontSize: '13px' }}>Concept Status</div>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '6px' }}>
-          <div style={{ 
-            width: '14px', 
-            height: '14px', 
-            backgroundColor: '#81C784', 
-            borderRadius: '50%',
-            marginRight: '8px',
-            border: '2px solid white',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.2)'
-          }} />
-          <span>Positive (preferred)</span>
+        <div style={{ fontWeight: 'bold', marginBottom: '8px', fontSize: '13px' }}>Bubble Key</div>
+        
+        {/* Color gradient explanation */}
+        <div style={{ marginBottom: '10px' }}>
+          <div style={{ fontSize: '11px', marginBottom: '4px', color: '#666' }}>Color Intensity:</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ 
+              width: '30px', 
+              height: '16px', 
+              background: 'linear-gradient(to right, hsl(210, 40%, 75%), hsl(210, 70%, 45%))',
+              borderRadius: '3px',
+              border: '1px solid #ddd'
+            }} />
+            <span style={{ fontSize: '10px', color: '#666' }}>Low → High weight</span>
+          </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '6px' }}>
-          <div style={{ 
-            width: '14px', 
-            height: '14px', 
-            backgroundColor: '#B39DDB', 
-            borderRadius: '50%',
-            marginRight: '8px',
-            border: '2px solid white',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.2)'
-          }} />
-          <span>Neutral</span>
+        
+        {/* Size explanation */}
+        <div style={{ marginBottom: '10px' }}>
+          <div style={{ fontSize: '11px', marginBottom: '4px', color: '#666' }}>Bubble Size:</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div style={{ 
+              width: '10px', 
+              height: '10px', 
+              backgroundColor: 'hsl(210, 55%, 60%)', 
+              borderRadius: '50%',
+              border: '1px solid #ddd'
+            }} />
+            <div style={{ 
+              width: '16px', 
+              height: '16px', 
+              backgroundColor: 'hsl(210, 55%, 60%)', 
+              borderRadius: '50%',
+              border: '1px solid #ddd'
+            }} />
+            <span style={{ fontSize: '10px', color: '#666' }}>= Concept weight</span>
+          </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <div style={{ 
-            width: '14px', 
-            height: '14px', 
-            backgroundColor: '#E57373', 
-            borderRadius: '50%',
-            marginRight: '8px',
-            border: '2px solid white',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.2)'
-          }} />
-          <span>Negative (avoid)</span>
-        </div>
+        
         <div style={{
-          marginTop: '10px',
           paddingTop: '8px',
           borderTop: '1px solid #e0e0e0',
           fontSize: '11px',
           color: '#666'
         }}>
-          <div>Size = Weight</div>
-          <div>Showing {bubbles.length} concepts</div>
+          <div style={{ marginBottom: '2px' }}>
+            <strong>Total:</strong> {bubbles.length} concepts
+          </div>
+          <div style={{ fontSize: '10px', fontStyle: 'italic', color: '#999', marginTop: '4px' }}>
+            Click bubbles to see details
+          </div>
         </div>
       </div>
     </div>

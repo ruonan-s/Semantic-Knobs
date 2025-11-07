@@ -3,14 +3,15 @@ import React from 'react';
 function InlineTagDisplay({ tags, imageId, onTagPreference, preferences }) {
   // Debug: Log when preferences change
   React.useEffect(() => {
-    console.log('[InlineTagDisplay] 🔄 Preferences updated for image:', {
+    console.log('[InlineTagDisplay] 🔄 Component rendered/updated for image:', {
       imageId,
       currentStage: preferences?.currentStage,
       availableStages: Object.keys(preferences?.tags || {}),
       stageTagCount: preferences?.tags?.[preferences?.currentStage]?.length || 0,
-      allPrefs: preferences?.tags?.[preferences?.currentStage]
+      allPrefs: preferences?.tags?.[preferences?.currentStage],
+      tagsCount: tags.length
     });
-  }, [preferences, imageId]);
+  }, [preferences, imageId, tags]);
 
   // Function to check if a tag has a preference
   const getTagPreference = (tag) => {
@@ -19,6 +20,15 @@ function InlineTagDisplay({ tags, imageId, onTagPreference, preferences }) {
     const existingPref = stageTags.find(
       t => t.tag === tag && t.source_image === imageId
     );
+    
+    if (existingPref) {
+      console.log('[InlineTagDisplay] ✅ Found preference for tag:', {
+        tag,
+        imageId,
+        preference: existingPref.preference,
+        currentStage
+      });
+    }
     
     return existingPref?.preference || null;
   };

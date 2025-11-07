@@ -59,6 +59,7 @@ function App() {
     tags: {}
   });
   const [conceptTagPreferences, setConceptTagPreferences] = useState({}); // NEW: tag_id -> 'positive'|'negative'|null from concept system
+  const [conceptSystemReady, setConceptSystemReady] = useState(false); // Track if concept system is initialized
   const [availableModes, setAvailableModes] = useState([]);
   const [finalModeResults, setFinalModeResults] = useState({});
   const [currentFinalMode, setCurrentFinalMode] = useState(null);
@@ -80,6 +81,13 @@ function App() {
     return () => document.head.removeChild(style);
   }, []);
 
+  // Reset concept system ready flag when stage changes
+  useEffect(() => {
+    console.log('[APP] Stage changed to:', stage, '- Resetting concept system ready flag');
+    setConceptSystemReady(false);
+    conceptTagHandlerRef.current = null;
+  }, [stage]);
+
   // Load tags for all images when images change (skip for refinement stages)
   useEffect(() => {
     if (images && images.length > 0 && sessionId && showTagsByDefault && !isRefinementStage) {
@@ -87,8 +95,90 @@ function App() {
     }
   }, [images, sessionId, showTagsByDefault, stage, isRefinementStage]);
 
+  // Function to load tag weights for refinement images
+  const loadImageWeights = async (imageId) => {
+    try {
+      // Parse image ID to get round and image index
+      // Format for refinement: round_{N}_image_{idx} or image_{idx} or {stage}_refinement_{idx}_0
+      console.log('[TAG WEIGHTS] Parsing image ID:', imageId);
+      const parts = imageId.split('_');
+      console.log('[TAG WEIGHTS] Parts:', parts);
+      
+      let roundNum = refinementRound; // Default to current round
+      let imageIdx = 0;
+      
+      if (parts[0] === 'round') {
+        roundNum = parseInt(parts[1]);
+        imageIdx = parseInt(parts[3]);
+      } else if (parts[0] === 'image') {
+        imageIdx = parseInt(parts[1]);
+      } else if (parts.includes('refinement')) {
+        // Format like: impression_refinement_0_0
+        const refinementIdx = parts.indexOf('refinement');
+        if (refinementIdx >= 0 && parts.length > refinementIdx + 1) {
+          imageIdx = parseInt(parts[refinementIdx + 1]);
+        }
+      }
+      
+      console.log('[TAG WEIGHTS] Parsed:', { imageId, roundNum, imageIdx, currentRefinementRound: refinementRound });
+      
+      // Load weights.json for this round
+      const weightsPath = `/sessions/${sessionId}/${stage}/round_${roundNum}/weights.json`;
+      console.log('[TAG WEIGHTS] Fetching:', weightsPath);
+      const res = await fetch(weightsPath);
+      
+      if (!res.ok) throw new Error('Failed to load weights');
+      
+      const weightsData = await res.json();
+      console.log('[TAG WEIGHTS] Loaded weights data with', weightsData.proposals.length, 'proposals');
+      
+      // Get weights for this specific image
+      const imageWeights = weightsData.proposals[imageIdx];
+      const conceptLabels = weightsData.concept_labels;
+      
+      if (!imageWeights) {
+        throw new Error(`No weights found for image index ${imageIdx} (only ${weightsData.proposals.length} available)`);
+      }
+      
+      // Create sorted list of concepts with weights > 0
+      const weightsList = conceptLabels
+        .map((label, idx) => ({ label, weight: imageWeights[idx] }))
+        .filter(item => item.weight > 0)
+        .sort((a, b) => b.weight - a.weight);
+      
+      // Format as readable text
+      const formattedWeights = weightsList.length > 0
+        ? weightsList.map((item, idx) => 
+            `${idx + 1}. ${item.label}: ${(item.weight * 100).toFixed(2)}%`
+          ).join('\n')
+        : 'No concepts with weight > 0';
+      
+      setCurrentImageJson({ 
+        tag_weights: formattedWeights,
+        image_id: imageId,
+        round: roundNum,
+        total_concepts: weightsList.length,
+        raw_data: { proposals: [imageWeights], concept_labels: conceptLabels }
+      });
+      setCurrentImageId(imageId);
+      setShowJsonPanel(true);
+      
+      console.log('[TAG WEIGHTS] Loaded for image:', {
+        imageId, roundNum, imageIdx, weightsCount: weightsList.length
+      });
+    } catch (error) {
+      console.error('Failed to load weights:', error);
+      addStatusMessage(`Failed to load tag weights: ${error.message}`);
+    }
+  };
+
   // Function to load JSON for an image
   const loadImageJson = async (imageId) => {
+    // For refinement stages, show tag weights instead
+    if (isRefinementStage) {
+      return loadImageWeights(imageId);
+    }
+    
     try {
       // Determine the correct stage for the API call
       let apiStage = stage;
@@ -220,8 +310,21 @@ function App() {
       count: Object.keys(tagPrefs).length,
       sample: Object.entries(tagPrefs).slice(0, 5).map(([k, v]) => ({ [k]: v }))
     });
-    setConceptTagPreferences(tagPrefs);
-  }, []);
+    // Force new object reference to ensure React detects the change
+    setConceptTagPreferences({ ...tagPrefs });
+    
+    // Mark system as ready when we receive preferences (means ConceptRefinementPanel is initialized)
+    if (!conceptSystemReady) {
+      console.log('[APP] ✅ Concept system is now ready');
+      setConceptSystemReady(true);
+    }
+  }, [conceptSystemReady]);
+
+  // Helper function to normalize tags for matching
+  const normalizeTag = (tag) => {
+    if (typeof tag !== 'string') return '';
+    return tag.trim().toLowerCase();
+  };
 
   // Function to handle tag preferences (now concept-based)
   const handleTagPreference = (tag, preference, imageId) => {
@@ -231,6 +334,8 @@ function App() {
     console.log('  Preference:', preference);
     console.log('  Image ID:', imageId);
     console.log('  Current Stage:', stage);
+    console.log('  Is Refinement Stage:', isRefinementStage);
+    console.log('  Concept Handler Available:', !!conceptTagHandlerRef.current);
     
     // Determine the actual stage
     let actualStage = stage;
@@ -243,7 +348,39 @@ function App() {
     // Format: tag_{stage}_{imageId}_{index}
     // We need to find the index of this tag in the image's tags
     const imageTags = imageTagsMap[imageId] || [];
-    const tagIndex = imageTags.findIndex(t => t === tag);
+    
+    // FIRST: Try exact match
+    let tagIndex = imageTags.findIndex(t => t === tag);
+    
+    // SECOND: Try normalized match (handles whitespace, case differences)
+    if (tagIndex === -1) {
+      const normalizedTag = normalizeTag(tag);
+      tagIndex = imageTags.findIndex(t => normalizeTag(t) === normalizedTag);
+      
+      if (tagIndex !== -1) {
+        console.log('  ✅ Found tag with normalized match:', {
+          original: tag,
+          normalized: normalizedTag,
+          matched: imageTags[tagIndex]
+        });
+      }
+    }
+    
+    // THIRD: Try partial match (handles truncation)
+    if (tagIndex === -1) {
+      const normalizedTag = normalizeTag(tag);
+      tagIndex = imageTags.findIndex(t => {
+        const normalizedT = normalizeTag(t);
+        return normalizedT.includes(normalizedTag) || normalizedTag.includes(normalizedT);
+      });
+      
+      if (tagIndex !== -1) {
+        console.log('  ✅ Found tag with partial match:', {
+          original: tag,
+          matched: imageTags[tagIndex]
+        });
+      }
+    }
     
     console.log('  🔍 [DEBUG] Tag lookup:', {
       imageId,
@@ -264,19 +401,44 @@ function App() {
           Object.entries(imageTagsMap).map(([k, v]) => [k, v.slice(0, 3)])
         )
       });
+      
+      // Show user feedback instead of silently failing
+      addStatusMessage(`⚠️ Unable to set preference for "${tag}". Tag not found in current image data.`);
       return;
     }
     
     const tagId = `tag_${actualStage}_${imageId}_${tagIndex}`;
     console.log('  ✅ Tag ID:', tagId);
+    console.log('  🔄 Checking concept handler status...');
+    console.log('  conceptTagHandlerRef.current:', conceptTagHandlerRef.current);
+    console.log('  Current conceptTagPreferences keys:', Object.keys(conceptTagPreferences).length);
     
-    // Call concept handler if available
-    if (conceptTagHandlerRef.current) {
-      conceptTagHandlerRef.current(tagId, preference);
-      console.log('✅ [DEBUG] Concept handler called');
-    } else {
-      console.warn('⚠️  Concept handler not initialized yet');
+    // Check if system is ready
+    if (!conceptSystemReady || !conceptTagHandlerRef.current) {
+      console.error('❌ [DEBUG] Concept system NOT READY!');
+      console.error('  conceptSystemReady:', conceptSystemReady);
+      console.error('  conceptTagHandlerRef.current:', !!conceptTagHandlerRef.current);
+      console.error('  Current stage:', stage);
+      console.error('  Is refinement stage:', isRefinementStage);
+      
+      if (isRefinementStage) {
+        addStatusMessage('⚠️ Tag preferences are not available in refinement stages.');
+      } else if (!conceptSystemReady) {
+        addStatusMessage('⏳ Concept system is initializing... Please wait a moment and try again.');
+      } else {
+        addStatusMessage('⚠️ Preferences system not ready. Please wait a moment and try again.');
+      }
+      return;
     }
+    
+    // Call concept handler
+    console.log('✅ [DEBUG] Calling concept handler with:', { tagId, preference });
+    conceptTagHandlerRef.current(tagId, preference);
+    console.log('✅ [DEBUG] Concept handler called successfully');
+    
+    // Show success feedback
+    const prefEmoji = preference === 'positive' ? '👍' : '👎';
+    addStatusMessage(`${prefEmoji} Set "${tag}" as ${preference}`);
   };
 
   // Derive UI preferences from concept system for tag components
@@ -1657,7 +1819,7 @@ function App() {
                       transition: 'all 0.2s ease'
                     }}
                   >
-                    JSON Script
+                    {isRefinementStage ? 'Tag Weights' : 'JSON Script'}
                   </button>
                 </div>
                 
@@ -1676,6 +1838,7 @@ function App() {
                 {/* Inline tag display */}
                 {showTagsByDefault && (
                   <InlineTagDisplay
+                    key={`tags-${image.id}-${Object.keys(conceptTagPreferences).length}`}
                     tags={imageTagsMap[image.id] || []}
                     imageId={image.id}
                     onTagPreference={handleTagPreference}
@@ -1815,9 +1978,22 @@ function App() {
               borderRadius: '8px',
               border: '1px solid #dee2e6'
             }}>
-              <span style={{ fontWeight: '500', color: '#495057' }}>
-                Tags Display: {showTagsByDefault ? 'Expanded' : 'Collapsed'}
-              </span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <span style={{ fontWeight: '500', color: '#495057' }}>
+                  Tags Display: {showTagsByDefault ? 'Expanded' : 'Collapsed'}
+                </span>
+                <span style={{
+                  fontSize: '12px',
+                  padding: '3px 8px',
+                  borderRadius: '12px',
+                  backgroundColor: conceptSystemReady ? '#d4edda' : '#fff3cd',
+                  color: conceptSystemReady ? '#155724' : '#856404',
+                  border: `1px solid ${conceptSystemReady ? '#c3e6cb' : '#ffeeba'}`,
+                  fontWeight: '500'
+                }}>
+                  {conceptSystemReady ? '✓ Ready' : '⏳ Initializing...'}
+                </span>
+              </div>
               <button
                 onClick={() => setShowTagsByDefault(!showTagsByDefault)}
                 style={{
@@ -1911,7 +2087,7 @@ function App() {
                       e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
                     }}
                   >
-                    JSON Script
+                    {isRefinementStage ? 'Tag Weights' : 'JSON Script'}
                   </button>
                 </div>
                 
@@ -1930,6 +2106,7 @@ function App() {
                 {/* Inline tag display (hidden for refinement stages) */}
                 {showTagsByDefault && !isRefinementStage && (
                   <InlineTagDisplay
+                    key={`tags-${image.id}-${Object.keys(conceptTagPreferences).length}`}
                     tags={imageTagsMap[image.id] || []}
                     imageId={image.id}
                     onTagPreference={handleTagPreference}
