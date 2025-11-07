@@ -1647,16 +1647,133 @@ def feedback(req: FeedbackRequest):
                 except Exception as e:
                     print(f"⚠️  Error saving concept preferences: {e}")
                 
-                # Generate refinement stage
-                results = run_refinement_stage(
-                    next_stage,
-                    narrative_prompt,
-                    image_prompt,
-                    descriptor,
-                    selected_json,
-                    tag_preferences,
-                    folder
+                # Generate refinement stage using PBO + SDXL
+                write_status(folder, f"🔄 Starting PBO refinement for {base_stage}...")
+                
+                # Initialize PBO with tag cluster concepts
+                visual_tags_path = os.path.join(exploration_stage_folder, "visual_tags.json")
+                if not os.path.exists(visual_tags_path):
+                    raise HTTPException(
+                        404,
+                        f"Visual tags not found for {base_stage}. Cannot run refinement without tags."
+                    )
+                
+                with open(visual_tags_path, 'r') as f:
+                    visual_tags_data = json.load(f)
+                
+                # Build image_tags dict
+                image_tags = {}
+                for image_id in exploration_images:
+                    image_filename = f"{image_id}.png"
+                    if image_filename in visual_tags_data:
+                        image_tags[image_id] = visual_tags_data[image_filename]
+                    else:
+                        image_tags[image_id] = []
+                
+                # Initialize concepts if not already done
+                if not refinement_session.initialized:
+                    write_status(folder, "🔨 Clustering tags into concepts...")
+                    refinement_session.initialize_from_tags(image_tags)
+                    write_status(folder, f"✅ Created {len(refinement_session.concepts)} tag cluster concepts")
+                
+                # Initialize StageRefiner with PBO
+                refiner = get_or_create_pbo_refiner(
+                    session_id=req.session_id,
+                    stage=base_stage
                 )
+                
+                write_status(folder, f"🎲 Generating 4 PBO proposals...")
+                
+                # Propose 4 weight mixtures
+                proposals = refiner.propose_next_4(
+                    negatives=None,
+                    w_current=None,
+                    fit_first=True
+                )
+                
+                write_status(folder, "🎨 Generating images with SDXL...")
+                
+                # Load the selected favorite image as reference
+                selected_image_id = req.selected_image_id  # From feedback request
+                print(f"[PBO] Looking for reference image with ID: {selected_image_id}")
+                
+                selected_image_path = None
+                if selected_image_id:
+                    # Build expected image path from selected_image_id
+                    # e.g., "impression_2_0" -> "impression/impression_2_0.png"
+                    image_filename = f"{selected_image_id}.png"
+                    selected_image_path = os.path.join(exploration_stage_folder, image_filename)
+                    
+                    print(f"[PBO] Checking path: {selected_image_path}")
+                    if not os.path.exists(selected_image_path):
+                        # Try alternative: maybe it's just the stage + index
+                        # e.g., "impression_2" -> "impression_2_0.png"
+                        alt_filename = f"{selected_image_id}_0.png"
+                        alt_path = os.path.join(exploration_stage_folder, alt_filename)
+                        print(f"[PBO] Trying alternative: {alt_path}")
+                        if os.path.exists(alt_path):
+                            selected_image_path = alt_path
+                        else:
+                            selected_image_path = None
+                
+                reference_image = None
+                if selected_image_path and os.path.exists(selected_image_path):
+                    from PIL import Image as PILImage
+                    reference_image = PILImage.open(selected_image_path)
+                    write_status(folder, f"📷 Using reference image: {os.path.basename(selected_image_path)}")
+                    print(f"[PBO] ✅ Loaded reference image: {selected_image_path}")
+                else:
+                    write_status(folder, f"⚠️ Reference image not found for ID '{selected_image_id}', using txt2img mode")
+                    print(f"[PBO] ⚠️ Reference image not found. Selected ID: {selected_image_id}")
+                
+                # Generate images using SDXL
+                sdxl_runner = get_sdxl_runner()
+                pil_images = refiner.generate_images_from_proposals(
+                    proposals=proposals,
+                    sdxl_runner=sdxl_runner,
+                    seed_base=42,
+                    verbose=False,
+                    init_image=reference_image,
+                    descriptor=descriptor  # User description from session
+                )
+                
+                # Save images to Round 1 folder
+                refinement_folder = os.path.join(folder, next_stage)
+                round_1_folder = os.path.join(refinement_folder, "round_1")
+                os.makedirs(round_1_folder, exist_ok=True)
+                
+                results = []
+                for idx, pil_img in enumerate(pil_images):
+                    # Save to round_1 folder
+                    image_filename = f"image_{idx}.png"
+                    image_path = os.path.join(round_1_folder, image_filename)
+                    pil_img.save(image_path)
+                    
+                    # Also save with legacy naming for compatibility
+                    legacy_filename = f"{next_stage}_{idx}_0.png"
+                    legacy_path = os.path.join(refinement_folder, legacy_filename)
+                    pil_img.save(legacy_path)
+                    
+                    write_status(folder, f"💾 Saved {image_filename}")
+                    
+                    # Create result tuple compatible with existing code
+                    concept_data = {
+                        "concept_name": f"PBO Mixture {idx+1}",
+                        "weight_vector": proposals[idx].tolist()
+                    }
+                    results.append((concept_data, [legacy_path]))  # Use legacy path for compatibility
+                
+                # Save Round 1 weight vectors
+                weights_file = os.path.join(round_1_folder, "weights.json")
+                with open(weights_file, "w") as f:
+                    json.dump({
+                        "round": 1,
+                        "proposals": [p.tolist() for p in proposals],
+                        "concept_labels": [c['label'] for c in refiner.concepts],
+                        "reference_image": selected_image_id
+                    }, f, indent=2)
+                
+                write_status(folder, f"✅ PBO refinement complete! Generated {len(results)} images")
             else:
                 # Regular exploration stage: use standard generation
                 results, user_pref = run_stage_seq_parallel_optimized(
@@ -3175,14 +3292,26 @@ class GenerateStageRefinementResponse(BaseModel):
 
 @app.post("/api/generate-stage-refinement", response_model=GenerateStageRefinementResponse)
 def generate_stage_refinement(req: GenerateStageRefinementRequest):
-    """Generate 4 refinement images for a stage based on concept preferences"""
+    """
+    Generate 4 refinement images using PBO + SDXL.
+    
+    NEW IMPLEMENTATION:
+    - Uses tag cluster concepts from visual_tags.json
+    - PBO proposes 4 weight mixtures
+    - SDXL generates images from fused embeddings
+    """
     try:
         session_path = os.path.join(SESSIONS_DIR, req.session_path)
+        session_id = req.session_path
         
         if not os.path.exists(session_path):
             raise HTTPException(404, f"Session not found: {req.session_path}")
         
-        # Load the original stage JSON
+        refinement_stage = f"{req.stage}_refinement"
+        
+        write_status(session_path, f"🔄 Starting PBO refinement for {req.stage}...")
+        
+        # Step 1: Get image IDs from the base stage
         stage_folder = os.path.join(session_path, req.stage)
         json_file = os.path.join(stage_folder, f"{req.stage}.json")
         
@@ -3192,156 +3321,208 @@ def generate_stage_refinement(req: GenerateStageRefinementRequest):
         with open(json_file, "r") as f:
             stage_concepts = json.load(f)
         
-        # Get the selected concept
-        if req.selected_concept_index >= len(stage_concepts):
-            raise HTTPException(400, f"Invalid concept index: {req.selected_concept_index}")
+        # Get image IDs (e.g., impression_0, impression_1, impression_2, impression_3)
+        image_ids = [f"{req.stage}_{i}" for i in range(len(stage_concepts))]
         
-        selected_concept = stage_concepts[req.selected_concept_index]
+        write_status(session_path, f"📊 Loading {len(image_ids)} images from {req.stage} stage")
         
-        # Load preferences
-        preferences = {}
-        prefs_file = os.path.join(session_path, "preferences.json")
-        if os.path.exists(prefs_file):
-            with open(prefs_file, "r") as f:
-                preferences = json.load(f)
+        # Step 2: Initialize PBO with tag cluster concepts
+        write_status(session_path, "🧠 Initializing PBO with tag cluster concepts...")
         
-        # Get the refinement prompt based on stage
-        refinement_stage = f"{req.stage}_refinement"
-        if refinement_stage not in PROMPTS:
-            raise HTTPException(400, f"No refinement prompt for stage: {req.stage}")
+        visual_tags_path = os.path.join(stage_folder, "visual_tags.json")
+        if not os.path.exists(visual_tags_path):
+            raise HTTPException(
+                404,
+                f"Visual tags not found. The {req.stage} stage needs visual tags for refinement."
+            )
         
-        designer_prompt, generator_prompt = PROMPTS[refinement_stage]
+        with open(visual_tags_path, 'r') as f:
+            visual_tags_data = json.load(f)
         
-        # Create refinement folder
-        refinement_folder = os.path.join(session_path, refinement_stage)
-        os.makedirs(refinement_folder, exist_ok=True)
+        # Build image_tags dict
+        image_tags = {}
+        for image_id in image_ids:
+            image_filename = f"{image_id}_0.png"
+            if image_filename in visual_tags_data:
+                image_tags[image_id] = visual_tags_data[image_filename]
+            else:
+                write_status(session_path, f"⚠️ No tags found for {image_id}")
+                image_tags[image_id] = []
         
-        write_status(session_path, f"Generating refinement for {req.stage} with concept preferences...")
+        total_tags = sum(len(tags) for tags in image_tags.values())
+        write_status(session_path, f"📋 Loaded {total_tags} visual tags")
         
-        # Build tag preferences structure for refinement prompt
-        tag_preferences = {
-            "positive": req.positive_concept_labels,
-            "negative": req.negative_concept_labels
-        }
-        
-        # Call designer with refinement prompt
-        # The designer will generate 4 refined concepts based on the selected concept and tag preferences
-        import anthropic
-        client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
-        
-        # Format the refinement prompt with inputs
-        formatted_prompt = designer_prompt.replace(
-            "<user text>", req.descriptor
-        ).replace(
-            "<one of the 4 exploration outputs, full JSON>", 
-            json.dumps(selected_concept, indent=2)
-        ).replace(
-            '{"positive": ["P1","P2","P3","P4","P5"], "negative": ["N1","N2","N3"]}',
-            json.dumps(tag_preferences)
+        # Initialize ConceptRefinementSession (clusters tags)
+        refinement_session = get_refinement_session(
+            session_id,
+            req.stage,
+            image_ids
         )
         
-        # Generate refined concepts
-        write_status(session_path, f"Calling designer for {refinement_stage}...")
+        if not refinement_session.initialized:
+            write_status(session_path, "🔨 Clustering tags into concepts using K-means...")
+            refinement_session.initialize_from_tags(image_tags)
+            write_status(session_path, f"✅ Created {len(refinement_session.concepts)} tag cluster concepts")
+        else:
+            write_status(session_path, f"✅ Using existing {len(refinement_session.concepts)} concepts")
         
-        response = client.messages.create(
-            model="claude-sonnet-4-20250514",
-            max_tokens=4096,
-            temperature=1.0,
-            messages=[{"role": "user", "content": formatted_prompt}]
+        # Initialize StageRefiner (creates PBO with MU matrix)
+        refiner = get_or_create_pbo_refiner(
+            session_id=session_id,
+            stage=req.stage
         )
         
-        content = response.content[0].text
+        concept_labels = [c['label'] for c in refiner.concepts]
+        write_status(session_path, f"🎯 PBO initialized with concepts: {', '.join(concept_labels[:5])}...")
         
-        # Extract JSON from response
-        import re
-        json_match = re.search(r'\{[\s\S]*"outputs"[\s\S]*\}', content)
-        if not json_match:
-            raise RuntimeError(f"No valid JSON found in designer response for {refinement_stage}")
+        # Step 3: Use PBO to propose 4 weight mixtures
+        write_status(session_path, "🎲 Generating 4 optimized weight mixtures...")
         
-        json_str = json_match.group(0)
-        result = json.loads(json_str)
-        refined_concepts = result.get("outputs", [])
+        proposals = refiner.propose_next_4(
+            negatives=None,
+            w_current=None,
+            fit_first=True
+        )
         
-        if len(refined_concepts) != 4:
-            raise RuntimeError(f"Expected 4 refined concepts, got {len(refined_concepts)}")
+        write_status(session_path, f"✅ Generated {len(proposals)} proposals")
         
-        # Save refined concepts JSON
-        refined_json_file = os.path.join(refinement_folder, f"{refinement_stage}.json")
-        with open(refined_json_file, "w") as f:
-            json.dump(refined_concepts, f, indent=2)
+        # Step 4: Generate images using SDXL
+        write_status(session_path, "🎨 Generating images with SDXL...")
         
-        write_status(session_path, f"Saved {len(refined_concepts)} refined concepts to JSON")
+        # Load the selected image as reference
+        selected_image_path = os.path.join(stage_folder, f"{req.stage}_{req.selected_concept_index}_0.png")
+        reference_image = None
         
-        # Generate images for each refined concept
-        write_status(session_path, f"Generating images for {len(refined_concepts)} refined concepts...")
+        if os.path.exists(selected_image_path):
+            from PIL import Image as PILImage
+            reference_image = PILImage.open(selected_image_path)
+            write_status(session_path, f"📷 Using reference image: {os.path.basename(selected_image_path)}")
+        else:
+            write_status(session_path, "⚠️ Selected image not found, using txt2img mode")
         
+        # Load descriptor from preferences.json
+        descriptor = None
+        preferences_file = os.path.join(session_path, "preferences.json")
+        if os.path.exists(preferences_file):
+            with open(preferences_file, 'r') as f:
+                prefs = json.load(f)
+                descriptor = prefs.get('descriptor')
+        
+        # Initialize tracking
+        from backend.tracking import create_tracker
+        tracker = create_tracker(
+            session_path=Path(session_path),
+            session_id=session_id,
+            stage=req.stage,
+            descriptor=descriptor or "No descriptor"
+        )
+        tracker.set_concepts(refiner.concepts)
+        tracker.start_round(
+            round_number=1,
+            reference_image=os.path.basename(selected_image_path) if reference_image else None
+        )
+        
+        sdxl_runner = get_sdxl_runner()
+        
+        # Prepare image paths for tracking
+        image_paths_for_tracking = [
+            f"{refinement_stage}/round_1/image_{i}.png" for i in range(len(proposals))
+        ]
+        
+        # Generate images from proposals
+        pil_images = refiner.generate_images_from_proposals(
+            proposals=proposals,
+            sdxl_runner=sdxl_runner,
+            seed_base=42,
+            verbose=False,
+            init_image=reference_image,
+            descriptor=descriptor,  # User description from preferences
+            tracker=tracker,  # Track all generation details
+            generated_image_paths=image_paths_for_tracking  # Image paths for tracking
+        )
+        
+        # Create refinement folder structure (Round 1)
+        refinement_folder_path = os.path.join(session_path, refinement_stage)
+        round_1_folder = os.path.join(refinement_folder_path, "round_1")
+        os.makedirs(round_1_folder, exist_ok=True)
+        
+        # Save images to Round 1 folder
         images = []
-        for idx, concept in enumerate(refined_concepts):
-            # Format the generator prompt
-            formatted_gen_prompt = generator_prompt.replace(
-                "<user text>", req.descriptor
-            ).replace(
-                "<full JSON blob for one concept>",
-                json.dumps(concept, indent=2)
-            )
+        for idx, pil_img in enumerate(pil_images):
+            # Save to round_1 folder
+            image_filename = f"image_{idx}.png"
+            image_path = os.path.join(round_1_folder, image_filename)
+            pil_img.save(image_path)
             
-            # Generate image
-            write_status(session_path, f"Generating image {idx + 1}/4 for {refinement_stage}...")
+            # Also save with legacy naming for compatibility
+            legacy_filename = f"{refinement_stage}_{idx}_0.png"
+            legacy_path = os.path.join(refinement_folder_path, legacy_filename)
+            pil_img.save(legacy_path)
             
-            gen_response = client.messages.create(
-                model="claude-sonnet-4-20250514",
-                max_tokens=1024,
-                temperature=1.0,
-                messages=[{"role": "user", "content": formatted_gen_prompt}]
-            )
+            write_status(session_path, f"💾 Saved image {idx + 1}/4: {image_filename}")
             
-            # Extract image prompt
-            image_prompt_content = gen_response.content[0].text.strip()
-            
-            # Generate image using the existing generator function
-            from util import generate_image_replicate
-            
-            image_filename = f"{refinement_stage}_{idx}_0.png"
-            image_path = os.path.join(refinement_folder, image_filename)
-            
-            generate_image_replicate(image_prompt_content, image_path)
-            
-            write_status(session_path, f"Saved image {idx + 1}/4: {image_filename}")
-            
-            # Create image item for response
+            # Use legacy format for now
             image_id = f"{refinement_stage}_{idx}_0"
-            image_url = f"/sessions/{req.session_path}/{refinement_stage}/{image_filename}"
+            image_url = f"/sessions/{req.session_path}/{refinement_stage}/{legacy_filename}"
             
             images.append({
                 "id": image_id,
                 "url": image_url
             })
         
-        # Update preferences with the refinement choices
+        # Save Round 1 weight vectors
+        reference_image_id = f"{req.stage}_{req.selected_concept_index}_0"
+        weights_data = {
+            "round": 1,
+            "proposals": [p.tolist() for p in proposals],
+            "concept_labels": concept_labels,
+            "reference_image": reference_image_id,
+            "selected_concept_index": req.selected_concept_index,
+            "positive_labels": req.positive_concept_labels,
+            "negative_labels": req.negative_concept_labels
+        }
+        
+        weights_file = os.path.join(round_1_folder, "weights.json")
+        with open(weights_file, "w") as f:
+            json.dump(weights_data, f, indent=2)
+        
+        # Update preferences
+        prefs_file = os.path.join(session_path, "preferences.json")
+        preferences = {}
+        if os.path.exists(prefs_file):
+            with open(prefs_file, "r") as f:
+                preferences = json.load(f)
+        
         if req.stage not in preferences:
             preferences[req.stage] = {}
         
         preferences[req.stage]["selected_concept_index"] = req.selected_concept_index
         preferences[req.stage]["positive_labels"] = req.positive_concept_labels
         preferences[req.stage]["negative_labels"] = req.negative_concept_labels
+        preferences[req.stage]["refinement_method"] = "pbo_sdxl"
         
-        # Save updated preferences
         with open(prefs_file, "w") as f:
             json.dump(preferences, f, indent=2)
         
-        write_status(session_path, f"✅ Refinement complete for {req.stage}!")
+        write_status(session_path, f"✅ PBO refinement complete! Generated 4 images using SDXL")
+        
+        # Create dummy stage_json for compatibility (frontend expects this)
+        stage_json = [
+            {"concept_name": f"PBO Mixture {i+1}", "weight_vector": proposals[i].tolist()}
+            for i in range(len(proposals))
+        ]
         
         return {
             "success": True,
             "images": images,
-            "stage_json": refined_concepts,
+            "stage_json": stage_json,
             "refinement_folder": refinement_stage
         }
         
     except HTTPException:
         raise
     except Exception as e:
-        error_msg = f"Error generating stage refinement: {str(e)}"
+        error_msg = f"Error in PBO refinement: {str(e)}"
         print(error_msg)
         import traceback
         print(f"Traceback: {traceback.format_exc()}")
@@ -3352,5 +3533,656 @@ def generate_stage_refinement(req: GenerateStageRefinementRequest):
                 write_status(session_path, f"❌ Error: {error_msg}")
         except:
             pass
+
+        raise HTTPException(status_code=500, detail=error_msg)
+
+
+# ============================================================================
+# PBO (Preference-Based Optimization) Endpoints - Stage 4
+# ============================================================================
+
+from stage_refiner import StageRefiner
+from sdxl_runner import SDXLRunner
+import numpy as np
+from pathlib import Path
+from typing import Optional, Dict as TypingDict
+
+# Global singletons
+_sdxl_runner: Optional[SDXLRunner] = None
+_pbo_refiners: TypingDict[str, StageRefiner] = {}
+
+
+def get_sdxl_runner() -> SDXLRunner:
+    """Get or create global SDXL runner singleton."""
+    global _sdxl_runner
+    if _sdxl_runner is None:
+        print("[PBO] Initializing SDXL Runner...")
+        _sdxl_runner = SDXLRunner(
+            model_id="stabilityai/stable-diffusion-xl-base-1.0",
+            device=None,  # Auto-detect (cuda/mps/cpu)
+            height=1024,
+            width=1024,
+            steps=30,
+            guidance_scale=7.5
+        )
+        print("[PBO] SDXL Runner initialized")
+    return _sdxl_runner
+
+
+def get_or_create_pbo_refiner(session_id: str, stage: str) -> StageRefiner:
+    """
+    Get or create StageRefiner for PBO session/stage.
+
+    This integrates with existing ConceptRefinementSession to reuse concepts.
+    """
+    key = f"{session_id}:{stage}"
+
+    if key not in _pbo_refiners:
+        print(f"[PBO] Creating new StageRefiner for {session_id}/{stage}")
+
+        # Get existing concept refinement session (which has the concepts)
+        concept_session = get_refinement_session(session_id, stage, [])
+
+        if not concept_session.initialized:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Concept session for {session_id}/{stage} not initialized. "
+                       f"Run concept refinement first."
+            )
+
+        # Convert ConceptRefinementSession data to StageRefiner format
+        concepts = []
+        for concept in concept_session.concepts:
+            concepts.append({
+                'id': concept.id,
+                'label': concept.label,
+                'centroid': concept.centroid.tolist() if hasattr(concept.centroid, 'tolist') else concept.centroid
+            })
+
+        # Convert concept_states
+        concept_states = {}
+        for cid, state in concept_session.concept_states.items():
+            concept_states[cid] = {
+                'active': True,  # All concepts are active by default
+                'weight': state.w,
+                'total_positive_feedback': state.like_count,
+                'total_negative_feedback': state.dislike_count
+            }
+
+        # Get session directory
+        session_dir = Path(SESSIONS_DIR) / session_id / stage
+        session_dir.mkdir(parents=True, exist_ok=True)
+
+        # Create StageRefiner
+        _pbo_refiners[key] = StageRefiner(
+            session_id=session_id,
+            stage=stage,
+            concepts=concepts,
+            concept_states=concept_states,
+            image_ids=concept_session.image_ids,
+            incidence_matrix=concept_session.incidence_matrix,
+            session_dir=session_dir
+        )
+
+        print(f"[PBO] StageRefiner created with {len(concepts)} concepts")
+
+    return _pbo_refiners[key]
+
+
+# --- Pydantic Models ---
+
+class StabilizeRequest(BaseModel):
+    session_id: str
+    stage: str
+    w_ui: list[float]  # Current UI weights
+
+
+class StabilizeResponse(BaseModel):
+    snapshot_recorded: bool
+    candidate_id: Optional[str]
+    message: str
+
+
+class ProposeRequest(BaseModel):
+    session_id: str
+    stage: str
+    negatives: Optional[list[str]] = None  # Concept IDs to avoid
+    w_current: Optional[list[float]] = None  # Current UI weights for seeding
+
+
+class ProposeResponse(BaseModel):
+    proposals: list[list[float]]  # 4 weight vectors
+    proposal_ids: list[str]
+    message: str
+
+
+class GenerateRequest_PBO(BaseModel):
+    session_id: str
+    stage: str
+    proposals: list[list[float]]  # From /api/pbo/propose
+    seed_base: int = 42
+
+
+class GenerateResponse_PBO(BaseModel):
+    image_paths: list[str]
+    proposals: list[list[float]]
+    round_number: int
+    message: str
+
+
+class FavoriteRequest(BaseModel):
+    session_id: str
+    stage: str
+    favorite_image_id: str
+    all_image_ids: list[str]
+
+
+class FavoriteResponse(BaseModel):
+    duels_added: int
+    favorite_candidate_id: str
+    message: str
+
+
+class InitRefinementRequest(BaseModel):
+    session_id: str
+    stage: str
+    image_ids: list[str]  # Image IDs from the base stage (e.g., impression)
+
+
+class InitRefinementResponse(BaseModel):
+    success: bool
+    num_concepts: int
+    concept_labels: list[str]
+    message: str
+
+
+# --- PBO Endpoints ---
+
+@app.post("/api/pbo/init-refinement", response_model=InitRefinementResponse)
+async def pbo_init_refinement(request: InitRefinementRequest):
+    """
+    Initialize PBO refinement for a stage using tag cluster concepts.
+    
+    Flow:
+    1. Load visual tags from base stage
+    2. Initialize ConceptRefinementSession (clusters tags into concepts)
+    3. Initialize StageRefiner with concept centroids (MU matrix)
+    4. Ready for PBO propose/generate/favorite cycle
+    
+    This bridges the tag clustering system with PBO optimization.
+    """
+    try:
+        session = sessions.get(request.session_id)
+        if not session:
+            raise HTTPException(404, f"Session not found: {request.session_id}")
         
-        raise HTTPException(500, str(e))
+        print(f"[PBO Init] Initializing refinement for {request.session_id}/{request.stage}")
+        
+        # Step 1: Load visual tags
+        stage_folder = os.path.join(session['folder'], request.stage)
+        visual_tags_path = os.path.join(stage_folder, "visual_tags.json")
+        
+        if not os.path.exists(visual_tags_path):
+            raise HTTPException(
+                404, 
+                f"Visual tags not found at {visual_tags_path}. "
+                f"Run the base stage first to extract tags."
+            )
+        
+        with open(visual_tags_path, 'r') as f:
+            visual_tags_data = json.load(f)
+        
+        # Build image_tags dict
+        image_tags = {}
+        for image_id in request.image_ids:
+            image_filename = f"{image_id}.png"
+            if image_filename in visual_tags_data:
+                image_tags[image_id] = visual_tags_data[image_filename]
+            else:
+                print(f"[PBO Init] Warning: No tags found for {image_id}")
+                image_tags[image_id] = []
+        
+        total_tags = sum(len(tags) for tags in image_tags.values())
+        print(f"[PBO Init] Loaded {total_tags} tags from {len(image_tags)} images")
+        
+        # Step 2: Initialize ConceptRefinementSession (clusters tags)
+        refinement_session = get_refinement_session(
+            request.session_id,
+            request.stage,
+            request.image_ids
+        )
+        
+        if not refinement_session.initialized:
+            print(f"[PBO Init] Clustering tags into concepts...")
+            refinement_session.initialize_from_tags(image_tags)
+            print(f"[PBO Init] Created {len(refinement_session.concepts)} concepts")
+        else:
+            print(f"[PBO Init] Using existing {len(refinement_session.concepts)} concepts")
+        
+        # Step 3: Initialize StageRefiner (creates PBO with MU matrix)
+        refiner = get_or_create_pbo_refiner(
+            session_id=request.session_id,
+            stage=request.stage
+        )
+        
+        concept_labels = [c['label'] for c in refiner.concepts]
+        
+        print(f"[PBO Init] ✅ Refinement initialized with {len(refiner.concepts)} concepts")
+        print(f"[PBO Init] Concept labels: {', '.join(concept_labels[:5])}...")
+        
+        return InitRefinementResponse(
+            success=True,
+            num_concepts=len(refiner.concepts),
+            concept_labels=concept_labels,
+            message=f"Initialized PBO refinement with {len(refiner.concepts)} tag cluster concepts"
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"[PBO Init] Error: {str(e)}")
+        import traceback
+        print(f"Traceback: {traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/pbo/stabilize", response_model=StabilizeResponse)
+async def pbo_stabilize(request: StabilizeRequest):
+    """
+    Record stabilized UI weights as weak duel (debounced).
+
+    Called when user's slider adjustments stabilize (after 500ms debounce).
+    """
+    try:
+        refiner = get_or_create_pbo_refiner(
+            session_id=request.session_id,
+            stage=request.stage
+        )
+
+        w_ui = np.array(request.w_ui)
+        recorded = refiner.on_ui_stabilize(w_ui)
+
+        return StabilizeResponse(
+            snapshot_recorded=recorded,
+            candidate_id=refiner.last_snapshot_cid if recorded else None,
+            message="Snapshot recorded" if recorded else "Debounce/threshold not met"
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"[PBO] Error in stabilize: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/pbo/propose", response_model=ProposeResponse)
+async def pbo_propose(request: ProposeRequest):
+    """
+    Generate 4 new concept mixtures using PBO.
+
+    Called when user clicks "Generate Next 4 (PBO)" button.
+    """
+    try:
+        refiner = get_or_create_pbo_refiner(
+            session_id=request.session_id,
+            stage=request.stage
+        )
+
+        negatives = set(request.negatives) if request.negatives else None
+        w_current = np.array(request.w_current) if request.w_current else None
+
+        proposals = refiner.propose_next_4(
+            negatives=negatives,
+            w_current=w_current,
+            fit_first=True
+        )
+
+        return ProposeResponse(
+            proposals=[w.tolist() for w in proposals],
+            proposal_ids=[f"pbo_prop_{i}" for i in range(len(proposals))],
+            message=f"Generated {len(proposals)} proposals"
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"[PBO] Error in propose: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/pbo/generate", response_model=GenerateResponse_PBO)
+async def pbo_generate(request: GenerateRequest_PBO):
+    """
+    Generate images from concept mixtures using SDXL.
+
+    Called after /api/pbo/propose to actually generate the images.
+    """
+    try:
+        refiner = get_or_create_pbo_refiner(
+            session_id=request.session_id,
+            stage=request.stage
+        )
+
+        # Load descriptor from preferences.json
+        descriptor = None
+        session_path = Path(SESSIONS_DIR) / request.session_id
+        preferences_file = session_path / "preferences.json"
+        if preferences_file.exists():
+            with open(preferences_file, 'r') as f:
+                prefs = json.load(f)
+                descriptor = prefs.get('descriptor')
+        
+        # Get SDXL runner
+        sdxl_runner = get_sdxl_runner()
+
+        # Generate images
+        proposals_np = [np.array(w) for w in request.proposals]
+        images = refiner.generate_images_from_proposals(
+            proposals=proposals_np,
+            sdxl_runner=sdxl_runner,
+            seed_base=request.seed_base,
+            verbose=False,  # Less verbose for API
+            descriptor=descriptor  # User description from preferences
+        )
+
+        # Save images
+        session_dir = Path(SESSIONS_DIR) / request.session_id / request.stage
+        session_dir.mkdir(parents=True, exist_ok=True)
+
+        # Find next PBO round number
+        pbo_rounds = list(session_dir.glob("pbo_round_*"))
+        round_number = len(pbo_rounds)
+        round_dir = session_dir / f"pbo_round_{round_number}"
+        round_dir.mkdir(exist_ok=True)
+
+        # Save images and build paths
+        image_paths = []
+        for i, img in enumerate(images):
+            filename = f"image_{i}.png"
+            file_path = round_dir / filename
+            img.save(file_path)
+
+            # Return relative path for frontend
+            rel_path = f"/sessions/{request.session_id}/{request.stage}/pbo_round_{round_number}/{filename}"
+            image_paths.append(rel_path)
+
+        return GenerateResponse_PBO(
+            image_paths=image_paths,
+            proposals=request.proposals,
+            round_number=round_number,
+            message=f"Generated {len(images)} images in round {round_number}"
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"[PBO] Error in generate: {str(e)}")
+        import traceback
+        print(f"Traceback: {traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+class RefineNextRoundRequest(BaseModel):
+    session_id: str
+    stage: str  # base stage (e.g., "impression")
+    selected_image_id: str  # Selected from current round
+    all_image_ids: list[str]  # All images in current round
+    round_number: int
+
+class RefineNextRoundResponse(BaseModel):
+    success: bool
+    image_paths: list[str]
+    round_number: int
+    message: str
+
+
+@app.post("/api/pbo/refine-next-round", response_model=RefineNextRoundResponse)
+async def pbo_refine_next_round(request: RefineNextRoundRequest):
+    """
+    Complete refinement iteration: record selection + propose + generate.
+    
+    IMPORTANT: Always uses the ORIGINAL reference image from exploration stage,
+    not the selected refinement image.
+    """
+    try:
+        # Get refiner
+        refiner = get_or_create_pbo_refiner(
+            session_id=request.session_id,
+            stage=request.stage
+        )
+        
+        print(f"[PBO Refine] Round {request.round_number} → {request.round_number + 1}")
+        print(f"[PBO Refine] Selected: {request.selected_image_id}")
+        
+        # Step 1: Record selection as preference
+        refiner.on_favorite(
+            favorite_image_id=request.selected_image_id,
+            all_image_ids=request.all_image_ids
+        )
+        print(f"[PBO Refine] Recorded {len(request.all_image_ids) - 1} duels")
+        
+        # Step 2: Propose new weight mixtures
+        proposals = refiner.propose_next_4(
+            negatives=None,
+            w_current=None,
+            fit_first=True
+        )
+        print(f"[PBO Refine] Proposed {len(proposals)} new mixtures")
+        
+        # Step 3: Load ORIGINAL reference image (from exploration stage, not refinement)
+        session = sessions.get(request.session_id)
+        if not session:
+            raise HTTPException(404, f"Session not found: {request.session_id}")
+        
+        session_folder = session['folder']
+        
+        # Get the originally selected image from exploration stage
+        preferences_file = os.path.join(session_folder, "preferences.json")
+        reference_image_id = None
+        descriptor = None
+        
+        if os.path.exists(preferences_file):
+            with open(preferences_file, 'r') as f:
+                prefs = json.load(f)
+                # Get the selection from base stage
+                selections = prefs.get('selections', {})
+                reference_image_id = selections.get(request.stage)  # e.g., "impression_2_0"
+                # Get descriptor
+                descriptor = prefs.get('descriptor')
+        
+        if not reference_image_id:
+            raise HTTPException(400, f"No reference image found for {request.stage} stage")
+        
+        print(f"[PBO Refine] Using ORIGINAL reference: {reference_image_id}")
+        
+        # Load reference image
+        stage_folder = os.path.join(session_folder, request.stage)
+        reference_image_path = os.path.join(stage_folder, f"{reference_image_id}.png")
+        
+        if not os.path.exists(reference_image_path):
+            reference_image_path = os.path.join(stage_folder, f"{reference_image_id}_0.png")
+        
+        reference_image = None
+        if os.path.exists(reference_image_path):
+            from PIL import Image as PILImage
+            reference_image = PILImage.open(reference_image_path)
+            print(f"[PBO Refine] ✅ Loaded reference: {os.path.basename(reference_image_path)}")
+        else:
+            print(f"[PBO Refine] ⚠️ Reference not found: {reference_image_path}")
+        
+        # Step 3.5: Initialize/load tracking for this round
+        from backend.tracking import create_tracker
+        tracker = create_tracker(
+            session_path=Path(session_folder),
+            session_id=request.session_id,
+            stage=request.stage,
+            descriptor=descriptor or "No descriptor"
+        )
+        # Set concepts if not already set
+        if not tracker.data.get("concepts"):
+            tracker.set_concepts(refiner.concepts)
+        
+        # Start new round
+        tracker.start_round(
+            round_number=request.round_number + 1,
+            reference_image=os.path.basename(reference_image_path) if reference_image else None
+        )
+        
+        # Step 4: Generate images with SDXL
+        refinement_stage = f"{request.stage}_refinement"
+        refinement_folder = os.path.join(session_folder, refinement_stage)
+        round_folder = os.path.join(refinement_folder, f"round_{request.round_number + 1}")
+        
+        # Prepare image paths for tracking
+        image_paths_for_tracking = [
+            f"{refinement_stage}/round_{request.round_number + 1}/image_{i}.png" 
+            for i in range(len(proposals))
+        ]
+        
+        sdxl_runner = get_sdxl_runner()
+        pil_images = refiner.generate_images_from_proposals(
+            proposals=proposals,
+            sdxl_runner=sdxl_runner,
+            seed_base=42 + request.round_number,
+            verbose=False,
+            init_image=reference_image,
+            descriptor=descriptor,  # User description from preferences
+            tracker=tracker,  # Track all generation details
+            generated_image_paths=image_paths_for_tracking  # Image paths for tracking
+        )
+        
+        # Step 5: Save images
+        os.makedirs(round_folder, exist_ok=True)
+        
+        image_paths = []
+        for idx, pil_img in enumerate(pil_images):
+            image_filename = f"image_{idx}.png"
+            image_path = os.path.join(round_folder, image_filename)
+            pil_img.save(image_path)
+            
+            # Return relative path
+            rel_path = f"/sessions/{request.session_id}/{refinement_stage}/round_{request.round_number + 1}/{image_filename}"
+            image_paths.append(rel_path)
+        
+        # Step 6: Save weight vectors for this round
+        weights_file = os.path.join(round_folder, "weights.json")
+        with open(weights_file, "w") as f:
+            json.dump({
+                "round": request.round_number + 1,
+                "proposals": [p.tolist() for p in proposals],
+                "concept_labels": [c['label'] for c in refiner.concepts],
+                "reference_image": reference_image_id
+            }, f, indent=2)
+        
+        print(f"[PBO Refine] ✅ Round {request.round_number + 1} complete: {len(image_paths)} images")
+        
+        return RefineNextRoundResponse(
+            success=True,
+            image_paths=image_paths,
+            round_number=request.round_number + 1,
+            message=f"Generated round {request.round_number + 1} using PBO"
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"[PBO Refine] Error: {str(e)}")
+        import traceback
+        print(f"Traceback: {traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/pbo/record-refinement-favorite", response_model=FavoriteResponse)
+async def pbo_record_refinement_favorite(request: FavoriteRequest):
+    """
+    Record user's favorite from refinement round.
+    
+    This updates the PBO model so next proposals are informed by this selection.
+    Call this after each refinement round before requesting new proposals.
+    """
+    try:
+        refiner = get_or_create_pbo_refiner(
+            session_id=request.session_id,
+            stage=request.stage
+        )
+        
+        # Map refinement image IDs to proposals
+        # The image_ids should be like: [image_0, image_1, image_2, image_3]
+        # These correspond to the last generated proposals
+        
+        # For now, we'll create proxy duels based on position
+        # In a full implementation, you'd track which proposal generated which image
+        favorite_idx = int(request.favorite_image_id.split('_')[-1])  # Extract index
+        
+        print(f"[PBO] Recording favorite refinement image: {request.favorite_image_id} (index {favorite_idx})")
+        
+        # Record duels (this will guide next proposals)
+        refiner.on_favorite(
+            favorite_image_id=request.favorite_image_id,
+            all_image_ids=request.all_image_ids
+        )
+        
+        # Update tracking with user selection
+        session = sessions.get(request.session_id)
+        if session:
+            session_folder = session['folder']
+            tracking_file = os.path.join(session_folder, "tracking.json")
+            
+            if os.path.exists(tracking_file):
+                try:
+                    from backend.tracking import GenerationTracker
+                    # Load tracker to update with selection
+                    tracker = GenerationTracker.__new__(GenerationTracker)
+                    tracker.session_path = Path(session_folder)
+                    tracker.tracking_file = Path(tracking_file)
+                    with open(tracking_file, 'r') as f:
+                        tracker.data = json.load(f)
+                    
+                    # Record selection
+                    all_indices = [int(img_id.split('_')[-1]) for img_id in request.all_image_ids]
+                    tracker.record_selection(favorite_idx, all_indices)
+                    print(f"[Tracking] Recorded selection: {request.favorite_image_id}")
+                except Exception as e:
+                    print(f"[Tracking] Warning: Could not update tracking: {e}")
+        
+        return FavoriteResponse(
+            duels_added=len(request.all_image_ids) - 1,
+            favorite_candidate_id=refiner.image_to_candidate.get(request.favorite_image_id, "unknown"),
+            message=f"Recorded refinement favorite, ready for next round"
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"[PBO] Error recording refinement favorite: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/pbo/favorite", response_model=FavoriteResponse)
+async def pbo_favorite(request: FavoriteRequest):
+    """
+    Record user's favorite image selection (strong duels).
+
+    Called when user picks their favorite among the generated images.
+    """
+    try:
+        refiner = get_or_create_pbo_refiner(
+            session_id=request.session_id,
+            stage=request.stage
+        )
+
+        refiner.on_favorite(
+            favorite_image_id=request.favorite_image_id,
+            all_image_ids=request.all_image_ids
+        )
+
+        return FavoriteResponse(
+            duels_added=len(request.all_image_ids) - 1,
+            favorite_candidate_id=refiner.image_to_candidate[request.favorite_image_id],
+            message=f"Recorded {len(request.all_image_ids) - 1} strong duels"
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"[PBO] Error in favorite: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))

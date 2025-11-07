@@ -206,9 +206,6 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-# Project-specific: Session data (generated user sessions with images)
-backend/sessions/
-
 # Frontend (React/Node.js)
 frontend/node_modules/
 frontend/build/
@@ -233,3 +230,36 @@ yarn-error.log*
 .LSOverride
 Icon
 ._*
+
+# ============================================================================
+# PROJECT-SPECIFIC: SDXL + ML Models
+# ============================================================================
+
+# Conda environment (your 'apl' environment)
+apl/
+
+# Large ML model files (5-10GB each - DO NOT COMMIT!)
+*.safetensors
+*.ckpt
+*.bin
+*.pth
+*.pt
+models/
+checkpoints/
+
+# Model cache directories (can be 50GB+)
+.cache/
+huggingface/
+transformers_cache/
+diffusers_cache/
+torch/hub/
+
+# Temporary files
+*.tmp
+*.temp
+temp_images/
+output_images/
+
+# Session structure - keep folder but ignore contents
+backend/sessions/*
+!backend/sessions/.gitkeep

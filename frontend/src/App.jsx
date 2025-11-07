@@ -6,6 +6,7 @@ import TagSidebar from './components/TagSidebar';
 import JsonPanel from './components/JsonPanel';
 import InlineTagDisplay from './components/InlineTagDisplay';
 import ConceptRefinementPanel from './components/ConceptRefinementPanel';
+import RefinementIterationControls from './components/RefinementIterationControls';
 import SessionBrowser from './components/SessionBrowser';
 import StageSelector from './components/StageSelector';
 
@@ -30,6 +31,9 @@ function App() {
   // Define refinement stages
   const REFINEMENT_STAGES = ['impression_refinement', 'spatial_refinement', 'objects_refinement', 'ambient_refinement'];
   const isRefinementStage = REFINEMENT_STAGES.includes(stage);
+  
+  // Refinement iteration state
+  const [refinementRound, setRefinementRound] = useState(1);
   const [cumulativeTagsState, setCumulativeTagsState] = useState({
     conceptIndex: 0,
     totalConcepts: 4,
@@ -711,6 +715,11 @@ function App() {
           setButtonColor('#007bff'); // Reset color for next stage
           setShowTagDrawer(false); // Close sidebar when moving to next stage
           setShowJsonPanel(false); // Close JSON panel when moving to next stage
+          
+          // Reset refinement round when entering a refinement stage
+          if (REFINEMENT_STAGES.includes(data.next_stage)) {
+            setRefinementRound(1);
+          }
         }
       }
     } catch (error) {
@@ -2079,22 +2088,41 @@ function App() {
             </button>
           )}
           
-          <button
-            onClick={handleContinue}
-            disabled={!selectedImage || isLoading}
-            style={{
-              marginTop: '20px',
-              padding: '10px 20px',
-              backgroundColor: isLoading ? '#ccc' : (selectedImage ? buttonColor : '#ccc'),
-              color: 'white',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: (!selectedImage || isLoading) ? 'not-allowed' : 'pointer',
-              transition: 'background-color 0.3s ease'
-            }}
-          >
-            {isLoading ? 'Processing...' : 'Continue to Next Stage'}
-          </button>
+          {/* Refinement Iteration Controls or Continue Button */}
+          {isRefinementStage ? (
+            <RefinementIterationControls
+              sessionId={sessionId}
+              stage={stage.replace('_refinement', '')}  // Pass base stage
+              images={images}
+              selectedImage={selectedImage}
+              initialRound={refinementRound}
+              disabled={isLoading}
+              onContinue={handleContinue}  // Continue to next stage
+              onRefinementComplete={(newImages, round) => {
+                // Update images with new round
+                setImages(newImages);
+                setRefinementRound(round);
+                setSelectedImage(null);  // Reset selection for new round
+              }}
+            />
+          ) : (
+            <button
+              onClick={handleContinue}
+              disabled={!selectedImage || isLoading}
+              style={{
+                marginTop: '20px',
+                padding: '10px 20px',
+                backgroundColor: isLoading ? '#ccc' : (selectedImage ? buttonColor : '#ccc'),
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: (!selectedImage || isLoading) ? 'not-allowed' : 'pointer',
+                transition: 'background-color 0.3s ease'
+              }}
+            >
+              {isLoading ? 'Processing...' : 'Continue to Next Stage'}
+            </button>
+          )}
         </div>
       )}
       

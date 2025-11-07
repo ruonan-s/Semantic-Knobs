@@ -11,7 +11,7 @@ Handles:
 from __future__ import annotations
 import numpy as np
 import time
-from typing import List, Dict, Optional, Tuple
+from typing import List, Dict, Optional, Tuple, Any
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -293,6 +293,8 @@ class StageRefiner:
         proposals: List[np.ndarray],
         sdxl_runner,  # SDXLRunner instance
         seed_base: int = 42,
+        tracker: Optional[Any] = None,
+        generated_image_paths: Optional[List[str]] = None,
         **kwargs
     ):
         """
@@ -304,27 +306,44 @@ class StageRefiner:
             proposals: List of weight vectors (from propose_next_4())
             sdxl_runner: SDXLRunner instance (from backend.sdxl_runner)
             seed_base: Base seed for generation (each proposal gets seed_base + i)
+            tracker: GenerationTracker instance for logging (optional)
+            generated_image_paths: List of paths where images will be saved (optional)
             **kwargs: Additional arguments for SDXLRunner.generate_from_mixture()
+                     Common kwargs: init_image, descriptor, strength, verbose
 
         Returns:
             List of PIL Images
 
         Example:
             >>> from backend.sdxl_runner import SDXLRunner
+            >>> from backend.tracking import create_tracker
             >>> runner = SDXLRunner(model_id="stabilityai/stable-diffusion-xl-base-1.0")
             >>> refiner = StageRefiner(...)
+            >>> tracker = create_tracker(session_path, session_id, stage, descriptor)
             >>> proposals = refiner.propose_next_4()
-            >>> images = refiner.generate_images_from_proposals(proposals, runner)
+            >>> images = refiner.generate_images_from_proposals(
+            ...     proposals, runner, 
+            ...     descriptor="A comfortable space for reading",
+            ...     tracker=tracker
+            ... )
         """
         print(f"\n[StageRefiner] Generating {len(proposals)} images from proposals...")
 
         images = []
         for i, w in enumerate(proposals):
             print(f"\n  Proposal {i+1}/{len(proposals)}:")
+            
+            # Get image path for this proposal if provided
+            image_path = generated_image_paths[i] if generated_image_paths and i < len(generated_image_paths) else None
+            
             img = sdxl_runner.generate_from_mixture(
                 w=w,
                 concepts=self.concepts,
                 seed=seed_base + i,
+                stage=self.stage,  # Pass stage for loading strength from config
+                tracker=tracker,  # Pass tracker for logging
+                proposal_index=i,  # Pass index for tracking
+                generated_image_path=image_path,  # Pass path for tracking
                 **kwargs
             )
             images.append(img)

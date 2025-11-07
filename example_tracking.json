@@ -1,0 +1,307 @@
+{
+  "session_id": "[fast]_A_comfortable_space_for_reading_2025-10-29_15-46-36",
+  "descriptor": "A comfortable space for reading",
+  "stage": "impression",
+  "created_at": "2025-10-29T15:46:36.123456",
+  "concepts": [
+    {
+      "id": "concept_0",
+      "label": "warm lighting",
+      "centroid_shape": [384],
+      "source": "tag_cluster"
+    },
+    {
+      "id": "concept_1",
+      "label": "cozy textiles",
+      "centroid_shape": [384],
+      "source": "tag_cluster"
+    },
+    {
+      "id": "concept_2",
+      "label": "wooden furniture",
+      "centroid_shape": [384],
+      "source": "tag_cluster"
+    },
+    {
+      "id": "concept_3",
+      "label": "natural light",
+      "centroid_shape": [384],
+      "source": "tag_cluster"
+    },
+    {
+      "id": "concept_4",
+      "label": "minimalist design",
+      "centroid_shape": [384],
+      "source": "tag_cluster"
+    }
+  ],
+  "rounds": [
+    {
+      "round_number": 1,
+      "reference_image": "impression_2_0.png",
+      "started_at": "2025-10-29T15:47:00.456789",
+      "proposals": [
+        {
+          "proposal_index": 0,
+          "seed": 42,
+          "generated_image": "impression_refinement/round_1/image_0.png",
+          "generated_at": "2025-10-29T15:47:15.789012",
+          "weight_statistics": {
+            "raw_weights": [0.8, 0.5, 0.3, 0.1, 0.0],
+            "normalized_weights": [0.47, 0.29, 0.18, 0.06, 0.0],
+            "mean": 0.2,
+            "std": 0.19,
+            "min": 0.0,
+            "max": 0.47
+          },
+          "concept_breakdown": [
+            {
+              "concept_id": "concept_0",
+              "label": "warm lighting",
+              "weight_raw": 0.8,
+              "weight_normalized": 0.47,
+              "z_score": 1.42,
+              "gain_before_clip": 1.57,
+              "gain_after_clip": 1.5,
+              "rank": 1,
+              "included_positive": true,
+              "included_negative": false
+            },
+            {
+              "concept_id": "concept_1",
+              "label": "cozy textiles",
+              "weight_raw": 0.5,
+              "weight_normalized": 0.29,
+              "z_score": 0.47,
+              "gain_before_clip": 1.19,
+              "gain_after_clip": 1.19,
+              "rank": 2,
+              "included_positive": true,
+              "included_negative": false
+            },
+            {
+              "concept_id": "concept_2",
+              "label": "wooden furniture",
+              "weight_raw": 0.3,
+              "weight_normalized": 0.18,
+              "z_score": -0.11,
+              "gain_before_clip": 0.96,
+              "gain_after_clip": 0.96,
+              "rank": 3,
+              "included_positive": true,
+              "included_negative": false
+            },
+            {
+              "concept_id": "concept_3",
+              "label": "natural light",
+              "weight_raw": 0.1,
+              "weight_normalized": 0.06,
+              "z_score": -0.74,
+              "gain_before_clip": 0.70,
+              "gain_after_clip": 0.70,
+              "rank": 4,
+              "included_positive": false,
+              "included_negative": false
+            },
+            {
+              "concept_id": "concept_4",
+              "label": "minimalist design",
+              "weight_raw": 0.0,
+              "weight_normalized": 0.0,
+              "z_score": -1.05,
+              "gain_before_clip": 0.58,
+              "gain_after_clip": 0.70,
+              "rank": 5,
+              "included_positive": false,
+              "included_negative": true
+            }
+          ],
+          "prompt_composition": {
+            "positive_phrases": [
+              {
+                "text": "A comfortable space for reading",
+                "gain_original": 1.5,
+                "gain_normalized": 0.324,
+                "is_descriptor": true
+              },
+              {
+                "text": "warm lighting",
+                "gain_original": 1.5,
+                "gain_normalized": 0.324,
+                "is_descriptor": false
+              },
+              {
+                "text": "cozy textiles",
+                "gain_original": 1.19,
+                "gain_normalized": 0.257,
+                "is_descriptor": false
+              },
+              {
+                "text": "wooden furniture",
+                "gain_original": 0.96,
+                "gain_normalized": 0.207,
+                "is_descriptor": false
+              }
+            ],
+            "negative_phrases": ["minimalist design"]
+          },
+          "generation_params": {
+            "strength": 0.75,
+            "steps": 30,
+            "guidance_scale": 7.5,
+            "height": 1024,
+            "width": 1024,
+            "top_k": 10,
+            "num_negatives": 3,
+            "mode": "img2img"
+          }
+        },
+        {
+          "proposal_index": 1,
+          "seed": 43,
+          "generated_image": "impression_refinement/round_1/image_1.png",
+          "generated_at": "2025-10-29T15:47:45.123456",
+          "weight_statistics": {
+            "raw_weights": [0.6, 0.7, 0.2, 0.4, 0.1],
+            "normalized_weights": [0.30, 0.35, 0.10, 0.20, 0.05],
+            "mean": 0.2,
+            "std": 0.12,
+            "min": 0.05,
+            "max": 0.35
+          },
+          "concept_breakdown": [
+            {
+              "concept_id": "concept_0",
+              "label": "warm lighting",
+              "weight_raw": 0.6,
+              "weight_normalized": 0.30,
+              "z_score": 0.83,
+              "gain_before_clip": 1.33,
+              "gain_after_clip": 1.33,
+              "rank": 2,
+              "included_positive": true,
+              "included_negative": false
+            },
+            {
+              "concept_id": "concept_1",
+              "label": "cozy textiles",
+              "weight_raw": 0.7,
+              "weight_normalized": 0.35,
+              "z_score": 1.25,
+              "gain_before_clip": 1.50,
+              "gain_after_clip": 1.5,
+              "rank": 1,
+              "included_positive": true,
+              "included_negative": false
+            },
+            {
+              "concept_id": "concept_2",
+              "label": "wooden furniture",
+              "weight_raw": 0.2,
+              "weight_normalized": 0.10,
+              "z_score": -0.83,
+              "gain_before_clip": 0.67,
+              "gain_after_clip": 0.70,
+              "rank": 4,
+              "included_positive": false,
+              "included_negative": false
+            },
+            {
+              "concept_id": "concept_3",
+              "label": "natural light",
+              "weight_raw": 0.4,
+              "weight_normalized": 0.20,
+              "z_score": 0.00,
+              "gain_before_clip": 1.00,
+              "gain_after_clip": 1.00,
+              "rank": 3,
+              "included_positive": true,
+              "included_negative": false
+            },
+            {
+              "concept_id": "concept_4",
+              "label": "minimalist design",
+              "weight_raw": 0.1,
+              "weight_normalized": 0.05,
+              "z_score": -1.25,
+              "gain_before_clip": 0.50,
+              "gain_after_clip": 0.70,
+              "rank": 5,
+              "included_positive": false,
+              "included_negative": true
+            }
+          ],
+          "prompt_composition": {
+            "positive_phrases": [
+              {
+                "text": "A comfortable space for reading",
+                "gain_original": 1.5,
+                "gain_normalized": 0.313,
+                "is_descriptor": true
+              },
+              {
+                "text": "cozy textiles",
+                "gain_original": 1.5,
+                "gain_normalized": 0.313,
+                "is_descriptor": false
+              },
+              {
+                "text": "warm lighting",
+                "gain_original": 1.33,
+                "gain_normalized": 0.278,
+                "is_descriptor": false
+              },
+              {
+                "text": "natural light",
+                "gain_original": 1.00,
+                "gain_normalized": 0.209,
+                "is_descriptor": false
+              }
+            ],
+            "negative_phrases": ["minimalist design"]
+          },
+          "generation_params": {
+            "strength": 0.75,
+            "steps": 30,
+            "guidance_scale": 7.5,
+            "height": 1024,
+            "width": 1024,
+            "top_k": 10,
+            "num_negatives": 3,
+            "mode": "img2img"
+          }
+        }
+      ],
+      "user_selection": {
+        "selected_index": 1,
+        "selected_image": "impression_refinement/round_1/image_1.png",
+        "selection_timestamp": "2025-10-29T15:50:12.345678"
+      },
+      "pbo_update": {
+        "duels_added": [
+          {
+            "winner_index": 1,
+            "loser_index": 0,
+            "strength": 1.0,
+            "type": "strong_duel"
+          },
+          {
+            "winner_index": 1,
+            "loser_index": 2,
+            "strength": 1.0,
+            "type": "strong_duel"
+          },
+          {
+            "winner_index": 1,
+            "loser_index": 3,
+            "strength": 1.0,
+            "type": "strong_duel"
+          }
+        ],
+        "num_duels": 3,
+        "gp_fitted": true
+      }
+    }
+  ]
+}
+
