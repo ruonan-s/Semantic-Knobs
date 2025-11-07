@@ -1,36 +1,20 @@
 import React from 'react';
 
 function InlineTagDisplay({ tags, imageId, onTagPreference, preferences }) {
-  // Debug: Log when preferences change
-  React.useEffect(() => {
-    console.log('[InlineTagDisplay] 🔄 Component rendered/updated for image:', {
-      imageId,
-      currentStage: preferences?.currentStage,
-      availableStages: Object.keys(preferences?.tags || {}),
-      stageTagCount: preferences?.tags?.[preferences?.currentStage]?.length || 0,
-      allPrefs: preferences?.tags?.[preferences?.currentStage],
-      tagsCount: tags.length
-    });
-  }, [preferences, imageId, tags]);
-
-  // Function to check if a tag has a preference
+  console.log('[InlineTagDisplay] RENDER:', {
+    imageId,
+    currentStage: preferences?.currentStage,
+    tagsCount: preferences?.tags?.[preferences?.currentStage]?.length || 0
+  });
+  
+  // Helper to get tag preference
   const getTagPreference = (tag) => {
     const currentStage = preferences?.currentStage;
     const stageTags = preferences?.tags?.[currentStage] || [];
-    const existingPref = stageTags.find(
-      t => t.tag === tag && t.source_image === imageId
-    );
     
-    if (existingPref) {
-      console.log('[InlineTagDisplay] ✅ Found preference for tag:', {
-        tag,
-        imageId,
-        preference: existingPref.preference,
-        currentStage
-      });
-    }
-    
-    return existingPref?.preference || null;
+    const found = stageTags.find(item => item.tag === tag && item.source_image === imageId);
+    console.log(`[InlineTagDisplay] getTagPreference("${tag}"):`, found?.preference || null);
+    return found?.preference || null;
   };
 
   if (!tags || tags.length === 0) {

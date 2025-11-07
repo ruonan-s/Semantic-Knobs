@@ -84,11 +84,29 @@ class StageRefiner:
         self.MU = np.array(MU, dtype=np.float32)  # (K, d)
         self.d = self.MU.shape[1]
 
-        # Initialize PBO
+        # Extract concept weights (ema_w) for warm start
+        concept_weights = np.array([
+            concept_states.get(cid, {}).get('ema_w', 1.0 / self.K)
+            for cid in self.concept_ids
+        ], dtype=np.float32)
+        
+        # Normalize weights to sum to 1 (should already be, but ensure)
+        if concept_weights.sum() > 0:
+            concept_weights = concept_weights / concept_weights.sum()
+        else:
+            concept_weights = np.ones(self.K, dtype=np.float32) / self.K
+        
+        print(f"[StageRefiner] Concept weights for PBO initialization:")
+        top_3_indices = np.argsort(-concept_weights)[:3]
+        for idx in top_3_indices:
+            print(f"  {concepts[idx]['label']}: {concept_weights[idx]:.4f}")
+
+        # Initialize PBO with concept weights for warm start
         self.pbo = PBO(
             MU=self.MU,
             concept_ids=self.concept_ids,
-            random_state=random_state
+            random_state=random_state,
+            concept_weights=concept_weights  # Pass weights for warm start
         )
 
         # Snapshot tracking for stabilization

@@ -17,8 +17,8 @@ Strength values:
 STAGE_IMG2IMG_STRENGTH = {
     "impression": 0.9,      # Style/aesthetic refinement
     "spatial": 0.75,         # Spatial structure refinement
-    "objects": 0.75,         # Objects and materials refinement
-    "ambient": 0.75,         # Lighting and atmosphere refinement
+    "objects": 0.5,         # Objects and materials refinement
+    "ambient": 0.5,         # Lighting and atmosphere refinement
 }
 
 def get_stage_strength(stage: str, default: float = 0.75) -> float:

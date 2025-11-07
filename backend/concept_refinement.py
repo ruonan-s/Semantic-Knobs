@@ -32,8 +32,8 @@ print(f"CLIP ViT-L/14 model loaded on {device}")
 # Parameters (defaults from spec)
 # ============================================================================
 MIN_CLUSTERS = 5        # Minimum number of clusters for k-means
-MAX_CLUSTERS = 50       # Maximum number of clusters for k-means
-TARGET_TAGS_PER_CLUSTER = 3  # Target average tags per cluster (used to estimate K)
+MAX_CLUSTERS = 80       # Maximum number of clusters for k-means (increased for finer granularity)
+TARGET_TAGS_PER_CLUSTER = 2  # Target average tags per cluster (reduced from 3 for tighter clusters)
 K_NN = 6                # k-NN for smoothing
 LAMBDA = 0.15           # smoothing mix
 TAU = 0.6               # softmax temperature
@@ -194,28 +194,34 @@ def find_elbow_point(inertias: list, k_values: list) -> int:
 def estimate_optimal_k(n_tags: int, embeddings: np.ndarray, 
                        min_k: int = MIN_CLUSTERS, 
                        max_k: int = MAX_CLUSTERS) -> int:
-    """Estimate optimal number of clusters using elbow method"""
-    # Quick heuristic for very large datasets
-    if n_tags >= 200:
-        k_target = max(min_k, min(max_k, n_tags // TARGET_TAGS_PER_CLUSTER))
-        print(f"  Large dataset: using heuristic K={k_target} ({n_tags} tags / {TARGET_TAGS_PER_CLUSTER})")
-        return k_target
-    
-    # Determine search range
+    """Estimate optimal number of clusters using elbow method with CLIP embeddings"""
+    # Determine search range - allow up to 70% of n_tags for finer granularity
     k_min = max(min_k, 3)  # Need at least 3 for meaningful clustering
-    k_max = min(max_k, n_tags - 1, n_tags // 2)  # Don't go too high
+    k_max = min(max_k, n_tags - 1, int(n_tags * 0.7))  # Allow more clusters (was n_tags // 2)
     
-    # Limit search range for efficiency
-    k_step = 1 if n_tags < 100 else 2
+    # For very small datasets, use conservative approach
+    if n_tags < 10:
+        k_max = min(k_max, n_tags // 2)
+    
+    print(f"  Elbow method with CLIP embeddings: n_tags={n_tags}, testing K from {k_min} to {k_max}")
+    
+    # Determine step size - use finer granularity to avoid missing elbow
+    if n_tags < 50:
+        k_step = 1
+    elif n_tags < 150:
+        k_step = 2
+    else:
+        k_step = 3
+    
     k_range = list(range(k_min, k_max + 1, k_step))
     
-    # Limit to reasonable number of tests
-    if len(k_range) > 20:
-        # Sample k_range to keep it around 15-20 values
-        step = len(k_range) // 15
+    # Allow more test points to better capture elbow (increased from 15-20 to 25-30)
+    if len(k_range) > 30:
+        # Sample k_range to keep it around 25-30 values
+        step = max(1, len(k_range) // 25)
         k_range = k_range[::step]
     
-    print(f"  Elbow method: testing K from {k_range[0]} to {k_range[-1]} ({len(k_range)} values)...")
+    print(f"  Testing {len(k_range)} K values: {k_range[0]} to {k_range[-1]} (step ~{k_step})")
     
     # Run K-means for each K and collect inertias
     inertias = []
@@ -224,8 +230,8 @@ def estimate_optimal_k(n_tags: int, embeddings: np.ndarray,
             kmeans = KMeans(n_clusters=k, random_state=42, n_init=10, max_iter=100)
             kmeans.fit(embeddings)
             inertias.append(kmeans.inertia_)
-        except:
-            # If K-means fails, break and use what we have
+        except Exception as e:
+            print(f"  Warning: K-means failed at k={k}: {e}")
             break
     
     if len(inertias) < 3:
@@ -237,8 +243,9 @@ def estimate_optimal_k(n_tags: int, embeddings: np.ndarray,
     # Find elbow point
     optimal_k = find_elbow_point(inertias, k_range[:len(inertias)])
     
-    print(f"  Elbow point found at K={optimal_k}")
+    print(f"  ✓ Elbow point found at K={optimal_k}")
     print(f"  Inertia at elbow: {inertias[k_range[:len(inertias)].index(optimal_k)]:.2f}")
+    print(f"  Average tags per cluster: {n_tags / optimal_k:.1f}")
     
     return optimal_k
 
@@ -1079,6 +1086,112 @@ class ConceptRefinementSession:
         print(f"[GET_TAG_PREFS] Result: {positive_count} positive, {negative_count} negative, {null_count} null")
         
         return tag_prefs
+    
+    def save_concept_weights(self, session_folder: str) -> None:
+        """
+        Save learned concept weights to disk for warm-starting refinement stages.
+        Saves to: <session_folder>/<stage>/concept_weights.json
+        """
+        import os
+        
+        if not self.initialized:
+            print(f"[SAVE_WEIGHTS] Session not initialized, skipping save")
+            return
+        
+        stage_folder = os.path.join(session_folder, self.stage)
+        os.makedirs(stage_folder, exist_ok=True)
+        
+        weights_file = os.path.join(stage_folder, "concept_weights.json")
+        
+        # Prepare weights data
+        weights_data = {
+            'stage': self.stage,
+            'session_id': self.session_id,
+            'timestamp': __import__('datetime').datetime.now().isoformat(),
+            'num_concepts': len(self.concepts),
+            'concept_weights': []
+        }
+        
+        for concept in self.concepts:
+            state = self.concept_states.get(concept.id, ConceptState())
+            weights_data['concept_weights'].append({
+                'concept_id': concept.id,
+                'label': concept.label,
+                'weight': state.w,
+                'ema_weight': state.ema_w,
+                'score': state.score,
+                'like_count': state.like_count,
+                'dislike_count': state.dislike_count,
+                'member_tag_ids': concept.member_tag_ids
+            })
+        
+        # Sort by ema_weight descending for readability
+        weights_data['concept_weights'].sort(key=lambda x: x['ema_weight'], reverse=True)
+        
+        with open(weights_file, 'w') as f:
+            __import__('json').dump(weights_data, f, indent=2)
+        
+        print(f"[SAVE_WEIGHTS] ✅ Saved {len(self.concepts)} concept weights to {weights_file}")
+        # Create sample list outside f-string to avoid backslash syntax error
+        sample_weights = [f"{c['label']}: {c['ema_weight']:.3f}" for c in weights_data['concept_weights'][:5]]
+        print(f"[SAVE_WEIGHTS] Top 5 by weight: {sample_weights}")
+    
+    def load_concept_weights_from_base_stage(self, session_folder: str) -> bool:
+        """
+        Load learned weights from the base stage (e.g., impression → impression_refinement).
+        Returns True if weights were loaded, False otherwise.
+        """
+        import os
+        
+        # Extract base stage name (remove _refinement suffix)
+        if not self.stage.endswith('_refinement'):
+            print(f"[LOAD_WEIGHTS] Stage '{self.stage}' is not a refinement stage, skipping")
+            return False
+        
+        base_stage = self.stage.replace('_refinement', '')
+        base_stage_folder = os.path.join(session_folder, base_stage)
+        weights_file = os.path.join(base_stage_folder, "concept_weights.json")
+        
+        if not os.path.exists(weights_file):
+            print(f"[LOAD_WEIGHTS] No weights file found at {weights_file}, starting with uniform weights")
+            return False
+        
+        try:
+            with open(weights_file, 'r') as f:
+                weights_data = __import__('json').load(f)
+            
+            print(f"[LOAD_WEIGHTS] 📂 Loading {len(weights_data['concept_weights'])} weights from {base_stage}")
+            
+            # Create a mapping: label → weight data
+            weight_map = {w['label']: w for w in weights_data['concept_weights']}
+            
+            # Apply weights to matching concepts (by label)
+            matched_count = 0
+            for concept in self.concepts:
+                if concept.label in weight_map:
+                    prev_weight_data = weight_map[concept.label]
+                    state = self.concept_states.get(concept.id, ConceptState())
+                    
+                    # Transfer learned weights
+                    state.w = prev_weight_data.get('weight', state.w)
+                    state.ema_w = prev_weight_data.get('ema_weight', state.ema_w)
+                    state.score = prev_weight_data.get('score', state.score)
+                    
+                    self.concept_states[concept.id] = state
+                    matched_count += 1
+                    
+                    print(f"[LOAD_WEIGHTS]   ✓ {concept.label}: w={state.w:.3f}, ema_w={state.ema_w:.3f}")
+            
+            print(f"[LOAD_WEIGHTS] ✅ Loaded weights for {matched_count}/{len(self.concepts)} concepts from {base_stage}")
+            
+            if matched_count < len(self.concepts):
+                print(f"[LOAD_WEIGHTS] ⚠️  {len(self.concepts) - matched_count} concepts have no previous weights (will use computed values)")
+            
+            return matched_count > 0
+            
+        except Exception as e:
+            print(f"[LOAD_WEIGHTS] ❌ Error loading weights: {e}")
+            return False
 
 
 # Global session store

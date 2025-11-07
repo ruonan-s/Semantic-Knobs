@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 /**
  * BubbleChart component for visualizing concept weights
- * Shows ALL concepts as packed bubbles with size proportional to weight
+ * Shows top 20 clusters OR all clusters with weights > 0
  */
 function BubbleChart({ concepts, onConceptClick }) {
   const svgRef = useRef(null);
@@ -40,8 +40,16 @@ function BubbleChart({ concepts, onConceptClick }) {
     const centerX = width / 2;
     const centerY = height / 2;
 
-    // Show ALL concepts, sorted by weight
-    const allConcepts = [...concepts].sort((a, b) => (b.state.ema_w || 0) - (a.state.ema_w || 0));
+    // Sort concepts by weight (descending)
+    const sortedConcepts = [...concepts].sort((a, b) => (b.state.ema_w || 0) - (a.state.ema_w || 0));
+    
+    // Filter: Show top 20 OR all with weight > 0
+    const positiveWeightConcepts = sortedConcepts.filter(c => (c.state.ema_w || 0) > 0);
+    const allConcepts = positiveWeightConcepts.length <= 20 
+      ? positiveWeightConcepts 
+      : sortedConcepts.slice(0, 20);
+    
+    console.log(`[BubbleChart] Displaying ${allConcepts.length} of ${totalK} concepts (positive weight: ${positiveWeightConcepts.length})`);
 
     // Calculate bubble sizes based on ema_w
     const maxWeight = Math.max(...allConcepts.map(c => c.state.ema_w || 0));
@@ -409,7 +417,10 @@ function BubbleChart({ concepts, onConceptClick }) {
           color: '#666'
         }}>
           <div style={{ marginBottom: '2px' }}>
-            <strong>Total:</strong> {bubbles.length} concepts
+            <strong>Showing:</strong> {bubbles.length} of {concepts.length} concepts
+          </div>
+          <div style={{ fontSize: '10px', color: '#999', marginTop: '2px' }}>
+            (Top 20 or all weight {'>'} 0)
           </div>
           <div style={{ fontSize: '10px', fontStyle: 'italic', color: '#999', marginTop: '4px' }}>
             Click bubbles to see details

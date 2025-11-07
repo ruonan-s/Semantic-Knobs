@@ -1,6 +1,7 @@
 import os
 import uuid
 import numpy as np
+from pathlib import Path
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
@@ -21,12 +22,6 @@ from prompt import (
     FINAL_PROMPT_TAGS, FINAL_GENERATOR_PROMPT_TAGS,
     FINAL_GENERATOR_PROMPT_IMGS
 )
-from prompt_refinement import (
-    IMPRESSION_REFINEMENT_PROMPT,
-    SPATIAL_REFINEMENT_PROMPT,
-    OBJECTS_REFINEMENT_PROMPT,
-    AMBIENT_REFINEMENT_PROMPT
-)
 # Progressive final prompts (one concept) from prompt_tag_acc
  
 import json
@@ -44,16 +39,12 @@ STAGES = [
     "ambient", "ambient_refinement",
     "final"
 ]
-# Sequential prompts
+# Sequential prompts (refinement stages use PBO+SDXL, not Gemini prompts)
 PROMPTS = {
     'impression': (IMPRESSION_PROMPT, IMPRESSION_GENERATOR_PROMPT),
-    'impression_refinement': (IMPRESSION_REFINEMENT_PROMPT, IMPRESSION_GENERATOR_PROMPT),
     'spatial': (SPATIAL_PROMPT, SPATIAL_GENERATOR_PROMPT),
-    'spatial_refinement': (SPATIAL_REFINEMENT_PROMPT, SPATIAL_GENERATOR_PROMPT),
     'objects': (OBJECTS_PROMPT, OBJECTS_GENERATOR_PROMPT),
-    'objects_refinement': (OBJECTS_REFINEMENT_PROMPT, OBJECTS_GENERATOR_PROMPT),
     'ambient': (AMBIENT_PROMPT, AMBIENT_GENERATOR_PROMPT),
-    'ambient_refinement': (AMBIENT_REFINEMENT_PROMPT, AMBIENT_GENERATOR_PROMPT),
     'final': (FINAL_PROMPT, FINAL_GENERATOR_PROMPT)
 }
 
@@ -499,6 +490,13 @@ def cumulative_tags_next_stage(req: dict):
                 print(f"⚠️ No scenes found for {current_stage}, storing image ID")
                 session['user_pref'][current_stage] = selected_concept  # Fallback to image ID
         
+        # Save learned concept weights before moving to next stage
+        from concept_refinement import get_refinement_session
+        refinement_session = get_refinement_session(session_id, current_stage, [])
+        if refinement_session.initialized:
+            refinement_session.save_concept_weights(session['folder'])
+            write_status(session['folder'], f"💾 Saved concept weights for {current_stage}")
+        
         # Move to next stage
         stage_order = ['impression', 'spatial', 'objects', 'ambient']
         current_stage_index = stage_order.index(current_stage)
@@ -794,6 +792,9 @@ def init_concepts(req: ConceptInitRequest):
         # Initialize from tags
         if not refinement_session.initialized:
             refinement_session.initialize_from_tags(image_tags)
+            # Save initial concept weights (uniform weights before any interactions)
+            refinement_session.save_concept_weights(session['folder'])
+            print(f"[CONCEPTS INIT] Saved initial concept weights for {req.stage}")
         
         # Return current state
         state_dict = refinement_session.to_dict()
@@ -841,6 +842,11 @@ def interact_with_concept(req: ConceptInteractionRequest):
         
         # Handle interaction
         refinement_session.handle_tag_click(req.tag_id, req.preference)
+        
+        # Save updated weights to disk (so refinement can load them)
+        if req.session_id in sessions:
+            session_folder = sessions[req.session_id]['folder']
+            refinement_session.save_concept_weights(session_folder)
         
         # Return updated state
         state_dict = refinement_session.to_dict()
@@ -939,6 +945,11 @@ def handle_image_selection(req: ImageSelectionRequest):
             req.image_id,
             req.boost_amount
         )
+        
+        # Save updated weights to disk
+        if req.session_id in sessions:
+            session_folder = sessions[req.session_id]['folder']
+            refinement_session.save_concept_weights(session_folder)
         
         # Return updated state
         state_dict = refinement_session.to_dict()
@@ -1307,102 +1318,6 @@ def handle_parallel_to_final(req: FeedbackRequest, session: dict, folder: str, d
         raise HTTPException(500, error_msg)
 
 
-def run_refinement_stage(stage_name: str,
-                         refinement_prompt: str,
-                         image_prompt: str,
-                         descriptor: str,
-                         selected_json: dict,
-                         tag_preferences: dict,
-                         session_folder: str) -> list:
-    """
-    Run a refinement stage with the selected JSON and tag preferences.
-    This generates 4 refined concepts based on user preferences WITHOUT tag extraction.
-    
-    Args:
-        stage_name: Name of the refinement stage (e.g., 'impression_refinement')
-        refinement_prompt: The refinement prompt template
-        image_prompt: The image generation prompt
-        descriptor: Original user description
-        selected_json: The selected interpretation JSON from previous exploration stage
-        tag_preferences: Dictionary with 'positive' and 'negative' tag lists
-        session_folder: Path to session folder
-    
-    Returns:
-        list: Results with (scene, files) tuples
-    """
-    write_status(session_folder, f"Starting {stage_name.upper()} stage (Refinement)")
-    
-    # Create stage folder
-    folder = os.path.join(session_folder, stage_name)
-    os.makedirs(folder, exist_ok=True)
-    write_status(session_folder, f"Created folder: {folder}")
-    
-    # Format the refinement prompt with inputs
-    formatted_prompt = refinement_prompt.replace(
-        '[USER DESCRIPTION]\n<user text>\n[/USER DESCRIPTION]',
-        f'[USER DESCRIPTION]\n{descriptor}\n[/USER DESCRIPTION]'
-    )
-    
-    formatted_prompt = formatted_prompt.replace(
-        '[SELECTED_INTERPRETATION_JSON]\n<one of the 4 exploration outputs, full JSON>\n[/SELECTED_INTERPRETATION_JSON]',
-        f'[SELECTED_INTERPRETATION_JSON]\n{json.dumps(selected_json, indent=2)}\n[/SELECTED_INTERPRETATION_JSON]'
-    )
-    
-    # Format tag preferences
-    positive_tags = tag_preferences.get('positive', [])[:5]  # Top 5
-    negative_tags = tag_preferences.get('negative', [])[:3]  # Top 3
-    tag_prefs_json = {
-        "positive": positive_tags,
-        "negative": negative_tags
-    }
-    
-    formatted_prompt = formatted_prompt.replace(
-        '[TAG PREFERENCES]\n{\n  "positive": ["P1","P2","P3","P4","P5"],   // ordered; left = higher priority\n  "negative": ["N1","N2","N3"]              // ordered; left = stricter constraint\n}\n[/TAG PREFERENCES]',
-        f'[TAG PREFERENCES]\n{json.dumps(tag_prefs_json, indent=2)}\n[/TAG PREFERENCES]'
-    )
-    
-    write_status(session_folder, f"Generating refined concepts with user preferences...")
-    write_status(session_folder, f"Positive concepts: {positive_tags}")
-    write_status(session_folder, f"Negative concepts: {negative_tags}")
-    
-    # Generate scene descriptions using sequential designer
-    scenes = designer_seq(formatted_prompt, descriptor, {}, session_folder, stage_name)
-    
-    if not scenes:
-        error_msg = f"No scenes generated for {stage_name} stage"
-        write_status(session_folder, error_msg)
-        raise RuntimeError(error_msg)
-    
-    write_status(session_folder, f"Generated {len(scenes)} refined concepts")
-    
-    # Save scenes JSON
-    scenes_file = os.path.join(folder, f"{stage_name}.json")
-    with open(scenes_file, "w") as f:
-        json.dump(scenes, f, indent=2)
-    write_status(session_folder, f"Saved scenes to: {stage_name}.json")
-    
-    # Generate images WITHOUT tag extraction (use generator_seq_parallel instead of generator_seq_parallel_with_tags)
-    write_status(session_folder, f"Generating images for all {len(scenes)} refined concepts...")
-    prefix_base = stage_name
-    
-    from util import generator_seq_parallel
-    
-    try:
-        results = generator_seq_parallel(
-            image_prompt, descriptor, scenes, {}, folder, prefix_base, session_folder, stage_name
-        )
-        write_status(session_folder, f"Successfully generated images for {len(results)} refined concepts")
-    except Exception as e:
-        error_msg = f"Refinement stage image generation failed: {str(e)}"
-        write_status(session_folder, error_msg)
-        raise RuntimeError(error_msg)
-    
-    write_status(session_folder, f"{stage_name.upper()} stage completed successfully!")
-    write_status(session_folder, f"Generated {len(results)} concepts with {sum(len(files) for _, files in results)} total images")
-    
-    return results
-
-
 @app.post("/api/feedback")
 def feedback(req: FeedbackRequest):
     print(f"🔍 DEBUG - Feedback request: stage={req.stage}, selected_image_id={req.selected_image_id}")
@@ -1532,6 +1447,20 @@ def feedback(req: FeedbackRequest):
         import traceback
         traceback.print_exc()
     
+    # Save learned concept weights for the current stage (sequential/parallel pipeline)
+    try:
+        from concept_refinement import get_refinement_session as get_ref_session_for_save
+        # For refinement stages, save under the refinement stage name
+        # For base stages, save under the base stage name
+        refinement_session = get_ref_session_for_save(req.session_id, current_stage, [])
+        if refinement_session.initialized:
+            refinement_session.save_concept_weights(folder)
+            print(f"💾 [SEQUENTIAL/PARALLEL] Saved concept weights for {current_stage}")
+    except Exception as e:
+        print(f"⚠️  Could not save concept weights: {e}")
+        import traceback
+        traceback.print_exc()
+    
     # Transition logic for sequential
     try:
         # find current stage index
@@ -1550,7 +1479,6 @@ def feedback(req: FeedbackRequest):
         
         if current_idx + 1 < len(STAGES):
             next_stage = STAGES[current_idx + 1]
-            narrative_prompt, image_prompt = PROMPTS[next_stage]
             
             print(f"Generating next stage: {next_stage}")
             
@@ -1573,8 +1501,7 @@ def feedback(req: FeedbackRequest):
                 
                 print(f"[REFINEMENT INPUT] Using {base_stage} concept: {selected_json.get('concept_name', 'Unknown')}")
                 
-                # Get tag preferences from concept refinement system
-                # First, collect image IDs from the base exploration stage
+                # Collect image IDs from the base exploration stage
                 exploration_stage_folder = os.path.join(folder, base_stage)
                 exploration_images = []
                 if os.path.exists(exploration_stage_folder):
@@ -1585,68 +1512,6 @@ def feedback(req: FeedbackRequest):
                 
                 # Access the concept refinement session
                 refinement_session = get_refinement_session(req.session_id, base_stage, exploration_images)
-                
-                # Get categorized concepts
-                categorized = refinement_session.get_categorized_concepts()
-                positive_concept_ids = categorized.get('positive', [])
-                negative_concept_ids = categorized.get('negative', [])
-                
-                # Sort by weight (score) and get top 5 positive and top 3 negative
-                positive_with_weights = []
-                for concept_id in positive_concept_ids:
-                    if concept_id in refinement_session.concept_states:
-                        weight = refinement_session.concept_states[concept_id].score
-                        positive_with_weights.append((concept_id, weight))
-                
-                negative_with_weights = []
-                for concept_id in negative_concept_ids:
-                    if concept_id in refinement_session.concept_states:
-                        weight = refinement_session.concept_states[concept_id].score
-                        negative_with_weights.append((concept_id, weight))
-                
-                # Sort by weight (descending for positive, ascending for negative)
-                positive_with_weights.sort(key=lambda x: x[1], reverse=True)
-                negative_with_weights.sort(key=lambda x: x[1])
-                
-                # Get labels for top concepts
-                positive_tags = []
-                for concept_id, _ in positive_with_weights[:5]:
-                    concept = next((c for c in refinement_session.concepts if c.id == concept_id), None)
-                    if concept:
-                        positive_tags.append(concept.label)
-                
-                negative_tags = []
-                for concept_id, _ in negative_with_weights[:3]:
-                    concept = next((c for c in refinement_session.concepts if c.id == concept_id), None)
-                    if concept:
-                        negative_tags.append(concept.label)
-                
-                tag_preferences = {
-                    'positive': positive_tags,
-                    'negative': negative_tags
-                }
-                
-                print(f"Refinement stage tag preferences: {tag_preferences}")
-                
-                # Save concept preferences to preferences.json
-                try:
-                    if os.path.exists(preferences_file):
-                        with open(preferences_file, 'r') as f:
-                            preferences_data = json.load(f)
-                    else:
-                        preferences_data = {}
-                    
-                    if 'concept_preferences' not in preferences_data:
-                        preferences_data['concept_preferences'] = {}
-                    
-                    preferences_data['concept_preferences'][base_stage] = tag_preferences
-                    
-                    with open(preferences_file, 'w') as f:
-                        json.dump(preferences_data, f, indent=2)
-                    
-                    print(f"✅ Saved concept preferences for {base_stage} to preferences.json")
-                except Exception as e:
-                    print(f"⚠️  Error saving concept preferences: {e}")
                 
                 # Generate refinement stage using PBO + SDXL
                 write_status(folder, f"🔄 Starting PBO refinement for {base_stage}...")
@@ -1676,11 +1541,20 @@ def feedback(req: FeedbackRequest):
                     write_status(folder, "🔨 Clustering tags into concepts...")
                     refinement_session.initialize_from_tags(image_tags)
                     write_status(folder, f"✅ Created {len(refinement_session.concepts)} tag cluster concepts")
+                    
+                    # Load learned weights from base stage (warm start)
+                    weights_loaded = refinement_session.load_concept_weights_from_base_stage(folder)
+                    if weights_loaded:
+                        write_status(folder, f"🔥 Warm start: Loaded learned weights from base stage")
+                    else:
+                        write_status(folder, f"🆕 Cold start: Using uniform weights (no previous weights found)")
                 
                 # Initialize StageRefiner with PBO
+                # Force recreate to pick up the latest learned weights
                 refiner = get_or_create_pbo_refiner(
                     session_id=req.session_id,
-                    stage=base_stage
+                    stage=base_stage,
+                    force_recreate=True  # Always recreate to use latest weights
                 )
                 
                 write_status(folder, f"🎲 Generating 4 PBO proposals...")
@@ -1727,6 +1601,25 @@ def feedback(req: FeedbackRequest):
                     write_status(folder, f"⚠️ Reference image not found for ID '{selected_image_id}', using txt2img mode")
                     print(f"[PBO] ⚠️ Reference image not found. Selected ID: {selected_image_id}")
                 
+                # Initialize tracking
+                from backend.tracking import create_tracker
+                tracker = create_tracker(
+                    session_path=Path(folder),
+                    session_id=req.session_id,
+                    stage=next_stage,  # Use refinement stage name, not base stage
+                    descriptor=descriptor or "No descriptor"
+                )
+                tracker.set_concepts(refiner.concepts)
+                tracker.start_round(
+                    round_number=1,
+                    reference_image=os.path.basename(selected_image_path) if selected_image_path else None
+                )
+                
+                # Prepare image paths for tracking
+                image_paths_for_tracking = [
+                    f"{next_stage}/round_1/image_{i}.png" for i in range(len(proposals))
+                ]
+                
                 # Generate images using SDXL
                 sdxl_runner = get_sdxl_runner()
                 pil_images = refiner.generate_images_from_proposals(
@@ -1735,7 +1628,9 @@ def feedback(req: FeedbackRequest):
                     seed_base=42,
                     verbose=False,
                     init_image=reference_image,
-                    descriptor=descriptor  # User description from session
+                    descriptor=descriptor,  # User description from session
+                    tracker=tracker,  # Track all generation details
+                    generated_image_paths=image_paths_for_tracking
                 )
                 
                 # Save images to Round 1 folder
@@ -1765,18 +1660,33 @@ def feedback(req: FeedbackRequest):
                     results.append((concept_data, [legacy_path]))  # Use legacy path for compatibility
                 
                 # Save Round 1 weight vectors
+                # Extract concept index from selected_image_id (e.g., "impression_2_0" -> 2)
+                selected_concept_index = None
+                if selected_image_id:
+                    try:
+                        parts = selected_image_id.split('_')
+                        if len(parts) >= 2:
+                            selected_concept_index = int(parts[-2])
+                    except (ValueError, IndexError):
+                        pass
+                
+                weights_data = {
+                    "round": 1,
+                    "proposals": [p.tolist() for p in proposals],
+                    "concept_labels": [c['label'] for c in refiner.concepts],
+                    "reference_image": selected_image_id,
+                    "selected_concept_index": selected_concept_index
+                }
+                
                 weights_file = os.path.join(round_1_folder, "weights.json")
                 with open(weights_file, "w") as f:
-                    json.dump({
-                        "round": 1,
-                        "proposals": [p.tolist() for p in proposals],
-                        "concept_labels": [c['label'] for c in refiner.concepts],
-                        "reference_image": selected_image_id
-                    }, f, indent=2)
+                    json.dump(weights_data, f, indent=2)
                 
                 write_status(folder, f"✅ PBO refinement complete! Generated {len(results)} images")
             else:
                 # Regular exploration stage: use standard generation
+                narrative_prompt, image_prompt = PROMPTS[next_stage]
+                
                 results, user_pref = run_stage_seq_parallel_optimized(
                     next_stage,
                     narrative_prompt,
@@ -3280,8 +3190,6 @@ class GenerateStageRefinementRequest(BaseModel):
     session_path: str
     stage: str
     selected_concept_index: int
-    positive_concept_labels: list[str]
-    negative_concept_labels: list[str]
     descriptor: str
 
 class GenerateStageRefinementResponse(BaseModel):
@@ -3364,13 +3272,22 @@ def generate_stage_refinement(req: GenerateStageRefinementRequest):
             write_status(session_path, "🔨 Clustering tags into concepts using K-means...")
             refinement_session.initialize_from_tags(image_tags)
             write_status(session_path, f"✅ Created {len(refinement_session.concepts)} tag cluster concepts")
+            
+            # Load learned weights from base stage (warm start)
+            weights_loaded = refinement_session.load_concept_weights_from_base_stage(session_path)
+            if weights_loaded:
+                write_status(session_path, f"🔥 Warm start: Loaded learned weights from base stage")
+            else:
+                write_status(session_path, f"🆕 Cold start: Using uniform weights (no previous weights found)")
         else:
             write_status(session_path, f"✅ Using existing {len(refinement_session.concepts)} concepts")
         
         # Initialize StageRefiner (creates PBO with MU matrix)
+        # Force recreate to pick up the latest learned weights from base stage
         refiner = get_or_create_pbo_refiner(
             session_id=session_id,
-            stage=req.stage
+            stage=req.stage,
+            force_recreate=True  # Always recreate to use latest weights
         )
         
         concept_labels = [c['label'] for c in refiner.concepts]
@@ -3414,7 +3331,7 @@ def generate_stage_refinement(req: GenerateStageRefinementRequest):
         tracker = create_tracker(
             session_path=Path(session_path),
             session_id=session_id,
-            stage=req.stage,
+            stage=refinement_stage,  # Use refinement stage name, not base stage
             descriptor=descriptor or "No descriptor"
         )
         tracker.set_concepts(refiner.concepts)
@@ -3478,9 +3395,7 @@ def generate_stage_refinement(req: GenerateStageRefinementRequest):
             "proposals": [p.tolist() for p in proposals],
             "concept_labels": concept_labels,
             "reference_image": reference_image_id,
-            "selected_concept_index": req.selected_concept_index,
-            "positive_labels": req.positive_concept_labels,
-            "negative_labels": req.negative_concept_labels
+            "selected_concept_index": req.selected_concept_index
         }
         
         weights_file = os.path.join(round_1_folder, "weights.json")
@@ -3498,8 +3413,6 @@ def generate_stage_refinement(req: GenerateStageRefinementRequest):
             preferences[req.stage] = {}
         
         preferences[req.stage]["selected_concept_index"] = req.selected_concept_index
-        preferences[req.stage]["positive_labels"] = req.positive_concept_labels
-        preferences[req.stage]["negative_labels"] = req.negative_concept_labels
         preferences[req.stage]["refinement_method"] = "pbo_sdxl"
         
         with open(prefs_file, "w") as f:
@@ -3570,13 +3483,22 @@ def get_sdxl_runner() -> SDXLRunner:
     return _sdxl_runner
 
 
-def get_or_create_pbo_refiner(session_id: str, stage: str) -> StageRefiner:
+def get_or_create_pbo_refiner(session_id: str, stage: str, force_recreate: bool = False) -> StageRefiner:
     """
     Get or create StageRefiner for PBO session/stage.
 
     This integrates with existing ConceptRefinementSession to reuse concepts.
+    
+    Args:
+        session_id: Session ID
+        stage: Stage name (e.g., 'impression')
+        force_recreate: If True, recreate even if cached (to pick up updated weights)
     """
     key = f"{session_id}:{stage}"
+
+    if force_recreate and key in _pbo_refiners:
+        print(f"[PBO] Force recreating StageRefiner for {session_id}/{stage} (picking up updated weights)")
+        del _pbo_refiners[key]
 
     if key not in _pbo_refiners:
         print(f"[PBO] Creating new StageRefiner for {session_id}/{stage}")
@@ -3600,12 +3522,13 @@ def get_or_create_pbo_refiner(session_id: str, stage: str) -> StageRefiner:
                 'centroid': concept.centroid.tolist() if hasattr(concept.centroid, 'tolist') else concept.centroid
             })
 
-        # Convert concept_states
+        # Convert concept_states (include ema_w for warm start!)
         concept_states = {}
         for cid, state in concept_session.concept_states.items():
             concept_states[cid] = {
                 'active': True,  # All concepts are active by default
                 'weight': state.w,
+                'ema_w': state.ema_w,  # IMPORTANT: Include ema_w for warm start
                 'total_positive_feedback': state.like_count,
                 'total_negative_feedback': state.dislike_count
             }
@@ -3757,13 +3680,22 @@ async def pbo_init_refinement(request: InitRefinementRequest):
             print(f"[PBO Init] Clustering tags into concepts...")
             refinement_session.initialize_from_tags(image_tags)
             print(f"[PBO Init] Created {len(refinement_session.concepts)} concepts")
+            
+            # Load learned weights from base stage (warm start)
+            weights_loaded = refinement_session.load_concept_weights_from_base_stage(session['folder'])
+            if weights_loaded:
+                print(f"[PBO Init] 🔥 Warm start: Loaded learned weights from base stage")
+            else:
+                print(f"[PBO Init] 🆕 Cold start: Using uniform weights (no previous weights found)")
         else:
             print(f"[PBO Init] Using existing {len(refinement_session.concepts)} concepts")
         
         # Step 3: Initialize StageRefiner (creates PBO with MU matrix)
+        # Force recreate to pick up the latest learned weights
         refiner = get_or_create_pbo_refiner(
             session_id=request.session_id,
-            stage=request.stage
+            stage=request.stage,
+            force_recreate=True  # Always recreate to use latest weights
         )
         
         concept_labels = [c['label'] for c in refiner.concepts]

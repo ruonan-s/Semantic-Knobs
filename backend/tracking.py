@@ -26,7 +26,13 @@ class GenerationTracker:
     
     def __init__(self, session_path: Path, session_id: str, stage: str, descriptor: str):
         self.session_path = Path(session_path)
-        self.tracking_file = self.session_path / "tracking.json"
+        self.stage = stage
+        
+        # Save tracking to stage-specific folder, not session root
+        # This ensures each stage (impression, spatial, etc.) has its own tracking
+        stage_path = self.session_path / stage
+        stage_path.mkdir(parents=True, exist_ok=True)
+        self.tracking_file = stage_path / "tracking.json"
         
         # Initialize or load tracking data
         if self.tracking_file.exists():
@@ -262,7 +268,9 @@ class GenerationTracker:
     
     def _save_readable_summary(self) -> None:
         """Generate and save human-readable tracking summary."""
-        readable_file = self.session_path / "tracking_readable.txt"
+        # Save to same folder as tracking.json (stage folder)
+        stage_path = self.session_path / self.stage
+        readable_file = stage_path / "tracking_readable.txt"
         
         with open(readable_file, 'w') as f:
             # Header

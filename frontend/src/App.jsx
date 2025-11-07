@@ -556,7 +556,7 @@ function App() {
     });
 
     return derivedPrefs;
-  }, [conceptTagPreferences, imageTagsMap, stage, cumulativeTagsState.currentStage]);
+  }, [conceptTagPreferences, imageTagsMap, stage, cumulativeTagsState]);
 
   // Function to add status message
   const addStatusMessage = useCallback((message) => {
@@ -1838,7 +1838,7 @@ function App() {
                 {/* Inline tag display */}
                 {showTagsByDefault && (
                   <InlineTagDisplay
-                    key={`tags-${image.id}-${Object.keys(conceptTagPreferences).length}`}
+                    key={`tags-${image.id}`}
                     tags={imageTagsMap[image.id] || []}
                     imageId={image.id}
                     onTagPreference={handleTagPreference}
@@ -2106,7 +2106,7 @@ function App() {
                 {/* Inline tag display (hidden for refinement stages) */}
                 {showTagsByDefault && !isRefinementStage && (
                   <InlineTagDisplay
-                    key={`tags-${image.id}-${Object.keys(conceptTagPreferences).length}`}
+                    key={`tags-${image.id}`}
                     tags={imageTagsMap[image.id] || []}
                     imageId={image.id}
                     onTagPreference={handleTagPreference}
@@ -2136,44 +2136,12 @@ function App() {
               onClick={async () => {
                 try {
                   setIsLoading(true);
-                  addStatusMessage('Generating refinement images with your concept preferences...');
-                  
-                  // Get categorized concepts from the refinement panel state
-                  // For now, we'll use the conceptTagPreferences to derive positive/negative labels
-                  const positiveConcepts = [];
-                  const negativeConcepts = [];
-                  
-                  // Extract concept labels from tag preferences
-                  // This is a simplified approach - in production you'd get this from ConceptRefinementPanel
-                  for (const [tagId, preference] of Object.entries(conceptTagPreferences)) {
-                    if (preference === 'positive') {
-                      // Extract tag text from imageTagsMap
-                      const parts = tagId.split('_');
-                      const tagIndex = parseInt(parts[parts.length - 1]);
-                      const imageId = parts.slice(2, parts.length - 1).join('_');
-                      const imageTags = imageTagsMap[imageId] || [];
-                      const tagText = imageTags[tagIndex];
-                      if (tagText && !positiveConcepts.includes(tagText)) {
-                        positiveConcepts.push(tagText);
-                      }
-                    } else if (preference === 'negative') {
-                      const parts = tagId.split('_');
-                      const tagIndex = parseInt(parts[parts.length - 1]);
-                      const imageId = parts.slice(2, parts.length - 1).join('_');
-                      const imageTags = imageTagsMap[imageId] || [];
-                      const tagText = imageTags[tagIndex];
-                      if (tagText && !negativeConcepts.includes(tagText)) {
-                        negativeConcepts.push(tagText);
-                      }
-                    }
-                  }
+                  addStatusMessage('Generating refinement images using PBO + SDXL...');
                   
                   console.log('[GENERATE REFINEMENT] Calling API with:', {
                     sessionPath: testStageMode.sessionPath,
                     stage: testStageMode.currentStage,
                     selectedConceptIndex: testStageMode.selectedConceptIndex,
-                    positiveConcepts,
-                    negativeConcepts,
                     descriptor: testStageMode.descriptor
                   });
                   
@@ -2184,8 +2152,6 @@ function App() {
                       session_path: testStageMode.sessionPath,
                       stage: testStageMode.currentStage,
                       selected_concept_index: testStageMode.selectedConceptIndex,
-                      positive_concept_labels: positiveConcepts,
-                      negative_concept_labels: negativeConcepts,
                       descriptor: testStageMode.descriptor
                     })
                   });

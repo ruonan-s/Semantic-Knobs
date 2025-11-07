@@ -196,7 +196,8 @@ class PBO:
         concept_ids: List[str],  # concept IDs
         kernel_length_scale: float = KERNEL_LENGTH_SCALE,
         kernel_sigma_f: float = KERNEL_SIGMA_F,
-        random_state: int = 42
+        random_state: int = 42,
+        concept_weights: Optional[np.ndarray] = None  # Initial concept weights (ema_w) for warm start
     ):
         self.MU = np.asarray(MU, dtype=np.float32)  # (K, d)
         self.K, self.d = self.MU.shape
@@ -217,6 +218,18 @@ class PBO:
 
         # Counters
         self._cid_counter = 0
+        
+        # Initial weights for warm start (sorted indices for cold start proposals)
+        if concept_weights is not None:
+            self.concept_weights = np.asarray(concept_weights, dtype=np.float32)
+            # Sort by weight descending for cold start
+            self.sorted_indices = np.argsort(-self.concept_weights)
+            print(f"[PBO] Initialized with concept weights (warm start mode)")
+            print(f"  Top 3 concepts by weight: {[self.concept_ids[i] for i in self.sorted_indices[:3]]}")
+        else:
+            self.concept_weights = np.ones(self.K, dtype=np.float32) / self.K
+            self.sorted_indices = np.arange(self.K)
+            print(f"[PBO] Initialized without weights (cold start mode)")
 
         print(f"[PBO] Initialized with K={self.K} concepts, d={self.d} embedding dim")
 
@@ -448,18 +461,43 @@ class PBO:
         neg_indices = [i for i, cid in enumerate(self.concept_ids) if cid in negatives]
 
         # Cold start - return corners + center
+        # Use top concepts by weight if available (warm start)
         if not self.fitted or len(self.candidates) < 2:
-            print("[PBO PROPOSE] Cold start - returning corners + center")
+            print("[PBO PROPOSE] Cold start - returning top concepts by weight + smart center")
             proposals = []
-            # Corners (one-hot)
-            for i in range(min(q - 1, self.K)):
+            # Corners (one-hot) - use top concepts by weight
+            num_corners = min(q - 1, self.K)
+            top_indices = self.sorted_indices[:num_corners]
+            
+            for idx in top_indices:
                 w = np.zeros(self.K, dtype=np.float32)
-                w[i] = 1.0
+                w[idx] = 1.0
                 proposals.append(w)
-            # Center
+                concept_label = self.concept_ids[idx] if idx < len(self.concept_ids) else f"concept_{idx}"
+                print(f"  Corner {len(proposals)}: {concept_label} (weight={self.concept_weights[idx]:.4f})")
+            
+            # Smart center: Only use concepts above threshold (exclude disliked ones)
+            # Threshold: concepts with weight > 0.5 * uniform (i.e., not heavily downweighted)
             if len(proposals) < q:
-                w = np.ones(self.K, dtype=np.float32) / self.K
-                proposals.append(w)
+                uniform_weight = 1.0 / self.K
+                threshold = 0.5 * uniform_weight  # Below this = likely disliked
+                
+                # Find concepts above threshold
+                above_threshold_mask = self.concept_weights > threshold
+                num_above_threshold = np.sum(above_threshold_mask)
+                
+                if num_above_threshold > 0:
+                    # Create center using only above-threshold concepts
+                    w = np.zeros(self.K, dtype=np.float32)
+                    w[above_threshold_mask] = 1.0 / num_above_threshold
+                    proposals.append(w)
+                    print(f"  Center: {num_above_threshold}/{self.K} concepts above threshold (threshold={threshold:.4f})")
+                else:
+                    # Fallback: use all concepts if threshold is too strict
+                    w = np.ones(self.K, dtype=np.float32) / self.K
+                    proposals.append(w)
+                    print(f"  Center: uniform (threshold too strict, using all {self.K} concepts)")
+            
             return proposals[:q]
 
         # Multi-start initialization
