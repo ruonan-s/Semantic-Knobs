@@ -178,6 +178,79 @@ def cosine_similarity(a: np.ndarray, b: np.ndarray) -> float:
     return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b) + EPS))
 
 
+def project_sdxl(w: np.ndarray, top_k: int = 10, jitter: float = 0.01) -> np.ndarray:
+    """
+    Project weight vector to SDXL-compatible form (keep top-K tags only).
+    
+    Args:
+        w: weight vector (K,)
+        top_k: number of top tags to keep
+        jitter: small random noise to avoid exact duplicates
+    
+    Returns:
+        w_proj: projected weight vector (K,) with only top-K non-zero
+    """
+    # Ensure non-negative and normalized
+    w = np.maximum(w, 0.0)
+    if w.sum() == 0:
+        w = np.ones_like(w) / len(w)
+    else:
+        w = w / w.sum()
+    
+    K = len(w)
+    top_k = min(top_k, K)
+    
+    # Get top-K indices
+    idx = np.argsort(-w)[:top_k]
+    
+    # Create new weight vector (only top-K non-zero)
+    w_proj = np.zeros(K, dtype=np.float32)
+    w_proj[idx] = w[idx]
+    
+    # Add tiny jitter to avoid exact duplicates (only to selected indices)
+    if jitter > 0:
+        noise = np.random.normal(0.0, jitter, size=K)
+        # Only perturb non-zero entries
+        noise_mask = (w_proj > 0)
+        w_proj[noise_mask] = w_proj[noise_mask] + noise[noise_mask]
+        # Clip to non-negative
+        w_proj = np.maximum(w_proj, 0.0)
+    
+    # Renormalize
+    return normalize_simplex(w_proj)
+
+
+def local_around(
+    w_center: np.ndarray, 
+    alpha_scale: float = 30.0,
+    top_k: int = 10,
+    rng: Optional[np.random.RandomState] = None
+) -> np.ndarray:
+    """
+    Generate Dirichlet sample around a center weight vector.
+    
+    Args:
+        w_center: center weight vector (K,)
+        alpha_scale: concentration parameter (higher = tighter around center)
+        top_k: project result to top-K
+        rng: random state
+    
+    Returns:
+        w_local: sampled weight vector (K,)
+    """
+    if rng is None:
+        rng = np.random
+    
+    # Dirichlet concentration: higher alpha_scale = tighter cluster
+    # Add small epsilon to avoid zero concentration parameters
+    alpha = alpha_scale * (w_center + 1e-6)
+    alpha = np.maximum(alpha, 1e-6)  # ensure all alphas > 0
+    w_local = rng.dirichlet(alpha)
+    
+    # Project to SDXL format
+    return project_sdxl(w_local, top_k=top_k, jitter=0.005)
+
+
 # ============================================================================
 # PBO Class
 # ============================================================================
@@ -253,11 +326,18 @@ class PBO:
         z = compute_mixture_embedding(w, self.MU)
 
         # Check for near-duplicates (coalesce)
-        for cid, cand in self.candidates.items():
-            cos_sim = cosine_similarity(z, cand.z)
-            if cos_sim > COALESCE_COSINE_THRESHOLD:
-                print(f"[PBO] Coalescing candidate (cos={cos_sim:.4f}) into {cid}")
-                return cid
+        # BUT: Don't coalesce during early rounds (cold start) to ensure diversity
+        # We need at least a few distinct candidates for GP to fit properly
+        allow_coalescing = len(self.candidates) >= 10  # Allow coalescing after ~2-3 rounds
+        
+        if allow_coalescing:
+            for cid, cand in self.candidates.items():
+                cos_sim = cosine_similarity(z, cand.z)
+                if cos_sim > COALESCE_COSINE_THRESHOLD:
+                    print(f"[PBO] Coalescing candidate (cos={cos_sim:.4f}) into {cid}")
+                    return cid
+        else:
+            print(f"[PBO] Coalescing disabled (early rounds: {len(self.candidates)} candidates)")
 
         # Create new candidate
         if candidate_id is None:
@@ -460,87 +540,143 @@ class PBO:
         # Get negative indices
         neg_indices = [i for i, cid in enumerate(self.concept_ids) if cid in negatives]
 
-        # Cold start - return corners + center
-        # Use top concepts by weight if available (warm start)
+        # Cold start - use learned weights with controlled perturbations
+        # Instead of one-hot corners, create meaningful variations of learned weights
         if not self.fitted or len(self.candidates) < 2:
-            print("[PBO PROPOSE] Cold start - returning top concepts by weight + smart center")
+            print("[PBO PROPOSE] Cold start - generating perturbations of learned weights")
             proposals = []
-            # Corners (one-hot) - use top concepts by weight
-            num_corners = min(q - 1, self.K)
-            top_indices = self.sorted_indices[:num_corners]
             
-            for idx in top_indices:
-                w = np.zeros(self.K, dtype=np.float32)
-                w[idx] = 1.0
-                proposals.append(w)
-                concept_label = self.concept_ids[idx] if idx < len(self.concept_ids) else f"concept_{idx}"
-                print(f"  Corner {len(proposals)}: {concept_label} (weight={self.concept_weights[idx]:.4f})")
+            # Get learned weights (normalized)
+            w_learned = self.concept_weights.copy()
+            w_learned = w_learned / (w_learned.sum() + EPS)
+            uniform = np.ones(self.K, dtype=np.float32) / self.K
             
-            # Smart center: Only use concepts above threshold (exclude disliked ones)
-            # Threshold: concepts with weight > 0.5 * uniform (i.e., not heavily downweighted)
-            if len(proposals) < q:
-                uniform_weight = 1.0 / self.K
-                threshold = 0.5 * uniform_weight  # Below this = likely disliked
-                
-                # Find concepts above threshold
-                above_threshold_mask = self.concept_weights > threshold
-                num_above_threshold = np.sum(above_threshold_mask)
-                
-                if num_above_threshold > 0:
-                    # Create center using only above-threshold concepts
-                    w = np.zeros(self.K, dtype=np.float32)
-                    w[above_threshold_mask] = 1.0 / num_above_threshold
-                    proposals.append(w)
-                    print(f"  Center: {num_above_threshold}/{self.K} concepts above threshold (threshold={threshold:.4f})")
+            # Get top concept indices for reference
+            top_3_indices = self.sorted_indices[:3]
+            mid_tier_indices = self.sorted_indices[3:7] if self.K >= 7 else self.sorted_indices[3:]
+            
+            # Strategy 1: Learned Baseline - use weights directly from exploration
+            w1 = w_learned.copy()
+            w1 = normalize_simplex(w1)  # Explicit normalization
+            proposals.append(w1)
+            top_3_labels = [self.concept_ids[i] for i in top_3_indices]
+            print(f"  [1/4] Learned Baseline: Top-3={top_3_labels}")
+            print(f"        Weights: [{', '.join([f'{w1[i]:.3f}' for i in top_3_indices])}]")
+            
+            # Strategy 2: Top-Heavy - amplify top 3 concepts, dampen others
+            w2 = w_learned.copy()
+            for i in range(self.K):
+                if i in top_3_indices:
+                    w2[i] *= 1.5  # Boost favorites
                 else:
-                    # Fallback: use all concepts if threshold is too strict
-                    w = np.ones(self.K, dtype=np.float32) / self.K
-                    proposals.append(w)
-                    print(f"  Center: uniform (threshold too strict, using all {self.K} concepts)")
+                    w2[i] *= 0.5  # Dampen others
+            w2 = np.maximum(w2, 0.0)  # Clip to non-negative
+            w2 = normalize_simplex(w2)  # Renormalize
+            proposals.append(w2)
+            print(f"  [2/4] Top-Heavy: Amplify top-3 (×1.5), dampen rest (×0.5)")
+            print(f"        Weights: [{', '.join([f'{w2[i]:.3f}' for i in top_3_indices])}]")
             
+            # Strategy 3: Diversified - boost mid-tier concepts (rank 4-7)
+            w3 = w_learned.copy()
+            for i in range(self.K):
+                if i in top_3_indices:
+                    w3[i] *= 0.7  # Reduce dominance of top concepts
+                elif i in mid_tier_indices:
+                    w3[i] *= 1.8  # Boost promising mid-tier concepts
+                else:
+                    w3[i] *= 0.5  # Dampen low-weight concepts
+            w3 = np.maximum(w3, 0.0)  # Clip to non-negative
+            w3 = normalize_simplex(w3)  # Renormalize
+            proposals.append(w3)
+            mid_tier_labels = [self.concept_ids[i] for i in mid_tier_indices] if len(mid_tier_indices) > 0 else ["none"]
+            print(f"  [3/4] Diversified: Boost mid-tier concepts (rank 4-7)")
+            print(f"        Mid-tier={mid_tier_labels[:3]}")
+            print(f"        Top-3 weights: [{', '.join([f'{w3[i]:.3f}' for i in top_3_indices])}]")
+            
+            # Strategy 4: Smoothed - blend with uniform (reduce extremes)
+            w4 = 0.7 * w_learned + 0.3 * uniform
+            w4 = np.maximum(w4, 0.0)  # Clip to non-negative
+            w4 = normalize_simplex(w4)  # Renormalize
+            proposals.append(w4)
+            print(f"  [4/4] Smoothed: 70% learned + 30% uniform (balanced exploration)")
+            print(f"        Weights: [{', '.join([f'{w4[i]:.3f}' for i in top_3_indices])}]")
+            
+            print(f"\n[PBO PROPOSE] Generated {len(proposals)} cold start proposals based on learned preferences")
             return proposals[:q]
 
-        # Multi-start initialization
-        starts = self._generate_starts(w_current)
-
-        # Acquisition strategies - FORCE DIVERSITY while learning
-        # Problem: Too many similar proposals -> GP gets stuck
-        # Solution: Use different strategies that promote diversity
-        strategies = ['exploit', 'diverse', 'thompson', 'ei']  # Reordered: exploit, then 3 exploration variants
+        # ====================================================================
+        # Principled 4-Candidate Design (Round 2+)
+        # ====================================================================
+        # Each candidate has a clear mathematical role:
+        # A: Anchor/Exploit (w_best from GP)
+        # B: Local Refinement (Dirichlet around w_best)
+        # C: Uncertainty-Diverse (high σ, far from A/B)
+        # D: Thompson/EI (optimized upside)
+        # ====================================================================
+        
+        print("[PBO PROPOSE] Round 2+ - Principled 4-candidate design")
         proposals = []
-
-        for strategy in strategies[:q]:
-            print(f"  Strategy {len(proposals)+1}/{q}: {strategy}")
-
-            # Optimize acquisition function
-            w_opt = self._optimize_acquisition(
-                strategy=strategy,
-                starts=starts,
-                pool_size=pool_size,
-                neg_indices=neg_indices,
-                current_proposals=proposals,
-                max_cos=max_cos
-            )
-
-            if w_opt is not None:
-                proposals.append(w_opt)
-                print(f"    Proposed: w_max={w_opt.max():.3f}, w_min={w_opt.min():.3f}")
-            else:
-                # Fallback - random Dirichlet
-                w_fallback = self.rng.dirichlet(np.ones(self.K))
-                w_fallback = logit_to_weights(np.log(w_fallback + EPS))
-                proposals.append(w_fallback)
-                print(f"    Fallback random proposal")
-
-        # Fill remaining slots if needed
-        while len(proposals) < q:
-            w_random = self.rng.dirichlet(np.ones(self.K))
-            w_random = logit_to_weights(np.log(w_random + EPS))
-            proposals.append(w_random)
-
+        
+        # Get w_best from GP posterior
+        w_best = self._get_best_candidate()
+        if w_best is None:
+            # Fallback: use learned weights
+            w_best = self.concept_weights.copy()
+        
+        print(f"  w_best (from GP): max={w_best.max():.3f}, top-3 concepts: "
+              f"{[self.concept_ids[i] for i in np.argsort(-w_best)[:3]]}")
+        
+        # ----------------------------------------------------------------
+        # Candidate A: Anchor/Exploit (Best-So-Far)
+        # ----------------------------------------------------------------
+        print(f"\n  [A] Anchor/Exploit: w_best from GP")
+        w_A = project_sdxl(w_best, top_k=10, jitter=0.01)
+        proposals.append(w_A)
+        print(f"      Top-3 weights: {sorted(w_A, reverse=True)[:3]}")
+        
+        # ----------------------------------------------------------------
+        # Candidate B: Local Refinement Around Best
+        # ----------------------------------------------------------------
+        print(f"\n  [B] Local Refinement: Dirichlet around w_best")
+        # Adaptive alpha_scale: tighter in later rounds
+        num_rounds = len(self.duels) // 3 + 1  # rough estimate
+        alpha_scale = min(20.0 + num_rounds * 5, 50.0)  # 20 → 50
+        w_B = local_around(w_best, alpha_scale=alpha_scale, top_k=10, rng=self.rng)
+        proposals.append(w_B)
+        print(f"      alpha_scale={alpha_scale:.1f}, Top-3 weights: {sorted(w_B, reverse=True)[:3]}")
+        
+        # ----------------------------------------------------------------
+        # Candidate C: Uncertainty-Guided Diverse
+        # ----------------------------------------------------------------
+        print(f"\n  [C] Uncertainty-Diverse: High σ, far from A/B")
+        w_C = self._generate_diverse_candidate(w_A, w_B, neg_indices, pool_size=pool_size)
+        if w_C is not None:
+            proposals.append(w_C)
+            print(f"      Top-3 weights: {sorted(w_C, reverse=True)[:3]}")
+        else:
+            # Fallback: random Dirichlet
+            w_C = self.rng.dirichlet(np.ones(self.K))
+            w_C = project_sdxl(w_C, top_k=10)
+            proposals.append(w_C)
+            print(f"      (Fallback random) Top-3 weights: {sorted(w_C, reverse=True)[:3]}")
+        
+        # ----------------------------------------------------------------
+        # Candidate D: Thompson/EI (Optimized Upside)
+        # ----------------------------------------------------------------
+        print(f"\n  [D] Thompson/EI: Optimized for high upside")
+        w_D = self._generate_thompson_candidate(w_best, w_C, neg_indices, pool_size=pool_size)
+        if w_D is not None:
+            proposals.append(w_D)
+            print(f"      Top-3 weights: {sorted(w_D, reverse=True)[:3]}")
+        else:
+            # Fallback: EI around w_best
+            w_D = local_around(w_best, alpha_scale=15.0, top_k=10, rng=self.rng)
+            proposals.append(w_D)
+            print(f"      (Fallback local) Top-3 weights: {sorted(w_D, reverse=True)[:3]}")
+        
         # Check diversity
         self._check_diversity(proposals, max_cos)
-
+        
         return proposals[:q]
 
     def _generate_starts(self, w_current: Optional[np.ndarray]) -> List[np.ndarray]:
@@ -702,6 +838,177 @@ class PBO:
         print(f"    Acquisition: score={scores[best_idx]:.4f}, mu={mu[best_idx]:.4f}, std={std[best_idx]:.4f}")
 
         return w_best
+
+    def _get_best_candidate(self) -> Optional[np.ndarray]:
+        """
+        Get w_best from GP posterior (highest predicted utility).
+        
+        Returns:
+            w_best: weight vector with highest posterior mean, or None if not fitted
+        """
+        if not self.fitted or not self.candidates:
+            return None
+        
+        best_cand = None
+        best_mu = -np.inf
+        
+        for cand in self.candidates.values():
+            mu, _ = self._predict(cand.z.reshape(1, -1))
+            if mu[0] > best_mu:
+                best_mu = mu[0]
+                best_cand = cand
+        
+        return best_cand.w if best_cand else None
+    
+    def _generate_diverse_candidate(
+        self,
+        w_A: np.ndarray,
+        w_B: np.ndarray,
+        neg_indices: List[int],
+        pool_size: int = 1000
+    ) -> Optional[np.ndarray]:
+        """
+        Generate uncertainty-guided diverse candidate (Candidate C).
+        
+        High posterior uncertainty + far from A/B.
+        
+        Args:
+            w_A: Candidate A weights
+            w_B: Candidate B weights
+            neg_indices: indices of negative concepts
+            pool_size: number of candidates to sample
+        
+        Returns:
+            w_C: diverse candidate, or None if failed
+        """
+        # Sample pool: mix of uniform and light bias toward learned weights
+        pool = []
+        
+        # 70% uniform exploration
+        for _ in range(int(pool_size * 0.7)):
+            w = self.rng.dirichlet(np.ones(self.K))
+            pool.append(w)
+        
+        # 30% biased toward learned weights (but still diverse)
+        for _ in range(int(pool_size * 0.3)):
+            alpha = 5.0 * (self.concept_weights + EPS)  # low concentration
+            w = self.rng.dirichlet(alpha)
+            pool.append(w)
+        
+        pool = np.array(pool)
+        
+        # Project all to SDXL format
+        pool = np.array([project_sdxl(w, top_k=10, jitter=0) for w in pool])
+        
+        # Compute embeddings
+        Z_pool = np.array([compute_mixture_embedding(w, self.MU) for w in pool])
+        
+        # Predict utilities
+        mu, std = self._predict(Z_pool)
+        
+        # Apply negative penalty
+        if neg_indices:
+            penalty = np.sum(np.maximum(0, pool[:, neg_indices] - NEGATIVE_PENALTY_RHO), axis=1)
+            penalty *= NEGATIVE_PENALTY_LAMBDA
+            mu = mu - penalty
+        
+        # Compute L1 distance from A and B
+        Z_A = compute_mixture_embedding(w_A, self.MU)
+        Z_B = compute_mixture_embedding(w_B, self.MU)
+        
+        dist_from_A = np.array([1.0 - np.dot(z, Z_A) for z in Z_pool])  # 1 - cos similarity
+        dist_from_B = np.array([1.0 - np.dot(z, Z_B) for z in Z_pool])
+        avg_distance = (dist_from_A + dist_from_B) / 2.0
+        
+        # Score: balance uncertainty and diversity
+        # λ controls diversity weight (higher = prefer more distant candidates)
+        lambda_diversity = 0.5
+        scores = std + lambda_diversity * avg_distance
+        
+        # Select best
+        best_idx = np.argmax(scores)
+        w_C = pool[best_idx]
+        
+        print(f"      Acquisition: std={std[best_idx]:.4f}, mu={mu[best_idx]:.4f}, "
+              f"dist_AB={avg_distance[best_idx]:.4f}")
+        
+        return w_C
+    
+    def _generate_thompson_candidate(
+        self,
+        w_best: np.ndarray,
+        w_diverse: np.ndarray,
+        neg_indices: List[int],
+        pool_size: int = 1000
+    ) -> Optional[np.ndarray]:
+        """
+        Generate Thompson/EI candidate (Candidate D).
+        
+        Sample from posterior to find high-upside candidate.
+        
+        Args:
+            w_best: best candidate so far
+            w_diverse: diverse candidate
+            neg_indices: indices of negative concepts
+            pool_size: number of candidates to sample
+        
+        Returns:
+            w_D: Thompson/EI candidate, or None if failed
+        """
+        # Create pool around w_best and w_diverse
+        pool = []
+        
+        # 50% around w_best (exploit)
+        for _ in range(pool_size // 2):
+            alpha = 20.0 * (w_best + EPS)
+            w = self.rng.dirichlet(alpha)
+            pool.append(w)
+        
+        # 25% around w_diverse (explore)
+        for _ in range(pool_size // 4):
+            alpha = 15.0 * (w_diverse + EPS)
+            w = self.rng.dirichlet(alpha)
+            pool.append(w)
+        
+        # 25% neutral/uniform
+        for _ in range(pool_size // 4):
+            w = self.rng.dirichlet(np.ones(self.K))
+            pool.append(w)
+        
+        pool = np.array(pool)
+        
+        # Project to SDXL format
+        pool = np.array([project_sdxl(w, top_k=10, jitter=0) for w in pool])
+        
+        # Compute embeddings
+        Z_pool = np.array([compute_mixture_embedding(w, self.MU) for w in pool])
+        
+        # Predict utilities
+        mu, std = self._predict(Z_pool)
+        
+        # Apply negative penalty
+        if neg_indices:
+            penalty = np.sum(np.maximum(0, pool[:, neg_indices] - NEGATIVE_PENALTY_RHO), axis=1)
+            penalty *= NEGATIVE_PENALTY_LAMBDA
+            mu = mu - penalty
+        
+        # Thompson sampling: f̃(w) = μ(w) + ξ * σ(w) * ε
+        # ξ controls exploration (higher = more exploration)
+        # Adaptive: higher in early rounds, lower in later rounds
+        num_rounds = len(self.duels) // 3 + 1
+        xi = max(1.0, 2.0 - num_rounds * 0.2)  # 2.0 → 1.0
+        
+        epsilon = self.rng.randn(len(mu))
+        f_tilde = mu + xi * std * epsilon
+        
+        # Select best
+        best_idx = np.argmax(f_tilde)
+        w_D = pool[best_idx]
+        
+        print(f"      Acquisition: f̃={f_tilde[best_idx]:.4f}, μ={mu[best_idx]:.4f}, "
+              f"σ={std[best_idx]:.4f}, ξ={xi:.2f}")
+        
+        return w_D
 
     def _check_diversity(self, proposals: List[np.ndarray], max_cos: float) -> None:
         """Check pairwise diversity of proposals"""

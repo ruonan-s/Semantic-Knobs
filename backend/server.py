@@ -3497,11 +3497,12 @@ def get_or_create_pbo_refiner(session_id: str, stage: str, force_recreate: bool 
     key = f"{session_id}:{stage}"
 
     if force_recreate and key in _pbo_refiners:
-        print(f"[PBO] Force recreating StageRefiner for {session_id}/{stage} (picking up updated weights)")
+        print(f"\n[REFINER CACHE] Force recreating StageRefiner for {session_id}/{stage}")
+        print(f"  Reason: Picking up updated weights")
         del _pbo_refiners[key]
 
     if key not in _pbo_refiners:
-        print(f"[PBO] Creating new StageRefiner for {session_id}/{stage}")
+        print(f"\n[REFINER CACHE] Creating NEW StageRefiner for {session_id}/{stage}")
 
         # Get existing concept refinement session (which has the concepts)
         concept_session = get_refinement_session(session_id, stage, [])
@@ -3548,7 +3549,14 @@ def get_or_create_pbo_refiner(session_id: str, stage: str, force_recreate: bool 
             session_dir=session_dir
         )
 
-        print(f"[PBO] StageRefiner created with {len(concepts)} concepts")
+        refiner = _pbo_refiners[key]
+        print(f"[REFINER CACHE] ✅ StageRefiner created and cached")
+        print(f"  Concepts: {len(concepts)}")
+        print(f"  PBO state: candidates={len(refiner.pbo.candidates)}, duels={len(refiner.pbo.duels)}, fitted={refiner.pbo.fitted}")
+    else:
+        print(f"\n[REFINER CACHE] Using CACHED StageRefiner for {session_id}/{stage}")
+        refiner = _pbo_refiners[key]
+        print(f"  PBO state: candidates={len(refiner.pbo.candidates)}, duels={len(refiner.pbo.duels)}, fitted={refiner.pbo.fitted}")
 
     return _pbo_refiners[key]
 
@@ -3640,7 +3648,12 @@ async def pbo_init_refinement(request: InitRefinementRequest):
         if not session:
             raise HTTPException(404, f"Session not found: {request.session_id}")
         
-        print(f"[PBO Init] Initializing refinement for {request.session_id}/{request.stage}")
+        print("\n" + "=" * 80)
+        print(f"[PBO INIT] ENDPOINT CALLED")
+        print("=" * 80)
+        print(f"  Session: {request.session_id}")
+        print(f"  Stage: {request.stage}")
+        print(f"  Image IDs: {request.image_ids}")
         
         # Step 1: Load visual tags
         stage_folder = os.path.join(session['folder'], request.stage)
@@ -3700,8 +3713,16 @@ async def pbo_init_refinement(request: InitRefinementRequest):
         
         concept_labels = [c['label'] for c in refiner.concepts]
         
-        print(f"[PBO Init] ✅ Refinement initialized with {len(refiner.concepts)} concepts")
-        print(f"[PBO Init] Concept labels: {', '.join(concept_labels[:5])}...")
+        # Log PBO state after initialization
+        print(f"\n[PBO INIT] ✅ Refinement initialized")
+        print(f"  Concepts: {len(refiner.concepts)}")
+        print(f"  Concept labels: {', '.join(concept_labels[:5])}...")
+        print(f"\n[PBO STATE] After initialization:")
+        print(f"  candidates: {len(refiner.pbo.candidates)}")
+        print(f"  duels: {len(refiner.pbo.duels)}")
+        print(f"  fitted: {refiner.pbo.fitted}")
+        print(f"  concept_weights sum: {refiner.pbo.concept_weights.sum():.6f}")
+        print("=" * 80 + "\n")
         
         return InitRefinementResponse(
             success=True,
@@ -3755,10 +3776,23 @@ async def pbo_propose(request: ProposeRequest):
     Called when user clicks "Generate Next 4 (PBO)" button.
     """
     try:
+        print("\n" + "=" * 80)
+        print(f"[PBO PROPOSE] ENDPOINT CALLED")
+        print("=" * 80)
+        print(f"  Session: {request.session_id}")
+        print(f"  Stage: {request.stage}")
+        print(f"  Negatives: {request.negatives}")
+        print(f"  w_current provided: {request.w_current is not None}")
+        
         refiner = get_or_create_pbo_refiner(
             session_id=request.session_id,
             stage=request.stage
         )
+
+        print(f"\n[PBO STATE] Before propose:")
+        print(f"  candidates: {len(refiner.pbo.candidates)}")
+        print(f"  duels: {len(refiner.pbo.duels)}")
+        print(f"  fitted: {refiner.pbo.fitted}")
 
         negatives = set(request.negatives) if request.negatives else None
         w_current = np.array(request.w_current) if request.w_current else None
@@ -3768,6 +3802,13 @@ async def pbo_propose(request: ProposeRequest):
             w_current=w_current,
             fit_first=True
         )
+
+        print(f"\n[PBO STATE] After propose:")
+        print(f"  candidates: {len(refiner.pbo.candidates)}")
+        print(f"  duels: {len(refiner.pbo.duels)}")
+        print(f"  fitted: {refiner.pbo.fitted}")
+        print(f"  Generated {len(proposals)} proposals")
+        print("=" * 80 + "\n")
 
         return ProposeResponse(
             proposals=[w.tolist() for w in proposals],
@@ -3789,6 +3830,13 @@ async def pbo_generate(request: GenerateRequest_PBO):
 
     Called after /api/pbo/propose to actually generate the images.
     """
+    print("\n" + "=" * 80)
+    print(f"[PBO GENERATE] ENDPOINT CALLED")
+    print("=" * 80)
+    print(f"  Session: {request.session_id}")
+    print(f"  Stage: {request.stage}")
+    print(f"  Proposals: {len(request.proposals)}")
+    print("=" * 80 + "\n")
     try:
         refiner = get_or_create_pbo_refiner(
             session_id=request.session_id,
@@ -3877,14 +3925,25 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
     not the selected refinement image.
     """
     try:
+        print("\n" + "=" * 80)
+        print(f"[PBO REFINE NEXT ROUND] ENDPOINT CALLED")
+        print("=" * 80)
+        print(f"  Session: {request.session_id}")
+        print(f"  Stage: {request.stage}")
+        print(f"  Round: {request.round_number} → {request.round_number + 1}")
+        print(f"  Selected: {request.selected_image_id}")
+        print(f"  All images: {request.all_image_ids}")
+        
         # Get refiner
         refiner = get_or_create_pbo_refiner(
             session_id=request.session_id,
             stage=request.stage
         )
         
-        print(f"[PBO Refine] Round {request.round_number} → {request.round_number + 1}")
-        print(f"[PBO Refine] Selected: {request.selected_image_id}")
+        print(f"\n[PBO STATE] Before recording selection:")
+        print(f"  candidates: {len(refiner.pbo.candidates)}")
+        print(f"  duels: {len(refiner.pbo.duels)}")
+        print(f"  fitted: {refiner.pbo.fitted}")
         
         # Step 1: Record selection in tracking (CRITICAL: must come before starting new round)
         # Load tracker to record selection from previous round
@@ -3955,15 +4014,29 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
                 refiner.pbo.add_preference(favorite_cand_id, cand_id, strength=1.0)
                 duels_added += 1
         
-        print(f"[PBO Refine] Recorded {duels_added} duels in PBO (favorite: {favorite_cand_id})")
+        print(f"\n[PBO Refine] ✅ Recorded selection:")
+        print(f"  Candidates added: {len(candidate_ids)}")
+        print(f"  Duels added: {duels_added}")
+        print(f"  Favorite: {favorite_cand_id}")
+        
+        print(f"\n[PBO STATE] After recording selection:")
+        print(f"  candidates: {len(refiner.pbo.candidates)}")
+        print(f"  duels: {len(refiner.pbo.duels)}")
+        print(f"  fitted: {refiner.pbo.fitted}")
         
         # Step 4: Propose new weight mixtures
+        print(f"\n[PBO Refine] Proposing new mixtures with fit_first=True...")
         proposals = refiner.propose_next_4(
             negatives=None,
             w_current=None,
             fit_first=True
         )
-        print(f"[PBO Refine] Proposed {len(proposals)} new mixtures")
+        
+        print(f"\n[PBO STATE] After propose:")
+        print(f"  candidates: {len(refiner.pbo.candidates)}")
+        print(f"  duels: {len(refiner.pbo.duels)}")
+        print(f"  fitted: {refiner.pbo.fitted}")
+        print(f"  Proposed {len(proposals)} new mixtures")
         
         # Step 5: Load ORIGINAL reference image (from exploration stage, not refinement)
         # (session_folder and descriptor already loaded above)
@@ -4054,7 +4127,10 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
                 "reference_image": reference_image_id
             }, f, indent=2)
         
-        print(f"[PBO Refine] ✅ Round {request.round_number + 1} complete: {len(image_paths)} images")
+        print(f"\n[PBO Refine] ✅ Round {request.round_number + 1} complete:")
+        print(f"  Generated: {len(image_paths)} images")
+        print(f"  Saved weights to: {weights_file}")
+        print("=" * 80 + "\n")
         
         return RefineNextRoundResponse(
             success=True,
@@ -4070,6 +4146,75 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
         import traceback
         print(f"Traceback: {traceback.format_exc()}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/pbo/debug-state")
+async def pbo_debug_state(session_id: str, stage: str):
+    """
+    Diagnostic endpoint to inspect current PBO state.
+    
+    Returns detailed information about the PBO refiner state including:
+    - Number of candidates and duels
+    - GP fitting status
+    - Concept weights
+    - Recent candidates
+    """
+    try:
+        key = f"{session_id}:{stage}"
+        
+        if key not in _pbo_refiners:
+            return {
+                "error": f"No PBO refiner found for {session_id}/{stage}",
+                "cached_sessions": list(_pbo_refiners.keys())
+            }
+        
+        refiner = _pbo_refiners[key]
+        pbo = refiner.pbo
+        
+        # Get recent candidates
+        recent_candidates = []
+        for cid, cand in list(pbo.candidates.items())[-10:]:  # Last 10
+            recent_candidates.append({
+                "id": cand.id,
+                "top_3_concepts": [(refiner.concepts[i]['label'], float(cand.w[i])) 
+                                   for i in np.argsort(-cand.w)[:3]]
+            })
+        
+        # Get recent duels
+        recent_duels = []
+        for duel in list(pbo.duels)[-10:]:  # Last 10
+            recent_duels.append({
+                "better": duel.better_id,
+                "worse": duel.worse_id,
+                "strength": duel.strength
+            })
+        
+        return {
+            "session_id": session_id,
+            "stage": stage,
+            "pbo_state": {
+                "num_candidates": len(pbo.candidates),
+                "num_duels": len(pbo.duels),
+                "fitted": pbo.fitted,
+                "K": pbo.K,
+                "d": pbo.d
+            },
+            "concept_weights": {
+                "sum": float(pbo.concept_weights.sum()),
+                "top_5": [(refiner.concepts[i]['label'], float(pbo.concept_weights[i])) 
+                          for i in np.argsort(-pbo.concept_weights)[:5]]
+            },
+            "recent_candidates": recent_candidates,
+            "recent_duels": recent_duels,
+            "cache_key": key
+        }
+        
+    except Exception as e:
+        import traceback
+        return {
+            "error": str(e),
+            "traceback": traceback.format_exc()
+        }
 
 
 @app.post("/api/pbo/record-refinement-favorite", response_model=FavoriteResponse)
