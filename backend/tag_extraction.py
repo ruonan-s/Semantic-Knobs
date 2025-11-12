@@ -152,7 +152,19 @@ prompt_ambient_v1 = '''
         "inspiring brightness"
     ]
     }'''
-
+prompt_impression_all = '''
+Extract 12 distinct visual descriptive tags that capture the overall character of this space, including style, materials, lighting, layout, and atmosphere. 
+Tags should be short phrases that work together to describe the complete visual experience.
+Format as JSON:
+{
+"visual_elements": [
+    "tag1",
+    "tag2",
+    ...,
+    "tag12"
+]
+}
+'''
 prompt_impression = '''
 Analyze the attached image and identify Core Impression elements — the foundational style, location, and mood-defining features.
 

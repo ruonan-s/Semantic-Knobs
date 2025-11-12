@@ -34,8 +34,6 @@ print(f"CLIP ViT-L/14 model loaded on {device}")
 MIN_CLUSTERS = 5        # Minimum number of clusters for k-means
 MAX_CLUSTERS = 80       # Maximum number of clusters for k-means (increased for finer granularity)
 TARGET_TAGS_PER_CLUSTER = 2  # Target average tags per cluster (reduced from 3 for tighter clusters)
-K_NN = 6                # k-NN for smoothing
-LAMBDA = 0.15           # smoothing mix
 TAU = 0.6               # softmax temperature
 GAMMA_EMA = 0.8         # EMA smoothing for UI
 A = 1.0                 # like strength
@@ -356,8 +354,6 @@ def build_concepts(raw_tags: List[RawTag]) -> Tuple[List[Concept], Dict[str, str
 def compute_weights(
     concepts: List[Concept],
     concept_states: Dict[str, ConceptState],
-    k: int = K_NN,
-    lambda_smooth: float = LAMBDA,
     tau: float = TAU,
     a: float = A,
     b: float = B
@@ -390,45 +386,7 @@ def compute_weights(
         scores[concept.id] = score
         state.score = score
     
-    # Step 2: Optional semantic smoothing
-    if lambda_smooth > 0 and K > 1:
-        # Build k-NN graph
-        centroids = np.array([concept.centroid for concept in concepts])
-        
-        # Compute pairwise similarities
-        sim_matrix = np.dot(centroids, centroids.T)
-        sim_matrix = np.maximum(sim_matrix, 0)
-        
-        # For each concept, find k nearest neighbors
-        smoothed_scores = {}
-        for i, concept in enumerate(concepts):
-            # Get similarities to all other concepts
-            sims = sim_matrix[i].copy()
-            sims[i] = 0  # Exclude self
-            
-            # Get top k neighbors
-            top_k_indices = np.argsort(sims)[-k:]
-            
-            # Compute weighted average
-            neighbor_sum = 0
-            weight_sum = 0
-            for j in top_k_indices:
-                if sims[j] > 0:
-                    neighbor_sum += sims[j] * scores[concepts[j].id]
-                    weight_sum += sims[j]
-            
-            if weight_sum > 0:
-                neighbor_avg = neighbor_sum / weight_sum
-                smoothed_score = (1 - lambda_smooth) * scores[concept.id] + lambda_smooth * neighbor_avg
-            else:
-                smoothed_score = scores[concept.id]
-            
-            smoothed_scores[concept.id] = smoothed_score
-            concept_states[concept.id].score = smoothed_score
-        
-        scores = smoothed_scores
-    
-    # Step 3: Softmax with temperature
+    # Step 2: Softmax with temperature
     score_values = np.array([scores[c.id] for c in concepts])
     exp_scores = np.exp(score_values / tau)
     weights = exp_scores / np.sum(exp_scores)
@@ -437,7 +395,7 @@ def compute_weights(
     weights = np.maximum(weights, epsilon)
     weights = weights / np.sum(weights)
     
-    # Step 4: Update states with new weights
+    # Step 3: Update states with new weights
     scores_dict = {}
     weights_dict = {}
     for i, concept in enumerate(concepts):
@@ -455,14 +413,9 @@ def compute_weights(
         
         state.w = new_w
     
-    # Debug output to console
-    print(f"\n[WEIGHT COMPUTATION] {len(concepts)} concepts")
-    print(f"  Score range: [{min(scores_dict.values()):.4f}, {max(scores_dict.values()):.4f}]")
-    print(f"  Weight sum: {sum(weights_dict.values()):.4f}")
-    print(f"  Top 5 by weight:")
-    sorted_concepts = sorted(concepts, key=lambda c: weights_dict[c.id], reverse=True)[:5]
-    for c in sorted_concepts:
-        print(f"    {c.label}: w={weights_dict[c.id]:.4f}, score={scores_dict[c.id]:.4f}")
+    # Minimal debug output (removed verbose logging for speed)
+    # Only log weight sum as sanity check
+    # print(f"[WEIGHT] Updated {len(concepts)} concepts, sum={sum(weights_dict.values()):.4f}")
     
     return concept_states
 
@@ -776,36 +729,49 @@ class ConceptRefinementSession:
         }
         
         # Handle toggle logic using per-tag tracking
+        action_taken = ""
         if preference == 'positive':
             if tag_id in state.liked_tags:
-                # Already liked this tag, toggle off
+                # Already liked this tag, toggle off (UNDO)
                 state.liked_tags.remove(tag_id)
                 state.like_count = max(0, state.like_count - 1)
-                print(f"  Toggled OFF like for tag {tag_id}")
+                action_taken = "UNDO_LIKE"
+                print(f"  ✖️ Toggled OFF like for tag {tag_id} (undo)")
             else:
                 # Not liked yet, add like
+                was_disliked = tag_id in state.disliked_tags
                 state.liked_tags.add(tag_id)
                 state.like_count += 1
                 # Remove from disliked if it was there
-                if tag_id in state.disliked_tags:
+                if was_disliked:
                     state.disliked_tags.remove(tag_id)
                     state.dislike_count = max(0, state.dislike_count - 1)
-                print(f"  Added like for tag {tag_id}")
+                    action_taken = "REVERSE_TO_LIKE"
+                    print(f"  🔄 Reversed from dislike to like for tag {tag_id}")
+                else:
+                    action_taken = "ADD_LIKE"
+                    print(f"  ✔️ Added like for tag {tag_id}")
         elif preference == 'negative':
             if tag_id in state.disliked_tags:
-                # Already disliked this tag, toggle off
+                # Already disliked this tag, toggle off (UNDO)
                 state.disliked_tags.remove(tag_id)
                 state.dislike_count = max(0, state.dislike_count - 1)
-                print(f"  Toggled OFF dislike for tag {tag_id}")
+                action_taken = "UNDO_DISLIKE"
+                print(f"  ✖️ Toggled OFF dislike for tag {tag_id} (undo)")
             else:
                 # Not disliked yet, add dislike
+                was_liked = tag_id in state.liked_tags
                 state.disliked_tags.add(tag_id)
                 state.dislike_count += 1
                 # Remove from liked if it was there
-                if tag_id in state.liked_tags:
+                if was_liked:
                     state.liked_tags.remove(tag_id)
                     state.like_count = max(0, state.like_count - 1)
-                print(f"  Added dislike for tag {tag_id}")
+                    action_taken = "REVERSE_TO_DISLIKE"
+                    print(f"  🔄 Reversed from like to dislike for tag {tag_id}")
+                else:
+                    action_taken = "ADD_DISLIKE"
+                    print(f"  ✔️ Added dislike for tag {tag_id}")
         
         # Recompute weights
         self.concept_states = compute_weights(
@@ -827,7 +793,13 @@ class ConceptRefinementSession:
             'disliked_tags': state.disliked_tags.copy()
         }
         
-        # Debug logging
+        # Minimal logging for speed (detailed logging in debugger)
+        delta_ema = after_state['ema_w'] - before_state['ema_w']
+        print(f"[TAG CLICK] {action_taken} → {concept_id}: "
+              f"likes={before_state['like_count']}→{after_state['like_count']}, "
+              f"dislikes={before_state['dislike_count']}→{after_state['dislike_count']}, "
+              f"Δema_w={delta_ema:+.4f}")
+        
         debugger = get_debugger(self.session_id, self.stage)
         debugger.log_tag_interaction(tag_id, preference, concept_id, before_state, after_state)
         

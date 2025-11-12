@@ -49,7 +49,8 @@ function BubbleChart({ concepts, onConceptClick }) {
       ? positiveWeightConcepts 
       : sortedConcepts.slice(0, 20);
     
-    console.log(`[BubbleChart] Displaying ${allConcepts.length} of ${totalK} concepts (positive weight: ${positiveWeightConcepts.length})`);
+    // Minimal logging for performance
+    console.log(`[BubbleChart] Rendered: ${allConcepts.length}/${totalK} concepts`);
 
     // Calculate bubble sizes based on ema_w
     const maxWeight = Math.max(...allConcepts.map(c => c.state.ema_w || 0));
@@ -171,10 +172,42 @@ function BubbleChart({ concepts, onConceptClick }) {
 
   const handleMouseEnter = (bubble, event) => {
     const rect = svgRef.current.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+    
+    // Tooltip dimensions (approximate)
+    const tooltipWidth = 320;
+    const tooltipHeight = 250; // Max expected height
+    const padding = 10;
+    
+    // Calculate tooltip position with smart repositioning
+    let tooltipX = mouseX + padding;
+    let tooltipY = mouseY + padding;
+    
+    // Check right boundary - flip to left if too close to edge
+    if (tooltipX + tooltipWidth > rect.width) {
+      tooltipX = mouseX - tooltipWidth - padding;
+    }
+    
+    // Check bottom boundary - flip to top if too close to edge
+    if (tooltipY + tooltipHeight > rect.height) {
+      tooltipY = mouseY - tooltipHeight - padding;
+    }
+    
+    // Ensure tooltip doesn't go off left edge
+    if (tooltipX < 0) {
+      tooltipX = padding;
+    }
+    
+    // Ensure tooltip doesn't go off top edge
+    if (tooltipY < 0) {
+      tooltipY = padding;
+    }
+    
     setTooltip({
       bubble,
-      x: event.clientX - rect.left,
-      y: event.clientY - rect.top
+      x: tooltipX,
+      y: tooltipY
     });
   };
 
@@ -296,23 +329,27 @@ function BubbleChart({ concepts, onConceptClick }) {
         })}
       </svg>
 
-      {/* Tooltip */}
+      {/* Tooltip with smart positioning */}
       {tooltip && (
         <div
           style={{
             position: 'absolute',
-            left: tooltip.x + 10,
-            top: tooltip.y + 10,
+            left: `${tooltip.x}px`,
+            top: `${tooltip.y}px`,
             backgroundColor: 'rgba(0, 0, 0, 0.95)',
             color: 'white',
             padding: '14px 16px',
             borderRadius: '8px',
             fontSize: '12px',
             maxWidth: '320px',
+            width: '320px',
+            maxHeight: '250px',
+            overflowY: 'auto',
             zIndex: 1000,
             pointerEvents: 'none',
             boxShadow: '0 6px 20px rgba(0,0,0,0.5)',
-            border: '1px solid rgba(255,255,255,0.2)'
+            border: '1px solid rgba(255,255,255,0.2)',
+            transition: 'left 0.1s ease, top 0.1s ease'
           }}
         >
           <div style={{ fontWeight: 'bold', marginBottom: '8px', fontSize: '15px', color: '#ffd700' }}>

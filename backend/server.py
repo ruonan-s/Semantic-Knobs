@@ -851,6 +851,9 @@ def interact_with_concept(req: ConceptInteractionRequest):
         # Return updated state
         state_dict = refinement_session.to_dict()
         
+        # Minimal logging for speed
+        print(f"[API] Returning {len(state_dict['concepts'])} concepts")
+        
         return {
             "success": True,
             "concepts": state_dict['concepts'],
@@ -4076,6 +4079,91 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
         if not tracker_for_selection.data.get("concepts"):
             tracker_for_selection.set_concepts(refiner.concepts)
         
+        # IMPORTANT: If this is the first time creating tracking.json (moving from Round 1 to Round 2),
+        # we need to backfill Round 1's data so it appears in selection history
+        if request.round_number == 1 and len(tracker_for_selection.data.get("rounds", [])) == 0:
+            print(f"[PBO Refine] Backfilling Round 1 data for selection history...")
+            # Start Round 1 first
+            tracker_for_selection.start_round(
+                round_number=1,
+                reference_image=os.path.basename(reference_image_path) if reference_image else None
+            )
+            # Record Round 1's proposals (from the old flow round_1/ folder)
+            round_1_weights_file = os.path.join(refinement_folder, "round_1", "weights.json")
+            if os.path.exists(round_1_weights_file):
+                with open(round_1_weights_file, 'r') as f:
+                    round_1_weights = json.load(f)
+                    # Add proposals to tracking with ALL required fields
+                    for i in range(4):
+                        w_raw = np.array(round_1_weights["proposals"][i], dtype=np.float32)
+                        
+                        # Normalize weights
+                        from backend.sdxl_integration import normalize_simplex, compute_gains
+                        w_norm = normalize_simplex(w_raw)
+                        
+                        # Compute gains and statistics
+                        gains = compute_gains(w_norm)
+                        mean_w = float(np.mean(w_norm))
+                        std_w = float(np.std(w_norm))
+                        z_scores = (w_norm - mean_w) / (std_w + 1e-8)
+                        
+                        # Build concept breakdown with ALL required fields
+                        concept_breakdown = []
+                        for idx, concept in enumerate(refiner.concepts):
+                            # Compute rank (1 = highest weight)
+                            rank = int(np.where(np.argsort(w_norm)[::-1] == idx)[0][0]) + 1
+                            
+                            concept_breakdown.append({
+                                "concept_id": refiner.concept_ids[idx],
+                                "label": concept["label"],
+                                "weight_raw": float(w_raw[idx]),
+                                "weight_normalized": float(w_norm[idx]),
+                                "z_score": float(z_scores[idx]),
+                                "gain_before_clip": float(1.0 + 0.4 * z_scores[idx]),
+                                "gain_after_clip": float(gains[idx]),
+                                "rank": rank,
+                                "included_positive": False,  # Not available for backfill
+                                "included_negative": False   # Not available for backfill
+                            })
+                        
+                        from datetime import datetime as dt
+                        tracker_for_selection.data["rounds"][0]["proposals"].append({
+                            "proposal_index": i,
+                            "seed": 42 + i,
+                            "generated_image": f"impression_refinement/round_1/image_{i}.png",
+                            "generated_at": dt.now().isoformat(),
+                            
+                            # Weight statistics
+                            "weight_statistics": {
+                                "raw_weights": [float(x) for x in w_raw],
+                                "normalized_weights": [float(x) for x in w_norm],
+                                "mean": mean_w,
+                                "std": std_w,
+                                "min": float(w_norm.min()),
+                                "max": float(w_norm.max())
+                            },
+                            
+                            # Concept breakdown
+                            "concept_breakdown": concept_breakdown,
+                            
+                            # Prompt composition (not available for backfill)
+                            "prompt_composition": {
+                                "positive_phrases": [],
+                                "negative_phrases": []
+                            },
+                            
+                            # Generation params with ALL required fields
+                            "generation_params": {
+                                "mode": "img2img",
+                                "strength": 0.65,
+                                "steps": 27,
+                                "guidance_scale": 7.5
+                            }
+                        })
+            # Record Round 1's selection (the one user just made)
+            tracker_for_selection.record_selection(selected_index, all_indices)
+            print(f"[PBO Refine] ✅ Backfilled Round 1 with selection index {selected_index}")
+        
         # Start new round
         tracker_for_selection.start_round(
             round_number=request.round_number + 1,
@@ -4143,6 +4231,196 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
         raise
     except Exception as e:
         print(f"[PBO Refine] Error: {str(e)}")
+        import traceback
+        print(f"Traceback: {traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+class RefineFromWeightsRequest(BaseModel):
+    session_id: str
+    stage: str  # base stage (e.g., "impression")
+    weights: list[float]  # Historical weight vector to refine from
+    round_number: int
+
+class RefineFromWeightsResponse(BaseModel):
+    success: bool
+    image_paths: list[str]
+    round_number: int
+    message: str
+
+
+@app.post("/api/pbo/refine-from-weights", response_model=RefineFromWeightsResponse)
+async def pbo_refine_from_weights(request: RefineFromWeightsRequest):
+    """
+    Generate new round using historical weights as a starting point.
+    This allows users to revisit previous selections and explore nearby regions.
+    """
+    try:
+        print("\n" + "=" * 80)
+        print(f"[PBO REFINE FROM WEIGHTS] ENDPOINT CALLED")
+        print("=" * 80)
+        print(f"  Session: {request.session_id}")
+        print(f"  Stage: {request.stage}")
+        print(f"  Weights shape: {len(request.weights)}")
+        print(f"  Round: {request.round_number} → {request.round_number + 1}")
+        
+        # Get refiner
+        refiner = get_or_create_pbo_refiner(
+            session_id=request.session_id,
+            stage=request.stage
+        )
+        
+        # Convert weights to numpy array
+        import numpy as np
+        historical_weights = np.array(request.weights, dtype=np.float32)
+        
+        # Add the historical weights as a candidate to the PBO
+        # (this will inform the GP about this region of interest)
+        z_historical = refiner.pbo.compute_mixture_embedding(historical_weights)
+        cid = refiner.pbo.add_candidate(
+            w=historical_weights,
+            z=z_historical,
+            label="historical_selection"
+        )
+        print(f"[PBO] Added historical weights as candidate: {cid}")
+        
+        # Fit the GP
+        refiner.pbo.fit()
+        print(f"[PBO] GP fitted with {len(refiner.pbo.candidates)} candidates, {len(refiner.pbo.duels)} duels")
+        
+        # Propose new batch using local_around to explore near the historical weights
+        # This gives 4 diverse proposals around the historical selection
+        from backend.pbo import local_around
+        proposals = []
+        for i in range(4):
+            w_local = local_around(historical_weights, alpha_scale=30.0 + i*10, top_k=10, rng=refiner.pbo.rng)
+            proposals.append(w_local)
+        
+        print(f"[PBO] Generated 4 local proposals around historical weights")
+        
+        # Get session info
+        session = sessions.get(request.session_id)
+        if not session:
+            raise HTTPException(404, f"Session not found: {request.session_id}")
+        
+        session_folder = session['folder']
+        preferences_file = os.path.join(session_folder, "preferences.json")
+        
+        # Get the original reference image
+        reference_image_id = None
+        if os.path.exists(preferences_file):
+            with open(preferences_file, 'r') as f:
+                prefs = json.load(f)
+                selections = prefs.get('selections', {})
+                reference_image_id = selections.get(request.stage)
+        
+        if not reference_image_id:
+            raise HTTPException(400, f"No reference image found for {request.stage} stage")
+        
+        print(f"[PBO Refine] Using ORIGINAL reference: {reference_image_id}")
+        
+        # Load reference image
+        stage_folder = os.path.join(session_folder, request.stage)
+        reference_image_path = os.path.join(stage_folder, f"{reference_image_id}.png")
+        
+        if not os.path.exists(reference_image_path):
+            reference_image_path = os.path.join(stage_folder, f"{reference_image_id}_0.png")
+        
+        reference_image = None
+        if os.path.exists(reference_image_path):
+            from PIL import Image as PILImage
+            reference_image = PILImage.open(reference_image_path)
+            print(f"[PBO Refine] ✅ Loaded reference: {os.path.basename(reference_image_path)}")
+        else:
+            print(f"[PBO Refine] ⚠️ Reference not found: {reference_image_path}")
+        
+        # Get descriptor
+        descriptor = None
+        if os.path.exists(preferences_file):
+            with open(preferences_file, 'r') as f:
+                prefs = json.load(f)
+                descriptor = prefs.get('descriptor')
+        
+        # Create tracker and start new round
+        from backend.tracking import create_tracker
+        tracker = create_tracker(
+            session_path=Path(session_folder),
+            session_id=request.session_id,
+            stage=request.stage,
+            descriptor=descriptor or "No descriptor"
+        )
+        
+        if not tracker.data.get("concepts"):
+            tracker.set_concepts(refiner.concepts)
+        
+        tracker.start_round(
+            round_number=request.round_number + 1,
+            reference_image=os.path.basename(reference_image_path) if reference_image else None
+        )
+        
+        # Generate images with SDXL
+        refinement_stage = f"{request.stage}_refinement"
+        refinement_folder = os.path.join(session_folder, refinement_stage)
+        round_folder = os.path.join(refinement_folder, f"round_{request.round_number + 1}")
+        os.makedirs(round_folder, exist_ok=True)
+        
+        # Generate images using refiner
+        print(f"[StageRefiner] Generating 4 images from proposals...")
+        pil_images = refiner.generate_images_batch(
+            weight_vectors=proposals,
+            reference_image=reference_image
+        )
+        
+        # Save images
+        image_paths = []
+        for i, pil_img in enumerate(pil_images):
+            image_filename = f"image_{i}.png"
+            image_path = os.path.join(round_folder, image_filename)
+            pil_img.save(image_path)
+            
+            # Return relative path for frontend
+            relative_path = f"/sessions/{request.session_id}/{refinement_stage}/round_{request.round_number + 1}/{image_filename}"
+            image_paths.append(relative_path)
+        
+        print(f"[StageRefiner] ✅ Generated {len(pil_images)} images")
+        
+        # Record proposals in tracking
+        tracker.record_proposals(
+            proposals=[{
+                'weights': w.tolist(),
+                'image_path': f"round_{request.round_number + 1}/image_{i}.png"
+            } for i, w in enumerate(proposals)]
+        )
+        
+        # Save weights
+        weights_data = {
+            "round": request.round_number + 1,
+            "proposals": [p.tolist() for p in proposals],
+            "concept_labels": [c['label'] for c in refiner.concepts],
+            "reference_image": reference_image_id,
+            "source": "historical_weights"
+        }
+        
+        weights_file = os.path.join(round_folder, "weights.json")
+        with open(weights_file, "w") as f:
+            json.dump(weights_data, f, indent=2)
+        
+        print(f"[PBO Refine] ✅ Round {request.round_number + 1} complete:")
+        print(f"  Generated: {len(image_paths)} images")
+        print(f"  Saved weights to: {weights_file}")
+        print("=" * 80 + "\n")
+        
+        return RefineFromWeightsResponse(
+            success=True,
+            image_paths=image_paths,
+            round_number=request.round_number + 1,
+            message=f"Generated round {request.round_number + 1} from historical weights"
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"[PBO Refine From Weights] Error: {str(e)}")
         import traceback
         print(f"Traceback: {traceback.format_exc()}")
         raise HTTPException(status_code=500, detail=str(e))

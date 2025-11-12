@@ -1739,126 +1739,138 @@ function App() {
             </button>
           </div>
 
-          <div style={{ display: 'flex', gap: '20px', overflowX: 'auto', marginBottom: '20px', minHeight: '300px' }}>
-            {images
-              .sort((a, b) => {
-                // Sort by concept index (impression_0_0_0, impression_1_0_0, etc.)
-                const aIndex = parseInt(a.id.split('_')[1]);
-                const bIndex = parseInt(b.id.split('_')[1]);
-                return aIndex - bIndex;
-              })
-              .map((image, index) => (
-              <div
-                key={image.id}
-                style={{
-                  position: 'relative',
-                  border: selectedImage === image.id ? '3px solid blue' : 
-                         parseInt(image.id.split('_')[1]) === cumulativeTagsState.conceptIndex ? '2px solid orange' :
-                         '1px solid gray',
-                  padding: '10px',
-                  borderRadius: '4px',
-                  transition: 'all 0.3s ease',
-                  minWidth: '250px',
-                  maxWidth: '300px',
-                  flexShrink: 0,
-                  backgroundColor: parseInt(image.id.split('_')[1]) === cumulativeTagsState.conceptIndex ? 
-                                  'rgba(255, 165, 0, 0.1)' : 'transparent',
-                  display: 'flex',
-                  flexDirection: 'column'
-                }}
-                ref={el => imageRefs.current[image.id] = el}
-              >
-                {/* Concept label */}
-                <div style={{
-                  position: 'absolute',
-                  top: '5px',
-                  left: '5px',
-                  backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                  color: 'white',
-                  padding: '4px 8px',
-                  borderRadius: '4px',
-                  fontSize: '12px',
-                  fontWeight: 'bold',
-                  zIndex: 10
-                }}>
-                  Concept {parseInt(image.id.split('_')[1]) + 1}
-                </div>
-                
-                {/* Action buttons above image */}
-                <div style={{
-                  display: 'flex',
-                  gap: '8px',
-                  marginBottom: '10px'
-                }}>
-                  <button
-                    onClick={(e) => loadImageTags(image.id, e)}
+          {/* Two-column layout: Images on left, Bubble chart on right */}
+          <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
+            {/* Left column: 2x2 grid of images with tags */}
+            <div style={{ flex: '0 0 50%', minWidth: '0' }}>
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(2, 1fr)', 
+                gridTemplateRows: 'repeat(2, 1fr)',
+                gap: '15px',
+                height: '100%'
+              }}>
+                {images
+                  .sort((a, b) => {
+                    // Sort by concept index (impression_0_0_0, impression_1_0_0, etc.)
+                    const aIndex = parseInt(a.id.split('_')[1]);
+                    const bIndex = parseInt(b.id.split('_')[1]);
+                    return aIndex - bIndex;
+                  })
+                  .map((image, index) => (
+                  <div
+                    key={image.id}
                     style={{
-                      background: 'rgba(255, 255, 255, 0.95)',
-                      border: '1px solid #ddd',
-                      borderRadius: '6px',
-                      padding: '6px 10px',
-                      fontSize: '12px',
-                      cursor: 'pointer',
-                      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                      transition: 'all 0.2s ease'
+                      position: 'relative',
+                      border: selectedImage === image.id ? '3px solid blue' : 
+                             parseInt(image.id.split('_')[1]) === cumulativeTagsState.conceptIndex ? '2px solid orange' :
+                             '1px solid gray',
+                      padding: '10px',
+                      borderRadius: '4px',
+                      transition: 'all 0.3s ease',
+                      backgroundColor: parseInt(image.id.split('_')[1]) === cumulativeTagsState.conceptIndex ? 
+                                      'rgba(255, 165, 0, 0.1)' : 'transparent',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      minHeight: '400px'
                     }}
+                    ref={el => imageRefs.current[image.id] = el}
                   >
-                    Visual Tags
-                  </button>
-                  
-                  <button
-                    onClick={() => loadImageJson(image.id)}
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.95)',
-                      border: '1px solid #ddd',
-                      borderRadius: '6px',
-                      padding: '6px 10px',
+                    {/* Concept label */}
+                    <div style={{
+                      position: 'absolute',
+                      top: '5px',
+                      left: '5px',
+                      backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                      color: 'white',
+                      padding: '4px 8px',
+                      borderRadius: '4px',
                       fontSize: '12px',
-                      cursor: 'pointer',
-                      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                      transition: 'all 0.2s ease'
-                    }}
-                  >
-                    {isRefinementStage ? 'Tag Weights' : 'JSON Script'}
-                  </button>
-                </div>
-                
-                <img 
-                  src={image.url} 
-                  alt={`Design ${image.id}`} 
-                  style={{ 
-                    width: '100%',
-                    borderRadius: '2px',
-                    cursor: 'pointer',
-                    flexShrink: 0
-                  }}
-                  onClick={() => handleSelect(image.id)}
-                />
+                      fontWeight: 'bold',
+                      zIndex: 10
+                    }}>
+                      Concept {parseInt(image.id.split('_')[1]) + 1}
+                    </div>
+                    
+                    {/* Action buttons above image */}
+                    <div style={{
+                      display: 'flex',
+                      gap: '8px',
+                      marginBottom: '10px'
+                    }}>
+                      <button
+                        onClick={(e) => loadImageTags(image.id, e)}
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.95)',
+                          border: '1px solid #ddd',
+                          borderRadius: '6px',
+                          padding: '6px 10px',
+                          fontSize: '12px',
+                          cursor: 'pointer',
+                          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                          transition: 'all 0.2s ease'
+                        }}
+                      >
+                        Visual Tags
+                      </button>
+                      
+                      <button
+                        onClick={() => loadImageJson(image.id)}
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.95)',
+                          border: '1px solid #ddd',
+                          borderRadius: '6px',
+                          padding: '6px 10px',
+                          fontSize: '12px',
+                          cursor: 'pointer',
+                          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                          transition: 'all 0.2s ease'
+                        }}
+                      >
+                        {isRefinementStage ? 'Tag Weights' : 'JSON Script'}
+                      </button>
+                    </div>
+                    
+                    <img 
+                      src={image.url} 
+                      alt={`Design ${image.id}`} 
+                      style={{ 
+                        width: '100%',
+                        borderRadius: '2px',
+                        cursor: 'pointer',
+                        flexShrink: 0
+                      }}
+                      onClick={() => handleSelect(image.id)}
+                    />
 
-                {/* Inline tag display */}
-                {showTagsByDefault && (
-                  <InlineTagDisplay
-                    key={`tags-${image.id}`}
-                    tags={imageTagsMap[image.id] || []}
-                    imageId={image.id}
-                    onTagPreference={handleTagPreference}
-                    preferences={derivedTagPreferences}
-                  />
-                )}
+                    {/* Inline tag display */}
+                    {showTagsByDefault && (
+                      <InlineTagDisplay
+                        key={`tags-${image.id}`}
+                        tags={imageTagsMap[image.id] || []}
+                        imageId={image.id}
+                        onTagPreference={handleTagPreference}
+                        preferences={derivedTagPreferences}
+                      />
+                    )}
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            
+            {/* Right column: Bubble chart */}
+            <div style={{ flex: '0 0 50%', minWidth: '0' }}>
+              <ConceptRefinementPanel
+                sessionId={sessionId}
+                stage={cumulativeTagsState.currentStage || 'impression'}
+                images={images}
+                selectedImage={selectedImage}
+                onImageSelect={handleSelect}
+                onTagClick={conceptTagHandlerRef}
+                onTagPreferencesUpdate={handleConceptTagPreferencesUpdate}
+              />
+            </div>
           </div>
-          
-          {/* Concept Refinement Panel for Cumulative Tags */}
-          <ConceptRefinementPanel
-            sessionId={sessionId}
-            stage={cumulativeTagsState.currentStage || 'impression'}
-            images={images}
-            selectedImage={selectedImage}
-            onImageSelect={handleSelect}
-            onTagClick={conceptTagHandlerRef}
-            onTagPreferencesUpdate={handleConceptTagPreferencesUpdate}
-          />
           
           <button
             onClick={() => {
@@ -2018,117 +2030,150 @@ function App() {
             </div>
           )}
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px' }}>
-            {images.map((image) => (
-              <div
-                key={image.id}
-                style={{
-                  position: 'relative',
-                  border: selectedImage === image.id ? '3px solid blue' : '1px solid gray',
-                  padding: '10px',
-                  borderRadius: '4px',
-                  transition: 'all 0.3s ease',
-                  display: 'flex',
-                  flexDirection: 'column'
-                }}
-                ref={el => imageRefs.current[image.id] = el}
-              >
-                {/* Action buttons above image */}
-                <div style={{
-                  display: 'flex',
-                  gap: '8px',
-                  marginBottom: '10px'
-                }}>
-                  {/* Hide Visual Tags button for refinement stages */}
-                  {!isRefinementStage && (
-                    <button
-                      onClick={(e) => loadImageTags(image.id, e)}
-                      style={{
-                        background: 'rgba(255, 255, 255, 0.95)',
-                        border: '1px solid #ddd',
-                        borderRadius: '6px',
-                        padding: '6px 10px',
-                        fontSize: '12px',
-                        cursor: 'pointer',
-                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                        transition: 'all 0.2s ease'
-                      }}
-                      onMouseEnter={e => {
-                        e.target.style.transform = 'scale(1.05)';
-                        e.target.style.backgroundColor = '#f0f9ff';
-                      }}
-                      onMouseLeave={e => {
-                        e.target.style.transform = 'scale(1)';
-                        e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-                      }}
-                    >
-                      Visual Tags
-                    </button>
-                  )}
-                  
-                  <button
-                    onClick={() => loadImageJson(image.id)}
+          {/* Two-column layout: Images on left, Bubble chart on right */}
+          <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
+            {/* Left column: 2x2 grid of images with tags */}
+            <div style={{ flex: '0 0 50%', minWidth: '0' }}>
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(2, 1fr)', 
+                gridTemplateRows: 'repeat(2, 1fr)',
+                gap: '15px',
+                height: '100%'
+              }}>
+                {images.map((image) => (
+                  <div
+                    key={image.id}
                     style={{
-                      background: 'rgba(255, 255, 255, 0.95)',
-                      border: '1px solid #ddd',
-                      borderRadius: '6px',
-                      padding: '6px 10px',
-                      fontSize: '12px',
-                      cursor: 'pointer',
-                      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                      transition: 'all 0.2s ease'
+                      position: 'relative',
+                      border: selectedImage === image.id ? '3px solid blue' : '1px solid gray',
+                      padding: '10px',
+                      borderRadius: '4px',
+                      transition: 'all 0.3s ease',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      minHeight: '400px'
                     }}
-                    onMouseEnter={e => {
-                      e.target.style.transform = 'scale(1.05)';
-                      e.target.style.backgroundColor = '#f0f9ff';
-                    }}
-                    onMouseLeave={e => {
-                      e.target.style.transform = 'scale(1)';
-                      e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-                    }}
+                    ref={el => imageRefs.current[image.id] = el}
                   >
-                    {isRefinementStage ? 'Tag Weights' : 'JSON Script'}
-                  </button>
-                </div>
-                
-                <img 
-                  src={image.url} 
-                  alt={`Design ${image.id}`} 
-                  style={{ 
-                    width: '100%',
-                    borderRadius: '2px',
-                    cursor: 'pointer',
-                    flexShrink: 0
-                  }}
-                  onClick={() => handleSelect(image.id)}
-                />
+                    {/* Action buttons above image */}
+                    <div style={{
+                      display: 'flex',
+                      gap: '8px',
+                      marginBottom: '10px'
+                    }}>
+                      {/* Hide Visual Tags button for refinement stages */}
+                      {!isRefinementStage && (
+                        <button
+                          onClick={(e) => loadImageTags(image.id, e)}
+                          style={{
+                            background: 'rgba(255, 255, 255, 0.95)',
+                            border: '1px solid #ddd',
+                            borderRadius: '6px',
+                            padding: '6px 10px',
+                            fontSize: '12px',
+                            cursor: 'pointer',
+                            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                            transition: 'all 0.2s ease'
+                          }}
+                          onMouseEnter={e => {
+                            e.target.style.transform = 'scale(1.05)';
+                            e.target.style.backgroundColor = '#f0f9ff';
+                          }}
+                          onMouseLeave={e => {
+                            e.target.style.transform = 'scale(1)';
+                            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                          }}
+                        >
+                          Visual Tags
+                        </button>
+                      )}
+                      
+                      <button
+                        onClick={() => loadImageJson(image.id)}
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.95)',
+                          border: '1px solid #ddd',
+                          borderRadius: '6px',
+                          padding: '6px 10px',
+                          fontSize: '12px',
+                          cursor: 'pointer',
+                          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                          transition: 'all 0.2s ease'
+                        }}
+                        onMouseEnter={e => {
+                          e.target.style.transform = 'scale(1.05)';
+                          e.target.style.backgroundColor = '#f0f9ff';
+                        }}
+                        onMouseLeave={e => {
+                          e.target.style.transform = 'scale(1)';
+                          e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                        }}
+                      >
+                        {isRefinementStage ? 'Tag Weights' : 'JSON Script'}
+                      </button>
+                    </div>
+                    
+                    <img 
+                      src={image.url} 
+                      alt={`Design ${image.id}`} 
+                      style={{ 
+                        width: '100%',
+                        borderRadius: '2px',
+                        cursor: 'pointer',
+                        flexShrink: 0
+                      }}
+                      onClick={() => handleSelect(image.id)}
+                    />
 
-                {/* Inline tag display (hidden for refinement stages) */}
-                {showTagsByDefault && !isRefinementStage && (
-                  <InlineTagDisplay
-                    key={`tags-${image.id}`}
-                    tags={imageTagsMap[image.id] || []}
-                    imageId={image.id}
-                    onTagPreference={handleTagPreference}
-                    preferences={derivedTagPreferences}
-                  />
-                )}
+                    {/* Inline tag display (hidden for refinement stages) */}
+                    {showTagsByDefault && !isRefinementStage && (
+                      <InlineTagDisplay
+                        key={`tags-${image.id}`}
+                        tags={imageTagsMap[image.id] || []}
+                        imageId={image.id}
+                        onTagPreference={handleTagPreference}
+                        preferences={derivedTagPreferences}
+                      />
+                    )}
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            
+            {/* Right column: Bubble chart OR Refinement controls */}
+            <div style={{ flex: '0 0 50%', minWidth: '0' }}>
+              {isRefinementStage ? (
+                /* Refinement Iteration Controls */
+                <RefinementIterationControls
+                  sessionId={sessionId}
+                  stage={stage.replace('_refinement', '')}  // Pass base stage
+                  images={images}
+                  selectedImage={selectedImage}
+                  initialRound={refinementRound}
+                  disabled={isLoading}
+                  onContinue={handleContinue}  // Continue to next stage
+                  onRefinementComplete={(newImages, round) => {
+                    // Update images with new round
+                    setImages(newImages);
+                    setRefinementRound(round);
+                    setSelectedImage(null);  // Reset selection for new round
+                  }}
+                />
+              ) : stage !== 'final' && stage !== 'mode-selection' ? (
+                /* Bubble chart for regular stages */
+                <ConceptRefinementPanel
+                  sessionId={sessionId}
+                  stage={stage}
+                  images={images}
+                  selectedImage={selectedImage}
+                  onImageSelect={handleSelect}
+                  onTagClick={conceptTagHandlerRef}
+                  onTagPreferencesUpdate={handleConceptTagPreferencesUpdate}
+                />
+              ) : null}
+            </div>
           </div>
-          
-          {/* Concept Refinement Panel (hidden for refinement stages) */}
-          {stage !== 'final' && stage !== 'mode-selection' && !isRefinementStage && (
-            <ConceptRefinementPanel
-              sessionId={sessionId}
-              stage={stage}
-              images={images}
-              selectedImage={selectedImage}
-              onImageSelect={handleSelect}
-              onTagClick={conceptTagHandlerRef}
-              onTagPreferencesUpdate={handleConceptTagPreferencesUpdate}
-            />
-          )}
           
           {/* Test Stage Refinement: Generate Refinement Button */}
           {testStageMode.active && testStageMode.currentStage && (
@@ -2231,24 +2276,8 @@ function App() {
             </button>
           )}
           
-          {/* Refinement Iteration Controls or Continue Button */}
-          {isRefinementStage ? (
-            <RefinementIterationControls
-              sessionId={sessionId}
-              stage={stage.replace('_refinement', '')}  // Pass base stage
-              images={images}
-              selectedImage={selectedImage}
-              initialRound={refinementRound}
-              disabled={isLoading}
-              onContinue={handleContinue}  // Continue to next stage
-              onRefinementComplete={(newImages, round) => {
-                // Update images with new round
-                setImages(newImages);
-                setRefinementRound(round);
-                setSelectedImage(null);  // Reset selection for new round
-              }}
-            />
-          ) : (
+          {/* Continue Button (for non-refinement stages) */}
+          {!isRefinementStage && (
             <button
               onClick={handleContinue}
               disabled={!selectedImage || isLoading}
