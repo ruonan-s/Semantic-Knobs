@@ -15,8 +15,8 @@ import re
 import torch
 import clip
 
-# K-means clustering
-from sklearn.cluster import KMeans
+# Agglomerative clustering
+from sklearn.cluster import AgglomerativeClustering
 
 # Import debug utilities
 from debug_concepts import get_debugger
@@ -31,16 +31,20 @@ print(f"CLIP ViT-L/14 model loaded on {device}")
 # ============================================================================
 # Parameters (defaults from spec)
 # ============================================================================
-MIN_CLUSTERS = 5        # Minimum number of clusters for k-means
-MAX_CLUSTERS = 80       # Maximum number of clusters for k-means (increased for finer granularity)
-TARGET_TAGS_PER_CLUSTER = 2  # Target average tags per cluster (reduced from 3 for tighter clusters)
-TAU = 0.6               # softmax temperature
-GAMMA_EMA = 0.8         # EMA smoothing for UI
+# Agglomerative clustering parameters
+DISTANCE_THRESHOLD = 0.2  # Stop merging when cosine distance exceeds this (0-2 range)
+                           # Lower = tighter clusters (more concepts)
+                           # Higher = looser clusters (fewer concepts)
+MIN_CLUSTERS = 3           # Minimum number of clusters (safety bound)
+MAX_CLUSTERS = 100         # Maximum number of clusters (safety bound)
+
+# Weight computation parameters
+TAU = 2.0               # softmax temperature
 A = 1.0                 # like strength
 B = 1.0                 # dislike strength
-BETA_POS = 1.0          # rank intensity positive
-BETA_NEG = 1.0          # rank intensity negative
-TAU_POS = 2.0           # rank decay positive
+BETA_POS = 0.3          # rank intensity positive
+BETA_NEG = 0.3          # rank intensity negative
+TAU_POS = 1.0           # rank decay positive
 TAU_NEG = 2.0           # rank decay negative
 S_CAP = 3.0             # negative score clamp
 GAMMA_NEG = 0.7         # negative effect strength in image preview
@@ -77,7 +81,6 @@ class ConceptState:
     rank_penalty: float = 0.0
     score: float = 0.0
     w: float = 0.0          # normalized weight
-    ema_w: float = 0.0      # UI-smoothed weight
     liked_tags: set = None  # Track which tags have been liked
     disliked_tags: set = None  # Track which tags have been disliked
     
@@ -189,56 +192,16 @@ def find_elbow_point(inertias: list, k_values: list) -> int:
     return int(k_values[elbow_idx])
 
 
-def estimate_optimal_k(n_tags: int, embeddings: np.ndarray, 
+# No longer needed - agglomerative determines K automatically
+# Kept for reference/comparison
+def estimate_optimal_k_legacy(n_tags: int, embeddings: np.ndarray, 
                        min_k: int = MIN_CLUSTERS, 
                        max_k: int = MAX_CLUSTERS) -> int:
-    """Estimate optimal number of clusters using elbow method with CLIP embeddings"""
-    # Determine search range - allow up to 70% of n_tags for finer granularity
-    k_min = max(min_k, 3)  # Need at least 3 for meaningful clustering
-    k_max = min(max_k, n_tags - 1, int(n_tags * 0.7))  # Allow more clusters (was n_tags // 2)
-    
-    # For very small datasets, use conservative approach
-    if n_tags < 10:
-        k_max = min(k_max, n_tags // 2)
-    
-    print(f"  Elbow method with CLIP embeddings: n_tags={n_tags}, testing K from {k_min} to {k_max}")
-    
-    # Determine step size - use finer granularity to avoid missing elbow
-    if n_tags < 50:
-        k_step = 1
-    elif n_tags < 150:
-        k_step = 2
-    else:
-        k_step = 3
-    
-    k_range = list(range(k_min, k_max + 1, k_step))
-    
-    # Allow more test points to better capture elbow (increased from 15-20 to 25-30)
-    if len(k_range) > 30:
-        # Sample k_range to keep it around 25-30 values
-        step = max(1, len(k_range) // 25)
-        k_range = k_range[::step]
-    
-    print(f"  Testing {len(k_range)} K values: {k_range[0]} to {k_range[-1]} (step ~{k_step})")
-    
-    # Run K-means for each K and collect inertias
-    inertias = []
-    for k in k_range:
-        try:
-            kmeans = KMeans(n_clusters=k, random_state=42, n_init=10, max_iter=100)
-            kmeans.fit(embeddings)
-            inertias.append(kmeans.inertia_)
-        except Exception as e:
-            print(f"  Warning: K-means failed at k={k}: {e}")
-            break
-    
-    if len(inertias) < 3:
-        # Fallback to heuristic if elbow method fails
-        k_target = max(min_k, min(max_k, n_tags // TARGET_TAGS_PER_CLUSTER))
-        print(f"  Elbow method failed, using heuristic K={k_target}")
-        return k_target
-    
-    # Find elbow point
+    """LEGACY: K-means elbow method (no longer used with agglomerative)"""
+    # This function is kept for reference but not called
+    # Agglomerative clustering determines K automatically via distance_threshold
+    k_target = max(min_k, min(max_k, n_tags // 3))
+    return k_target
     optimal_k = find_elbow_point(inertias, k_range[:len(inertias)])
     
     print(f"  ✓ Elbow point found at K={optimal_k}")
@@ -250,27 +213,41 @@ def estimate_optimal_k(n_tags: int, embeddings: np.ndarray,
 
 def build_concepts(raw_tags: List[RawTag]) -> Tuple[List[Concept], Dict[str, str]]:
     """
-    Build concepts using K-means clustering on tag embeddings.
+    Build concepts using Agglomerative Clustering on tag embeddings.
+    Uses cosine distance and automatically determines number of clusters.
     Returns: (concepts, tag_id_to_concept_id)
     """
     n = len(raw_tags)
     if n == 0:
         return [], {}
     
-    print(f"\n[K-MEANS CLUSTERING] Building concepts from {n} tags")
+    print(f"\n[AGGLOMERATIVE CLUSTERING] Building concepts from {n} tags")
+    print(f"  Distance threshold: {DISTANCE_THRESHOLD} (cosine distance)")
+    print(f"  Linkage: average")
     
     # Prepare embeddings matrix
     embeddings = np.array([tag.embedding for tag in raw_tags])
     
-    # Estimate optimal K
-    K = estimate_optimal_k(n, embeddings)
-    K = max(MIN_CLUSTERS, min(MAX_CLUSTERS, min(K, n)))  # Ensure valid range
+    # Run Agglomerative Clustering
+    # n_clusters=None means use distance_threshold to determine K automatically
+    clustering = AgglomerativeClustering(
+        n_clusters=None,
+        distance_threshold=DISTANCE_THRESHOLD,
+        metric='cosine',
+        linkage='average'
+    )
     
-    print(f"  Running K-means with K={K} clusters...")
+    cluster_labels = clustering.fit_predict(embeddings)
     
-    # Run K-means
-    kmeans = KMeans(n_clusters=K, random_state=42, n_init=10, max_iter=300)
-    cluster_labels = kmeans.fit_predict(embeddings)
+    # Determine actual number of clusters created
+    K = len(set(cluster_labels))
+    print(f"  Automatically determined K={K} clusters from distance threshold")
+    
+    # Safety bounds check
+    if K < MIN_CLUSTERS:
+        print(f"  ⚠️ Warning: Only {K} clusters created (min={MIN_CLUSTERS}). Consider lowering distance_threshold.")
+    elif K > MAX_CLUSTERS:
+        print(f"  ⚠️ Warning: {K} clusters created (max={MAX_CLUSTERS}). Consider raising distance_threshold.")
     
     # Group tags by cluster
     components = [[] for _ in range(K)]
@@ -381,7 +358,7 @@ def compute_weights(
         max_rank = 2 * a
         state.rank_bonus = np.clip(state.rank_bonus, -max_rank, max_rank)
         state.rank_penalty = np.clip(state.rank_penalty, -max_rank, max_rank)
-        score = max(score, -S_CAP)
+        score = np.clip(score, -S_CAP, S_CAP)
         
         scores[concept.id] = score
         state.score = score
@@ -404,12 +381,6 @@ def compute_weights(
         
         scores_dict[concept.id] = state.score
         weights_dict[concept.id] = new_w
-        
-        # EMA smoothing for UI
-        if state.ema_w == 0:  # First time
-            state.ema_w = new_w
-        else:
-            state.ema_w = GAMMA_EMA * state.ema_w + (1 - GAMMA_EMA) * new_w
         
         state.w = new_w
     
@@ -667,8 +638,8 @@ class ConceptRefinementSession:
             self.raw_tags.append(raw_tag)
             print(f"  Created tag: {tag_id} -> '{text}' (image: {meta['image_id']})")
         
-        # Step 4: Build concepts using K-means
-        print(f"🔨 Building concepts with K-means clustering...")
+        # Step 4: Build concepts using Agglomerative Clustering
+        print(f"🔨 Building concepts with Agglomerative Clustering...")
         self.concepts, self.tag_to_concept = build_concepts(self.raw_tags)
         print(f"✅ Created {len(self.concepts)} concepts from {len(self.raw_tags)} tags")
         
@@ -686,8 +657,7 @@ class ConceptRefinementSession:
         
         for concept in self.concepts:
             self.concept_states[concept.id] = ConceptState(
-                w=initial_weight,
-                ema_w=initial_weight
+                w=initial_weight
             )
         
         self.initialized = True
@@ -722,7 +692,6 @@ class ConceptRefinementSession:
             'like_count': state.like_count,
             'dislike_count': state.dislike_count,
             'w': state.w,
-            'ema_w': state.ema_w,
             'score': state.score,
             'liked_tags': state.liked_tags.copy(),
             'disliked_tags': state.disliked_tags.copy()
@@ -787,25 +756,24 @@ class ConceptRefinementSession:
             'like_count': state.like_count,
             'dislike_count': state.dislike_count,
             'w': state.w,
-            'ema_w': state.ema_w,
             'score': state.score,
             'liked_tags': state.liked_tags.copy(),
             'disliked_tags': state.disliked_tags.copy()
         }
         
-        # Minimal logging for speed (detailed logging in debugger)
-        delta_ema = after_state['ema_w'] - before_state['ema_w']
+        # Minimal logging for speed
+        delta_w = after_state['w'] - before_state['w']
         print(f"[TAG CLICK] {action_taken} → {concept_id}: "
               f"likes={before_state['like_count']}→{after_state['like_count']}, "
               f"dislikes={before_state['dislike_count']}→{after_state['dislike_count']}, "
-              f"Δema_w={delta_ema:+.4f}")
+              f"Δw={delta_w:+.4f}")
         
-        debugger = get_debugger(self.session_id, self.stage)
-        debugger.log_tag_interaction(tag_id, preference, concept_id, before_state, after_state)
-        
-        # Log new categorization (will use auto-categorization now)
-        categorized = self.get_categorized_concepts()
-        debugger.log_categorization(self.concepts, self.concept_states, categorized)
+        # NOTE: Debug logging disabled for performance during rapid tag interactions
+        # Uncomment if detailed interaction logs are needed:
+        # debugger = get_debugger(self.session_id, self.stage)
+        # debugger.log_tag_interaction(tag_id, preference, concept_id, before_state, after_state)
+        # categorized = self.get_categorized_concepts()
+        # debugger.log_categorization(self.concepts, self.concept_states, categorized)
     
     def handle_image_selection(self, image_id: str, boost_amount: float = 0.5) -> None:
         """
@@ -926,7 +894,7 @@ class ConceptRefinementSession:
         Get current UI weights as numpy array for PBO stabilization.
 
         Returns:
-            weights: np.ndarray of shape (K,) with current ema_w values
+            weights: np.ndarray of shape (K,) with current w values
         """
         if not self.concepts:
             return np.array([])
@@ -937,7 +905,7 @@ class ConceptRefinementSession:
         for i, concept in enumerate(self.concepts):
             state = self.concept_states.get(concept.id)
             if state:
-                weights[i] = state.ema_w
+                weights[i] = state.w
 
         # Ensure simplex (should already be, but safety check)
         w_sum = weights.sum()
@@ -1018,7 +986,6 @@ class ConceptRefinementSession:
             'rank_penalty': state.rank_penalty,
             'score': state.score,
             'w': state.w,
-            'ema_w': state.ema_w,
             'liked_tags': list(state.liked_tags) if state.liked_tags else [],
             'disliked_tags': list(state.disliked_tags) if state.disliked_tags else []
         }
@@ -1090,22 +1057,21 @@ class ConceptRefinementSession:
                 'concept_id': concept.id,
                 'label': concept.label,
                 'weight': state.w,
-                'ema_weight': state.ema_w,
                 'score': state.score,
                 'like_count': state.like_count,
                 'dislike_count': state.dislike_count,
                 'member_tag_ids': concept.member_tag_ids
             })
         
-        # Sort by ema_weight descending for readability
-        weights_data['concept_weights'].sort(key=lambda x: x['ema_weight'], reverse=True)
+        # Sort by weight descending for readability
+        weights_data['concept_weights'].sort(key=lambda x: x['weight'], reverse=True)
         
         with open(weights_file, 'w') as f:
             __import__('json').dump(weights_data, f, indent=2)
         
         print(f"[SAVE_WEIGHTS] ✅ Saved {len(self.concepts)} concept weights to {weights_file}")
         # Create sample list outside f-string to avoid backslash syntax error
-        sample_weights = [f"{c['label']}: {c['ema_weight']:.3f}" for c in weights_data['concept_weights'][:5]]
+        sample_weights = [f"{c['label']}: {c['weight']:.3f}" for c in weights_data['concept_weights'][:5]]
         print(f"[SAVE_WEIGHTS] Top 5 by weight: {sample_weights}")
     
     def load_concept_weights_from_base_stage(self, session_folder: str) -> bool:
@@ -1146,13 +1112,12 @@ class ConceptRefinementSession:
                     
                     # Transfer learned weights
                     state.w = prev_weight_data.get('weight', state.w)
-                    state.ema_w = prev_weight_data.get('ema_weight', state.ema_w)
                     state.score = prev_weight_data.get('score', state.score)
                     
                     self.concept_states[concept.id] = state
                     matched_count += 1
                     
-                    print(f"[LOAD_WEIGHTS]   ✓ {concept.label}: w={state.w:.3f}, ema_w={state.ema_w:.3f}")
+                    print(f"[LOAD_WEIGHTS]   ✓ {concept.label}: w={state.w:.3f}")
             
             print(f"[LOAD_WEIGHTS] ✅ Loaded weights for {matched_count}/{len(self.concepts)} concepts from {base_stage}")
             

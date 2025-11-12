@@ -15,6 +15,7 @@ function ConceptRefinementPanel({
   onTagPreferencesUpdate  // NEW: Called when tag preferences change
 }) {
   const prevSelectedImageRef = useRef(null);
+  const abortControllerRef = useRef(null);  // For cancelling in-flight requests
   const [concepts, setConcepts] = useState([]);
   const [tagPreferences, setTagPreferences] = useState({});  // tag_id -> 'positive'|'negative'|null
   const [isInitialized, setIsInitialized] = useState(false);
@@ -29,6 +30,16 @@ function ConceptRefinementPanel({
       console.log(`[CONCEPTS] Updated: ${concepts.length} concepts, key=${conceptsUpdateKey}`);
     }
   }, [concepts, conceptsUpdateKey]);
+
+  // Cleanup: Cancel any pending requests on unmount
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+        console.log('[CLEANUP] Cancelled pending requests on unmount');
+      }
+    };
+  }, []);
 
   // Initialize concepts when component mounts or stage changes
   useEffect(() => {
@@ -92,6 +103,15 @@ function ConceptRefinementPanel({
   const handleTagInteraction = useCallback(async (tagId, preference) => {
     if (!isInitialized) return;
 
+    // Cancel previous request if it exists
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      console.log('[TAG INTERACTION] ⏹️ Cancelled previous request');
+    }
+
+    // Create new abort controller for this request
+    abortControllerRef.current = new AbortController();
+
     // DIRECT SERVER UPDATE: Backend is fast enough (~50-100ms), no optimistic update needed
     try {
       const response = await fetch('/api/concepts/interact', {
@@ -102,7 +122,8 @@ function ConceptRefinementPanel({
           stage: stage,
           tag_id: tagId,
           preference: preference
-        })
+        }),
+        signal: abortControllerRef.current.signal  // Allow cancellation
       });
 
       if (!response.ok) {
@@ -127,7 +148,17 @@ function ConceptRefinementPanel({
         console.log('[TAG INTERACTION] ✅ Updated:', data.concepts?.length, 'concepts');
       }
     } catch (err) {
-      console.error('[TAG INTERACTION] Error:', err);
+      if (err.name === 'AbortError') {
+        // Request was cancelled, this is expected
+        console.log('[TAG INTERACTION] ⏹️ Request aborted (newer request in progress)');
+      } else {
+        console.error('[TAG INTERACTION] Error:', err);
+      }
+    } finally {
+      // Clear the abort controller reference
+      if (abortControllerRef.current) {
+        abortControllerRef.current = null;
+      }
     }
   }, [sessionId, stage, isInitialized, onTagPreferencesUpdate]);
 

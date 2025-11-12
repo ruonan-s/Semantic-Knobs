@@ -40,26 +40,21 @@ function BubbleChart({ concepts, onConceptClick }) {
     const centerX = width / 2;
     const centerY = height / 2;
 
-    // Sort concepts by weight (descending)
-    const sortedConcepts = [...concepts].sort((a, b) => (b.state.ema_w || 0) - (a.state.ema_w || 0));
-    
-    // Filter: Show top 20 OR all with weight > 0
-    const positiveWeightConcepts = sortedConcepts.filter(c => (c.state.ema_w || 0) > 0);
-    const allConcepts = positiveWeightConcepts.length <= 20 
-      ? positiveWeightConcepts 
-      : sortedConcepts.slice(0, 20);
+    // Show ALL concepts (no filtering)
+    const sortedConcepts = [...concepts].sort((a, b) => (b.state.w || 0) - (a.state.w || 0));
+    const allConcepts = sortedConcepts;  // Show all, no limit
     
     // Minimal logging for performance
-    console.log(`[BubbleChart] Rendered: ${allConcepts.length}/${totalK} concepts`);
+    console.log(`[BubbleChart] Rendered: ${allConcepts.length} concepts (showing all)`);
 
-    // Calculate bubble sizes based on ema_w
-    const maxWeight = Math.max(...allConcepts.map(c => c.state.ema_w || 0));
-    const minWeight = Math.min(...allConcepts.map(c => c.state.ema_w || 0));
+    // Calculate bubble sizes based on actual weight (w, not ema_w)
+    const maxWeight = Math.max(...allConcepts.map(c => c.state.w || 0));
+    const minWeight = Math.min(...allConcepts.map(c => c.state.w || 0));
     const weightRange = maxWeight - minWeight || 1;
 
     // Create bubbles with initial positions
     const initialBubbles = allConcepts.map((concept, index) => {
-      const weight = concept.state.ema_w || 0;
+      const weight = concept.state.w || 0;  // Use actual weight, not smoothed
       const normalizedWeight = (weight - minWeight) / weightRange;
       
       // Radius scaled by weight - adjusted for better text display
@@ -396,74 +391,7 @@ function BubbleChart({ concepts, onConceptClick }) {
         </div>
       )}
 
-      {/* Legend */}
-      <div style={{
-        position: 'absolute',
-        top: '10px',
-        right: '10px',
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-        padding: '12px 14px',
-        borderRadius: '8px',
-        border: '1px solid #e0e0e0',
-        fontSize: '12px',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-      }}>
-        <div style={{ fontWeight: 'bold', marginBottom: '8px', fontSize: '13px' }}>Bubble Key</div>
-        
-        {/* Color gradient explanation */}
-        <div style={{ marginBottom: '10px' }}>
-          <div style={{ fontSize: '11px', marginBottom: '4px', color: '#666' }}>Color Intensity:</div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <div style={{ 
-              width: '30px', 
-              height: '16px', 
-              background: 'linear-gradient(to right, hsl(210, 40%, 75%), hsl(210, 70%, 45%))',
-              borderRadius: '3px',
-              border: '1px solid #ddd'
-            }} />
-            <span style={{ fontSize: '10px', color: '#666' }}>Low → High weight</span>
-          </div>
-        </div>
-        
-        {/* Size explanation */}
-        <div style={{ marginBottom: '10px' }}>
-          <div style={{ fontSize: '11px', marginBottom: '4px', color: '#666' }}>Bubble Size:</div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <div style={{ 
-              width: '10px', 
-              height: '10px', 
-              backgroundColor: 'hsl(210, 55%, 60%)', 
-              borderRadius: '50%',
-              border: '1px solid #ddd'
-            }} />
-            <div style={{ 
-              width: '16px', 
-              height: '16px', 
-              backgroundColor: 'hsl(210, 55%, 60%)', 
-              borderRadius: '50%',
-              border: '1px solid #ddd'
-            }} />
-            <span style={{ fontSize: '10px', color: '#666' }}>= Concept weight</span>
-          </div>
-        </div>
-        
-        <div style={{
-          paddingTop: '8px',
-          borderTop: '1px solid #e0e0e0',
-          fontSize: '11px',
-          color: '#666'
-        }}>
-          <div style={{ marginBottom: '2px' }}>
-            <strong>Showing:</strong> {bubbles.length} of {concepts.length} concepts
-          </div>
-          <div style={{ fontSize: '10px', color: '#999', marginTop: '2px' }}>
-            (Top 20 or all weight {'>'} 0)
-          </div>
-          <div style={{ fontSize: '10px', fontStyle: 'italic', color: '#999', marginTop: '4px' }}>
-            Click bubbles to see details
-          </div>
-        </div>
-      </div>
+      {/* Legend removed - showing all concepts now */}
     </div>
   );
 }

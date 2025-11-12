@@ -101,7 +101,6 @@ class ConceptDebugger:
             'initial_weights': {
                 c.id: {
                     'w': initial_states[c.id].w,
-                    'ema_w': initial_states[c.id].ema_w,
                     'like_count': initial_states[c.id].like_count,
                     'dislike_count': initial_states[c.id].dislike_count
                 }
@@ -131,7 +130,6 @@ class ConceptDebugger:
                 'id': concept.id,
                 'label': concept.label,
                 'w': w,
-                'ema_w': state.ema_w,
                 'w_base': w_base,
                 'delta': delta,
                 'threshold_positive': w_base + delta,
@@ -168,7 +166,6 @@ class ConceptDebugger:
                 'like_count': before_state.get('like_count', 0),
                 'dislike_count': before_state.get('dislike_count', 0),
                 'w': before_state.get('w', 0),
-                'ema_w': before_state.get('ema_w', 0),
                 'score': before_state.get('score', 0),
                 'liked_tags': list(before_state.get('liked_tags', set())),
                 'disliked_tags': list(before_state.get('disliked_tags', set()))
@@ -177,7 +174,6 @@ class ConceptDebugger:
                 'like_count': after_state.get('like_count', 0),
                 'dislike_count': after_state.get('dislike_count', 0),
                 'w': after_state.get('w', 0),
-                'ema_w': after_state.get('ema_w', 0),
                 'score': after_state.get('score', 0),
                 'liked_tags': list(after_state.get('liked_tags', set())),
                 'disliked_tags': list(after_state.get('disliked_tags', set()))
@@ -186,7 +182,6 @@ class ConceptDebugger:
                 'like_count_delta': after_state.get('like_count', 0) - before_state.get('like_count', 0),
                 'dislike_count_delta': after_state.get('dislike_count', 0) - before_state.get('dislike_count', 0),
                 'w_delta': after_state.get('w', 0) - before_state.get('w', 0),
-                'ema_w_delta': after_state.get('ema_w', 0) - before_state.get('ema_w', 0),
                 'was_toggled_off': after_state.get('like_count', 0) < before_state.get('like_count', 0) or 
                                   after_state.get('dislike_count', 0) < before_state.get('dislike_count', 0)
             }
@@ -207,8 +202,7 @@ class ConceptDebugger:
                     'rank_penalty': concept_states[c.id].rank_penalty,
                     'raw_score': scores.get(c.id, 0),
                     'final_score': concept_states[c.id].score,
-                    'weight_w': weights.get(c.id, 0),
-                    'weight_ema_w': concept_states[c.id].ema_w
+                    'weight': weights.get(c.id, 0)
                 }
                 for c in concepts
             ],

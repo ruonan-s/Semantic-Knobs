@@ -46,7 +46,6 @@ def create_mock_concepts(K=8, d=128):
             'like_count': 0,
             'dislike_count': 0,
             'w': 1.0 / K,
-            'ema_w': 1.0 / K,
             'score': 0.0,
             'rank_bonus': 0.0,
             'rank_penalty': 0.0
@@ -79,12 +78,12 @@ def simulate_user_preferences(concepts, concept_states):
     total_likes = sum(s['like_count'] for s in concept_states.values())
     if total_likes > 0:
         for cid, state in concept_states.items():
-            state['ema_w'] = (state['like_count'] + 0.1) / (total_likes + len(concepts) * 0.1)
+            state['w'] = (state['like_count'] + 0.1) / (total_likes + len(concepts) * 0.1)
 
         # Normalize
-        total_w = sum(s['ema_w'] for s in concept_states.values())
+        total_w = sum(s['w'] for s in concept_states.values())
         for state in concept_states.values():
-            state['ema_w'] /= total_w
+            state['w'] /= total_w
 
     return liked_indices, disliked_indices
 
@@ -154,7 +153,7 @@ def run_e2e_test():
         print(f"\n[Step 2] UI stabilization...")
 
         # Get current weights
-        w_ui = np.array([concept_states[c['id']]['ema_w'] for c in concepts])
+        w_ui = np.array([concept_states[c['id']]['w'] for c in concepts])
 
         # Wait for debounce
         time.sleep(0.6)

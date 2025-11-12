@@ -843,10 +843,11 @@ def interact_with_concept(req: ConceptInteractionRequest):
         # Handle interaction
         refinement_session.handle_tag_click(req.tag_id, req.preference)
         
-        # Save updated weights to disk (so refinement can load them)
-        if req.session_id in sessions:
-            session_folder = sessions[req.session_id]['folder']
-            refinement_session.save_concept_weights(session_folder)
+        # NOTE: Weights auto-save is disabled for performance (saves happen on generation/refinement)
+        # If needed, uncomment the lines below to save on every interaction:
+        # if req.session_id in sessions:
+        #     session_folder = sessions[req.session_id]['folder']
+        #     refinement_session.save_concept_weights(session_folder)
         
         # Return updated state
         state_dict = refinement_session.to_dict()
@@ -3526,13 +3527,12 @@ def get_or_create_pbo_refiner(session_id: str, stage: str, force_recreate: bool 
                 'centroid': concept.centroid.tolist() if hasattr(concept.centroid, 'tolist') else concept.centroid
             })
 
-        # Convert concept_states (include ema_w for warm start!)
+        # Convert concept_states for warm start
         concept_states = {}
         for cid, state in concept_session.concept_states.items():
             concept_states[cid] = {
                 'active': True,  # All concepts are active by default
                 'weight': state.w,
-                'ema_w': state.ema_w,  # IMPORTANT: Include ema_w for warm start
                 'total_positive_feedback': state.like_count,
                 'total_negative_feedback': state.dislike_count
             }
