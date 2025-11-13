@@ -15,7 +15,7 @@ Strength values:
 # Stage-specific img2img strength values
 # Used during refinement stages when a reference image is provided
 STAGE_IMG2IMG_STRENGTH = {
-    "impression": 0.85,      # Style/aesthetic refinement
+    "impression": 0.7,      # Style/aesthetic refinement
     "spatial": 0.8,         # Spatial structure refinement
     "objects": 0.8,         # Objects and materials refinement
     "ambient": 0.8,         # Lighting and atmosphere refinement

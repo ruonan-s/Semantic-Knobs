@@ -103,7 +103,7 @@ class SDXLEmbedFuser:
         self,
         pos_phrases: List[Tuple[str, float]],
         neg_phrases: List[str] | None = None,
-        max_positives: int = 10,
+        max_positives: int = 9999,
         max_negatives: int = 4
     ):
         """
@@ -112,13 +112,13 @@ class SDXLEmbedFuser:
         Args:
             pos_phrases: List of (phrase, gain) tuples
             neg_phrases: List of negative phrases (optional)
-            max_positives: Maximum number of positive phrases (default: 10)
+            max_positives: Maximum number of positive phrases (default: 9999, effectively unlimited)
             max_negatives: Maximum number of negative phrases (default: 4)
 
         Returns:
             (fused_prompt, fused_pooled, neg_prompt, neg_pooled)
         """
-        # Clamp positive phrases to Top-K
+        # Clamp positive phrases to Top-K (only if exceeds limit)
         if len(pos_phrases) > max_positives:
             print(f"⚠️  Clamping {len(pos_phrases)} positive phrases to top {max_positives}")
             pos_phrases = pos_phrases[:max_positives]

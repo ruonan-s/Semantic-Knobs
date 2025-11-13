@@ -92,7 +92,7 @@ class SDXLRunner:
         steps: int | None = None,
         guidance_scale: float | None = None,
         top_k: int = 10,
-        num_negatives: int = 3,
+        num_negatives: int = 5,
         verbose: bool = True,
         init_image: Image.Image | None = None,
         strength: float | None = None,
@@ -113,8 +113,10 @@ class SDXLRunner:
             width: Image width (default: use initialization value)
             steps: Number of inference steps (default: use initialization value)
             guidance_scale: Guidance scale (default: use initialization value)
-            top_k: Number of positive phrases (default: 10)
-            num_negatives: Number of negative phrases (default: 3)
+            top_k: Number of positive phrases to include (default: 10)
+                   Only top-K concepts by weight appear in positive prompt
+            num_negatives: Number of negative phrases (default: 5)
+                          Bottom-N concepts (w < uniform/2) appear in negative prompt
             verbose: Print phrase summary (default: True)
             init_image: Reference image for img2img (default: None for txt2img)
             strength: Denoising strength for img2img, 0-1 (default: use stage config)
@@ -148,6 +150,10 @@ class SDXLRunner:
             top_k=top_k,
             num_negatives=num_negatives
         )
+        
+        # Add global negative constraints (no humans in interior scenes)
+        global_negatives = ["people", "person", "human", "man", "woman", "face", "body", "portrait"]
+        neg_phrases = global_negatives + neg_phrases
         
         # Step 1.5: Prepend user descriptor if provided
         if descriptor:

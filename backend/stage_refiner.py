@@ -84,9 +84,9 @@ class StageRefiner:
         self.MU = np.array(MU, dtype=np.float32)  # (K, d)
         self.d = self.MU.shape[1]
 
-        # Extract concept weights (ema_w) for warm start
+        # Extract concept weights (w) for warm start
         concept_weights = np.array([
-            concept_states.get(cid, {}).get('ema_w', 1.0 / self.K)
+            concept_states.get(cid, {}).get('w', 1.0 / self.K)
             for cid in self.concept_ids
         ], dtype=np.float32)
         

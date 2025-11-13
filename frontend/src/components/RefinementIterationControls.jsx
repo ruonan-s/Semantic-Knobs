@@ -74,8 +74,8 @@ const RefinementIterationControls = ({
       }
       
       // STEP 2: Try to load tracking.json for round selections
-      // Note: tracking.json is in the base stage folder, not the refinement folder
-      const trackingUrl = `/sessions/${sessionId}/${stage}/tracking.json`;
+      // Note: tracking.json is in the refinement stage folder (e.g., impression_refinement)
+      const trackingUrl = `/sessions/${sessionId}/${stage}_refinement/tracking.json`;
       console.log('[History] Fetching tracking data from:', trackingUrl);
       const response = await fetch(trackingUrl);
       
@@ -241,9 +241,21 @@ const RefinementIterationControls = ({
 
       // Extract round number from the first image ID
       // e.g., "round_2_image_0" -> round 2
+      // OR legacy format: "impression_refinement_0_0" -> round 1
       const firstImageId = images[0]?.id || '';
       const imageRoundMatch = firstImageId.match(/round_(\d+)_/);
-      const actualImageRound = imageRoundMatch ? parseInt(imageRoundMatch[1]) : round;
+      
+      let actualImageRound;
+      if (imageRoundMatch) {
+        // New format: round_X_image_Y
+        actualImageRound = parseInt(imageRoundMatch[1]);
+      } else if (firstImageId.match(/^(impression|spatial|objects|ambient)_refinement_\d+_\d+$/)) {
+        // Legacy format from initial refinement: treat as Round 1
+        actualImageRound = 1;
+      } else {
+        // Fallback to state
+        actualImageRound = round;
+      }
       
       console.log('[Refine More] Component round state:', round);
       console.log('[Refine More] First image ID:', firstImageId);

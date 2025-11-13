@@ -55,7 +55,7 @@ def compute_gains(w: np.ndarray, lambda_scale: float = 0.4) -> np.ndarray:
 def concepts_to_sdxl_phrases(
     w: np.ndarray,
     concepts: List[Dict],
-    top_k: int = 10,
+    top_k: int = 9999,
     num_negatives: int = 3,
     lambda_scale: float = 0.4
 ) -> Tuple[List[Tuple[str, float]], List[str]]:
@@ -71,7 +71,7 @@ def concepts_to_sdxl_phrases(
     Args:
         w: Weight vector (K,)
         concepts: List of concept dicts with 'label' field
-        top_k: Number of positive phrases to return (default: 10)
+        top_k: Number of positive phrases to return (default: 9999, effectively all concepts)
         num_negatives: Number of negative phrases to return (default: 3)
         lambda_scale: Scaling factor for gain mapping (default: 0.4)
 
