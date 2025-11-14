@@ -179,3 +179,100 @@ class SDXLEmbedFuser:
             neg_pooled = empty_pooled
 
         return fused_prompt, fused_pooled, neg_prompt, neg_pooled
+    
+    @torch.no_grad()
+    def fuse_descriptor_and_weighted_tags(
+        self,
+        descriptor: str | None,
+        tag_phrases: List[str],
+        tag_weights: np.ndarray,
+        neg_phrases: List[str] | None = None,
+        max_tags: int = 10,
+        max_negatives: int = 5,
+        descriptor_weight: float = 1.5
+    ):
+        """
+        Fuse descriptor and weighted tags directly using normalized weights.
+        
+        This approach:
+        1. Treats descriptor as a phrase with fixed weight
+        2. Normalizes all weights (descriptor + tags) together
+        3. Computes weighted sum of embeddings
+        
+        NO gain conversion, NO z-score mapping - just direct weight usage!
+        
+        Args:
+            descriptor: Base scene description (e.g., "a bedroom interior")
+            tag_phrases: List of concept tag phrases
+            tag_weights: Weight for each tag (should sum to ~1.0)
+            neg_phrases: List of negative phrases (optional)
+            max_tags: Maximum number of tag phrases (default: 10)
+            max_negatives: Maximum number of negative phrases (default: 5)
+            descriptor_weight: Weight for descriptor (default: 1.5)
+        
+        Returns:
+            (fused_prompt, fused_pooled, neg_prompt, neg_pooled)
+        """
+        # Clamp tags
+        if len(tag_phrases) > max_tags:
+            print(f"⚠️  Clamping {len(tag_phrases)} tag phrases to top {max_tags}")
+            tag_phrases = tag_phrases[:max_tags]
+            tag_weights = tag_weights[:max_tags]
+        
+        # Clamp negatives
+        if neg_phrases and len(neg_phrases) > max_negatives:
+            print(f"⚠️  Clamping {len(neg_phrases)} negative phrases to top {max_negatives}")
+            neg_phrases = neg_phrases[:max_negatives]
+        
+        # Build combined phrase list: [descriptor] + tags
+        all_phrases = []
+        all_weights = []
+        
+        if descriptor:
+            all_phrases.append(descriptor)
+            all_weights.append(descriptor_weight)
+        
+        all_phrases.extend(tag_phrases)
+        all_weights.extend(tag_weights.tolist())
+        
+        # Convert to numpy and normalize
+        weights_np = np.array(all_weights, dtype=np.float32)
+        weights_np = weights_np / (weights_np.sum() + 1e-8)
+        weights_tensor = torch.tensor(weights_np, device=self.device, dtype=torch.float32)
+        
+        # Encode all phrases
+        phrase_embeds = []
+        phrase_pooled_list = []
+        for phrase in all_phrases:
+            pe, pp = self._encode_phrase(phrase)
+            phrase_embeds.append(pe)
+            phrase_pooled_list.append(pp)
+        
+        # Stack and weighted sum
+        P = torch.stack(phrase_embeds, dim=0)           # (N, 1, L, D)
+        Pp = torch.stack(phrase_pooled_list, dim=0)     # (N, 1, H_pool)
+        w = weights_tensor.view(-1, 1, 1, 1)            # (N,1,1,1)
+        wp = weights_tensor.view(-1, 1, 1)              # (N,1,1)
+        
+        fused_prompt = (w * P).sum(dim=0)               # (1, L, D)
+        fused_pooled = (wp * Pp).sum(dim=0)             # (1, H_pool)
+        
+        # Encode negatives (simple average)
+        if neg_phrases and len(neg_phrases) > 0:
+            n_embeds = []
+            n_pooled = []
+            for phrase in neg_phrases:
+                ne, npool = self._encode_phrase(phrase)
+                n_embeds.append(ne)
+                n_pooled.append(npool)
+            N = torch.stack(n_embeds, dim=0)
+            Np = torch.stack(n_pooled, dim=0)
+            neg_prompt = N.mean(dim=0)             # (1, L, D)
+            neg_pooled = Np.mean(dim=0)            # (1, H_pool)
+        else:
+            # Fallback: unconditional by encoding empty string
+            empty_pos, empty_pooled = self._encode_phrase("")
+            neg_prompt = empty_pos
+            neg_pooled = empty_pooled
+        
+        return fused_prompt, fused_pooled, neg_prompt, neg_pooled

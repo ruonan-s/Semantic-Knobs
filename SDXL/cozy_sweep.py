@@ -285,15 +285,15 @@ def main():
     # Example concept bank (REPLACE WITH YOUR ACTUAL CONCEPTS)
     # Note: Remove redundant "bedroom with" prefix since descriptor already says "bedroom"
     concepts = [
-        {"id": "c0", "label": "bedroom with sheepskin throw"},
-        {"id": "c1", "label": "bedroom with cozy atmosphere"},
-        {"id": "c2", "label": "bedroom with small window panes"},
-        {"id": "c3", "label": "bedroom with ruffled curtains"},
-        {"id": "c4", "label": "bedroom with open layout"},
-        {"id": "c5", "label": "bedroom with lush greenery"},
-        {"id": "c6", "label": "bedroom with neutral color palette"},
-        {"id": "c7", "label": "bedroom with minimalist design"},
-        {"id": "c8", "label": "bedroom with cozy reading nook"},
+        {"id": "c0", "label": "home office with sheepskin throw"},
+        {"id": "c1", "label": "home office with cozy atmosphere"},
+        {"id": "c2", "label": "home office with small window panes"},
+        {"id": "c3", "label": "home office with ruffled curtains"},
+        {"id": "c4", "label": "home office with open layout"},
+        {"id": "c5", "label": "home office with lush greenery"},
+        {"id": "c6", "label": "home office with neutral color palette"},
+        {"id": "c7", "label": "home office with minimalist design"},
+        {"id": "c8", "label": "home office with cozy reading nook"},
     ]
     
     K = len(concepts)
@@ -307,7 +307,7 @@ def main():
     
     # Scene descriptor (anchor the scene type)
     # Be explicit: scene type, angle, lighting, quality
-    descriptor = "a cozy bedroom"
+    descriptor = "a cozy home office"
     
     # Alpha levels to test
     # alpha = 0: descriptor-only baseline (tags essentially off)

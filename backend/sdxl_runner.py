@@ -140,58 +140,70 @@ class SDXLRunner:
         if strength is None:
             strength = get_stage_strength(stage) if stage else 0.75
 
-        # Step 1: Convert to phrases
-        if verbose:
-            print(f"\n[SDXLRunner] Converting mixture to phrases (top_k={top_k}, num_negatives={num_negatives})...")
-
-        pos_phrases, neg_phrases = concepts_to_sdxl_phrases(
-            w=w,
-            concepts=concepts,
-            top_k=top_k,
-            num_negatives=num_negatives
-        )
+        # Step 1: Normalize weights and extract top-K concepts (DIRECTLY - no gain conversion!)
+        from backend.sdxl_integration import normalize_simplex
+        w_norm = normalize_simplex(w)
+        
+        # Sort by weight descending and select top-K
+        sorted_indices = np.argsort(w_norm)[::-1]
+        actual_top_k = min(top_k, len(concepts))
+        top_indices = sorted_indices[:actual_top_k]
+        
+        # Build concept tag phrases with their DIRECT weights
+        tag_phrases = []
+        tag_weights = []
+        for idx in top_indices:
+            phrase = concepts[idx]['label']
+            weight = float(w_norm[idx])
+            tag_phrases.append(phrase)
+            tag_weights.append(weight)
+        
+        tag_weights_array = np.array(tag_weights)
+        
+        # Build negative phrases (deficit-based)
+        uniform_weight = 1.0 / len(concepts)
+        deficit_threshold = uniform_weight / 2.0
+        neg_phrases = []
+        
+        for idx in range(len(concepts)):
+            if idx not in top_indices and w_norm[idx] < deficit_threshold:
+                neg_phrases.append(concepts[idx]['label'])
+                if len(neg_phrases) >= num_negatives:
+                    break
         
         # Add global negative constraints (no humans in interior scenes)
         global_negatives = ["people", "person", "human", "man", "woman", "face", "body", "portrait"]
         neg_phrases = global_negatives + neg_phrases
         
-        # Step 1.5: Prepend user descriptor if provided
-        if descriptor:
-            # Add descriptor as the first phrase with highest gain (1.5)
-            # This ensures the user's intent is strongly represented
-            pos_phrases = [(descriptor, 1.5)] + pos_phrases
-            
-            if verbose:
-                print(f"\n[SDXLRunner] Added user descriptor: '{descriptor}'")
-
         if verbose:
-            print(f"  Positive phrases ({len(pos_phrases)}):")
-            for phrase, gain in pos_phrases:
-                print(f"    {phrase}: gain={gain:.3f}")
+            print(f"\n[SDXLRunner] Building embeddings with DIRECT weights (no gain conversion)...")
+            if descriptor:
+                print(f"  Descriptor: '{descriptor}' (weight=1.5)")
+            print(f"  Tag phrases ({len(tag_phrases)}):")
+            for phrase, weight in zip(tag_phrases, tag_weights_array):
+                print(f"    {phrase}: weight={weight:.3f}")
+            print(f"  Negative phrases: {len(neg_phrases)}")
 
-            if neg_phrases:
-                print(f"  Negative phrases ({len(neg_phrases)}):")
-                for phrase in neg_phrases:
-                    print(f"    {phrase}")
-            else:
-                print(f"  Negative phrases: (none)")
-
-        # Step 2: Fuse embeddings
+        # Step 2: Fuse embeddings using direct weights
         if self.fuser is None:
             # Mock generation (pipeline failed to load)
             print("[SDXLRunner] Pipeline not available, generating mock image...")
+            full_prompt = f"{descriptor}, {', '.join(tag_phrases)}" if descriptor else ", ".join(tag_phrases)
             return self.runner._mock_image(
-                positive_prompt=str(pos_phrases),
+                positive_prompt=full_prompt,
                 negative_prompt=str(neg_phrases),
                 seed=seed
             )
 
         if verbose:
-            print(f"\n[SDXLRunner] Fusing weighted phrase embeddings...")
+            print(f"\n[SDXLRunner] Fusing descriptor + weighted tags (direct weights, no gains)...")
 
-        prompt_embeds, pooled, neg_embeds, neg_pooled = self.fuser.fuse_weighted_phrases(
-            pos_phrases=pos_phrases,
-            neg_phrases=neg_phrases
+        prompt_embeds, pooled, neg_embeds, neg_pooled = self.fuser.fuse_descriptor_and_weighted_tags(
+            descriptor=descriptor,
+            tag_phrases=tag_phrases,
+            tag_weights=tag_weights_array,
+            neg_phrases=neg_phrases,
+            descriptor_weight=1.5  # Fixed weight for descriptor
         )
 
         # Step 3: Generate image
@@ -247,12 +259,19 @@ class SDXLRunner:
                 "mode": "img2img" if init_image is not None else "txt2img"
             }
             
+            # Build pos_phrases list for tracking (as tuples of phrase, weight)
+            pos_phrases_for_tracking = []
+            if descriptor:
+                pos_phrases_for_tracking.append((descriptor, 1.5))
+            for phrase, weight in zip(tag_phrases, tag_weights_array):
+                pos_phrases_for_tracking.append((phrase, float(weight)))
+            
             tracker.add_proposal(
                 proposal_index=proposal_index,
                 w_raw=w,
                 concepts=concepts,
                 descriptor=descriptor,
-                pos_phrases=pos_phrases,
+                pos_phrases=pos_phrases_for_tracking,
                 neg_phrases=neg_phrases,
                 generated_image_path=generated_image_path or f"proposal_{proposal_index}.png",
                 seed=seed,
