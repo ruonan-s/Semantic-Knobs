@@ -306,6 +306,18 @@ class PBO:
 
         print(f"[PBO] Initialized with K={self.K} concepts, d={self.d} embedding dim")
 
+    def compute_mixture_embedding(self, w: np.ndarray) -> np.ndarray:
+        """
+        Compute mixture embedding for a weight vector.
+        
+        Args:
+            w: weight vector (K,)
+            
+        Returns:
+            z: mixture embedding (d,), L2-normalized
+        """
+        return compute_mixture_embedding(w, self.MU)
+
     def _generate_candidate_id(self) -> str:
         """Generate unique candidate ID"""
         self._cid_counter += 1

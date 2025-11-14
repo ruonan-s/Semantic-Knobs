@@ -1,6 +1,7 @@
 import os
 import numpy as np
 from pathlib import Path
+from typing import Optional
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
@@ -25,6 +26,108 @@ from stage_refiner import StageRefiner
 # Global variables for SDXL and PBO caching
 _sdxl_runner = None
 _pbo_refiners = {}
+
+
+def clear_pbo_cache_for_session(session_id: str) -> int:
+    """
+    Clear all PBO refiner cache entries for a given session.
+    
+    This should be called when:
+    - Uploading a new session
+    - Loading an existing session
+    - Auto-recovering a session from disk
+    
+    Returns:
+        Number of cache entries cleared
+    """
+    keys_to_remove = [key for key in _pbo_refiners.keys() if key.startswith(f"{session_id}:")]
+    
+    for key in keys_to_remove:
+        del _pbo_refiners[key]
+    
+    if keys_to_remove:
+        print(f"[Cache] Cleared {len(keys_to_remove)} PBO refiner(s) for session '{session_id}'")
+        print(f"[Cache] Removed keys: {keys_to_remove}")
+    
+    return len(keys_to_remove)
+
+
+def clear_pbo_refinement_rounds(session_id: str) -> dict:
+    """
+    Clear all PBO refinement round folders and tracking data for a session.
+    
+    This removes:
+    - All round_N folders in refinement stages (e.g., impression_refinement/round_1/, round_2/, etc.)
+    - tracking.json in refinement stages
+    
+    Returns:
+        Dictionary with counts of what was cleared
+    """
+    import shutil
+    
+    session = sessions.get(session_id)
+    if not session:
+        # Try to find session folder on disk
+        session_folder = os.path.join(SESSIONS_DIR, session_id)
+        if not os.path.exists(session_folder):
+            print(f"[Clear Rounds] Session not found: {session_id}")
+            return {"error": "Session not found"}
+    else:
+        session_folder = session['folder']
+    
+    cleared = {
+        "rounds_cleared": 0,
+        "tracking_cleared": 0,
+        "stages_processed": []
+    }
+    
+    # Process each refinement stage
+    refinement_stages = ["impression_refinement", "spatial_refinement", "objects_refinement", "ambient_refinement"]
+    
+    for refinement_stage in refinement_stages:
+        refinement_folder = os.path.join(session_folder, refinement_stage)
+        
+        if not os.path.exists(refinement_folder):
+            continue
+        
+        stage_cleared = False
+        
+        # Remove all round_N folders
+        for item in os.listdir(refinement_folder):
+            item_path = os.path.join(refinement_folder, item)
+            if os.path.isdir(item_path) and item.startswith("round_"):
+                try:
+                    shutil.rmtree(item_path)
+                    cleared["rounds_cleared"] += 1
+                    stage_cleared = True
+                    print(f"[Clear Rounds] Removed: {refinement_stage}/{item}")
+                except Exception as e:
+                    print(f"[Clear Rounds] Failed to remove {item_path}: {e}")
+        
+        # Remove tracking.json
+        tracking_file = os.path.join(refinement_folder, "tracking.json")
+        if os.path.exists(tracking_file):
+            try:
+                os.remove(tracking_file)
+                cleared["tracking_cleared"] += 1
+                stage_cleared = True
+                print(f"[Clear Rounds] Removed: {refinement_stage}/tracking.json")
+            except Exception as e:
+                print(f"[Clear Rounds] Failed to remove {tracking_file}: {e}")
+        
+        if stage_cleared:
+            cleared["stages_processed"].append(refinement_stage)
+    
+    if cleared["rounds_cleared"] > 0 or cleared["tracking_cleared"] > 0:
+        print(f"[Clear Rounds] Summary for '{session_id}':")
+        print(f"  Rounds cleared: {cleared['rounds_cleared']}")
+        print(f"  Tracking files cleared: {cleared['tracking_cleared']}")
+        print(f"  Stages processed: {cleared['stages_processed']}")
+    else:
+        print(f"[Clear Rounds] No refinement rounds found for '{session_id}'")
+    
+    return cleared
+
 
 # Define your stages and prompts
 STAGES = [
@@ -441,6 +544,7 @@ class FeedbackRequest(BaseModel):
     stage: str
     selected_image_id: str | None  # Allow None for parallel-to-final transitions
     preferences: dict
+    tag_weights: dict | None = None  # Optional: tag name -> weight mapping
 
 class FeedbackResponse(BaseModel):
     next_stage: str | None
@@ -482,6 +586,18 @@ def feedback(req: FeedbackRequest):
     with open(preferences_file, 'w') as f:
         json.dump(req.preferences, f, indent=2)
         print(f"Saved preferences to {preferences_file}")
+
+    # Save tag weights to selection.json if provided
+    if req.tag_weights:
+        selection_file = os.path.join(folder, "selection.json")
+        selection_data = {
+            "image_id": req.selected_image_id,
+            "stage": req.stage,
+            "tag_weights": req.tag_weights
+        }
+        with open(selection_file, 'w') as f:
+            json.dump(selection_data, f, indent=2)
+        print(f"✅ Saved selection with {len(req.tag_weights)} tag weights to {selection_file}")
 
     # Update preferences with selected image
     current_stage = req.stage
@@ -943,6 +1059,10 @@ async def upload_session(request: Request):
             'user_pref': preferences.get('user_pref', {}),
             'uploaded': True
         }
+        
+        # Clear any cached PBO refiners and refinement rounds for this session
+        clear_pbo_cache_for_session(session_id)
+        clear_pbo_refinement_rounds(session_id)
 
         return {
             "session_id": session_id,
@@ -996,6 +1116,10 @@ def get_status(session_id: str):
                 'session_type': session_type
             }
             session = sessions[decoded_session_id]
+            
+            # Clear any cached PBO refiners and refinement rounds for this recovered session
+            clear_pbo_cache_for_session(decoded_session_id)
+            clear_pbo_refinement_rounds(decoded_session_id)
         else:
             print(f"DEBUG: Session not found on disk either: {decoded_session_id}")
             raise HTTPException(404, f"Session not found: {decoded_session_id}")
@@ -1164,6 +1288,10 @@ def load_session(req: LoadSessionRequest):
         
         if not os.path.exists(session_path):
             raise HTTPException(404, f"Session not found: {req.session_path}")
+        
+        # Clear any cached PBO refiners and refinement rounds for this session
+        clear_pbo_cache_for_session(req.session_path)
+        clear_pbo_refinement_rounds(req.session_path)
         
         # Load preferences if exists
         preferences = {}
@@ -1406,6 +1534,8 @@ class RefineNextRoundRequest(BaseModel):
     selected_image_id: str  # Selected from current round
     all_image_ids: list[str]  # All images in current round
     round_number: int
+    injected_tag: Optional[str] = None  # Optional custom tag to inject
+    injected_emphasis: Optional[str] = None  # 'high', 'mid', or 'low'
 
 class RefineNextRoundResponse(BaseModel):
     success: bool
@@ -1524,6 +1654,16 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
         print(f"  candidates: {len(refiner.pbo.candidates)}")
         print(f"  duels: {len(refiner.pbo.duels)}")
         print(f"  fitted: {refiner.pbo.fitted}")
+        
+        # Step 3.5: Handle tag injection if provided
+        if request.injected_tag and request.injected_tag.strip():
+            print(f"\n[TAG INJECTION] Injecting custom tag: '{request.injected_tag}' with {request.injected_emphasis} emphasis")
+            refiner.inject_custom_tag(
+                tag_text=request.injected_tag.strip(),
+                emphasis=request.injected_emphasis or 'mid'
+            )
+            print(f"[TAG INJECTION] ✅ Tag injected successfully")
+            print(f"  New concept count: {refiner.K}")
         
         # Step 4: Propose new weight mixtures
         print(f"\n[PBO Refine] Proposing new mixtures with fit_first=True...")
@@ -1705,13 +1845,25 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
         
         # Step 8: Save weight vectors for this round
         weights_file = os.path.join(round_folder, "weights.json")
+        weights_data = {
+            "round": request.round_number + 1,
+            "proposals": [p.tolist() for p in proposals],
+            "concept_labels": [c['label'] for c in refiner.concepts],
+            "reference_image": reference_image_id
+        }
+        
+        # Add injected tag info if provided
+        if request.injected_tag and request.injected_tag.strip():
+            emphasis_weights = {'high': 0.5, 'mid': 0.3, 'low': 0.1}
+            weights_data["injected_tag"] = {
+                "tag": request.injected_tag.strip(),
+                "emphasis": request.injected_emphasis or 'mid',
+                "weight": emphasis_weights.get(request.injected_emphasis or 'mid', 0.3),
+                "round": request.round_number + 1
+            }
+        
         with open(weights_file, "w") as f:
-            json.dump({
-                "round": request.round_number + 1,
-                "proposals": [p.tolist() for p in proposals],
-                "concept_labels": [c['label'] for c in refiner.concepts],
-                "reference_image": reference_image_id
-            }, f, indent=2)
+            json.dump(weights_data, f, indent=2)
         
         print(f"\n[PBO Refine] ✅ Round {request.round_number + 1} complete:")
         print(f"  Generated: {len(image_paths)} images")
@@ -1774,11 +1926,9 @@ async def pbo_refine_from_weights(request: RefineFromWeightsRequest):
         
         # Add the historical weights as a candidate to the PBO
         # (this will inform the GP about this region of interest)
-        z_historical = refiner.pbo.compute_mixture_embedding(historical_weights)
         cid = refiner.pbo.add_candidate(
             w=historical_weights,
-            z=z_historical,
-            label="historical_selection"
+            candidate_id="historical_selection"
         )
         print(f"[PBO] Added historical weights as candidate: {cid}")
         

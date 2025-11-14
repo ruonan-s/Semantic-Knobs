@@ -27,6 +27,10 @@ const RefinementIterationControls = ({
   const [round, setRound] = useState(initialRound);
   const [selectionHistory, setSelectionHistory] = useState([]);
   const [loadingHistory, setLoadingHistory] = useState(false);
+  
+  // Tag injection state
+  const [injectedTag, setInjectedTag] = useState('');
+  const [injectedEmphasis, setInjectedEmphasis] = useState('mid');
 
   // Load selection history when component mounts or round changes
   const loadSelectionHistory = useCallback(async () => {
@@ -270,6 +274,16 @@ const RefinementIterationControls = ({
         round_number: actualImageRound  // Use the round from the images, not the state
       };
       
+      // Add tag injection if user has entered a tag
+      if (injectedTag && injectedTag.trim() !== '') {
+        requestBody.injected_tag = injectedTag.trim();
+        requestBody.injected_emphasis = injectedEmphasis;
+        console.log('[Refine More] Including tag injection:', {
+          tag: injectedTag.trim(),
+          emphasis: injectedEmphasis
+        });
+      }
+      
       console.log('[Refine More] Request body:', requestBody);
 
       // Call unified endpoint: record + propose + generate
@@ -291,6 +305,10 @@ const RefinementIterationControls = ({
       const newRound = data.round_number;
       setRound(newRound);
       setStatus(`✅ Round ${newRound} complete! PBO generated 4 new variations.`);
+
+      // Clear injected tag after successful generation
+      setInjectedTag('');
+      console.log('[Refine More] Cleared injected tag after successful generation');
 
       // Notify parent component with new images
       if (onRefinementComplete) {
@@ -327,6 +345,39 @@ const RefinementIterationControls = ({
         </p>
       </div>
 
+      {/* Tag Injection Section */}
+      <div style={styles.tagInjectionContainer}>
+        <h4 style={styles.tagInjectionTitle}>🏷️ Tag Injection (Optional)</h4>
+        <p style={styles.tagInjectionDescription}>
+          Add a custom tag to influence the next round. Leave empty to skip.
+        </p>
+        <div style={styles.tagInjectionControls}>
+          <input
+            type="text"
+            value={injectedTag}
+            onChange={(e) => setInjectedTag(e.target.value)}
+            placeholder="Enter custom tag (e.g., 'warm lighting')..."
+            style={styles.tagInput}
+            disabled={isGenerating}
+          />
+          <select
+            value={injectedEmphasis}
+            onChange={(e) => setInjectedEmphasis(e.target.value)}
+            style={styles.emphasisSelect}
+            disabled={isGenerating}
+          >
+            <option value="high">High (50%)</option>
+            <option value="mid">Mid (30%)</option>
+            <option value="low">Low (10%)</option>
+          </select>
+        </div>
+        {injectedTag && injectedTag.trim() !== '' && (
+          <div style={styles.tagPreview}>
+            ✓ Will inject: <strong>"{injectedTag.trim()}"</strong> with <strong>{injectedEmphasis}</strong> emphasis
+          </div>
+        )}
+      </div>
+
       <div style={styles.controls}>
         {/* Continue to Next Stage */}
         <button
@@ -339,7 +390,7 @@ const RefinementIterationControls = ({
           }}
           title="Proceed to the next stage with this selection"
         >
-          Continue to Next Stage →
+          Save selection →
         </button>
 
         {/* Refine More Button */}
@@ -650,6 +701,61 @@ const styles = {
     padding: '20px',
     color: 'rgba(255,255,255,0.5)',
     fontSize: '14px',
+  },
+  tagInjectionContainer: {
+    marginBottom: '20px',
+    padding: '16px',
+    background: 'rgba(255,255,255,0.1)',
+    borderRadius: '8px',
+    border: '1px solid rgba(255,255,255,0.2)',
+  },
+  tagInjectionTitle: {
+    margin: '0 0 6px 0',
+    fontSize: '15px',
+    fontWeight: '600',
+    color: 'white',
+  },
+  tagInjectionDescription: {
+    margin: '0 0 12px 0',
+    fontSize: '12px',
+    color: 'rgba(255,255,255,0.8)',
+  },
+  tagInjectionControls: {
+    display: 'flex',
+    gap: '10px',
+    alignItems: 'stretch',
+  },
+  tagInput: {
+    flex: 1,
+    padding: '10px 14px',
+    fontSize: '14px',
+    border: '2px solid rgba(255,255,255,0.3)',
+    borderRadius: '6px',
+    background: 'rgba(255,255,255,0.95)',
+    color: '#333',
+    outline: 'none',
+    transition: 'all 0.2s ease',
+  },
+  emphasisSelect: {
+    padding: '10px 14px',
+    fontSize: '14px',
+    border: '2px solid rgba(255,255,255,0.3)',
+    borderRadius: '6px',
+    background: 'rgba(255,255,255,0.95)',
+    color: '#333',
+    cursor: 'pointer',
+    outline: 'none',
+    minWidth: '130px',
+    fontWeight: '500',
+  },
+  tagPreview: {
+    marginTop: '10px',
+    padding: '8px 12px',
+    background: 'rgba(76, 175, 80, 0.3)',
+    borderRadius: '6px',
+    fontSize: '13px',
+    color: 'white',
+    border: '1px solid rgba(76, 175, 80, 0.5)',
   },
 };
 

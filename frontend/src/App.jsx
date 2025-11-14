@@ -637,6 +637,53 @@ function App() {
       setIsLoading(true);
       setButtonColor('#4CAF50'); // Change to green when continuing
 
+      // Load tag weights for the selected image if in refinement stage
+      let tagWeights = null;
+      if (stage.endsWith('_refinement') && selectedImage) {
+        try {
+          // Parse image ID to get round and image index
+          const parts = selectedImage.split('_');
+          let roundNum = refinementRound;
+          let imageIdx = 0;
+          
+          if (parts[0] === 'round') {
+            roundNum = parseInt(parts[1]);
+            imageIdx = parseInt(parts[3]);
+          } else if (parts[0] === 'image') {
+            imageIdx = parseInt(parts[1]);
+          } else if (parts.includes('refinement')) {
+            const refinementIdx = parts.indexOf('refinement');
+            if (refinementIdx >= 0 && parts.length > refinementIdx + 1) {
+              imageIdx = parseInt(parts[refinementIdx + 1]);
+            }
+          }
+          
+          // Load weights.json for this round
+          const weightsPath = `/sessions/${sessionId}/${stage}/round_${roundNum}/weights.json`;
+          const weightsRes = await fetch(weightsPath);
+          
+          if (weightsRes.ok) {
+            const weightsData = await weightsRes.json();
+            const imageWeights = weightsData.proposals[imageIdx];
+            const conceptLabels = weightsData.concept_labels;
+            
+            if (imageWeights && conceptLabels) {
+              // Create dictionary: tag name -> weight
+              tagWeights = {};
+              conceptLabels.forEach((item, idx) => {
+                if (item.weight > 0) {
+                  tagWeights[item.label] = item.weight;
+                }
+              });
+              console.log(`✅ Loaded ${Object.keys(tagWeights).length} tag weights for selection`);
+            }
+          }
+        } catch (error) {
+          console.error('Failed to load tag weights:', error);
+          // Continue without weights if loading fails
+        }
+      }
+
       const res = await fetch('/api/feedback', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -644,7 +691,8 @@ function App() {
           session_id: sessionId,
           stage,
           selected_image_id: selectedImage,
-          preferences: userPreferences // Send the complete preferences object
+          preferences: userPreferences, // Send the complete preferences object
+          tag_weights: tagWeights // Send tag weights if available
         }),
       });
 

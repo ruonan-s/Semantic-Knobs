@@ -263,6 +263,117 @@ class StageRefiner:
         print(f"[StageRefiner] Proposed {len(proposals)} candidates")
         return proposals
 
+    def inject_custom_tag(self, tag_text: str, emphasis: str = 'mid') -> None:
+        """
+        Inject a custom tag into the concept space with specified emphasis.
+        
+        This modifies the refiner's concepts and PBO state by:
+        1. Getting embedding for the custom tag
+        2. Creating a virtual concept for it
+        3. Normalizing existing concept weights by (1 - w_inject)
+        4. Adding the new concept with weight w_inject
+        
+        Args:
+            tag_text: The custom tag text to inject (e.g., "warm lighting")
+            emphasis: One of 'high' (50%), 'mid' (30%), or 'low' (10%)
+        """
+        # Map emphasis to weight
+        emphasis_weights = {
+            'high': 0.5,
+            'mid': 0.3,
+            'low': 0.1
+        }
+        w_inject = emphasis_weights.get(emphasis, 0.3)
+        
+        print(f"\n[Tag Injection] Starting injection:")
+        print(f"  Tag: '{tag_text}'")
+        print(f"  Emphasis: {emphasis} (w={w_inject})")
+        print(f"  Current concepts: {self.K}")
+        
+        # Step 1: Get embedding for the custom tag
+        try:
+            from backend.concept_refinement import get_text_embedding, normalize_text
+        except ImportError:
+            from concept_refinement import get_text_embedding, normalize_text
+        
+        normalized_tag = normalize_text(tag_text)
+        tag_embedding = get_text_embedding(normalized_tag)
+        
+        print(f"  Got embedding for tag (dim={tag_embedding.shape[0]})")
+        
+        # Step 2: Create virtual concept for injected tag
+        injected_concept_id = f"injected_{len(self.concepts)}"
+        injected_concept = {
+            'id': injected_concept_id,
+            'label': tag_text,  # Use original text as label
+            'size': 1,
+            'tags': [tag_text],
+            'centroid': tag_embedding.tolist(),
+            'is_injected': True
+        }
+        
+        # Step 3: Normalize existing concept weights
+        # Get current weights from PBO (if available)
+        if hasattr(self.pbo, 'concept_weights') and self.pbo.concept_weights is not None:
+            current_weights = self.pbo.concept_weights.copy()
+        else:
+            # Fall back to uniform weights
+            current_weights = np.ones(self.K, dtype=np.float32) / self.K
+        
+        # Normalize to (1 - w_inject)
+        normalized_weights = current_weights * (1.0 - w_inject)
+        normalized_weights = normalized_weights / (normalized_weights.sum() + 1e-8)
+        normalized_weights = normalized_weights * (1.0 - w_inject)
+        
+        print(f"  Normalized {self.K} existing concept weights to sum={(1.0 - w_inject):.3f}")
+        
+        # Step 4: Add injected concept to concepts list
+        self.concepts.append(injected_concept)
+        self.concept_ids.append(injected_concept_id)
+        
+        # Step 5: Add centroid to MU matrix
+        # MU is (K, d) where d is embedding dimension
+        new_centroid = tag_embedding.reshape(1, -1)  # (1, d)
+        self.MU = np.vstack([self.MU, new_centroid])  # (K+1, d)
+        
+        # Step 6: Update PBO with new concept space dimensions FIRST
+        # (must be done before updating candidates so they can compute correct embeddings)
+        self.K = len(self.concepts)
+        self.d = self.MU.shape[1]
+        
+        # Update PBO's concept tracking
+        self.pbo.MU = self.MU
+        self.pbo.K = self.K
+        self.pbo.d = self.d
+        self.pbo.concept_ids = self.concept_ids
+        
+        # Create new weight vector with injected tag
+        new_weights = np.append(normalized_weights, w_inject)
+        self.pbo.concept_weights = new_weights
+        self.pbo.sorted_indices = np.argsort(-new_weights)
+        
+        # Step 7: Update all existing candidates to match new dimensionality
+        # Each existing candidate weight vector needs to be extended with a value for the new concept
+        # Since these candidates were created before tag injection, we append a small value and renormalize
+        print(f"  Updating {len(self.pbo.candidates)} existing candidates to match new dimensionality...")
+        for candidate_id, candidate in self.pbo.candidates.items():
+            old_w = candidate.w
+            # Append small value (1/K_new) for the new concept, then renormalize
+            # This preserves relative preferences over original concepts
+            extended_w = np.append(old_w, 1.0 / self.K)
+            extended_w = normalize_simplex(extended_w)
+            candidate.w = extended_w
+            # Recompute mixture embedding with new MU (now updated)
+            candidate.z = self.pbo.compute_mixture_embedding(extended_w)
+        
+        print(f"\n[Tag Injection] ✅ Injection complete:")
+        print(f"  New concept count: {self.K}")
+        print(f"  Injected concept ID: {injected_concept_id}")
+        print(f"  Injected concept weight: {w_inject:.3f}")
+        print(f"  Top 3 concepts by weight:")
+        for idx in self.pbo.sorted_indices[:3]:
+            print(f"    {self.concepts[idx]['label']}: {new_weights[idx]:.4f}")
+
     def get_concept_phrases(
         self,
         w: np.ndarray,
