@@ -4,13 +4,8 @@ from datetime import datetime
 from tag_extraction import extract_visual_elements_from_image, prompt, prompt_impression, prompt_spatial, prompt_objects, prompt_ambient
 from util import sanitize_folder_name, designer, generator, write_status, designer_seq, generator_seq, generator_seq_parallel, generator_seq_parallel_with_tags, initialize_prompt_tracking
 from prompt import (
-    IMPRESSION_PROMPT, IMPRESSION_GENERATOR_PROMPT,
-    SPATIAL_PROMPT, SPATIAL_GENERATOR_PROMPT,
-    OBJECTS_PROMPT, OBJECTS_GENERATOR_PROMPT,
-    AMBIENT_PROMPT, AMBIENT_GENERATOR_PROMPT,
-    FINAL_PROMPT, FINAL_GENERATOR_PROMPT,
+    IMPRESSION_PROMPT, IMPRESSION_GENERATOR_PROMPT
 )
-from cumulative_tags import start_cumulative_tags_stage, generate_concept_with_cumulative_tags, update_cumulative_tags
 
 def run_stage_seq(name: str,
               narrative_prompt: str,
@@ -318,51 +313,7 @@ def main():
         user_pref, 
         session_folder
     )
-    with open(os.path.join(session_folder, "user_preference.json"), "w") as pf:
-        json.dump(user_pref, pf, indent=2)
-    user_pref = run_stage(
-        "spatial", 
-        SPATIAL_PROMPT, 
-        SPATIAL_GENERATOR_PROMPT,
-        descriptor, 
-        user_pref, 
-        session_folder
-    )
-    with open(os.path.join(session_folder, "user_preference.json"), "w") as pf:
-        json.dump(user_pref, pf, indent=2)
-    user_pref = run_stage(
-        "objects", 
-        OBJECTS_PROMPT, 
-        OBJECTS_GENERATOR_PROMPT,
-        descriptor, 
-        user_pref, 
-        session_folder
-    )
-    with open(os.path.join(session_folder, "user_preference.json"), "w") as pf:
-        json.dump(user_pref, pf, indent=2)
-    user_pref = run_stage(
-        "ambient", 
-        AMBIENT_PROMPT, 
-        AMBIENT_GENERATOR_PROMPT,
-        descriptor, 
-        user_pref, 
-        session_folder
-    )
-    with open(os.path.join(session_folder, "user_preference.json"), "w") as pf:
-        json.dump(user_pref, pf, indent=2)
-
-    print("\nFinal user preferences:")
-    print(json.dumps(user_pref, indent=2))
-
-    run_stage(
-        "final", 
-        FINAL_PROMPT, 
-        FINAL_GENERATOR_PROMPT,
-        descriptor, 
-        user_pref, 
-        session_folder
-    )
-
+    
     
 
 if __name__ == "__main__":

@@ -249,7 +249,7 @@ const RefinementIterationControls = ({
       if (imageRoundMatch) {
         // New format: round_X_image_Y
         actualImageRound = parseInt(imageRoundMatch[1]);
-      } else if (firstImageId.match(/^(impression|spatial|objects|ambient)_refinement_\d+_\d+$/)) {
+      } else if (firstImageId.match(/^impression_refinement_\d+_\d+$/)) {
         // Legacy format from initial refinement: treat as Round 1
         actualImageRound = 1;
       } else {

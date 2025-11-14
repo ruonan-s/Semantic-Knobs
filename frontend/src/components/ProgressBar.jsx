@@ -1,17 +1,13 @@
 import React from 'react';
 
 function ProgressBar({ currentStage }) {
-  // Don't show progress bar for landing and upload stages
-  if (currentStage === 'landing' || currentStage === 'upload') {
+  // Don't show progress bar for landing, upload, and input stages
+  if (currentStage === 'landing' || currentStage === 'upload' || currentStage === 'input') {
     return null;
   }
-  
+
   const stages = [
-    'impression', 'impression_refinement',
-    'spatial', 'spatial_refinement',
-    'objects', 'objects_refinement',
-    'ambient', 'ambient_refinement',
-    'mode-selection', 'final'
+    'impression', 'impression_refinement'
   ];
   
   return (
@@ -41,9 +37,7 @@ function ProgressBar({ currentStage }) {
                   transition: 'all 0.3s ease'
                 }}
               >
-                {stage === 'mode-selection' ? 'Mode Selection' : 
-                 stage.includes('_refinement') ? stage.replace('_refinement', '').charAt(0).toUpperCase() + stage.replace('_refinement', '').slice(1) + ' ↻' :
-                 stage.charAt(0).toUpperCase() + stage.slice(1)}
+                {stage === 'impression' ? 'Exploration' : 'Refinement'}
               </div>
               {index < stages.length - 1 && (
                 <div style={{
