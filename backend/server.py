@@ -1941,7 +1941,7 @@ async def pbo_refine_from_weights(request: RefineFromWeightsRequest):
         from backend.pbo import local_around
         proposals = []
         for i in range(4):
-            w_local = local_around(historical_weights, alpha_scale=30.0 + i*10, top_k=10, rng=refiner.pbo.rng)
+            w_local = local_around(historical_weights, alpha_scale=30.0 + i*10, top_k=15, rng=refiner.pbo.rng)
             proposals.append(w_local)
         
         print(f"[PBO] Generated 4 local proposals around historical weights")

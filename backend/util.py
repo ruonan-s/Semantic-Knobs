@@ -26,13 +26,13 @@ def call_gemini_api(user_input: str, system_prompt: str) -> str:
     try:
         # Prepare the final API input for tracking
         api_input = {
-            "model": "gemini-2.0-flash",
+            "model": "gemini-2.5-flash",
             "contents": [user_input],
             "system_instruction": system_prompt
         }
         
         response = gemini_client.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemini-2.5-flash",
             contents=[user_input],
             config=types.GenerateContentConfig(
                 system_instruction=system_prompt
@@ -52,7 +52,7 @@ def call_gemini_api_with_tracking(user_input: str, system_prompt: str) -> tuple[
     try:
         # Prepare the final API input for tracking
         api_input = {
-            "model": "gemini-2.0-flash",
+            "model": "gemini-2.5-flash",
             "contents": [user_input],
             "system_instruction": system_prompt
         }
@@ -60,7 +60,7 @@ def call_gemini_api_with_tracking(user_input: str, system_prompt: str) -> tuple[
         api_input_str = f"Model: {api_input['model']}\nContents:\n[0] User Input: {user_input}\nSystem Instruction: {system_prompt}"
         
         response = gemini_client.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemini-2.5-flash",
             contents=[user_input],
             config=types.GenerateContentConfig(
                 system_instruction=system_prompt
@@ -115,7 +115,7 @@ def call_gemini_api_with_images(user_input: str, system_prompt: str, reference_i
         contents.append(user_content)
         
         response = gemini_client.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemini-2.5-flash",
             contents=contents,
             config=types.GenerateContentConfig(
                 system_instruction=system_prompt
@@ -147,7 +147,7 @@ def call_gemini_api_img(user_input: str, system_prompt: str):
     for attempt in range(max_retries):
         try:
             return gemini_client.models.generate_content(
-                model="gemini-2.0-flash-preview-image-generation",
+                model="gemini-2.0-flash-exp-image-generation",
                 contents=[user_input, system_prompt],
                 config=types.GenerateContentConfig(response_modalities=['IMAGE','TEXT'])
             )
@@ -177,13 +177,13 @@ def call_gemini_api_img_with_tracking(user_input: str, system_prompt: str) -> tu
     """
     try:
         # Prepare the final API input for tracking
-        api_input_str = f"Model: gemini-2.0-flash-preview-image-generation\n"
+        api_input_str = f"Model: gemini-2.0-flash-exp-image-generation\n"
         api_input_str += f"User Input: {user_input}\n"
         api_input_str += f"System Prompt: {system_prompt}\n"
         api_input_str += "Config: response_modalities=['IMAGE', 'TEXT']"
         
         response = gemini_client.models.generate_content(
-            model="gemini-2.0-flash-preview-image-generation",
+            model="gemini-2.0-flash-exp-image-generation",
             contents=[user_input, system_prompt],
             config=types.GenerateContentConfig(
                 response_modalities=['IMAGE', 'TEXT']  # Model requires both modalities
@@ -201,7 +201,7 @@ def call_gemini_api_mode3_with_tracking(contents: list) -> tuple:
     """
     try:
         # Prepare the final API input for tracking
-        api_input_str = f"Model: gemini-2.0-flash-preview-image-generation\nContents:\n"
+        api_input_str = f"Model: gemini-2.0-flash-exp-image-generation\nContents:\n"
         for i, content in enumerate(contents):
             api_input_str += f"[{i}] Role: {content.role}\n"
             for j, part in enumerate(content.parts):
@@ -213,7 +213,7 @@ def call_gemini_api_mode3_with_tracking(contents: list) -> tuple:
         api_input_str += "Config: response_modalities=['TEXT', 'IMAGE']"
         
         response = gemini_client.models.generate_content(
-            model="gemini-2.0-flash-preview-image-generation",
+            model="gemini-2.0-flash-exp-image-generation",
             contents=contents,
             config=types.GenerateContentConfig(
                 response_modalities=['TEXT', 'IMAGE']

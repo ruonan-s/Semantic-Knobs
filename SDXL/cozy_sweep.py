@@ -285,29 +285,30 @@ def main():
     # Example concept bank (REPLACE WITH YOUR ACTUAL CONCEPTS)
     # Note: Remove redundant "bedroom with" prefix since descriptor already says "bedroom"
     concepts = [
-        {"id": "c0", "label": "home office with sheepskin throw"},
-        {"id": "c1", "label": "home office with cozy atmosphere"},
-        {"id": "c2", "label": "home office with small window panes"},
-        {"id": "c3", "label": "home office with ruffled curtains"},
-        {"id": "c4", "label": "home office with open layout"},
-        {"id": "c5", "label": "home office with lush greenery"},
-        {"id": "c6", "label": "home office with neutral color palette"},
-        {"id": "c7", "label": "home office with minimalist design"},
-        {"id": "c8", "label": "home office with cozy reading nook"},
+        {"id": "c0", "label": "home office with large windows"},
+        {"id": "c1", "label": "home office with natural fibers"},
+        {"id": "c2", "label": "home office with simple decor"},
+        {"id": "c3", "label": "home office with cozy seating"},
+        {"id": "c4", "label": "home office with warm color palette"},
+        {"id": "c5", "label": "home office with abstract wall art"},
+        {"id": "c6", "label": "home office with wooden furniture"},
+        {"id": "c7", "label": "home office with plush cushions"},
+        {"id": "c8", "label": "home office with sheer curtains"},
+        {"id": "c9", "label": "home office with indoor plants"},
     ]
     
     K = len(concepts)
     
     # Learned "cozy": example weights (REPLACE WITH YOUR LEARNED WEIGHTS from PBO)
     # Higher weights = more important for "cozy"
-    w_cozy = np.array([0.2065, 0.1901, 0.1751, 0.1710, 0.1049, 0.0971, 0.0469, 0.0057, 0.0030])
+    w_cozy = np.array([0.4280, 0.3340, 0.0941, 0.0610, 0.0271, 0.0224, 0.0127, 0.0085, 0.0073, 0.0048])
     
     # Normalize to sum to 1
     w_cozy = w_cozy / w_cozy.sum()
     
     # Scene descriptor (anchor the scene type)
     # Be explicit: scene type, angle, lighting, quality
-    descriptor = "a cozy home office"
+    descriptor = "a refreshing home office"
     
     # Alpha levels to test
     # alpha = 0: descriptor-only baseline (tags essentially off)

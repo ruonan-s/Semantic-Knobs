@@ -122,7 +122,7 @@ class SDXLRunner:
             strength: Denoising strength for img2img, 0-1 (default: use stage config)
                      Higher = more deviation from init_image
             stage: Stage name for loading strength from config (e.g., "impression", "spatial")
-            descriptor: User description to prepend to concept phrases (e.g., "A comfortable space for reading")
+            descriptor: DEPRECATED - no longer used (kept for API compatibility)
             tracker: GenerationTracker instance for logging (optional)
             proposal_index: Index of this proposal for tracking (optional)
             generated_image_path: Path where image will be saved for tracking (optional)
@@ -177,18 +177,16 @@ class SDXLRunner:
         
         if verbose:
             print(f"\n[SDXLRunner] Building embeddings with DIRECT weights (no gain conversion)...")
-            if descriptor:
-                print(f"  Descriptor: '{descriptor}' (weight=1.5)")
             print(f"  Tag phrases ({len(tag_phrases)}):")
             for phrase, weight in zip(tag_phrases, tag_weights_array):
                 print(f"    {phrase}: weight={weight:.3f}")
             print(f"  Negative phrases: {len(neg_phrases)}")
 
-        # Step 2: Fuse embeddings using direct weights
+        # Step 2: Fuse embeddings using direct weights (NO descriptor - just concept tags)
         if self.fuser is None:
             # Mock generation (pipeline failed to load)
             print("[SDXLRunner] Pipeline not available, generating mock image...")
-            full_prompt = f"{descriptor}, {', '.join(tag_phrases)}" if descriptor else ", ".join(tag_phrases)
+            full_prompt = ", ".join(tag_phrases)
             return self.runner._mock_image(
                 positive_prompt=full_prompt,
                 negative_prompt=str(neg_phrases),
@@ -196,14 +194,14 @@ class SDXLRunner:
             )
 
         if verbose:
-            print(f"\n[SDXLRunner] Fusing descriptor + weighted tags (direct weights, no gains)...")
+            print(f"\n[SDXLRunner] Fusing weighted concept tags (direct weights, no descriptor)...")
 
         prompt_embeds, pooled, neg_embeds, neg_pooled = self.fuser.fuse_descriptor_and_weighted_tags(
-            descriptor=descriptor,
+            descriptor=None,  # No descriptor - just concept tags
             tag_phrases=tag_phrases,
             tag_weights=tag_weights_array,
             neg_phrases=neg_phrases,
-            descriptor_weight=1.5  # Fixed weight for descriptor
+            descriptor_weight=1.5  # Not used when descriptor is None
         )
 
         # Step 3: Generate image
@@ -260,9 +258,8 @@ class SDXLRunner:
             }
             
             # Build pos_phrases list for tracking (as tuples of phrase, weight)
+            # No descriptor - just concept tags
             pos_phrases_for_tracking = []
-            if descriptor:
-                pos_phrases_for_tracking.append((descriptor, 1.5))
             for phrase, weight in zip(tag_phrases, tag_weights_array):
                 pos_phrases_for_tracking.append((phrase, float(weight)))
             
@@ -270,7 +267,7 @@ class SDXLRunner:
                 proposal_index=proposal_index,
                 w_raw=w,
                 concepts=concepts,
-                descriptor=descriptor,
+                descriptor=None,  # No descriptor in prompt
                 pos_phrases=pos_phrases_for_tracking,
                 neg_phrases=neg_phrases,
                 generated_image_path=generated_image_path or f"proposal_{proposal_index}.png",

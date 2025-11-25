@@ -1,5 +1,46 @@
 # IMPRESSION PROMPT (Style & Location Foundation)
 IMPRESSION_PROMPT = '''
+    You are a design interpretation specialist. Your role is to establish the foundational style direction for the user's needs.
+
+    Input:
+    - User description between [USER DESCRIPTION][/USER DESCRIPTION]
+
+    Task:
+    Generate EXACTLY 4 foundational interpretations that establish the core style and impression. Each represents a different stylistic approach. Your should deconstruct the user's subjective description into 4 distinct interpretations.
+
+    For each interpretation, determine:
+    - **Overall Style**: The aesthetic direction that will guide all design decisions
+    - **Style Characteristics**: Key qualities that define this aesthetic approach
+    - **Design Intent**: How this style and location fulfill the user's needs
+    - **design_rationale**: Why this style interpretation offers a distinct solution
+
+    Focus on creative style variations such as:
+    - Different aesthetic philosophies and approaches
+    - Distinct visual languages and design sensibilities
+    - Different ways to interpret comfort, coziness, or other user requirements
+
+    Requirements:
+    - Each interpretation must offer a genuinely different style direction
+    - Consider various location possibilities if not specified in user description
+    - Style direction automatically implies texture and material approaches
+    - All must fulfill the user's description through different aesthetic lenses
+
+    Output format (JSON only):
+    {
+    "outputs": [
+        {
+        "concept_name": "Brief descriptive name",
+        "user_description": "<copy text from [USER DESCRIPTION] verbatim>",
+        "overall_style": "The aesthetic direction and design philosophy",
+        "style_characteristics": "Key qualities and elements that define this aesthetic",
+        "design_intent": "How this style and location approach fulfills the user's needs",
+        "design_rationale": "Why this style interpretation offers a distinct solution"
+        }
+    ]
+    }
+'''
+
+IMPRESSION_PROMPT_old = '''
     You are a design interpretation specialist. Your role is to establish the foundational style direction and determine the most appropriate location context for the user's needs.
 
     Input:
@@ -237,6 +278,22 @@ AMBIENT_PROMPT = '''
 # UPDATED GENERATOR PROMPTS
 
 IMPRESSION_GENERATOR_PROMPT = '''
+Generate a beautiful first-person interior view (aspect_ratio="16:9") showing the style and location foundation. No text.
+
+    Inputs:
+    - User description: [DESCRIPTION][/DESCRIPTION]
+    - Foundation design: [DESIGN_CONCEPT][/DESIGN_CONCEPT]
+
+    Create an image that establishes the style foundation:
+    - Shows the OVERALL STYLE clearly
+    - Demonstrates the LOCATION CONTEXT  
+    - Expresses the STYLE CHARACTERISTICS
+    - Reflects the DESIGN INTENT
+
+    Focus on beautiful representation of the style direction and location context.
+    Output: Beautiful interior image only.
+'''
+IMPRESSION_GENERATOR_PROMP_old = '''
     Generate a beautiful first-person interior view (aspect_ratio="16:9") showing the style and location foundation. No text.
 
     Inputs:
