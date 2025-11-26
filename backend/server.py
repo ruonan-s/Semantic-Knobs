@@ -14,17 +14,31 @@ from prompt import (
 
 import json
 from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 from datetime import datetime
 
 # Import concept refinement module
 from concept_refinement import get_or_create_session as get_refinement_session
 
-# Import PBO and SDXL integration
-from sdxl_runner import SDXLRunner
+# Import PBO and SDXL integration (backend version - for refinement)
+from sdxl_runner import SDXLRunner  # Backend version - no alpha, for refinement
 from stage_refiner import StageRefiner
 
+# Import SDXL folder modules for slider generation (has alpha support)
+import sys
+SDXL_PATH = os.path.join(os.path.dirname(__file__), '..', 'SDXL')
+sys.path.insert(0, SDXL_PATH)
+from slider_generator import generate_cozy_sweep
+# Import SDXL folder's embed fuser for slider (has fuse_with_alpha)
+import importlib.util
+_sdxl_embed_fuser_spec = importlib.util.spec_from_file_location("sdxl_embed_fuser_slider", os.path.join(SDXL_PATH, "sdxl_embed_fuser.py"))
+_sdxl_embed_fuser_module = importlib.util.module_from_spec(_sdxl_embed_fuser_spec)
+_sdxl_embed_fuser_spec.loader.exec_module(_sdxl_embed_fuser_module)
+SDXLEmbedFuserSlider = _sdxl_embed_fuser_module.SDXLEmbedFuser
+
 # Global variables for SDXL and PBO caching
-_sdxl_runner = None
+_sdxl_runner = None  # Backend's runner for refinement
+_slider_fuser = None  # SDXL folder's fuser for slider (shares pipeline with _sdxl_runner)
 _pbo_refiners = {}
 
 
@@ -50,6 +64,124 @@ def clear_pbo_cache_for_session(session_id: str) -> int:
         print(f"[Cache] Removed keys: {keys_to_remove}")
     
     return len(keys_to_remove)
+
+
+# ============================================================================
+# Selection History Management
+# ============================================================================
+def init_selection_history(refinement_folder: str, concept_labels: list) -> dict:
+    """
+    Initialize selection_history.json when refinement folder is created.
+    
+    Args:
+        refinement_folder: Path to the refinement stage folder (e.g., .../impression_refinement)
+        concept_labels: List of concept labels for weight vector interpretation
+    
+    Returns:
+        The initialized selection history dict
+    """
+    history_file = os.path.join(refinement_folder, "selection_history.json")
+    
+    history = {
+        "created_at": datetime.now().isoformat(),
+        "concept_labels": concept_labels,
+        "selections": []  # List of {round, image_name, image_path, weights, selected_at}
+    }
+    
+    with open(history_file, 'w') as f:
+        json.dump(history, f, indent=2)
+    
+    print(f"[Selection History] ✅ Initialized: {history_file}")
+    return history
+
+
+def record_selection(refinement_folder: str, round_number: int, image_index: int, 
+                     image_name: str, weights: list) -> dict:
+    """
+    Record a selection in selection_history.json.
+    
+    Args:
+        refinement_folder: Path to the refinement stage folder
+        round_number: The round number (1-indexed)
+        image_index: Index of selected image in the round (0-3)
+        image_name: Name of the selected image file (e.g., "image_2.png")
+        weights: The weight vector for the selected image
+    
+    Returns:
+        The updated selection history dict
+    """
+    history_file = os.path.join(refinement_folder, "selection_history.json")
+    
+    # Load existing history or create new
+    if os.path.exists(history_file):
+        with open(history_file, 'r') as f:
+            history = json.load(f)
+    else:
+        history = {
+            "created_at": datetime.now().isoformat(),
+            "concept_labels": [],
+            "selections": []
+        }
+    
+    # Build image path relative to session
+    stage_name = os.path.basename(refinement_folder)
+    image_path = f"{stage_name}/round_{round_number}/{image_name}"
+    
+    # Add selection entry
+    selection_entry = {
+        "round": round_number,
+        "image_index": image_index,
+        "image_name": image_name,
+        "image_path": image_path,
+        "weights": weights,
+        "selected_at": datetime.now().isoformat()
+    }
+    
+    # Check if we already have a selection for this round (update it)
+    existing_idx = None
+    for i, s in enumerate(history["selections"]):
+        if s["round"] == round_number:
+            existing_idx = i
+            break
+    
+    if existing_idx is not None:
+        history["selections"][existing_idx] = selection_entry
+        print(f"[Selection History] Updated round {round_number}: {image_name}")
+    else:
+        history["selections"].append(selection_entry)
+        print(f"[Selection History] Added round {round_number}: {image_name}")
+    
+    # Sort by round number
+    history["selections"].sort(key=lambda x: x["round"])
+    
+    # Save
+    with open(history_file, 'w') as f:
+        json.dump(history, f, indent=2)
+    
+    return history
+
+
+def get_selection_history(refinement_folder: str) -> dict:
+    """
+    Get the selection history for a refinement stage.
+    
+    Args:
+        refinement_folder: Path to the refinement stage folder
+    
+    Returns:
+        The selection history dict, or empty structure if not found
+    """
+    history_file = os.path.join(refinement_folder, "selection_history.json")
+    
+    if os.path.exists(history_file):
+        with open(history_file, 'r') as f:
+            return json.load(f)
+    
+    return {
+        "created_at": None,
+        "concept_labels": [],
+        "selections": []
+    }
 
 
 def clear_pbo_refinement_rounds(session_id: str) -> dict:
@@ -155,6 +287,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Add validation error handler to log details
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    print(f"\n⚠️ VALIDATION ERROR on {request.url.path}")
+    print(f"  Errors: {exc.errors()}")
+    try:
+        body = await request.body()
+        print(f"  Body: {body[:500].decode() if body else 'empty'}")
+    except:
+        print(f"  Body: <could not read>")
+    return JSONResponse(
+        status_code=422,
+        content={"detail": exc.errors()}
+    )
+
 # Where we store session folders & serve images from them
 SESSIONS_DIR = "sessions"
 os.makedirs(SESSIONS_DIR, exist_ok=True)
@@ -166,6 +313,8 @@ sessions = {}
 # --- Models ---
 class GenerateRequest(BaseModel):
     descriptor: str
+    adjective: str = ""
+    location: str = ""
 
 class ImageItem(BaseModel):
     id: str
@@ -200,13 +349,29 @@ def generate_fast(req: GenerateRequest):
     
     print(f"📁 Created fast session: {session_id}")
     print(f"🎯 Descriptor: {req.descriptor}")
+    print(f"   Adjective: {req.adjective}, Location: {req.location}")
     
     # Store session info
     sessions[session_id] = {
         'folder': session_folder,
         'descriptor': req.descriptor,
+        'adjective': req.adjective,
+        'location': req.location,
         'user_pref': {}
     }
+    
+    # Create initial final_selection.json with basic info
+    initial_final_selection = {
+        "adjective": req.adjective,
+        "location": req.location,
+        "descriptor": req.descriptor,
+        "session_id": session_id,
+        "created_at": datetime.now().isoformat()
+    }
+    final_selection_path = os.path.join(session_folder, "final_selection.json")
+    with open(final_selection_path, "w") as f:
+        json.dump(initial_final_selection, f, indent=2)
+    print(f"📄 Created initial final_selection.json")
     
     # Initialize prompt tracking
     initialize_prompt_tracking(session_folder, req.descriptor, "sequential_parallel_images")
@@ -570,7 +735,12 @@ async def generation_error_handler(request, exc):
 
 @app.post("/api/feedback", response_model=FeedbackResponse)
 def feedback(req: FeedbackRequest):
-    print(f"🔍 DEBUG - Feedback request: stage={req.stage}, selected_image_id={req.selected_image_id}")
+    print(f"🔍 DEBUG - Feedback request:")
+    print(f"  session_id: {req.session_id}")
+    print(f"  stage: {req.stage}")
+    print(f"  selected_image_id: {req.selected_image_id}")
+    print(f"  preferences type: {type(req.preferences)}, keys: {list(req.preferences.keys()) if req.preferences else 'None'}")
+    print(f"  tag_weights: {req.tag_weights is not None}")
     
     session = sessions.get(req.session_id)
     if not session:
@@ -891,6 +1061,12 @@ def feedback(req: FeedbackRequest):
                 refinement_folder = os.path.join(folder, next_stage)
                 round_1_folder = os.path.join(refinement_folder, "round_1")
                 os.makedirs(round_1_folder, exist_ok=True)
+                
+                # Initialize selection_history.json
+                init_selection_history(
+                    refinement_folder=refinement_folder,
+                    concept_labels=[c['label'] for c in refiner.concepts]
+                )
                 
                 results = []
                 for idx, pil_img in enumerate(pil_images):
@@ -1645,6 +1821,16 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
                 refiner.pbo.add_preference(favorite_cand_id, cand_id, strength=1.0)
                 duels_added += 1
         
+        # Record selection in selection_history.json
+        selected_weights = proposals_from_round[favorite_index].tolist()
+        record_selection(
+            refinement_folder=refinement_folder,
+            round_number=request.round_number,
+            image_index=favorite_index,
+            image_name=f"image_{favorite_index}.png",
+            weights=selected_weights
+        )
+        
         print(f"\n[PBO Refine] ✅ Recorded selection:")
         print(f"  Candidates added: {len(candidate_ids)}")
         print(f"  Duels added: {duels_added}")
@@ -1891,6 +2077,7 @@ class RefineFromWeightsRequest(BaseModel):
     stage: str  # base stage (e.g., "impression")
     weights: list[float]  # Historical weight vector to refine from
     round_number: int
+    current_round_image_ids: list[str] = []  # IDs of current round images to record preference against
 
 class RefineFromWeightsResponse(BaseModel):
     success: bool
@@ -1903,7 +2090,11 @@ class RefineFromWeightsResponse(BaseModel):
 async def pbo_refine_from_weights(request: RefineFromWeightsRequest):
     """
     Generate new round using historical weights as a starting point.
-    This allows users to revisit previous selections and explore nearby regions.
+    
+    When user clicks a previous selection:
+    1. Record preference: historical_selection > all current round images
+    2. Generate new proposals around the historical weights
+    3. Use PBO to learn from this preference
     """
     try:
         print("\n" + "=" * 80)
@@ -1913,6 +2104,7 @@ async def pbo_refine_from_weights(request: RefineFromWeightsRequest):
         print(f"  Stage: {request.stage}")
         print(f"  Weights shape: {len(request.weights)}")
         print(f"  Round: {request.round_number} → {request.round_number + 1}")
+        print(f"  Current round images to compare against: {request.current_round_image_ids}")
         
         # Get refiner
         refiner = get_or_create_pbo_refiner(
@@ -1924,34 +2116,64 @@ async def pbo_refine_from_weights(request: RefineFromWeightsRequest):
         import numpy as np
         historical_weights = np.array(request.weights, dtype=np.float32)
         
-        # Add the historical weights as a candidate to the PBO
-        # (this will inform the GP about this region of interest)
-        cid = refiner.pbo.add_candidate(
+        # Step 1: Add the historical weights as a candidate and record preferences
+        historical_cid = refiner.pbo.add_candidate(
             w=historical_weights,
-            candidate_id="historical_selection"
+            candidate_id=f"historical_round{request.round_number}"
         )
-        print(f"[PBO] Added historical weights as candidate: {cid}")
+        print(f"[PBO] Added historical weights as candidate: {historical_cid}")
         
-        # Fit the GP
-        refiner.pbo.fit()
-        print(f"[PBO] GP fitted with {len(refiner.pbo.candidates)} candidates, {len(refiner.pbo.duels)} duels")
-        
-        # Propose new batch using local_around to explore near the historical weights
-        # This gives 4 diverse proposals around the historical selection
-        from backend.pbo import local_around
-        proposals = []
-        for i in range(4):
-            w_local = local_around(historical_weights, alpha_scale=30.0 + i*10, top_k=15, rng=refiner.pbo.rng)
-            proposals.append(w_local)
-        
-        print(f"[PBO] Generated 4 local proposals around historical weights")
-        
-        # Get session info
+        # Step 2: If we have current round images, load their weights and record preferences
+        # (historical selection beats all current round images)
         session = sessions.get(request.session_id)
         if not session:
             raise HTTPException(404, f"Session not found: {request.session_id}")
         
         session_folder = session['folder']
+        refinement_stage = f"{request.stage}_refinement"
+        refinement_folder = os.path.join(session_folder, refinement_stage)
+        
+        duels_added = 0
+        if request.current_round_image_ids:
+            # Load weights for current round
+            current_round_folder = os.path.join(refinement_folder, f"round_{request.round_number}")
+            weights_file = os.path.join(current_round_folder, "weights.json")
+            
+            if os.path.exists(weights_file):
+                with open(weights_file, 'r') as f:
+                    current_weights_data = json.load(f)
+                
+                current_proposals = [np.array(w, dtype=np.float32) for w in current_weights_data['proposals']]
+                
+                # Add each current image as a candidate and record preference
+                for i, (img_id, w) in enumerate(zip(request.current_round_image_ids, current_proposals)):
+                    current_cid = refiner.pbo.add_candidate(
+                        w=w, 
+                        candidate_id=f"round{request.round_number}_img{i}"
+                    )
+                    refiner.image_to_candidate[img_id] = current_cid
+                    
+                    # Historical selection beats this current image
+                    refiner.pbo.add_preference(historical_cid, current_cid, strength=1.0)
+                    duels_added += 1
+                
+                print(f"[PBO] Recorded {duels_added} preferences: historical > current round images")
+        
+        # Step 3: Fit the GP with the new preferences
+        refiner.pbo.fit()
+        print(f"[PBO] GP fitted with {len(refiner.pbo.candidates)} candidates, {len(refiner.pbo.duels)} duels")
+        
+        # Step 4: Propose new batch - use PBO's propose method to explore around the preferred region
+        # The GP now knows the user prefers the historical weights region
+        proposals = refiner.propose_next_4(
+            negatives=None,
+            w_current=historical_weights,  # Start from historical weights
+            fit_first=False  # Already fitted above
+        )
+        
+        print(f"[PBO] Generated {len(proposals)} new proposals informed by preference")
+        
+        # Get preferences file
         preferences_file = os.path.join(session_folder, "preferences.json")
         
         # Get the original reference image
@@ -1994,7 +2216,7 @@ async def pbo_refine_from_weights(request: RefineFromWeightsRequest):
         tracker = create_tracker(
             session_path=Path(session_folder),
             session_id=request.session_id,
-            stage=request.stage,
+            stage=refinement_stage,  # Use refinement stage, not base stage
             descriptor=descriptor or "No descriptor"
         )
         
@@ -2007,16 +2229,27 @@ async def pbo_refine_from_weights(request: RefineFromWeightsRequest):
         )
         
         # Generate images with SDXL
-        refinement_stage = f"{request.stage}_refinement"
-        refinement_folder = os.path.join(session_folder, refinement_stage)
         round_folder = os.path.join(refinement_folder, f"round_{request.round_number + 1}")
         os.makedirs(round_folder, exist_ok=True)
         
-        # Generate images using refiner
-        print(f"[StageRefiner] Generating 4 images from proposals...")
-        pil_images = refiner.generate_images_batch(
-            weight_vectors=proposals,
-            reference_image=reference_image
+        # Prepare image paths for tracking
+        image_paths_for_tracking = [
+            f"{refinement_stage}/round_{request.round_number + 1}/image_{i}.png" 
+            for i in range(len(proposals))
+        ]
+        
+        # Generate images using the correct method
+        print(f"[StageRefiner] Generating {len(proposals)} images from proposals...")
+        sdxl_runner = get_sdxl_runner()
+        pil_images = refiner.generate_images_from_proposals(
+            proposals=proposals,
+            sdxl_runner=sdxl_runner,
+            seed_base=42 + request.round_number,
+            verbose=False,
+            init_image=reference_image,
+            descriptor=descriptor,
+            tracker=tracker,
+            generated_image_paths=image_paths_for_tracking
         )
         
         # Save images
@@ -2032,29 +2265,34 @@ async def pbo_refine_from_weights(request: RefineFromWeightsRequest):
         
         print(f"[StageRefiner] ✅ Generated {len(pil_images)} images")
         
-        # Record proposals in tracking
-        tracker.record_proposals(
-            proposals=[{
-                'weights': w.tolist(),
-                'image_path': f"round_{request.round_number + 1}/image_{i}.png"
-            } for i, w in enumerate(proposals)]
-        )
-        
         # Save weights
         weights_data = {
             "round": request.round_number + 1,
             "proposals": [p.tolist() for p in proposals],
             "concept_labels": [c['label'] for c in refiner.concepts],
             "reference_image": reference_image_id,
-            "source": "historical_weights"
+            "source": "historical_weights",
+            "historical_round": request.round_number,
+            "duels_from_historical": duels_added
         }
         
         weights_file = os.path.join(round_folder, "weights.json")
         with open(weights_file, "w") as f:
             json.dump(weights_data, f, indent=2)
         
-        print(f"[PBO Refine] ✅ Round {request.round_number + 1} complete:")
+        # Record selection in selection_history.json
+        # This marks that the historical image was "selected" over current round
+        record_selection(
+            refinement_folder=refinement_folder,
+            round_number=request.round_number,
+            image_index=-1,  # Special marker for historical selection
+            image_name="historical_selection",
+            weights=historical_weights.tolist()
+        )
+        
+        print(f"\n[PBO Refine] ✅ Round {request.round_number + 1} complete:")
         print(f"  Generated: {len(image_paths)} images")
+        print(f"  Preferences recorded: historical > {duels_added} current images")
         print(f"  Saved weights to: {weights_file}")
         print("=" * 80 + "\n")
         
@@ -2062,7 +2300,7 @@ async def pbo_refine_from_weights(request: RefineFromWeightsRequest):
             success=True,
             image_paths=image_paths,
             round_number=request.round_number + 1,
-            message=f"Generated round {request.round_number + 1} from historical weights"
+            message=f"Generated round {request.round_number + 1} from historical weights (recorded {duels_added} preferences)"
         )
         
     except HTTPException:
@@ -2074,70 +2312,392 @@ async def pbo_refine_from_weights(request: RefineFromWeightsRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/api/pbo/debug-state")
-async def pbo_debug_state(session_id: str, stage: str):
+# ============================================================================
+# Selection History API
+# ============================================================================
+class SelectionHistoryRequest(BaseModel):
+    session_id: str
+    stage: str  # base stage (e.g., "impression")
+
+
+@app.post("/api/pbo/selection-history")
+def get_pbo_selection_history(request: SelectionHistoryRequest):
     """
-    Diagnostic endpoint to inspect current PBO state.
+    Get the selection history for a refinement stage.
     
-    Returns detailed information about the PBO refiner state including:
-    - Number of candidates and duels
-    - GP fitting status
-    - Concept weights
-    - Recent candidates
+    Returns all selected images with their weights for display in the UI.
+    """
+    session = sessions.get(request.session_id)
+    if not session:
+        raise HTTPException(404, f"Session not found: {request.session_id}")
+    
+    session_folder = session['folder']
+    refinement_stage = f"{request.stage}_refinement"
+    refinement_folder = os.path.join(session_folder, refinement_stage)
+    
+    if not os.path.exists(refinement_folder):
+        return {
+            "session_id": request.session_id,
+            "stage": refinement_stage,
+            "selections": [],
+            "concept_labels": []
+        }
+    
+    history = get_selection_history(refinement_folder)
+    
+    # Add full image URLs for frontend display
+    selections_with_urls = []
+    for sel in history.get("selections", []):
+        sel_copy = sel.copy()
+        sel_copy["image_url"] = f"/sessions/{request.session_id}/{sel['image_path']}"
+        selections_with_urls.append(sel_copy)
+    
+    return {
+        "session_id": request.session_id,
+        "stage": refinement_stage,
+        "selections": selections_with_urls,
+        "concept_labels": history.get("concept_labels", [])
+    }
+
+
+# ============================================================================
+# Save Final Selection API
+# ============================================================================
+class SaveFinalSelectionRequest(BaseModel):
+    session_id: str
+    stage: str  # base stage (e.g., "impression")
+    weights: list[float]
+    image_path: str  # Path to the selected image
+    round_number: int  # Which round this selection came from
+    is_historical: bool = False  # Whether this is from a historical selection
+
+class SaveFinalSelectionResponse(BaseModel):
+    success: bool
+    message: str
+    file_path: str
+
+
+@app.post("/api/save-final-selection", response_model=SaveFinalSelectionResponse)
+def save_final_selection(request: SaveFinalSelectionRequest):
+    """
+    Save the final selection from refinement to final_selection.json in the session folder.
+    
+    This records:
+    - Concept names (labels) with their weights
+    - The selected image path
+    - Metadata about the selection
     """
     try:
-        key = f"{session_id}:{stage}"
+        print("\n" + "=" * 80)
+        print(f"[SAVE FINAL SELECTION] ENDPOINT CALLED")
+        print("=" * 80)
+        print(f"  Session: {request.session_id}")
+        print(f"  Stage: {request.stage}")
+        print(f"  Round: {request.round_number}")
+        print(f"  Image: {request.image_path}")
+        print(f"  Is Historical: {request.is_historical}")
+        print(f"  Weights count: {len(request.weights)}")
         
-        if key not in _pbo_refiners:
-            return {
-                "error": f"No PBO refiner found for {session_id}/{stage}",
-                "cached_sessions": list(_pbo_refiners.keys())
+        # Get session
+        session = sessions.get(request.session_id)
+        if not session:
+            raise HTTPException(404, f"Session not found: {request.session_id}")
+        
+        session_folder = session['folder']
+        
+        # Load concept labels from the refinement stage
+        refinement_stage = f"{request.stage}_refinement"
+        refinement_folder = os.path.join(session_folder, refinement_stage)
+        
+        # Try to get concept labels from the weights.json of any round
+        concept_labels = []
+        round_folder = os.path.join(refinement_folder, f"round_{request.round_number}")
+        weights_file = os.path.join(round_folder, "weights.json")
+        
+        if os.path.exists(weights_file):
+            with open(weights_file, 'r') as f:
+                weights_data = json.load(f)
+                concept_labels = weights_data.get("concept_labels", [])
+        else:
+            # Try round 1 as fallback
+            round_1_weights = os.path.join(refinement_folder, "round_1", "weights.json")
+            if os.path.exists(round_1_weights):
+                with open(round_1_weights, 'r') as f:
+                    weights_data = json.load(f)
+                    concept_labels = weights_data.get("concept_labels", [])
+        
+        # Build the concepts array with label and weight
+        concepts = []
+        for i, weight in enumerate(request.weights):
+            if i < len(concept_labels):
+                concepts.append({
+                    "id": f"c{i}",
+                    "label": concept_labels[i],
+                    "weight": float(weight)
+                })
+            else:
+                concepts.append({
+                    "id": f"c{i}",
+                    "label": f"concept_{i}",
+                    "weight": float(weight)
+                })
+        
+        # Sort by weight descending for readability
+        concepts_sorted = sorted(concepts, key=lambda x: x["weight"], reverse=True)
+        
+        # Load existing final_selection.json to preserve adjective and location
+        final_selection_path = os.path.join(session_folder, "final_selection.json")
+        existing_data = {}
+        if os.path.exists(final_selection_path):
+            with open(final_selection_path, 'r') as f:
+                existing_data = json.load(f)
+        
+        # Get adjective and location from existing file or session
+        adjective = existing_data.get("adjective", session.get("adjective", ""))
+        location = existing_data.get("location", session.get("location", ""))
+        descriptor = existing_data.get("descriptor", session.get("descriptor", ""))
+        
+        # Build final selection data
+        from datetime import datetime
+        final_selection = {
+            "saved_at": datetime.now().isoformat(),
+            "session_id": request.session_id,
+            "adjective": adjective,
+            "location": location,
+            "descriptor": descriptor,
+            "stage": request.stage,
+            "round_number": request.round_number,
+            "is_historical_selection": request.is_historical,
+            "image_path": request.image_path,
+            "concepts": concepts_sorted,
+            "weights_raw": request.weights,
+            "summary": {
+                "total_concepts": len(concepts),
+                "top_3_concepts": [c["label"] for c in concepts_sorted[:3]],
+                "top_3_weights": [c["weight"] for c in concepts_sorted[:3]]
             }
-        
-        refiner = _pbo_refiners[key]
-        pbo = refiner.pbo
-        
-        # Get recent candidates
-        recent_candidates = []
-        for cid, cand in list(pbo.candidates.items())[-10:]:  # Last 10
-            recent_candidates.append({
-                "id": cand.id,
-                "top_3_concepts": [(refiner.concepts[i]['label'], float(cand.w[i])) 
-                                   for i in np.argsort(-cand.w)[:3]]
-            })
-        
-        # Get recent duels
-        recent_duels = []
-        for duel in list(pbo.duels)[-10:]:  # Last 10
-            recent_duels.append({
-                "better": duel.better_id,
-                "worse": duel.worse_id,
-                "strength": duel.strength
-            })
-        
-        return {
-            "session_id": session_id,
-            "stage": stage,
-            "pbo_state": {
-                "num_candidates": len(pbo.candidates),
-                "num_duels": len(pbo.duels),
-                "fitted": pbo.fitted,
-                "K": pbo.K,
-                "d": pbo.d
-            },
-            "concept_weights": {
-                "sum": float(pbo.concept_weights.sum()),
-                "top_5": [(refiner.concepts[i]['label'], float(pbo.concept_weights[i])) 
-                          for i in np.argsort(-pbo.concept_weights)[:5]]
-            },
-            "recent_candidates": recent_candidates,
-            "recent_duels": recent_duels,
-            "cache_key": key
         }
         
+        # Save to session folder (not inside impression_refinement)
+        with open(final_selection_path, "w") as f:
+            json.dump(final_selection, f, indent=2)
+        
+        print(f"\n[SAVE FINAL SELECTION] ✅ Saved to: {final_selection_path}")
+        print(f"  Top concepts: {[c['label'] for c in concepts_sorted[:3]]}")
+        print("=" * 80 + "\n")
+        
+        return SaveFinalSelectionResponse(
+            success=True,
+            message=f"Final selection saved with {len(concepts)} concepts",
+            file_path=final_selection_path
+        )
+        
+    except HTTPException:
+        raise
     except Exception as e:
+        print(f"[SAVE FINAL SELECTION] Error: {str(e)}")
         import traceback
-        return {
-            "error": str(e),
-            "traceback": traceback.format_exc()
-        }
+        print(f"Traceback: {traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ============== SLIDER GENERATION ENDPOINT ==============
+
+class SliderGenerateRequest(BaseModel):
+    session_id: str
+    location: str = ""  # If empty, use original location from final_selection.json
+
+class SliderImageItem(BaseModel):
+    alpha: float
+    url: str
+
+class SliderGenerateResponse(BaseModel):
+    success: bool
+    adjective: str
+    location: str
+    descriptor: str
+    images: list[SliderImageItem]
+
+@app.post("/api/generate-slider", response_model=SliderGenerateResponse)
+def generate_slider(request: SliderGenerateRequest):
+    """
+    Generate a semantic slider sweep using learned weights from final_selection.json.
+    
+    Generates 5 images at alpha levels [0.0, 0.25, 0.5, 0.75, 1.0]
+    Alpha=0 is generic (pure descriptor), Alpha=1 is personalized (pure learned tags)
+    """
+    try:
+        print("\n" + "=" * 80)
+        print(f"[SLIDER GENERATION] Starting for session: {request.session_id}")
+        print("=" * 80)
+        
+        # Get session - try memory first, then disk
+        session = sessions.get(request.session_id)
+        if not session:
+            # Try to find session folder on disk
+            session_folder = os.path.join(SESSIONS_DIR, request.session_id)
+            if not os.path.exists(session_folder):
+                raise HTTPException(404, f"Session not found: {request.session_id}")
+            
+            # Create session entry from disk
+            session = {
+                'folder': session_folder,
+                'descriptor': request.session_id,
+                'user_pref': {}
+            }
+            sessions[request.session_id] = session
+            print(f"  Loaded session from disk: {session_folder}")
+        
+        session_folder = session['folder']
+        
+        # Load final_selection.json
+        final_selection_path = os.path.join(session_folder, "final_selection.json")
+        if not os.path.exists(final_selection_path):
+            raise HTTPException(404, "final_selection.json not found. Please save a selection first.")
+        
+        with open(final_selection_path, 'r') as f:
+            final_selection = json.load(f)
+        
+        # Get adjective and location
+        adjective = final_selection.get("adjective", "")
+        location = request.location if request.location else final_selection.get("location", "")
+        descriptor = f"{adjective} {location}"
+        
+        print(f"  Adjective: {adjective}")
+        print(f"  Location: {location}")
+        print(f"  Descriptor: {descriptor}")
+        
+        # Get concepts and weights from final_selection
+        concepts_data = final_selection.get("concepts", [])
+        weights_raw = final_selection.get("weights_raw", [])
+        
+        if not concepts_data or not weights_raw:
+            raise HTTPException(400, "No concepts or weights found in final_selection.json")
+        
+        # Build concepts list with format: "{location} with {label}"
+        concepts = []
+        for c in concepts_data:
+            concepts.append({
+                "id": c["id"],
+                "label": f"{location} with {c['label']}"
+            })
+        
+        # Convert weights to numpy array
+        w_cozy = np.array(weights_raw)
+        
+        print(f"  Concepts count: {len(concepts)}")
+        print(f"  Weights shape: {w_cozy.shape}")
+        
+        # Create output directory for this slider
+        slider_output_dir = os.path.join(session_folder, "slider", location.replace(" ", "_"))
+        os.makedirs(slider_output_dir, exist_ok=True)
+        
+        # Get or create the backend's SDXL runner (for refinement - we reuse its pipeline)
+        global _sdxl_runner, _slider_fuser
+        if _sdxl_runner is None:
+            print("  Initializing SDXLRunner (backend version for refinement)...")
+            _sdxl_runner = SDXLRunner(
+                model_id="stabilityai/stable-diffusion-xl-base-1.0",
+                device=None,
+                height=1024,
+                width=1024,
+                steps=30,
+                guidance_scale=7.5
+            )
+        
+        # Create slider fuser from the SDXL folder (has fuse_with_alpha) - reuses same pipeline
+        if _slider_fuser is None and _sdxl_runner.runner.pipe is not None:
+            print("  Creating slider fuser (SDXL folder version with alpha support)...")
+            _slider_fuser = SDXLEmbedFuserSlider(_sdxl_runner.runner.pipe, device=_sdxl_runner.runner.device)
+        
+        if _slider_fuser is None:
+            raise HTTPException(500, "SDXL pipeline not available for slider generation")
+        
+        # Generate slider sweep using SDXL folder's alpha interpolation
+        alphas = [0.0, 0.25, 0.5, 0.75, 1.0]
+        seed = 42
+        
+        # Normalize weights
+        w_norm = w_cozy / (w_cozy.sum() + 1e-8)
+        
+        # Get top-K concepts
+        top_k = 10
+        sorted_indices = np.argsort(w_norm)[::-1]
+        actual_top_k = min(top_k, len(concepts))
+        top_indices = sorted_indices[:actual_top_k]
+        
+        tag_phrases = [concepts[idx]['label'] for idx in top_indices]
+        tag_weights = np.array([float(w_norm[idx]) for idx in top_indices])
+        
+        # Negative phrases
+        neg_phrases = ["people", "person", "human", "man", "woman", "face", "body", "portrait"]
+        
+        print(f"\n[SLIDER] Generating {len(alphas)} images with alpha interpolation...")
+        print(f"  Descriptor: '{descriptor}'")
+        print(f"  Top concepts: {tag_phrases[:3]}")
+        
+        import torch
+        results = []
+        for i, alpha in enumerate(alphas):
+            print(f"\n  [{i+1}/{len(alphas)}] Alpha = {alpha:.2f}")
+            
+            # Fuse embeddings with alpha: e_total = (1-alpha)*e_desc + alpha*e_tags
+            prompt_embeds, pooled, neg_embeds, neg_pooled = _slider_fuser.fuse_with_alpha(
+                descriptor=descriptor,
+                tag_phrases=tag_phrases,
+                tag_weights=tag_weights,
+                alpha=alpha,
+                neg_phrases=neg_phrases
+            )
+            
+            # Generate image using the shared pipeline
+            generator = torch.Generator(device=_sdxl_runner.runner.device).manual_seed(seed + i)
+            
+            image = _sdxl_runner.runner.pipe(
+                prompt_embeds=prompt_embeds,
+                negative_prompt_embeds=neg_embeds,
+                pooled_prompt_embeds=pooled,
+                negative_pooled_prompt_embeds=neg_pooled,
+                height=1024,
+                width=1024,
+                num_inference_steps=30,
+                guidance_scale=7.5,
+                generator=generator
+            ).images[0]
+            
+            results.append((alpha, image, None))
+        
+        # Save images and build response
+        images = []
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        
+        for alpha, img, _ in results:
+            filename = f"alpha_{alpha:.2f}_{timestamp}.png"
+            filepath = os.path.join(slider_output_dir, filename)
+            img.save(filepath)
+            
+            # Build URL for frontend
+            rel_path = os.path.relpath(filepath, "sessions")
+            url = f"/sessions/{rel_path}"
+            
+            images.append(SliderImageItem(alpha=alpha, url=url))
+            print(f"  Saved: {filepath}")
+        
+        print(f"\n[SLIDER GENERATION] ✅ Generated {len(images)} images")
+        print("=" * 80 + "\n")
+        
+        return SliderGenerateResponse(
+            success=True,
+            adjective=adjective,
+            location=location,
+            descriptor=descriptor,
+            images=images
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"[SLIDER GENERATION] Error: {str(e)}")
+        import traceback
+        print(f"Traceback: {traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail=str(e))

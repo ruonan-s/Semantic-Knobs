@@ -15,7 +15,8 @@ function App() {
   const [refinementRound, setRefinementRound] = useState(1);
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [inputValue, setInputValue] = useState('');
+  const [adjectiveInput, setAdjectiveInput] = useState('');
+  const [locationInput, setLocationInput] = useState('');
   const [statusMessages, setStatusMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [buttonColor, setButtonColor] = useState('#007bff');
@@ -35,6 +36,12 @@ function App() {
   const [conceptSystemReady, setConceptSystemReady] = useState(false); // Track if concept system is initialized
   const [uploadedFolder, setUploadedFolder] = useState(null);
   const [validationError, setValidationError] = useState(null);
+  
+  // Slider generation state
+  const [sliderRows, setSliderRows] = useState([]); // Array of {adjective, location, descriptor, images}
+  const [sliderNewLocation, setSliderNewLocation] = useState('');
+  const [sliderAdjective, setSliderAdjective] = useState(''); // Store the adjective from final_selection
+  const [isGeneratingSlider, setIsGeneratingSlider] = useState(false);
   const [availableSessions, setAvailableSessions] = useState([]); // List of existing session folders
   const [selectedSessionPath, setSelectedSessionPath] = useState(''); // Selected session from dropdown
   const imageRefs = useRef({});
@@ -588,7 +595,7 @@ function App() {
     }
   };
 
-  const handleSubmit = async (descriptor) => {
+  const handleSubmit = async ({ adjective, location, descriptor }) => {
     try {
       setIsLoading(true);
       addStatusMessage(`Starting fast sequential generation for: ${descriptor}`);
@@ -596,7 +603,7 @@ function App() {
       const res = await fetch('/api/generate-fast', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ descriptor }),
+        body: JSON.stringify({ adjective, location, descriptor }),
       });
       
       if (!res.ok) {
@@ -632,19 +639,30 @@ function App() {
     }));
   };
 
-  const handleContinue = async () => {
+  const handleContinue = async (historicalItem = null) => {
     try {
       setIsLoading(true);
       setButtonColor('#4CAF50'); // Change to green when continuing
 
       // Load tag weights for the selected image if in refinement stage
       let tagWeights = null;
-      if (stage.endsWith('_refinement') && selectedImage) {
-        try {
+      let weights = null;
+      let roundNum = refinementRound;
+      let imageIdx = 0;
+      let imagePath = '';
+      let isHistorical = false;
+      
+      if (stage.endsWith('_refinement')) {
+        // Check if this is a historical selection
+        if (historicalItem && historicalItem.weights) {
+          console.log('[SaveFinalSelection] Using historical selection:', historicalItem.label);
+          weights = historicalItem.weights;
+          roundNum = historicalItem.round || refinementRound;
+          imagePath = historicalItem.imageUrl || '';
+          isHistorical = true;
+        } else if (selectedImage) {
           // Parse image ID to get round and image index
           const parts = selectedImage.split('_');
-          let roundNum = refinementRound;
-          let imageIdx = 0;
           
           if (parts[0] === 'round') {
             roundNum = parseInt(parts[1]);
@@ -660,29 +678,79 @@ function App() {
           
           // Load weights.json for this round
           const weightsPath = `/sessions/${sessionId}/${stage}/round_${roundNum}/weights.json`;
-          const weightsRes = await fetch(weightsPath);
-          
-          if (weightsRes.ok) {
-            const weightsData = await weightsRes.json();
-            const imageWeights = weightsData.proposals[imageIdx];
-            const conceptLabels = weightsData.concept_labels;
+          try {
+            const weightsRes = await fetch(weightsPath);
             
-            if (imageWeights && conceptLabels) {
-              // Create dictionary: tag name -> weight
-              tagWeights = {};
-              conceptLabels.forEach((item, idx) => {
-                if (item.weight > 0) {
-                  tagWeights[item.label] = item.weight;
-                }
-              });
-              console.log(`✅ Loaded ${Object.keys(tagWeights).length} tag weights for selection`);
+            if (weightsRes.ok) {
+              const weightsData = await weightsRes.json();
+              weights = weightsData.proposals[imageIdx];
+              const conceptLabels = weightsData.concept_labels;
+              imagePath = `${stage}/round_${roundNum}/image_${imageIdx}.png`;
+              
+              if (weights && conceptLabels) {
+                // Create dictionary: tag name -> weight
+                tagWeights = {};
+                conceptLabels.forEach((label, idx) => {
+                  if (weights[idx] > 0) {
+                    tagWeights[label] = weights[idx];
+                  }
+                });
+                console.log(`✅ Loaded ${Object.keys(tagWeights).length} tag weights for selection`);
+              }
             }
+          } catch (error) {
+            console.error('Failed to load tag weights:', error);
           }
-        } catch (error) {
-          console.error('Failed to load tag weights:', error);
-          // Continue without weights if loading fails
+        }
+        
+        // Save final selection if we have weights
+        if (weights) {
+          const baseStage = stage.replace('_refinement', '');
+          try {
+            const saveRes = await fetch('/api/save-final-selection', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                session_id: sessionId,
+                stage: baseStage,
+                weights: weights,
+                image_path: imagePath,
+                round_number: roundNum,
+                is_historical: isHistorical
+              })
+            });
+            
+            if (saveRes.ok) {
+              const saveData = await saveRes.json();
+              console.log(`✅ Final selection saved: ${saveData.message}`);
+              addStatusMessage(`✅ Final selection saved with ${weights.length} concept weights`);
+              
+              // Navigate to slider generation stage
+              setStage('slider_generation');
+              setSliderRows([]);
+              setIsLoading(false);
+              return; // Exit early - don't call feedback endpoint
+            } else {
+              console.error('Failed to save final selection:', await saveRes.text());
+            }
+          } catch (error) {
+            console.error('Error saving final selection:', error);
+          }
         }
       }
+
+      // Determine the selected image ID - use historical item's imageId if available
+      const finalSelectedImageId = (historicalItem && historicalItem.imageId) 
+        ? historicalItem.imageId 
+        : selectedImage;
+      
+      console.log('[Feedback] Sending request:', {
+        session_id: sessionId,
+        stage,
+        selected_image_id: finalSelectedImageId,
+        has_preferences: !!userPreferences,
+        has_tag_weights: !!tagWeights
+      });
 
       const res = await fetch('/api/feedback', {
         method: 'POST',
@@ -690,8 +758,8 @@ function App() {
         body: JSON.stringify({
           session_id: sessionId,
           stage,
-          selected_image_id: selectedImage,
-          preferences: userPreferences, // Send the complete preferences object
+          selected_image_id: finalSelectedImageId,
+          preferences: userPreferences || {}, // Ensure preferences is always an object
           tag_weights: tagWeights // Send tag weights if available
         }),
       });
@@ -723,12 +791,69 @@ function App() {
   };
 
   const handleInputSubmit = () => {
-    if (inputValue.trim()) {
-      handleSubmit(inputValue.trim());
-      setInputValue('');
+    if (adjectiveInput.trim() && locationInput.trim()) {
+      const descriptor = `${adjectiveInput.trim()} ${locationInput.trim()}`;
+      handleSubmit({ 
+        adjective: adjectiveInput.trim(), 
+        location: locationInput.trim(), 
+        descriptor 
+      });
+      setAdjectiveInput('');
+      setLocationInput('');
     }
   };
 
+  // Slider generation function
+  const generateSlider = async (location = '') => {
+    if (!sessionId) return;
+    
+    try {
+      setIsGeneratingSlider(true);
+      addStatusMessage(`Generating slider for ${location || 'original location'}...`);
+      
+      const res = await fetch('/api/generate-slider', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          session_id: sessionId,
+          location: location
+        })
+      });
+      
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      
+      const data = await res.json();
+      
+      if (data.success) {
+        // Store the adjective for future generations
+        setSliderAdjective(data.adjective);
+        
+        // Add new slider row
+        setSliderRows(prev => [...prev, {
+          adjective: data.adjective,
+          location: data.location,
+          descriptor: data.descriptor,
+          images: data.images
+        }]);
+        
+        addStatusMessage(`✅ Generated slider for "${data.descriptor}"`);
+        setSliderNewLocation(''); // Clear input after generation
+      }
+    } catch (error) {
+      addStatusMessage(`Error generating slider: ${error.message}`);
+    } finally {
+      setIsGeneratingSlider(false);
+    }
+  };
+
+  // Auto-generate slider when entering slider_generation stage
+  useEffect(() => {
+    if (stage === 'slider_generation' && sliderRows.length === 0 && !isGeneratingSlider) {
+      generateSlider(''); // Generate with original location
+    }
+  }, [stage]);
 
   // Cleanup polling intervals when component unmounts or stage changes
   useEffect(() => {
@@ -1262,41 +1387,292 @@ function App() {
             </div>
           )}
         </div>
+      ) : stage === 'slider_generation' ? (
+        <div>
+          <h2>Semantic Slider Generation</h2>
+          
+          {/* Loading indicator */}
+          {isGeneratingSlider && (
+            <div style={{
+              padding: '20px',
+              textAlign: 'center',
+              backgroundColor: '#e7f3ff',
+              borderRadius: '8px',
+              marginBottom: '20px'
+            }}>
+              <div style={{ fontSize: '18px', color: '#004085', marginBottom: '10px' }}>
+                Generating slider images...
+              </div>
+              <div style={{ 
+                width: '50px', 
+                height: '50px', 
+                border: '4px solid #f3f3f3',
+                borderTop: '4px solid #007bff',
+                borderRadius: '50%',
+                animation: 'spin 1s linear infinite',
+                margin: '0 auto'
+              }} />
+              <style>{`
+                @keyframes spin {
+                  0% { transform: rotate(0deg); }
+                  100% { transform: rotate(360deg); }
+                }
+              `}</style>
+            </div>
+          )}
+          
+          {/* Slider rows */}
+          {sliderRows.map((row, rowIndex) => (
+            <div key={rowIndex} style={{
+              marginBottom: '30px',
+              padding: '20px',
+              backgroundColor: '#f8f9fa',
+              borderRadius: '12px',
+              border: '1px solid #dee2e6'
+            }}>
+              {/* Alpha scale header - only show on first row */}
+              {rowIndex === 0 && (
+                <div style={{ marginBottom: '15px' }}>
+                  {/* Alpha labels */}
+                  <div style={{ 
+                    display: 'flex', 
+                    justifyContent: 'space-between', 
+                    alignItems: 'center',
+                    marginBottom: '8px',
+                    padding: '0 10px'
+                  }}>
+                    <span style={{ fontSize: '14px', color: '#666' }}>alpha = 0</span>
+                    <span style={{ fontSize: '14px', color: '#666' }}>0.25</span>
+                    <span style={{ fontSize: '14px', color: '#666' }}>0.50</span>
+                    <span style={{ fontSize: '14px', color: '#666' }}>0.75</span>
+                    <span style={{ fontSize: '14px', color: '#666' }}>alpha = 1</span>
+                  </div>
+                  
+                  {/* Arrow line with dots */}
+                  <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '0 10px',
+                    marginBottom: '5px'
+                  }}>
+                    <span style={{ fontWeight: 'bold', color: '#333', fontSize: '16px' }}>generic</span>
+                    <div style={{ 
+                      flex: 1, 
+                      display: 'flex', 
+                      alignItems: 'center',
+                      margin: '0 15px',
+                      position: 'relative'
+                    }}>
+                      {/* Left arrow */}
+                      <div style={{
+                        width: 0,
+                        height: 0,
+                        borderTop: '6px solid transparent',
+                        borderBottom: '6px solid transparent',
+                        borderRight: '10px solid #666'
+                      }} />
+                      {/* Line */}
+                      <div style={{ 
+                        flex: 1, 
+                        height: '2px', 
+                        backgroundColor: '#666',
+                        position: 'relative'
+                      }}>
+                        {/* Dots */}
+                        {[0.25, 0.5, 0.75].map((pos, i) => (
+                          <div key={i} style={{
+                            position: 'absolute',
+                            left: `${pos * 100}%`,
+                            top: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            width: '10px',
+                            height: '10px',
+                            backgroundColor: '#666',
+                            borderRadius: '50%'
+                          }} />
+                        ))}
+                      </div>
+                      {/* Right arrow */}
+                      <div style={{
+                        width: 0,
+                        height: 0,
+                        borderTop: '6px solid transparent',
+                        borderBottom: '6px solid transparent',
+                        borderLeft: '10px solid #666'
+                      }} />
+                    </div>
+                    <span style={{ fontWeight: 'bold', color: '#333', fontSize: '16px' }}>personalized</span>
+                  </div>
+                </div>
+              )}
+              
+              {/* Images row with label */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                {/* 5 images */}
+                <div style={{ display: 'flex', gap: '10px', flex: 1 }}>
+                  {row.images.map((img, imgIndex) => (
+                    <div key={imgIndex} style={{ 
+                      flex: 1,
+                      aspectRatio: '1',
+                      borderRadius: '8px',
+                      overflow: 'hidden',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                    }}>
+                      <img 
+                        src={img.url} 
+                        alt={`Alpha ${img.alpha}`}
+                        style={{ 
+                          width: '100%', 
+                          height: '100%', 
+                          objectFit: 'cover' 
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Label on the right */}
+                <div style={{ 
+                  width: '120px',
+                  textAlign: 'center',
+                  padding: '10px'
+                }}>
+                  <div style={{ 
+                    fontSize: '18px', 
+                    fontWeight: 'bold', 
+                    color: '#333',
+                    textTransform: 'capitalize'
+                  }}>
+                    {row.adjective}
+                  </div>
+                  <div style={{ 
+                    fontSize: '16px', 
+                    color: '#666',
+                    textTransform: 'capitalize'
+                  }}>
+                    {row.location}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+          
+          {/* New location input */}
+          {sliderRows.length > 0 && (
+            <div style={{
+              display: 'flex',
+              gap: '10px',
+              alignItems: 'center',
+              padding: '20px',
+              backgroundColor: '#fff',
+              borderRadius: '8px',
+              border: '1px solid #dee2e6'
+            }}>
+              <label style={{ fontWeight: '500', color: '#374151', whiteSpace: 'nowrap' }}>
+                New Location:
+              </label>
+              <input
+                type="text"
+                value={sliderNewLocation}
+                onChange={(e) => setSliderNewLocation(e.target.value)}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter' && sliderNewLocation.trim()) {
+                    generateSlider(sliderNewLocation.trim());
+                  }
+                }}
+                placeholder="e.g., bedroom, kitchen, cafe..."
+                style={{
+                  flex: 1,
+                  padding: '10px',
+                  fontSize: '16px',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc'
+                }}
+                disabled={isGeneratingSlider}
+              />
+              <button
+                onClick={() => generateSlider(sliderNewLocation.trim())}
+                disabled={!sliderNewLocation.trim() || isGeneratingSlider}
+                style={{
+                  padding: '10px 20px',
+                  fontSize: '16px',
+                  backgroundColor: (!sliderNewLocation.trim() || isGeneratingSlider) ? '#ccc' : '#007bff',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: (!sliderNewLocation.trim() || isGeneratingSlider) ? 'not-allowed' : 'pointer'
+                }}
+              >
+                {isGeneratingSlider ? 'Generating...' : 'Generate'}
+              </button>
+            </div>
+          )}
+        </div>
       ) : stage === 'input' ? (
         <div>
           <h2>Enter Design Description</h2>
 
-          <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-            <input
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyPress={(e) => {
-                if (e.key === 'Enter') {
-                  handleInputSubmit();
-                }
-              }}
-              placeholder="Describe your desired environment..."
-              style={{
-                flex: 1,
-                padding: '10px',
-                fontSize: '16px',
-                borderRadius: '4px',
-                border: '1px solid #ccc'
-              }}
-              disabled={isLoading}
-            />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
+            <div>
+              <label style={{ display: 'block', marginBottom: '4px', fontWeight: '500', color: '#374151' }}>
+                Adjective
+              </label>
+              <input
+                type="text"
+                value={adjectiveInput}
+                onChange={(e) => setAdjectiveInput(e.target.value)}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    handleInputSubmit();
+                  }
+                }}
+                placeholder="e.g., cozy, modern, rustic..."
+                style={{
+                  width: '100%',
+                  padding: '10px',
+                  fontSize: '16px',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc'
+                }}
+                disabled={isLoading}
+              />
+            </div>
+            <div>
+              <label style={{ display: 'block', marginBottom: '4px', fontWeight: '500', color: '#374151' }}>
+                Location
+              </label>
+              <input
+                type="text"
+                value={locationInput}
+                onChange={(e) => setLocationInput(e.target.value)}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    handleInputSubmit();
+                  }
+                }}
+                placeholder="e.g., space, bedroom, kitchen..."
+                style={{
+                  width: '100%',
+                  padding: '10px',
+                  fontSize: '16px',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc'
+                }}
+                disabled={isLoading}
+              />
+            </div>
             <button
               onClick={handleInputSubmit}
-              disabled={!inputValue.trim() || isLoading}
+              disabled={!(adjectiveInput.trim() && locationInput.trim()) || isLoading}
               style={{
                 padding: '10px 20px',
                 fontSize: '16px',
-                backgroundColor: isLoading ? '#ccc' : (inputValue.trim() ? buttonColor : '#ccc'),
+                backgroundColor: isLoading ? '#ccc' : ((adjectiveInput.trim() && locationInput.trim()) ? buttonColor : '#ccc'),
                 color: 'white',
                 border: 'none',
                 borderRadius: '4px',
-                cursor: (!inputValue.trim() || isLoading) ? 'not-allowed' : 'pointer',
+                cursor: (!(adjectiveInput.trim() && locationInput.trim()) || isLoading) ? 'not-allowed' : 'pointer',
                 transition: 'background-color 0.3s ease'
               }}
             >

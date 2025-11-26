@@ -288,16 +288,16 @@ def main():
     
     location = "home office"
     concepts = [
-        {"id": "c0", "label": "home office with large windows"},
-        {"id": "c1", "label": "home office with natural fibers"},
-        {"id": "c2", "label": "home office with simple decor"},
-        {"id": "c3", "label": "home office with cozy seating"},
-        {"id": "c4", "label": "home office with warm color palette"},
-        {"id": "c5", "label": "home office with abstract wall art"},
-        {"id": "c6", "label": "home office with wooden furniture"},
-        {"id": "c7", "label": "home office with plush cushions"},
-        {"id": "c8", "label": "home office with sheer curtains"},
-        {"id": "c9", "label": "home office with indoor plants"},
+        {"id": "c0", "label": f"{location} with large windows"},
+        {"id": "c1", "label": f"{location} with natural fibers"},
+        {"id": "c2", "label": f"{location} with simple decor"},
+        {"id": "c3", "label": f"{location} with cozy seating"},
+        {"id": "c4", "label": f"{location} with warm color palette"},
+        {"id": "c5", "label": f"{location} with abstract wall art"},
+        {"id": "c6", "label": f"{location} with wooden furniture"},
+        {"id": "c7", "label": f"{location} with plush cushions"},
+        {"id": "c8", "label": f"{location} with sheer curtains"},
+        {"id": "c9", "label": f"{location} with indoor plants"},
     ]
     
     K = len(concepts)
@@ -311,7 +311,7 @@ def main():
     
     # Scene descriptor (anchor the scene type)
     # Be explicit: scene type, angle, lighting, quality
-    descriptor = "a refreshing home office"
+    descriptor = "f{adjective} {location}"
     
     # Alpha levels to test
     # alpha = 0: descriptor-only baseline (tags essentially off)

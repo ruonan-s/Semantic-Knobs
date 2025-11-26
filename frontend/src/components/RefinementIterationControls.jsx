@@ -28,6 +28,9 @@ const RefinementIterationControls = ({
   const [selectionHistory, setSelectionHistory] = useState([]);
   const [loadingHistory, setLoadingHistory] = useState(false);
   
+  // Historical selection state - when user clicks a previous selection
+  const [selectedHistoricalItem, setSelectedHistoricalItem] = useState(null);
+  
   // Tag injection state
   const [injectedTag, setInjectedTag] = useState('');
   const [injectedEmphasis, setInjectedEmphasis] = useState('mid');
@@ -101,10 +104,11 @@ const RefinementIterationControls = ({
       console.log('[History] Current round state:', round);
       console.log('[History] Total rounds in tracking:', trackingData.rounds?.length || 0);
       
-      // Auto-detect current round: it's the last round + 1 (the one we're about to work on)
+      // Auto-detect current round: it's the last round in tracking (the one we're viewing)
+      // The tracking.json already includes the current round with its proposals
       // OR if there are no rounds yet, it's round 1
       const actualCurrentRound = trackingData.rounds && trackingData.rounds.length > 0
-        ? Math.max(...trackingData.rounds.map(r => r.round_number)) + 1
+        ? Math.max(...trackingData.rounds.map(r => r.round_number))
         : 1;
       
       console.log('[History] Auto-detected actual current round:', actualCurrentRound);
@@ -176,19 +180,45 @@ const RefinementIterationControls = ({
     loadSelectionHistory();
   }, [loadSelectionHistory, round]);
 
-  // Check if we can proceed
-  const canRefineMore = images && images.length === 4 && selectedImage !== null && !isGenerating;
+  // Check if we can proceed - either current selection OR historical selection
+  const hasCurrentSelection = images && images.length === 4 && selectedImage !== null;
+  const hasHistoricalSelection = selectedHistoricalItem !== null;
+  const canRefineMore = (hasCurrentSelection || hasHistoricalSelection) && !isGenerating;
 
-  const handleHistoricalSelection = async (historyItem) => {
+  // Handle clicking on a historical image - just select it, don't generate yet
+  const handleHistoricalSelection = (historyItem) => {
     if (!historyItem.weights) {
       console.log('[History] Reference image has no weights, cannot use for refinement');
+      setStatus(`⚠️ ${historyItem.label} has no weights - cannot refine from it`);
+      setTimeout(() => setStatus(''), 3000);
       return;
     }
     
+    // Toggle selection - if already selected, deselect
+    if (selectedHistoricalItem?.imageId === historyItem.imageId) {
+      console.log('[History] Deselecting historical item:', historyItem.label);
+      setSelectedHistoricalItem(null);
+      setStatus('');
+    } else {
+      console.log('[History] Selecting historical item:', historyItem.label);
+      setSelectedHistoricalItem(historyItem);
+      setStatus(`📌 Selected ${historyItem.label} - Click "Refine More" to generate new variations or "Save selection" to use it`);
+    }
+  };
+
+  // Handle refining from historical selection
+  const handleRefineFromHistory = async () => {
+    if (!selectedHistoricalItem) return;
+    
     try {
       setIsGenerating(true);
-      setStatus(`🔄 Using weights from ${historyItem.label}...`);
+      setStatus(`🔄 Round ${round + 1}: Generating from ${selectedHistoricalItem.label}...`);
       setError(null);
+      
+      // Get current round image IDs for preference recording
+      // (historical selection > all current round images)
+      const currentRoundImageIds = images ? images.map(img => img.id) : [];
+      console.log('[History] Recording preference: historical > current images:', currentRoundImageIds);
       
       // Generate new proposals using the historical weights
       const response = await fetch('/api/pbo/refine-from-weights', {
@@ -197,8 +227,9 @@ const RefinementIterationControls = ({
         body: JSON.stringify({
           session_id: sessionId,
           stage: stage,
-          weights: historyItem.weights,
-          round_number: round
+          weights: selectedHistoricalItem.weights,
+          round_number: round,
+          current_round_image_ids: currentRoundImageIds
         })
       });
       
@@ -209,7 +240,8 @@ const RefinementIterationControls = ({
       const data = await response.json();
       const newRound = data.round_number;
       setRound(newRound);
-      setStatus(`✅ Round ${newRound} complete! Generated 4 new variations from ${historyItem.label}.`);
+      setSelectedHistoricalItem(null); // Clear historical selection after use
+      setStatus(`✅ Round ${newRound} complete! Generated 4 new variations from ${selectedHistoricalItem.label}.`);
       
       // Notify parent component with new images
       if (onRefinementComplete) {
@@ -237,6 +269,14 @@ const RefinementIterationControls = ({
 
   const handleRefineMore = async () => {
     if (!canRefineMore) return;
+
+    // If a historical image is selected, use that flow instead
+    if (selectedHistoricalItem) {
+      return handleRefineFromHistory();
+    }
+
+    // Otherwise, refine from current round selection
+    if (!hasCurrentSelection) return;
 
     try {
       setIsGenerating(true);
@@ -381,16 +421,26 @@ const RefinementIterationControls = ({
       <div style={styles.controls}>
         {/* Continue to Next Stage */}
         <button
-          onClick={onContinue}
-          disabled={!selectedImage || disabled || isGenerating}
+          onClick={() => {
+            if (selectedHistoricalItem) {
+              // For historical selection, pass the historical item info to parent
+              onContinue(selectedHistoricalItem);
+            } else {
+              onContinue();
+            }
+          }}
+          disabled={(!selectedImage && !selectedHistoricalItem) || disabled || isGenerating}
           style={{
             ...styles.button,
             ...styles.continueButton,
-            ...((!selectedImage || disabled || isGenerating) ? styles.buttonDisabled : {})
+            ...(((!selectedImage && !selectedHistoricalItem) || disabled || isGenerating) ? styles.buttonDisabled : {})
           }}
-          title="Proceed to the next stage with this selection"
+          title={selectedHistoricalItem 
+            ? `Save ${selectedHistoricalItem.label} and proceed to next stage`
+            : "Proceed to the next stage with this selection"
+          }
         >
-          Save selection →
+          {selectedHistoricalItem ? `Save ${selectedHistoricalItem.label} →` : 'Save selection →'}
         </button>
 
         {/* Refine More Button */}
@@ -402,9 +452,15 @@ const RefinementIterationControls = ({
             ...styles.refineButton,
             ...((!canRefineMore || disabled) ? styles.buttonDisabled : {})
           }}
-          title="Generate 4 new variations based on your selection"
+          title={selectedHistoricalItem 
+            ? `Generate variations from ${selectedHistoricalItem.label}`
+            : "Generate 4 new variations based on your selection"
+          }
         >
-          {isGenerating ? '⏳ Generating Round ' + (round + 1) + '...' : '🔄 Refine More'}
+          {isGenerating 
+            ? '⏳ Generating Round ' + (round + 1) + '...' 
+            : (selectedHistoricalItem ? `🔄 Refine from ${selectedHistoricalItem.label}` : '🔄 Refine More')
+          }
         </button>
       </div>
 
@@ -433,7 +489,7 @@ const RefinementIterationControls = ({
           📜 Selection History
         </h4>
         <p style={styles.historyDescription}>
-          Click any previous selection to generate new variations from its weights
+          Click any previous selection to select it, then use "Refine More" or "Save selection"
         </p>
         
         {loadingHistory ? (
@@ -448,34 +504,47 @@ const RefinementIterationControls = ({
           </div>
         ) : (
           <div style={styles.historyGrid}>
-            {selectionHistory.slice(0, 9).map((item, idx) => (
-              <div
-                key={`${item.type}-${item.round}-${idx}`}
-                style={{
-                  ...styles.historyItem,
-                  ...(item.type === 'reference' ? styles.historyItemReference : {}),
-                  ...(item.weights === null ? styles.historyItemDisabled : {})
-                }}
-                onClick={() => item.weights && handleHistoricalSelection(item)}
-                title={item.weights ? `Click to refine from ${item.label}` : `${item.label} (no weights available)`}
-              >
-                <img 
-                  src={item.imageUrl} 
-                  alt={item.label}
-                  style={styles.historyImage}
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'block';
+            {selectionHistory.slice(0, 9).map((item, idx) => {
+              const isSelected = selectedHistoricalItem?.imageId === item.imageId;
+              return (
+                <div
+                  key={`${item.type}-${item.round}-${idx}`}
+                  style={{
+                    ...styles.historyItem,
+                    ...(item.type === 'reference' ? styles.historyItemReference : {}),
+                    ...(item.weights === null ? styles.historyItemDisabled : {}),
+                    ...(isSelected ? styles.historyItemSelected : {})
                   }}
-                />
-                <div style={{...styles.historyImagePlaceholder, display: 'none'}}>
-                  Image not found
+                  onClick={() => item.weights && handleHistoricalSelection(item)}
+                  title={item.weights 
+                    ? (isSelected ? `${item.label} selected - Click again to deselect` : `Click to select ${item.label}`)
+                    : `${item.label} (no weights available)`
+                  }
+                >
+                  <img 
+                    src={item.imageUrl} 
+                    alt={item.label}
+                    style={{
+                      ...styles.historyImage,
+                      ...(isSelected ? styles.historyImageSelected : {})
+                    }}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'block';
+                    }}
+                  />
+                  <div style={{...styles.historyImagePlaceholder, display: 'none'}}>
+                    Image not found
+                  </div>
+                  <div style={{
+                    ...styles.historyLabel,
+                    ...(isSelected ? styles.historyLabelSelected : {})
+                  }}>
+                    {isSelected ? '✓ ' : ''}{item.label}
+                  </div>
                 </div>
-                <div style={styles.historyLabel}>
-                  {item.label}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
@@ -662,10 +731,18 @@ const styles = {
     cursor: 'not-allowed',
     opacity: 0.5,
   },
+  historyItemSelected: {
+    border: '3px solid #4CAF50',
+    boxShadow: '0 0 12px rgba(76, 175, 80, 0.6)',
+    transform: 'scale(1.05)',
+  },
   historyImage: {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
+  },
+  historyImageSelected: {
+    filter: 'brightness(1.1)',
   },
   historyImagePlaceholder: {
     width: '100%',
@@ -689,6 +766,10 @@ const styles = {
     fontSize: '12px',
     fontWeight: '600',
     textAlign: 'center',
+  },
+  historyLabelSelected: {
+    background: 'rgba(76, 175, 80, 0.9)',
+    color: 'white',
   },
   historyLoading: {
     textAlign: 'center',
