@@ -100,7 +100,8 @@ class SDXLRunner:
         descriptor: str | None = None,
         tracker: Any | None = None,
         proposal_index: int | None = None,
-        generated_image_path: str | None = None
+        generated_image_path: str | None = None,
+        **kwargs
     ) -> Image.Image:
         """
         Generate image from concept mixture.
@@ -171,6 +172,9 @@ class SDXLRunner:
         
         tag_weights_array = np.array(tag_weights)
         
+        # Get location for txt2img encoding (will be used later, doesn't affect tag_phrases here)
+        location = kwargs.get('location', None)
+        
         # Build negative phrases (deficit-based)
         uniform_weight = 1.0 / len(concepts)
         deficit_threshold = uniform_weight / 2.0
@@ -193,7 +197,9 @@ class SDXLRunner:
                 print(f"    {phrase}: weight={weight:.3f}")
             print(f"  Negative phrases: {len(neg_phrases)}")
 
-        # Step 2: Fuse embeddings using direct weights (NO descriptor - just concept tags)
+        # Step 2: Fuse embeddings
+        # For txt2img mode: use fuse_weighted_phrases (direct weighted sum, no alpha)
+        # For img2img mode: use fuse_descriptor_and_weighted_tags (no descriptor)
         if self.fuser is None:
             # Mock generation (pipeline failed to load)
             print("[SDXLRunner] Pipeline not available, generating mock image...")
@@ -204,28 +210,32 @@ class SDXLRunner:
                 seed=seed
             )
 
-        # Step 2: Fuse embeddings
-        # For txt2img mode with descriptor: use alpha blending to anchor space
-        # For img2img mode: use direct tag weights without descriptor
-        if init_image is None and descriptor:
-            # txt2img mode with descriptor: use alpha blending
-            # Formula: final_embed = alpha * descriptor + (1-alpha) * tags
-            # We want 30% descriptor, 70% tags, so pass alpha=0.7 to fuse_with_alpha
-            # (since fuse_with_alpha does (1-alpha)*desc + alpha*tags = 0.3*desc + 0.7*tags)
-            alpha_value = 0.5
-            if verbose:
-                print(f"\n[SDXLRunner] Fusing with descriptor anchoring (alpha={1-alpha_value:.1f} descriptor, {alpha_value:.1f} tags)...")
-                print(f"  Descriptor: {descriptor}")
+        if init_image is None:
+            # txt2img mode: use fuse_weighted_phrases (direct weighted sum: Σ(w_i * embed(tag_i)))
+            # For txt2img refinement, prepend location to tag phrases for encoding only
+            if location:
+                # Create location-prefixed phrases for encoding (e.g., "bedroom with large windows")
+                phrases_for_encoding = [f"{location} with {phrase}" for phrase in tag_phrases]
+                if verbose:
+                    print(f"\n[SDXLRunner] Fusing weighted phrases with location prefix (direct weighted sum, no alpha blending)...")
+                    print(f"  Location: {location}")
+                    print(f"  Encoding phrases:")
+                    for phrase, weight in zip(phrases_for_encoding, tag_weights_array):
+                        print(f"    {phrase}: weight={weight:.3f}")
+            else:
+                phrases_for_encoding = tag_phrases
+                if verbose:
+                    print(f"\n[SDXLRunner] Fusing weighted phrases (direct weighted sum, no alpha blending)...")
             
-            prompt_embeds, pooled, neg_embeds, neg_pooled = self.fuser.fuse_with_alpha(
-                descriptor=descriptor,
-                tag_phrases=tag_phrases,
-                tag_weights=tag_weights_array,
-                alpha=alpha_value,
+            # Convert to list of tuples for fuse_weighted_phrases
+            pos_phrases = [(phrase, weight) for phrase, weight in zip(phrases_for_encoding, tag_weights_array)]
+            
+            prompt_embeds, pooled, neg_embeds, neg_pooled = self.fuser.fuse_weighted_phrases(
+                pos_phrases=pos_phrases,
                 neg_phrases=neg_phrases
             )
         else:
-            # img2img mode or no descriptor: use direct tag weights (no descriptor)
+            # img2img mode: use direct tag weights (no descriptor)
             if verbose:
                 print(f"\n[SDXLRunner] Fusing weighted concept tags (direct weights, no descriptor)...")
             

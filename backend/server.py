@@ -1757,13 +1757,21 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
         
         session_folder = session['folder']
         
-        # Get descriptor
+        # Get descriptor from preferences.json
         preferences_file = os.path.join(session_folder, "preferences.json")
         descriptor = None
         if os.path.exists(preferences_file):
             with open(preferences_file, 'r') as f:
                 prefs = json.load(f)
                 descriptor = prefs.get('descriptor')
+        
+        # Get location from final_selection.json
+        final_selection_file = os.path.join(session_folder, "final_selection.json")
+        location = None
+        if os.path.exists(final_selection_file):
+            with open(final_selection_file, 'r') as f:
+                final_selection = json.load(f)
+                location = final_selection.get('location')
         
         # IMPORTANT: Use refinement stage for tracking, not base stage
         refinement_stage = f"{request.stage}_refinement"
@@ -2012,6 +2020,7 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
             verbose=False,
             init_image=reference_image,
             descriptor=descriptor,  # User description from preferences
+            location=location,  # Location for txt2img tag prefixing
             tracker=tracker_for_selection,  # Track all generation details
             generated_image_paths=image_paths_for_tracking  # Image paths for tracking
         )
@@ -2204,12 +2213,20 @@ async def pbo_refine_from_weights(request: RefineFromWeightsRequest):
         else:
             print(f"[PBO Refine] ⚠️ Reference not found: {reference_image_path}")
         
-        # Get descriptor
+        # Get descriptor from preferences.json
         descriptor = None
         if os.path.exists(preferences_file):
             with open(preferences_file, 'r') as f:
                 prefs = json.load(f)
                 descriptor = prefs.get('descriptor')
+        
+        # Get location from final_selection.json
+        final_selection_file = os.path.join(session_folder, "final_selection.json")
+        location = None
+        if os.path.exists(final_selection_file):
+            with open(final_selection_file, 'r') as f:
+                final_selection = json.load(f)
+                location = final_selection.get('location')
         
         # Create tracker and start new round
         from backend.tracking import create_tracker
@@ -2248,6 +2265,7 @@ async def pbo_refine_from_weights(request: RefineFromWeightsRequest):
             verbose=False,
             init_image=reference_image,
             descriptor=descriptor,
+            location=location,  # Location for txt2img tag prefixing
             tracker=tracker,
             generated_image_paths=image_paths_for_tracking
         )
@@ -2689,7 +2707,7 @@ def generate_slider(request: SliderGenerateRequest):
             raise HTTPException(500, "SDXL pipeline not available for slider generation")
         
         import torch
-        neg_phrases = ["people", "person", "human", "man", "woman", "face", "body", "portrait"]
+        neg_phrases = ["people", "cartoon","person", "human", "man", "woman", "face", "body", "portrait"]
         seed_base = 42
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         all_sliders = []
