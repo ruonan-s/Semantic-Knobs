@@ -826,19 +826,24 @@ function App() {
       
       const data = await res.json();
       
-      if (data.success) {
-        // Store the adjective for future generations
-        setSliderAdjective(data.adjective);
+      if (data.success && data.sliders) {
+        // Store the adjective for future generations (from first slider)
+        if (data.sliders.length > 0) {
+          setSliderAdjective(data.sliders[0].adjective);
+        }
         
-        // Add new slider row
-        setSliderRows(prev => [...prev, {
-          adjective: data.adjective,
-          location: data.location,
-          descriptor: data.descriptor,
-          images: data.images
-        }]);
+        // Add all sliders to rows
+        const newRows = data.sliders.map(slider => ({
+          slider_type: slider.slider_type,
+          adjective: slider.adjective,
+          location: slider.location,
+          descriptor: slider.descriptor,
+          images: slider.images
+        }));
         
-        addStatusMessage(`✅ Generated slider for "${data.descriptor}"`);
+        setSliderRows(prev => [...prev, ...newRows]);
+        
+        addStatusMessage(`✅ Generated ${data.sliders.length} sliders for "${data.sliders[0]?.descriptor || 'location'}"`);
         setSliderNewLocation(''); // Clear input after generation
       }
     } catch (error) {
@@ -1729,174 +1734,385 @@ function App() {
             </div>
           )}
           
-          {/* Slider rows */}
-          {sliderRows.map((row, rowIndex) => (
-            <div key={rowIndex} style={{
-              marginBottom: '30px',
-              padding: '20px',
-              backgroundColor: '#f8f9fa',
-              borderRadius: '12px',
-              border: '1px solid #dee2e6'
-            }}>
-              {/* Alpha scale header - only show on first row */}
-              {rowIndex === 0 && (
-                <div style={{ marginBottom: '15px' }}>
-                  {/* Alpha labels - dynamic based on number of images */}
-                  <div style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between', 
-                    alignItems: 'center',
-                    marginBottom: '4px',
-                    padding: '0 120px 0 10px'
+          {/* Slider rows - grouped by generation (3 sliders per generation) */}
+          {(() => {
+            // Group sliders: each generation has 3 sliders (current, exploration, refinement)
+            const sliderGroups = [];
+            for (let i = 0; i < sliderRows.length; i += 3) {
+              const group = sliderRows.slice(i, i + 3);
+              if (group.length > 0) {
+                sliderGroups.push(group);
+              }
+            }
+            
+            return sliderGroups.map((group, groupIndex) => {
+              const currentSlider = group.find(s => s.slider_type === 'current');
+              const explorationSlider = group.find(s => s.slider_type === 'exploration');
+              const refinementSlider = group.find(s => s.slider_type === 'refinement');
+              
+              const renderSlider = (slider, isFullWidth = false) => {
+                if (!slider) return null;
+                
+                const isCurrent = slider.slider_type === 'current';
+                const numImages = slider.images.length;
+                
+                return (
+                  <div key={slider.slider_type} style={{
+                    marginBottom: '30px',
+                    padding: '20px',
+                    backgroundColor: '#f8f9fa',
+                    borderRadius: '12px',
+                    border: '1px solid #dee2e6',
+                    width: isFullWidth ? '100%' : 'calc(50% - 15px)'
                   }}>
-                    {row.images.length === 6 ? (
-                      // 6 images: alpha = 0, 0.25, 0.50, 0.75, alpha = 1, alpha = 1 (ref)
-                      <>
-                        <span style={{ fontSize: '14px', color: '#666' }}>alpha = 0</span>
-                        <span style={{ fontSize: '14px', color: '#666' }}>0.25</span>
-                        <span style={{ fontSize: '14px', color: '#666' }}>0.50</span>
-                        <span style={{ fontSize: '14px', color: '#666' }}>0.75</span>
-                        <span style={{ fontSize: '14px', color: '#666' }}>alpha = 1</span>
-                        <span style={{ fontSize: '14px', color: '#666' }}>alpha = 1 (ref)</span>
-                      </>
-                    ) : (
-                      // 5 images: alpha = 0, 0.25, 0.50, 0.75, alpha = 1
-                      <>
-                        <span style={{ fontSize: '14px', color: '#666' }}>alpha = 0</span>
-                        <span style={{ fontSize: '14px', color: '#666' }}>0.25</span>
-                        <span style={{ fontSize: '14px', color: '#666' }}>0.50</span>
-                        <span style={{ fontSize: '14px', color: '#666' }}>0.75</span>
-                        <span style={{ fontSize: '14px', color: '#666' }}>alpha = 1</span>
-                      </>
-                    )}
-                  </div>
-                  
-                  {/* Arrow line with dots - dynamic based on number of images */}
-                  <div style={{ 
-                    display: 'flex', 
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: '0 120px 0 10px',
-                    marginBottom: '5px'
-                  }}>
-                    <span style={{ fontWeight: 'bold', color: '#333', fontSize: '16px' }}>generic</span>
-                    <div style={{ 
-                      flex: 1, 
-                      display: 'flex', 
-                      alignItems: 'center',
-                      margin: '0 15px',
-                      position: 'relative'
-                    }}>
-                      {/* Left arrow */}
-                      <div style={{
-                        width: 0,
-                        height: 0,
-                        borderTop: '6px solid transparent',
-                        borderBottom: '6px solid transparent',
-                        borderRight: '10px solid #666'
-                      }} />
-                      {/* Line */}
+                    {/* Slider type label */}
+                    <div style={{ marginBottom: '10px', fontSize: '14px', fontWeight: '600', color: '#666' }}>
+                      {isCurrent ? 'Current Slider' : 
+                       slider.slider_type === 'exploration' ? 'Exploration Slider' : 
+                       'Refinement Slider'}
+                    </div>
+                    
+                    {/* Alpha scale header */}
+                    <div style={{ marginBottom: '15px' }}>
+                      {/* Alpha labels */}
                       <div style={{ 
-                        flex: 1, 
-                        height: '2px', 
-                        backgroundColor: '#666',
-                        position: 'relative'
+                        display: 'flex', 
+                        justifyContent: 'space-between', 
+                        alignItems: 'center',
+                        marginBottom: '4px',
+                        padding: isCurrent ? '0 120px 0 10px' : '0 10px'
                       }}>
-                        {/* Dots - dynamic based on number of images */}
-                        {row.images.length === 6 ? (
-                          // 6 images: dots at 0.2, 0.4, 0.6, 0.8 (5 positions for 6 images)
-                          [0.2, 0.4, 0.6, 0.8].map((pos, i) => (
-                            <div key={i} style={{
-                              position: 'absolute',
-                              left: `${pos * 100}%`,
-                              top: '50%',
-                              transform: 'translate(-50%, -50%)',
-                              width: '10px',
-                              height: '10px',
-                              backgroundColor: '#666',
-                              borderRadius: '50%'
-                            }} />
-                          ))
+                        {numImages === 6 ? (
+                          // 6 images: alpha = 0, 0.25, 0.50, 0.75, alpha = 1, alpha = 1 (ref)
+                          <>
+                            <span style={{ fontSize: '14px', color: '#666' }}>alpha = 0</span>
+                            <span style={{ fontSize: '14px', color: '#666' }}>0.25</span>
+                            <span style={{ fontSize: '14px', color: '#666' }}>0.50</span>
+                            <span style={{ fontSize: '14px', color: '#666' }}>0.75</span>
+                            <span style={{ fontSize: '14px', color: '#666' }}>alpha = 1</span>
+                            <span style={{ fontSize: '14px', color: '#666' }}>alpha = 1 (ref)</span>
+                          </>
+                        ) : numImages === 4 ? (
+                          // 4 images: alpha = 0, 0.25, 0.50, 0.75
+                          <>
+                            <span style={{ fontSize: '14px', color: '#666' }}>alpha = 0</span>
+                            <span style={{ fontSize: '14px', color: '#666' }}>0.25</span>
+                            <span style={{ fontSize: '14px', color: '#666' }}>0.50</span>
+                            <span style={{ fontSize: '14px', color: '#666' }}>0.75</span>
+                          </>
                         ) : (
-                          // 5 images: dots at 0.25, 0.5, 0.75 (3 positions for 5 images)
-                          [0.25, 0.5, 0.75].map((pos, i) => (
-                            <div key={i} style={{
-                              position: 'absolute',
-                              left: `${pos * 100}%`,
-                              top: '50%',
-                              transform: 'translate(-50%, -50%)',
-                              width: '10px',
-                              height: '10px',
-                              backgroundColor: '#666',
-                              borderRadius: '50%'
-                            }} />
-                          ))
+                          // 5 images: alpha = 0, 0.25, 0.50, 0.75, alpha = 1
+                          <>
+                            <span style={{ fontSize: '14px', color: '#666' }}>alpha = 0</span>
+                            <span style={{ fontSize: '14px', color: '#666' }}>0.25</span>
+                            <span style={{ fontSize: '14px', color: '#666' }}>0.50</span>
+                            <span style={{ fontSize: '14px', color: '#666' }}>0.75</span>
+                            <span style={{ fontSize: '14px', color: '#666' }}>alpha = 1</span>
+                          </>
                         )}
                       </div>
-                      {/* Right arrow */}
-                      <div style={{
-                        width: 0,
-                        height: 0,
-                        borderTop: '6px solid transparent',
-                        borderBottom: '6px solid transparent',
-                        borderLeft: '10px solid #666'
-                      }} />
+                      
+                      {/* Arrow line with dots */}
+                      <div style={{ 
+                        display: 'flex', 
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        padding: isCurrent ? '0 120px 0 10px' : '0 10px',
+                        marginBottom: '5px'
+                      }}>
+                        <span style={{ fontWeight: 'bold', color: '#333', fontSize: '16px' }}>
+                          {isCurrent ? 'generic' : slider.slider_type === 'exploration' ? 'descriptor' : 'exploration'}
+                        </span>
+                        <div style={{ 
+                          flex: 1, 
+                          display: 'flex', 
+                          alignItems: 'center',
+                          margin: '0 15px',
+                          position: 'relative'
+                        }}>
+                          {/* Left arrow */}
+                          <div style={{
+                            width: 0,
+                            height: 0,
+                            borderTop: '6px solid transparent',
+                            borderBottom: '6px solid transparent',
+                            borderRight: '10px solid #666'
+                          }} />
+                          {/* Line */}
+                          <div style={{ 
+                            flex: 1, 
+                            height: '2px', 
+                            backgroundColor: '#666',
+                            position: 'relative'
+                          }}>
+                            {/* Dots - dynamic based on number of images */}
+                            {numImages === 6 ? (
+                              // 6 images: dots at 0.2, 0.4, 0.6, 0.8
+                              [0.2, 0.4, 0.6, 0.8].map((pos, i) => (
+                                <div key={i} style={{
+                                  position: 'absolute',
+                                  left: `${pos * 100}%`,
+                                  top: '50%',
+                                  transform: 'translate(-50%, -50%)',
+                                  width: '10px',
+                                  height: '10px',
+                                  backgroundColor: '#666',
+                                  borderRadius: '50%'
+                                }} />
+                              ))
+                            ) : numImages === 4 ? (
+                              // 4 images: dots at 0.33, 0.67
+                              [0.33, 0.67].map((pos, i) => (
+                                <div key={i} style={{
+                                  position: 'absolute',
+                                  left: `${pos * 100}%`,
+                                  top: '50%',
+                                  transform: 'translate(-50%, -50%)',
+                                  width: '10px',
+                                  height: '10px',
+                                  backgroundColor: '#666',
+                                  borderRadius: '50%'
+                                }} />
+                              ))
+                            ) : (
+                              // 5 images: dots at 0.25, 0.5, 0.75
+                              [0.25, 0.5, 0.75].map((pos, i) => (
+                                <div key={i} style={{
+                                  position: 'absolute',
+                                  left: `${pos * 100}%`,
+                                  top: '50%',
+                                  transform: 'translate(-50%, -50%)',
+                                  width: '10px',
+                                  height: '10px',
+                                  backgroundColor: '#666',
+                                  borderRadius: '50%'
+                                }} />
+                              ))
+                            )}
+                          </div>
+                          {/* Right arrow */}
+                          <div style={{
+                            width: 0,
+                            height: 0,
+                            borderTop: '6px solid transparent',
+                            borderBottom: '6px solid transparent',
+                            borderLeft: '10px solid #666'
+                          }} />
+                        </div>
+                        <span style={{ fontWeight: 'bold', color: '#333', fontSize: '16px' }}>
+                          {isCurrent ? 'personalized' : slider.slider_type === 'exploration' ? 'exploration' : 'refinement'}
+                        </span>
+                      </div>
                     </div>
-                    <span style={{ fontWeight: 'bold', color: '#333', fontSize: '16px' }}>personalized</span>
+                    
+                    {/* Images row with label */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      {/* Images */}
+                      <div style={{ display: 'flex', gap: '10px', flex: 1 }}>
+                        {slider.images.map((img, imgIndex) => (
+                          <div key={imgIndex} style={{ 
+                            flex: 1,
+                            aspectRatio: '1',
+                            borderRadius: '8px',
+                            overflow: 'hidden',
+                            boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                          }}>
+                            <img 
+                              src={img.url} 
+                              alt={`Alpha ${img.alpha}${imgIndex === 5 ? ' (with reference)' : ''}`}
+                              style={{ 
+                                width: '100%', 
+                                height: '100%', 
+                                objectFit: 'cover' 
+                              }}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                      
+                      {/* Label on the right - only show for current slider */}
+                      {isCurrent && (
+                        <div style={{ 
+                          width: '120px',
+                          textAlign: 'center',
+                          padding: '10px'
+                        }}>
+                          <div style={{ 
+                            fontSize: '18px', 
+                            fontWeight: 'bold', 
+                            color: '#333',
+                            textTransform: 'capitalize'
+                          }}>
+                            {slider.adjective}
+                          </div>
+                          <div style={{ 
+                            fontSize: '16px', 
+                            color: '#666',
+                            textTransform: 'capitalize'
+                          }}>
+                            {slider.location}
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              )}
+                );
+              };
               
-              {/* Images row with label */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                {/* Images - dynamically handles 5 or 6 images */}
-                <div style={{ display: 'flex', gap: '10px', flex: 1 }}>
-                  {row.images.map((img, imgIndex) => (
-                    <div key={imgIndex} style={{ 
-                      flex: 1,
-                      aspectRatio: '1',
-                      borderRadius: '8px',
-                      overflow: 'hidden',
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+              // Create combined slider: exploration (4) + refinement (5) = 9 images
+              const combinedImages = [];
+              if (explorationSlider && explorationSlider.images) {
+                combinedImages.push(...explorationSlider.images); // 4 images (alpha: 0, 0.25, 0.5, 0.75)
+              }
+              if (refinementSlider && refinementSlider.images) {
+                combinedImages.push(...refinementSlider.images); // 5 images (alpha: 0, 0.25, 0.5, 0.75, 1.0)
+              }
+              
+              return (
+                <div key={groupIndex} style={{ marginBottom: '40px' }}>
+                  {/* Current slider - full width */}
+                  {renderSlider(currentSlider, true)}
+                  
+                  {/* Combined slider: descriptor → exploration → refinement */}
+                  {combinedImages.length === 9 && (
+                    <div style={{
+                      marginBottom: '30px',
+                      padding: '20px',
+                      backgroundColor: '#f8f9fa',
+                      borderRadius: '12px',
+                      border: '1px solid #dee2e6',
+                      width: '100%'
                     }}>
-                      <img 
-                        src={img.url} 
-                        alt={`Alpha ${img.alpha}${imgIndex === 5 ? ' (with reference)' : ''}`}
-                        style={{ 
-                          width: '100%', 
-                          height: '100%', 
-                          objectFit: 'cover' 
-                        }}
-                      />
+                      {/* Slider type label */}
+                      <div style={{ marginBottom: '10px', fontSize: '14px', fontWeight: '600', color: '#666' }}>
+                        Combined Slider: Descriptor → Exploration → Refinement
+                      </div>
+                      
+                      {/* Combined scale header */}
+                      <div style={{ marginBottom: '15px' }}>
+                        {/* Alpha labels - 9 positions */}
+                        <div style={{ 
+                          display: 'flex', 
+                          justifyContent: 'space-between', 
+                          alignItems: 'center',
+                          marginBottom: '4px',
+                          marginLeft: '20px',
+                          marginRight: '40px',
+                          padding: '0 20px'
+                        }}>
+                          <span style={{ fontSize: '14px', color: '#666' }}>alpha=0</span>
+                          <span style={{ fontSize: '14px', color: '#666' }}>0.25</span>
+                          <span style={{ fontSize: '14px', color: '#666' }}>0.5</span>
+                          <span style={{ fontSize: '14px', color: '#666' }}>0.75</span>
+                          <span style={{ fontSize: '14px', color: '#666' }}>1/0</span>
+                          <span style={{ fontSize: '14px', color: '#666' }}>0.25</span>
+                          <span style={{ fontSize: '14px', color: '#666' }}>0.5</span>
+                          <span style={{ fontSize: '14px', color: '#666' }}>0.75</span>
+                          <span style={{ fontSize: '14px', color: '#666' }}>1</span>
+                        </div>
+                        
+                        {/* Arrow line with dots and labels */}
+                        <div style={{ 
+                          display: 'flex', 
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          padding: '0 20px',
+                          marginBottom: '5px',
+                          position: 'relative'
+                        }}>
+                          <span style={{ fontWeight: 'bold', color: '#333', fontSize: '16px' }}>descriptor</span>
+                          <div style={{ 
+                            flex: 1, 
+                            display: 'flex', 
+                            alignItems: 'center',
+                            margin: '0 15px',
+                            position: 'relative'
+                          }}>
+                            {/* Left arrow */}
+                            <div style={{
+                              width: 0,
+                              height: 0,
+                              borderTop: '6px solid transparent',
+                              borderBottom: '6px solid transparent',
+                              borderRight: '10px solid #666'
+                            }} />
+                            {/* Line */}
+                            <div style={{ 
+                              flex: 1, 
+                              height: '2px', 
+                              backgroundColor: '#666',
+                              position: 'relative'
+                            }}>
+                              {/* Dots for 9 images - evenly spaced */}
+                              {[0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875].map((pos, i) => (
+                                <div key={i} style={{
+                                  position: 'absolute',
+                                  left: `${pos * 100}%`,
+                                  top: '50%',
+                                  transform: 'translate(-50%, -50%)',
+                                  width: '10px',
+                                  height: '10px',
+                                  backgroundColor: '#666',
+                                  borderRadius: '50%'
+                                }} />
+                              ))}
+                              {/* Middle label: exploration - positioned at center of line */}
+                              <div style={{
+                                position: 'absolute',
+                                left: '50%',
+                                top: '50%',
+                                transform: 'translate(-50%, -50%)',
+                                backgroundColor: '#f8f9fa',
+                                padding: '2px 8px',
+                                fontSize: '14px',
+                                fontWeight: '600',
+                                color: '#333',
+                                whiteSpace: 'nowrap'
+                              }}>
+                                exploration
+                              </div>
+                            </div>
+                            {/* Right arrow */}
+                            <div style={{
+                              width: 0,
+                              height: 0,
+                              borderTop: '6px solid transparent',
+                              borderBottom: '6px solid transparent',
+                              borderLeft: '10px solid #666'
+                            }} />
+                          </div>
+                          <span style={{ fontWeight: 'bold', color: '#333', fontSize: '16px' }}>refinement</span>
+                        </div>
+                      </div>
+                      
+                      {/* Images row */}
+                      <div style={{ display: 'flex', gap: '10px', padding: '0 20px' }}>
+                        {combinedImages.map((img, imgIndex) => (
+                          <div key={imgIndex} style={{ 
+                            flex: 1,
+                            aspectRatio: '1',
+                            borderRadius: '8px',
+                            overflow: 'hidden',
+                            boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                          }}>
+                            <img 
+                              src={img.url} 
+                              alt={`Combined slider image ${imgIndex + 1}, alpha ${img.alpha}`}
+                              style={{ 
+                                width: '100%', 
+                                height: '100%', 
+                                objectFit: 'cover' 
+                              }}
+                            />
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  ))}
+                  )}
                 </div>
-                
-                {/* Label on the right */}
-                <div style={{ 
-                  width: '120px',
-                  textAlign: 'center',
-                  padding: '10px'
-                }}>
-                  <div style={{ 
-                    fontSize: '18px', 
-                    fontWeight: 'bold', 
-                    color: '#333',
-                    textTransform: 'capitalize'
-                  }}>
-                    {row.adjective}
-                  </div>
-                  <div style={{ 
-                    fontSize: '16px', 
-                    color: '#666',
-                    textTransform: 'capitalize'
-                  }}>
-                    {row.location}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+              );
+            });
+          })()}
           
           {/* New location input */}
           {sliderRows.length > 0 && (

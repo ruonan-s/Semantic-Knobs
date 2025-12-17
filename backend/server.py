@@ -2511,20 +2511,24 @@ class SliderImageItem(BaseModel):
     alpha: float
     url: str
 
-class SliderGenerateResponse(BaseModel):
-    success: bool
+class SliderData(BaseModel):
+    slider_type: str  # 'current', 'exploration', or 'refinement'
     adjective: str
     location: str
     descriptor: str
     images: list[SliderImageItem]
 
+class SliderGenerateResponse(BaseModel):
+    success: bool
+    sliders: list[SliderData]
+
 @app.post("/api/generate-slider", response_model=SliderGenerateResponse)
 def generate_slider(request: SliderGenerateRequest):
     """
-    Generate a semantic slider sweep using learned weights from final_selection.json.
-    
-    Generates 5 images at alpha levels [0.0, 0.25, 0.5, 0.75, 1.0]
-    Alpha=0 is generic (pure descriptor), Alpha=1 is personalized (pure learned tags)
+    Generate three semantic slider sweeps:
+    1. Current slider: descriptor → refinement weights [0.0, 0.25, 0.5, 0.75, 1.0, 1.0withref] (6 images)
+    2. Slider 1: descriptor → exploration concept_weights [0.0, 0.25, 0.5, 0.75] (4 images, text2text)
+    3. Slider 2: exploration weights → refinement weights [0.0, 0.25, 0.5, 0.75] (4 images, text2text)
     """
     try:
         print("\n" + "=" * 80)
@@ -2558,72 +2562,108 @@ def generate_slider(request: SliderGenerateRequest):
         with open(final_selection_path, 'r') as f:
             final_selection = json.load(f)
         
+        # Load concept_weights.json from exploration stage
+        concept_weights_path = os.path.join(session_folder, "impression", "concept_weights.json")
+        if not os.path.exists(concept_weights_path):
+            raise HTTPException(404, "concept_weights.json not found in impression stage. Please complete exploration first.")
+        
+        with open(concept_weights_path, 'r') as f:
+            concept_weights_data = json.load(f)
+        
+        # Load preferences.json for initial descriptor
+        preferences_file = os.path.join(session_folder, "preferences.json")
+        if not os.path.exists(preferences_file):
+            raise HTTPException(404, "preferences.json not found.")
+        
+        with open(preferences_file, 'r') as f:
+            prefs = json.load(f)
+        
         # Get adjective and location
         adjective = final_selection.get("adjective", "")
         location = request.location if request.location else final_selection.get("location", "")
         descriptor = f"{adjective} {location}"
+        initial_descriptor = prefs.get("descriptor", descriptor)  # Use from preferences if available
         
         print(f"  Adjective: {adjective}")
         print(f"  Location: {location}")
         print(f"  Descriptor: {descriptor}")
+        print(f"  Initial descriptor: {initial_descriptor}")
         
-        # Get concepts and weights from final_selection
-        concepts_data = final_selection.get("concepts", [])
-        weights_raw = final_selection.get("weights_raw", [])
+        # Get concepts and weights from final_selection (refinement)
+        concepts_data_refinement = final_selection.get("concepts", [])
+        weights_raw_refinement = final_selection.get("weights_raw", [])
         
-        if not concepts_data or not weights_raw:
+        if not concepts_data_refinement or not weights_raw_refinement:
             raise HTTPException(400, "No concepts or weights found in final_selection.json")
         
-        # Load reference image from exploration stage (for 6th image)
-        reference_image = None
-        is_original_location = not request.location  # Empty location means original
+        # Get concept weights from exploration
+        concept_weights_exploration = concept_weights_data.get("concept_weights", [])
+        if not concept_weights_exploration:
+            raise HTTPException(400, "No concept weights found in concept_weights.json")
         
-        if is_original_location:
-            preferences_file = os.path.join(session_folder, "preferences.json")
-            if os.path.exists(preferences_file):
-                with open(preferences_file, 'r') as f:
-                    prefs = json.load(f)
-                    # Get the selection from impression stage
-                    selections = prefs.get('selections', {})
-                    reference_image_id = selections.get('impression')
-                    
-                    if reference_image_id:
-                        # Load reference image from impression stage
-                        impression_folder = os.path.join(session_folder, 'impression')
-                        reference_image_path = os.path.join(impression_folder, f"{reference_image_id}.png")
-                        
-                        if not os.path.exists(reference_image_path):
-                            # Try fallback: {image_id}_0.png
-                            reference_image_path = os.path.join(impression_folder, f"{reference_image_id}_0.png")
-                        
-                        if os.path.exists(reference_image_path):
-                            from PIL import Image as PILImage
-                            reference_image = PILImage.open(reference_image_path)
-                            print(f"  ✅ Loaded reference image: {os.path.basename(reference_image_path)}")
-                        else:
-                            print(f"  ⚠️ Reference image not found: {reference_image_id}")
-                    else:
-                        print(f"  ⚠️ No reference image ID found in preferences.json")
+        # Build concept mapping: label -> weight for exploration
+        exploration_weight_map = {cw["label"]: cw["weight"] for cw in concept_weights_exploration}
         
         # Build concepts list with format: "{location} with {label}"
-        concepts = []
-        for c in concepts_data:
-            concepts.append({
+        concepts_refinement = []
+        for c in concepts_data_refinement:
+            concepts_refinement.append({
                 "id": c["id"],
                 "label": f"{location} with {c['label']}"
             })
         
-        # Convert weights to numpy array
-        w_cozy = np.array(weights_raw)
+        # Build exploration concepts (match refinement concepts by label)
+        concepts_exploration = []
+        exploration_weights_list = []
+        for c in concepts_data_refinement:
+            label = c['label']
+            exploration_weight = exploration_weight_map.get(label, 0.0)
+            concepts_exploration.append({
+                "id": c["id"],
+                "label": f"{location} with {label}"
+            })
+            exploration_weights_list.append(exploration_weight)
         
-        print(f"  Concepts count: {len(concepts)}")
-        print(f"  Weights shape: {w_cozy.shape}")
-        if reference_image:
-            print(f"  Reference image: Available (will generate 6th image with img2img)")
-        else:
-            print(f"  Reference image: Not available (will generate 5 images only)")
+        # Convert weights to numpy arrays
+        w_refinement = np.array(weights_raw_refinement)
+        w_exploration = np.array(exploration_weights_list)
         
-        # Create output directory for this slider
+        # Normalize weights
+        w_refinement_norm = w_refinement / (w_refinement.sum() + 1e-8)
+        w_exploration_norm = w_exploration / (w_exploration.sum() + 1e-8)
+        
+        print(f"  Refinement concepts count: {len(concepts_refinement)}")
+        print(f"  Exploration concepts count: {len(concepts_exploration)}")
+        print(f"  Refinement weights shape: {w_refinement_norm.shape}")
+        print(f"  Exploration weights shape: {w_exploration_norm.shape}")
+        
+        # Load reference image from exploration stage (for current slider 6th image)
+        reference_image = None
+        is_original_location = not request.location  # Empty location means original
+        
+        if is_original_location:
+            selections = prefs.get('selections', {})
+            reference_image_id = selections.get('impression')
+            
+            if reference_image_id:
+                # Load reference image from impression stage
+                impression_folder = os.path.join(session_folder, 'impression')
+                reference_image_path = os.path.join(impression_folder, f"{reference_image_id}.png")
+                
+                if not os.path.exists(reference_image_path):
+                    # Try fallback: {image_id}_0.png
+                    reference_image_path = os.path.join(impression_folder, f"{reference_image_id}_0.png")
+                
+                if os.path.exists(reference_image_path):
+                    from PIL import Image as PILImage
+                    reference_image = PILImage.open(reference_image_path)
+                    print(f"  ✅ Loaded reference image: {os.path.basename(reference_image_path)}")
+                else:
+                    print(f"  ⚠️ Reference image not found: {reference_image_id}")
+            else:
+                print(f"  ⚠️ No reference image ID found in preferences.json")
+        
+        # Create output directory for sliders
         slider_output_dir = os.path.join(session_folder, "slider", location.replace(" ", "_"))
         os.makedirs(slider_output_dir, exist_ok=True)
         
@@ -2648,52 +2688,51 @@ def generate_slider(request: SliderGenerateRequest):
         if _slider_fuser is None:
             raise HTTPException(500, "SDXL pipeline not available for slider generation")
         
-        # Generate slider sweep using SDXL folder's alpha interpolation
-        alphas = [0.0, 0.25, 0.5, 0.75, 1.0]
-        seed = 42
+        import torch
+        neg_phrases = ["people", "person", "human", "man", "woman", "face", "body", "portrait"]
+        seed_base = 42
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        all_sliders = []
         
-        # Normalize weights
-        w_norm = w_cozy / (w_cozy.sum() + 1e-8)
+        # ========== SLIDER 1: Current slider (descriptor → refinement weights) ==========
+        print(f"\n{'='*80}")
+        print(f"[SLIDER 1] Current slider: descriptor → refinement weights")
+        print(f"{'='*80}")
         
-        # Get top-K concepts
+        alphas_current = [0.0, 0.25, 0.5, 0.75, 1.0]
+        
+        # Get top-K concepts for refinement
         top_k = 10
-        sorted_indices = np.argsort(w_norm)[::-1]
-        actual_top_k = min(top_k, len(concepts))
+        sorted_indices = np.argsort(w_refinement_norm)[::-1]
+        actual_top_k = min(top_k, len(concepts_refinement))
         top_indices = sorted_indices[:actual_top_k]
         
-        tag_phrases = [concepts[idx]['label'] for idx in top_indices]
-        tag_weights = np.array([float(w_norm[idx]) for idx in top_indices])
+        tag_phrases = [concepts_refinement[idx]['label'] for idx in top_indices]
+        tag_weights = np.array([float(w_refinement_norm[idx]) for idx in top_indices])
         
-        # Negative phrases
-        neg_phrases = ["people", "person", "human", "man", "woman", "face", "body", "portrait"]
-        
-        print(f"\n[SLIDER] Generating {len(alphas)} images with alpha interpolation...")
+        print(f"  Generating {len(alphas_current)} images with alpha interpolation...")
         print(f"  Descriptor: '{descriptor}'")
         print(f"  Top concepts: {tag_phrases[:3]}")
         
-        import torch
-        results = []
-        prompt_embeds_alpha_1 = None  # Store embeddings for alpha=1.0 to reuse for 6th image
+        results_current = []
+        prompt_embeds_alpha_1 = None
         
-        for i, alpha in enumerate(alphas):
-            print(f"\n  [{i+1}/{len(alphas)}] Alpha = {alpha:.2f}")
+        for i, alpha in enumerate(alphas_current):
+            print(f"\n  [{i+1}/{len(alphas_current)}] Alpha = {alpha:.2f}")
             
-            # Fuse embeddings with alpha: e_total = (1-alpha)*e_desc + alpha*e_tags
             prompt_embeds, pooled, neg_embeds, neg_pooled = _slider_fuser.fuse_with_alpha(
                 descriptor=descriptor,
                 tag_phrases=tag_phrases,
                 tag_weights=tag_weights,
                 alpha=alpha,
                 neg_phrases=neg_phrases,
-                max_negatives=8  # Allow all 8 negative phrases
+                max_negatives=8
             )
             
-            # Store embeddings for alpha=1.0 to reuse for 6th image
             if alpha == 1.0:
                 prompt_embeds_alpha_1 = (prompt_embeds, pooled, neg_embeds, neg_pooled)
             
-            # Generate image using the shared pipeline (txt2img)
-            generator = torch.Generator(device=_sdxl_runner.runner.device).manual_seed(seed + i)
+            generator = torch.Generator(device=_sdxl_runner.runner.device).manual_seed(seed_base + i)
             
             image = _sdxl_runner.runner.pipe(
                 prompt_embeds=prompt_embeds,
@@ -2707,7 +2746,7 @@ def generate_slider(request: SliderGenerateRequest):
                 generator=generator
             ).images[0]
             
-            results.append((alpha, image, None))
+            results_current.append((alpha, image, None))
         
         # Generate 6th image with reference (alpha=1.0, img2img) - only for original location
         if reference_image is not None and is_original_location and prompt_embeds_alpha_1 is not None:
@@ -2715,14 +2754,12 @@ def generate_slider(request: SliderGenerateRequest):
             
             prompt_embeds_ref, pooled_ref, neg_embeds_ref, neg_pooled_ref = prompt_embeds_alpha_1
             
-            # Get strength from stage config (same as refinement uses)
             from backend.sdxl_config import get_stage_strength
             strength = get_stage_strength('impression')
             
             print(f"  Using img2img mode with strength={strength}")
             
-            # Generate image with img2img using reference
-            generator = torch.Generator(device=_sdxl_runner.runner.device).manual_seed(seed + 5)
+            generator = torch.Generator(device=_sdxl_runner.runner.device).manual_seed(seed_base + 5)
             
             image_6 = _sdxl_runner.runner.generate_embeds_img2img(
                 init_image=reference_image,
@@ -2731,45 +2768,196 @@ def generate_slider(request: SliderGenerateRequest):
                 negative_prompt_embeds=neg_embeds_ref,
                 pooled_prompt_embeds=pooled_ref,
                 negative_pooled_prompt_embeds=neg_pooled_ref,
-                seed=seed + 5,
+                seed=seed_base + 5,
                 steps=30,
                 gscale=7.5,
                 height=1024,
                 width=1024
             )
             
-            results.append((1.0, image_6, "ref"))  # Alpha=1.0 with reference (flag="ref")
+            results_current.append((1.0, image_6, "ref"))
             print(f"  ✅ Generated 6th image with reference")
         
-        # Save images and build response
-        images = []
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        
-        for alpha, img, ref_flag in results:
-            # Use different filename for 6th image (with reference)
+        # Save current slider images
+        images_current = []
+        for alpha, img, ref_flag in results_current:
             if ref_flag == "ref":
-                filename = f"alphaRef_{alpha:.2f}_{timestamp}.png"
+                filename = f"current_alphaRef_{alpha:.2f}_{timestamp}.png"
             else:
-                filename = f"alpha_{alpha:.2f}_{timestamp}.png"
+                filename = f"current_alpha_{alpha:.2f}_{timestamp}.png"
             filepath = os.path.join(slider_output_dir, filename)
             img.save(filepath)
             
-            # Build URL for frontend
             rel_path = os.path.relpath(filepath, "sessions")
             url = f"/sessions/{rel_path}"
-            
-            images.append(SliderImageItem(alpha=alpha, url=url))
+            images_current.append(SliderImageItem(alpha=alpha, url=url))
             print(f"  Saved: {filepath}")
         
-        print(f"\n[SLIDER GENERATION] ✅ Generated {len(images)} images")
+        all_sliders.append(SliderData(
+            slider_type="current",
+            adjective=adjective,
+            location=location,
+            descriptor=descriptor,
+            images=images_current
+        ))
+        
+        # ========== SLIDER 2: Descriptor → exploration weights ==========
+        print(f"\n{'='*80}")
+        print(f"[SLIDER 2] Descriptor → exploration concept_weights")
+        print(f"{'='*80}")
+        
+        alphas_exploration = [0.0, 0.25, 0.5, 0.75]
+        
+        # Get top-K concepts for exploration
+        sorted_indices_expl = np.argsort(w_exploration_norm)[::-1]
+        actual_top_k_expl = min(top_k, len(concepts_exploration))
+        top_indices_expl = sorted_indices_expl[:actual_top_k_expl]
+        
+        tag_phrases_expl = [concepts_exploration[idx]['label'] for idx in top_indices_expl]
+        tag_weights_expl = np.array([float(w_exploration_norm[idx]) for idx in top_indices_expl])
+        
+        print(f"  Generating {len(alphas_exploration)} images with alpha interpolation...")
+        print(f"  Descriptor: '{descriptor}'")
+        print(f"  Top concepts: {tag_phrases_expl[:3]}")
+        
+        results_exploration = []
+        
+        for i, alpha in enumerate(alphas_exploration):
+            print(f"\n  [{i+1}/{len(alphas_exploration)}] Alpha = {alpha:.2f}")
+            
+            prompt_embeds, pooled, neg_embeds, neg_pooled = _slider_fuser.fuse_with_alpha(
+                descriptor=descriptor,
+                tag_phrases=tag_phrases_expl,
+                tag_weights=tag_weights_expl,
+                alpha=alpha,
+                neg_phrases=neg_phrases,
+                max_negatives=8
+            )
+            
+            generator = torch.Generator(device=_sdxl_runner.runner.device).manual_seed(seed_base + 100 + i)
+            
+            image = _sdxl_runner.runner.pipe(
+                prompt_embeds=prompt_embeds,
+                negative_prompt_embeds=neg_embeds,
+                pooled_prompt_embeds=pooled,
+                negative_pooled_prompt_embeds=neg_pooled,
+                height=1024,
+                width=1024,
+                num_inference_steps=30,
+                guidance_scale=7.5,
+                generator=generator
+            ).images[0]
+            
+            results_exploration.append((alpha, image, None))
+        
+        # Save exploration slider images
+        images_exploration = []
+        for alpha, img, ref_flag in results_exploration:
+            filename = f"exploration_alpha_{alpha:.2f}_{timestamp}.png"
+            filepath = os.path.join(slider_output_dir, filename)
+            img.save(filepath)
+            
+            rel_path = os.path.relpath(filepath, "sessions")
+            url = f"/sessions/{rel_path}"
+            images_exploration.append(SliderImageItem(alpha=alpha, url=url))
+            print(f"  Saved: {filepath}")
+        
+        all_sliders.append(SliderData(
+            slider_type="exploration",
+            adjective=adjective,
+            location=location,
+            descriptor=descriptor,
+            images=images_exploration
+        ))
+        
+        # ========== SLIDER 3: Exploration weights → refinement weights ==========
+        print(f"\n{'='*80}")
+        print(f"[SLIDER 3] Exploration weights → refinement weights")
+        print(f"{'='*80}")
+        
+        alphas_refinement = [0.0, 0.25, 0.5, 0.75, 1.0]
+        
+        # For this slider, we interpolate between two weight vectors
+        # At alpha=0: use exploration weights
+        # At alpha=1: use refinement weights
+        # We'll use the same top-K concepts from refinement
+        
+        print(f"  Generating {len(alphas_refinement)} images with weight interpolation...")
+        print(f"  Descriptor: '{descriptor}'")
+        print(f"  Interpolating between exploration and refinement weights")
+        
+        results_refinement = []
+        
+        for i, alpha in enumerate(alphas_refinement):
+            print(f"\n  [{i+1}/{len(alphas_refinement)}] Alpha = {alpha:.2f}")
+            
+            # Interpolate weights: w = (1-alpha) * w_exploration + alpha * w_refinement
+            w_interpolated = (1 - alpha) * w_exploration_norm + alpha * w_refinement_norm
+            w_interpolated = w_interpolated / (w_interpolated.sum() + 1e-8)  # Renormalize
+            
+            # Get top-K concepts using interpolated weights
+            sorted_indices_interp = np.argsort(w_interpolated)[::-1]
+            actual_top_k_interp = min(top_k, len(concepts_refinement))
+            top_indices_interp = sorted_indices_interp[:actual_top_k_interp]
+            
+            tag_phrases_interp = [concepts_refinement[idx]['label'] for idx in top_indices_interp]
+            tag_weights_interp = np.array([float(w_interpolated[idx]) for idx in top_indices_interp])
+            
+            # For weight interpolation slider, we use alpha=1.0 to fully apply the interpolated weights
+            prompt_embeds, pooled, neg_embeds, neg_pooled = _slider_fuser.fuse_with_alpha(
+                descriptor=descriptor,
+                tag_phrases=tag_phrases_interp,
+                tag_weights=tag_weights_interp,
+                alpha=1.0,  # Always use full strength for interpolated weights
+                neg_phrases=neg_phrases,
+                max_negatives=8
+            )
+            
+            generator = torch.Generator(device=_sdxl_runner.runner.device).manual_seed(seed_base + 200 + i)
+            
+            image = _sdxl_runner.runner.pipe(
+                prompt_embeds=prompt_embeds,
+                negative_prompt_embeds=neg_embeds,
+                pooled_prompt_embeds=pooled,
+                negative_pooled_prompt_embeds=neg_pooled,
+                height=1024,
+                width=1024,
+                num_inference_steps=30,
+                guidance_scale=7.5,
+                generator=generator
+            ).images[0]
+            
+            results_refinement.append((alpha, image, None))
+        
+        # Save refinement slider images
+        images_refinement = []
+        for alpha, img, ref_flag in results_refinement:
+            filename = f"refinement_alpha_{alpha:.2f}_{timestamp}.png"
+            filepath = os.path.join(slider_output_dir, filename)
+            img.save(filepath)
+            
+            rel_path = os.path.relpath(filepath, "sessions")
+            url = f"/sessions/{rel_path}"
+            images_refinement.append(SliderImageItem(alpha=alpha, url=url))
+            print(f"  Saved: {filepath}")
+        
+        all_sliders.append(SliderData(
+            slider_type="refinement",
+            adjective=adjective,
+            location=location,
+            descriptor=descriptor,
+            images=images_refinement
+        ))
+        
+        print(f"\n[SLIDER GENERATION] ✅ Generated {len(all_sliders)} sliders")
+        print(f"  - Current slider: {len(images_current)} images")
+        print(f"  - Exploration slider: {len(images_exploration)} images")
+        print(f"  - Refinement slider: {len(images_refinement)} images")
         print("=" * 80 + "\n")
         
         return SliderGenerateResponse(
             success=True,
-            adjective=adjective,
-            location=location,
-            descriptor=descriptor,
-            images=images
+            sliders=all_sliders
         )
         
     except HTTPException:
