@@ -204,16 +204,38 @@ class SDXLRunner:
                 seed=seed
             )
 
-        if verbose:
-            print(f"\n[SDXLRunner] Fusing weighted concept tags (direct weights, no descriptor)...")
-
-        prompt_embeds, pooled, neg_embeds, neg_pooled = self.fuser.fuse_descriptor_and_weighted_tags(
-            descriptor=None,  # No descriptor - just concept tags
-            tag_phrases=tag_phrases,
-            tag_weights=tag_weights_array,
-            neg_phrases=neg_phrases,
-            descriptor_weight=1.5  # Not used when descriptor is None
-        )
+        # Step 2: Fuse embeddings
+        # For txt2img mode with descriptor: use alpha blending to anchor space
+        # For img2img mode: use direct tag weights without descriptor
+        if init_image is None and descriptor:
+            # txt2img mode with descriptor: use alpha blending
+            # Formula: final_embed = alpha * descriptor + (1-alpha) * tags
+            # We want 30% descriptor, 70% tags, so pass alpha=0.7 to fuse_with_alpha
+            # (since fuse_with_alpha does (1-alpha)*desc + alpha*tags = 0.3*desc + 0.7*tags)
+            alpha_value = 0.5
+            if verbose:
+                print(f"\n[SDXLRunner] Fusing with descriptor anchoring (alpha={1-alpha_value:.1f} descriptor, {alpha_value:.1f} tags)...")
+                print(f"  Descriptor: {descriptor}")
+            
+            prompt_embeds, pooled, neg_embeds, neg_pooled = self.fuser.fuse_with_alpha(
+                descriptor=descriptor,
+                tag_phrases=tag_phrases,
+                tag_weights=tag_weights_array,
+                alpha=alpha_value,
+                neg_phrases=neg_phrases
+            )
+        else:
+            # img2img mode or no descriptor: use direct tag weights (no descriptor)
+            if verbose:
+                print(f"\n[SDXLRunner] Fusing weighted concept tags (direct weights, no descriptor)...")
+            
+            prompt_embeds, pooled, neg_embeds, neg_pooled = self.fuser.fuse_descriptor_and_weighted_tags(
+                descriptor=None,  # No descriptor - just concept tags
+                tag_phrases=tag_phrases,
+                tag_weights=tag_weights_array,
+                neg_phrases=neg_phrases,
+                descriptor_weight=1.5  # Not used when descriptor is None
+            )
 
         # Step 3: Generate image
         if init_image is not None:

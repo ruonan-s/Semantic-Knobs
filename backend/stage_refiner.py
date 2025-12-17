@@ -484,6 +484,9 @@ class StageRefiner:
             ... )
         """
         print(f"\n[StageRefiner] Generating {len(proposals)} images from proposals...")
+        
+        # Extract init_image from kwargs if present (for conditional passing)
+        init_image = kwargs.pop('init_image', None)
 
         images = []
         for i, w in enumerate(proposals):
@@ -491,6 +494,15 @@ class StageRefiner:
             
             # Get image path for this proposal if provided
             image_path = generated_image_paths[i] if generated_image_paths and i < len(generated_image_paths) else None
+            
+            # Balanced distribution: each mode gets 1 EXPLOIT + 1 EXPLORE
+            # Indices 0 (EXPLOIT) and 2 (EXPLORE): use img2img with reference image
+            # Indices 1 (EXPLOIT) and 3 (EXPLORE): use txt2img without reference image
+            proposal_init_image = init_image if i in [0, 2] else None
+            if proposal_init_image is not None:
+                print(f"    Using img2img mode (with reference image)")
+            else:
+                print(f"    Using txt2img mode (without reference image)")
             
             img = sdxl_runner.generate_from_mixture(
                 w=w,
@@ -500,6 +512,7 @@ class StageRefiner:
                 tracker=tracker,  # Pass tracker for logging
                 proposal_index=i,  # Pass index for tracking
                 generated_image_path=image_path,  # Pass path for tracking
+                init_image=proposal_init_image,  # Conditionally pass init_image
                 **kwargs
             )
             images.append(img)

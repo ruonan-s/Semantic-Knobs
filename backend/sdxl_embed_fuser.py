@@ -276,3 +276,106 @@ class SDXLEmbedFuser:
             neg_pooled = empty_pooled
         
         return fused_prompt, fused_pooled, neg_prompt, neg_pooled
+    
+    @torch.no_grad()
+    def fuse_with_alpha(
+        self,
+        descriptor: str | None,
+        tag_phrases: List[str],
+        tag_weights: np.ndarray,
+        alpha: float,
+        neg_phrases: List[str] | None = None,
+        max_tags: int = 10,
+        max_negatives: int = 5
+    ):
+        """
+        Fuse descriptor and weighted tags with alpha interpolation.
+        
+        Formula: e_total = (1-alpha) * e_desc + alpha * e_tags
+        
+        Where:
+            e_desc = embedding of descriptor
+            e_tags = weighted sum of tag embeddings: Σ(w_i * embed(tag_i))
+            alpha = interpolation factor (0 = pure descriptor, 1 = pure tags)
+        
+        Args:
+            descriptor: Base scene description (e.g., "a bedroom interior")
+            tag_phrases: List of concept tag phrases
+            tag_weights: Weight for each tag (normalized, should sum to ~1.0)
+            alpha: Strength factor for tags (0.0 to 1.0+)
+            neg_phrases: List of negative phrases (optional)
+            max_tags: Maximum number of tag phrases (default: 10)
+            max_negatives: Maximum number of negative phrases (default: 5)
+        
+        Returns:
+            (fused_prompt, fused_pooled, neg_prompt, neg_pooled)
+        """
+        # Clamp tags
+        if len(tag_phrases) > max_tags:
+            print(f"⚠️  Clamping {len(tag_phrases)} tag phrases to top {max_tags}")
+            tag_phrases = tag_phrases[:max_tags]
+            tag_weights = tag_weights[:max_tags]
+        
+        # Clamp negatives
+        if neg_phrases and len(neg_phrases) > max_negatives:
+            print(f"⚠️  Clamping {len(neg_phrases)} negative phrases to top {max_negatives}")
+            neg_phrases = neg_phrases[:max_negatives]
+        
+        # Step 1: Encode descriptor
+        if descriptor:
+            desc_prompt_embeds, desc_pooled = self._encode_phrase(descriptor)
+        else:
+            # If no descriptor, use zero embeddings
+            desc_prompt_embeds = torch.zeros(1, 77, 2048, device=self.device)
+            desc_pooled = torch.zeros(1, 1280, device=self.device)
+        
+        # Step 2: Encode and fuse weighted tags: e_tags = Σ(w_i * embed(tag_i))
+        if len(tag_phrases) > 0:
+            # Convert weights to torch tensor and normalize
+            weights_tensor = torch.tensor(tag_weights, dtype=torch.float32, device=self.device)
+            weights_tensor = weights_tensor / (weights_tensor.sum() + 1e-8)
+            
+            # Encode all tags
+            tag_embeds = []
+            tag_pooled_list = []
+            for phrase in tag_phrases:
+                pe, pp = self._encode_phrase(phrase)
+                tag_embeds.append(pe)
+                tag_pooled_list.append(pp)
+            
+            # Stack and weighted sum
+            T = torch.stack(tag_embeds, dim=0)           # (N, 1, L, D)
+            Tp = torch.stack(tag_pooled_list, dim=0)     # (N, 1, H_pool)
+            w = weights_tensor.view(-1, 1, 1, 1)         # (N,1,1,1)
+            wp = weights_tensor.view(-1, 1, 1)           # (N,1,1)
+            
+            tags_prompt_embeds = (w * T).sum(dim=0)      # (1, L, D)
+            tags_pooled = (wp * Tp).sum(dim=0)           # (1, H_pool)
+        else:
+            # No tags: use zero embeddings
+            tags_prompt_embeds = torch.zeros_like(desc_prompt_embeds)
+            tags_pooled = torch.zeros_like(desc_pooled)
+        
+        # Step 3: Combine with alpha: e_total = (1-alpha)*e_desc + alpha*e_tags
+        fused_prompt = (1 - alpha) * desc_prompt_embeds + alpha * tags_prompt_embeds
+        fused_pooled = (1 - alpha) * desc_pooled + alpha * tags_pooled
+        
+        # Step 4: Encode negatives (simple average)
+        if neg_phrases and len(neg_phrases) > 0:
+            n_embeds = []
+            n_pooled = []
+            for phrase in neg_phrases:
+                ne, npool = self._encode_phrase(phrase)
+                n_embeds.append(ne)
+                n_pooled.append(npool)
+            N = torch.stack(n_embeds, dim=0)
+            Np = torch.stack(n_pooled, dim=0)
+            neg_prompt = N.mean(dim=0)             # (1, L, D)
+            neg_pooled = Np.mean(dim=0)            # (1, H_pool)
+        else:
+            # Fallback: unconditional by encoding empty string
+            empty_pos, empty_pooled = self._encode_phrase("")
+            neg_prompt = empty_pos
+            neg_pooled = empty_pooled
+        
+        return fused_prompt, fused_pooled, neg_prompt, neg_pooled
