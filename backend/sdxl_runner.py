@@ -140,13 +140,24 @@ class SDXLRunner:
         if strength is None:
             strength = get_stage_strength(stage) if stage else 0.75
 
-        # Step 1: Normalize weights and extract top-K concepts (DIRECTLY - no gain conversion!)
-        from backend.sdxl_integration import normalize_simplex
-        w_norm = normalize_simplex(w)
+        # Step 1: Apply same projection as PBO (with tiny jitter for diversity)
+        # w_from_pbo is already projected (top-K, capped) from propose_batch
+        # Apply project_sdxl again with tiny jitter to match projection alignment
+        from backend.pbo import project_sdxl
         
-        # Sort by weight descending and select top-K
-        sorted_indices = np.argsort(w_norm)[::-1]
-        actual_top_k = min(top_k, len(concepts))
+        w_center = w  # already projected from propose_batch
+        w_for_prompt = project_sdxl(w_center, top_k=15, jitter=0.01)  # tiny jitter only
+        
+        # Step 2: Extract top-K concepts from projected weights
+        # (project_sdxl already zeros out non-top-K, so we just need to find non-zero entries)
+        from backend.sdxl_integration import normalize_simplex
+        w_norm = normalize_simplex(w_for_prompt)
+        
+        # Get indices of non-zero weights (these are the top-K after projection)
+        non_zero_indices = np.where(w_norm > 1e-6)[0]
+        # Sort by weight descending
+        sorted_indices = non_zero_indices[np.argsort(-w_norm[non_zero_indices])]
+        actual_top_k = min(top_k, len(sorted_indices))
         top_indices = sorted_indices[:actual_top_k]
         
         # Build concept tag phrases with their DIRECT weights

@@ -318,17 +318,26 @@ class PBO:
         return compute_mixture_embedding(w, self.MU)
 
     def add_candidate(self, w: np.ndarray, candidate_id: Optional[str] = None) -> str:
-        w = normalize_simplex(w)
-        z = compute_mixture_embedding(w, self.MU)
+        # 1. Apply the same projection used at generation time
+        # IMPORTANT: jitter=0 here so GP sees a stable center, not a noisy sample
+        w_proj = project_sdxl(w, top_k=15, jitter=0.0)
+
+        # 2. Compute embedding from the projected weights
+        z = compute_mixture_embedding(w_proj, self.MU)
 
         if candidate_id is None:
             candidate_id = self._generate_candidate_id()
 
-        self.candidates[candidate_id] = Candidate(id=candidate_id, w=w, z=z)
-        logger.debug(f"[PBO] Added candidate {candidate_id} | top tags: {format_topk(w, self.concept_ids)}")
+        # 3. Store the projected weights
+        self.candidates[candidate_id] = Candidate(id=candidate_id, w=w_proj, z=z)
 
         if len(self.candidates) > MAX_CANDIDATES:
             self._prune_candidates()
+
+        # Debug log: show top tags and weights
+        top_idx = np.argsort(-w_proj)[:5]
+        top_tags_str = ", ".join([f"{self.concept_ids[i]}={w_proj[i]:.3f}" for i in top_idx])
+        logger.info(f"[PBO] add_candidate {candidate_id}: top tags = {top_tags_str}")
 
         return candidate_id
 
@@ -455,29 +464,32 @@ class PBO:
         - Some around w_best (if any)
         - Some around w_current (if provided)
         - Remaining from broad Dirichlet / prior concept_weights
+        
+        NOTE: Alpha values are kept LOW (5-8) to avoid gluing the pool to the center.
+        High alphas (20+) create extremely concentrated samples that don't explore.
         """
         pool: List[np.ndarray] = []
 
-        # 1) Around w_best
+        # 1) Around w_best (LOOSENED: 25 -> 8)
         if w_best is not None:
             w_best = normalize_simplex(w_best)
-            alpha_best = 25.0 * w_best  # fairly concentrated
+            alpha_best = 8.0 * w_best + 0.5  # add floor to prevent zero alphas
             for _ in range(pool_size // 3):
-                pool.append(normalize_simplex(self.rng.dirichlet(alpha_best + EPS)))
+                pool.append(normalize_simplex(self.rng.dirichlet(alpha_best)))
 
-        # 2) Around w_current (UI slider)
+        # 2) Around w_current (UI slider) (LOOSENED: 20 -> 6)
         if w_current is not None:
             w_current = normalize_simplex(w_current)
-            alpha_curr = 20.0 * w_current
+            alpha_curr = 6.0 * w_current + 0.5
             for _ in range(pool_size // 6):
-                pool.append(normalize_simplex(self.rng.dirichlet(alpha_curr + EPS)))
+                pool.append(normalize_simplex(self.rng.dirichlet(alpha_curr)))
 
-        # 3) Around concept_weights prior
-        alpha_prior = 10.0 * self.concept_weights
+        # 3) Around concept_weights prior (LOOSENED: 10 -> 5)
+        alpha_prior = 5.0 * self.concept_weights + 0.3
         for _ in range(pool_size // 3):
-            pool.append(normalize_simplex(self.rng.dirichlet(alpha_prior + EPS)))
+            pool.append(normalize_simplex(self.rng.dirichlet(alpha_prior)))
 
-        # 4) Pure exploration
+        # 4) Pure exploration (uniform Dirichlet)
         while len(pool) < pool_size:
             pool.append(normalize_simplex(self.rng.dirichlet(np.ones(self.K))))
 
@@ -578,75 +590,166 @@ class PBO:
     # ------------------------------------------------------
     # Public proposal API
     # ------------------------------------------------------
+    def _cold_start_proposals(
+        self,
+        q: int,
+        pool_size: int,
+        w_current: Optional[np.ndarray],
+        neg_indices: List[int],
+    ) -> List[np.ndarray]:
+        """
+        Cold-start proposal generation when GP is not fitted yet.
+        Uses prior alignment + uncertainty for scoring.
+        """
+        logger.info("[PBO] propose_batch: GP not fitted yet → cold-start proposals.")
+        pool = self._sample_pool_cold_start(pool_size, w_current=w_current)
+        
+        # Project pool for consistency
+        pool_proj = np.array([project_sdxl(w, top_k=15, jitter=0.0) for w in pool])
+        Z_pool = np.vstack([compute_mixture_embedding(w, self.MU) for w in pool_proj])
+        
+        # Score by prior alignment (no GP yet)
+        prior_alignment = np.array(
+            [np.dot(normalize_simplex(w), self.concept_weights) for w in pool_proj],
+            dtype=np.float32,
+        )
+        
+        # Add diversity via random component
+        random_component = self.rng.uniform(0, 0.3, size=len(pool_proj))
+        scores = 0.7 * prior_alignment + 0.3 * random_component
+        
+        logger.info(
+            f"[PBO] Cold-start scoring | prior_align mean={prior_alignment.mean():.3f} "
+            f"max={prior_alignment.max():.3f}"
+        )
+        
+        # Select diverse top-q
+        proposals = self._select_diverse_top_k(pool_proj, Z_pool, scores, q, max_cos=0.90)
+        
+        # Final jitter for generation
+        return [project_sdxl(w, top_k=15, jitter=0.005) for w in proposals]
+
     def propose_batch(
         self,
-        q: int = 4,
+        q: int = 4,  # We assume q=4 for the 2+2 split
         negatives: Optional[set] = None,
         pool_size: int = POOL_SIZE,
         max_cos: float = BATCH_DIVERSITY_MAX_COS,
         w_current: Optional[np.ndarray] = None,
     ) -> List[np.ndarray]:
         """
-        Propose a batch of q weight vectors using a single acquisition:
-
-            score(w) = mu(w) + lambda_sigma * std(w) - penalty_neg(w)
-
-        Early rounds: higher lambda_sigma → more exploration.
-        Later rounds: lower lambda_sigma → more exploitation.
+        Propose a batch of q weight vectors using a "2+2" strategy:
+        
+        - SLOTS 1-2 (EXPLOIT): High UCB = mu + lambda * std
+        - SLOTS 3-4 (EXPLORE): High uncertainty (std), distant from exploit set
+        
+        This ensures we always have some exploitation (refine what works)
+        and some exploration (discover new regions).
         """
+        # 1. SETUP
         if negatives is None:
             negatives = set()
-
         neg_indices = [i for i, cid in enumerate(self.concept_ids) if cid in negatives]
-
-        # Approximate "round number" from number of duels
-        num_rounds = max(1, len(self.duels) // 3)
-
-        # Exploration–exploitation schedule:
-        # round 1: ~1.5, round 5: ~1.0, floor at 0.3
-        lambda_sigma = max(0.3, 1.5 - 0.1 * (num_rounds - 1))
 
         logger.info(
             f"[PBO] propose_batch: q={q}, pool_size={pool_size}, "
-            f"num_rounds≈{num_rounds}, lambda_sigma={lambda_sigma:.3f}, "
             f"negatives={len(neg_indices)}, fitted={self.fitted}"
         )
 
-        # Cold-start: if no GP, use pure exploration (sigma = 1 everywhere)
+        # 2. COLD START CHECK
         if not self.fitted or self.gp is None:
-            logger.info("[PBO] propose_batch: GP not fitted yet → pure exploration.")
-            pool = self._sample_pool_cold_start(pool_size, w_current=w_current)
-            pool, Z_pool, mu, std = self._evaluate_pool(pool, neg_indices)
-            prior_alignment = np.array(
-                [np.dot(normalize_simplex(w), self.concept_weights) for w in pool],
-                dtype=np.float32,
-            )
-            lambda_prior = 0.8
-            scores = (1.0 - lambda_prior) * std + lambda_prior * prior_alignment
-            logger.info(
-                f"[PBO] Cold-start scoring | prior_align mean={prior_alignment.mean():.3f} "
-                f"max={prior_alignment.max():.3f}"
-            )
-        else:
-            w_best = self.best()
-            if w_best is not None:
-                logger.info(f"[PBO] Current best by GP: {format_topk(w_best, self.concept_ids)}")
-            pool = self._sample_pool(pool_size, w_best=w_best, w_current=w_current)
-            pool, Z_pool, mu, std = self._evaluate_pool(pool, neg_indices)
-            scores = mu + lambda_sigma * std
+            return self._cold_start_proposals(q, pool_size, w_current, neg_indices)
+
+        # 3. GENERATE POOL (with loosened alphas)
+        w_best = self.best()
+        if w_best is not None:
+            logger.info(f"[PBO] Current best by GP: {format_topk(w_best, self.concept_ids)}")
+        pool = self._sample_pool(pool_size, w_best=w_best, w_current=w_current)
+
+        # 4. PROJECT POOL (Critical: GP sees what SDXL sees)
+        pool_proj = np.array([project_sdxl(w, top_k=15, jitter=0.0) for w in pool])
+        Z_pool = np.vstack([compute_mixture_embedding(w, self.MU) for w in pool_proj])
+
+        # 5. PREDICT
+        mu, std = self.gp.predict(Z_pool, return_std=True)
+
+        # Apply negative concept penalty to mu
+        if neg_indices:
+            excess = np.maximum(0.0, pool_proj[:, neg_indices] - NEGATIVE_PENALTY_RHO)
+            penalty = NEGATIVE_PENALTY_LAMBDA * np.sum(excess, axis=1)
+            mu = mu - penalty
 
         logger.debug(
             f"[PBO] Pool stats: mu[{mu.min():.3f}, {mu.max():.3f}], "
-            f"std[{std.min():.3f}, {std.max():.3f}], "
-            f"score[{scores.min():.3f}, {scores.max():.3f}]"
+            f"std[{std.min():.3f}, {std.max():.3f}]"
         )
 
-        proposals = self._select_diverse_top_k(pool, Z_pool, scores, q, max_cos)
+        # 6. SELECTION LOGIC: The "2+2" Split
+        final_indices = []
+        n_exploit = min(2, q // 2)  # First half: exploit
+        n_explore = q - n_exploit   # Second half: explore
 
-        for i, w in enumerate(proposals):
-            logger.info(f"[PBO] Proposal {i}: {format_topk(w, self.concept_ids)}")
+        # --- SLOTS 1-2: EXPLOIT (High UCB) ---
+        # Modest lambda to balance "Best" with "Good but uncertain"
+        ucb_scores = mu + 1.0 * std
+        sorted_by_ucb = np.argsort(-ucb_scores)
 
-        return proposals
+        # Greedily pick top n_exploit that satisfy diversity
+        for idx in sorted_by_ucb:
+            if len(final_indices) >= n_exploit:
+                break
+
+            # Diversity check against already selected
+            is_diverse = True
+            for existing_idx in final_indices:
+                if cosine_similarity(Z_pool[idx], Z_pool[existing_idx]) > max_cos:
+                    is_diverse = False
+                    break
+
+            if is_diverse:
+                final_indices.append(idx)
+
+        # --- SLOTS 3-4: EXPLORE (High Std, distant from exploit set) ---
+        # Sort remaining pool by standard deviation (pure uncertainty)
+        sorted_by_std = np.argsort(-std)
+
+        # Stricter diversity threshold for exploration (want geometric distance)
+        explore_max_cos = 0.85
+
+        for idx in sorted_by_std:
+            if len(final_indices) >= q:
+                break
+            if idx in final_indices:
+                continue
+
+            # Stricter diversity check against the EXPLOIT candidates
+            is_distinct = True
+            for existing_idx in final_indices:
+                if cosine_similarity(Z_pool[idx], Z_pool[existing_idx]) > explore_max_cos:
+                    is_distinct = False
+                    break
+
+            if is_distinct:
+                final_indices.append(idx)
+
+        # Fallback if diversity checks killed too many
+        if len(final_indices) < q:
+            remaining = [i for i in sorted_by_ucb if i not in final_indices]
+            final_indices.extend(remaining[:q - len(final_indices)])
+
+        proposals = pool_proj[final_indices]
+
+        # 7. LOGGING (The Debuggability Advantage)
+        logger.info(f"[PBO] Selection Breakdown:")
+        for i, idx in enumerate(final_indices):
+            p_type = "EXPLOIT" if i < n_exploit else "EXPLORE"
+            logger.info(
+                f"  #{i+1} [{p_type}] mu={mu[idx]:.3f} std={std[idx]:.3f} "
+                f"top={format_topk(proposals[i], self.concept_ids, k=3)}"
+            )
+
+        # Final jitter for generation
+        return [project_sdxl(w, top_k=15, jitter=0.005) for w in proposals]
 
     # ------------------------------------------------------
     # Utilities
