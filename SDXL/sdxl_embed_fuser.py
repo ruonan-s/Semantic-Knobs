@@ -189,7 +189,7 @@ class SDXLEmbedFuser:
         alpha: float,
         neg_phrases: List[str] | None = None,
         max_tags: int = 10,
-        max_negatives: int = 5
+        max_negatives: int = 8
     ):
         """
         Fuse descriptor and weighted tags with alpha interpolation.

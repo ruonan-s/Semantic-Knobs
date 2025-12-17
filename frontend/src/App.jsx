@@ -67,9 +67,9 @@ function App() {
     conceptTagHandlerRef.current = null;
   }, [stage]);
 
-  // Load available sessions when upload page is shown
+  // Load available sessions when upload page or slider upload page is shown
   useEffect(() => {
-    if (stage === 'upload') {
+    if (stage === 'upload' || stage === 'slider_upload') {
       fetchAvailableSessions();
     }
   }, [stage]);
@@ -1123,6 +1123,96 @@ function App() {
     }
   };
 
+  // Mode 3: Load session for slider generation
+  const handleLoadSessionForSlider = async () => {
+    if (!selectedSessionPath) {
+      setValidationError('Please select a session');
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      addStatusMessage('Loading session for slider generation...');
+
+      // Validate final_selection.json exists
+      const validateRes = await fetch(`/sessions/${selectedSessionPath}/final_selection.json`);
+      if (!validateRes.ok) {
+        throw new Error('Session does not have final_selection.json. Please complete refinement first.');
+      }
+
+      const finalSelection = await validateRes.json();
+      if (!finalSelection.weights_raw || !finalSelection.concepts) {
+        throw new Error('final_selection.json is missing required fields (weights_raw or concepts)');
+      }
+
+      // Set session and navigate directly to slider generation
+      setSessionId(selectedSessionPath);
+      setStage('slider_generation');
+      addStatusMessage('Session loaded! Generating slider...');
+
+    } catch (error) {
+      setValidationError(`Failed to load session: ${error.message}`);
+      addStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Mode 3: Upload session folder for slider generation
+  const handleProceedWithSliderUpload = async () => {
+    if (!uploadedFolder) return;
+    
+    try {
+      setIsLoading(true);
+      addStatusMessage('Uploading session for slider generation...');
+      
+      // Create FormData to upload folder
+      const formData = new FormData();
+      const files = uploadedFolder.files || [];
+      
+      files.forEach(file => {
+        const actualFile = file.file || file;
+        const path = file.webkitRelativePath || file.path || file.name;
+        formData.append('files', actualFile, path);
+      });
+      
+      formData.append('folderName', uploadedFolder.name);
+      
+      const res = await fetch('/api/upload-session', {
+        method: 'POST',
+        body: formData
+      });
+      
+      if (!res.ok) {
+        throw new Error(`Upload failed: ${res.status}`);
+      }
+      
+      const data = await res.json();
+
+      // Validate final_selection.json exists
+      const validateRes = await fetch(`/sessions/${data.session_id}/final_selection.json`);
+      if (!validateRes.ok) {
+        throw new Error('Uploaded session does not have final_selection.json. Please complete refinement first.');
+      }
+
+      const finalSelection = await validateRes.json();
+      if (!finalSelection.weights_raw || !finalSelection.concepts) {
+        throw new Error('final_selection.json is missing required fields (weights_raw or concepts)');
+      }
+
+      // Set session and navigate directly to slider generation
+      setSessionId(data.session_id);
+      setStage('slider_generation');
+      addStatusMessage('Session uploaded! Generating slider...');
+      
+    } catch (error) {
+      setValidationError(`Upload failed: ${error.message}`);
+      addStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div style={{ 
       padding: '20px',
@@ -1171,7 +1261,7 @@ function App() {
               </p>
             </div>
 
-            {/* Test Final Stage Button */}
+            {/* Load Existing Session Button */}
             <div
               onClick={() => setStage('upload')}
               style={{
@@ -1199,6 +1289,37 @@ function App() {
               </h3>
               <p style={{ margin: '0', color: '#333', fontSize: '14px', lineHeight: '1.5' }}>
                 Select from existing sessions or upload a session folder
+              </p>
+            </div>
+
+            {/* Generate Slider from Session Button */}
+            <div
+              onClick={() => setStage('slider_upload')}
+              style={{
+                border: '2px solid #ff6b35',
+                borderRadius: '12px',
+                padding: '30px 20px',
+                backgroundColor: '#fff5f0',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.backgroundColor = '#ffe6d9';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.15)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.backgroundColor = '#fff5f0';
+                e.currentTarget.style.transform = 'translateY(0px)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+              }}
+            >
+              <h3 style={{ margin: '0 0 12px 0', color: '#ff6b35', fontSize: '20px' }}>
+                🎨 Generate Slider from Session
+              </h3>
+              <p style={{ margin: '0', color: '#333', fontSize: '14px', lineHeight: '1.5' }}>
+                Load a session folder and directly generate semantic sliders
               </p>
             </div>
           </div>
@@ -1387,6 +1508,193 @@ function App() {
             </div>
           )}
         </div>
+      ) : stage === 'slider_upload' ? (
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '30px' }}>
+            <button
+              onClick={() => setStage('landing')}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#6c757d',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                marginRight: '20px'
+              }}
+            >
+              ← Back
+            </button>
+            <h2 style={{ margin: '0', color: '#333' }}>Generate Slider from Session</h2>
+          </div>
+
+          {/* Dropdown to select existing session */}
+          <div style={{
+            marginBottom: '30px',
+            padding: '30px',
+            backgroundColor: '#fff5f0',
+            borderRadius: '12px',
+            border: '2px solid #ff6b35'
+          }}>
+            <h3 style={{ margin: '0 0 15px 0', color: '#333', fontSize: '18px' }}>
+              📂 Load Existing Session
+            </h3>
+            <p style={{ margin: '0 0 20px 0', color: '#666', fontSize: '14px' }}>
+              Select a session that has completed refinement (must have final_selection.json)
+            </p>
+            <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+              <select
+                value={selectedSessionPath}
+                onChange={(e) => setSelectedSessionPath(e.target.value)}
+                disabled={isLoading}
+                style={{
+                  flex: 1,
+                  padding: '12px',
+                  fontSize: '16px',
+                  borderRadius: '6px',
+                  border: '1px solid #ccc',
+                  backgroundColor: 'white',
+                  cursor: isLoading ? 'not-allowed' : 'pointer'
+                }}
+              >
+                <option value="">-- Select a session --</option>
+                {availableSessions.map(session => (
+                  <option key={session.path} value={session.path}>
+                    {session.name} ({session.timestamp}) - {session.stage_count} stage(s)
+                  </option>
+                ))}
+              </select>
+              <button
+                onClick={handleLoadSessionForSlider}
+                disabled={!selectedSessionPath || isLoading}
+                style={{
+                  padding: '12px 24px',
+                  backgroundColor: (!selectedSessionPath || isLoading) ? '#ccc' : '#ff6b35',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: (!selectedSessionPath || isLoading) ? 'not-allowed' : 'pointer',
+                  fontSize: '16px',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                {isLoading ? 'Loading...' : 'Generate Slider'}
+              </button>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            margin: '30px 0',
+            color: '#999'
+          }}>
+            <div style={{ flex: 1, height: '1px', backgroundColor: '#ddd' }}></div>
+            <span style={{ padding: '0 20px', fontSize: '14px' }}>OR</span>
+            <div style={{ flex: 1, height: '1px', backgroundColor: '#ddd' }}></div>
+          </div>
+
+          {/* Upload new session */}
+          <div style={{ marginBottom: '20px' }}>
+            <h3 style={{ margin: '0 0 15px 0', color: '#333', fontSize: '18px' }}>
+              📤 Upload Session Folder
+            </h3>
+            <p style={{ margin: '0 0 15px 0', color: '#666', fontSize: '14px' }}>
+              Upload a session folder that has completed refinement (must contain final_selection.json)
+            </p>
+          </div>
+
+          <div
+            onDrop={handleFolderDrop}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            style={{
+              border: '3px dashed #ff6b35',
+              borderRadius: '12px',
+              padding: '60px 40px',
+              textAlign: 'center',
+              backgroundColor: '#fff5f0',
+              marginBottom: '30px',
+              transition: 'all 0.3s ease'
+            }}
+          >
+            <div style={{ fontSize: '48px', marginBottom: '20px' }}>📁</div>
+            <h3 style={{ margin: '0 0 15px 0', color: '#333' }}>Drop Session Folder Here</h3>
+            <p style={{ margin: '0', color: '#666', fontSize: '16px' }}>
+              Or click to browse and select your session folder
+            </p>
+            <input
+              type="file"
+              webkitdirectory=""
+              directory=""
+              multiple
+              onChange={handleFolderSelect}
+              style={{ display: 'none' }}
+              id="slider-folder-input"
+            />
+            <button
+              onClick={() => document.getElementById('slider-folder-input').click()}
+              style={{
+                marginTop: '20px',
+                padding: '12px 24px',
+                backgroundColor: '#ff6b35',
+                color: 'white',
+                border: 'none',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '16px'
+              }}
+            >
+              Browse Folder
+            </button>
+          </div>
+          
+          {validationError && (
+            <div style={{
+              padding: '15px',
+              backgroundColor: '#f8d7da',
+              border: '1px solid #f5c6cb',
+              borderRadius: '6px',
+              color: '#721c24',
+              marginBottom: '20px'
+            }}>
+              <strong>Validation Error:</strong> {validationError}
+            </div>
+          )}
+          
+          {uploadedFolder && !validationError && (
+            <div style={{
+              padding: '20px',
+              backgroundColor: '#d4edda',
+              border: '1px solid #c3e6cb',
+              borderRadius: '6px',
+              marginBottom: '20px'
+            }}>
+              <h4 style={{ margin: '0 0 10px 0', color: '#155724' }}>
+                ✅ Session Folder Loaded Successfully
+              </h4>
+              <p style={{ margin: '0 0 15px 0', color: '#155724' }}>
+                <strong>Folder:</strong> {uploadedFolder.name}
+              </p>
+              <button
+                onClick={handleProceedWithSliderUpload}
+                disabled={isLoading}
+                style={{
+                  padding: '12px 24px',
+                  backgroundColor: isLoading ? '#ccc' : '#ff6b35',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: isLoading ? 'not-allowed' : 'pointer',
+                  fontSize: '16px'
+                }}
+              >
+                {isLoading ? 'Loading...' : 'Generate Slider'}
+              </button>
+            </div>
+          )}
+        </div>
       ) : stage === 'slider_generation' ? (
         <div>
           <h2>Semantic Slider Generation</h2>
@@ -1433,27 +1741,42 @@ function App() {
               {/* Alpha scale header - only show on first row */}
               {rowIndex === 0 && (
                 <div style={{ marginBottom: '15px' }}>
-                  {/* Alpha labels */}
+                  {/* Alpha labels - dynamic based on number of images */}
                   <div style={{ 
                     display: 'flex', 
                     justifyContent: 'space-between', 
                     alignItems: 'center',
-                    marginBottom: '8px',
-                    padding: '0 10px'
+                    marginBottom: '4px',
+                    padding: '0 120px 0 10px'
                   }}>
-                    <span style={{ fontSize: '14px', color: '#666' }}>alpha = 0</span>
-                    <span style={{ fontSize: '14px', color: '#666' }}>0.25</span>
-                    <span style={{ fontSize: '14px', color: '#666' }}>0.50</span>
-                    <span style={{ fontSize: '14px', color: '#666' }}>0.75</span>
-                    <span style={{ fontSize: '14px', color: '#666' }}>alpha = 1</span>
+                    {row.images.length === 6 ? (
+                      // 6 images: alpha = 0, 0.25, 0.50, 0.75, alpha = 1, alpha = 1 (ref)
+                      <>
+                        <span style={{ fontSize: '14px', color: '#666' }}>alpha = 0</span>
+                        <span style={{ fontSize: '14px', color: '#666' }}>0.25</span>
+                        <span style={{ fontSize: '14px', color: '#666' }}>0.50</span>
+                        <span style={{ fontSize: '14px', color: '#666' }}>0.75</span>
+                        <span style={{ fontSize: '14px', color: '#666' }}>alpha = 1</span>
+                        <span style={{ fontSize: '14px', color: '#666' }}>alpha = 1 (ref)</span>
+                      </>
+                    ) : (
+                      // 5 images: alpha = 0, 0.25, 0.50, 0.75, alpha = 1
+                      <>
+                        <span style={{ fontSize: '14px', color: '#666' }}>alpha = 0</span>
+                        <span style={{ fontSize: '14px', color: '#666' }}>0.25</span>
+                        <span style={{ fontSize: '14px', color: '#666' }}>0.50</span>
+                        <span style={{ fontSize: '14px', color: '#666' }}>0.75</span>
+                        <span style={{ fontSize: '14px', color: '#666' }}>alpha = 1</span>
+                      </>
+                    )}
                   </div>
                   
-                  {/* Arrow line with dots */}
+                  {/* Arrow line with dots - dynamic based on number of images */}
                   <div style={{ 
                     display: 'flex', 
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    padding: '0 10px',
+                    padding: '0 120px 0 10px',
                     marginBottom: '5px'
                   }}>
                     <span style={{ fontWeight: 'bold', color: '#333', fontSize: '16px' }}>generic</span>
@@ -1479,19 +1802,36 @@ function App() {
                         backgroundColor: '#666',
                         position: 'relative'
                       }}>
-                        {/* Dots */}
-                        {[0.25, 0.5, 0.75].map((pos, i) => (
-                          <div key={i} style={{
-                            position: 'absolute',
-                            left: `${pos * 100}%`,
-                            top: '50%',
-                            transform: 'translate(-50%, -50%)',
-                            width: '10px',
-                            height: '10px',
-                            backgroundColor: '#666',
-                            borderRadius: '50%'
-                          }} />
-                        ))}
+                        {/* Dots - dynamic based on number of images */}
+                        {row.images.length === 6 ? (
+                          // 6 images: dots at 0.2, 0.4, 0.6, 0.8 (5 positions for 6 images)
+                          [0.2, 0.4, 0.6, 0.8].map((pos, i) => (
+                            <div key={i} style={{
+                              position: 'absolute',
+                              left: `${pos * 100}%`,
+                              top: '50%',
+                              transform: 'translate(-50%, -50%)',
+                              width: '10px',
+                              height: '10px',
+                              backgroundColor: '#666',
+                              borderRadius: '50%'
+                            }} />
+                          ))
+                        ) : (
+                          // 5 images: dots at 0.25, 0.5, 0.75 (3 positions for 5 images)
+                          [0.25, 0.5, 0.75].map((pos, i) => (
+                            <div key={i} style={{
+                              position: 'absolute',
+                              left: `${pos * 100}%`,
+                              top: '50%',
+                              transform: 'translate(-50%, -50%)',
+                              width: '10px',
+                              height: '10px',
+                              backgroundColor: '#666',
+                              borderRadius: '50%'
+                            }} />
+                          ))
+                        )}
                       </div>
                       {/* Right arrow */}
                       <div style={{
@@ -1509,7 +1849,7 @@ function App() {
               
               {/* Images row with label */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                {/* 5 images */}
+                {/* Images - dynamically handles 5 or 6 images */}
                 <div style={{ display: 'flex', gap: '10px', flex: 1 }}>
                   {row.images.map((img, imgIndex) => (
                     <div key={imgIndex} style={{ 
@@ -1521,7 +1861,7 @@ function App() {
                     }}>
                       <img 
                         src={img.url} 
-                        alt={`Alpha ${img.alpha}`}
+                        alt={`Alpha ${img.alpha}${imgIndex === 5 ? ' (with reference)' : ''}`}
                         style={{ 
                           width: '100%', 
                           height: '100%', 

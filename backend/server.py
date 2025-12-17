@@ -2574,6 +2574,37 @@ def generate_slider(request: SliderGenerateRequest):
         if not concepts_data or not weights_raw:
             raise HTTPException(400, "No concepts or weights found in final_selection.json")
         
+        # Load reference image from exploration stage (for 6th image)
+        reference_image = None
+        is_original_location = not request.location  # Empty location means original
+        
+        if is_original_location:
+            preferences_file = os.path.join(session_folder, "preferences.json")
+            if os.path.exists(preferences_file):
+                with open(preferences_file, 'r') as f:
+                    prefs = json.load(f)
+                    # Get the selection from impression stage
+                    selections = prefs.get('selections', {})
+                    reference_image_id = selections.get('impression')
+                    
+                    if reference_image_id:
+                        # Load reference image from impression stage
+                        impression_folder = os.path.join(session_folder, 'impression')
+                        reference_image_path = os.path.join(impression_folder, f"{reference_image_id}.png")
+                        
+                        if not os.path.exists(reference_image_path):
+                            # Try fallback: {image_id}_0.png
+                            reference_image_path = os.path.join(impression_folder, f"{reference_image_id}_0.png")
+                        
+                        if os.path.exists(reference_image_path):
+                            from PIL import Image as PILImage
+                            reference_image = PILImage.open(reference_image_path)
+                            print(f"  ✅ Loaded reference image: {os.path.basename(reference_image_path)}")
+                        else:
+                            print(f"  ⚠️ Reference image not found: {reference_image_id}")
+                    else:
+                        print(f"  ⚠️ No reference image ID found in preferences.json")
+        
         # Build concepts list with format: "{location} with {label}"
         concepts = []
         for c in concepts_data:
@@ -2587,6 +2618,10 @@ def generate_slider(request: SliderGenerateRequest):
         
         print(f"  Concepts count: {len(concepts)}")
         print(f"  Weights shape: {w_cozy.shape}")
+        if reference_image:
+            print(f"  Reference image: Available (will generate 6th image with img2img)")
+        else:
+            print(f"  Reference image: Not available (will generate 5 images only)")
         
         # Create output directory for this slider
         slider_output_dir = os.path.join(session_folder, "slider", location.replace(" ", "_"))
@@ -2638,6 +2673,8 @@ def generate_slider(request: SliderGenerateRequest):
         
         import torch
         results = []
+        prompt_embeds_alpha_1 = None  # Store embeddings for alpha=1.0 to reuse for 6th image
+        
         for i, alpha in enumerate(alphas):
             print(f"\n  [{i+1}/{len(alphas)}] Alpha = {alpha:.2f}")
             
@@ -2647,10 +2684,15 @@ def generate_slider(request: SliderGenerateRequest):
                 tag_phrases=tag_phrases,
                 tag_weights=tag_weights,
                 alpha=alpha,
-                neg_phrases=neg_phrases
+                neg_phrases=neg_phrases,
+                max_negatives=8  # Allow all 8 negative phrases
             )
             
-            # Generate image using the shared pipeline
+            # Store embeddings for alpha=1.0 to reuse for 6th image
+            if alpha == 1.0:
+                prompt_embeds_alpha_1 = (prompt_embeds, pooled, neg_embeds, neg_pooled)
+            
+            # Generate image using the shared pipeline (txt2img)
             generator = torch.Generator(device=_sdxl_runner.runner.device).manual_seed(seed + i)
             
             image = _sdxl_runner.runner.pipe(
@@ -2667,12 +2709,48 @@ def generate_slider(request: SliderGenerateRequest):
             
             results.append((alpha, image, None))
         
+        # Generate 6th image with reference (alpha=1.0, img2img) - only for original location
+        if reference_image is not None and is_original_location and prompt_embeds_alpha_1 is not None:
+            print(f"\n  [6/6] Alpha = 1.0 (with reference image, img2img)")
+            
+            prompt_embeds_ref, pooled_ref, neg_embeds_ref, neg_pooled_ref = prompt_embeds_alpha_1
+            
+            # Get strength from stage config (same as refinement uses)
+            from backend.sdxl_config import get_stage_strength
+            strength = get_stage_strength('impression')
+            
+            print(f"  Using img2img mode with strength={strength}")
+            
+            # Generate image with img2img using reference
+            generator = torch.Generator(device=_sdxl_runner.runner.device).manual_seed(seed + 5)
+            
+            image_6 = _sdxl_runner.runner.generate_embeds_img2img(
+                init_image=reference_image,
+                strength=strength,
+                prompt_embeds=prompt_embeds_ref,
+                negative_prompt_embeds=neg_embeds_ref,
+                pooled_prompt_embeds=pooled_ref,
+                negative_pooled_prompt_embeds=neg_pooled_ref,
+                seed=seed + 5,
+                steps=30,
+                gscale=7.5,
+                height=1024,
+                width=1024
+            )
+            
+            results.append((1.0, image_6, "ref"))  # Alpha=1.0 with reference (flag="ref")
+            print(f"  ✅ Generated 6th image with reference")
+        
         # Save images and build response
         images = []
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         
-        for alpha, img, _ in results:
-            filename = f"alpha_{alpha:.2f}_{timestamp}.png"
+        for alpha, img, ref_flag in results:
+            # Use different filename for 6th image (with reference)
+            if ref_flag == "ref":
+                filename = f"alphaRef_{alpha:.2f}_{timestamp}.png"
+            else:
+                filename = f"alpha_{alpha:.2f}_{timestamp}.png"
             filepath = os.path.join(slider_output_dir, filename)
             img.save(filepath)
             
