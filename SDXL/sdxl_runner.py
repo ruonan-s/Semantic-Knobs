@@ -160,8 +160,9 @@ class SDXLRunner:
         tag_weights_array = np.array(tag_weights)
         
         # Add global negative constraints (no humans in interior scenes)
-        neg_phrases = ["people", "person", "human", "man", "woman", "face", "body", "portrait"]
-        
+        #neg_phrases = ["illustration", "cartoon","people", "person", "human", "man", "woman", "face", "body", "portrait"]
+        neg_phrases = ["illustration", "painted", "drawing", "cartoon", "anime", "isometric", "diorama", "miniature", "3D render", "CGI", "concept art", "stylized", "toon shading", "people", "person", "human"]
+
         if verbose:
             print(f"\n[SDXLRunner] Building embeddings (alpha={alpha})...")
             if descriptor:

@@ -187,7 +187,8 @@ class SDXLRunner:
                     break
         
         # Add global negative constraints (no humans in interior scenes)
-        global_negatives = ["people", "person", "human", "man", "woman", "face", "body", "portrait"]
+        #global_negatives = ["illustration", "anime", "cartoon", "drawing", "painted", "digital art", "concept art", "people", "person", "human", "man", "woman", "face", "body", "portrait"]
+        global_negatives = ["illustration", "painted", "drawing", "cartoon", "anime", "isometric", "diorama", "miniature", "3D render", "CGI", "concept art", "stylized", "toon shading", "people", "person", "human"]
         neg_phrases = global_negatives + neg_phrases
         
         if verbose:

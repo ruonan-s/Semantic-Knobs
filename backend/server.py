@@ -2707,7 +2707,8 @@ def generate_slider(request: SliderGenerateRequest):
             raise HTTPException(500, "SDXL pipeline not available for slider generation")
         
         import torch
-        neg_phrases = ["people", "cartoon","person", "human", "man", "woman", "face", "body", "portrait"]
+        #neg_phrases = ["illustration", "anime", "cartoon", "drawing", "painted", "digital art", "concept art", "people", "person", "human", "man", "woman", "face", "body", "portrait"]
+        neg_phrases = ["illustration", "painted", "drawing", "cartoon", "anime", "isometric", "diorama", "miniature", "3D render", "CGI", "concept art", "stylized", "toon shading", "people", "person", "human"]
         seed_base = 42
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         all_sliders = []
@@ -2744,7 +2745,7 @@ def generate_slider(request: SliderGenerateRequest):
                 tag_weights=tag_weights,
                 alpha=alpha,
                 neg_phrases=neg_phrases,
-                max_negatives=8
+                max_negatives=20
             )
             
             if alpha == 1.0:
@@ -2849,7 +2850,7 @@ def generate_slider(request: SliderGenerateRequest):
                 tag_weights=tag_weights_expl,
                 alpha=alpha,
                 neg_phrases=neg_phrases,
-                max_negatives=8
+                max_negatives=20
             )
             
             generator = torch.Generator(device=_sdxl_runner.runner.device).manual_seed(seed_base + 100 + i)
@@ -2928,7 +2929,7 @@ def generate_slider(request: SliderGenerateRequest):
                 tag_weights=tag_weights_interp,
                 alpha=1.0,  # Always use full strength for interpolated weights
                 neg_phrases=neg_phrases,
-                max_negatives=8
+                max_negatives=20
             )
             
             generator = torch.Generator(device=_sdxl_runner.runner.device).manual_seed(seed_base + 200 + i)

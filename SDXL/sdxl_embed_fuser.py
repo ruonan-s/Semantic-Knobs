@@ -160,18 +160,10 @@ class SDXLEmbedFuser:
         fused_prompt = (w * P).sum(dim=0)          # (1, L, D)
         fused_pooled = (wp * Pp).sum(dim=0)        # (1, H_pool)
 
-        # Encode negatives (simple average)
+        # Encode negatives (combined string)
         if neg_phrases and len(neg_phrases) > 0:
-            n_embeds = []
-            n_pooled = []
-            for phrase in neg_phrases:
-                ne, npool = self._encode_phrase(phrase)
-                n_embeds.append(ne)
-                n_pooled.append(npool)
-            N = torch.stack(n_embeds, dim=0)
-            Np = torch.stack(n_pooled, dim=0)
-            neg_prompt = N.mean(dim=0)             # (1, L, D)
-            neg_pooled = Np.mean(dim=0)            # (1, H_pool)
+            combined_neg = ", ".join(neg_phrases)
+            neg_prompt, neg_pooled = self._encode_phrase(combined_neg)
         else:
             # better fallback: unconditional by encoding empty string once
             empty_pos, empty_pooled = self._encode_phrase("")
@@ -226,7 +218,9 @@ class SDXLEmbedFuser:
         
         # Step 1: Encode descriptor
         if descriptor:
-            desc_prompt_embeds, desc_pooled = self._encode_phrase(descriptor)
+            # Enhance descriptor with realistic style for grounded anchor
+            enhanced_descriptor = f"{descriptor}, interior photography, photorealistic, professional photo, high quality"
+            desc_prompt_embeds, desc_pooled = self._encode_phrase(enhanced_descriptor)
         else:
             # If no descriptor, use zero embeddings
             desc_prompt_embeds = torch.zeros(1, 77, 2048, device=self.device)
@@ -263,18 +257,10 @@ class SDXLEmbedFuser:
         fused_prompt = (1 - alpha) * desc_prompt_embeds + alpha * tags_prompt_embeds
         fused_pooled = (1 - alpha) * desc_pooled + alpha * tags_pooled
         
-        # Step 4: Encode negatives (simple average)
+        # Step 4: Encode negatives (combined string)
         if neg_phrases and len(neg_phrases) > 0:
-            n_embeds = []
-            n_pooled = []
-            for phrase in neg_phrases:
-                ne, npool = self._encode_phrase(phrase)
-                n_embeds.append(ne)
-                n_pooled.append(npool)
-            N = torch.stack(n_embeds, dim=0)
-            Np = torch.stack(n_pooled, dim=0)
-            neg_prompt = N.mean(dim=0)             # (1, L, D)
-            neg_pooled = Np.mean(dim=0)            # (1, H_pool)
+            combined_neg = ", ".join(neg_phrases)
+            neg_prompt, neg_pooled = self._encode_phrase(combined_neg)
         else:
             # Fallback: unconditional by encoding empty string
             empty_pos, empty_pooled = self._encode_phrase("")

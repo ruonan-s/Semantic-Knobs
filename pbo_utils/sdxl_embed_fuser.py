@@ -85,18 +85,10 @@ class SDXLEmbedFuser:
         fused_prompt = (w * P).sum(dim=0)          # (1, L, D)
         fused_pooled = (wp * Pp).sum(dim=0)        # (1, H_pool)
 
-        # Encode negatives (simple average)
+        # Encode negatives (combined string)
         if neg_phrases and len(neg_phrases) > 0:
-            n_embeds = []
-            n_pooled = []
-            for phrase in neg_phrases:
-                ne, npool = self._encode_phrase(phrase)
-                n_embeds.append(ne)
-                n_pooled.append(npool)
-            N = torch.stack(n_embeds, dim=0)
-            Np = torch.stack(n_pooled, dim=0)
-            neg_prompt = N.mean(dim=0)             # (1, L, D)
-            neg_pooled = Np.mean(dim=0)            # (1, H_pool)
+            combined_neg = ", ".join(neg_phrases)
+            neg_prompt, neg_pooled = self._encode_phrase(combined_neg)
         else:
             # better fallback: unconditional by encoding empty string once
             empty_pos, empty_pooled = self._encode_phrase("")
