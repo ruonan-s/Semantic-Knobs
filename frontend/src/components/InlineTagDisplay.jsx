@@ -7,13 +7,19 @@ function InlineTagDisplay({ tags, imageId, onTagPreference, preferences }) {
     tagsCount: preferences?.tags?.[preferences?.currentStage]?.length || 0
   });
   
+  // Helper to normalize tag for comparison (handles whitespace/case differences)
+  const normalizeTag = (t) => t?.toLowerCase().trim() || '';
+
   // Helper to get tag preference
   const getTagPreference = (tag) => {
     const currentStage = preferences?.currentStage;
     const stageTags = preferences?.tags?.[currentStage] || [];
     
-    const found = stageTags.find(item => item.tag === tag && item.source_image === imageId);
-    console.log(`[InlineTagDisplay] getTagPreference("${tag}"):`, found?.preference || null);
+    // Use normalized comparison for robust matching
+    const normalizedTag = normalizeTag(tag);
+    const found = stageTags.find(item => 
+      normalizeTag(item.tag) === normalizedTag && item.source_image === imageId
+    );
     return found?.preference || null;
   };
 

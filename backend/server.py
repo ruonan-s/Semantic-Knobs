@@ -992,6 +992,14 @@ def feedback(req: FeedbackRequest):
                 
                 write_status(folder, "🎨 Generating images with SDXL...")
                 
+                # Load location from final_selection.json for txt2img tag prefixing
+                final_selection_file = os.path.join(folder, "final_selection.json")
+                location = None
+                if os.path.exists(final_selection_file):
+                    with open(final_selection_file, 'r') as f:
+                        final_selection = json.load(f)
+                        location = final_selection.get('location')
+                
                 # Load the selected favorite image as reference
                 selected_image_id = req.selected_image_id  # From feedback request
                 print(f"[PBO] Looking for reference image with ID: {selected_image_id}")
@@ -1053,6 +1061,7 @@ def feedback(req: FeedbackRequest):
                     verbose=False,
                     init_image=reference_image,
                     descriptor=descriptor,  # User description from session
+                    location=location,  # Location for txt2img tag prefixing
                     tracker=tracker,  # Track all generation details
                     generated_image_paths=image_paths_for_tracking
                 )

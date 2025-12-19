@@ -82,34 +82,12 @@ class StageRefiner:
             MU_high_dim.append(centroid)
 
         MU_high_dim = np.array(MU_high_dim, dtype=np.float32)  # (K, d_high)
-        d_high = MU_high_dim.shape[1]
         
-        # Store high-dim MU for potential CLIP-level analysis
-        self.MU_clip = MU_high_dim
+        # Use full-dimensional CLIP embeddings for PBO (no PCA reduction)
+        self.MU = MU_high_dim
+        self.d = self.MU.shape[1]
         
-        # Apply PCA reduction for PBO (compress to lower dimension)
-        try:
-            from sklearn.decomposition import PCA
-            
-            K, d_high = MU_high_dim.shape
-            target_dim = min(K, 15)  # e.g., if you have 20 concepts → 15D
-            
-            print(f"[StageRefiner] PCA: Reducing MU from {d_high}D to {target_dim}D")
-            
-            pca = PCA(n_components=target_dim, random_state=0)
-            MU_reduced = pca.fit_transform(MU_high_dim)  # shape (K, target_dim)
-            
-            # Optional sanity debug
-            explained_var = pca.explained_variance_ratio_.sum()
-            print(f"[StageRefiner] PCA: Explained variance ratio: {explained_var:.3f}")
-            
-            # Use reduced MU for PBO
-            self.MU = MU_reduced.astype(np.float32)  # (K, target_dim)
-            self.d = self.MU.shape[1]
-        except ImportError:
-            print("[StageRefiner] Warning: sklearn not available. Using high-dim MU without PCA.")
-            self.MU = MU_high_dim
-            self.d = self.MU.shape[1]
+        print(f"[StageRefiner] Using full-dimensional MU: {self.K} concepts, {self.d}D embeddings")
 
         # Extract concept weights (w) for warm start
         concept_weights = np.array([

@@ -1,11 +1,16 @@
 import React from 'react';
 
 function TagDrawer({ tags, onClose, onTagPreference, imageId, position, preferences }) {
+  // Helper to normalize tag for comparison (handles whitespace/case differences)
+  const normalizeTag = (t) => t?.toLowerCase().trim() || '';
+
   // Function to check if a tag has a preference
   const getTagPreference = (tag) => {
     const stageTags = preferences?.tags?.[preferences.currentStage] || [];
+    // Use normalized comparison for robust matching
+    const normalizedTag = normalizeTag(tag);
     const existingPref = stageTags.find(
-      t => t.tag === tag && t.source_image === imageId
+      t => normalizeTag(t.tag) === normalizedTag && t.source_image === imageId
     );
     return existingPref?.preference || null;
   };
