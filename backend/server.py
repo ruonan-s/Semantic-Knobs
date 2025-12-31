@@ -2025,7 +2025,7 @@ async def pbo_refine_next_round(request: RefineNextRoundRequest):
         pil_images = refiner.generate_images_from_proposals(
             proposals=proposals,
             sdxl_runner=sdxl_runner,
-            seed_base=42 + request.round_number,
+            seed_base=42,  # Fixed seed for refinement stage
             verbose=False,
             init_image=reference_image,
             descriptor=descriptor,  # User description from preferences
@@ -2270,7 +2270,7 @@ async def pbo_refine_from_weights(request: RefineFromWeightsRequest):
         pil_images = refiner.generate_images_from_proposals(
             proposals=proposals,
             sdxl_runner=sdxl_runner,
-            seed_base=42 + request.round_number,
+            seed_base=42,  # Fixed seed for refinement stage
             verbose=False,
             init_image=reference_image,
             descriptor=descriptor,
