@@ -38,6 +38,12 @@ from eval_utils import (
 # Import from main backend
 from concept_refinement import get_or_create_session as get_refinement_session, refinement_sessions
 
+# Import style transfer and baseline for LLM-based generation when applying to new locations
+LLM_SCRIPTS_PATH = Path(__file__).parent.parent / "llm_scripts"
+sys.path.insert(0, str(LLM_SCRIPTS_PATH))
+from style_transfer import generate_image_with_reference
+from baseline1 import generate_baseline_image
+
 # Create FastAPI app for eval
 app = FastAPI(title="Semantic Knobs Eval Prototype")
 
@@ -654,7 +660,7 @@ async def generate_slider_eval(request: dict):
                        "people", "person", "human"]
         
         alphas = [0.0, 0.25, 0.5, 0.75, 1.0]
-        seed_base = 42
+        seed_base = 30
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         
         results = []
@@ -748,6 +754,77 @@ async def generate_slider_eval(request: dict):
         )
         
         print(f"\n  ✅ Generated {len(slider_images)} images for eval slider")
+        
+        # ========== LLM STYLE TRANSFER (for new locations only) ==========
+        original_location = final_selection.get("location", "")
+        is_new_location = location and location != original_location
+        
+        if is_new_location:
+            print(f"\n{'='*80}")
+            print(f"[LLM STYLE TRANSFER] Applying style transfer to new location")
+            print(f"{'='*80}")
+            print(f"  Original location: {original_location}")
+            print(f"  New location: {location}")
+            
+            # Find reference image from original location's slider folder
+            original_slider_dir = os.path.join(session_folder, "slider", original_location.replace(" ", "_"))
+            reference_image_path = None
+            
+            if os.path.exists(original_slider_dir):
+                # Look for *alphaRef_1.00*.png patterns
+                import glob
+                patterns = [
+                    os.path.join(original_slider_dir, "*alphaRef_1.00*.png"),
+                    os.path.join(original_slider_dir, "*current_alphaRef_1.00*.png"),
+                    os.path.join(original_slider_dir, "eval_alphaRef_1.00*.png")
+                ]
+                
+                for pattern in patterns:
+                    matches = glob.glob(pattern)
+                    if matches:
+                        reference_image_path = matches[0]
+                        break
+            
+            if reference_image_path and os.path.exists(reference_image_path):
+                print(f"  Reference image: {os.path.basename(reference_image_path)}")
+                
+                # Build the style transfer prompt
+                style_transfer_prompt = (
+                    f"This user selected this image as their preferred example of a {adjective} {original_location}. "
+                    f"Generate a {adjective} {location} that matches this user's personal aesthetic"
+                )
+                print(f"  Prompt: {style_transfer_prompt}")
+                
+                # Output path for style transfer image
+                style_transfer_output = os.path.join(slider_output_dir, "llm_style_transfer.png")
+                
+                try:
+                    generated_path = generate_image_with_reference(
+                        input_image_path=reference_image_path,
+                        text_prompt=style_transfer_prompt,
+                        output_path=style_transfer_output
+                    )
+                    print(f"  ✅ Style transfer image saved: {os.path.basename(generated_path)}")
+                except Exception as e:
+                    print(f"  ⚠️ Style transfer failed: {str(e)}")
+            else:
+                print(f"  ⚠️ Reference image not found in {original_slider_dir}")
+            
+            # ========== LLM BASELINE (for new locations) ==========
+            print(f"\n[LLM BASELINE] Generating baseline image for new location")
+            baseline_prompt = f"{adjective} {location}"
+            print(f"  Prompt: {baseline_prompt}")
+            
+            try:
+                baseline_output = os.path.join(slider_output_dir, "llm_baseline.png")
+                generated_baseline = generate_baseline_image(
+                    user_input=baseline_prompt,
+                    output_folder=slider_output_dir,
+                    output_filename="llm_baseline.png"
+                )
+                print(f"  ✅ Baseline image saved: llm_baseline.png")
+            except Exception as e:
+                print(f"  ⚠️ Baseline generation failed: {str(e)}")
         
         return {
             "success": True,

@@ -1,0 +1,70 @@
+{
+  "user_id": "anonymous",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_cozy_bedroom_sample_2026-01-01_23-13-01",
+  "created_at": "2026-01-01T23:13:01.086265",
+  "events": [
+    {
+      "timestamp": "2026-01-01T23:13:01.086269",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "cozy_bedroom_sample"
+      }
+    },
+    {
+      "timestamp": "2026-01-01T23:13:39.560729",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_1_0",
+        "concept_count": 25
+      }
+    },
+    {
+      "timestamp": "2026-01-01T23:13:41.161073",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-01T23:14:53.271457",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 6
+      }
+    },
+    {
+      "timestamp": "2026-01-01T23:15:01.674686",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "kitchen",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-01T23:15:55.390727",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 5
+      }
+    },
+    {
+      "timestamp": "2026-01-01T23:17:16.366311",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "coffeeshop",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-01T23:18:09.745429",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 5
+      }
+    }
+  ]
+}

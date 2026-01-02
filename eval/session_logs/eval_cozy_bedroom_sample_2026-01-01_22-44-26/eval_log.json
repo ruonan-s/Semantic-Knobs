@@ -1,0 +1,54 @@
+{
+  "user_id": "anonymous",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_cozy_bedroom_sample_2026-01-01_22-44-26",
+  "created_at": "2026-01-01T22:44:26.019256",
+  "events": [
+    {
+      "timestamp": "2026-01-01T22:44:26.019261",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "cozy_bedroom_sample"
+      }
+    },
+    {
+      "timestamp": "2026-01-01T22:44:29.096003",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_1_0",
+        "concept_count": 25
+      }
+    },
+    {
+      "timestamp": "2026-01-01T22:44:30.391856",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-01T22:45:31.493016",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 6
+      }
+    },
+    {
+      "timestamp": "2026-01-01T22:45:55.878773",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "restaurant",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-01T22:46:49.324025",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 5
+      }
+    }
+  ]
+}
