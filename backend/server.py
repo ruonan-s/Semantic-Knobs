@@ -42,6 +42,26 @@ _slider_fuser = None  # SDXL folder's fuser for slider (shares pipeline with _sd
 _pbo_refiners = {}
 
 
+def normalize_tags(tags) -> list:
+    """
+    Normalize tags to a flat list of strings.
+    
+    Handles both:
+    - Old format: list of strings ["tag1", "tag2", ...]
+    - New format: dict with categories {"overall_style": [...], "material_world": [...], "ambient_medium": [...]}
+    """
+    if isinstance(tags, list):
+        return [str(tag) for tag in tags if tag]
+    elif isinstance(tags, dict):
+        flat_tags = []
+        for category in ["overall_style", "material_world", "ambient_medium", "visual_elements"]:
+            category_tags = tags.get(category, [])
+            if isinstance(category_tags, list):
+                flat_tags.extend([str(tag) for tag in category_tags if tag])
+        return flat_tags
+    return []
+
+
 def clear_pbo_cache_for_session(session_id: str) -> int:
     """
     Clear all PBO refiner cache entries for a given session.
@@ -449,7 +469,7 @@ def get_tags(req: TagsRequest):
         print(f"Looking for filename: {image_filename}")
         
         if image_filename in visual_tags_data:
-            tags = visual_tags_data[image_filename]
+            tags = normalize_tags(visual_tags_data[image_filename])
             print(f"Found {len(tags)} tags for {image_filename}: {tags}")
             return {"tags": tags}
         else:
@@ -508,7 +528,7 @@ def init_concepts(req: ConceptInitRequest):
         for image_id in req.image_ids:
             image_filename = f"{image_id}.png"
             if image_filename in visual_tags_data:
-                image_tags[image_id] = visual_tags_data[image_filename]
+                image_tags[image_id] = normalize_tags(visual_tags_data[image_filename])
             else:
                 image_tags[image_id] = []
         
@@ -956,7 +976,7 @@ def feedback(req: FeedbackRequest):
                 for image_id in exploration_images:
                     image_filename = f"{image_id}.png"
                     if image_filename in visual_tags_data:
-                        image_tags[image_id] = visual_tags_data[image_filename]
+                        image_tags[image_id] = normalize_tags(visual_tags_data[image_filename])
                     else:
                         image_tags[image_id] = []
                 

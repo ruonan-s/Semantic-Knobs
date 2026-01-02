@@ -1,0 +1,29 @@
+{
+  "user_id": "anonymous",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_cozy_bedroom_sample_2026-01-01_21-43-10",
+  "created_at": "2026-01-01T21:43:10.426953",
+  "events": [
+    {
+      "timestamp": "2026-01-01T21:43:10.426958",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "cozy_bedroom_sample"
+      }
+    },
+    {
+      "timestamp": "2026-01-01T21:43:15.784799",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-01T21:43:16.545411",
+      "type": "slider_generation_error",
+      "data": {
+        "error": "cannot import name 'SDXLEmbedFuserSlider' from 'SDXL.sdxl_embed_fuser' (/home/nancy/Semantic-Knobs/SDXL/../SDXL/sdxl_embed_fuser.py)"
+      }
+    }
+  ]
+}

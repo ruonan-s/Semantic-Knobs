@@ -1,0 +1,37 @@
+{
+  "user_id": "anonymous",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_cozy_bedroom_sample_2026-01-01_21-38-19",
+  "created_at": "2026-01-01T21:38:19.048008",
+  "events": [
+    {
+      "timestamp": "2026-01-01T21:38:19.048024",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "cozy_bedroom_sample"
+      }
+    },
+    {
+      "timestamp": "2026-01-01T21:38:21.343362",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_1_0",
+        "concept_count": 25
+      }
+    },
+    {
+      "timestamp": "2026-01-01T21:38:22.214078",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-01T21:38:23.177124",
+      "type": "slider_generation_error",
+      "data": {
+        "error": "cannot import name 'SDXLEmbedFuserSlider' from 'SDXL.sdxl_embed_fuser' (/home/nancy/Semantic-Knobs/SDXL/../SDXL/sdxl_embed_fuser.py)"
+      }
+    }
+  ]
+}

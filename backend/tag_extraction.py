@@ -152,19 +152,67 @@ prompt_ambient_v1 = '''
         "inspiring brightness"
     ]
     }'''
-prompt_impression= '''
-Extract 12 distinct visual descriptive tags that capture the overall character of this space, including style, materials, lighting, layout, and atmosphere. 
-Tags should be short phrases that work together to describe the complete visual experience.
-Format as JSON:
-{
-"visual_elements": [
-    "tag1",
-    "tag2",
-    ...,
-    "tag12"
-]
-}
+
+
+prompt_general= '''
+    Extract 12 distinct visual descriptive tags that capture the overall character of this space, including style, materials, lighting, layout, and atmosphere. 
+    Tags should be short phrases that work together to describe the complete visual experience.
+    Format as JSON:
+    {
+    "visual_elements": [
+        "tag1",
+        "tag2",
+        ...,
+        "tag12"
+    ]
+    }'''
+
+prompt_impression = '''
+    Analyze the attached image and extract exactly 12 visual descriptive tags that together describe the full visual experience of the space.
+
+    The 12 tags MUST be evenly divided into the following categories:
+    - 4 Overall Style tags
+    - 4 Material World (object / material) tags
+    - 4 Ambient Medium (lighting / atmosphere) tags
+
+    Category definitions:
+    - Overall Style: The dominant aesthetic, design language, visual character, and stylistic mood of the space.
+    Include style cues, vibe, location flavor, and functional character.
+    EXCLUDE lighting specifics, spatial layout, and exact object placement.
+    - Material World: Physical objects, materials, finishes, and arrangement cues.
+    Focus on visually prominent elements; avoid lighting or abstract mood terms.
+    - Ambient Medium: Light sources, light quality, environmental context, and atmospheric conditions.
+    Focus on illumination and environmental mood, not objects or layout.
+
+    Each tag should be:
+    - A short phrase (2–5 words)
+    - Visually grounded and non-redundant
+    - Strictly category-consistent (do not mix concepts across categories)
+
+    Format as JSON:
+    {
+    "overall_style": [
+        "style tag 1",
+        "style tag 2",
+        "style tag 3",
+        "style tag 4"
+    ],
+    "material_world": [
+        "material tag 1",
+        "material tag 2",
+        "material tag 3",
+        "material tag 4"
+    ],
+    "ambient_medium": [
+        "ambient tag 1",
+        "ambient tag 2",
+        "ambient tag 3",
+        "ambient tag 4"
+    ]
+    }
 '''
+
+
 prompt_impression_only = '''
 Analyze the attached image and identify Core Impression elements — the foundational style, location, and mood-defining features.
 
@@ -333,7 +381,17 @@ def extract_visual_elements_from_image(image_path: str, prompt: str, max_retries
             if not isinstance(result, dict):
                 tags = []
             else:
-                tags = result.get("visual_elements", [])
+                # Handle new categorized format (overall_style, material_world, ambient_medium)
+                if "overall_style" in result or "material_world" in result or "ambient_medium" in result:
+                    tags = []
+                    for category in ["overall_style", "material_world", "ambient_medium"]:
+                        category_tags = result.get(category, [])
+                        if isinstance(category_tags, list):
+                            tags.extend(category_tags)
+                else:
+                    # Handle old format (visual_elements)
+                    tags = result.get("visual_elements", [])
+                
                 if not isinstance(tags, list):
                     tags = []
                 # Ensure all tags are strings
@@ -358,6 +416,33 @@ def extract_visual_elements_from_image(image_path: str, prompt: str, max_retries
     print(f"Final error: {error_msg}")
     
     # Return empty list instead of raising error to prevent blocking the UI
+    return []
+
+
+def normalize_tags(tags) -> List[str]:
+    """
+    Normalize tags to a flat list of strings.
+    
+    Handles both:
+    - Old format: list of strings ["tag1", "tag2", ...]
+    - New format: dict with categories {"overall_style": [...], "material_world": [...], "ambient_medium": [...]}
+    
+    Args:
+        tags: Either a list of strings or a dict with categorized tags
+    
+    Returns:
+        Flat list of tag strings
+    """
+    if isinstance(tags, list):
+        return [str(tag) for tag in tags if tag]
+    elif isinstance(tags, dict):
+        # Handle categorized format
+        flat_tags = []
+        for category in ["overall_style", "material_world", "ambient_medium", "visual_elements"]:
+            category_tags = tags.get(category, [])
+            if isinstance(category_tags, list):
+                flat_tags.extend([str(tag) for tag in category_tags if tag])
+        return flat_tags
     return []
 
 
