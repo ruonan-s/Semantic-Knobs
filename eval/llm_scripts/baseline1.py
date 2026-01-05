@@ -12,8 +12,8 @@ from util import call_gemini_api_img, sanitize_folder_name
 # ============================================
 # PROMPTS - Modify these variables as needed
 # ============================================
-USER_INPUT = "Cozy bedroom"
-SYSTEM_PROMPT = "A realistic image"
+USER_INPUT = "Cozy Home Gym"
+SYSTEM_PROMPT = "A photorealistic interior photo, full room view, high fidelity"
 
 def generate_baseline_image(
     user_input: str = USER_INPUT,
