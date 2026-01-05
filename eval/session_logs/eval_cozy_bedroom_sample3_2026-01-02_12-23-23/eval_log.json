@@ -1,0 +1,39 @@
+{
+  "user_id": "anonymous",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_cozy_bedroom_sample3_2026-01-02_12-23-23",
+  "created_at": "2026-01-02T12:23:23.916190",
+  "events": [
+    {
+      "timestamp": "2026-01-02T12:23:23.916195",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "cozy_bedroom_sample3"
+      }
+    },
+    {
+      "timestamp": "2026-01-02T12:24:37.344850",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_0_0",
+        "concept_count": 3,
+        "gp_mode": true
+      }
+    },
+    {
+      "timestamp": "2026-01-02T12:24:38.933065",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-02T12:25:56.476654",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 6
+      }
+    }
+  ]
+}

@@ -38,6 +38,13 @@ from eval_utils import (
 # Import from main backend
 from concept_refinement import get_or_create_session as get_refinement_session, refinement_sessions
 
+# Import GP exploration system
+from gp_session import get_or_create_gp_session, gp_exploration_sessions, GPExplorationSession
+
+# ============== Mode Toggle ==============
+# Set to True to use GP-based preference learning, False for original softmax approach
+USE_GP_EXPLORATION = True
+
 # Import style transfer and baseline for LLM-based generation when applying to new locations
 LLM_SCRIPTS_PATH = Path(__file__).parent.parent / "llm_scripts"
 sys.path.insert(0, str(LLM_SCRIPTS_PATH))
@@ -254,11 +261,23 @@ def skip_to_slider(request: SkipToSliderRequest):
             raise HTTPException(404, f"Session not found: {request.session_id}")
         
         session_folder = session["folder"]
+        use_gp = session.get("use_gp", USE_GP_EXPLORATION)
         
         # Save concept weights before generating final_selection
-        # This ensures the exploration weights are saved
         key = f"{request.session_id}_impression"
-        if key in refinement_sessions:
+        
+        if use_gp and key in gp_exploration_sessions:
+            # IMPORTANT: Trigger GP fitting before saving weights
+            # This trains the GP on all accumulated tag preferences
+            gp_session = gp_exploration_sessions[key]
+            print(f"[EVAL] Triggering GP fitting for {request.session_id}...")
+            gp_session.process_round_manually()
+            
+            # Now save the trained weights
+            gp_session.save_raw_tag_weights(session_folder)
+            print(f"[EVAL] Saved GP raw tag weights (top-10 with dedup) for {request.session_id}")
+        elif key in refinement_sessions:
+            # Save original refinement weights
             refinement_session = refinement_sessions[key]
             refinement_session.save_concept_weights(session_folder)
             print(f"[EVAL] Saved exploration concept weights for {request.session_id}")
@@ -291,16 +310,18 @@ def skip_to_slider(request: SkipToSliderRequest):
             "skip_to_slider",
             {
                 "selected_image_id": request.selected_image_id,
-                "concept_count": final_selection.get("summary", {}).get("total_concepts", 0)
+                "concept_count": final_selection.get("summary", {}).get("total_concepts", 0),
+                "gp_mode": use_gp
             }
         )
         
+        mode_str = "GP" if use_gp else "original"
         print(f"[EVAL] Skipping refinement for session: {request.session_id}")
-        print(f"  Using exploration weights directly for slider generation")
+        print(f"  Using {mode_str} exploration weights directly for slider generation")
         
         return SkipToSliderResponse(
             success=True,
-            message="Generated final_selection from exploration weights. Ready for slider generation.",
+            message=f"Generated final_selection from {mode_str} exploration weights. Ready for slider generation.",
             next_stage="slider_generation"
         )
         
@@ -313,26 +334,35 @@ def skip_to_slider(request: SkipToSliderRequest):
         raise HTTPException(500, str(e))
 
 
-@app.get("/api/eval/status/{session_id}", response_model=EvalStatusResponse)
+@app.get("/api/eval/status/{session_id}")
 def get_eval_status(session_id: str):
     """Get the status of an evaluation session."""
     session = eval_sessions.get(session_id)
     if not session:
         raise HTTPException(404, f"Session not found: {session_id}")
     
-    # Check concept system state
+    use_gp = session.get("use_gp", USE_GP_EXPLORATION)
     key = f"{session_id}_impression"
-    concepts_initialized = key in refinement_sessions
-    concept_count = 0
-    if concepts_initialized:
-        concept_count = len(refinement_sessions[key].concepts)
     
-    return EvalStatusResponse(
-        session_id=session_id,
-        stage="impression",
-        concepts_initialized=concepts_initialized,
-        concept_count=concept_count
-    )
+    # Check concept system state
+    if use_gp and key in gp_exploration_sessions:
+        gp_session = gp_exploration_sessions[key]
+        concepts_initialized = gp_session.initialized
+        concept_count = len(gp_session.get_concepts())
+    elif key in refinement_sessions:
+        concepts_initialized = True
+        concept_count = len(refinement_sessions[key].concepts)
+    else:
+        concepts_initialized = False
+        concept_count = 0
+    
+    return {
+        "session_id": session_id,
+        "stage": "impression",
+        "concepts_initialized": concepts_initialized,
+        "concept_count": concept_count,
+        "gp_mode": use_gp
+    }
 
 
 # ============== Proxy endpoints to main backend ==============
@@ -340,14 +370,11 @@ def get_eval_status(session_id: str):
 
 @app.post("/api/concepts/init")
 async def proxy_concepts_init(request: dict):
-    """Initialize concepts - proxied from main backend."""
-    from concept_refinement import (
-        build_concepts, compute_weights, RawTag, Concept, ConceptState
-    )
-    
+    """Initialize concepts - proxied from main backend or GP system."""
     session_id = request.get("session_id")
     stage = request.get("stage", "impression")
     image_ids = request.get("image_ids", [])
+    use_gp = request.get("use_gp", USE_GP_EXPLORATION)  # Can override via request
     
     session = eval_sessions.get(session_id)
     if not session:
@@ -377,16 +404,39 @@ async def proxy_concepts_init(request: dict):
                     flat_tags.extend(tags.get(category, []))
                 image_tags[image_id] = flat_tags
     
-    # Get or create refinement session (must pass image_ids)
-    key = f"{session_id}_{stage}"
-    refinement_session = get_refinement_session(session_id, stage, image_ids)
-    
-    if not refinement_session.initialized:
-        refinement_session.initialize_from_tags(image_tags)
-        # Save initial weights
-        refinement_session.save_concept_weights(session_folder)
-    
-    state_dict = refinement_session.to_dict()
+    if use_gp:
+        # Use GP-based exploration
+        print(f"[EVAL] Using GP exploration mode for session {session_id}")
+        gp_session = get_or_create_gp_session(session_id, stage, image_ids)
+        
+        if not gp_session.initialized:
+            gp_session.initialize_from_tags(image_tags)
+            # Save initial weights
+            gp_session.save_raw_tag_weights(session_folder)
+        
+        state_dict = gp_session.to_dict()
+        
+        # Store GP mode flag in session
+        session["use_gp"] = True
+    else:
+        # Use original refinement session
+        print(f"[EVAL] Using original refinement mode for session {session_id}")
+        from concept_refinement import (
+            build_concepts, compute_weights, RawTag, Concept, ConceptState
+        )
+        
+        key = f"{session_id}_{stage}"
+        refinement_session = get_refinement_session(session_id, stage, image_ids)
+        
+        if not refinement_session.initialized:
+            refinement_session.initialize_from_tags(image_tags)
+            # Save initial weights
+            refinement_session.save_concept_weights(session_folder)
+        
+        state_dict = refinement_session.to_dict()
+        
+        # Store GP mode flag in session
+        session["use_gp"] = False
     
     return {
         "success": True,
@@ -394,13 +444,14 @@ async def proxy_concepts_init(request: dict):
         "categorized": state_dict["categorized"],
         "image_effects": state_dict["image_effects"],
         "incidence_matrix": state_dict.get("incidence_matrix", {}),
-        "tag_preferences": state_dict.get("tag_preferences", {})
+        "tag_preferences": state_dict.get("tag_preferences", {}),
+        "gp_mode": use_gp
     }
 
 
 @app.post("/api/concepts/interact")
 async def proxy_concepts_interact(request: dict):
-    """Handle tag interaction - proxied from main backend."""
+    """Handle tag interaction - proxied from main backend or GP system."""
     session_id = request.get("session_id")
     stage = request.get("stage", "impression")
     tag_id = request.get("tag_id")
@@ -411,29 +462,46 @@ async def proxy_concepts_interact(request: dict):
         raise HTTPException(404, f"Session not found: {session_id}")
     
     key = f"{session_id}_{stage}"
-    if key not in refinement_sessions:
-        raise HTTPException(404, "Refinement session not found")
+    use_gp = session.get("use_gp", USE_GP_EXPLORATION)
     
-    refinement_session = refinement_sessions[key]
-    refinement_session.handle_tag_click(tag_id, preference)
-    
-    # Save updated weights
-    refinement_session.save_concept_weights(session["folder"])
-    
-    state_dict = refinement_session.to_dict()
+    if use_gp and key in gp_exploration_sessions:
+        # Use GP session
+        gp_session = gp_exploration_sessions[key]
+        gp_session.handle_tag_click(tag_id, preference)
+        
+        # Note: GP doesn't refit on every tag click for performance
+        # Refitting happens on image selection or explicit process_round
+        
+        # Save updated weights
+        gp_session.save_raw_tag_weights(session["folder"])
+        
+        state_dict = gp_session.to_dict()
+    else:
+        # Use original refinement session
+        if key not in refinement_sessions:
+            raise HTTPException(404, "Refinement session not found")
+        
+        refinement_session = refinement_sessions[key]
+        refinement_session.handle_tag_click(tag_id, preference)
+        
+        # Save updated weights
+        refinement_session.save_concept_weights(session["folder"])
+        
+        state_dict = refinement_session.to_dict()
     
     return {
         "success": True,
         "concepts": state_dict["concepts"],
         "categorized": state_dict["categorized"],
         "image_effects": state_dict["image_effects"],
-        "tag_preferences": state_dict.get("tag_preferences", {})
+        "tag_preferences": state_dict.get("tag_preferences", {}),
+        "gp_mode": use_gp
     }
 
 
 @app.post("/api/concepts/select-image")
 async def proxy_select_image(request: dict):
-    """Handle image selection - proxied from main backend."""
+    """Handle image selection - proxied from main backend or GP system."""
     session_id = request.get("session_id")
     stage = request.get("stage", "impression")
     image_id = request.get("image_id")
@@ -444,23 +512,37 @@ async def proxy_select_image(request: dict):
         raise HTTPException(404, f"Session not found: {session_id}")
     
     key = f"{session_id}_{stage}"
-    if key not in refinement_sessions:
-        raise HTTPException(404, "Refinement session not found")
+    use_gp = session.get("use_gp", USE_GP_EXPLORATION)
     
-    refinement_session = refinement_sessions[key]
-    refinement_session.handle_image_selection(image_id, boost_amount)
-    
-    # Save updated weights
-    refinement_session.save_concept_weights(session["folder"])
-    
-    state_dict = refinement_session.to_dict()
+    if use_gp and key in gp_exploration_sessions:
+        # Use GP session - this triggers GP fitting
+        gp_session = gp_exploration_sessions[key]
+        gp_session.handle_image_selection(image_id, boost_amount)
+        
+        # Save updated weights
+        gp_session.save_raw_tag_weights(session["folder"])
+        
+        state_dict = gp_session.to_dict()
+    else:
+        # Use original refinement session
+        if key not in refinement_sessions:
+            raise HTTPException(404, "Refinement session not found")
+        
+        refinement_session = refinement_sessions[key]
+        refinement_session.handle_image_selection(image_id, boost_amount)
+        
+        # Save updated weights
+        refinement_session.save_concept_weights(session["folder"])
+        
+        state_dict = refinement_session.to_dict()
     
     return {
         "success": True,
         "concepts": state_dict["concepts"],
         "categorized": state_dict["categorized"],
         "image_effects": state_dict["image_effects"],
-        "tag_preferences": state_dict.get("tag_preferences", {})
+        "tag_preferences": state_dict.get("tag_preferences", {}),
+        "gp_mode": use_gp
     }
 
 
@@ -859,6 +941,52 @@ _eval_sdxl_runner = None
 _eval_slider_fuser = None
 
 
+# ============== GP-specific endpoints ==============
+
+@app.post("/api/concepts/process-round")
+async def process_gp_round(request: dict):
+    """
+    Manually trigger GP processing of current interaction state.
+    
+    This is useful when you want to update the GP model without selecting an image.
+    Only has effect in GP mode.
+    """
+    session_id = request.get("session_id")
+    stage = request.get("stage", "impression")
+    
+    session = eval_sessions.get(session_id)
+    if not session:
+        raise HTTPException(404, f"Session not found: {session_id}")
+    
+    key = f"{session_id}_{stage}"
+    use_gp = session.get("use_gp", USE_GP_EXPLORATION)
+    
+    if not use_gp or key not in gp_exploration_sessions:
+        return {
+            "success": False,
+            "message": "GP mode not active for this session",
+            "gp_mode": False
+        }
+    
+    gp_session = gp_exploration_sessions[key]
+    concepts = gp_session.process_round_manually()
+    
+    # Save updated weights
+    gp_session.save_raw_tag_weights(session["folder"])
+    
+    state_dict = gp_session.to_dict()
+    
+    return {
+        "success": True,
+        "concepts": state_dict["concepts"],
+        "categorized": state_dict["categorized"],
+        "image_effects": state_dict["image_effects"],
+        "tag_preferences": state_dict.get("tag_preferences", {}),
+        "gp_mode": True,
+        "n_concepts": len(concepts)
+    }
+
+
 # ============== Health check ==============
 
 @app.get("/api/health")
@@ -868,7 +996,9 @@ def health_check():
         "status": "ok",
         "service": "eval_server",
         "predefined_sessions": len(list_predefined_sessions(str(PREDEFINED_INPUT_DIR))),
-        "active_sessions": len(eval_sessions)
+        "active_sessions": len(eval_sessions),
+        "gp_exploration_enabled": USE_GP_EXPLORATION,
+        "active_gp_sessions": len(gp_exploration_sessions)
     }
 
 

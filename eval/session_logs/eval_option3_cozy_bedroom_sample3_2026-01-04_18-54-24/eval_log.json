@@ -1,0 +1,55 @@
+{
+  "user_id": "option3",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_option3_cozy_bedroom_sample3_2026-01-04_18-54-24",
+  "created_at": "2026-01-04T18:54:24.602538",
+  "events": [
+    {
+      "timestamp": "2026-01-04T18:54:24.602544",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "cozy_bedroom_sample3"
+      }
+    },
+    {
+      "timestamp": "2026-01-04T18:55:20.805277",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_0_0",
+        "concept_count": 10,
+        "gp_mode": true
+      }
+    },
+    {
+      "timestamp": "2026-01-04T18:56:06.827832",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-04T18:57:24.390052",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 6
+      }
+    },
+    {
+      "timestamp": "2026-01-04T18:58:14.521847",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "kitchen",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-04T18:59:07.964290",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 5
+      }
+    }
+  ]
+}

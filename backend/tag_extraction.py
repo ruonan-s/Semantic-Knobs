@@ -154,7 +154,7 @@ prompt_ambient_v1 = '''
     }'''
 
 
-prompt_general= '''
+prompt_impression= '''
     Extract 12 distinct visual descriptive tags that capture the overall character of this space, including style, materials, lighting, layout, and atmosphere. 
     Tags should be short phrases that work together to describe the complete visual experience.
     Format as JSON:
@@ -167,7 +167,7 @@ prompt_general= '''
     ]
     }'''
 
-prompt_impression = '''
+prompt_impression_v3 = '''
     Analyze the attached image and extract exactly 12 visual descriptive tags that together describe the full visual experience of the space.
 
     The 12 tags MUST be evenly divided into the following categories:

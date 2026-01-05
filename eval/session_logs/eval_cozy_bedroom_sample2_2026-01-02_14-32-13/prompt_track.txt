@@ -1,0 +1,160 @@
+================================================================================
+PROMPT TRACKING LOG
+Session Started: 2026-01-02 10:49:19
+Session Folder: [fast]_cozy_bedroom_2026-01-02_10-49-19
+Session Type: sequential_parallel_images
+User Description: cozy bedroom
+================================================================================
+
+This file tracks all inputs sent to LLMs during this session.
+Each entry shows:
+- LEVEL: DESIGNER (for JSON concept generation) or GENERATOR (for image generation)
+- PURPOSE: Specific stage/mode (e.g., impression_design_sequential, final_generation_mode2)
+- LLM API INPUT: The final structured input sent to the LLM API
+- ADDITIONAL INFO: Context like attempt numbers, tag counts, reference images, etc.
+
+
+================================================================================
+[2026-01-02 10:49:27] DESIGNER - impression_design_sequential
+================================================================================
+LLM API INPUT:
+----------------------------------------
+[USER DESCRIPTION]cozy bedroom[/USER DESCRIPTION]
+
+ADDITIONAL INFO:
+----------------------------------------
+Attempt: 1/3, Mode: Sequential
+
+================================================================================
+
+================================================================================
+[2026-01-02 10:49:30] GENERATOR - impression_generation_sequential_scene_2
+================================================================================
+LLM API INPUT:
+----------------------------------------
+Model: gemini-2.0-flash-exp-image-generation
+User Input: [DESIGN_CONCEPT]{"concept_name": "Eclectic Bohemian Haven", "user_description": "cozy bedroom", "overall_style": "Bohemian Maximalism / Global Inspired", "style_characteristics": "Layered textures with diverse patterns and global influences (kilim rugs, macrame, woven throws); mix-and-match furniture and decor from different eras/cultures; warm, rich, and earthy color palettes with pops of vibrant color; abundant natural plants; soft, low-level lighting; personalized and collected feel.", "design_intent": "To create a highly personalized, lived-in, and richly textured space that tells a story. The goal is an informal, inviting environment that feels intuitively comfortable, inspiring creativity and a sense of wanderlust while remaining a deeply personal retreat.", "design_rationale": "This interpretation offers a 'cozy' that is rich in visual interest, personal narrative, and sensory stimulation. It stands apart by embracing a maximalist approach to texture, pattern, and collected items, providing a warm, free-spirited, and deeply unique aesthetic that feels both authentic and enveloping."}[/DESIGN_CONCEPT]
+[DESCRIPTION]cozy bedroom[/DESCRIPTION]
+[USER_PREFERENCE]{}[/USER_PREFERENCE]
+System Prompt: 
+Generate a beautiful first-person interior view (aspect_ratio="16:9") showing the style and location foundation. No text.
+
+    Inputs:
+    - User description: [DESCRIPTION][/DESCRIPTION]
+    - Foundation design: [DESIGN_CONCEPT][/DESIGN_CONCEPT]
+
+    Create an image that establishes the style foundation:
+    - Shows the OVERALL STYLE clearly
+    - Demonstrates the LOCATION CONTEXT  
+    - Expresses the STYLE CHARACTERISTICS
+    - Reflects the DESIGN INTENT
+
+    Focus on beautiful representation of the style direction and location context.
+    Output: Beautiful interior image only.
+
+Config: response_modalities=['IMAGE', 'TEXT']
+
+ADDITIONAL INFO:
+----------------------------------------
+Generating 1 image with prefix: impression_2, Mode: sequential, Stage: impression, Scene: 2
+
+================================================================================
+
+================================================================================
+[2026-01-02 10:49:31] GENERATOR - impression_generation_sequential_scene_1
+================================================================================
+LLM API INPUT:
+----------------------------------------
+Model: gemini-2.0-flash-exp-image-generation
+User Input: [DESIGN_CONCEPT]{"concept_name": "Serene Minimalist Hygge", "user_description": "cozy bedroom", "overall_style": "Scandinavian Modern / Japandi", "style_characteristics": "Clean lines, uncluttered spaces; natural materials such as light wood, linen, wool, and ceramic; muted, earthy color palettes (whites, greys, beige, soft greens); strategic use of soft, ambient lighting; emphasis on texture for warmth rather than excessive ornamentation; functional simplicity.", "design_intent": "To achieve coziness through simplicity, natural light, and a connection to nature. This style aims to create a calm, organized, and tranquil retreat that promotes mental well-being and a sense of quiet comfort, reflecting the concept of 'Hygge'.", "design_rationale": "This style provides a distinct solution by reinterpreting 'cozy' through subtraction and intention. Unlike more maximalist styles, it proves that warmth and comfort can be found in clean lines and essential elements, offering a serene, uncluttered aesthetic that appeals to those seeking peace and order."}[/DESIGN_CONCEPT]
+[DESCRIPTION]cozy bedroom[/DESCRIPTION]
+[USER_PREFERENCE]{}[/USER_PREFERENCE]
+System Prompt: 
+Generate a beautiful first-person interior view (aspect_ratio="16:9") showing the style and location foundation. No text.
+
+    Inputs:
+    - User description: [DESCRIPTION][/DESCRIPTION]
+    - Foundation design: [DESIGN_CONCEPT][/DESIGN_CONCEPT]
+
+    Create an image that establishes the style foundation:
+    - Shows the OVERALL STYLE clearly
+    - Demonstrates the LOCATION CONTEXT  
+    - Expresses the STYLE CHARACTERISTICS
+    - Reflects the DESIGN INTENT
+
+    Focus on beautiful representation of the style direction and location context.
+    Output: Beautiful interior image only.
+
+Config: response_modalities=['IMAGE', 'TEXT']
+
+ADDITIONAL INFO:
+----------------------------------------
+Generating 1 image with prefix: impression_1, Mode: sequential, Stage: impression, Scene: 1
+
+================================================================================
+
+================================================================================
+[2026-01-02 10:49:31] GENERATOR - impression_generation_sequential_scene_3
+================================================================================
+LLM API INPUT:
+----------------------------------------
+Model: gemini-2.0-flash-exp-image-generation
+User Input: [DESIGN_CONCEPT]{"concept_name": "Urban Industrial Warmth", "user_description": "cozy bedroom", "overall_style": "Refined Industrial Loft", "style_characteristics": "Contrast between raw industrial elements (exposed brick, concrete, metal accents) and soft, luxurious textures (plush rugs, velvet upholstery, warm wood); moody, darker color palettes (charcoal, navy, deep forest green) offset by warm lighting; oversized art or statement pieces; clean, strong lines with an emphasis on durable materials.", "design_intent": "To transform a potentially stark urban environment into a surprisingly intimate and stylish retreat. The design aims to create a 'cozy' feel through the juxtaposition of tough exteriors and soft interiors, providing a sense of sophisticated comfort and a protective sanctuary within a city setting.", "design_rationale": "This style offers a distinct and contemporary interpretation of 'cozy' by integrating traditionally 'un-cozy' elements like industrial finishes. It demonstrates that warmth and comfort can emerge from contrast and sophisticated material play, appealing to those who appreciate a modern, edgy, yet deeply inviting aesthetic."}[/DESIGN_CONCEPT]
+[DESCRIPTION]cozy bedroom[/DESCRIPTION]
+[USER_PREFERENCE]{}[/USER_PREFERENCE]
+System Prompt: 
+Generate a beautiful first-person interior view (aspect_ratio="16:9") showing the style and location foundation. No text.
+
+    Inputs:
+    - User description: [DESCRIPTION][/DESCRIPTION]
+    - Foundation design: [DESIGN_CONCEPT][/DESIGN_CONCEPT]
+
+    Create an image that establishes the style foundation:
+    - Shows the OVERALL STYLE clearly
+    - Demonstrates the LOCATION CONTEXT  
+    - Expresses the STYLE CHARACTERISTICS
+    - Reflects the DESIGN INTENT
+
+    Focus on beautiful representation of the style direction and location context.
+    Output: Beautiful interior image only.
+
+Config: response_modalities=['IMAGE', 'TEXT']
+
+ADDITIONAL INFO:
+----------------------------------------
+Generating 1 image with prefix: impression_3, Mode: sequential, Stage: impression, Scene: 3
+
+================================================================================
+
+================================================================================
+[2026-01-02 10:49:32] GENERATOR - impression_generation_sequential_scene_0
+================================================================================
+LLM API INPUT:
+----------------------------------------
+Model: gemini-2.0-flash-exp-image-generation
+User Input: [DESIGN_CONCEPT]{"concept_name": "Timeless Plush Comfort", "user_description": "cozy bedroom", "overall_style": "Traditional European Comfort", "style_characteristics": "Rich, layered textiles like velvet, wool, and heavy cotton; antique or classic furniture silhouettes; warm, muted color palettes (creams, muted greens, deep blues, soft greys); ornate details; soft, diffused lighting from lamps and sconces; inviting plushness.", "design_intent": "To evoke a sense of heritage and enduring warmth, creating a bedroom that feels like a classic, well-loved sanctuary. The emphasis is on deep comfort, visual softness, and an enveloping atmosphere that encourages relaxation and rest.", "design_rationale": "This interpretation offers a classic, universally understood approach to 'cozy' by leaning into established comfort elements. It distinguishes itself through its embrace of traditional elegance and opulent textures, providing a distinct contrast to modern minimalist or eclectic approaches."}[/DESIGN_CONCEPT]
+[DESCRIPTION]cozy bedroom[/DESCRIPTION]
+[USER_PREFERENCE]{}[/USER_PREFERENCE]
+System Prompt: 
+Generate a beautiful first-person interior view (aspect_ratio="16:9") showing the style and location foundation. No text.
+
+    Inputs:
+    - User description: [DESCRIPTION][/DESCRIPTION]
+    - Foundation design: [DESIGN_CONCEPT][/DESIGN_CONCEPT]
+
+    Create an image that establishes the style foundation:
+    - Shows the OVERALL STYLE clearly
+    - Demonstrates the LOCATION CONTEXT  
+    - Expresses the STYLE CHARACTERISTICS
+    - Reflects the DESIGN INTENT
+
+    Focus on beautiful representation of the style direction and location context.
+    Output: Beautiful interior image only.
+
+Config: response_modalities=['IMAGE', 'TEXT']
+
+ADDITIONAL INFO:
+----------------------------------------
+Generating 1 image with prefix: impression_0, Mode: sequential, Stage: impression, Scene: 0
+
+================================================================================
