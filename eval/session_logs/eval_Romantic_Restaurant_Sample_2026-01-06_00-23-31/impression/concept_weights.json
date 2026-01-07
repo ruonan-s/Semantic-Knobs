@@ -1,0 +1,238 @@
+{
+  "stage": "impression",
+  "session_id": "eval_Romantic_Restaurant_Sample_2026-01-06_00-23-31",
+  "timestamp": "2026-01-06T00:24:48.054717",
+  "num_concepts": 10,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 64,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "earthy color palette",
+      "weight": 0.1543954759836197,
+      "score": 1.5566805601119995,
+      "utility_std": 1.0023300647735596,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "earthy color palette"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "cozy atmosphere",
+      "weight": 0.14938294887542725,
+      "score": 1.5236765146255493,
+      "utility_std": 1.0023300647735596,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "cozy atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "intimate dining setting",
+      "weight": 0.14257904887199402,
+      "score": 1.4770598411560059,
+      "utility_std": 1.0023300647735596,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "intimate dining setting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "soft ambient glow",
+      "weight": 0.13569019734859467,
+      "score": 1.4275376796722412,
+      "utility_std": 1.0023300647735596,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "soft ambient glow"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "casual yet refined vibe",
+      "weight": 0.08733036369085312,
+      "score": 0.986861526966095,
+      "utility_std": 1.0023300647735596,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "casual yet refined vibe"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "vintage aesthetic",
+      "weight": 0.07559353858232498,
+      "score": 0.8425339460372925,
+      "utility_std": 1.0023300647735596,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "vintage aesthetic"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "garden-inspired theme",
+      "weight": 0.06859694421291351,
+      "score": 0.7454112768173218,
+      "utility_std": 1.0023300647735596,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "garden-inspired theme"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "intimate seating layout",
+      "weight": 0.06764053553342819,
+      "score": 0.731370747089386,
+      "utility_std": 1.0023300647735596,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "intimate seating layout"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "warm candle lighting",
+      "weight": 0.060991834849119186,
+      "score": 0.6279033422470093,
+      "utility_std": 1.0023300647735596,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm candle lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "open layout",
+      "weight": 0.05779905617237091,
+      "score": 0.5741356611251831,
+      "utility_std": 1.0023300647735596,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "open layout"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_1_0_10",
+      "text": "earthy color palette",
+      "utility": 1.5566805601119995,
+      "uncertainty": 1.0023300647735596,
+      "weight": 0.1543954759836197,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_7",
+      "text": "cozy atmosphere",
+      "utility": 1.5236765146255493,
+      "uncertainty": 1.0023300647735596,
+      "weight": 0.14938294887542725,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_3",
+      "text": "intimate dining setting",
+      "utility": 1.4770598411560059,
+      "uncertainty": 1.0023300647735596,
+      "weight": 0.14257904887199402,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_4",
+      "text": "soft ambient glow",
+      "utility": 1.4275376796722412,
+      "uncertainty": 1.0023300647735596,
+      "weight": 0.13569019734859467,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_11",
+      "text": "casual yet refined vibe",
+      "utility": 0.986861526966095,
+      "uncertainty": 1.0023300647735596,
+      "weight": 0.08733036369085312,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_11",
+      "text": "vintage aesthetic",
+      "utility": 0.8425339460372925,
+      "uncertainty": 1.0023300647735596,
+      "weight": 0.07559353858232498,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_6",
+      "text": "garden-inspired theme",
+      "utility": 0.7454112768173218,
+      "uncertainty": 1.0023300647735596,
+      "weight": 0.06859694421291351,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_9",
+      "text": "intimate seating layout",
+      "utility": 0.731370747089386,
+      "uncertainty": 1.0023300647735596,
+      "weight": 0.06764053553342819,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "warm candle lighting",
+      "utility": 0.6279033422470093,
+      "uncertainty": 1.0023300647735596,
+      "weight": 0.060991834849119186,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_8",
+      "text": "open layout",
+      "utility": 0.5741356611251831,
+      "uncertainty": 1.0023300647735596,
+      "weight": 0.05779905617237091,
+      "source_image_idx": 2
+    }
+  ]
+}

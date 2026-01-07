@@ -1,0 +1,238 @@
+{
+  "stage": "impression",
+  "session_id": "eval_test17_2_cozy_bedroom_sample_2026-01-05_00-14-31",
+  "timestamp": "2026-01-05T00:16:11.615338",
+  "num_concepts": 10,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 48,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "Cotton bedding",
+      "weight": 0.13980773091316223,
+      "score": 0.6271458864212036,
+      "utility_std": 1.0013707876205444,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Cotton bedding"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "Wooden floor",
+      "weight": 0.1240018829703331,
+      "score": 0.5071744322776794,
+      "utility_std": 1.0013707876205444,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Wooden floor"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "Minimalist design",
+      "weight": 0.11915897578001022,
+      "score": 0.4673362076282501,
+      "utility_std": 1.0013707876205444,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Minimalist design"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "Scandinavian vibe",
+      "weight": 0.11220673471689224,
+      "score": 0.4072207808494568,
+      "utility_std": 1.0013707876205444,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Scandinavian vibe"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "Soft daylight",
+      "weight": 0.09489846229553223,
+      "score": 0.23968513309955597,
+      "utility_std": 1.0013707876205444,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Soft daylight"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "plush cushions",
+      "weight": 0.08820242434740067,
+      "score": 0.166512131690979,
+      "utility_std": 1.0013707876205444,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "plush cushions"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "Natural fiber rug",
+      "weight": 0.08096186816692352,
+      "score": 0.08085593581199646,
+      "utility_std": 1.0013707876205444,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Natural fiber rug"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "Wooden nightstands",
+      "weight": 0.0807252898812294,
+      "score": 0.07792968302965164,
+      "utility_std": 1.0013707876205444,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Wooden nightstands"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "wooden console",
+      "weight": 0.08030133694410324,
+      "score": 0.07266390323638916,
+      "utility_std": 1.0013707876205444,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden console"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "wooden canopy bed",
+      "weight": 0.07973530143499374,
+      "score": 0.06559011340141296,
+      "utility_std": 1.0013707876205444,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden canopy bed"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_1_0_5",
+      "text": "Cotton bedding",
+      "utility": 0.6271458864212036,
+      "uncertainty": 1.0013707876205444,
+      "weight": 0.13980773091316223,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_4",
+      "text": "Wooden floor",
+      "utility": 0.5071744322776794,
+      "uncertainty": 1.0013707876205444,
+      "weight": 0.1240018829703331,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_0",
+      "text": "Minimalist design",
+      "utility": 0.4673362076282501,
+      "uncertainty": 1.0013707876205444,
+      "weight": 0.11915897578001022,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "Scandinavian vibe",
+      "utility": 0.4072207808494568,
+      "uncertainty": 1.0013707876205444,
+      "weight": 0.11220673471689224,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_8",
+      "text": "Soft daylight",
+      "utility": 0.23968513309955597,
+      "uncertainty": 1.0013707876205444,
+      "weight": 0.09489846229553223,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_7",
+      "text": "plush cushions",
+      "utility": 0.166512131690979,
+      "uncertainty": 1.0013707876205444,
+      "weight": 0.08820242434740067,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_6",
+      "text": "Natural fiber rug",
+      "utility": 0.08085593581199646,
+      "uncertainty": 1.0013707876205444,
+      "weight": 0.08096186816692352,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_7",
+      "text": "Wooden nightstands",
+      "utility": 0.07792968302965164,
+      "uncertainty": 1.0013707876205444,
+      "weight": 0.0807252898812294,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_5",
+      "text": "wooden console",
+      "utility": 0.07266390323638916,
+      "uncertainty": 1.0013707876205444,
+      "weight": 0.08030133694410324,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_5",
+      "text": "wooden canopy bed",
+      "utility": 0.06559011340141296,
+      "uncertainty": 1.0013707876205444,
+      "weight": 0.07973530143499374,
+      "source_image_idx": 0
+    }
+  ]
+}

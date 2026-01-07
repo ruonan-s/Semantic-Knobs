@@ -1,0 +1,160 @@
+================================================================================
+PROMPT TRACKING LOG
+Session Started: 2026-01-05 18:24:55
+Session Folder: [fast]_Vibrant_Livingroom_2026-01-05_18-24-55
+Session Type: sequential_parallel_images
+User Description: Vibrant Livingroom
+================================================================================
+
+This file tracks all inputs sent to LLMs during this session.
+Each entry shows:
+- LEVEL: DESIGNER (for JSON concept generation) or GENERATOR (for image generation)
+- PURPOSE: Specific stage/mode (e.g., impression_design_sequential, final_generation_mode2)
+- LLM API INPUT: The final structured input sent to the LLM API
+- ADDITIONAL INFO: Context like attempt numbers, tag counts, reference images, etc.
+
+
+================================================================================
+[2026-01-05 18:25:07] DESIGNER - impression_design_sequential
+================================================================================
+LLM API INPUT:
+----------------------------------------
+[USER DESCRIPTION]Vibrant Livingroom[/USER DESCRIPTION]
+
+ADDITIONAL INFO:
+----------------------------------------
+Attempt: 1/3, Mode: Sequential
+
+================================================================================
+
+================================================================================
+[2026-01-05 18:25:10] GENERATOR - impression_generation_sequential_scene_0
+================================================================================
+LLM API INPUT:
+----------------------------------------
+Model: gemini-2.0-flash-exp-image-generation
+User Input: [DESIGN_CONCEPT]{"concept_name": "Maximalist Eclectic Oasis", "user_description": "Vibrant Livingroom", "overall_style": "Maximalist Eclectic", "style_characteristics": "Rich jewel tones (emerald, sapphire, ruby), global patterns and textiles (suzani, ikat), a playful mix of antique and contemporary furniture, layered textures (velvet, silk, carved wood), abundant art and curated collectibles, warm, multi-source lighting.", "design_intent": "To create a highly stimulating, visually rich, and deeply personal space that exudes energy and warmth. This style fosters an environment for lively conversation, artistic appreciation, and comfortable exploration, making the living room feel perpetually alive and inviting.", "design_rationale": "This interpretation takes 'vibrant' to its most expressive and abundant extreme. By embracing saturation, diverse textures, and a wealth of curated objects, it creates a dynamic and energetic atmosphere that feels both luxurious and intimately lived-in, offering a distinct solution through sheer visual density and personality."}[/DESIGN_CONCEPT]
+[DESCRIPTION]Vibrant Livingroom[/DESCRIPTION]
+[USER_PREFERENCE]{}[/USER_PREFERENCE]
+System Prompt: 
+Generate a beautiful first-person interior view (aspect_ratio="16:9") showing the style and location foundation. No text.
+
+    Inputs:
+    - User description: [DESCRIPTION][/DESCRIPTION]
+    - Foundation design: [DESIGN_CONCEPT][/DESIGN_CONCEPT]
+
+    Create an image that establishes the style foundation:
+    - Shows the OVERALL STYLE clearly
+    - Demonstrates the LOCATION CONTEXT  
+    - Expresses the STYLE CHARACTERISTICS
+    - Reflects the DESIGN INTENT
+
+    Focus on beautiful representation of the style direction and location context.
+    Output: Beautiful interior image only.
+
+Config: response_modalities=['IMAGE', 'TEXT']
+
+ADDITIONAL INFO:
+----------------------------------------
+Generating 1 image with prefix: impression_0, Mode: sequential, Stage: impression, Scene: 0
+
+================================================================================
+
+================================================================================
+[2026-01-05 18:25:11] GENERATOR - impression_generation_sequential_scene_1
+================================================================================
+LLM API INPUT:
+----------------------------------------
+Model: gemini-2.0-flash-exp-image-generation
+User Input: [DESIGN_CONCEPT]{"concept_name": "Tropical Modern Refresh", "user_description": "Vibrant Livingroom", "overall_style": "Tropical Modern", "style_characteristics": "Lush indoor greenery and botanical motifs, natural textures (rattan, bamboo, light-toned wood), a crisp white or neutral sandy base palette, strategic pops of vibrant colors inspired by tropical flora and fauna (coral, cerulean blue, sunny yellow), open spaces, and an emphasis on natural light.", "design_intent": "To bring the refreshing, lively energy of a tropical paradise indoors, creating a bright, airy, and rejuvenating space. This approach ensures the living room feels perpetually fresh, uplifting, and inherently energetic, promoting a sense of well-being and openness.", "design_rationale": "This interpretation redefines 'vibrant' through the lens of natural vitality and fresh energy, rather than solely artificial color. It offers a lighter, more breathable, and organically lively aesthetic, distinguished by its focus on biophilic elements and a specific, nature-inspired cheerful palette."}[/DESIGN_CONCEPT]
+[DESCRIPTION]Vibrant Livingroom[/DESCRIPTION]
+[USER_PREFERENCE]{}[/USER_PREFERENCE]
+System Prompt: 
+Generate a beautiful first-person interior view (aspect_ratio="16:9") showing the style and location foundation. No text.
+
+    Inputs:
+    - User description: [DESCRIPTION][/DESCRIPTION]
+    - Foundation design: [DESIGN_CONCEPT][/DESIGN_CONCEPT]
+
+    Create an image that establishes the style foundation:
+    - Shows the OVERALL STYLE clearly
+    - Demonstrates the LOCATION CONTEXT  
+    - Expresses the STYLE CHARACTERISTICS
+    - Reflects the DESIGN INTENT
+
+    Focus on beautiful representation of the style direction and location context.
+    Output: Beautiful interior image only.
+
+Config: response_modalities=['IMAGE', 'TEXT']
+
+ADDITIONAL INFO:
+----------------------------------------
+Generating 1 image with prefix: impression_1, Mode: sequential, Stage: impression, Scene: 1
+
+================================================================================
+
+================================================================================
+[2026-01-05 18:25:11] GENERATOR - impression_generation_sequential_scene_3
+================================================================================
+LLM API INPUT:
+----------------------------------------
+Model: gemini-2.0-flash-exp-image-generation
+User Input: [DESIGN_CONCEPT]{"concept_name": "Atmospheric Luminosity Lounge", "user_description": "Vibrant Livingroom", "overall_style": "Atmospheric Luminosity", "style_characteristics": "A sophisticated dark base palette (deep navy, charcoal, plum) punctuated with metallic accents (gold, brass, polished chrome), sophisticated layering of ambient, task, and accent lighting, reflective surfaces (mirrors, high-gloss lacquers), luxurious textured fabrics (silk, velvet), and abstract or sculptural art.", "design_intent": "To create a living room that feels alive and deeply luxurious through the dramatic interplay of light, shadow, and sophisticated, reflective materials. This approach offers an intimate yet energetic ambiance that subtly shimmers and glows, promoting a sense of refined vibrancy and glamour.", "design_rationale": "This interpretation defines 'vibrant' not merely by overt brightness or color saturation, but by an internal glow and sophisticated energy derived from dynamic lighting, rich textures, and reflective surfaces. It offers a more elegant, moody, and atmospheric take on liveliness, providing a distinct solution through nuanced luxury and light play."}[/DESIGN_CONCEPT]
+[DESCRIPTION]Vibrant Livingroom[/DESCRIPTION]
+[USER_PREFERENCE]{}[/USER_PREFERENCE]
+System Prompt: 
+Generate a beautiful first-person interior view (aspect_ratio="16:9") showing the style and location foundation. No text.
+
+    Inputs:
+    - User description: [DESCRIPTION][/DESCRIPTION]
+    - Foundation design: [DESIGN_CONCEPT][/DESIGN_CONCEPT]
+
+    Create an image that establishes the style foundation:
+    - Shows the OVERALL STYLE clearly
+    - Demonstrates the LOCATION CONTEXT  
+    - Expresses the STYLE CHARACTERISTICS
+    - Reflects the DESIGN INTENT
+
+    Focus on beautiful representation of the style direction and location context.
+    Output: Beautiful interior image only.
+
+Config: response_modalities=['IMAGE', 'TEXT']
+
+ADDITIONAL INFO:
+----------------------------------------
+Generating 1 image with prefix: impression_3, Mode: sequential, Stage: impression, Scene: 3
+
+================================================================================
+
+================================================================================
+[2026-01-05 18:25:11] GENERATOR - impression_generation_sequential_scene_2
+================================================================================
+LLM API INPUT:
+----------------------------------------
+Model: gemini-2.0-flash-exp-image-generation
+User Input: [DESIGN_CONCEPT]{"concept_name": "Mid-Century Mod Pop Blast", "user_description": "Vibrant Livingroom", "overall_style": "Mid-Century Mod Pop", "style_characteristics": "Bold, high-contrast color combinations (orange, teal, mustard yellow, primary colors), strong geometric patterns, iconic mid-century modern furniture silhouettes, sleek lines, mixed materials (walnut, chrome, plastic), graphic wall art, and playful, sculptural lighting.", "design_intent": "To evoke a sense of playful energy and optimistic dynamism from the mid-20th century. This style creates a living room that feels stylishly spirited, engaging, and makes a strong, retro-chic statement, perfect for entertaining and sparking conversation.", "design_rationale": "This interpretation directly addresses the 'energetic' aspect of vibrant, utilizing a specific historical aesthetic known for its bold colors, graphic impact, and optimistic outlook. It provides a distinct solution by offering a structured yet lively atmosphere through a celebrated design era."}[/DESIGN_CONCEPT]
+[DESCRIPTION]Vibrant Livingroom[/DESCRIPTION]
+[USER_PREFERENCE]{}[/USER_PREFERENCE]
+System Prompt: 
+Generate a beautiful first-person interior view (aspect_ratio="16:9") showing the style and location foundation. No text.
+
+    Inputs:
+    - User description: [DESCRIPTION][/DESCRIPTION]
+    - Foundation design: [DESIGN_CONCEPT][/DESIGN_CONCEPT]
+
+    Create an image that establishes the style foundation:
+    - Shows the OVERALL STYLE clearly
+    - Demonstrates the LOCATION CONTEXT  
+    - Expresses the STYLE CHARACTERISTICS
+    - Reflects the DESIGN INTENT
+
+    Focus on beautiful representation of the style direction and location context.
+    Output: Beautiful interior image only.
+
+Config: response_modalities=['IMAGE', 'TEXT']
+
+ADDITIONAL INFO:
+----------------------------------------
+Generating 1 image with prefix: impression_2, Mode: sequential, Stage: impression, Scene: 2
+
+================================================================================

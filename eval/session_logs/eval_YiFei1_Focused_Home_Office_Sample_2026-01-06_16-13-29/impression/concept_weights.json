@@ -1,0 +1,238 @@
+{
+  "stage": "impression",
+  "session_id": "eval_YiFei1_Focused_Home_Office_Sample_2026-01-06_16-13-29",
+  "timestamp": "2026-01-06T16:16:17.303457",
+  "num_concepts": 10,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 176,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "sleek office chair",
+      "weight": 0.1937783658504486,
+      "score": 1.135284662246704,
+      "utility_std": 1.01529061794281,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "sleek office chair"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "functional furniture",
+      "weight": 0.11993058770895004,
+      "score": 0.6554827094078064,
+      "utility_std": 1.01529061794281,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "functional furniture"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "spacious layout",
+      "weight": 0.11265184730291367,
+      "score": 0.5928715467453003,
+      "utility_std": 1.01529061794281,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "spacious layout"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "simple decor",
+      "weight": 0.09558019787073135,
+      "score": 0.42853525280952454,
+      "utility_std": 1.01529061794281,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "simple decor"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "large window",
+      "weight": 0.09417247027158737,
+      "score": 0.41369742155075073,
+      "utility_std": 1.01529061794281,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large window"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "classic leather chair",
+      "weight": 0.0870700255036354,
+      "score": 0.33528220653533936,
+      "utility_std": 1.01529061794281,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "classic leather chair"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "calm atmosphere",
+      "weight": 0.08378991484642029,
+      "score": 0.2968822121620178,
+      "utility_std": 1.01529061794281,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "calm atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "ornate desk lamp",
+      "weight": 0.0728880986571312,
+      "score": 0.1574949324131012,
+      "utility_std": 1.01529061794281,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "ornate desk lamp"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "elegant desk setup",
+      "weight": 0.07066559046506882,
+      "score": 0.12652826309204102,
+      "utility_std": 1.01529061794281,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "elegant desk setup"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "wooden desk",
+      "weight": 0.06947285681962967,
+      "score": 0.10950559377670288,
+      "utility_std": 1.01529061794281,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden desk"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_0_0_3",
+      "text": "sleek office chair",
+      "utility": 1.135284662246704,
+      "uncertainty": 1.01529061794281,
+      "weight": 0.1937783658504486,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_11",
+      "text": "functional furniture",
+      "utility": 0.6554827094078064,
+      "uncertainty": 1.01529061794281,
+      "weight": 0.11993058770895004,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_7",
+      "text": "spacious layout",
+      "utility": 0.5928715467453003,
+      "uncertainty": 1.01529061794281,
+      "weight": 0.11265184730291367,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_9",
+      "text": "simple decor",
+      "utility": 0.42853525280952454,
+      "uncertainty": 1.01529061794281,
+      "weight": 0.09558019787073135,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_4",
+      "text": "large window",
+      "utility": 0.41369742155075073,
+      "uncertainty": 1.01529061794281,
+      "weight": 0.09417247027158737,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_1",
+      "text": "classic leather chair",
+      "utility": 0.33528220653533936,
+      "uncertainty": 1.01529061794281,
+      "weight": 0.0870700255036354,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_10",
+      "text": "calm atmosphere",
+      "utility": 0.2968822121620178,
+      "uncertainty": 1.01529061794281,
+      "weight": 0.08378991484642029,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_2",
+      "text": "ornate desk lamp",
+      "utility": 0.1574949324131012,
+      "uncertainty": 1.01529061794281,
+      "weight": 0.0728880986571312,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_8",
+      "text": "elegant desk setup",
+      "utility": 0.12652826309204102,
+      "uncertainty": 1.01529061794281,
+      "weight": 0.07066559046506882,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_5",
+      "text": "wooden desk",
+      "utility": 0.10950559377670288,
+      "uncertainty": 1.01529061794281,
+      "weight": 0.06947285681962967,
+      "source_image_idx": 2
+    }
+  ]
+}

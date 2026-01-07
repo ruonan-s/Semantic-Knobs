@@ -1,0 +1,160 @@
+================================================================================
+PROMPT TRACKING LOG
+Session Started: 2026-01-05 18:26:58
+Session Folder: [fast]_Romantic_Restaurant_2026-01-05_18-26-58
+Session Type: sequential_parallel_images
+User Description: Romantic Restaurant
+================================================================================
+
+This file tracks all inputs sent to LLMs during this session.
+Each entry shows:
+- LEVEL: DESIGNER (for JSON concept generation) or GENERATOR (for image generation)
+- PURPOSE: Specific stage/mode (e.g., impression_design_sequential, final_generation_mode2)
+- LLM API INPUT: The final structured input sent to the LLM API
+- ADDITIONAL INFO: Context like attempt numbers, tag counts, reference images, etc.
+
+
+================================================================================
+[2026-01-05 18:27:07] DESIGNER - impression_design_sequential
+================================================================================
+LLM API INPUT:
+----------------------------------------
+[USER DESCRIPTION]Romantic Restaurant[/USER DESCRIPTION]
+
+ADDITIONAL INFO:
+----------------------------------------
+Attempt: 1/3, Mode: Sequential
+
+================================================================================
+
+================================================================================
+[2026-01-05 18:27:10] GENERATOR - impression_generation_sequential_scene_0
+================================================================================
+LLM API INPUT:
+----------------------------------------
+Model: gemini-2.0-flash-exp-image-generation
+User Input: [DESIGN_CONCEPT]{"concept_name": "Classic Opulence", "user_description": "Romantic Restaurant", "overall_style": "Timeless elegance and refined grandeur, drawing inspiration from historical European luxury.", "style_characteristics": "Rich, deep color palettes (burgundy, emerald, gold, deep navy), plush textiles (velvet, silk, damask), ornate details (chandeliers, intricate moldings, gilded accents), polished dark wood, crisp white linens, and soft, warm, ambient lighting.", "design_intent": "To create a sophisticated and traditionally romantic atmosphere that evokes a sense of special occasion and indulgence. The setting aims to make guests feel pampered and transported to a bygone era of lavish dining and intimate conversations.", "design_rationale": "This interpretation leverages universally understood symbols of luxury and tradition to define 'romantic'. It offers a grand, formal, and visually rich experience distinct from more modern or rustic approaches, appealing to those who seek an opulent and memorable date night."}[/DESIGN_CONCEPT]
+[DESCRIPTION]Romantic Restaurant[/DESCRIPTION]
+[USER_PREFERENCE]{}[/USER_PREFERENCE]
+System Prompt: 
+Generate a beautiful first-person interior view (aspect_ratio="16:9") showing the style and location foundation. No text.
+
+    Inputs:
+    - User description: [DESCRIPTION][/DESCRIPTION]
+    - Foundation design: [DESIGN_CONCEPT][/DESIGN_CONCEPT]
+
+    Create an image that establishes the style foundation:
+    - Shows the OVERALL STYLE clearly
+    - Demonstrates the LOCATION CONTEXT  
+    - Expresses the STYLE CHARACTERISTICS
+    - Reflects the DESIGN INTENT
+
+    Focus on beautiful representation of the style direction and location context.
+    Output: Beautiful interior image only.
+
+Config: response_modalities=['IMAGE', 'TEXT']
+
+ADDITIONAL INFO:
+----------------------------------------
+Generating 1 image with prefix: impression_0, Mode: sequential, Stage: impression, Scene: 0
+
+================================================================================
+
+================================================================================
+[2026-01-05 18:27:11] GENERATOR - impression_generation_sequential_scene_3
+================================================================================
+LLM API INPUT:
+----------------------------------------
+Model: gemini-2.0-flash-exp-image-generation
+User Input: [DESIGN_CONCEPT]{"concept_name": "Enchanted Garden Escape", "user_description": "Romantic Restaurant", "overall_style": "Whimsical, dreamlike, and immersive, transforming the dining space into a magical, overgrown botanical sanctuary.", "style_characteristics": "Abundant living greenery (vertical gardens, hanging plants), large floral arrangements, twinkling fairy lights, ethereal flowing fabrics, soft pastel or deep jewel tones inspired by nature, reflective surfaces, and subtle water features or mist effects.", "design_intent": "To transport diners into a fantastical, otherworldly realm where romance blossoms amidst a lush, dream-like landscape. The goal is to create a sense of wonder and escapism, making the dining experience feel like a magical journey together.", "design_rationale": "This approach offers a highly imaginative and sensory-rich interpretation of 'romantic'. It provides a distinct solution by creating an immersive, narrative-driven environment that is visually stunning and emotionally evocative, setting it apart from more conventional restaurant styles and offering a truly memorable, fantasy-inspired date."}[/DESIGN_CONCEPT]
+[DESCRIPTION]Romantic Restaurant[/DESCRIPTION]
+[USER_PREFERENCE]{}[/USER_PREFERENCE]
+System Prompt: 
+Generate a beautiful first-person interior view (aspect_ratio="16:9") showing the style and location foundation. No text.
+
+    Inputs:
+    - User description: [DESCRIPTION][/DESCRIPTION]
+    - Foundation design: [DESIGN_CONCEPT][/DESIGN_CONCEPT]
+
+    Create an image that establishes the style foundation:
+    - Shows the OVERALL STYLE clearly
+    - Demonstrates the LOCATION CONTEXT  
+    - Expresses the STYLE CHARACTERISTICS
+    - Reflects the DESIGN INTENT
+
+    Focus on beautiful representation of the style direction and location context.
+    Output: Beautiful interior image only.
+
+Config: response_modalities=['IMAGE', 'TEXT']
+
+ADDITIONAL INFO:
+----------------------------------------
+Generating 1 image with prefix: impression_3, Mode: sequential, Stage: impression, Scene: 3
+
+================================================================================
+
+================================================================================
+[2026-01-05 18:27:11] GENERATOR - impression_generation_sequential_scene_1
+================================================================================
+LLM API INPUT:
+----------------------------------------
+Model: gemini-2.0-flash-exp-image-generation
+User Input: [DESIGN_CONCEPT]{"concept_name": "Rustic Intimacy", "user_description": "Romantic Restaurant", "overall_style": "Warm, earthy, and inviting, emphasizing natural materials and a cozy, unpretentious ambiance.", "style_characteristics": "Exposed natural wood (beams, floors, furniture), stone accents, soft linen fabrics, muted natural color schemes (forest green, warm browns, cream), abundant candlelight and string lights, artisanal pottery, and subtle botanical elements.", "design_intent": "To foster a comfortable, grounded, and genuinely personal connection between diners in a relaxed yet thoughtfully designed space. The intent is to evoke the warmth of a countryside retreat, encouraging authentic conversation and shared moments.", "design_rationale": "This approach redefines 'romantic' through comfort, authenticity, and closeness to nature. It offers a distinct alternative to formal settings by prioritizing warmth and a down-to-earth charm, creating an intimate escape that feels both personal and welcoming."}[/DESIGN_CONCEPT]
+[DESCRIPTION]Romantic Restaurant[/DESCRIPTION]
+[USER_PREFERENCE]{}[/USER_PREFERENCE]
+System Prompt: 
+Generate a beautiful first-person interior view (aspect_ratio="16:9") showing the style and location foundation. No text.
+
+    Inputs:
+    - User description: [DESCRIPTION][/DESCRIPTION]
+    - Foundation design: [DESIGN_CONCEPT][/DESIGN_CONCEPT]
+
+    Create an image that establishes the style foundation:
+    - Shows the OVERALL STYLE clearly
+    - Demonstrates the LOCATION CONTEXT  
+    - Expresses the STYLE CHARACTERISTICS
+    - Reflects the DESIGN INTENT
+
+    Focus on beautiful representation of the style direction and location context.
+    Output: Beautiful interior image only.
+
+Config: response_modalities=['IMAGE', 'TEXT']
+
+ADDITIONAL INFO:
+----------------------------------------
+Generating 1 image with prefix: impression_1, Mode: sequential, Stage: impression, Scene: 1
+
+================================================================================
+
+================================================================================
+[2026-01-05 18:27:12] GENERATOR - impression_generation_sequential_scene_2
+================================================================================
+LLM API INPUT:
+----------------------------------------
+Model: gemini-2.0-flash-exp-image-generation
+User Input: [DESIGN_CONCEPT]{"concept_name": "Modern Chic", "user_description": "Romantic Restaurant", "overall_style": "Sleek, sophisticated, and minimalist with carefully curated design elements that speak to contemporary elegance.", "style_characteristics": "Clean lines, sculptural furniture, a monochromatic or subdued color palette (grays, whites, blacks, muted blues) with strategic pops of color or metallic accents (brass, copper), art installations, focused mood lighting (hidden LEDs, spotlights), and expansive windows or thoughtful spatial division.", "design_intent": "To create an exclusive and stylish environment where romance is expressed through understated luxury, refined aesthetics, and a sense of curated privacy. The setting is designed to appeal to those who appreciate modern design and a sophisticated, urban vibe for their romantic encounters.", "design_rationale": "This interpretation offers a contemporary lens on romance, moving away from traditional ornate designs. It provides a unique solution by focusing on form, light, and space to create a chic, upscale, and intimate atmosphere that feels current and artfully composed, attracting a discerning, design-conscious clientele."}[/DESIGN_CONCEPT]
+[DESCRIPTION]Romantic Restaurant[/DESCRIPTION]
+[USER_PREFERENCE]{}[/USER_PREFERENCE]
+System Prompt: 
+Generate a beautiful first-person interior view (aspect_ratio="16:9") showing the style and location foundation. No text.
+
+    Inputs:
+    - User description: [DESCRIPTION][/DESCRIPTION]
+    - Foundation design: [DESIGN_CONCEPT][/DESIGN_CONCEPT]
+
+    Create an image that establishes the style foundation:
+    - Shows the OVERALL STYLE clearly
+    - Demonstrates the LOCATION CONTEXT  
+    - Expresses the STYLE CHARACTERISTICS
+    - Reflects the DESIGN INTENT
+
+    Focus on beautiful representation of the style direction and location context.
+    Output: Beautiful interior image only.
+
+Config: response_modalities=['IMAGE', 'TEXT']
+
+ADDITIONAL INFO:
+----------------------------------------
+Generating 1 image with prefix: impression_2, Mode: sequential, Stage: impression, Scene: 2
+
+================================================================================

@@ -1,0 +1,238 @@
+{
+  "stage": "impression",
+  "session_id": "eval_test_cozy_bedroom_sample_2026-01-05_12-48-42",
+  "timestamp": "2026-01-05T12:49:37.132534",
+  "num_concepts": 10,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 161,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "Soft daylight",
+      "weight": 0.12245409935712814,
+      "score": 0.9057679176330566,
+      "utility_std": 1.0112404823303223,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Soft daylight"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "Sheer curtains",
+      "weight": 0.11561347544193268,
+      "score": 0.8482843637466431,
+      "utility_std": 1.0112404823303223,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Sheer curtains"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "Earthy tones",
+      "weight": 0.11187970638275146,
+      "score": 0.8154560327529907,
+      "utility_std": 1.0112404823303223,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Earthy tones"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "Minimalist design",
+      "weight": 0.10945127159357071,
+      "score": 0.793511152267456,
+      "utility_std": 1.0112404823303223,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Minimalist design"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "Cozy ambiance",
+      "weight": 0.0999630019068718,
+      "score": 0.7028319239616394,
+      "utility_std": 1.0112404823303223,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Cozy ambiance"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "Scandinavian vibe",
+      "weight": 0.09915872663259506,
+      "score": 0.6947537064552307,
+      "utility_std": 1.0112404823303223,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Scandinavian vibe"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "warm color palette",
+      "weight": 0.08917491883039474,
+      "score": 0.5886315703392029,
+      "utility_std": 1.0112404823303223,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm color palette"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "natural window light",
+      "weight": 0.08881296962499619,
+      "score": 0.5845645070075989,
+      "utility_std": 1.0112404823303223,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "natural window light"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "Calm lighting",
+      "weight": 0.08821414411067963,
+      "score": 0.5777990818023682,
+      "utility_std": 1.0112404823303223,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Calm lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "soft lamp light",
+      "weight": 0.07527759671211243,
+      "score": 0.4192144274711609,
+      "utility_std": 1.0112404823303223,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "soft lamp light"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_1_0_8",
+      "text": "Soft daylight",
+      "utility": 0.9057679176330566,
+      "uncertainty": 1.0112404823303223,
+      "weight": 0.12245409935712814,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_9",
+      "text": "Sheer curtains",
+      "utility": 0.8482843637466431,
+      "uncertainty": 1.0112404823303223,
+      "weight": 0.11561347544193268,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_3",
+      "text": "Earthy tones",
+      "utility": 0.8154560327529907,
+      "uncertainty": 1.0112404823303223,
+      "weight": 0.11187970638275146,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_0",
+      "text": "Minimalist design",
+      "utility": 0.793511152267456,
+      "uncertainty": 1.0112404823303223,
+      "weight": 0.10945127159357071,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_2",
+      "text": "Cozy ambiance",
+      "utility": 0.7028319239616394,
+      "uncertainty": 1.0112404823303223,
+      "weight": 0.0999630019068718,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "Scandinavian vibe",
+      "utility": 0.6947537064552307,
+      "uncertainty": 1.0112404823303223,
+      "weight": 0.09915872663259506,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_3",
+      "text": "warm color palette",
+      "utility": 0.5886315703392029,
+      "uncertainty": 1.0112404823303223,
+      "weight": 0.08917491883039474,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_10",
+      "text": "natural window light",
+      "utility": 0.5845645070075989,
+      "uncertainty": 1.0112404823303223,
+      "weight": 0.08881296962499619,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_11",
+      "text": "Calm lighting",
+      "utility": 0.5777990818023682,
+      "uncertainty": 1.0112404823303223,
+      "weight": 0.08821414411067963,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_8",
+      "text": "soft lamp light",
+      "utility": 0.4192144274711609,
+      "uncertainty": 1.0112404823303223,
+      "weight": 0.07527759671211243,
+      "source_image_idx": 0
+    }
+  ]
+}

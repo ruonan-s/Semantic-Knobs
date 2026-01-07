@@ -14,7 +14,6 @@ Modify the SESSION_FOLDER and NEW_LOCATION variables below to run on different s
 import os
 import sys
 import json
-import glob
 
 # Add the eval/llm_scripts directory to path for imports
 sys.path.insert(0, os.path.dirname(__file__))
@@ -59,28 +58,34 @@ def generate_style_transfer_for_new_location(
     print(f"Original location: {original_location}")
     print(f"New location: {new_location}")
     
-    # Find reference image from original location's slider folder
-    original_slider_dir = os.path.join(session_folder, "slider", original_location.replace(" ", "_"))
+    # Load preferences.json to get exploration selected image
+    preferences_path = os.path.join(session_folder, "preferences.json")
+    preferences = {}
+    if os.path.exists(preferences_path):
+        with open(preferences_path, 'r') as f:
+            preferences = json.load(f)
+    
+    # Use exploration selected image from preferences.json
     reference_image_path = None
+    exploration_selection = preferences.get("selections", {}).get("impression")
     
-    if not os.path.exists(original_slider_dir):
-        raise FileNotFoundError(f"Original slider directory not found: {original_slider_dir}")
-    
-    # Look for *alphaRef_1.00*.png patterns
-    patterns = [
-        os.path.join(original_slider_dir, "*alphaRef_1.00*.png"),
-        os.path.join(original_slider_dir, "*current_alphaRef_1.00*.png"),
-        os.path.join(original_slider_dir, "eval_alphaRef_1.00*.png")
-    ]
-    
-    for pattern in patterns:
-        matches = glob.glob(pattern)
-        if matches:
-            reference_image_path = matches[0]
-            break
+    if exploration_selection:
+        # Exploration selected image is in the impression folder
+        impression_folder = os.path.join(session_folder, "impression")
+        ref_path = os.path.join(impression_folder, f"{exploration_selection}.png")
+        
+        if os.path.exists(ref_path):
+            reference_image_path = ref_path
+            print(f"Using exploration selected image: {exploration_selection}.png")
+        else:
+            # Try alternate naming pattern
+            ref_path = os.path.join(impression_folder, f"{exploration_selection}_0.png")
+            if os.path.exists(ref_path):
+                reference_image_path = ref_path
+                print(f"Using exploration selected image: {exploration_selection}_0.png")
     
     if not reference_image_path or not os.path.exists(reference_image_path):
-        raise FileNotFoundError(f"Reference image (alphaRef_1.00*.png) not found in {original_slider_dir}")
+        raise FileNotFoundError(f"Exploration selected image not found. Check preferences.json in {session_folder}")
     
     print(f"Reference image: {os.path.basename(reference_image_path)}")
     

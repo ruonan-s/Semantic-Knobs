@@ -53,6 +53,25 @@ function App() {
   // User ID for evaluation tracking
   const [userId, setUserId] = useState('');
   
+  // Ranking/Evaluation state
+  const [availableLocations, setAvailableLocations] = useState([]);
+  const [currentRankingLocation, setCurrentRankingLocation] = useState(null);
+  const [comparisonImages, setComparisonImages] = useState([]);
+  const [rankings, setRankings] = useState({});  // {location: {1: filename, 2: filename, 3: filename}}
+  const [currentRanking, setCurrentRanking] = useState({1: null, 2: null, 3: null, 4: null});
+  const [sliderScores, setSliderScores] = useState({});  // {imageId: score (1-7)}
+  const [sessionLogs, setSessionLogs] = useState([]);
+  const [selectedSessionLog, setSelectedSessionLog] = useState(null);
+  // Generation status: 'pending' | 'generating' | 'completed' | 'error'
+  const [locationGenStatus, setLocationGenStatus] = useState({});
+  const [isGeneratingLocations, setIsGeneratingLocations] = useState(false);
+  // Image loading state for ranking view
+  const [imagesLoaded, setImagesLoaded] = useState({});
+  // Separate saving state to avoid UI refresh
+  const [isSavingRanking, setIsSavingRanking] = useState(false);
+  // Track if current ranking was just saved (for feedback)
+  const [rankingSaved, setRankingSaved] = useState(false);
+  
   const imageRefs = useRef({});
   const conceptTagHandlerRef = useRef(null);
 
@@ -340,8 +359,9 @@ function App() {
 
     setIsLoading(true);
     try {
-      addStatusMessage('Skipping refinement, preparing slider generation...');
+      addStatusMessage('Preparing evaluation...');
       
+      // 1. Skip to slider (save weights, etc.)
       const res = await fetch('/api/eval/skip-to-slider', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -359,16 +379,148 @@ function App() {
       
       if (data.success) {
         addStatusMessage(data.message);
-        setStage('slider_generation');
-        setSliderRows([]);
+        
+        // 2. Get available locations
+        const locsRes = await fetch('/api/eval/locations');
+        let locations = [];
+        if (locsRes.ok) {
+          const locsData = await locsRes.json();
+          locations = locsData.locations || [];
+          setAvailableLocations(locations);
+        }
+        
+        // Initialize generation status for all locations
+        const initialStatus = {};
+        locations.forEach(loc => {
+          initialStatus[loc.name] = 'pending';
+        });
+        setLocationGenStatus(initialStatus);
+        
+        // 3. Generate initial location images (blocking)
+        // Find the matching location name from available locations (for consistent capitalization)
+        const explorationLoc = location; // from exploration (e.g., "bedroom")
+        const matchingLoc = locations.find(loc => 
+          loc.name.toLowerCase() === explorationLoc.toLowerCase()
+        );
+        const initialLocName = matchingLoc ? matchingLoc.name : explorationLoc;
+        
+        addStatusMessage(`Generating images for ${initialLocName}...`);
+        setLocationGenStatus(prev => ({ ...prev, [initialLocName]: 'generating' }));
+        
+        const sliderRes = await fetch('/api/generate-slider', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            session_id: sessionId,
+            location: ''  // empty = initial location
+          })
+        });
+        
+        if (!sliderRes.ok) {
+          throw new Error(`Failed to generate initial slider: ${sliderRes.status}`);
+        }
+        
+        setLocationGenStatus(prev => ({ ...prev, [initialLocName]: 'completed' }));
+        addStatusMessage(`Generated images for ${initialLocName}`);
+        
+        // 4. Initialize ranking session
+        await fetch('/api/eval/init-ranking-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ session_log: sessionId })
+        });
+        
+        // 5. Set up for evaluation stage and load initial location images
+        setSelectedSessionLog(sessionId);
+        setCurrentRankingLocation(initialLocName);
+        setStage('evaluation');
+        
+        // Load comparison images for initial location (use matched name for consistent casing)
+        await loadComparisonImagesForSession(sessionId, initialLocName, true);
+        
+        // NOTE: Don't start generating other locations yet
+        // Wait for user to rank initial location and save, then use rank #1 image as reference
       }
       
     } catch (error) {
-      console.error('Error skipping to slider:', error);
+      console.error('Error in handleSkipToSlider:', error);
       addStatusMessage(`Error: ${error.message}`);
     } finally {
       setIsLoading(false);
     }
+  };
+  
+  // Preload images for a location to cache them in browser
+  const preloadImagesForLocation = async (locName, isInitial = false) => {
+    try {
+      const sessionLog = selectedSessionLog || sessionId;
+      const res = await fetch('/api/eval/get-comparison-images', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          session_log: sessionLog,
+          location: locName,
+          is_initial_round: isInitial
+        })
+      });
+      
+      if (res.ok) {
+        const data = await res.json();
+        // Preload each image by creating Image objects
+        data.images.forEach(img => {
+          const image = new Image();
+          image.src = img.url;
+        });
+      }
+    } catch (error) {
+      console.error(`Error preloading images for ${locName}:`, error);
+    }
+  };
+  
+  // Background generation for remaining locations
+  // referenceImage: the rank #1 image filename from initial round to use for style transfer
+  const generateRemainingLocations = async (locations, initialLoc, referenceImage = null) => {
+    setIsGeneratingLocations(true);
+    
+    for (const loc of locations) {
+      // Skip initial location (already generated) and Bedroom equivalent check
+      const locName = loc.name;
+      if (locName.toLowerCase() === initialLoc.toLowerCase() || 
+          locName.toLowerCase().replace(/\s+/g, '_') === initialLoc.toLowerCase().replace(/\s+/g, '_')) {
+        continue;
+      }
+      
+      try {
+        setLocationGenStatus(prev => ({ ...prev, [locName]: 'generating' }));
+        addStatusMessage(`Generating images for ${locName}...`);
+        
+        const res = await fetch('/api/generate-slider', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            session_id: sessionId,
+            location: locName,
+            reference_image: referenceImage  // Pass the rank #1 image from initial round
+          })
+        });
+        
+        if (res.ok) {
+          setLocationGenStatus(prev => ({ ...prev, [locName]: 'completed' }));
+          addStatusMessage(`Generated images for ${locName}`);
+          // Preload images in background for faster loading when user clicks
+          preloadImagesForLocation(locName, false);
+        } else {
+          setLocationGenStatus(prev => ({ ...prev, [locName]: 'error' }));
+          addStatusMessage(`Failed to generate images for ${locName}`);
+        }
+      } catch (error) {
+        console.error(`Error generating ${locName}:`, error);
+        setLocationGenStatus(prev => ({ ...prev, [locName]: 'error' }));
+      }
+    }
+    
+    setIsGeneratingLocations(false);
+    addStatusMessage('All locations generated');
   };
 
   const generateSlider = async (newLocation = '') => {
@@ -414,8 +566,255 @@ function App() {
     }
   };
 
-  // Custom stages for eval - only landing, impression, slider_generation
-  const evalStages = ['landing', 'impression', 'slider_generation'];
+  // Custom stages for eval
+  const evalStages = ['landing', 'impression', 'evaluation', 'slider_generation'];
+
+  // ============== Ranking/Evaluation Functions ==============
+
+  // Fetch session logs for selection
+  const fetchSessionLogs = async () => {
+    try {
+      const res = await fetch('/api/eval/session-logs');
+      if (res.ok) {
+        const data = await res.json();
+        setSessionLogs(data.session_logs || []);
+      }
+    } catch (error) {
+      console.error('Failed to fetch session logs:', error);
+      addStatusMessage(`Error loading session logs: ${error.message}`);
+    }
+  };
+
+  // Fetch available locations from baseline_generic
+  const fetchAvailableLocations = async () => {
+    try {
+      const res = await fetch('/api/eval/locations');
+      if (res.ok) {
+        const data = await res.json();
+        setAvailableLocations(data.locations || []);
+      }
+    } catch (error) {
+      console.error('Failed to fetch locations:', error);
+      addStatusMessage(`Error loading locations: ${error.message}`);
+    }
+  };
+
+  // Load comparison images for a location (helper that takes session log)
+  const loadComparisonImagesForSession = async (sessionLog, locationName, isInitialRound = false) => {
+    if (!sessionLog) return;
+    
+    // Update title immediately for responsive UI
+    setCurrentRankingLocation(locationName);
+    setCurrentRanking({1: null, 2: null, 3: null, 4: null});
+    setSliderScores({});  // Reset slider scores
+    setRankingSaved(false);
+    setImagesLoaded({});
+    setComparisonImages([]); // Clear old images immediately
+    
+    setIsLoading(true);
+    try {
+      const res = await fetch('/api/eval/get-comparison-images', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          session_log: sessionLog,
+          location: locationName,
+          is_initial_round: isInitialRound
+        })
+      });
+      
+      if (!res.ok) {
+        throw new Error(`Failed to load comparison images: ${res.status}`);
+      }
+      
+      const data = await res.json();
+      setComparisonImages(data.images);
+      
+    } catch (error) {
+      console.error('Error loading comparison images:', error);
+      addStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
+  // Load comparison images for a location (uses selectedSessionLog or sessionId)
+  const loadComparisonImages = async (locationName, isInitialRound = false) => {
+    const sessionLog = selectedSessionLog || sessionId;
+    if (!sessionLog) return;
+    
+    // Update title immediately for responsive UI
+    setCurrentRankingLocation(locationName);
+    setCurrentRanking({1: null, 2: null, 3: null, 4: null});
+    setSliderScores({});  // Reset slider scores
+    setRankingSaved(false);
+    setImagesLoaded({});
+    setComparisonImages([]); // Clear old images immediately
+    
+    setIsLoading(true);
+    try {
+      const res = await fetch('/api/eval/get-comparison-images', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          session_log: sessionLog,
+          location: locationName,
+          is_initial_round: isInitialRound
+        })
+      });
+      
+      if (!res.ok) {
+        throw new Error(`Failed to load comparison images: ${res.status}`);
+      }
+      
+      const data = await res.json();
+      setComparisonImages(data.images);
+      
+    } catch (error) {
+      console.error('Error loading comparison images:', error);
+      addStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Handle ranking selection
+  const handleRankingSelect = (imageId, rank) => {
+    // Reset saved state when user changes ranking
+    setRankingSaved(false);
+    
+    setCurrentRanking(prev => {
+      const newRanking = { ...prev };
+      // Remove this rank from any other image
+      for (const key of Object.keys(newRanking)) {
+        if (newRanking[key] === imageId) {
+          newRanking[key] = null;
+        }
+      }
+      // Set the new rank
+      newRanking[rank] = imageId;
+      return newRanking;
+    });
+  };
+
+  // Save ranking for current location
+  const saveCurrentRanking = async () => {
+    if (!selectedSessionLog || !currentRankingLocation) return;
+    
+    // Find filenames and scores for each rank
+    const rankingData = {};
+    for (const [rank, imageId] of Object.entries(currentRanking)) {
+      if (imageId) {
+        const img = comparisonImages.find(i => i.id === imageId);
+        const score = sliderScores[imageId];
+        if (img) {
+          rankingData[rank] = {
+            image: img.filename,
+            score: score
+          };
+        }
+      }
+    }
+    
+    if (Object.keys(rankingData).length !== 4) {
+      addStatusMessage('Please rank all 4 images before saving');
+      return;
+    }
+    
+    // Check that all images have slider scores
+    const missingScores = Object.entries(rankingData).filter(([rank, data]) => !data.score);
+    if (missingScores.length > 0) {
+      addStatusMessage('Please rate all 4 images with the preference slider before saving');
+      return;
+    }
+    
+    setIsSavingRanking(true);
+    try {
+      const res = await fetch('/api/eval/save-ranking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          session_log: selectedSessionLog,
+          location: currentRankingLocation,
+          rankings: rankingData
+        })
+      });
+      
+      if (!res.ok) {
+        throw new Error(`Failed to save ranking: ${res.status}`);
+      }
+      
+      const data = await res.json();
+      
+      if (data.success) {
+        // Update local rankings state
+        setRankings(prev => ({
+          ...prev,
+          [currentRankingLocation]: rankingData
+        }));
+        addStatusMessage(`Saved ranking for ${currentRankingLocation}`);
+        // Show saved feedback
+        setRankingSaved(true);
+        
+        // Check if this is the initial location (first ranking saved)
+        // If so, start generating remaining locations using the rank #1 image as reference
+        const isInitialLocation = Object.keys(rankings).length === 0;  // No previous rankings saved
+        
+        if (isInitialLocation && availableLocations.length > 1) {
+          // Get the rank #1 image filename for use as reference in style transfer
+          const rank1Filename = rankingData['1'].image;
+          addStatusMessage(`Using "${rank1Filename}" as reference for style transfer`);
+          
+          // Start background generation for other locations
+          generateRemainingLocations(availableLocations, currentRankingLocation, rank1Filename);
+        }
+      }
+      
+    } catch (error) {
+      console.error('Error saving ranking:', error);
+      addStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsSavingRanking(false);
+    }
+  };
+
+  // Initialize ranking session
+  const initRankingSession = async (sessionLogName) => {
+    setIsLoading(true);
+    try {
+      // Initialize rank_order.json
+      await fetch('/api/eval/init-ranking-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_log: sessionLogName })
+      });
+      
+      // Load existing rankings if any
+      const rankingsRes = await fetch(`/api/eval/get-rankings/${sessionLogName}`);
+      if (rankingsRes.ok) {
+        const data = await rankingsRes.json();
+        setRankings(data.rankings || {});
+      }
+      
+      setSelectedSessionLog(sessionLogName);
+      await fetchAvailableLocations();
+      setStage('evaluation');
+      addStatusMessage(`Loaded session: ${sessionLogName}`);
+      
+    } catch (error) {
+      console.error('Error initializing ranking session:', error);
+      addStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Load session logs when on landing page
+  useEffect(() => {
+    if (stage === 'landing') {
+      fetchSessionLogs();
+    }
+  }, [stage]);
 
   // ============== RENDER ==============
 
@@ -528,6 +927,524 @@ function App() {
                   </button>
                 ))}
               </div>
+            )}
+          </div>
+
+          {/* Session Logs Selection for Evaluation */}
+          <div style={{
+            marginTop: '30px',
+            padding: '30px',
+            backgroundColor: '#fff3cd',
+            borderRadius: '12px',
+            border: '2px solid #ffc107'
+          }}>
+            <h3 style={{ margin: '0 0 20px 0', color: '#333', fontSize: '18px' }}>
+              📊 Evaluate Existing Session Logs
+            </h3>
+            <p style={{ color: '#666', marginBottom: '15px', fontSize: '14px' }}>
+              Select a session log with generated images to rank and evaluate
+            </p>
+
+            {sessionLogs.length === 0 ? (
+              <p style={{ color: '#666' }}>
+                No session logs with generated images found.
+              </p>
+            ) : (
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+                gap: '15px'
+              }}>
+                {sessionLogs.map((log) => (
+                  <button
+                    key={log.name}
+                    onClick={() => initRankingSession(log.name)}
+                    disabled={isLoading}
+                    style={{
+                      padding: '15px',
+                      backgroundColor: '#fff',
+                      border: '2px solid #28a745',
+                      borderRadius: '12px',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease',
+                      textAlign: 'left'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#e8f5e9';
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = '#fff';
+                      e.currentTarget.style.transform = 'translateY(0)';
+                    }}
+                  >
+                    <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '6px' }}>
+                      {log.descriptor || log.name}
+                    </div>
+                    <div style={{ fontSize: '12px', color: '#666', marginBottom: '4px' }}>
+                      {log.name}
+                    </div>
+                    <div style={{ fontSize: '11px', color: '#28a745' }}>
+                      Locations: {log.locations.join(', ') || 'None'}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      ) : stage === 'evaluation' ? (
+        // ============== EVALUATION/RANKING STAGE ==============
+        <div style={{ display: 'flex', gap: '20px', height: 'calc(100vh - 120px)' }}>
+          {/* Left sidebar - Location navigator */}
+          <div style={{
+            width: '200px',
+            flexShrink: 0,
+            backgroundColor: '#f8f9fa',
+            borderRadius: '12px',
+            padding: '15px',
+            overflowY: 'auto'
+          }}>
+            <h3 style={{ margin: '0 0 15px 0', fontSize: '16px', color: '#333' }}>
+              Locations
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {availableLocations.map((loc, idx) => {
+                const isRanked = rankings[loc.name] && Object.keys(rankings[loc.name]).length === 4;
+                const isCurrent = currentRankingLocation === loc.name;
+                // Check generation status
+                const genStatus = locationGenStatus[loc.name] || 'pending';
+                const isGenerated = genStatus === 'completed';
+                const isGenerating = genStatus === 'generating';
+                const isPending = genStatus === 'pending';
+                // First location (Bedroom) is initial round
+                const isInitialRound = loc.name.toLowerCase() === location.toLowerCase();
+                
+                // Determine button style based on status
+                let bgColor = '#fff';
+                let borderColor = '1px solid #dee2e6';
+                let textColor = '#333';
+                let cursor = 'pointer';
+                
+                if (isCurrent) {
+                  bgColor = '#007bff';
+                  borderColor = '2px solid #0056b3';
+                  textColor = '#fff';
+                } else if (isRanked) {
+                  bgColor = '#d4edda';
+                  borderColor = '2px solid #28a745';
+                } else if (isGenerating) {
+                  bgColor = '#fff3cd';
+                  borderColor = '2px solid #ffc107';
+                } else if (isPending) {
+                  bgColor = '#e9ecef';
+                  borderColor = '1px solid #ced4da';
+                  textColor = '#6c757d';
+                  cursor = 'not-allowed';
+                }
+                
+                return (
+                  <button
+                    key={loc.name}
+                    onClick={() => isGenerated && loadComparisonImages(loc.name, isInitialRound)}
+                    disabled={isLoading || !isGenerated}
+                    style={{
+                      padding: '12px',
+                      backgroundColor: bgColor,
+                      color: textColor,
+                      border: borderColor,
+                      borderRadius: '8px',
+                      cursor: cursor,
+                      textAlign: 'left',
+                      fontSize: '14px',
+                      transition: 'all 0.2s ease',
+                      opacity: isPending ? 0.6 : 1
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      {isRanked && <span style={{ color: '#28a745' }}>✓</span>}
+                      {isGenerating && (
+                        <span style={{ 
+                          display: 'inline-block',
+                          width: '14px',
+                          height: '14px',
+                          border: '2px solid #ffc107',
+                          borderTop: '2px solid transparent',
+                          borderRadius: '50%',
+                          animation: 'spin 1s linear infinite'
+                        }} />
+                      )}
+                      {isPending && <span style={{ color: '#6c757d' }}>○</span>}
+                      {isGenerated && !isRanked && <span style={{ color: '#007bff' }}>●</span>}
+                      <span>{loc.name}</span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+            
+            {/* Generation status indicator */}
+            {isGeneratingLocations && (
+              <div style={{
+                marginTop: '15px',
+                padding: '10px',
+                backgroundColor: '#fff3cd',
+                borderRadius: '8px',
+                textAlign: 'center',
+                border: '1px solid #ffc107'
+              }}>
+                <div style={{ fontSize: '12px', color: '#856404' }}>Generating images...</div>
+              </div>
+            )}
+            
+            {/* Progress indicator */}
+            <div style={{
+              marginTop: '20px',
+              padding: '10px',
+              backgroundColor: '#e9ecef',
+              borderRadius: '8px',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '12px', color: '#666' }}>Progress</div>
+              <div style={{ fontSize: '18px', fontWeight: 'bold', color: '#333' }}>
+                {Object.keys(rankings).length} / {availableLocations.length}
+              </div>
+            </div>
+            
+            {/* Back button */}
+            <button
+              onClick={() => {
+                setStage('landing');
+                setSelectedSessionLog(null);
+                setCurrentRankingLocation(null);
+                setComparisonImages([]);
+                setRankings({});
+              }}
+              style={{
+                marginTop: '20px',
+                width: '100%',
+                padding: '10px',
+                backgroundColor: '#6c757d',
+                color: 'white',
+                border: 'none',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '14px'
+              }}
+            >
+              ← Back to Sessions
+            </button>
+          </div>
+          
+          {/* Main area - Image comparison and ranking */}
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+            {!currentRankingLocation ? (
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#f8f9fa',
+                borderRadius: '12px'
+              }}>
+                <div style={{ textAlign: 'center', color: '#666' }}>
+                  <div style={{ fontSize: '48px', marginBottom: '20px' }}>📊</div>
+                  <div style={{ fontSize: '18px' }}>Select a location from the sidebar to begin ranking</div>
+                </div>
+              </div>
+            ) : (
+              <>
+                {/* Header */}
+                <div style={{ marginBottom: '20px' }}>
+                  <h2 style={{ margin: 0, color: '#333' }}>
+                    Ranking: {currentRankingLocation}
+                  </h2>
+                  <p style={{ color: '#666', margin: '5px 0 0 0' }}>
+                    Rank the images from 1 (best) to 4 (worst) by clicking the rank buttons
+                  </p>
+                </div>
+                
+                {/* Images display */}
+                {isLoading ? (
+                  <div style={{
+                    flex: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <div style={{ fontSize: '18px', color: '#666' }}>Loading images...</div>
+                  </div>
+                ) : (
+                  <div style={{ 
+                    display: 'flex', 
+                    gap: '20px', 
+                    flex: 1,
+                    marginBottom: '20px'
+                  }}>
+                    {comparisonImages.map((img, idx) => {
+                      // Find what rank this image has
+                      const imageRank = Object.entries(currentRanking).find(([rank, id]) => id === img.id)?.[0];
+                      
+                      return (
+                        <div
+                          key={img.id}
+                          style={{
+                            flex: 1,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            backgroundColor: '#fff',
+                            borderRadius: '12px',
+                            border: imageRank ? '3px solid #007bff' : '1px solid #dee2e6',
+                            overflow: 'hidden',
+                            maxWidth: '280px'
+                          }}
+                        >
+                          {/* Image - Square aspect ratio */}
+                          <div style={{ 
+                            position: 'relative',
+                            width: '100%',
+                            aspectRatio: '1 / 1',
+                            backgroundColor: '#f0f0f0'
+                          }}>
+                            <img
+                              src={img.url}
+                              alt={`Option ${idx + 1}`}
+                              style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                                opacity: imagesLoaded[img.id] ? 1 : 0,
+                                transition: 'opacity 0.3s ease'
+                              }}
+                              onLoad={() => setImagesLoaded(prev => ({ ...prev, [img.id]: true }))}
+                            />
+                            {/* Loading indicator */}
+                            {!imagesLoaded[img.id] && (
+                              <div style={{
+                                position: 'absolute',
+                                top: '50%',
+                                left: '50%',
+                                transform: 'translate(-50%, -50%)',
+                                color: '#666',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                gap: '10px'
+                              }}>
+                                <div style={{
+                                  width: '30px',
+                                  height: '30px',
+                                  border: '3px solid #ddd',
+                                  borderTop: '3px solid #007bff',
+                                  borderRadius: '50%',
+                                  animation: 'spin 1s linear infinite'
+                                }} />
+                                <span style={{ fontSize: '12px' }}>Loading...</span>
+                              </div>
+                            )}
+                            {/* Rank badge */}
+                            {imageRank && imagesLoaded[img.id] && (
+                              <div style={{
+                                position: 'absolute',
+                                top: '10px',
+                                left: '10px',
+                                width: '40px',
+                                height: '40px',
+                                backgroundColor: '#007bff',
+                                borderRadius: '50%',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                color: 'white',
+                                fontSize: '20px',
+                                fontWeight: 'bold'
+                              }}>
+                                {imageRank}
+                              </div>
+                            )}
+                          </div>
+                          
+                          {/* Rank buttons */}
+                          <div style={{
+                            display: 'flex',
+                            gap: '8px',
+                            padding: '12px',
+                            justifyContent: 'center',
+                            backgroundColor: '#f8f9fa'
+                          }}>
+                            {[1, 2, 3, 4].map(rank => (
+                              <button
+                                key={rank}
+                                onClick={() => handleRankingSelect(img.id, rank)}
+                                style={{
+                                  width: '40px',
+                                  height: '40px',
+                                  borderRadius: '50%',
+                                  border: currentRanking[rank] === img.id ? '3px solid #007bff' : '2px solid #dee2e6',
+                                  backgroundColor: currentRanking[rank] === img.id ? '#007bff' : '#fff',
+                                  color: currentRanking[rank] === img.id ? '#fff' : '#333',
+                                  fontSize: '16px',
+                                  fontWeight: 'bold',
+                                  cursor: 'pointer',
+                                  transition: 'all 0.2s ease'
+                                }}
+                              >
+                                {rank}
+                              </button>
+                            ))}
+                          </div>
+                          
+                          {/* Preference Slider */}
+                          <div style={{
+                            padding: '20px 12px 12px 12px',
+                            backgroundColor: '#f8f9fa',
+                            borderTop: '1px solid #dee2e6'
+                          }}>
+                            <div style={{
+                              fontSize: '13px',
+                              color: '#666',
+                              marginBottom: '8px',
+                              textAlign: 'center',
+                              fontWeight: '500'
+                            }}>
+                              This image matches my personal preference:
+                            </div>
+                            
+                            {/* Slider track with dots */}
+                            <div style={{ position: 'relative', marginBottom: '8px' }}>
+                              {/* Labels above dots */}
+                              <div style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                marginBottom: '8px',
+                                paddingLeft: '12px',
+                                paddingRight: '12px'
+                              }}>
+                                {[1, 2, 3, 4, 5, 6, 7].map(val => (
+                                  <span key={val} style={{
+                                    fontSize: '12px',
+                                    fontWeight: sliderScores[img.id] === val ? 'bold' : 'normal',
+                                    color: sliderScores[img.id] === val ? '#007bff' : '#666',
+                                    width: '20px',
+                                    textAlign: 'center'
+                                  }}>
+                                    {val}
+                                  </span>
+                                ))}
+                              </div>
+                              
+                              {/* Track and dots */}
+                              <div style={{
+                                position: 'relative',
+                                height: '40px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                paddingLeft: '12px',
+                                paddingRight: '12px'
+                              }}>
+                                {/* Gray line */}
+                                <div style={{
+                                  position: 'absolute',
+                                  left: '12px',
+                                  right: '12px',
+                                  height: '2px',
+                                  backgroundColor: '#dee2e6',
+                                  zIndex: 1
+                                }} />
+                                
+                                {/* Clickable dots */}
+                                <div style={{
+                                  display: 'flex',
+                                  justifyContent: 'space-between',
+                                  width: '100%',
+                                  position: 'relative',
+                                  zIndex: 2
+                                }}>
+                                  {[1, 2, 3, 4, 5, 6, 7].map(val => (
+                                    <button
+                                      key={val}
+                                      onClick={() => {
+                                        setSliderScores(prev => ({ ...prev, [img.id]: val }));
+                                        setRankingSaved(false);
+                                      }}
+                                      style={{
+                                        width: sliderScores[img.id] === val ? '24px' : '16px',
+                                        height: sliderScores[img.id] === val ? '24px' : '16px',
+                                        borderRadius: '50%',
+                                        backgroundColor: sliderScores[img.id] === val ? '#007bff' : '#dee2e6',
+                                        border: sliderScores[img.id] === val ? '3px solid #0056b3' : '2px solid #adb5bd',
+                                        cursor: 'pointer',
+                                        padding: 0,
+                                        transition: 'all 0.2s ease',
+                                        boxShadow: sliderScores[img.id] === val ? '0 2px 4px rgba(0,123,255,0.3)' : 'none'
+                                      }}
+                                      onMouseEnter={(e) => {
+                                        if (sliderScores[img.id] !== val) {
+                                          e.currentTarget.style.transform = 'scale(1.2)';
+                                        }
+                                      }}
+                                      onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'scale(1)';
+                                      }}
+                                    />
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                            
+                            {/* Scale labels */}
+                            <div style={{
+                              display: 'flex',
+                              justifyContent: 'space-between',
+                              fontSize: '11px',
+                              color: '#666',
+                              paddingLeft: '4px',
+                              paddingRight: '4px'
+                            }}>
+                              <span>Strongly Disagree</span>
+                              <span>Strongly Agree</span>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+                
+                {/* Save button - centered */}
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                  <button
+                    onClick={saveCurrentRanking}
+                    disabled={(() => {
+                      const allRanked = Object.values(currentRanking).filter(Boolean).length === 4;
+                      const allScored = Object.values(currentRanking).filter(Boolean).every(imageId => sliderScores[imageId]);
+                      return isSavingRanking || rankingSaved || !allRanked || !allScored;
+                    })()}
+                    style={{
+                      padding: '12px 48px',
+                      fontSize: '16px',
+                      fontWeight: '500',
+                      backgroundColor: (() => {
+                        if (rankingSaved) return '#17a2b8';  // Blue when saved
+                        const allRanked = Object.values(currentRanking).filter(Boolean).length === 4;
+                        const allScored = Object.values(currentRanking).filter(Boolean).every(imageId => sliderScores[imageId]);
+                        return allRanked && allScored ? '#28a745' : '#ccc';
+                      })(),
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '8px',
+                      cursor: (() => {
+                        const allRanked = Object.values(currentRanking).filter(Boolean).length === 4;
+                        const allScored = Object.values(currentRanking).filter(Boolean).every(imageId => sliderScores[imageId]);
+                        return rankingSaved || !allRanked || !allScored ? 'not-allowed' : 'pointer';
+                      })(),
+                      transition: 'background-color 0.3s ease'
+                    }}
+                  >
+                    {isSavingRanking ? 'Saving...' : rankingSaved ? 'Saved ✓' : 'Save Ranking'}
+                  </button>
+                </div>
+              </>
             )}
           </div>
         </div>
@@ -884,110 +1801,106 @@ function App() {
             </button>
           </div>
 
-          {/* Two-column layout: Images on left, Bubble chart on right */}
-          <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
-            {/* Left column: 2x2 grid of images with tags */}
-            <div style={{ flex: '0 0 50%', minWidth: '0' }}>
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: 'repeat(2, 1fr)', 
-                gridTemplateRows: 'repeat(2, 1fr)',
-                gap: '15px',
-                height: '100%'
-              }}>
-                {images.map((image) => (
-                  <div
-                    key={image.id}
-                    style={{
-                      position: 'relative',
-                      border: selectedImage === image.id ? '3px solid blue' : '1px solid gray',
-                      padding: '10px',
-                      borderRadius: '4px',
-                      transition: 'all 0.3s ease',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      minHeight: '400px'
-                    }}
-                    ref={el => imageRefs.current[image.id] = el}
-                  >
-                    {/* Action buttons above image */}
-                    <div style={{
-                      display: 'flex',
-                      gap: '8px',
-                      marginBottom: '10px'
-                    }}>
-                      <button
-                        onClick={(e) => loadImageTags(image.id, e)}
-                        style={{
-                          background: 'rgba(255, 255, 255, 0.95)',
-                          border: '1px solid #ddd',
-                          borderRadius: '6px',
-                          padding: '6px 10px',
-                          fontSize: '12px',
-                          cursor: 'pointer',
-                          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                          transition: 'all 0.2s ease'
-                        }}
-                      >
-                        Visual Tags
-                      </button>
-                      
-                      <button
-                        onClick={() => loadImageJson(image.id)}
-                        style={{
-                          background: 'rgba(255, 255, 255, 0.95)',
-                          border: '1px solid #ddd',
-                          borderRadius: '6px',
-                          padding: '6px 10px',
-                          fontSize: '12px',
-                          cursor: 'pointer',
-                          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                          transition: 'all 0.2s ease'
-                        }}
-                      >
-                        JSON Script
-                      </button>
-                    </div>
-                    
-                    <img 
-                      src={image.url} 
-                      alt={`Design ${image.id}`} 
-                      style={{ 
-                        width: '100%',
-                        borderRadius: '2px',
+          {/* 4 images in a single row layout (no bubble chart) */}
+          <div style={{ marginBottom: '20px' }}>
+            <div style={{ 
+              display: 'flex', 
+              gap: '15px',
+              width: '100%'
+            }}>
+              {images.map((image) => (
+                <div
+                  key={image.id}
+                  style={{
+                    flex: '1 1 0',
+                    position: 'relative',
+                    border: selectedImage === image.id ? '3px solid blue' : '1px solid gray',
+                    padding: '10px',
+                    borderRadius: '4px',
+                    transition: 'all 0.3s ease',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    minWidth: 0
+                  }}
+                  ref={el => imageRefs.current[image.id] = el}
+                >
+                  {/* Action buttons above image */}
+                  <div style={{
+                    display: 'flex',
+                    gap: '8px',
+                    marginBottom: '10px'
+                  }}>
+                    <button
+                      onClick={(e) => loadImageTags(image.id, e)}
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.95)',
+                        border: '1px solid #ddd',
+                        borderRadius: '6px',
+                        padding: '6px 10px',
+                        fontSize: '12px',
                         cursor: 'pointer',
-                        flexShrink: 0
+                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                        transition: 'all 0.2s ease'
                       }}
-                      onClick={() => handleSelect(image.id)}
-                    />
-
-                    {/* Inline tag display */}
-                    {showTagsByDefault && (
-                      <InlineTagDisplay
-                        key={`tags-${image.id}`}
-                        tags={imageTagsMap[image.id] || []}
-                        imageId={image.id}
-                        onTagPreference={handleTagPreference}
-                        preferences={derivedTagPreferences}
-                      />
-                    )}
+                    >
+                      Visual Tags
+                    </button>
+                    
+                    <button
+                      onClick={() => loadImageJson(image.id)}
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.95)',
+                        border: '1px solid #ddd',
+                        borderRadius: '6px',
+                        padding: '6px 10px',
+                        fontSize: '12px',
+                        cursor: 'pointer',
+                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                        transition: 'all 0.2s ease'
+                      }}
+                    >
+                      JSON Script
+                    </button>
                   </div>
-                ))}
-              </div>
+                  
+                  <img 
+                    src={image.url} 
+                    alt={`Design ${image.id}`} 
+                    style={{ 
+                      width: '100%',
+                      borderRadius: '2px',
+                      cursor: 'pointer',
+                      flexShrink: 0
+                    }}
+                    onClick={() => handleSelect(image.id)}
+                  />
+
+                  {/* Inline tag display */}
+                  {showTagsByDefault && (
+                    <InlineTagDisplay
+                      key={`tags-${image.id}`}
+                      tags={imageTagsMap[image.id] || []}
+                      imageId={image.id}
+                      onTagPreference={handleTagPreference}
+                      preferences={derivedTagPreferences}
+                    />
+                  )}
+                </div>
+              ))}
             </div>
-            
-            {/* Right column: Bubble chart */}
-            <div style={{ flex: '0 0 50%', minWidth: '0' }}>
-              <ConceptRefinementPanel
-                sessionId={sessionId}
-                stage="impression"
-                images={images}
-                selectedImage={selectedImage}
-                onImageSelect={handleSelect}
-                onTagClick={conceptTagHandlerRef}
-                onTagPreferencesUpdate={handleConceptTagPreferencesUpdate}
-              />
-            </div>
+          </div>
+          
+          {/* Hidden ConceptRefinementPanel - still needed for concept system but not displayed */}
+          <div style={{ display: 'none' }}>
+            <ConceptRefinementPanel
+              sessionId={sessionId}
+              stage="impression"
+              images={images}
+              selectedImage={selectedImage}
+              onImageSelect={handleSelect}
+              onTagClick={conceptTagHandlerRef}
+              onTagPreferencesUpdate={handleConceptTagPreferencesUpdate}
+            />
           </div>
 
           {/* Continue Button */}
@@ -1007,7 +1920,7 @@ function App() {
               transition: 'background-color 0.3s ease'
             }}
           >
-            {isLoading ? 'Processing...' : 'Continue to Slider Generation →'}
+            {isLoading ? 'Processing...' : 'Proceed to Next Stage →'}
           </button>
           
           <button

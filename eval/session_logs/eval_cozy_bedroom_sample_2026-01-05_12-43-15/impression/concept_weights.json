@@ -1,0 +1,238 @@
+{
+  "stage": "impression",
+  "session_id": "eval_cozy_bedroom_sample_2026-01-05_12-43-15",
+  "timestamp": "2026-01-05T12:44:21.466743",
+  "num_concepts": 10,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 131,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "Sheer curtains",
+      "weight": 0.1304641216993332,
+      "score": 0.623765766620636,
+      "utility_std": 1.0045201778411865,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Sheer curtains"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "Minimalist design",
+      "weight": 0.11705823242664337,
+      "score": 0.5153390169143677,
+      "utility_std": 1.0045201778411865,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Minimalist design"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "Earthy tones",
+      "weight": 0.11345745623111725,
+      "score": 0.4840954542160034,
+      "utility_std": 1.0045201778411865,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Earthy tones"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "Soft daylight",
+      "weight": 0.11213035136461258,
+      "score": 0.4723295569419861,
+      "utility_std": 1.0045201778411865,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Soft daylight"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "Scandinavian vibe",
+      "weight": 0.099998340010643,
+      "score": 0.3578212559223175,
+      "utility_std": 1.0045201778411865,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Scandinavian vibe"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "Cozy ambiance",
+      "weight": 0.09862563014030457,
+      "score": 0.34399867057800293,
+      "utility_std": 1.0045201778411865,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Cozy ambiance"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "plush cushions",
+      "weight": 0.08453787863254547,
+      "score": 0.18986719846725464,
+      "utility_std": 1.0045201778411865,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "plush cushions"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "natural window light",
+      "weight": 0.0829501748085022,
+      "score": 0.1709076166152954,
+      "utility_std": 1.0045201778411865,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "natural window light"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "soft lamp light",
+      "weight": 0.08094149082899094,
+      "score": 0.14639392495155334,
+      "utility_std": 1.0045201778411865,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "soft lamp light"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "plush bedding",
+      "weight": 0.07983638346195221,
+      "score": 0.1326468139886856,
+      "utility_std": 1.0045201778411865,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "plush bedding"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_1_0_9",
+      "text": "Sheer curtains",
+      "utility": 0.623765766620636,
+      "uncertainty": 1.0045201778411865,
+      "weight": 0.1304641216993332,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_0",
+      "text": "Minimalist design",
+      "utility": 0.5153390169143677,
+      "uncertainty": 1.0045201778411865,
+      "weight": 0.11705823242664337,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_3",
+      "text": "Earthy tones",
+      "utility": 0.4840954542160034,
+      "uncertainty": 1.0045201778411865,
+      "weight": 0.11345745623111725,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_8",
+      "text": "Soft daylight",
+      "utility": 0.4723295569419861,
+      "uncertainty": 1.0045201778411865,
+      "weight": 0.11213035136461258,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "Scandinavian vibe",
+      "utility": 0.3578212559223175,
+      "uncertainty": 1.0045201778411865,
+      "weight": 0.099998340010643,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_2",
+      "text": "Cozy ambiance",
+      "utility": 0.34399867057800293,
+      "uncertainty": 1.0045201778411865,
+      "weight": 0.09862563014030457,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_7",
+      "text": "plush cushions",
+      "utility": 0.18986719846725464,
+      "uncertainty": 1.0045201778411865,
+      "weight": 0.08453787863254547,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_10",
+      "text": "natural window light",
+      "utility": 0.1709076166152954,
+      "uncertainty": 1.0045201778411865,
+      "weight": 0.0829501748085022,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_8",
+      "text": "soft lamp light",
+      "utility": 0.14639392495155334,
+      "uncertainty": 1.0045201778411865,
+      "weight": 0.08094149082899094,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_7",
+      "text": "plush bedding",
+      "utility": 0.1326468139886856,
+      "uncertainty": 1.0045201778411865,
+      "weight": 0.07983638346195221,
+      "source_image_idx": 3
+    }
+  ]
+}

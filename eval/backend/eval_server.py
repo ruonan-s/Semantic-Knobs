@@ -7,7 +7,9 @@ endpoints for the evaluation prototype that skips refinement.
 
 import os
 import sys
+import asyncio
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor
 
 # Add backend to path to import from main server
 BACKEND_DIR = Path(__file__).parent.parent.parent / "backend"
@@ -23,8 +25,10 @@ from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import Optional, List
+from typing import Optional, List, Dict
 import json
+import random
+import glob as glob_module
 
 # Import eval utilities
 from eval_utils import (
@@ -34,6 +38,11 @@ from eval_utils import (
     validate_session_for_eval,
     create_eval_session_log
 )
+
+# Add utils path for histogram generation
+EVAL_UTILS_DIR = Path(__file__).parent.parent / "utils"
+sys.path.insert(0, str(EVAL_UTILS_DIR))
+from Histograms import generate_histograms
 
 # Import from main backend
 from concept_refinement import get_or_create_session as get_refinement_session, refinement_sessions
@@ -50,9 +59,14 @@ LLM_SCRIPTS_PATH = Path(__file__).parent.parent / "llm_scripts"
 sys.path.insert(0, str(LLM_SCRIPTS_PATH))
 from style_transfer import generate_image_with_reference
 from baseline1 import generate_baseline_image
+from baseline_tags import generate_baseline_tags_image
 
 # Create FastAPI app for eval
 app = FastAPI(title="Semantic Knobs Eval Prototype")
+
+# Thread pool for running blocking image generation without blocking the event loop
+# max_workers=1 ensures GPU operations don't conflict, but event loop stays responsive
+generation_executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="img_gen")
 
 # Add CORS middleware
 app.add_middleware(
@@ -68,6 +82,7 @@ EVAL_DIR = Path(__file__).parent.parent
 PREDEFINED_INPUT_DIR = EVAL_DIR / "predefined_input"
 SESSION_LOGS_DIR = EVAL_DIR / "session_logs"
 BACKEND_SESSIONS_DIR = BACKEND_DIR / "sessions"
+BASELINE_GENERIC_DIR = EVAL_DIR / "llm_scripts" / "baseline_generic"
 
 # Ensure directories exist
 os.makedirs(PREDEFINED_INPUT_DIR, exist_ok=True)
@@ -76,6 +91,7 @@ os.makedirs(SESSION_LOGS_DIR, exist_ok=True)
 # Mount static files for serving images
 app.mount("/predefined", StaticFiles(directory=str(PREDEFINED_INPUT_DIR)), name="predefined")
 app.mount("/session_logs", StaticFiles(directory=str(SESSION_LOGS_DIR)), name="session_logs")
+app.mount("/baseline_generic", StaticFiles(directory=str(BASELINE_GENERIC_DIR)), name="baseline_generic")
 
 # Also mount backend sessions for compatibility
 if BACKEND_SESSIONS_DIR.exists():
@@ -581,37 +597,16 @@ async def proxy_get_tags(request: dict):
     return {"tags": []}
 
 
-@app.post("/api/generate-slider")
-async def generate_slider_eval(request: dict):
+def _generate_slider_sync(session_id: str, location: str, reference_image_param: str, session: dict):
     """
-    Generate ONE slider for eval prototype using EXPLORATION weights.
-    
-    This is a simplified version that:
-    - Uses exploration weights (not refinement weights)
-    - Generates only the "current" slider with 6 images
-    - Alpha values: 0.0, 0.25, 0.5, 0.75, 1.0, 1.0+reference
+    Synchronous slider generation - runs in thread pool to avoid blocking event loop.
     """
     import numpy as np
     import torch
     from datetime import datetime
     from PIL import Image as PILImage
     
-    session_id = request.get("session_id")
-    location = request.get("location", "")
-    
-    session = eval_sessions.get(session_id)
-    if not session:
-        raise HTTPException(404, f"Session not found: {session_id}")
-    
     session_folder = session["folder"]
-    
-    # Log start
-    create_eval_session_log(
-        session_folder,
-        session.get("user_id", "anonymous"),
-        "slider_generation_start",
-        {"location": location, "mode": "exploration_weights"}
-    )
     
     try:
         print("\n" + "=" * 80)
@@ -622,7 +617,7 @@ async def generate_slider_eval(request: dict):
         # Load exploration concept_weights.json
         concept_weights_path = os.path.join(session_folder, "impression", "concept_weights.json")
         if not os.path.exists(concept_weights_path):
-            raise HTTPException(404, "concept_weights.json not found in impression stage")
+            return {"error": True, "status_code": 404, "message": "concept_weights.json not found in impression stage"}
         
         with open(concept_weights_path, 'r') as f:
             concept_weights_data = json.load(f)
@@ -630,7 +625,7 @@ async def generate_slider_eval(request: dict):
         # Load final_selection.json for adjective/location
         final_selection_path = os.path.join(session_folder, "final_selection.json")
         if not os.path.exists(final_selection_path):
-            raise HTTPException(404, "final_selection.json not found")
+            return {"error": True, "status_code": 404, "message": "final_selection.json not found"}
         
         with open(final_selection_path, 'r') as f:
             final_selection = json.load(f)
@@ -654,7 +649,7 @@ async def generate_slider_eval(request: dict):
         # Get exploration weights
         concept_weights = concept_weights_data.get("concept_weights", [])
         if not concept_weights:
-            raise HTTPException(400, "No concept weights found")
+            return {"error": True, "status_code": 400, "message": "No concept weights found"}
         
         # Build concepts with location prefix
         concepts = []
@@ -733,7 +728,7 @@ async def generate_slider_eval(request: dict):
                 )
         
         if _eval_slider_fuser is None:
-            raise HTTPException(500, "SDXL pipeline not available")
+            return {"error": True, "status_code": 500, "message": "SDXL pipeline not available"}
         
         # Generate images with alpha interpolation
         neg_phrases = ["illustration", "painted", "drawing", "cartoon", "anime", 
@@ -741,14 +736,15 @@ async def generate_slider_eval(request: dict):
                        "concept art", "stylized", "toon shading", 
                        "people", "person", "human"]
         
-        alphas = [0.0, 0.25, 0.5, 0.75, 1.0]
-        seed_base = 30
+        # Only generate alpha=1.0 for evaluation (skip intermediate values)
+        alphas = [1.0]
+        seed_base = 2026
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         
         results = []
         prompt_embeds_alpha_1 = None
         
-        print(f"\n  Generating {len(alphas)} images...")
+        print(f"\n  Generating {len(alphas)} image(s) (alpha=1.0 only)...")
         
         for i, alpha in enumerate(alphas):
             print(f"  [{i+1}/{len(alphas)}] Alpha = {alpha:.2f}")
@@ -781,9 +777,9 @@ async def generate_slider_eval(request: dict):
             
             results.append((alpha, image, None))
         
-        # Generate 6th image with reference (img2img at alpha=1.0)
+        # Generate 2nd image with reference (img2img at alpha=1.0)
         if reference_image is not None and is_original_location and prompt_embeds_alpha_1 is not None:
-            print(f"  [6/6] Alpha = 1.0 (with reference image)")
+            print(f"  [2/2] Alpha = 1.0 (with reference image)")
             
             prompt_embeds_ref, pooled_ref, neg_embeds_ref, neg_pooled_ref = prompt_embeds_alpha_1
             
@@ -837,6 +833,22 @@ async def generate_slider_eval(request: dict):
         
         print(f"\n  ✅ Generated {len(slider_images)} images for eval slider")
         
+        # ========== LLM BASELINE TAGS (for all locations) ==========
+        # Generate image using learned tags: "{adjective} {location}, {tag1}, {tag2}, ..."
+        print(f"\n{'='*80}")
+        print(f"[LLM BASELINE TAGS] Generating baseline with learned tags")
+        print(f"{'='*80}")
+        
+        try:
+            baseline_tags_path = generate_baseline_tags_image(
+                session_folder=session_folder,
+                location=target_location,
+                output_folder=slider_output_dir
+            )
+            print(f"  ✅ Baseline tags image saved: {os.path.basename(baseline_tags_path)}")
+        except Exception as e:
+            print(f"  ⚠️ Baseline tags generation failed: {str(e)}")
+        
         # ========== LLM STYLE TRANSFER (for new locations only) ==========
         original_location = final_selection.get("location", "")
         is_new_location = location and location != original_location
@@ -848,24 +860,28 @@ async def generate_slider_eval(request: dict):
             print(f"  Original location: {original_location}")
             print(f"  New location: {location}")
             
-            # Find reference image from original location's slider folder
-            original_slider_dir = os.path.join(session_folder, "slider", original_location.replace(" ", "_"))
+            # Use exploration selected image from preferences.json
             reference_image_path = None
+            exploration_selection = prefs.get("selections", {}).get("impression")
             
-            if os.path.exists(original_slider_dir):
-                # Look for *alphaRef_1.00*.png patterns
-                import glob
-                patterns = [
-                    os.path.join(original_slider_dir, "*alphaRef_1.00*.png"),
-                    os.path.join(original_slider_dir, "*current_alphaRef_1.00*.png"),
-                    os.path.join(original_slider_dir, "eval_alphaRef_1.00*.png")
-                ]
+            if exploration_selection:
+                # Exploration selected image is in the impression folder
+                impression_folder = os.path.join(session_folder, "impression")
+                ref_path = os.path.join(impression_folder, f"{exploration_selection}.png")
                 
-                for pattern in patterns:
-                    matches = glob.glob(pattern)
-                    if matches:
-                        reference_image_path = matches[0]
-                        break
+                if os.path.exists(ref_path):
+                    reference_image_path = ref_path
+                    print(f"  Using exploration selected image: {exploration_selection}.png")
+                else:
+                    # Try alternate naming pattern
+                    ref_path = os.path.join(impression_folder, f"{exploration_selection}_0.png")
+                    if os.path.exists(ref_path):
+                        reference_image_path = ref_path
+                        print(f"  Using exploration selected image: {exploration_selection}_0.png")
+                    else:
+                        print(f"  ⚠️ Exploration selected image not found: {exploration_selection}")
+            else:
+                print(f"  ⚠️ No exploration selection found in preferences.json")
             
             if reference_image_path and os.path.exists(reference_image_path):
                 print(f"  Reference image: {os.path.basename(reference_image_path)}")
@@ -892,21 +908,8 @@ async def generate_slider_eval(request: dict):
             else:
                 print(f"  ⚠️ Reference image not found in {original_slider_dir}")
             
-            # ========== LLM BASELINE (for new locations) ==========
-            print(f"\n[LLM BASELINE] Generating baseline image for new location")
-            baseline_prompt = f"{adjective} {location}"
-            print(f"  Prompt: {baseline_prompt}")
-            
-            try:
-                baseline_output = os.path.join(slider_output_dir, "llm_baseline.png")
-                generated_baseline = generate_baseline_image(
-                    user_input=baseline_prompt,
-                    output_folder=slider_output_dir,
-                    output_filename="llm_baseline.png"
-                )
-                print(f"  ✅ Baseline image saved: llm_baseline.png")
-            except Exception as e:
-                print(f"  ⚠️ Baseline generation failed: {str(e)}")
+            # NOTE: Baseline image for new locations comes from baseline_generic folder
+            # No need to generate llm_baseline.png - get-comparison-images uses baseline_generic
         
         return {
             "success": True,
@@ -919,8 +922,6 @@ async def generate_slider_eval(request: dict):
             }]
         }
         
-    except HTTPException:
-        raise
     except Exception as e:
         print(f"[EVAL SLIDER] Error: {e}")
         import traceback
@@ -933,7 +934,47 @@ async def generate_slider_eval(request: dict):
             {"error": str(e)}
         )
         
-        raise HTTPException(500, str(e))
+        return {"error": True, "status_code": 500, "message": str(e)}
+
+
+@app.post("/api/generate-slider")
+async def generate_slider_eval(request: dict):
+    """
+    Generate ONE slider for eval prototype using EXPLORATION weights.
+    
+    This endpoint uses a thread pool to run the blocking image generation,
+    keeping the event loop responsive for other requests.
+    """
+    session_id = request.get("session_id")
+    location = request.get("location", "")
+    reference_image = request.get("reference_image", None)  # Optional: rank #1 image from initial round
+    
+    session = eval_sessions.get(session_id)
+    if not session:
+        raise HTTPException(404, f"Session not found: {session_id}")
+    
+    session_folder = session["folder"]
+    
+    # Log start
+    create_eval_session_log(
+        session_folder,
+        session.get("user_id", "anonymous"),
+        "slider_generation_start",
+        {"location": location, "mode": "exploration_weights"}
+    )
+    
+    # Run the blocking generation in a thread pool to keep event loop responsive
+    loop = asyncio.get_event_loop()
+    result = await loop.run_in_executor(
+        generation_executor,
+        lambda: _generate_slider_sync(session_id, location, reference_image, session)
+    )
+    
+    # Check if the sync function returned an error
+    if isinstance(result, dict) and result.get("error"):
+        raise HTTPException(result.get("status_code", 500), result.get("message", "Generation failed"))
+    
+    return result
 
 
 # Global SDXL runner for eval (cached to avoid reloading)
@@ -985,6 +1026,315 @@ async def process_gp_round(request: dict):
         "gp_mode": True,
         "n_concepts": len(concepts)
     }
+
+
+# ============== Evaluation Ranking Endpoints ==============
+
+@app.get("/api/eval/session-logs")
+def list_session_logs():
+    """
+    List available session logs that have slider directories.
+    These are sessions that have already been processed and have generated images.
+    """
+    session_logs = []
+    
+    if SESSION_LOGS_DIR.exists():
+        for session_folder in sorted(SESSION_LOGS_DIR.iterdir(), reverse=True):
+            if session_folder.is_dir():
+                slider_dir = session_folder / "slider"
+                if slider_dir.exists() and slider_dir.is_dir():
+                    # Get available locations in this session
+                    locations = [loc.name for loc in slider_dir.iterdir() if loc.is_dir()]
+                    
+                    # Load session metadata if available
+                    final_selection_path = session_folder / "final_selection.json"
+                    adjective = ""
+                    location = ""
+                    if final_selection_path.exists():
+                        try:
+                            with open(final_selection_path, 'r') as f:
+                                fs = json.load(f)
+                                adjective = fs.get("adjective", "")
+                                location = fs.get("location", "")
+                        except:
+                            pass
+                    
+                    session_logs.append({
+                        "name": session_folder.name,
+                        "path": str(session_folder),
+                        "locations": locations,
+                        "adjective": adjective,
+                        "location": location,
+                        "descriptor": f"{adjective} {location}".strip()
+                    })
+    
+    return {"session_logs": session_logs}
+
+
+@app.get("/api/eval/locations")
+def get_available_locations():
+    """
+    Return all locations from baseline_generic folder.
+    These are the locations that can be evaluated.
+    """
+    locations = []
+    
+    if BASELINE_GENERIC_DIR.exists():
+        for loc_folder in sorted(BASELINE_GENERIC_DIR.iterdir()):
+            if loc_folder.is_dir():
+                # Check if there's a baseline image
+                baseline_images = list(loc_folder.glob("*.png"))
+                if baseline_images:
+                    locations.append({
+                        "name": loc_folder.name,
+                        "baseline_image": baseline_images[0].name
+                    })
+    
+    return {"locations": locations}
+
+
+class ComparisonImagesRequest(BaseModel):
+    session_log: str
+    location: str
+    is_initial_round: bool = False
+
+
+@app.post("/api/eval/get-comparison-images")
+def get_comparison_images(request: ComparisonImagesRequest):
+    """
+    Get 4 comparison images for a location, randomized.
+    
+    For initial round (bedroom):
+    - baseline_generic/{Location}/Cozy_{Location}.png (generic LLM baseline)
+    - slider/{location}/eval_alpha_1.00_*.png (SDXL personalized)
+    - slider/{location}/eval_alphaRef_1.00_*.png (SDXL with reference)
+    - slider/{location}/llm_baseline_tags.png (LLM with learned tags)
+    
+    For other locations:
+    - baseline_generic/{Location}/Cozy_{Location}.png (generic LLM baseline)
+    - slider/{location}/eval_alpha_1.00_*.png (SDXL personalized)
+    - slider/{location}/llm_style_transfer.png (LLM style transfer)
+    - slider/{location}/llm_baseline_tags.png (LLM with learned tags)
+    
+    Returns images in randomized order with a mapping to identify them later.
+    """
+    print(f"[GET-COMPARISON] Request: session_log={request.session_log}, location={request.location}, is_initial={request.is_initial_round}")
+    
+    session_folder = SESSION_LOGS_DIR / request.session_log
+    if not session_folder.exists():
+        raise HTTPException(404, f"Session log not found: {request.session_log}")
+    
+    # Find baseline image (handle case sensitivity)
+    baseline_folder = None
+    baseline_folder_name = None
+    available_baselines = [f.name for f in BASELINE_GENERIC_DIR.iterdir() if f.is_dir()]
+    print(f"[GET-COMPARISON] Available baselines: {available_baselines}")
+    
+    for folder in BASELINE_GENERIC_DIR.iterdir():
+        if folder.is_dir() and folder.name.lower().replace("_", " ") == request.location.lower().replace("_", " "):
+            baseline_folder = folder
+            baseline_folder_name = folder.name
+            break
+    
+    if not baseline_folder or not baseline_folder.exists():
+        raise HTTPException(404, f"Baseline location not found: {request.location}. Available: {available_baselines}")
+    
+    baseline_images = list(baseline_folder.glob("*.png"))
+    if not baseline_images:
+        raise HTTPException(404, f"No baseline image found for: {request.location}")
+    
+    baseline_image_name = baseline_images[0].name
+    baseline_url = f"/baseline_generic/{baseline_folder_name}/{baseline_image_name}"
+    
+    # Find slider folder for this location (handle case sensitivity)
+    slider_dir = session_folder / "slider"
+    if not slider_dir.exists():
+        raise HTTPException(404, f"Slider directory not found: {slider_dir}")
+    
+    location_folder = None
+    location_folder_name = None
+    
+    for folder in slider_dir.iterdir():
+        if folder.is_dir() and folder.name.lower().replace("_", " ") == request.location.lower().replace("_", " "):
+            location_folder = folder
+            location_folder_name = folder.name
+            break
+    
+    if not location_folder or not location_folder.exists():
+        raise HTTPException(404, f"Slider folder not found for location: {request.location}. Available: {[f.name for f in slider_dir.iterdir() if f.is_dir()]}")
+    
+    print(f"[GET-COMPARISON] Found slider folder: {location_folder_name}")
+    
+    # Find alpha_1.00 image
+    alpha_images = list(location_folder.glob("eval_alpha_1.00_*.png"))
+    if not alpha_images:
+        raise HTTPException(404, f"No eval_alpha_1.00 image found for: {request.location}")
+    
+    alpha_image_name = alpha_images[0].name
+    alpha_url = f"/session_logs/{request.session_log}/slider/{location_folder_name}/{alpha_image_name}"
+    
+    # Find third image based on round type
+    if request.is_initial_round:
+        # Look for alphaRef image
+        ref_images = list(location_folder.glob("eval_alphaRef_1.00_*.png"))
+        if not ref_images:
+            raise HTTPException(404, f"No eval_alphaRef_1.00 image found for: {request.location}")
+        third_image_name = ref_images[0].name
+        third_image_type = "alphaRef"
+    else:
+        # Look for llm_style_transfer image
+        style_transfer_path = location_folder / "llm_style_transfer.png"
+        if not style_transfer_path.exists():
+            raise HTTPException(404, f"No llm_style_transfer.png found for: {request.location}")
+        third_image_name = "llm_style_transfer.png"
+        third_image_type = "style_transfer"
+    
+    third_url = f"/session_logs/{request.session_log}/slider/{location_folder_name}/{third_image_name}"
+    
+    # Find fourth image: llm_baseline_tags.png (LLM with learned tags)
+    baseline_tags_path = location_folder / "llm_baseline_tags.png"
+    if not baseline_tags_path.exists():
+        raise HTTPException(404, f"No llm_baseline_tags.png found for: {request.location}")
+    
+    tags_url = f"/session_logs/{request.session_log}/slider/{location_folder_name}/llm_baseline_tags.png"
+    
+    # Build images list with identifiers (4 images)
+    images = [
+        {"id": "baseline", "url": baseline_url, "filename": baseline_image_name, "type": "baseline"},
+        {"id": "alpha", "url": alpha_url, "filename": alpha_image_name, "type": "personalized"},
+        {"id": "third", "url": third_url, "filename": third_image_name, "type": third_image_type},
+        {"id": "tags", "url": tags_url, "filename": "llm_baseline_tags.png", "type": "baseline_tags"}
+    ]
+    
+    # Randomize order
+    random.shuffle(images)
+    
+    # Create position mapping (which position each image ended up in)
+    position_mapping = {img["id"]: idx for idx, img in enumerate(images)}
+    
+    print(f"[GET-COMPARISON] Success! Returning 4 images for {request.location}")
+    
+    return {
+        "images": images,
+        "position_mapping": position_mapping,
+        "location": request.location,
+        "is_initial_round": request.is_initial_round
+    }
+
+
+class SaveRankingRequest(BaseModel):
+    session_log: str
+    location: str
+    rankings: Dict[str, dict]  # {"1": {"image": "filename", "score": 6}, "2": {...}, ...}
+
+
+@app.post("/api/eval/save-ranking")
+def save_ranking(request: SaveRankingRequest):
+    """
+    Save ranking for a location to rank_order.json in the session folder.
+    """
+    session_folder = SESSION_LOGS_DIR / request.session_log
+    if not session_folder.exists():
+        raise HTTPException(404, f"Session log not found: {request.session_log}")
+    
+    rank_order_path = session_folder / "rank_order.json"
+    
+    # Load existing or create new
+    if rank_order_path.exists():
+        with open(rank_order_path, 'r') as f:
+            rank_order = json.load(f)
+    else:
+        rank_order = {
+            "session_log": request.session_log,
+            "rankings": {}
+        }
+    
+    # Update ranking for this location
+    rank_order["rankings"][request.location] = request.rankings
+    
+    # Save back
+    with open(rank_order_path, 'w') as f:
+        json.dump(rank_order, f, indent=2)
+    
+    print(f"[EVAL] Saved ranking for {request.location}: {request.rankings}")
+    
+    # Check if all 10 locations have been ranked - generate histograms automatically
+    num_ranked = len(rank_order["rankings"])
+    print(f"[EVAL] Total locations ranked: {num_ranked}/10")
+    
+    if num_ranked >= 10:
+        print(f"[EVAL] ✅ All 10 locations ranked! Generating histograms automatically...")
+        try:
+            histogram_result = generate_histograms(str(rank_order_path), show=False)
+            print(f"[EVAL] ✅ Histograms generated successfully!")
+            print(f"[EVAL]   - rank_histogram.png saved to {session_folder}")
+            print(f"[EVAL]   - average_rank.png saved to {session_folder}")
+            print(f"[EVAL]   - score_by_rank.png saved to {session_folder}")
+        except Exception as e:
+            import traceback
+            print(f"[EVAL] ❌ Failed to generate histograms: {e}")
+            traceback.print_exc()
+    
+    return {
+        "success": True,
+        "location": request.location,
+        "rankings": request.rankings,
+        "total_ranked": num_ranked
+    }
+
+
+class InitRankingSessionRequest(BaseModel):
+    session_log: str
+
+
+@app.post("/api/eval/init-ranking-session")
+def init_ranking_session(request: InitRankingSessionRequest):
+    """
+    Initialize an empty rank_order.json for a session.
+    """
+    session_folder = SESSION_LOGS_DIR / request.session_log
+    if not session_folder.exists():
+        raise HTTPException(404, f"Session log not found: {request.session_log}")
+    
+    rank_order_path = session_folder / "rank_order.json"
+    
+    # Create new rank_order.json
+    rank_order = {
+        "session_log": request.session_log,
+        "rankings": {}
+    }
+    
+    with open(rank_order_path, 'w') as f:
+        json.dump(rank_order, f, indent=2)
+    
+    print(f"[EVAL] Initialized rank_order.json for {request.session_log}")
+    
+    return {
+        "success": True,
+        "session_log": request.session_log
+    }
+
+
+@app.get("/api/eval/get-rankings/{session_log}")
+def get_rankings(session_log: str):
+    """
+    Get current rankings for a session.
+    """
+    session_folder = SESSION_LOGS_DIR / session_log
+    if not session_folder.exists():
+        raise HTTPException(404, f"Session log not found: {session_log}")
+    
+    rank_order_path = session_folder / "rank_order.json"
+    
+    if rank_order_path.exists():
+        with open(rank_order_path, 'r') as f:
+            rank_order = json.load(f)
+        return rank_order
+    else:
+        return {
+            "session_log": session_log,
+            "rankings": {}
+        }
 
 
 # ============== Health check ==============

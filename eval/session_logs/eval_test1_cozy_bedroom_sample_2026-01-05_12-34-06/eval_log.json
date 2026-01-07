@@ -1,0 +1,103 @@
+{
+  "user_id": "test1",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_test1_cozy_bedroom_sample_2026-01-05_12-34-06",
+  "created_at": "2026-01-05T12:34:06.566098",
+  "events": [
+    {
+      "timestamp": "2026-01-05T12:34:06.566111",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "cozy_bedroom_sample"
+      }
+    },
+    {
+      "timestamp": "2026-01-05T12:35:11.821549",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_1_0",
+        "concept_count": 10,
+        "gp_mode": true
+      }
+    },
+    {
+      "timestamp": "2026-01-05T12:35:11.864875",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-05T12:35:53.731505",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2
+      }
+    },
+    {
+      "timestamp": "2026-01-05T12:36:27.947552",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bathroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-05T12:36:38.894612",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1
+      }
+    },
+    {
+      "timestamp": "2026-01-05T12:36:48.190783",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Coffeeshop",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-05T12:36:58.996413",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1
+      }
+    },
+    {
+      "timestamp": "2026-01-05T12:37:08.577301",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Craft Room",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-05T12:37:19.402470",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1
+      }
+    },
+    {
+      "timestamp": "2026-01-05T12:37:27.359576",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Home Gym",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-05T12:37:38.171713",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+[16:04:35] Starting IMPRESSION stage (Optimized Parallel)
+[16:04:35] Created folder: sessions/[fast]_refreshing_Coffeeshop_2026-01-05_16-04-35/impression
+[16:04:35] Generating concepts with user preferences...
+[16:04:35] Starting sequential concept design for impression
+[16:04:35] Design attempt 1/3
+[16:04:43] Generated 4 concepts
+[16:04:43] Generated 4 concepts
+[16:04:43] Saved scenes to: impression.json
+[16:04:43] Generating images and extracting tags in parallel for all 4 scenes...
+[16:04:43] Starting parallel image generation with immediate tag extraction for 4 scenes in impression
+[16:04:43] Starting parallel image generation 0 for impression
+[16:04:43] Scene 0: Nordic Purity
+[16:04:43] Starting parallel image generation 1 for impression
+[16:04:43] Scene 1: Biophilic Oasis
+[16:04:43] Calling Gemini API for scene 0 (attempt 1/3)...
+[16:04:43] Calling Gemini API for scene 1 (attempt 1/3)...
+[16:04:43] Starting parallel image generation 2 for impression
+[16:04:43] Starting parallel image generation 3 for impression
+[16:04:43] Scene 2: Retro Zest
+[16:04:43] Scene 3: Wabi-Sabi Sanctuary
+[16:04:43] Calling Gemini API for scene 2 (attempt 1/3)...
+[16:04:43] Calling Gemini API for scene 3 (attempt 1/3)...
+[16:04:46] API response received for scene 1: 2 total parts, 1 image parts
+[16:04:46] Processing image 2 for scene 1...
+[16:04:46] Saved: impression_1_0.png for scene 1
+[16:04:46] Scene 1 'Biophilic Oasis': Successfully generated 1 images!
+[16:04:46] Extracting tags for impression_1_0.png (scene 1)...
+[16:04:47] API response received for scene 3: 2 total parts, 1 image parts
+[16:04:47] Processing image 2 for scene 3...
+[16:04:47] Saved: impression_3_0.png for scene 3
+[16:04:47] Scene 3 'Wabi-Sabi Sanctuary': Successfully generated 1 images!
+[16:04:47] Extracting tags for impression_3_0.png (scene 3)...
+[16:04:48] API response received for scene 2: 2 total parts, 1 image parts
+[16:04:48] Processing image 2 for scene 2...
+[16:04:48] Saved: impression_2_0.png for scene 2
+[16:04:48] Scene 2 'Retro Zest': Successfully generated 1 images!
+[16:04:48] Extracting tags for impression_2_0.png (scene 2)...
+[16:04:48] API response received for scene 0: 2 total parts, 1 image parts
+[16:04:48] Processing image 2 for scene 0...
+[16:04:49] Saved: impression_0_0.png for scene 0
+[16:04:49] Scene 0 'Nordic Purity': Successfully generated 1 images!
+[16:04:49] Extracting tags for impression_0_0.png (scene 0)...
+[16:04:51] Extracted 12 tags from impression_1_0.png (scene 1)
+[16:04:51] ✅ Completed parallel generation + tag extraction for scene 1
+[16:04:52] Extracted 12 tags from impression_3_0.png (scene 3)
+[16:04:52] ✅ Completed parallel generation + tag extraction for scene 3
+[16:04:54] Extracted 12 tags from impression_2_0.png (scene 2)
+[16:04:54] ✅ Completed parallel generation + tag extraction for scene 2
+[16:04:54] Extracted 12 tags from impression_0_0.png (scene 0)
+[16:04:54] ✅ Completed parallel generation + tag extraction for scene 0
+[16:04:54] Parallel image generation with tag extraction completed: 4/4 scenes successful
+[16:04:54] Total tags extracted: 48
+[16:04:54] Successfully generated images and extracted tags for 4 scenes in parallel
+[16:04:54] Saved 48 total tags to: visual_tags.json
+[16:04:54] IMPRESSION stage completed successfully! (Optimized Parallel)
+[16:04:54] Generated 4 concepts with 4 total images

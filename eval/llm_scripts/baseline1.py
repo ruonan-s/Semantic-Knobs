@@ -12,7 +12,7 @@ from util import call_gemini_api_img, sanitize_folder_name
 # ============================================
 # PROMPTS - Modify these variables as needed
 # ============================================
-USER_INPUT = "Cozy Home Gym"
+USER_INPUT = "Romantic Reading Nook"
 SYSTEM_PROMPT = "A photorealistic interior photo, full room view, high fidelity"
 
 def generate_baseline_image(
