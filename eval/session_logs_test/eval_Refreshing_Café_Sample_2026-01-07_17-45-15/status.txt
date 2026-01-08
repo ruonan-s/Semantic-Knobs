@@ -1,0 +1,56 @@
+[17:13:04] Starting IMPRESSION stage (Optimized Parallel)
+[17:13:04] Created folder: sessions/[fast]_Refreshing_Café_2026-01-07_17-13-04/impression
+[17:13:04] Generating concepts with user preferences...
+[17:13:04] Starting sequential concept design for impression
+[17:13:04] Design attempt 1/3
+[17:13:15] Generated 4 concepts
+[17:13:15] Generated 4 concepts
+[17:13:15] Saved scenes to: impression.json
+[17:13:15] Generating images and extracting tags in parallel for all 4 scenes...
+[17:13:15] Starting parallel image generation with immediate tag extraction for 4 scenes in impression
+[17:13:15] Starting parallel image generation 0 for impression
+[17:13:15] Scene 0: Botanical Breeze Café
+[17:13:15] Calling Gemini API for scene 0 (attempt 1/3)...
+[17:13:15] Starting parallel image generation 1 for impression
+[17:13:15] Scene 1: Nordic Serenity Café
+[17:13:15] Starting parallel image generation 2 for impression
+[17:13:15] Starting parallel image generation 3 for impression
+[17:13:15] Calling Gemini API for scene 1 (attempt 1/3)...
+[17:13:15] Scene 2: Coastal Zest Café
+[17:13:15] Scene 3: Urban Oasis Café
+[17:13:15] Calling Gemini API for scene 2 (attempt 1/3)...
+[17:13:15] Calling Gemini API for scene 3 (attempt 1/3)...
+[17:13:18] API response received for scene 1: 2 total parts, 1 image parts
+[17:13:18] Processing image 2 for scene 1...
+[17:13:18] Saved: impression_1_0.png for scene 1
+[17:13:18] Scene 1 'Nordic Serenity Café': Successfully generated 1 images!
+[17:13:18] Extracting tags for impression_1_0.png (scene 1)...
+[17:13:18] API response received for scene 2: 2 total parts, 1 image parts
+[17:13:18] Processing image 2 for scene 2...
+[17:13:18] API response received for scene 3: 2 total parts, 1 image parts
+[17:13:18] Processing image 2 for scene 3...
+[17:13:18] Saved: impression_2_0.png for scene 2
+[17:13:18] Scene 2 'Coastal Zest Café': Successfully generated 1 images!
+[17:13:18] Extracting tags for impression_2_0.png (scene 2)...
+[17:13:19] Saved: impression_3_0.png for scene 3
+[17:13:19] Scene 3 'Urban Oasis Café': Successfully generated 1 images!
+[17:13:19] Extracting tags for impression_3_0.png (scene 3)...
+[17:13:19] API response received for scene 0: 2 total parts, 1 image parts
+[17:13:19] Processing image 2 for scene 0...
+[17:13:19] Saved: impression_0_0.png for scene 0
+[17:13:19] Scene 0 'Botanical Breeze Café': Successfully generated 1 images!
+[17:13:19] Extracting tags for impression_0_0.png (scene 0)...
+[17:13:22] Extracted 12 tags from impression_1_0.png (scene 1)
+[17:13:22] ✅ Completed parallel generation + tag extraction for scene 1
+[17:13:23] Extracted 12 tags from impression_2_0.png (scene 2)
+[17:13:23] ✅ Completed parallel generation + tag extraction for scene 2
+[17:13:23] Extracted 12 tags from impression_3_0.png (scene 3)
+[17:13:23] ✅ Completed parallel generation + tag extraction for scene 3
+[17:13:24] Extracted 12 tags from impression_0_0.png (scene 0)
+[17:13:24] ✅ Completed parallel generation + tag extraction for scene 0
+[17:13:24] Parallel image generation with tag extraction completed: 4/4 scenes successful
+[17:13:24] Total tags extracted: 48
+[17:13:24] Successfully generated images and extracted tags for 4 scenes in parallel
+[17:13:24] Saved 48 total tags to: visual_tags.json
+[17:13:24] IMPRESSION stage completed successfully! (Optimized Parallel)
+[17:13:24] Generated 4 concepts with 4 total images

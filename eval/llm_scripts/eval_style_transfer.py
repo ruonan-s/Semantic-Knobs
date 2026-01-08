@@ -26,6 +26,9 @@ from baseline1 import generate_baseline_image
 SESSION_FOLDER = "/home/nancy/Semantic-Knobs/eval/session_logs/eval_cozy_bedroom_sample_2026-01-01_22-52-46"
 NEW_LOCATION = "kitchen"
 
+# System prompt for photorealistic interior generation
+SYSTEM_PROMPT = "Photorealistic interior photo, high fidelity, no people. Full room visible from an experiential, lived-in viewpoint: human eye-level camera placed inside the space, close to furniture with foreground present. Avoid wide-angle, centered, or architectural overview views. Aspect ratio: 1:1."
+
 
 def generate_style_transfer_for_new_location(
     session_folder: str = SESSION_FOLDER,
@@ -91,8 +94,9 @@ def generate_style_transfer_for_new_location(
     
     # Build the style transfer prompt
     style_transfer_prompt = (
+        f"{SYSTEM_PROMPT} "
         f"This user selected this image as their preferred example of a {adjective} {original_location}. "
-        f"Generate a {adjective} {new_location} that matches this user's personal aesthetic"
+        f"Generate a {adjective} {new_location} that matches this user's preferences"
     )
     print(f"Prompt: {style_transfer_prompt}")
     

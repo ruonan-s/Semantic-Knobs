@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'backend'
 from util import call_gemini_api_img
 
 # System prompt for photorealistic interior generation
-SYSTEM_PROMPT = "A photorealistic interior photo, full room view, high fidelity"
+SYSTEM_PROMPT = "Photorealistic interior photo, high fidelity, no people. Full room visible from an experiential, lived-in viewpoint: human eye-level camera placed inside the space, close to furniture with foreground present. Avoid wide-angle, centered, or architectural overview views. Aspect ratio: 1:1."
 
 
 def generate_baseline_tags_image(

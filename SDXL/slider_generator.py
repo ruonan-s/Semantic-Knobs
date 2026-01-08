@@ -89,6 +89,8 @@ def generate_cozy_sweep(
     K = w_cozy.shape[0]
     assert len(concepts) == K, f"Concept count mismatch: {len(concepts)} vs {K}"
     
+    
+    
     # Normalize w_cozy ONCE - these are the fixed relative importances
     w_cozy_norm = w_cozy / (w_cozy.sum() + 1e-8)
     

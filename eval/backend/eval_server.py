@@ -82,7 +82,7 @@ EVAL_DIR = Path(__file__).parent.parent
 PREDEFINED_INPUT_DIR = EVAL_DIR / "predefined_input"
 SESSION_LOGS_DIR = EVAL_DIR / "session_logs"
 BACKEND_SESSIONS_DIR = BACKEND_DIR / "sessions"
-BASELINE_GENERIC_DIR = EVAL_DIR / "llm_scripts" / "baseline_generic"
+LLM_SCRIPTS_DIR = EVAL_DIR / "llm_scripts"  # Parent of all baseline_generic_* folders
 
 # Ensure directories exist
 os.makedirs(PREDEFINED_INPUT_DIR, exist_ok=True)
@@ -91,7 +91,7 @@ os.makedirs(SESSION_LOGS_DIR, exist_ok=True)
 # Mount static files for serving images
 app.mount("/predefined", StaticFiles(directory=str(PREDEFINED_INPUT_DIR)), name="predefined")
 app.mount("/session_logs", StaticFiles(directory=str(SESSION_LOGS_DIR)), name="session_logs")
-app.mount("/baseline_generic", StaticFiles(directory=str(BASELINE_GENERIC_DIR)), name="baseline_generic")
+app.mount("/llm_scripts", StaticFiles(directory=str(LLM_SCRIPTS_DIR)), name="llm_scripts")
 
 # Also mount backend sessions for compatibility
 if BACKEND_SESSIONS_DIR.exists():
@@ -597,14 +597,14 @@ async def proxy_get_tags(request: dict):
     return {"tags": []}
 
 
-def _generate_slider_sync(session_id: str, location: str, reference_image_param: str, session: dict):
+def _generate_slider_sync(session_id: str, location: str, session: dict):
     """
     Synchronous slider generation - runs in thread pool to avoid blocking event loop.
+    Uses exploration selected image for style transfer (no need for rank #1 reference).
     """
     import numpy as np
     import torch
     from datetime import datetime
-    from PIL import Image as PILImage
     
     session_folder = session["folder"]
     
@@ -642,6 +642,15 @@ def _generate_slider_sync(session_id: str, location: str, reference_image_param:
         target_location = location if location else final_selection.get("location", "")
         descriptor = f"{adjective} {target_location}"
         
+        # Check if this is a café/coffeeshop context - add photorealistic prefix to tags only
+        target_location_lower = target_location.lower()
+        is_cafe_context = (
+            "café" in target_location_lower or 
+            "cafe" in target_location_lower or 
+            "coffeeshop" in target_location_lower or 
+            "coffee shop" in target_location_lower
+        )
+        
         print(f"  Adjective: {adjective}")
         print(f"  Location: {target_location}")
         print(f"  Descriptor: {descriptor}")
@@ -655,10 +664,16 @@ def _generate_slider_sync(session_id: str, location: str, reference_image_param:
         concepts = []
         weights = []
         for cw in concept_weights:
-            concepts.append({
-                "id": cw.get("concept_id", ""),
-                "label": f"{target_location} with {cw['label']}"
-            })
+            if is_cafe_context:
+                concepts.append({
+                    "id": cw.get("concept_id", ""),
+                    "label": f"photorealistic {target_location} with {cw['label']}"
+                })
+            else:
+                concepts.append({
+                    "id": cw.get("concept_id", ""),
+                    "label": f"{target_location} with {cw['label']}"
+                })
             weights.append(cw.get("weight", 0.0))
         
         w_exploration = np.array(weights)
@@ -677,25 +692,6 @@ def _generate_slider_sync(session_id: str, location: str, reference_image_param:
         tag_weights = np.array([float(w_exploration_norm[idx]) for idx in top_indices])
         
         print(f"  Top {actual_top_k} concepts: {[c.split(' with ')[-1] for c in tag_phrases[:3]]}")
-        
-        # Load reference image
-        reference_image = None
-        is_original_location = not location
-        
-        if is_original_location:
-            selections = prefs.get('selections', {})
-            ref_image_id = selections.get('impression')
-            
-            if ref_image_id:
-                impression_folder = os.path.join(session_folder, 'impression')
-                ref_path = os.path.join(impression_folder, f"{ref_image_id}.png")
-                
-                if not os.path.exists(ref_path):
-                    ref_path = os.path.join(impression_folder, f"{ref_image_id}_0.png")
-                
-                if os.path.exists(ref_path):
-                    reference_image = PILImage.open(ref_path)
-                    print(f"  Reference image: {os.path.basename(ref_path)}")
         
         # Create output directory
         slider_output_dir = os.path.join(session_folder, "slider", target_location.replace(" ", "_"))
@@ -731,10 +727,7 @@ def _generate_slider_sync(session_id: str, location: str, reference_image_param:
             return {"error": True, "status_code": 500, "message": "SDXL pipeline not available"}
         
         # Generate images with alpha interpolation
-        neg_phrases = ["illustration", "painted", "drawing", "cartoon", "anime", 
-                       "isometric", "diorama", "miniature", "3D render", "CGI", 
-                       "concept art", "stylized", "toon shading", 
-                       "people", "person", "human"]
+        neg_phrases = ["illustration", "cartoon", "anime", "human"]
         
         # Only generate alpha=1.0 for evaluation (skip intermediate values)
         alphas = [1.0]
@@ -742,7 +735,6 @@ def _generate_slider_sync(session_id: str, location: str, reference_image_param:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         
         results = []
-        prompt_embeds_alpha_1 = None
         
         print(f"\n  Generating {len(alphas)} image(s) (alpha=1.0 only)...")
         
@@ -757,9 +749,6 @@ def _generate_slider_sync(session_id: str, location: str, reference_image_param:
                 neg_phrases=neg_phrases,
                 max_negatives=20
             )
-            
-            if alpha == 1.0:
-                prompt_embeds_alpha_1 = (prompt_embeds, pooled, neg_embeds, neg_pooled)
             
             generator = torch.Generator(device=_eval_sdxl_runner.runner.device).manual_seed(seed_base + i)
             
@@ -777,41 +766,10 @@ def _generate_slider_sync(session_id: str, location: str, reference_image_param:
             
             results.append((alpha, image, None))
         
-        # Generate 2nd image with reference (img2img at alpha=1.0)
-        if reference_image is not None and is_original_location and prompt_embeds_alpha_1 is not None:
-            print(f"  [2/2] Alpha = 1.0 (with reference image)")
-            
-            prompt_embeds_ref, pooled_ref, neg_embeds_ref, neg_pooled_ref = prompt_embeds_alpha_1
-            
-            from backend.sdxl_config import get_stage_strength
-            strength = get_stage_strength('impression')
-            
-            generator = torch.Generator(device=_eval_sdxl_runner.runner.device).manual_seed(seed_base + 5)
-            
-            image_6 = _eval_sdxl_runner.runner.generate_embeds_img2img(
-                init_image=reference_image,
-                strength=strength,
-                prompt_embeds=prompt_embeds_ref,
-                negative_prompt_embeds=neg_embeds_ref,
-                pooled_prompt_embeds=pooled_ref,
-                negative_pooled_prompt_embeds=neg_pooled_ref,
-                seed=seed_base + 5,
-                steps=30,
-                gscale=7.5,
-                height=1024,
-                width=1024
-            )
-            
-            results.append((1.0, image_6, "ref"))
-            print(f"  Generated 6th image with reference")
-        
         # Save images and build response
         slider_images = []
         for alpha, img, ref_flag in results:
-            if ref_flag == "ref":
-                filename = f"eval_alphaRef_{alpha:.2f}_{timestamp}.png"
-            else:
-                filename = f"eval_alpha_{alpha:.2f}_{timestamp}.png"
+            filename = f"eval_alpha_{alpha:.2f}_{timestamp}.png"
             
             filepath = os.path.join(slider_output_dir, filename)
             img.save(filepath)
@@ -849,67 +807,74 @@ def _generate_slider_sync(session_id: str, location: str, reference_image_param:
         except Exception as e:
             print(f"  ⚠️ Baseline tags generation failed: {str(e)}")
         
-        # ========== LLM STYLE TRANSFER (for new locations only) ==========
+        # ========== LLM STYLE TRANSFER (for ALL locations) ==========
+        # Uses exploration selected image as reference for style transfer
         original_location = final_selection.get("location", "")
         is_new_location = location and location != original_location
         
-        if is_new_location:
-            print(f"\n{'='*80}")
-            print(f"[LLM STYLE TRANSFER] Applying style transfer to new location")
-            print(f"{'='*80}")
-            print(f"  Original location: {original_location}")
-            print(f"  New location: {location}")
+        print(f"\n{'='*80}")
+        print(f"[LLM STYLE TRANSFER] Generating style transfer image")
+        print(f"{'='*80}")
+        print(f"  Original location: {original_location}")
+        print(f"  Target location: {target_location}")
+        
+        # Use exploration selected image from preferences.json
+        reference_image_path = None
+        exploration_selection = prefs.get("selections", {}).get("impression")
+        
+        if exploration_selection:
+            # Exploration selected image is in the impression folder
+            impression_folder = os.path.join(session_folder, "impression")
+            ref_path = os.path.join(impression_folder, f"{exploration_selection}.png")
             
-            # Use exploration selected image from preferences.json
-            reference_image_path = None
-            exploration_selection = prefs.get("selections", {}).get("impression")
-            
-            if exploration_selection:
-                # Exploration selected image is in the impression folder
-                impression_folder = os.path.join(session_folder, "impression")
-                ref_path = os.path.join(impression_folder, f"{exploration_selection}.png")
-                
+            if os.path.exists(ref_path):
+                reference_image_path = ref_path
+                print(f"  Using exploration selected image: {exploration_selection}.png")
+            else:
+                # Try alternate naming pattern
+                ref_path = os.path.join(impression_folder, f"{exploration_selection}_0.png")
                 if os.path.exists(ref_path):
                     reference_image_path = ref_path
-                    print(f"  Using exploration selected image: {exploration_selection}.png")
+                    print(f"  Using exploration selected image: {exploration_selection}_0.png")
                 else:
-                    # Try alternate naming pattern
-                    ref_path = os.path.join(impression_folder, f"{exploration_selection}_0.png")
-                    if os.path.exists(ref_path):
-                        reference_image_path = ref_path
-                        print(f"  Using exploration selected image: {exploration_selection}_0.png")
-                    else:
-                        print(f"  ⚠️ Exploration selected image not found: {exploration_selection}")
-            else:
-                print(f"  ⚠️ No exploration selection found in preferences.json")
+                    print(f"  ⚠️ Exploration selected image not found: {exploration_selection}")
+        else:
+            print(f"  ⚠️ No exploration selection found in preferences.json")
+        
+        if reference_image_path and os.path.exists(reference_image_path):
+            print(f"  Reference image: {os.path.basename(reference_image_path)}")
             
-            if reference_image_path and os.path.exists(reference_image_path):
-                print(f"  Reference image: {os.path.basename(reference_image_path)}")
-                
-                # Build the style transfer prompt
+            # Build the style transfer prompt based on whether it's original or new location
+            if is_new_location:
                 style_transfer_prompt = (
                     f"This user selected this image as their preferred example of a {adjective} {original_location}. "
-                    f"Generate a {adjective} {location} that matches this user's personal aesthetic"
+                    f"Generate a {adjective} {target_location} that matches this user's personal aesthetic"
                 )
-                print(f"  Prompt: {style_transfer_prompt}")
-                
-                # Output path for style transfer image
-                style_transfer_output = os.path.join(slider_output_dir, "llm_style_transfer.png")
-                
-                try:
-                    generated_path = generate_image_with_reference(
-                        input_image_path=reference_image_path,
-                        text_prompt=style_transfer_prompt,
-                        output_path=style_transfer_output
-                    )
-                    print(f"  ✅ Style transfer image saved: {os.path.basename(generated_path)}")
-                except Exception as e:
-                    print(f"  ⚠️ Style transfer failed: {str(e)}")
             else:
-                print(f"  ⚠️ Reference image not found in {original_slider_dir}")
+                # For original location, generate another image in the same style
+                style_transfer_prompt = (
+                    f"This user selected this image as their preferred example of a {adjective} {target_location}. "
+                    f"Generate another {adjective} {target_location} that matches this user's personal aesthetic"
+                )
+            print(f"  Prompt: {style_transfer_prompt}")
             
-            # NOTE: Baseline image for new locations comes from baseline_generic folder
-            # No need to generate llm_baseline.png - get-comparison-images uses baseline_generic
+            # Output path for style transfer image
+            style_transfer_output = os.path.join(slider_output_dir, "llm_style_transfer.png")
+            
+            try:
+                generated_path = generate_image_with_reference(
+                    input_image_path=reference_image_path,
+                    text_prompt=style_transfer_prompt,
+                    output_path=style_transfer_output
+                )
+                print(f"  ✅ Style transfer image saved: {os.path.basename(generated_path)}")
+            except Exception as e:
+                print(f"  ⚠️ Style transfer failed: {str(e)}")
+        else:
+            print(f"  ⚠️ Reference image not found")
+        
+        # NOTE: Baseline image for all locations comes from baseline_generic folder
+        # No need to generate llm_baseline.png - get-comparison-images uses baseline_generic
         
         return {
             "success": True,
@@ -947,7 +912,6 @@ async def generate_slider_eval(request: dict):
     """
     session_id = request.get("session_id")
     location = request.get("location", "")
-    reference_image = request.get("reference_image", None)  # Optional: rank #1 image from initial round
     
     session = eval_sessions.get(session_id)
     if not session:
@@ -967,7 +931,7 @@ async def generate_slider_eval(request: dict):
     loop = asyncio.get_event_loop()
     result = await loop.run_in_executor(
         generation_executor,
-        lambda: _generate_slider_sync(session_id, location, reference_image, session)
+        lambda: _generate_slider_sync(session_id, location, session)
     )
     
     # Check if the sync function returned an error
@@ -1074,21 +1038,29 @@ def list_session_logs():
 @app.get("/api/eval/locations")
 def get_available_locations():
     """
-    Return all locations from baseline_generic folder.
+    Return all locations from baseline_generic_* folders.
     These are the locations that can be evaluated.
+    Locations are the same across all adjectives, so we pick the first baseline folder.
     """
     locations = []
     
-    if BASELINE_GENERIC_DIR.exists():
-        for loc_folder in sorted(BASELINE_GENERIC_DIR.iterdir()):
-            if loc_folder.is_dir():
-                # Check if there's a baseline image
-                baseline_images = list(loc_folder.glob("*.png"))
-                if baseline_images:
-                    locations.append({
-                        "name": loc_folder.name,
-                        "baseline_image": baseline_images[0].name
-                    })
+    # Find first baseline_generic_* folder to get locations
+    if LLM_SCRIPTS_DIR.exists():
+        baseline_folders = [f for f in LLM_SCRIPTS_DIR.iterdir() 
+                          if f.is_dir() and f.name.startswith("baseline_generic_")]
+        
+        if baseline_folders:
+            # Use first baseline folder to get location list
+            first_baseline = baseline_folders[0]
+            for loc_folder in sorted(first_baseline.iterdir()):
+                if loc_folder.is_dir():
+                    # Check if there's a baseline image
+                    baseline_images = list(loc_folder.glob("*.png"))
+                    if baseline_images:
+                        locations.append({
+                            "name": loc_folder.name,
+                            "baseline_image": baseline_images[0].name
+                        })
     
     return {"locations": locations}
 
@@ -1105,13 +1077,13 @@ def get_comparison_images(request: ComparisonImagesRequest):
     Get 4 comparison images for a location, randomized.
     
     For initial round (bedroom):
-    - baseline_generic/{Location}/Cozy_{Location}.png (generic LLM baseline)
+    - baseline_generic_{adjective}/{Location}/{Adjective}_{Location}.png (generic LLM baseline)
     - slider/{location}/eval_alpha_1.00_*.png (SDXL personalized)
     - slider/{location}/eval_alphaRef_1.00_*.png (SDXL with reference)
     - slider/{location}/llm_baseline_tags.png (LLM with learned tags)
     
     For other locations:
-    - baseline_generic/{Location}/Cozy_{Location}.png (generic LLM baseline)
+    - baseline_generic_{adjective}/{Location}/{Adjective}_{Location}.png (generic LLM baseline)
     - slider/{location}/eval_alpha_1.00_*.png (SDXL personalized)
     - slider/{location}/llm_style_transfer.png (LLM style transfer)
     - slider/{location}/llm_baseline_tags.png (LLM with learned tags)
@@ -1124,27 +1096,48 @@ def get_comparison_images(request: ComparisonImagesRequest):
     if not session_folder.exists():
         raise HTTPException(404, f"Session log not found: {request.session_log}")
     
-    # Find baseline image (handle case sensitivity)
+    # Load adjective from final_selection.json
+    final_selection_path = session_folder / "final_selection.json"
+    if not final_selection_path.exists():
+        raise HTTPException(404, f"final_selection.json not found in session: {request.session_log}")
+    
+    with open(final_selection_path, 'r') as f:
+        final_selection = json.load(f)
+    
+    adjective = final_selection.get("adjective", "")
+    if not adjective:
+        raise HTTPException(400, f"No adjective found in final_selection.json for session: {request.session_log}")
+    
+    print(f"[GET-COMPARISON] Session adjective: {adjective}")
+    
+    # Construct dynamic baseline folder path: baseline_generic_{adjective}
+    baseline_generic_folder = LLM_SCRIPTS_DIR / f"baseline_generic_{adjective}"
+    if not baseline_generic_folder.exists():
+        available_baseline_folders = [f.name for f in LLM_SCRIPTS_DIR.iterdir() 
+                                      if f.is_dir() and f.name.startswith("baseline_generic_")]
+        raise HTTPException(404, f"Baseline folder not found: baseline_generic_{adjective}. Available: {available_baseline_folders}")
+    
+    # Find baseline image for the location (handle case sensitivity)
     baseline_folder = None
     baseline_folder_name = None
-    available_baselines = [f.name for f in BASELINE_GENERIC_DIR.iterdir() if f.is_dir()]
-    print(f"[GET-COMPARISON] Available baselines: {available_baselines}")
+    available_locations = [f.name for f in baseline_generic_folder.iterdir() if f.is_dir()]
+    print(f"[GET-COMPARISON] Available locations in baseline_generic_{adjective}: {available_locations}")
     
-    for folder in BASELINE_GENERIC_DIR.iterdir():
+    for folder in baseline_generic_folder.iterdir():
         if folder.is_dir() and folder.name.lower().replace("_", " ") == request.location.lower().replace("_", " "):
             baseline_folder = folder
             baseline_folder_name = folder.name
             break
     
     if not baseline_folder or not baseline_folder.exists():
-        raise HTTPException(404, f"Baseline location not found: {request.location}. Available: {available_baselines}")
+        raise HTTPException(404, f"Baseline location not found: {request.location}. Available: {available_locations}")
     
     baseline_images = list(baseline_folder.glob("*.png"))
     if not baseline_images:
         raise HTTPException(404, f"No baseline image found for: {request.location}")
     
     baseline_image_name = baseline_images[0].name
-    baseline_url = f"/baseline_generic/{baseline_folder_name}/{baseline_image_name}"
+    baseline_url = f"/llm_scripts/baseline_generic_{adjective}/{baseline_folder_name}/{baseline_image_name}"
     
     # Find slider folder for this location (handle case sensitivity)
     slider_dir = session_folder / "slider"
@@ -1173,21 +1166,12 @@ def get_comparison_images(request: ComparisonImagesRequest):
     alpha_image_name = alpha_images[0].name
     alpha_url = f"/session_logs/{request.session_log}/slider/{location_folder_name}/{alpha_image_name}"
     
-    # Find third image based on round type
-    if request.is_initial_round:
-        # Look for alphaRef image
-        ref_images = list(location_folder.glob("eval_alphaRef_1.00_*.png"))
-        if not ref_images:
-            raise HTTPException(404, f"No eval_alphaRef_1.00 image found for: {request.location}")
-        third_image_name = ref_images[0].name
-        third_image_type = "alphaRef"
-    else:
-        # Look for llm_style_transfer image
-        style_transfer_path = location_folder / "llm_style_transfer.png"
-        if not style_transfer_path.exists():
-            raise HTTPException(404, f"No llm_style_transfer.png found for: {request.location}")
-        third_image_name = "llm_style_transfer.png"
-        third_image_type = "style_transfer"
+    # Find third image: llm_style_transfer.png (same for all locations)
+    style_transfer_path = location_folder / "llm_style_transfer.png"
+    if not style_transfer_path.exists():
+        raise HTTPException(404, f"No llm_style_transfer.png found for: {request.location}")
+    third_image_name = "llm_style_transfer.png"
+    third_image_type = "style_transfer"
     
     third_url = f"/session_logs/{request.session_log}/slider/{location_folder_name}/{third_image_name}"
     
@@ -1258,12 +1242,12 @@ def save_ranking(request: SaveRankingRequest):
     
     print(f"[EVAL] Saved ranking for {request.location}: {request.rankings}")
     
-    # Check if all 10 locations have been ranked - generate histograms automatically
+    # Check if all 8 locations have been ranked - generate histograms automatically
     num_ranked = len(rank_order["rankings"])
-    print(f"[EVAL] Total locations ranked: {num_ranked}/10")
+    print(f"[EVAL] Total locations ranked: {num_ranked}/8")
     
-    if num_ranked >= 10:
-        print(f"[EVAL] ✅ All 10 locations ranked! Generating histograms automatically...")
+    if num_ranked >= 8:
+        print(f"[EVAL] ✅ All 8 locations ranked! Generating histograms automatically...")
         try:
             histogram_result = generate_histograms(str(rank_order_path), show=False)
             print(f"[EVAL] ✅ Histograms generated successfully!")
@@ -1290,7 +1274,9 @@ class InitRankingSessionRequest(BaseModel):
 @app.post("/api/eval/init-ranking-session")
 def init_ranking_session(request: InitRankingSessionRequest):
     """
-    Initialize an empty rank_order.json for a session.
+    Initialize rank_order.json for a session, preserving existing rankings if present.
+    This allows resuming interrupted ranking sessions.
+    Also loads the session into eval_sessions so generation endpoints work.
     """
     session_folder = SESSION_LOGS_DIR / request.session_log
     if not session_folder.exists():
@@ -1298,20 +1284,55 @@ def init_ranking_session(request: InitRankingSessionRequest):
     
     rank_order_path = session_folder / "rank_order.json"
     
-    # Create new rank_order.json
-    rank_order = {
-        "session_log": request.session_log,
-        "rankings": {}
-    }
+    # Only create if doesn't exist - preserve existing rankings for resume
+    if not rank_order_path.exists():
+        rank_order = {
+            "session_log": request.session_log,
+            "rankings": {}
+        }
+        with open(rank_order_path, 'w') as f:
+            json.dump(rank_order, f, indent=2)
+        print(f"[EVAL] Created new rank_order.json for {request.session_log}")
+    else:
+        print(f"[EVAL] Preserving existing rank_order.json for {request.session_log}")
     
-    with open(rank_order_path, 'w') as f:
-        json.dump(rank_order, f, indent=2)
+    # Load session into eval_sessions so generation endpoints work
+    # This is needed for resuming sessions that weren't started in this server instance
+    if request.session_log not in eval_sessions:
+        # Load session metadata from final_selection.json
+        final_selection_path = session_folder / "final_selection.json"
+        adjective = ""
+        location = ""
+        descriptor = ""
+        
+        if final_selection_path.exists():
+            try:
+                with open(final_selection_path, 'r') as f:
+                    final_selection = json.load(f)
+                    adjective = final_selection.get("adjective", "")
+                    location = final_selection.get("location", "")
+                    descriptor = final_selection.get("descriptor", f"{adjective} {location}".strip())
+            except Exception as e:
+                print(f"[EVAL] Warning: Could not load final_selection.json: {e}")
+        
+        eval_sessions[request.session_log] = {
+            "folder": str(session_folder),
+            "descriptor": descriptor,
+            "adjective": adjective,
+            "location": location,
+            "user_pref": {},
+            "user_id": "resumed"
+        }
+        print(f"[EVAL] Loaded session into eval_sessions: {request.session_log}")
     
-    print(f"[EVAL] Initialized rank_order.json for {request.session_log}")
+    # Return existing rankings count for frontend
+    with open(rank_order_path, 'r') as f:
+        rank_order = json.load(f)
     
     return {
         "success": True,
-        "session_log": request.session_log
+        "session_log": request.session_log,
+        "existing_rankings_count": len(rank_order.get("rankings", {}))
     }
 
 
@@ -1335,6 +1356,33 @@ def get_rankings(session_log: str):
             "session_log": session_log,
             "rankings": {}
         }
+
+
+@app.get("/api/eval/session-locations/{session_log}")
+def get_session_locations(session_log: str):
+    """
+    Get locations that have been generated for this session.
+    Used for resuming interrupted ranking sessions to determine which
+    locations already have slider images.
+    """
+    session_folder = SESSION_LOGS_DIR / session_log
+    if not session_folder.exists():
+        raise HTTPException(404, f"Session log not found: {session_log}")
+    
+    slider_dir = session_folder / "slider"
+    
+    generated = []
+    if slider_dir.exists():
+        for loc_folder in slider_dir.iterdir():
+            if loc_folder.is_dir():
+                # Check if it has the required images (eval_alpha_1.00_*.png)
+                has_alpha = list(loc_folder.glob("eval_alpha_1.00_*.png"))
+                if has_alpha:
+                    generated.append(loc_folder.name)
+    
+    print(f"[EVAL] Session {session_log} has {len(generated)} generated locations: {generated}")
+    
+    return {"generated_locations": generated}
 
 
 # ============== Health check ==============

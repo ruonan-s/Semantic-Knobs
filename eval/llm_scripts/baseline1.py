@@ -12,11 +12,12 @@ from util import call_gemini_api_img, sanitize_folder_name
 # ============================================
 # PROMPTS - Modify these variables as needed
 # ============================================
-USER_INPUT = "Romantic Reading Nook"
-SYSTEM_PROMPT = "A photorealistic interior photo, full room view, high fidelity"
+
+SYSTEM_PROMPT = "Photorealistic interior photo, high fidelity, no people. Full room visible from an experiential, lived-in viewpoint: human eye-level camera placed inside the space, close to furniture with foreground present. Avoid wide-angle, centered, or architectural overview views. Aspect ratio: 1:1."
+USER_INPUT = "Lively Restaurant"
 
 def generate_baseline_image(
-    user_input: str = USER_INPUT,
+    user_input: str,
     system_prompt: str = SYSTEM_PROMPT,
     output_folder: str = None,
     output_filename: str = None
@@ -89,5 +90,5 @@ def generate_baseline_image(
 
 
 if __name__ == "__main__":
-    generate_baseline_image()
+    generate_baseline_image(USER_INPUT)
 

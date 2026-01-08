@@ -7,18 +7,15 @@ from collections import defaultdict
 
 def categorize_method(filename: str) -> str:
     """Categorize image filenames into method types."""
-    if filename.startswith("eval_alphaRef_"):
-        return "Ours (AlphaRef)"
-    elif filename.startswith("eval_alpha_"):
-        return "Ours (Alpha)"
+    if filename.startswith("eval_alpha_"):
+        return "Ours"
     elif filename == "llm_style_transfer.png":
-        return "LLM Style Transfer"
+        return "LLM text+image"
     elif filename == "llm_baseline_tags.png":
-        return "LLM Baseline Tags"
-    elif filename.startswith("Cozy_"):
-        return "Original"
+        return "LLM text+tags"
     else:
-        return "Unknown"
+        # Everything else (Calm_*, Inviting_*, Refreshing_*, Cozy_*, etc.) is "LLM text"
+        return "LLM text"
 
 
 def load_rank_order(json_path: str) -> dict:
@@ -80,14 +77,13 @@ def plot_rank_histogram(histogram: dict, output_path: str = None, title: str = "
     width = 0.8 / n_methods  # divide available space among methods
     
     # Color scheme for methods - similar colors for related methods
-    # Baselines (LLM/Original): shades of gray/blue
-    # Ours: shades of red/orange
+    # Baselines (LLM): shades of gray/blue
+    # Ours: red
     method_color_map = {
-        'LLM Baseline Tags': '#6B7280',    # Gray
-        'LLM Style Transfer': '#9CA3AF',   # Light gray
-        'Original': '#4B5563',             # Dark gray
-        'Ours (Alpha)': '#DC2626',         # Red
-        'Ours (AlphaRef)': '#F87171',      # Light red
+        'LLM text': '#4B5563',             # Dark gray
+        'LLM text+tags': '#6B7280',        # Gray
+        'LLM text+image': '#9CA3AF',       # Light gray
+        'Ours': '#DC2626',                 # Red
     }
     
     # Create grouped bars - one bar per method at each rank position
@@ -168,25 +164,20 @@ def categorize_condition(filename: str) -> str:
     Categorize image filenames into condition types for score analysis.
     
     Returns:
-    - "LLM text": Original/reference images (e.g., Refreshing_*, Cozy_*, Focused_*, Vibrant_*)
+    - "LLM text": Original/reference images (any file not matching the special cases below)
     - "LLM text+image": llm_style_transfer.png
     - "LLM text+tags": llm_baseline_tags.png
-    - "Ours": eval_alpha_1.00_* images
-    - None: Unknown/skip
+    - "Ours": eval_alpha_* images
     """
     if filename == "llm_style_transfer.png":
         return "LLM text+image"
     elif filename == "llm_baseline_tags.png":
         return "LLM text+tags"
-    elif filename.startswith("eval_alpha_1.00_"):
+    elif filename.startswith("eval_alpha_"):
         return "Ours"
-    elif (filename.startswith("Refreshing_") or 
-          filename.startswith("Cozy_") or 
-          filename.startswith("Focused_") or 
-          filename.startswith("Vibrant_")):
-        return "LLM text"
     else:
-        return None  # Unknown - skip
+        # Everything else (Calm_*, Inviting_*, Refreshing_*, Cozy_*, etc.) is "LLM text"
+        return "LLM text"
 
 
 def plot_score_by_condition(data: dict, output_path: str = None, title: str = "Preference Score Distribution by Condition", show: bool = True):
@@ -454,7 +445,7 @@ if __name__ == "__main__":
     
     if len(sys.argv) < 2:
         # Default to the sample file
-        json_path = "/home/nancy/Semantic-Knobs/eval/session_logs/eval_YiFei1_Focused_Home_Office_Sample_2026-01-06_16-13-29/rank_order.json"
+        json_path = "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Refreshing_Café_Sample_2026-01-08_00-16-44/rank_order.json"
     else:
         json_path = sys.argv[1]
     

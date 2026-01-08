@@ -7,6 +7,18 @@ import InlineTagDisplay from './components/InlineTagDisplay';
 import ConceptRefinementPanel from './components/ConceptRefinementPanel';
 
 /**
+ * Fisher-Yates shuffle algorithm to randomize array order
+ */
+const shuffleArray = (array) => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
+
+/**
  * Evaluation Prototype App
  * 
  * Simplified flow that skips refinement:
@@ -380,12 +392,13 @@ function App() {
       if (data.success) {
         addStatusMessage(data.message);
         
-        // 2. Get available locations
+        // 2. Get available locations and randomize their order
         const locsRes = await fetch('/api/eval/locations');
         let locations = [];
         if (locsRes.ok) {
           const locsData = await locsRes.json();
-          locations = locsData.locations || [];
+          // Shuffle locations to randomize display and generation order
+          locations = shuffleArray(locsData.locations || []);
           setAvailableLocations(locations);
         }
         
@@ -438,8 +451,12 @@ function App() {
         // Load comparison images for initial location (use matched name for consistent casing)
         await loadComparisonImagesForSession(sessionId, initialLocName, true);
         
-        // NOTE: Don't start generating other locations yet
-        // Wait for user to rank initial location and save, then use rank #1 image as reference
+        // Generate all other locations immediately
+        // We use the exploration selected image for style transfer, so no need to wait for ranking
+        // Note: Use local 'locations' variable since state update is async
+        if (locations.length > 1) {
+          generateRemainingLocations(locations, initialLocName);
+        }
       }
       
     } catch (error) {
@@ -478,8 +495,8 @@ function App() {
   };
   
   // Background generation for remaining locations
-  // referenceImage: the rank #1 image filename from initial round to use for style transfer
-  const generateRemainingLocations = async (locations, initialLoc, referenceImage = null) => {
+  // Uses exploration selected image for style transfer (no need to wait for ranking)
+  const generateRemainingLocations = async (locations, initialLoc) => {
     setIsGeneratingLocations(true);
     
     for (const loc of locations) {
@@ -499,8 +516,7 @@ function App() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             session_id: sessionId,
-            location: locName,
-            reference_image: referenceImage  // Pass the rank #1 image from initial round
+            location: locName
           })
         });
         
@@ -591,7 +607,8 @@ function App() {
       const res = await fetch('/api/eval/locations');
       if (res.ok) {
         const data = await res.json();
-        setAvailableLocations(data.locations || []);
+        // Shuffle locations to randomize display order
+        setAvailableLocations(shuffleArray(data.locations || []));
       }
     } catch (error) {
       console.error('Failed to fetch locations:', error);
@@ -639,6 +656,7 @@ function App() {
   };
   
   // Load comparison images for a location (uses selectedSessionLog or sessionId)
+  // If location has been ranked before, restore the saved rankings
   const loadComparisonImages = async (locationName, isInitialRound = false) => {
     const sessionLog = selectedSessionLog || sessionId;
     if (!sessionLog) return;
@@ -669,6 +687,33 @@ function App() {
       
       const data = await res.json();
       setComparisonImages(data.images);
+      
+      // Check if this location has saved rankings and restore them
+      const savedRanking = rankings[locationName];
+      if (savedRanking && Object.keys(savedRanking).length === 4) {
+        // Map saved filenames back to image IDs
+        const restoredRanking = {1: null, 2: null, 3: null, 4: null};
+        const restoredScores = {};
+        
+        for (const [rank, rankData] of Object.entries(savedRanking)) {
+          const savedFilename = rankData.image;
+          const savedScore = rankData.score;
+          
+          // Find the image with this filename
+          const matchingImage = data.images.find(img => img.filename === savedFilename);
+          if (matchingImage) {
+            restoredRanking[rank] = matchingImage.id;
+            if (savedScore) {
+              restoredScores[matchingImage.id] = savedScore;
+            }
+          }
+        }
+        
+        setCurrentRanking(restoredRanking);
+        setSliderScores(restoredScores);
+        setRankingSaved(true);  // Show as already saved
+        addStatusMessage(`Restored saved rankings for ${locationName}`);
+      }
       
     } catch (error) {
       console.error('Error loading comparison images:', error);
@@ -756,18 +801,8 @@ function App() {
         // Show saved feedback
         setRankingSaved(true);
         
-        // Check if this is the initial location (first ranking saved)
-        // If so, start generating remaining locations using the rank #1 image as reference
-        const isInitialLocation = Object.keys(rankings).length === 0;  // No previous rankings saved
-        
-        if (isInitialLocation && availableLocations.length > 1) {
-          // Get the rank #1 image filename for use as reference in style transfer
-          const rank1Filename = rankingData['1'].image;
-          addStatusMessage(`Using "${rank1Filename}" as reference for style transfer`);
-          
-          // Start background generation for other locations
-          generateRemainingLocations(availableLocations, currentRankingLocation, rank1Filename);
-        }
+        // Note: All locations are now generated immediately after initial location
+        // since we use exploration selected image (not rank #1) for style transfer
       }
       
     } catch (error) {
@@ -778,11 +813,56 @@ function App() {
     }
   };
 
-  // Initialize ranking session
+  // Generate remaining locations for resume sessions
+  const generateRemainingLocationsForResume = async (sessionLogName, locations, generatedSet) => {
+    setIsGeneratingLocations(true);
+    // Helper to normalize location names (underscores <-> spaces)
+    const normalizeName = (name) => name.toLowerCase().replace(/_/g, ' ');
+    
+    for (const loc of locations) {
+      const locName = loc.name;
+      // Skip already generated locations (use normalized names for comparison)
+      if (generatedSet.has(normalizeName(locName))) {
+        continue;
+      }
+      
+      try {
+        setLocationGenStatus(prev => ({ ...prev, [locName]: 'generating' }));
+        addStatusMessage(`Generating images for ${locName}...`);
+        
+        const res = await fetch('/api/generate-slider', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            session_id: sessionLogName,  // Use session log name as session_id
+            location: locName
+          })
+        });
+        
+        if (res.ok) {
+          setLocationGenStatus(prev => ({ ...prev, [locName]: 'completed' }));
+          addStatusMessage(`Generated images for ${locName}`);
+          // Preload images in background for faster loading when user clicks
+          preloadImagesForLocation(locName, false);
+        } else {
+          setLocationGenStatus(prev => ({ ...prev, [locName]: 'error' }));
+          addStatusMessage(`Failed to generate images for ${locName}`);
+        }
+      } catch (error) {
+        console.error(`Error generating ${locName}:`, error);
+        setLocationGenStatus(prev => ({ ...prev, [locName]: 'error' }));
+      }
+    }
+    
+    setIsGeneratingLocations(false);
+    addStatusMessage('All locations generated');
+  };
+
+  // Initialize ranking session (supports resume of interrupted sessions)
   const initRankingSession = async (sessionLogName) => {
     setIsLoading(true);
     try {
-      // Initialize rank_order.json
+      // Initialize (preserves existing rankings if present)
       await fetch('/api/eval/init-ranking-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -791,15 +871,53 @@ function App() {
       
       // Load existing rankings if any
       const rankingsRes = await fetch(`/api/eval/get-rankings/${sessionLogName}`);
+      let existingRankings = {};
       if (rankingsRes.ok) {
         const data = await rankingsRes.json();
-        setRankings(data.rankings || {});
+        existingRankings = data.rankings || {};
+        setRankings(existingRankings);
       }
       
+      // Get available locations
+      const locsRes = await fetch('/api/eval/locations');
+      let locations = [];
+      if (locsRes.ok) {
+        const locsData = await locsRes.json();
+        // Shuffle locations to randomize display order
+        locations = shuffleArray(locsData.locations || []);
+        setAvailableLocations(locations);
+      }
+      
+      // Get which locations already have generated images (for resume)
+      const genRes = await fetch(`/api/eval/session-locations/${sessionLogName}`);
+      const genStatus = {};
+      let generatedSet = new Set();
+      // Helper to normalize location names (underscores <-> spaces)
+      const normalizeName = (name) => name.toLowerCase().replace(/_/g, ' ');
+      if (genRes.ok) {
+        const genData = await genRes.json();
+        // Normalize generated location names (folder names use underscores)
+        generatedSet = new Set(genData.generated_locations.map(l => normalizeName(l)));
+        locations.forEach(loc => {
+          genStatus[loc.name] = generatedSet.has(normalizeName(loc.name)) ? 'completed' : 'pending';
+        });
+      }
+      setLocationGenStatus(genStatus);
+      
       setSelectedSessionLog(sessionLogName);
-      await fetchAvailableLocations();
       setStage('evaluation');
-      addStatusMessage(`Loaded session: ${sessionLogName}`);
+      
+      const rankedCount = Object.keys(existingRankings).length;
+      const generatedCount = generatedSet.size;
+      addStatusMessage(`Loaded session: ${sessionLogName} (${rankedCount} ranked, ${generatedCount} generated)`);
+      
+      // Auto-generate remaining locations if some are still pending
+      const pendingLocations = locations.filter(loc => !generatedSet.has(normalizeName(loc.name)));
+      if (pendingLocations.length > 0) {
+        addStatusMessage(`Resuming generation for ${pendingLocations.length} remaining locations...`);
+        // Generate remaining in background (don't await)
+        generateRemainingLocationsForResume(sessionLogName, locations, generatedSet);
+      }
       
     } catch (error) {
       console.error('Error initializing ranking session:', error);
@@ -830,9 +948,9 @@ function App() {
       {stage === 'landing' ? (
         // ============== LANDING PAGE ==============
         <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
-          <h1 style={{ marginBottom: '30px', color: '#333' }}>Evaluation Prototype</h1>
+          <h1 style={{ marginBottom: '30px', color: '#333' }}>Evaluation</h1>
           <p style={{ marginBottom: '30px', color: '#666', fontSize: '18px' }}>
-            Explore predefined sessions and generate semantic sliders (no refinement)
+            
           </p>
 
           {/* User ID input */}
@@ -844,7 +962,7 @@ function App() {
             border: '1px solid #dee2e6'
           }}>
             <label style={{ display: 'block', marginBottom: '10px', fontWeight: '500', color: '#495057' }}>
-              Enter your User ID (optional, for logging):
+              Enter your User ID:
             </label>
             <input
               type="text"
@@ -870,7 +988,7 @@ function App() {
             border: '2px solid #007bff'
           }}>
             <h3 style={{ margin: '0 0 20px 0', color: '#333', fontSize: '18px' }}>
-              📂 Select a Predefined Session
+              📂 Select a session
             </h3>
 
             {predefinedSessions.length === 0 ? (
@@ -1157,10 +1275,12 @@ function App() {
                 {/* Header */}
                 <div style={{ marginBottom: '20px' }}>
                   <h2 style={{ margin: 0, color: '#333' }}>
-                    Ranking: {currentRankingLocation}
+                    Ranking: {adjective} {currentRankingLocation}
                   </h2>
                   <p style={{ color: '#666', margin: '5px 0 0 0' }}>
-                    Rank the images from 1 (best) to 4 (worst) by clicking the rank buttons
+                    Rank the images based on how much you like each space, from most liked (1) to least liked (4).
+                    <br />
+                    Rank based on your personal liking, not on an objective definition or prior selections.
                   </p>
                 </div>
                 
@@ -1178,8 +1298,8 @@ function App() {
                   <div style={{ 
                     display: 'flex', 
                     gap: '20px', 
-                    flex: 1,
-                    marginBottom: '20px'
+                    marginBottom: '20px',
+                    alignItems: 'flex-start'
                   }}>
                     {comparisonImages.map((img, idx) => {
                       // Find what rank this image has
@@ -1189,27 +1309,33 @@ function App() {
                         <div
                           key={img.id}
                           style={{
-                            flex: 1,
+                            flex: '1 1 0',
                             display: 'flex',
                             flexDirection: 'column',
                             backgroundColor: '#fff',
                             borderRadius: '12px',
                             border: imageRank ? '3px solid #007bff' : '1px solid #dee2e6',
                             overflow: 'hidden',
-                            maxWidth: '280px'
+                            maxWidth: '280px',
+                            minWidth: 0
                           }}
                         >
-                          {/* Image - Square aspect ratio */}
+                          {/* Image - Square aspect ratio using padding technique */}
                           <div style={{ 
                             position: 'relative',
                             width: '100%',
-                            aspectRatio: '1 / 1',
-                            backgroundColor: '#f0f0f0'
+                            paddingBottom: '100%',
+                            backgroundColor: '#f0f0f0',
+                            flexShrink: 0,
+                            overflow: 'hidden'
                           }}>
                             <img
                               src={img.url}
                               alt={`Option ${idx + 1}`}
                               style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
                                 width: '100%',
                                 height: '100%',
                                 objectFit: 'cover',
@@ -1243,25 +1369,34 @@ function App() {
                               </div>
                             )}
                             {/* Rank badge */}
-                            {imageRank && imagesLoaded[img.id] && (
-                              <div style={{
-                                position: 'absolute',
-                                top: '10px',
-                                left: '10px',
-                                width: '40px',
-                                height: '40px',
-                                backgroundColor: '#007bff',
-                                borderRadius: '50%',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                color: 'white',
-                                fontSize: '20px',
-                                fontWeight: 'bold'
-                              }}>
-                                {imageRank}
-                              </div>
-                            )}
+                            {imageRank && imagesLoaded[img.id] && (() => {
+                              const rankColors = {
+                                1: '#22c55e', // green
+                                2: '#84cc16', // lime/yellow-green
+                                3: '#f97316', // orange
+                                4: '#ef4444'  // red
+                              };
+                              const ordinals = { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th' };
+                              return (
+                                <div style={{
+                                  position: 'absolute',
+                                  top: '10px',
+                                  left: '10px',
+                                  width: '44px',
+                                  height: '44px',
+                                  backgroundColor: rankColors[imageRank] || '#007bff',
+                                  borderRadius: '50%',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  color: 'white',
+                                  fontSize: '14px',
+                                  fontWeight: 'bold'
+                                }}>
+                                  {ordinals[imageRank] || imageRank}
+                                </div>
+                              );
+                            })()}
                           </div>
                           
                           {/* Rank buttons */}
@@ -1272,26 +1407,36 @@ function App() {
                             justifyContent: 'center',
                             backgroundColor: '#f8f9fa'
                           }}>
-                            {[1, 2, 3, 4].map(rank => (
-                              <button
-                                key={rank}
-                                onClick={() => handleRankingSelect(img.id, rank)}
-                                style={{
-                                  width: '40px',
-                                  height: '40px',
-                                  borderRadius: '50%',
-                                  border: currentRanking[rank] === img.id ? '3px solid #007bff' : '2px solid #dee2e6',
-                                  backgroundColor: currentRanking[rank] === img.id ? '#007bff' : '#fff',
-                                  color: currentRanking[rank] === img.id ? '#fff' : '#333',
-                                  fontSize: '16px',
-                                  fontWeight: 'bold',
-                                  cursor: 'pointer',
-                                  transition: 'all 0.2s ease'
-                                }}
-                              >
-                                {rank}
-                              </button>
-                            ))}
+                            {[1, 2, 3, 4].map(rank => {
+                              const rankColors = {
+                                1: '#22c55e', // green
+                                2: '#84cc16', // lime/yellow-green
+                                3: '#f97316', // orange
+                                4: '#ef4444'  // red
+                              };
+                              const ordinals = { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th' };
+                              const isSelected = currentRanking[rank] === img.id;
+                              return (
+                                <button
+                                  key={rank}
+                                  onClick={() => handleRankingSelect(img.id, rank)}
+                                  style={{
+                                    width: '44px',
+                                    height: '44px',
+                                    borderRadius: '50%',
+                                    border: isSelected ? `3px solid ${rankColors[rank]}` : '2px solid #dee2e6',
+                                    backgroundColor: isSelected ? rankColors[rank] : '#fff',
+                                    color: isSelected ? '#fff' : '#333',
+                                    fontSize: '12px',
+                                    fontWeight: 'bold',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s ease'
+                                  }}
+                                >
+                                  {ordinals[rank]}
+                                </button>
+                              );
+                            })}
                           </div>
                           
                           {/* Preference Slider */}
@@ -1360,34 +1505,52 @@ function App() {
                                   position: 'relative',
                                   zIndex: 2
                                 }}>
-                                  {[1, 2, 3, 4, 5, 6, 7].map(val => (
-                                    <button
-                                      key={val}
-                                      onClick={() => {
-                                        setSliderScores(prev => ({ ...prev, [img.id]: val }));
-                                        setRankingSaved(false);
-                                      }}
-                                      style={{
-                                        width: sliderScores[img.id] === val ? '24px' : '16px',
-                                        height: sliderScores[img.id] === val ? '24px' : '16px',
-                                        borderRadius: '50%',
-                                        backgroundColor: sliderScores[img.id] === val ? '#007bff' : '#dee2e6',
-                                        border: sliderScores[img.id] === val ? '3px solid #0056b3' : '2px solid #adb5bd',
-                                        cursor: 'pointer',
-                                        padding: 0,
-                                        transition: 'all 0.2s ease',
-                                        boxShadow: sliderScores[img.id] === val ? '0 2px 4px rgba(0,123,255,0.3)' : 'none'
-                                      }}
-                                      onMouseEnter={(e) => {
-                                        if (sliderScores[img.id] !== val) {
-                                          e.currentTarget.style.transform = 'scale(1.2)';
-                                        }
-                                      }}
-                                      onMouseLeave={(e) => {
-                                        e.currentTarget.style.transform = 'scale(1)';
-                                      }}
-                                    />
-                                  ))}
+                                  {[1, 2, 3, 4, 5, 6, 7].map(val => {
+                                    const sliderColors = {
+                                      1: '#ef4444', // red
+                                      2: '#f97316', // orange
+                                      3: '#fb923c', // light orange
+                                      4: '#facc15', // yellow
+                                      5: '#a3e635', // lime
+                                      6: '#4ade80', // light green
+                                      7: '#22c55e'  // green
+                                    };
+                                    const isSelected = sliderScores[img.id] === val;
+                                    const dotColor = sliderColors[val];
+                                    return (
+                                      <button
+                                        key={val}
+                                        onClick={() => {
+                                          setSliderScores(prev => ({ ...prev, [img.id]: val }));
+                                          setRankingSaved(false);
+                                        }}
+                                        style={{
+                                          width: isSelected ? '24px' : '16px',
+                                          height: isSelected ? '24px' : '16px',
+                                          borderRadius: '50%',
+                                          backgroundColor: dotColor,
+                                          border: isSelected ? `3px solid ${dotColor}` : '2px solid transparent',
+                                          cursor: 'pointer',
+                                          padding: 0,
+                                          transition: 'all 0.2s ease',
+                                          boxShadow: isSelected ? `0 2px 6px ${dotColor}80` : 'none',
+                                          opacity: isSelected ? 1 : 0.6
+                                        }}
+                                        onMouseEnter={(e) => {
+                                          if (!isSelected) {
+                                            e.currentTarget.style.transform = 'scale(1.2)';
+                                            e.currentTarget.style.opacity = '1';
+                                          }
+                                        }}
+                                        onMouseLeave={(e) => {
+                                          e.currentTarget.style.transform = 'scale(1)';
+                                          if (!isSelected) {
+                                            e.currentTarget.style.opacity = '0.6';
+                                          }
+                                        }}
+                                      />
+                                    );
+                                  })}
                                 </div>
                               </div>
                             </div>
@@ -1751,7 +1914,7 @@ function App() {
         // ============== EXPLORATION STAGE (IMPRESSION) ==============
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-            <h2>Exploration Stage: Impression</h2>
+            <h2>Exploration Stage: {descriptor}</h2>
             <div style={{ color: '#666', fontSize: '14px' }}>
               {descriptor} | Session: {sessionId}
             </div>

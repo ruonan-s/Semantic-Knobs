@@ -1,0 +1,238 @@
+{
+  "stage": "impression",
+  "session_id": "eval_test_Calm_Home_Office_Sample_2026-01-07_16-46-03",
+  "timestamp": "2026-01-07T16:47:08.918872",
+  "num_concepts": 10,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 412,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "neutral color palette",
+      "weight": 0.12875179946422577,
+      "score": 0.8812847137451172,
+      "utility_std": 1.005963683128357,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "neutral color palette"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "minimalist design",
+      "weight": 0.12727679312229156,
+      "score": 0.8697623014450073,
+      "utility_std": 1.005963683128357,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "minimalist design"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "sleek modern desk",
+      "weight": 0.11699416488409042,
+      "score": 0.7855220437049866,
+      "utility_std": 1.005963683128357,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "sleek modern desk"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "Simple layout",
+      "weight": 0.09422581642866135,
+      "score": 0.5690922737121582,
+      "utility_std": 1.005963683128357,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Simple layout"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "warm wood tones",
+      "weight": 0.09398602694272995,
+      "score": 0.566544234752655,
+      "utility_std": 1.005963683128357,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm wood tones"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "clean lines",
+      "weight": 0.09150829166173935,
+      "score": 0.5398276448249817,
+      "utility_std": 1.005963683128357,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "clean lines"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "earthy tones",
+      "weight": 0.08829957991838455,
+      "score": 0.504133403301239,
+      "utility_std": 1.005963683128357,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "earthy tones"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "wooden desk",
+      "weight": 0.08770342916250229,
+      "score": 0.49735909700393677,
+      "utility_std": 1.005963683128357,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden desk"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "large windows",
+      "weight": 0.08630447834730148,
+      "score": 0.4812796115875244,
+      "utility_std": 1.005963683128357,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "Natural light",
+      "weight": 0.08494960516691208,
+      "score": 0.46545618772506714,
+      "utility_std": 1.005963683128357,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Natural light"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_0_0_1",
+      "text": "neutral color palette",
+      "utility": 0.8812847137451172,
+      "uncertainty": 1.005963683128357,
+      "weight": 0.12875179946422577,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_0",
+      "text": "minimalist design",
+      "utility": 0.8697623014450073,
+      "uncertainty": 1.005963683128357,
+      "weight": 0.12727679312229156,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_2",
+      "text": "sleek modern desk",
+      "utility": 0.7855220437049866,
+      "uncertainty": 1.005963683128357,
+      "weight": 0.11699416488409042,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_7",
+      "text": "Simple layout",
+      "utility": 0.5690922737121582,
+      "uncertainty": 1.005963683128357,
+      "weight": 0.09422581642866135,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_1",
+      "text": "warm wood tones",
+      "utility": 0.566544234752655,
+      "uncertainty": 1.005963683128357,
+      "weight": 0.09398602694272995,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_7",
+      "text": "clean lines",
+      "utility": 0.5398276448249817,
+      "uncertainty": 1.005963683128357,
+      "weight": 0.09150829166173935,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_6",
+      "text": "earthy tones",
+      "utility": 0.504133403301239,
+      "uncertainty": 1.005963683128357,
+      "weight": 0.08829957991838455,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "wooden desk",
+      "utility": 0.49735909700393677,
+      "uncertainty": 1.005963683128357,
+      "weight": 0.08770342916250229,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_4",
+      "text": "large windows",
+      "utility": 0.4812796115875244,
+      "uncertainty": 1.005963683128357,
+      "weight": 0.08630447834730148,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_1",
+      "text": "Natural light",
+      "utility": 0.46545618772506714,
+      "uncertainty": 1.005963683128357,
+      "weight": 0.08494960516691208,
+      "source_image_idx": 3
+    }
+  ]
+}

@@ -1,0 +1,238 @@
+{
+  "stage": "impression",
+  "session_id": "eval_test_Calm_Home_Office_Sample_2026-01-07_16-27-01",
+  "timestamp": "2026-01-07T16:28:18.182348",
+  "num_concepts": 10,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 239,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "curtain-filtered daylight",
+      "weight": 0.13034382462501526,
+      "score": 1.0061005353927612,
+      "utility_std": 1.0101871490478516,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "curtain-filtered daylight"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "soft ambient lighting",
+      "weight": 0.12867435812950134,
+      "score": 0.9932096600532532,
+      "utility_std": 1.0101871490478516,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "soft ambient lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "warm wood tones",
+      "weight": 0.10840211808681488,
+      "score": 0.8217723369598389,
+      "utility_std": 1.0101871490478516,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm wood tones"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "sleek modern desk",
+      "weight": 0.10714990645647049,
+      "score": 0.810153603553772,
+      "utility_std": 1.0101871490478516,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "sleek modern desk"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "minimalist decor",
+      "weight": 0.10701526701450348,
+      "score": 0.8088963031768799,
+      "utility_std": 1.0101871490478516,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "minimalist decor"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "natural lighting",
+      "weight": 0.09474831819534302,
+      "score": 0.6871488094329834,
+      "utility_std": 1.0101871490478516,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "natural lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "open space layout",
+      "weight": 0.08622854202985764,
+      "score": 0.5929259657859802,
+      "utility_std": 1.0101871490478516,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "open space layout"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "wooden desk",
+      "weight": 0.08360954374074936,
+      "score": 0.5620824098587036,
+      "utility_std": 1.0101871490478516,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden desk"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "calm atmosphere",
+      "weight": 0.07861324399709702,
+      "score": 0.500464916229248,
+      "utility_std": 1.0101871490478516,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "calm atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "earthy tones",
+      "weight": 0.07521487772464752,
+      "score": 0.4562739133834839,
+      "utility_std": 1.0101871490478516,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "earthy tones"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_2_0_8",
+      "text": "curtain-filtered daylight",
+      "utility": 1.0061005353927612,
+      "uncertainty": 1.0101871490478516,
+      "weight": 0.13034382462501526,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_3",
+      "text": "soft ambient lighting",
+      "utility": 0.9932096600532532,
+      "uncertainty": 1.0101871490478516,
+      "weight": 0.12867435812950134,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_1",
+      "text": "warm wood tones",
+      "utility": 0.8217723369598389,
+      "uncertainty": 1.0101871490478516,
+      "weight": 0.10840211808681488,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_2",
+      "text": "sleek modern desk",
+      "utility": 0.810153603553772,
+      "uncertainty": 1.0101871490478516,
+      "weight": 0.10714990645647049,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_5",
+      "text": "minimalist decor",
+      "utility": 0.8088963031768799,
+      "uncertainty": 1.0101871490478516,
+      "weight": 0.10701526701450348,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_0",
+      "text": "natural lighting",
+      "utility": 0.6871488094329834,
+      "uncertainty": 1.0101871490478516,
+      "weight": 0.09474831819534302,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_8",
+      "text": "open space layout",
+      "utility": 0.5929259657859802,
+      "uncertainty": 1.0101871490478516,
+      "weight": 0.08622854202985764,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "wooden desk",
+      "utility": 0.5620824098587036,
+      "uncertainty": 1.0101871490478516,
+      "weight": 0.08360954374074936,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_11",
+      "text": "calm atmosphere",
+      "utility": 0.500464916229248,
+      "uncertainty": 1.0101871490478516,
+      "weight": 0.07861324399709702,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_6",
+      "text": "earthy tones",
+      "utility": 0.4562739133834839,
+      "uncertainty": 1.0101871490478516,
+      "weight": 0.07521487772464752,
+      "source_image_idx": 1
+    }
+  ]
+}

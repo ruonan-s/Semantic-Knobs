@@ -9,7 +9,7 @@ function ProgressBar({ currentStage }) {
   // Simplified stages for eval: Exploration → Slider Generation (no refinement)
   const stages = [
     { id: 'impression', label: 'Exploration' },
-    { id: 'slider_generation', label: 'Slider Generation' }
+    { id: 'slider_generation', label: 'Rank' }
   ];
   
   return (
@@ -67,7 +67,7 @@ function ProgressBar({ currentStage }) {
         fontWeight: '500',
         border: '1px solid #ffeeba'
       }}>
-        EVAL MODE (No Refinement)
+        EVAL MODE 
       </div>
     </div>
   );
