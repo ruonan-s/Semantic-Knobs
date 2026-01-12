@@ -9,7 +9,9 @@ from PIL import Image
 from io import BytesIO
 from typing import List
 
-load_dotenv()
+# Load .env from project root (parent of backend directory)
+env_path = os.path.join(os.path.dirname(__file__), '..', '.env')
+load_dotenv(dotenv_path=env_path)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 openai_client = OpenAI(api_key=OPENAI_API_KEY)
 

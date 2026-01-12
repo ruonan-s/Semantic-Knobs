@@ -1,0 +1,106 @@
+{
+  "stage": "impression",
+  "session_id": "eval_P07_Calm_Home_Office_Sample_2026-01-08_21-15-04",
+  "timestamp": "2026-01-08T21:16:08.625290",
+  "num_concepts": 4,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 8,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "Simple layout",
+      "weight": 0.4596346914768219,
+      "score": 0.9983998537063599,
+      "utility_std": 1.0098799467086792,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Simple layout"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "minimalist design",
+      "weight": 0.1881372332572937,
+      "score": 0.10513950884342194,
+      "utility_std": 1.0098799467086792,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "minimalist design"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "neutral color palette",
+      "weight": 0.18181896209716797,
+      "score": 0.07097931206226349,
+      "utility_std": 1.0098799467086792,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "neutral color palette"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "stone accents",
+      "weight": 0.1704092025756836,
+      "score": 0.006170480512082577,
+      "utility_std": 1.0098799467086792,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "stone accents"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_3_0_7",
+      "text": "Simple layout",
+      "utility": 0.9983998537063599,
+      "uncertainty": 1.0098799467086792,
+      "weight": 0.4596346914768219,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_0",
+      "text": "minimalist design",
+      "utility": 0.10513950884342194,
+      "uncertainty": 1.0098799467086792,
+      "weight": 0.1881372332572937,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_1",
+      "text": "neutral color palette",
+      "utility": 0.07097931206226349,
+      "uncertainty": 1.0098799467086792,
+      "weight": 0.18181896209716797,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_5",
+      "text": "stone accents",
+      "utility": 0.006170480512082577,
+      "uncertainty": 1.0098799467086792,
+      "weight": 0.1704092025756836,
+      "source_image_idx": 1
+    }
+  ]
+}

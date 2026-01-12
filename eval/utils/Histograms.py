@@ -445,7 +445,7 @@ if __name__ == "__main__":
     
     if len(sys.argv) < 2:
         # Default to the sample file
-        json_path = "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Refreshing_Café_Sample_2026-01-08_00-16-44/rank_order.json"
+        json_path = "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P04_Inviting_Livingroom_Sample_2026-01-08_17-33-49/rank_order.json"
     else:
         json_path = sys.argv[1]
     

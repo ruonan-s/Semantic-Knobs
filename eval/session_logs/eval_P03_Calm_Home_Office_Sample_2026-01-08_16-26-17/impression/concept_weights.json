@@ -1,0 +1,194 @@
+{
+  "stage": "impression",
+  "session_id": "eval_P03_Calm_Home_Office_Sample_2026-01-08_16-26-17",
+  "timestamp": "2026-01-08T16:34:26.260743",
+  "num_concepts": 8,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 217,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "curtain-filtered daylight",
+      "weight": 0.16259685158729553,
+      "score": 0.5817183256149292,
+      "utility_std": 1.0055760145187378,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "curtain-filtered daylight"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "sleek modern desk",
+      "weight": 0.161244735121727,
+      "score": 0.5733679533004761,
+      "utility_std": 1.0055760145187378,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "sleek modern desk"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "soft ambient lighting",
+      "weight": 0.14851829409599304,
+      "score": 0.49115270376205444,
+      "utility_std": 1.0055760145187378,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "soft ambient lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "neutral color palette",
+      "weight": 0.12419811636209488,
+      "score": 0.31232261657714844,
+      "utility_std": 1.0055760145187378,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "neutral color palette"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "floor-to-ceiling curtains",
+      "weight": 0.10685520619153976,
+      "score": 0.16191941499710083,
+      "utility_std": 1.0055760145187378,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "floor-to-ceiling curtains"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "ceramic pots",
+      "weight": 0.1017012819647789,
+      "score": 0.1124844178557396,
+      "utility_std": 1.0055760145187378,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "ceramic pots"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "plush gray chair",
+      "weight": 0.09745725989341736,
+      "score": 0.06985853612422943,
+      "utility_std": 1.0055760145187378,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "plush gray chair"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "wooden desk",
+      "weight": 0.09742824733257294,
+      "score": 0.06956078112125397,
+      "utility_std": 1.0055760145187378,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden desk"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_2_0_8",
+      "text": "curtain-filtered daylight",
+      "utility": 0.5817183256149292,
+      "uncertainty": 1.0055760145187378,
+      "weight": 0.16259685158729553,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_2",
+      "text": "sleek modern desk",
+      "utility": 0.5733679533004761,
+      "uncertainty": 1.0055760145187378,
+      "weight": 0.161244735121727,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_3",
+      "text": "soft ambient lighting",
+      "utility": 0.49115270376205444,
+      "uncertainty": 1.0055760145187378,
+      "weight": 0.14851829409599304,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_6",
+      "text": "neutral color palette",
+      "utility": 0.31232261657714844,
+      "uncertainty": 1.0055760145187378,
+      "weight": 0.12419811636209488,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_5",
+      "text": "floor-to-ceiling curtains",
+      "utility": 0.16191941499710083,
+      "uncertainty": 1.0055760145187378,
+      "weight": 0.10685520619153976,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_9",
+      "text": "ceramic pots",
+      "utility": 0.1124844178557396,
+      "uncertainty": 1.0055760145187378,
+      "weight": 0.1017012819647789,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_4",
+      "text": "plush gray chair",
+      "utility": 0.06985853612422943,
+      "uncertainty": 1.0055760145187378,
+      "weight": 0.09745725989341736,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "wooden desk",
+      "utility": 0.06956078112125397,
+      "uncertainty": 1.0055760145187378,
+      "weight": 0.09742824733257294,
+      "source_image_idx": 1
+    }
+  ]
+}

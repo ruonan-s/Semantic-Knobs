@@ -10,7 +10,9 @@ from google.genai import types
 from PIL import Image
 from io import BytesIO
 
-load_dotenv()
+# Load .env from project root (parent of backend directory)
+env_path = os.path.join(os.path.dirname(__file__), '..', '.env')
+load_dotenv(dotenv_path=env_path)
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 gemini_client = genai.Client(api_key=GOOGLE_API_KEY)
 

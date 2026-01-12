@@ -727,7 +727,7 @@ def _generate_slider_sync(session_id: str, location: str, session: dict):
             return {"error": True, "status_code": 500, "message": "SDXL pipeline not available"}
         
         # Generate images with alpha interpolation
-        neg_phrases = ["illustration", "cartoon", "anime", "human"]
+        neg_phrases = ["illustration", "cartoon", "anime", "dark lighting", "overdecorated interior", "CGI", "human"]
         
         # Only generate alpha=1.0 for evaluation (skip intermediate values)
         alphas = [1.0]
@@ -1110,12 +1110,22 @@ def get_comparison_images(request: ComparisonImagesRequest):
     
     print(f"[GET-COMPARISON] Session adjective: {adjective}")
     
-    # Construct dynamic baseline folder path: baseline_generic_{adjective}
-    baseline_generic_folder = LLM_SCRIPTS_DIR / f"baseline_generic_{adjective}"
-    if not baseline_generic_folder.exists():
-        available_baseline_folders = [f.name for f in LLM_SCRIPTS_DIR.iterdir() 
-                                      if f.is_dir() and f.name.startswith("baseline_generic_")]
-        raise HTTPException(404, f"Baseline folder not found: baseline_generic_{adjective}. Available: {available_baseline_folders}")
+    # Find baseline folder (case-insensitive match for adjective)
+    baseline_generic_folder = None
+    baseline_adjective_name = None
+    available_baseline_folders = [f.name for f in LLM_SCRIPTS_DIR.iterdir() 
+                                  if f.is_dir() and f.name.startswith("baseline_generic_")]
+    
+    for folder_name in available_baseline_folders:
+        # Extract adjective from folder name (after "baseline_generic_")
+        folder_adjective = folder_name.replace("baseline_generic_", "")
+        if folder_adjective.lower() == adjective.lower():
+            baseline_generic_folder = LLM_SCRIPTS_DIR / folder_name
+            baseline_adjective_name = folder_adjective
+            break
+    
+    if not baseline_generic_folder or not baseline_generic_folder.exists():
+        raise HTTPException(404, f"Baseline folder not found for adjective: {adjective}. Available: {available_baseline_folders}")
     
     # Find baseline image for the location (handle case sensitivity)
     baseline_folder = None
@@ -1137,7 +1147,7 @@ def get_comparison_images(request: ComparisonImagesRequest):
         raise HTTPException(404, f"No baseline image found for: {request.location}")
     
     baseline_image_name = baseline_images[0].name
-    baseline_url = f"/llm_scripts/baseline_generic_{adjective}/{baseline_folder_name}/{baseline_image_name}"
+    baseline_url = f"/llm_scripts/baseline_generic_{baseline_adjective_name}/{baseline_folder_name}/{baseline_image_name}"
     
     # Find slider folder for this location (handle case sensitivity)
     slider_dir = session_folder / "slider"

@@ -1,0 +1,238 @@
+{
+  "stage": "impression",
+  "session_id": "eval_P07_Cozy_Bedroom_Sample_2026-01-08_21-04-37",
+  "timestamp": "2026-01-08T21:08:45.700142",
+  "num_concepts": 10,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 20,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "woven textures",
+      "weight": 0.12194625288248062,
+      "score": 0.44384336471557617,
+      "utility_std": 1.0081020593643188,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "woven textures"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "wooden furniture",
+      "weight": 0.12134505808353424,
+      "score": 0.43890130519866943,
+      "utility_std": 1.0081020593643188,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden furniture"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "layered textiles",
+      "weight": 0.12101881206035614,
+      "score": 0.4362090528011322,
+      "utility_std": 1.0081020593643188,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "layered textiles"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "cozy atmosphere",
+      "weight": 0.1120109036564827,
+      "score": 0.35885921120643616,
+      "utility_std": 1.0081020593643188,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "cozy atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "wooden ceiling beams",
+      "weight": 0.08843665570020676,
+      "score": 0.1225496381521225,
+      "utility_std": 1.0081020593643188,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden ceiling beams"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "elegant armchair",
+      "weight": 0.08823469281196594,
+      "score": 0.12026326358318329,
+      "utility_std": 1.0081020593643188,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "elegant armchair"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "plush bedding",
+      "weight": 0.08792884647846222,
+      "score": 0.11679092049598694,
+      "utility_std": 1.0081020593643188,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "plush bedding"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "rustic wood logs",
+      "weight": 0.08735719323158264,
+      "score": 0.11026845872402191,
+      "utility_std": 1.0081020593643188,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "rustic wood logs"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "decorative moldings",
+      "weight": 0.08693818747997284,
+      "score": 0.10546036809682846,
+      "utility_std": 1.0081020593643188,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "decorative moldings"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "indoor plants",
+      "weight": 0.08478331565856934,
+      "score": 0.08036179840564728,
+      "utility_std": 1.0081020593643188,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "indoor plants"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_1_0_5",
+      "text": "woven textures",
+      "utility": 0.44384336471557617,
+      "uncertainty": 1.0081020593643188,
+      "weight": 0.12194625288248062,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_6",
+      "text": "wooden furniture",
+      "utility": 0.43890130519866943,
+      "uncertainty": 1.0081020593643188,
+      "weight": 0.12134505808353424,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_9",
+      "text": "layered textiles",
+      "utility": 0.4362090528011322,
+      "uncertainty": 1.0081020593643188,
+      "weight": 0.12101881206035614,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_5",
+      "text": "cozy atmosphere",
+      "utility": 0.35885921120643616,
+      "uncertainty": 1.0081020593643188,
+      "weight": 0.1120109036564827,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_8",
+      "text": "wooden ceiling beams",
+      "utility": 0.1225496381521225,
+      "uncertainty": 1.0081020593643188,
+      "weight": 0.08843665570020676,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_5",
+      "text": "elegant armchair",
+      "utility": 0.12026326358318329,
+      "uncertainty": 1.0081020593643188,
+      "weight": 0.08823469281196594,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_7",
+      "text": "plush bedding",
+      "utility": 0.11679092049598694,
+      "uncertainty": 1.0081020593643188,
+      "weight": 0.08792884647846222,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_0",
+      "text": "rustic wood logs",
+      "utility": 0.11026845872402191,
+      "uncertainty": 1.0081020593643188,
+      "weight": 0.08735719323158264,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_4",
+      "text": "decorative moldings",
+      "utility": 0.10546036809682846,
+      "uncertainty": 1.0081020593643188,
+      "weight": 0.08693818747997284,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_3",
+      "text": "indoor plants",
+      "utility": 0.08036179840564728,
+      "uncertainty": 1.0081020593643188,
+      "weight": 0.08478331565856934,
+      "source_image_idx": 0
+    }
+  ]
+}

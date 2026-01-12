@@ -1,0 +1,238 @@
+{
+  "stage": "impression",
+  "session_id": "eval_P1_Inviting_Livingroom_Sample_2026-01-08_09-37-39",
+  "timestamp": "2026-01-08T09:40:53.603744",
+  "num_concepts": 10,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 140,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "large glass windows",
+      "weight": 0.12886451184749603,
+      "score": 0.8303595185279846,
+      "utility_std": 1.0032404661178589,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large glass windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "natural light",
+      "weight": 0.12473473697900772,
+      "score": 0.7977873086929321,
+      "utility_std": 1.0032404661178589,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "natural light"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "lush greenery view",
+      "weight": 0.12198938429355621,
+      "score": 0.7755320072174072,
+      "utility_std": 1.0032404661178589,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "lush greenery view"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "warm wood flooring",
+      "weight": 0.1125718355178833,
+      "score": 0.6951894760131836,
+      "utility_std": 1.0032404661178589,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm wood flooring"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "open layout",
+      "weight": 0.10529358685016632,
+      "score": 0.6283504366874695,
+      "utility_std": 1.0032404661178589,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "open layout"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "organic shapes",
+      "weight": 0.10466701537370682,
+      "score": 0.6223819851875305,
+      "utility_std": 1.0032404661178589,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "organic shapes"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "modern rustic style",
+      "weight": 0.09197113662958145,
+      "score": 0.49307283759117126,
+      "utility_std": 1.0032404661178589,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "modern rustic style"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "trimmed large windows",
+      "weight": 0.0845397487282753,
+      "score": 0.4088197350502014,
+      "utility_std": 1.0032404661178589,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "trimmed large windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "luxurious drapes",
+      "weight": 0.06447626650333405,
+      "score": 0.13789506256580353,
+      "utility_std": 1.0032404661178589,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "luxurious drapes"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "warm lighting",
+      "weight": 0.06089181452989578,
+      "score": 0.08069673925638199,
+      "utility_std": 1.0032404661178589,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm lighting"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_1_0_3",
+      "text": "large glass windows",
+      "utility": 0.8303595185279846,
+      "uncertainty": 1.0032404661178589,
+      "weight": 0.12886451184749603,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_8",
+      "text": "natural light",
+      "utility": 0.7977873086929321,
+      "uncertainty": 1.0032404661178589,
+      "weight": 0.12473473697900772,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_2",
+      "text": "lush greenery view",
+      "utility": 0.7755320072174072,
+      "uncertainty": 1.0032404661178589,
+      "weight": 0.12198938429355621,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "warm wood flooring",
+      "utility": 0.6951894760131836,
+      "uncertainty": 1.0032404661178589,
+      "weight": 0.1125718355178833,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_9",
+      "text": "open layout",
+      "utility": 0.6283504366874695,
+      "uncertainty": 1.0032404661178589,
+      "weight": 0.10529358685016632,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_11",
+      "text": "organic shapes",
+      "utility": 0.6223819851875305,
+      "uncertainty": 1.0032404661178589,
+      "weight": 0.10466701537370682,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_0",
+      "text": "modern rustic style",
+      "utility": 0.49307283759117126,
+      "uncertainty": 1.0032404661178589,
+      "weight": 0.09197113662958145,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_6",
+      "text": "trimmed large windows",
+      "utility": 0.4088197350502014,
+      "uncertainty": 1.0032404661178589,
+      "weight": 0.0845397487282753,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_10",
+      "text": "luxurious drapes",
+      "utility": 0.13789506256580353,
+      "uncertainty": 1.0032404661178589,
+      "weight": 0.06447626650333405,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_2",
+      "text": "warm lighting",
+      "utility": 0.08069673925638199,
+      "uncertainty": 1.0032404661178589,
+      "weight": 0.06089181452989578,
+      "source_image_idx": 2
+    }
+  ]
+}

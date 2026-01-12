@@ -1275,7 +1275,7 @@ function App() {
                 {/* Header */}
                 <div style={{ marginBottom: '20px' }}>
                   <h2 style={{ margin: 0, color: '#333' }}>
-                    Ranking: {adjective} {currentRankingLocation}
+                    Context: {adjective} {currentRankingLocation}
                   </h2>
                   <p style={{ color: '#666', margin: '5px 0 0 0' }}>
                     Rank the images based on how much you like each space, from most liked (1) to least liked (4).
@@ -1452,7 +1452,7 @@ function App() {
                               textAlign: 'center',
                               fontWeight: '500'
                             }}>
-                              This image matches my personal preference:
+                              This image matches my personal interpretation of the context:
                             </div>
                             
                             {/* Slider track with dots */}

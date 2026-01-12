@@ -1,0 +1,216 @@
+{
+  "stage": "impression",
+  "session_id": "eval_P02_Inviting_Livingroom_Sample_2026-01-08_12-36-03",
+  "timestamp": "2026-01-08T12:43:06.952496",
+  "num_concepts": 9,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 262,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "lush greenery view",
+      "weight": 0.1407628059387207,
+      "score": 0.6744821071624756,
+      "utility_std": 1.0036338567733765,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "lush greenery view"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "warm wood flooring",
+      "weight": 0.13414771854877472,
+      "score": 0.6263474225997925,
+      "utility_std": 1.0036338567733765,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm wood flooring"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "natural light",
+      "weight": 0.12419939041137695,
+      "score": 0.5492941737174988,
+      "utility_std": 1.0036338567733765,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "natural light"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "large glass windows",
+      "weight": 0.12365676462650299,
+      "score": 0.5449155569076538,
+      "utility_std": 1.0036338567733765,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large glass windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "earthy color palette",
+      "weight": 0.12171250581741333,
+      "score": 0.5290676355361938,
+      "utility_std": 1.0036338567733765,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "earthy color palette"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "organic shapes",
+      "weight": 0.11106328666210175,
+      "score": 0.4375060796737671,
+      "utility_std": 1.0036338567733765,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "organic shapes"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "modern rustic style",
+      "weight": 0.08633621782064438,
+      "score": 0.18565505743026733,
+      "utility_std": 1.0036338567733765,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "modern rustic style"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "trimmed large windows",
+      "weight": 0.08470947295427322,
+      "score": 0.16663338243961334,
+      "utility_std": 1.0036338567733765,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "trimmed large windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "natural materials",
+      "weight": 0.07341184467077255,
+      "score": 0.02349114418029785,
+      "utility_std": 1.0036338567733765,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "natural materials"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_1_0_2",
+      "text": "lush greenery view",
+      "utility": 0.6744821071624756,
+      "uncertainty": 1.0036338567733765,
+      "weight": 0.1407628059387207,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "warm wood flooring",
+      "utility": 0.6263474225997925,
+      "uncertainty": 1.0036338567733765,
+      "weight": 0.13414771854877472,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_8",
+      "text": "natural light",
+      "utility": 0.5492941737174988,
+      "uncertainty": 1.0036338567733765,
+      "weight": 0.12419939041137695,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_3",
+      "text": "large glass windows",
+      "utility": 0.5449155569076538,
+      "uncertainty": 1.0036338567733765,
+      "weight": 0.12365676462650299,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_4",
+      "text": "earthy color palette",
+      "utility": 0.5290676355361938,
+      "uncertainty": 1.0036338567733765,
+      "weight": 0.12171250581741333,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_11",
+      "text": "organic shapes",
+      "utility": 0.4375060796737671,
+      "uncertainty": 1.0036338567733765,
+      "weight": 0.11106328666210175,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_0",
+      "text": "modern rustic style",
+      "utility": 0.18565505743026733,
+      "uncertainty": 1.0036338567733765,
+      "weight": 0.08633621782064438,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_6",
+      "text": "trimmed large windows",
+      "utility": 0.16663338243961334,
+      "uncertainty": 1.0036338567733765,
+      "weight": 0.08470947295427322,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_10",
+      "text": "natural materials",
+      "utility": 0.02349114418029785,
+      "uncertainty": 1.0036338567733765,
+      "weight": 0.07341184467077255,
+      "source_image_idx": 2
+    }
+  ]
+}

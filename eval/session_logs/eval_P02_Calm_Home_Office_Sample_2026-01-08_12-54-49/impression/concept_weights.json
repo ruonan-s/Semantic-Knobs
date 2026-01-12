@@ -1,0 +1,238 @@
+{
+  "stage": "impression",
+  "session_id": "eval_P02_Calm_Home_Office_Sample_2026-01-08_12-54-49",
+  "timestamp": "2026-01-08T12:59:27.825520",
+  "num_concepts": 10,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 288,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "Warm lighting",
+      "weight": 0.1386353075504303,
+      "score": 1.702776312828064,
+      "utility_std": 1.0001049041748047,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Warm lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "Natural light",
+      "weight": 0.1254098117351532,
+      "score": 1.6025164127349854,
+      "utility_std": 1.0001049041748047,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Natural light"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "Soft textures",
+      "weight": 0.12089045345783234,
+      "score": 1.5658142566680908,
+      "utility_std": 1.0001049041748047,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Soft textures"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "Casual elegance",
+      "weight": 0.1162874847650528,
+      "score": 1.5269949436187744,
+      "utility_std": 1.0001049041748047,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Casual elegance"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "Scandinavian design",
+      "weight": 0.11285438388586044,
+      "score": 1.49702787399292,
+      "utility_std": 1.0001049041748047,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Scandinavian design"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "calm atmosphere",
+      "weight": 0.09268154948949814,
+      "score": 1.3000988960266113,
+      "utility_std": 1.0001049041748047,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "calm atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "soft diffused lighting",
+      "weight": 0.08897184580564499,
+      "score": 1.2592495679855347,
+      "utility_std": 1.0001049041748047,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "soft diffused lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "luxurious materials",
+      "weight": 0.07387252897024155,
+      "score": 1.073270559310913,
+      "utility_std": 1.0001049041748047,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "luxurious materials"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "lush greenery",
+      "weight": 0.06770641356706619,
+      "score": 0.9861103296279907,
+      "utility_std": 1.0001049041748047,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "lush greenery"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "warm wood tones",
+      "weight": 0.06269028037786484,
+      "score": 0.9091359376907349,
+      "utility_std": 1.0001049041748047,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm wood tones"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_3_0_9",
+      "text": "Warm lighting",
+      "utility": 1.702776312828064,
+      "uncertainty": 1.0001049041748047,
+      "weight": 0.1386353075504303,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_1",
+      "text": "Natural light",
+      "utility": 1.6025164127349854,
+      "uncertainty": 1.0001049041748047,
+      "weight": 0.1254098117351532,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_3",
+      "text": "Soft textures",
+      "utility": 1.5658142566680908,
+      "uncertainty": 1.0001049041748047,
+      "weight": 0.12089045345783234,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_10",
+      "text": "Casual elegance",
+      "utility": 1.5269949436187744,
+      "uncertainty": 1.0001049041748047,
+      "weight": 0.1162874847650528,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_0",
+      "text": "Scandinavian design",
+      "utility": 1.49702787399292,
+      "uncertainty": 1.0001049041748047,
+      "weight": 0.11285438388586044,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_11",
+      "text": "calm atmosphere",
+      "utility": 1.3000988960266113,
+      "uncertainty": 1.0001049041748047,
+      "weight": 0.09268154948949814,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_4",
+      "text": "soft diffused lighting",
+      "utility": 1.2592495679855347,
+      "uncertainty": 1.0001049041748047,
+      "weight": 0.08897184580564499,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_7",
+      "text": "luxurious materials",
+      "utility": 1.073270559310913,
+      "uncertainty": 1.0001049041748047,
+      "weight": 0.07387252897024155,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_3",
+      "text": "lush greenery",
+      "utility": 0.9861103296279907,
+      "uncertainty": 1.0001049041748047,
+      "weight": 0.06770641356706619,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_1",
+      "text": "warm wood tones",
+      "utility": 0.9091359376907349,
+      "uncertainty": 1.0001049041748047,
+      "weight": 0.06269028037786484,
+      "source_image_idx": 2
+    }
+  ]
+}
