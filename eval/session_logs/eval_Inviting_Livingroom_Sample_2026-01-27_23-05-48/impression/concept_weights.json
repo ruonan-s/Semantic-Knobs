@@ -1,0 +1,150 @@
+{
+  "stage": "impression",
+  "session_id": "eval_Inviting_Livingroom_Sample_2026-01-27_23-05-48",
+  "timestamp": "2026-01-27T23:06:03.454728",
+  "num_concepts": 6,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 16,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "large glass windows",
+      "weight": 0.20336678624153137,
+      "score": 0.5188125967979431,
+      "utility_std": 1.0014455318450928,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large glass windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "warm wood flooring",
+      "weight": 0.20050755143165588,
+      "score": 0.5046533942222595,
+      "utility_std": 1.0014455318450928,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm wood flooring"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "lush greenery view",
+      "weight": 0.1864176243543625,
+      "score": 0.43179085850715637,
+      "utility_std": 1.0014455318450928,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "lush greenery view"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "trimmed large windows",
+      "weight": 0.15763317048549652,
+      "score": 0.26407212018966675,
+      "utility_std": 1.0014455318450928,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "trimmed large windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "wooden coffee table",
+      "weight": 0.1289752572774887,
+      "score": 0.06342209875583649,
+      "utility_std": 1.0014455318450928,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden coffee table"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "elegant marble fireplace",
+      "weight": 0.12309957295656204,
+      "score": 0.016794908791780472,
+      "utility_std": 1.0014455318450928,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "elegant marble fireplace"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_1_0_3",
+      "text": "large glass windows",
+      "utility": 0.5188125967979431,
+      "uncertainty": 1.0014455318450928,
+      "weight": 0.20336678624153137,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "warm wood flooring",
+      "utility": 0.5046533942222595,
+      "uncertainty": 1.0014455318450928,
+      "weight": 0.20050755143165588,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_2",
+      "text": "lush greenery view",
+      "utility": 0.43179085850715637,
+      "uncertainty": 1.0014455318450928,
+      "weight": 0.1864176243543625,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_6",
+      "text": "trimmed large windows",
+      "utility": 0.26407212018966675,
+      "uncertainty": 1.0014455318450928,
+      "weight": 0.15763317048549652,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_6",
+      "text": "wooden coffee table",
+      "utility": 0.06342209875583649,
+      "uncertainty": 1.0014455318450928,
+      "weight": 0.1289752572774887,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_3",
+      "text": "elegant marble fireplace",
+      "utility": 0.016794908791780472,
+      "uncertainty": 1.0014455318450928,
+      "weight": 0.12309957295656204,
+      "source_image_idx": 3
+    }
+  ]
+}

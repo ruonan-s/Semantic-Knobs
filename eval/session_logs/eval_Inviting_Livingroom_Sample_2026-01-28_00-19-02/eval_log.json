@@ -1,0 +1,143 @@
+{
+  "user_id": "anonymous",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Inviting_Livingroom_Sample_2026-01-28_00-19-02",
+  "created_at": "2026-01-28T00:19:02.459117",
+  "events": [
+    {
+      "timestamp": "2026-01-28T00:19:02.459122",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Inviting_Livingroom_Sample"
+      }
+    },
+    {
+      "timestamp": "2026-01-28T00:20:13.588838",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Inviting Livingroom"
+      }
+    },
+    {
+      "timestamp": "2026-01-28T00:21:12.098861",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          2,
+          3,
+          0,
+          1
+        ],
+        "gp_variance": 0.9083501696586609,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-28T00:22:06.282510",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 2,
+        "ranking": [
+          3,
+          0,
+          2,
+          1
+        ],
+        "gp_variance": 0.9144251942634583,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-28T00:23:00.259646",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 3,
+        "ranking": [
+          3,
+          0,
+          2,
+          1
+        ],
+        "gp_variance": 0.9081892967224121,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-28T00:24:15.696299",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 4,
+        "ranking": [
+          1,
+          3,
+          0,
+          2
+        ],
+        "gp_variance": 0.908067524433136,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-28T00:25:11.558333",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 5,
+        "ranking": [
+          1,
+          3,
+          0,
+          2
+        ],
+        "gp_variance": 0.9142630696296692,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-28T00:26:07.100250",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 6,
+        "ranking": [
+          2,
+          1,
+          3,
+          0
+        ],
+        "gp_variance": 0.908038318157196,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-28T00:27:25.408853",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 7,
+        "ranking": [
+          3,
+          1,
+          2,
+          0
+        ],
+        "gp_variance": 0.9142433404922485,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-28T00:28:21.858926",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 8,
+        "ranking": [
+          2,
+          1,
+          0,
+          3
+        ],
+        "gp_variance": 0.9144328832626343,
+        "is_converged": false
+      }
+    }
+  ]
+}

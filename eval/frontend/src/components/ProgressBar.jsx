@@ -6,10 +6,11 @@ function ProgressBar({ currentStage }) {
     return null;
   }
 
-  // Simplified stages for eval: Exploration → Slider Generation (no refinement)
+  // Stages for eval with HITL refinement: Exploration → Refinement → Rank
   const stages = [
     { id: 'impression', label: 'Exploration' },
-    { id: 'slider_generation', label: 'Rank' }
+    { id: 'hitl_refinement', label: 'Refinement' },
+    { id: 'evaluation', label: 'Rank' }
   ];
   
   return (

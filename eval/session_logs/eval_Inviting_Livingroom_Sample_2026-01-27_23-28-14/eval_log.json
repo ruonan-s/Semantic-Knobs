@@ -1,0 +1,38 @@
+{
+  "user_id": "anonymous",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Inviting_Livingroom_Sample_2026-01-27_23-28-14",
+  "created_at": "2026-01-27T23:28:14.133551",
+  "events": [
+    {
+      "timestamp": "2026-01-27T23:28:14.133561",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Inviting_Livingroom_Sample"
+      }
+    },
+    {
+      "timestamp": "2026-01-27T23:29:15.712254",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Inviting Livingroom"
+      }
+    },
+    {
+      "timestamp": "2026-01-27T23:32:08.504552",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          3,
+          2,
+          0,
+          1
+        ],
+        "gp_variance": 0.9146111011505127,
+        "is_converged": false
+      }
+    }
+  ]
+}

@@ -50,6 +50,9 @@ from concept_refinement import get_or_create_session as get_refinement_session, 
 # Import GP exploration system
 from gp_session import get_or_create_gp_session, gp_exploration_sessions, GPExplorationSession
 
+# Import HITL refinement system
+from hitl_session import HITLRefinementSession
+
 # ============== Mode Toggle ==============
 # Set to True to use GP-based preference learning, False for original softmax approach
 USE_GP_EXPLORATION = True
@@ -760,7 +763,7 @@ def _generate_slider_sync(session_id: str, location: str, session: dict):
             return {"error": True, "status_code": 500, "message": "SDXL pipeline not available"}
         
         # Generate images with alpha interpolation
-        neg_phrases = ["illustration", "cartoon", "anime", "CGI", "human"]
+        neg_phrases = ["plan view", "bird's-eye view","illustration", "cartoon", "anime", "CGI", "human"]
         
         # Only generate alpha=1.0 for evaluation (skip intermediate values)
         alphas = [1.0]
@@ -1064,6 +1067,370 @@ async def process_gp_round(request: dict):
         "tag_preferences": state_dict.get("tag_preferences", {}),
         "gp_mode": True,
         "n_concepts": len(concepts)
+    }
+
+
+# ============== HITL Refinement Endpoints ==============
+
+# In-memory store for HITL refinement sessions
+hitl_sessions: Dict[str, HITLRefinementSession] = {}
+
+
+class HITLInitRequest(BaseModel):
+    session_id: str
+    base_prompt: Optional[str] = None
+    negative_phrases: Optional[List[str]] = None
+
+
+class HITLInitResponse(BaseModel):
+    success: bool
+    round_count: int
+    is_initialized: bool
+    is_converged: bool
+    top_concepts: List[dict]
+
+
+@app.post("/api/hitl/initialize", response_model=HITLInitResponse)
+def initialize_hitl(request: HITLInitRequest):
+    """
+    Initialize HITL refinement from exploration outputs.
+    
+    IDEMPOTENT: If session already exists (browser refresh), reload state.
+    This endpoint is called after exploration stage to begin refinement.
+    """
+    session = eval_sessions.get(request.session_id)
+    if not session:
+        raise HTTPException(404, f"Session not found: {request.session_id}")
+    
+    session_folder = session["folder"]
+    use_gp = session.get("use_gp", USE_GP_EXPLORATION)
+    
+    # IMPORTANT: Save tag_preferences.json from GP session before HITL init
+    # This file is required by HITLRefinementSession.initialize_from_exploration()
+    key = f"{request.session_id}_impression"
+    tag_prefs_path = os.path.join(session_folder, "impression", "tag_preferences.json")
+    
+    if not os.path.exists(tag_prefs_path):
+        if use_gp and key in gp_exploration_sessions:
+            gp_session = gp_exploration_sessions[key]
+            print(f"[HITL] Triggering GP fitting before HITL init for {request.session_id}...")
+            gp_session.process_round_manually()
+            
+            # Save raw tag weights (concept_weights.json)
+            gp_session.save_raw_tag_weights(session_folder)
+            print(f"[HITL] Saved GP raw tag weights for {request.session_id}")
+            
+            # Save tag preferences (positive/negative/neutral)
+            tag_prefs = gp_session.get_tag_preferences()
+            positive_tags = []
+            negative_tags = []
+            neutral_tags = []
+            
+            for tag_id, pref in tag_prefs.items():
+                if tag_id in gp_session.raw_tags:
+                    tag_text = gp_session.raw_tags[tag_id].text
+                    if pref == 'positive':
+                        positive_tags.append(tag_text)
+                    elif pref == 'negative':
+                        negative_tags.append(tag_text)
+                    else:
+                        neutral_tags.append(tag_text)
+            
+            tag_preferences_data = {
+                "positive": positive_tags,
+                "negative": negative_tags,
+                "neutral": neutral_tags
+            }
+            
+            with open(tag_prefs_path, 'w') as f:
+                json.dump(tag_preferences_data, f, indent=2)
+            print(f"[HITL] Saved tag preferences: {len(positive_tags)} positive, {len(negative_tags)} negative, {len(neutral_tags)} neutral")
+        else:
+            # No GP session - create empty tag_preferences.json
+            print(f"[HITL] Warning: No GP session found, creating empty tag_preferences.json")
+            tag_preferences_data = {"positive": [], "negative": [], "neutral": []}
+            os.makedirs(os.path.dirname(tag_prefs_path), exist_ok=True)
+            with open(tag_prefs_path, 'w') as f:
+                json.dump(tag_preferences_data, f, indent=2)
+    
+    # Determine base prompt from session
+    base_prompt = request.base_prompt
+    if not base_prompt:
+        # Use "{adjective} {location}" as base prompt for HITL generation
+        adjective = session.get("adjective", "")
+        location = session.get("location", "")
+        if adjective and location:
+            base_prompt = f"{adjective} {location}"
+        else:
+            base_prompt = session.get("descriptor", location or "interior design")
+        print(f"[HITL] Using base prompt: {base_prompt}")
+    
+    negative_phrases = request.negative_phrases or [
+        "illustration","plan view", "bird's-eye view", "cartoon", "anime", 
+        "isometric", "diorama", "miniature", "3D render", "CGI", 
+        "concept art", "stylized", "toon shading", "human"
+    ]
+    
+    # Initialize SDXL runner if not already available
+    # This is needed for HITL image generation
+    global _eval_sdxl_runner, _eval_slider_fuser
+    
+    if _eval_sdxl_runner is None:
+        print("[HITL] Initializing SDXL runner for image generation...")
+        from SDXL.sdxl_runner import SDXLRunner
+        _eval_sdxl_runner = SDXLRunner(
+            model_id="stabilityai/stable-diffusion-xl-base-1.0",
+            device=None,
+            height=1024,
+            width=1024
+        )
+        print("[HITL] SDXL runner initialized")
+    
+    pipe = None
+    if _eval_sdxl_runner is not None and _eval_sdxl_runner.runner is not None:
+        pipe = _eval_sdxl_runner.runner.pipe
+    
+    try:
+        # Idempotent: load existing or create new
+        hitl = HITLRefinementSession.load_or_create(
+            session_id=request.session_id,
+            session_folder=session_folder,
+            sdxl_runner=_eval_sdxl_runner if '_eval_sdxl_runner' in globals() else None,
+            pipe=pipe,
+            base_prompt=base_prompt,
+            negative_phrases=negative_phrases
+        )
+        hitl_sessions[request.session_id] = hitl
+        
+        # Log event
+        create_eval_session_log(
+            session_folder,
+            session.get("user_id", "anonymous"),
+            "hitl_initialize",
+            {
+                "round_count": hitl.round_count,
+                "is_restored": hitl.round_count > 0,
+                "base_prompt": base_prompt
+            }
+        )
+        
+        return HITLInitResponse(
+            success=True,
+            round_count=hitl.round_count,
+            is_initialized=hitl.is_initialized,
+            is_converged=hitl.is_converged,
+            top_concepts=hitl.get_top_concepts(k=5)
+        )
+    except Exception as e:
+        print(f"[HITL] Error initializing: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(500, str(e))
+
+
+class HITLGenerateRequest(BaseModel):
+    session_id: str
+    num_images: int = 4
+
+
+class HITLGenerateResponse(BaseModel):
+    success: bool
+    round_number: int
+    images: List[dict]
+    compositions: List[dict]
+
+
+@app.post("/api/hitl/generate-round", response_model=HITLGenerateResponse)
+async def generate_hitl_round(request: HITLGenerateRequest):
+    """
+    Generate images for ordinal ranking.
+    
+    Uses UCB acquisition to select diverse points from GP utility surface,
+    then generates images with attention-weighted fusion.
+    """
+    hitl = hitl_sessions.get(request.session_id)
+    if not hitl:
+        raise HTTPException(404, f"HITL session not found: {request.session_id}")
+    
+    if not hitl.is_initialized:
+        raise HTTPException(400, "HITL session not initialized")
+    
+    if hitl.is_converged:
+        raise HTTPException(400, "HITL session already converged")
+    
+    try:
+        # Run in thread pool for non-blocking generation
+        loop = asyncio.get_event_loop()
+        result = await loop.run_in_executor(
+            generation_executor,
+            lambda: hitl.generate_round(q=request.num_images)
+        )
+        
+        compositions, image_paths = result
+        
+        # Build response with image URLs
+        images = []
+        for i, path in enumerate(image_paths):
+            # Convert path to URL
+            rel_path = os.path.relpath(path, SESSION_LOGS_DIR)
+            url = f"/session_logs/{rel_path}"
+            images.append({
+                "id": f"round_{hitl.round_count}_img_{i}",
+                "url": url,
+                "path": path
+            })
+        
+        # Build compositions summary (continuous embeddings, no tag labels)
+        comp_summaries = []
+        for comp in compositions:
+            comp_summaries.append({
+                "strategies": comp.sampling_strategies[:5],  # Sampling strategies used
+                "weights": comp.weights[:5].tolist(),
+                "mean_utility": float(comp.utilities.mean()) if hasattr(comp, 'utilities') else 0.0,
+                "mean_uncertainty": float(comp.uncertainties.mean()) if hasattr(comp, 'uncertainties') else 0.0,
+            })
+        
+        return HITLGenerateResponse(
+            success=True,
+            round_number=hitl.round_count,
+            images=images,
+            compositions=comp_summaries
+        )
+    except Exception as e:
+        print(f"[HITL] Error generating round: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(500, str(e))
+
+
+class HITLRankRequest(BaseModel):
+    session_id: str
+    round_number: int
+    ranking: List[int]  # [1st_idx, 2nd_idx, 3rd_idx, 4th_idx]
+
+
+class HITLRankResponse(BaseModel):
+    success: bool
+    round_number: int
+    gp_variance: float
+    is_converged: bool
+    next_round_ready: bool
+    total_pairs: int
+
+
+@app.post("/api/hitl/submit-ranking", response_model=HITLRankResponse)
+def submit_hitl_ranking(request: HITLRankRequest):
+    """
+    Submit ordinal ranking and update GP with pairwise comparisons.
+    
+    Convergence is based on GP VARIANCE in preferred region, not mu shift.
+    """
+    hitl = hitl_sessions.get(request.session_id)
+    if not hitl:
+        raise HTTPException(404, f"HITL session not found: {request.session_id}")
+    
+    try:
+        result = hitl.record_ranking(request.ranking)
+        
+        session = eval_sessions.get(request.session_id)
+        if session:
+            create_eval_session_log(
+                session["folder"],
+                session.get("user_id", "anonymous"),
+                "hitl_ranking",
+                {
+                    "round": result["round"],
+                    "ranking": request.ranking,
+                    "gp_variance": result["gp_variance"],
+                    "is_converged": result["is_converged"]
+                }
+            )
+        
+        return HITLRankResponse(
+            success=True,
+            round_number=result["round"],
+            gp_variance=result["gp_variance"],
+            is_converged=result["is_converged"],
+            next_round_ready=not result["is_converged"],
+            total_pairs=result["total_pairs"]
+        )
+    except Exception as e:
+        print(f"[HITL] Error recording ranking: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(500, str(e))
+
+
+class HITLFinalizeRequest(BaseModel):
+    session_id: str
+
+
+class HITLFinalizeResponse(BaseModel):
+    success: bool
+    final_selection_path: str
+    rounds_completed: int
+    total_pairs: int
+
+
+@app.post("/api/hitl/finalize", response_model=HITLFinalizeResponse)
+def finalize_hitl(request: HITLFinalizeRequest):
+    """
+    Finalize refinement and save to final_selection.json.
+    
+    This exports the refined GP preferences to the format expected by
+    slider generation.
+    """
+    hitl = hitl_sessions.get(request.session_id)
+    if not hitl:
+        raise HTTPException(404, f"HITL session not found: {request.session_id}")
+    
+    try:
+        output_path = hitl.finalize()
+        
+        session = eval_sessions.get(request.session_id)
+        if session:
+            create_eval_session_log(
+                session["folder"],
+                session.get("user_id", "anonymous"),
+                "hitl_finalize",
+                {
+                    "rounds_completed": hitl.round_count,
+                    "total_pairs": len(hitl.optimizer.all_pairs) if hitl.optimizer else 0
+                }
+            )
+        
+        result = HITLFinalizeResponse(
+            success=True,
+            final_selection_path=output_path,
+            rounds_completed=hitl.round_count,
+            total_pairs=len(hitl.optimizer.all_pairs) if hitl.optimizer else 0
+        )
+        
+        # Clean up session
+        del hitl_sessions[request.session_id]
+        
+        return result
+    except Exception as e:
+        print(f"[HITL] Error finalizing: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(500, str(e))
+
+
+@app.get("/api/hitl/status/{session_id}")
+def get_hitl_status(session_id: str):
+    """Get the status of an HITL refinement session."""
+    hitl = hitl_sessions.get(session_id)
+    if not hitl:
+        return {
+            "exists": False,
+            "session_id": session_id
+        }
+    
+    return {
+        "exists": True,
+        "session_id": session_id,
+        **hitl.get_status()
     }
 
 

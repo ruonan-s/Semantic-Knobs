@@ -5,6 +5,7 @@ import TagSidebar from './components/TagSidebar';
 import JsonPanel from './components/JsonPanel';
 import InlineTagDisplay from './components/InlineTagDisplay';
 import ConceptRefinementPanel from './components/ConceptRefinementPanel';
+import HITLRefinementPanel from './components/HITLRefinementPanel';
 
 /**
  * Fisher-Yates shuffle algorithm to randomize array order
@@ -83,6 +84,14 @@ function App() {
   const [isSavingRanking, setIsSavingRanking] = useState(false);
   // Track if current ranking was just saved (for feedback)
   const [rankingSaved, setRankingSaved] = useState(false);
+  
+  // HITL Refinement state
+  const [hitlRound, setHitlRound] = useState(1);
+  const [hitlImages, setHitlImages] = useState([]);
+  const [isHitlConverged, setIsHitlConverged] = useState(false);
+  const [hitlGpVariance, setHitlGpVariance] = useState(null);
+  const [hitlStatusMessage, setHitlStatusMessage] = useState('');
+  const [isHitlLoading, setIsHitlLoading] = useState(false);
   
   const imageRefs = useRef({});
   const conceptTagHandlerRef = useRef(null);
@@ -582,8 +591,264 @@ function App() {
     }
   };
 
-  // Custom stages for eval
-  const evalStages = ['landing', 'impression', 'evaluation', 'slider_generation'];
+
+  // ============== HITL Refinement Functions ==============
+  
+  // Initialize HITL session
+  const initializeHITL = async () => {
+    setIsHitlLoading(true);
+    setHitlStatusMessage('Initializing preference refinement...');
+    
+    try {
+      const res = await fetch('/api/hitl/initialize', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: sessionId })
+      });
+      
+      if (!res.ok) {
+        throw new Error(`Failed to initialize HITL: ${res.status}`);
+      }
+      
+      const data = await res.json();
+      addStatusMessage('HITL session initialized');
+      
+      // Generate first round
+      await generateHITLRound();
+      
+    } catch (error) {
+      console.error('Error initializing HITL:', error);
+      addStatusMessage(`Error: ${error.message}`);
+      setHitlStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsHitlLoading(false);
+    }
+  };
+  
+  // Generate a round of HITL images
+  const generateHITLRound = async () => {
+    setIsHitlLoading(true);
+    setHitlStatusMessage(`Generating images for round ${hitlRound}...`);
+    
+    try {
+      const res = await fetch('/api/hitl/generate-round', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: sessionId })
+      });
+      
+      if (!res.ok) {
+        throw new Error(`Failed to generate round: ${res.status}`);
+      }
+      
+      const data = await res.json();
+      
+      // Set images for display
+      setHitlImages(data.images || []);
+      setHitlRound(data.round || hitlRound);
+      setHitlStatusMessage('');
+      addStatusMessage(`Generated ${data.images?.length || 0} images for round ${data.round}`);
+      
+    } catch (error) {
+      console.error('Error generating HITL round:', error);
+      addStatusMessage(`Error: ${error.message}`);
+      setHitlStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsHitlLoading(false);
+    }
+  };
+  
+  // Submit ranking for current round
+  const submitHITLRanking = async (rankingArray) => {
+    setIsHitlLoading(true);
+    setHitlStatusMessage('Processing your preferences...');
+    
+    try {
+      const res = await fetch('/api/hitl/submit-ranking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          session_id: sessionId,
+          round_number: hitlRound,
+          ranking: rankingArray
+        })
+      });
+      
+      if (!res.ok) {
+        throw new Error(`Failed to submit ranking: ${res.status}`);
+      }
+      
+      const data = await res.json();
+      
+      // Update convergence state
+      setHitlGpVariance(data.gp_variance);
+      setIsHitlConverged(data.converged);
+      
+      addStatusMessage(`Round ${hitlRound} completed. GP variance: ${data.gp_variance?.toFixed(4)}`);
+      
+      if (data.converged) {
+        setHitlStatusMessage('Preferences have converged! You can finalize now.');
+      } else {
+        // Generate next round
+        setHitlRound(prev => prev + 1);
+        await generateHITLRound();
+      }
+      
+    } catch (error) {
+      console.error('Error submitting ranking:', error);
+      addStatusMessage(`Error: ${error.message}`);
+      setHitlStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsHitlLoading(false);
+    }
+  };
+  
+  // Finalize HITL refinement
+  const finalizeHITL = async () => {
+    setIsHitlLoading(true);
+    setHitlStatusMessage('Finalizing preferences...');
+    
+    try {
+      const res = await fetch('/api/hitl/finalize', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: sessionId })
+      });
+      
+      if (!res.ok) {
+        throw new Error(`Failed to finalize HITL: ${res.status}`);
+      }
+      
+      const data = await res.json();
+      addStatusMessage('Preferences finalized successfully');
+      
+      // Proceed to evaluation stage (same flow as handleSkipToSlider)
+      await proceedToEvaluation();
+      
+    } catch (error) {
+      console.error('Error finalizing HITL:', error);
+      addStatusMessage(`Error: ${error.message}`);
+      setHitlStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsHitlLoading(false);
+    }
+  };
+  
+  // Start HITL refinement (called from exploration stage)
+  const handleStartHITL = async () => {
+    if (!selectedImage) {
+      addStatusMessage('Please select an image before continuing');
+      return;
+    }
+    
+    // Reset HITL state
+    setHitlRound(1);
+    setHitlImages([]);
+    setIsHitlConverged(false);
+    setHitlGpVariance(null);
+    setHitlStatusMessage('');
+    
+    // Change stage first, then initialize
+    setStage('hitl_refinement');
+    await initializeHITL();
+  };
+  
+  // Proceed to evaluation after HITL (shared logic with handleSkipToSlider)
+  const proceedToEvaluation = async () => {
+    setIsLoading(true);
+    try {
+      addStatusMessage('Preparing evaluation...');
+      
+      // 1. Skip to slider (save weights, etc.)
+      const res = await fetch('/api/eval/skip-to-slider', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          session_id: sessionId,
+          selected_image_id: selectedImage
+        })
+      });
+
+      if (!res.ok) {
+        throw new Error(`Failed to prepare evaluation: ${res.status}`);
+      }
+
+      const data = await res.json();
+      
+      if (data.success) {
+        addStatusMessage(data.message);
+        
+        // 2. Get available locations and randomize their order
+        const locsRes = await fetch('/api/eval/locations');
+        let locations = [];
+        if (locsRes.ok) {
+          const locsData = await locsRes.json();
+          locations = shuffleArray(locsData.locations || []);
+          setAvailableLocations(locations);
+        }
+        
+        // Initialize generation status for all locations
+        const initialStatus = {};
+        locations.forEach(loc => {
+          initialStatus[loc.name] = 'pending';
+        });
+        setLocationGenStatus(initialStatus);
+        
+        // 3. Generate initial location images
+        const explorationLoc = location;
+        const matchingLoc = locations.find(loc => 
+          loc.name.toLowerCase() === explorationLoc.toLowerCase()
+        );
+        const initialLocName = matchingLoc ? matchingLoc.name : explorationLoc;
+        
+        addStatusMessage(`Generating images for ${initialLocName}...`);
+        setLocationGenStatus(prev => ({ ...prev, [initialLocName]: 'generating' }));
+        
+        const sliderRes = await fetch('/api/generate-slider', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            session_id: sessionId,
+            location: ''
+          })
+        });
+        
+        if (!sliderRes.ok) {
+          throw new Error(`Failed to generate initial slider: ${sliderRes.status}`);
+        }
+        
+        setLocationGenStatus(prev => ({ ...prev, [initialLocName]: 'completed' }));
+        addStatusMessage(`Generated images for ${initialLocName}`);
+        
+        // 4. Initialize ranking session
+        await fetch('/api/eval/init-ranking-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ session_log: sessionId })
+        });
+        
+        // 5. Set up for evaluation stage
+        setSelectedSessionLog(sessionId);
+        setCurrentRankingLocation(initialLocName);
+        setStage('evaluation');
+        
+        await loadComparisonImagesForSession(sessionId, initialLocName, true);
+        
+        if (locations.length > 1) {
+          generateRemainingLocations(locations, initialLocName);
+        }
+      }
+      
+    } catch (error) {
+      console.error('Error in proceedToEvaluation:', error);
+      addStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Custom stages for eval (with HITL refinement)
+  const evalStages = ['landing', 'impression', 'hitl_refinement', 'evaluation', 'slider_generation'];
 
   // ============== Ranking/Evaluation Functions ==============
 
@@ -1109,6 +1374,45 @@ function App() {
                 ))}
               </div>
             )}
+          </div>
+        </div>
+      ) : stage === 'hitl_refinement' ? (
+        // ============== HITL REFINEMENT STAGE ==============
+        <div>
+          <HITLRefinementPanel
+            sessionId={sessionId}
+            round={hitlRound}
+            images={hitlImages}
+            gpVariance={hitlGpVariance}
+            isConverged={isHitlConverged}
+            isLoading={isHitlLoading}
+            onSubmitRanking={submitHITLRanking}
+            onFinalize={finalizeHITL}
+            statusMessage={hitlStatusMessage}
+          />
+          
+          {/* Back button */}
+          <div style={{ textAlign: 'center', marginTop: '20px' }}>
+            <button
+              onClick={() => {
+                setStage('impression');
+                setHitlRound(1);
+                setHitlImages([]);
+                setIsHitlConverged(false);
+                setHitlGpVariance(null);
+              }}
+              style={{
+                padding: '10px 20px',
+                backgroundColor: '#6c757d',
+                color: 'white',
+                border: 'none',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '14px'
+              }}
+            >
+              ← Back to Exploration
+            </button>
           </div>
         </div>
       ) : stage === 'evaluation' ? (
@@ -2068,42 +2372,62 @@ function App() {
             />
           </div>
 
-          {/* Continue Button */}
-          <button
-            onClick={handleSkipToSlider}
-            disabled={!selectedImage || isLoading}
-            style={{
-              marginTop: '20px',
-              padding: '12px 24px',
-              backgroundColor: isLoading ? '#ccc' : (selectedImage ? '#28a745' : '#ccc'),
-              color: 'white',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: (!selectedImage || isLoading) ? 'not-allowed' : 'pointer',
-              fontSize: '16px',
-              fontWeight: '500',
-              transition: 'background-color 0.3s ease'
-            }}
-          >
-            {isLoading ? 'Processing...' : 'Proceed to Next Stage →'}
-          </button>
-          
-          <button
-            onClick={() => setStage('landing')}
-            style={{
-              marginTop: '20px',
-              marginLeft: '10px',
-              padding: '12px 24px',
-              backgroundColor: '#6c757d',
-              color: 'white',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: 'pointer',
-              fontSize: '16px'
-            }}
-          >
-            ← Back to Sessions
-          </button>
+          {/* Action Buttons */}
+          <div style={{ display: 'flex', gap: '10px', marginTop: '20px', flexWrap: 'wrap' }}>
+            {/* Refine Preferences Button (HITL) */}
+            <button
+              onClick={handleStartHITL}
+              disabled={!selectedImage || isLoading || !conceptSystemReady}
+              style={{
+                padding: '12px 24px',
+                backgroundColor: isLoading ? '#ccc' : (selectedImage && conceptSystemReady ? '#007bff' : '#ccc'),
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: (!selectedImage || isLoading || !conceptSystemReady) ? 'not-allowed' : 'pointer',
+                fontSize: '16px',
+                fontWeight: '500',
+                transition: 'background-color 0.3s ease'
+              }}
+            >
+              {isLoading ? 'Processing...' : 'Refine Preferences'}
+            </button>
+            
+            {/* Skip to Evaluation Button */}
+            <button
+              onClick={handleSkipToSlider}
+              disabled={!selectedImage || isLoading}
+              style={{
+                padding: '12px 24px',
+                backgroundColor: isLoading ? '#ccc' : (selectedImage ? '#28a745' : '#ccc'),
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: (!selectedImage || isLoading) ? 'not-allowed' : 'pointer',
+                fontSize: '16px',
+                fontWeight: '500',
+                transition: 'background-color 0.3s ease'
+              }}
+            >
+              {isLoading ? 'Processing...' : 'Skip to Evaluation →'}
+            </button>
+            
+            {/* Back to Sessions Button */}
+            <button
+              onClick={() => setStage('landing')}
+              style={{
+                padding: '12px 24px',
+                backgroundColor: '#6c757d',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                fontSize: '16px'
+              }}
+            >
+              ← Back to Sessions
+            </button>
+          </div>
         </div>
       )}
       

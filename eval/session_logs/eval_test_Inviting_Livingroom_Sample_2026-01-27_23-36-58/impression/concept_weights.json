@@ -1,0 +1,238 @@
+{
+  "stage": "impression",
+  "session_id": "eval_test_Inviting_Livingroom_Sample_2026-01-27_23-36-58",
+  "timestamp": "2026-01-27T23:37:52.379495",
+  "num_concepts": 10,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 264,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "open layout",
+      "weight": 0.1337253749370575,
+      "score": 0.8830763101577759,
+      "utility_std": 1.0059232711791992,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "open layout"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "warm wood flooring",
+      "weight": 0.11619241535663605,
+      "score": 0.7425355911254883,
+      "utility_std": 1.0059232711791992,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm wood flooring"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "natural light",
+      "weight": 0.11401604115962982,
+      "score": 0.7236272096633911,
+      "utility_std": 1.0059232711791992,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "natural light"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "earthy color palette",
+      "weight": 0.11336030811071396,
+      "score": 0.7178593873977661,
+      "utility_std": 1.0059232711791992,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "earthy color palette"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "lush greenery view",
+      "weight": 0.10875432938337326,
+      "score": 0.6763796806335449,
+      "utility_std": 1.0059232711791992,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "lush greenery view"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "large glass windows",
+      "weight": 0.10443668812513351,
+      "score": 0.6358692049980164,
+      "utility_std": 1.0059232711791992,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large glass windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "warm lighting",
+      "weight": 0.08501835912466049,
+      "score": 0.43015536665916443,
+      "utility_std": 1.0059232711791992,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "trimmed large windows",
+      "weight": 0.07697442919015884,
+      "score": 0.3307614028453827,
+      "utility_std": 1.0059232711791992,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "trimmed large windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "wooden coffee table",
+      "weight": 0.07632366567850113,
+      "score": 0.32227107882499695,
+      "utility_std": 1.0059232711791992,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden coffee table"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "inviting cozy atmosphere",
+      "weight": 0.0711984783411026,
+      "score": 0.2527593970298767,
+      "utility_std": 1.0059232711791992,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "inviting cozy atmosphere"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_1_0_9",
+      "text": "open layout",
+      "utility": 0.8830763101577759,
+      "uncertainty": 1.0059232711791992,
+      "weight": 0.1337253749370575,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "warm wood flooring",
+      "utility": 0.7425355911254883,
+      "uncertainty": 1.0059232711791992,
+      "weight": 0.11619241535663605,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_8",
+      "text": "natural light",
+      "utility": 0.7236272096633911,
+      "uncertainty": 1.0059232711791992,
+      "weight": 0.11401604115962982,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_4",
+      "text": "earthy color palette",
+      "utility": 0.7178593873977661,
+      "uncertainty": 1.0059232711791992,
+      "weight": 0.11336030811071396,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_2",
+      "text": "lush greenery view",
+      "utility": 0.6763796806335449,
+      "uncertainty": 1.0059232711791992,
+      "weight": 0.10875432938337326,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_3",
+      "text": "large glass windows",
+      "utility": 0.6358692049980164,
+      "uncertainty": 1.0059232711791992,
+      "weight": 0.10443668812513351,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_2",
+      "text": "warm lighting",
+      "utility": 0.43015536665916443,
+      "uncertainty": 1.0059232711791992,
+      "weight": 0.08501835912466049,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_6",
+      "text": "trimmed large windows",
+      "utility": 0.3307614028453827,
+      "uncertainty": 1.0059232711791992,
+      "weight": 0.07697442919015884,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_6",
+      "text": "wooden coffee table",
+      "utility": 0.32227107882499695,
+      "uncertainty": 1.0059232711791992,
+      "weight": 0.07632366567850113,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_11",
+      "text": "inviting cozy atmosphere",
+      "utility": 0.2527593970298767,
+      "uncertainty": 1.0059232711791992,
+      "weight": 0.0711984783411026,
+      "source_image_idx": 3
+    }
+  ]
+}

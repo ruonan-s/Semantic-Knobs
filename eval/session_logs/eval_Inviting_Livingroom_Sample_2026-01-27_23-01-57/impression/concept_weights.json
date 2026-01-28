@@ -1,0 +1,150 @@
+{
+  "stage": "impression",
+  "session_id": "eval_Inviting_Livingroom_Sample_2026-01-27_23-01-57",
+  "timestamp": "2026-01-27T23:02:14.323973",
+  "num_concepts": 6,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 21,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "warm wood flooring",
+      "weight": 0.20639075338840485,
+      "score": 0.5624979734420776,
+      "utility_std": 1.006966233253479,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm wood flooring"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "large glass windows",
+      "weight": 0.2037159502506256,
+      "score": 0.5494533181190491,
+      "utility_std": 1.006966233253479,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large glass windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "lush greenery view",
+      "weight": 0.1900332123041153,
+      "score": 0.47992557287216187,
+      "utility_std": 1.006966233253479,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "lush greenery view"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "trimmed large windows",
+      "weight": 0.1544111669063568,
+      "score": 0.27234572172164917,
+      "utility_std": 1.006966233253479,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "trimmed large windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "wooden coffee table",
+      "weight": 0.12567904591560364,
+      "score": 0.0664580762386322,
+      "utility_std": 1.006966233253479,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden coffee table"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "elegant marble fireplace",
+      "weight": 0.11976992338895798,
+      "score": 0.018299363553524017,
+      "utility_std": 1.006966233253479,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "elegant marble fireplace"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "warm wood flooring",
+      "utility": 0.5624979734420776,
+      "uncertainty": 1.006966233253479,
+      "weight": 0.20639075338840485,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_3",
+      "text": "large glass windows",
+      "utility": 0.5494533181190491,
+      "uncertainty": 1.006966233253479,
+      "weight": 0.2037159502506256,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_2",
+      "text": "lush greenery view",
+      "utility": 0.47992557287216187,
+      "uncertainty": 1.006966233253479,
+      "weight": 0.1900332123041153,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_6",
+      "text": "trimmed large windows",
+      "utility": 0.27234572172164917,
+      "uncertainty": 1.006966233253479,
+      "weight": 0.1544111669063568,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_6",
+      "text": "wooden coffee table",
+      "utility": 0.0664580762386322,
+      "uncertainty": 1.006966233253479,
+      "weight": 0.12567904591560364,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_3",
+      "text": "elegant marble fireplace",
+      "utility": 0.018299363553524017,
+      "uncertainty": 1.006966233253479,
+      "weight": 0.11976992338895798,
+      "source_image_idx": 3
+    }
+  ]
+}
