@@ -1,0 +1,238 @@
+{
+  "stage": "impression",
+  "session_id": "eval_test_Calm_Home_Office_Sample_2026-01-15_16-38-58",
+  "timestamp": "2026-01-15T16:40:42.608111",
+  "num_concepts": 10,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 531,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "minimalist design",
+      "weight": 0.13987265527248383,
+      "score": 1.4379806518554688,
+      "utility_std": 1.0046988725662231,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "minimalist design"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "neutral color palette",
+      "weight": 0.12754148244857788,
+      "score": 1.3456898927688599,
+      "utility_std": 1.0046988725662231,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "neutral color palette"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "Simple layout",
+      "weight": 0.11606545001268387,
+      "score": 1.2514023780822754,
+      "utility_std": 1.0046988725662231,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Simple layout"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "clean lines",
+      "weight": 0.11386768519878387,
+      "score": 1.2322852611541748,
+      "utility_std": 1.0046988725662231,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "clean lines"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "natural lighting",
+      "weight": 0.0973534807562828,
+      "score": 1.0755966901779175,
+      "utility_std": 1.0046988725662231,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "natural lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "natural wood table",
+      "weight": 0.09279820322990417,
+      "score": 1.0276753902435303,
+      "utility_std": 1.0046988725662231,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "natural wood table"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "soft diffused lighting",
+      "weight": 0.09056983888149261,
+      "score": 1.0033694505691528,
+      "utility_std": 1.0046988725662231,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "soft diffused lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "earthy tones",
+      "weight": 0.07526201754808426,
+      "score": 0.8182238340377808,
+      "utility_std": 1.0046988725662231,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "earthy tones"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "warm wood tones",
+      "weight": 0.07447481900453568,
+      "score": 0.8077092170715332,
+      "utility_std": 1.0046988725662231,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm wood tones"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "curtain-filtered daylight",
+      "weight": 0.0721944272518158,
+      "score": 0.7766110301017761,
+      "utility_std": 1.0046988725662231,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "curtain-filtered daylight"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_0_0_0",
+      "text": "minimalist design",
+      "utility": 1.4379806518554688,
+      "uncertainty": 1.0046988725662231,
+      "weight": 0.13987265527248383,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_6",
+      "text": "neutral color palette",
+      "utility": 1.3456898927688599,
+      "uncertainty": 1.0046988725662231,
+      "weight": 0.12754148244857788,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_7",
+      "text": "Simple layout",
+      "utility": 1.2514023780822754,
+      "uncertainty": 1.0046988725662231,
+      "weight": 0.11606545001268387,
+      "source_image_idx": 3
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_7",
+      "text": "clean lines",
+      "utility": 1.2322852611541748,
+      "uncertainty": 1.0046988725662231,
+      "weight": 0.11386768519878387,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_0",
+      "text": "natural lighting",
+      "utility": 1.0755966901779175,
+      "uncertainty": 1.0046988725662231,
+      "weight": 0.0973534807562828,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_2",
+      "text": "natural wood table",
+      "utility": 1.0276753902435303,
+      "uncertainty": 1.0046988725662231,
+      "weight": 0.09279820322990417,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_4",
+      "text": "soft diffused lighting",
+      "utility": 1.0033694505691528,
+      "uncertainty": 1.0046988725662231,
+      "weight": 0.09056983888149261,
+      "source_image_idx": 0
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_6",
+      "text": "earthy tones",
+      "utility": 0.8182238340377808,
+      "uncertainty": 1.0046988725662231,
+      "weight": 0.07526201754808426,
+      "source_image_idx": 1
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_1",
+      "text": "warm wood tones",
+      "utility": 0.8077092170715332,
+      "uncertainty": 1.0046988725662231,
+      "weight": 0.07447481900453568,
+      "source_image_idx": 2
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_8",
+      "text": "curtain-filtered daylight",
+      "utility": 0.7766110301017761,
+      "uncertainty": 1.0046988725662231,
+      "weight": 0.0721944272518158,
+      "source_image_idx": 2
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "user_id": "anonymous",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Calm_Home_Office_Sample_2026-01-15_16-36-57",
+  "created_at": "2026-01-15T16:36:57.289923",
+  "events": [
+    {
+      "timestamp": "2026-01-15T16:36:57.289932",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Calm_Home_Office_Sample"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T16:37:05.197065",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_0_0",
+        "concept_count": 10,
+        "gp_mode": true
+      }
+    },
+    {
+      "timestamp": "2026-01-15T16:37:05.225671",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T16:37:15.871090",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1
+      }
+    },
+    {
+      "timestamp": "2026-01-15T16:37:45.507335",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bathroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T16:37:56.447814",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1
+      }
+    },
+    {
+      "timestamp": "2026-01-15T16:38:26.320398",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bedroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T16:38:37.219764",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1
+      }
+    }
+  ]
+}

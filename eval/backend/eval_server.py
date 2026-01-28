@@ -54,12 +54,16 @@ from gp_session import get_or_create_gp_session, gp_exploration_sessions, GPExpl
 # Set to True to use GP-based preference learning, False for original softmax approach
 USE_GP_EXPLORATION = True
 
-# Import style transfer and baseline for LLM-based generation when applying to new locations
+# Import SD baselines for baseline image generation
 LLM_SCRIPTS_PATH = Path(__file__).parent.parent / "llm_scripts"
 sys.path.insert(0, str(LLM_SCRIPTS_PATH))
-from style_transfer import generate_image_with_reference
-from baseline1 import generate_baseline_image
-from baseline_tags import generate_baseline_tags_image
+from sd_baselines import (
+    generate_sd_text_baseline,
+    generate_sd_tags_baseline,
+    generate_sd_img2img_baseline,
+    generate_sd_preferences_baseline,
+    set_runner as set_sd_baseline_runner
+)
 
 # Create FastAPI app for eval
 app = FastAPI(title="Semantic Knobs Eval Prototype")
@@ -292,6 +296,33 @@ def skip_to_slider(request: SkipToSliderRequest):
             # Now save the trained weights
             gp_session.save_raw_tag_weights(session_folder)
             print(f"[EVAL] Saved GP raw tag weights (top-10 with dedup) for {request.session_id}")
+            
+            # Save tag preferences (positive/negative/neutral) for preferences baseline
+            tag_prefs = gp_session.get_tag_preferences()
+            positive_tags = []
+            negative_tags = []
+            neutral_tags = []
+            
+            for tag_id, pref in tag_prefs.items():
+                if tag_id in gp_session.raw_tags:
+                    tag_text = gp_session.raw_tags[tag_id].text
+                    if pref == 'positive':
+                        positive_tags.append(tag_text)
+                    elif pref == 'negative':
+                        negative_tags.append(tag_text)
+                    else:
+                        neutral_tags.append(tag_text)
+            
+            tag_preferences_data = {
+                "positive": positive_tags,
+                "negative": negative_tags,
+                "neutral": neutral_tags
+            }
+            
+            tag_prefs_path = os.path.join(session_folder, "impression", "tag_preferences.json")
+            with open(tag_prefs_path, 'w') as f:
+                json.dump(tag_preferences_data, f, indent=2)
+            print(f"[EVAL] Saved tag preferences: {len(positive_tags)} positive, {len(negative_tags)} negative, {len(neutral_tags)} neutral")
         elif key in refinement_sessions:
             # Save original refinement weights
             refinement_session = refinement_sessions[key]
@@ -722,12 +753,14 @@ def _generate_slider_sync(session_id: str, location: str, session: dict):
                     _eval_sdxl_runner.runner.pipe, 
                     device=_eval_sdxl_runner.runner.device
                 )
+                # Share runner with SD baselines module to avoid loading model twice
+                set_sd_baseline_runner(_eval_sdxl_runner.runner)
         
         if _eval_slider_fuser is None:
             return {"error": True, "status_code": 500, "message": "SDXL pipeline not available"}
         
         # Generate images with alpha interpolation
-        neg_phrases = ["illustration", "cartoon", "anime", "dark lighting", "overdecorated interior", "CGI", "human"]
+        neg_phrases = ["illustration", "cartoon", "anime", "CGI", "human"]
         
         # Only generate alpha=1.0 for evaluation (skip intermediate values)
         alphas = [1.0]
@@ -791,29 +824,51 @@ def _generate_slider_sync(session_id: str, location: str, session: dict):
         
         print(f"\n  ✅ Generated {len(slider_images)} images for eval slider")
         
-        # ========== LLM BASELINE TAGS (for all locations) ==========
-        # Generate image using learned tags: "{adjective} {location}, {tag1}, {tag2}, ..."
+        # ========== SD BASELINE TEXT (text-only baseline) ==========
+        # Generate image using only "{adjective} {location}" as prompt
+        # Uses model's native prompt encoding (no custom embedding fusion)
         print(f"\n{'='*80}")
-        print(f"[LLM BASELINE TAGS] Generating baseline with learned tags")
+        print(f"[SD BASELINE TEXT] Generating text-only baseline")
         print(f"{'='*80}")
         
         try:
-            baseline_tags_path = generate_baseline_tags_image(
+            sd_text_output = os.path.join(slider_output_dir, "sd_baseline_text.png")
+            generate_sd_text_baseline(
+                adjective=adjective,
+                location=target_location,
+                output_path=sd_text_output,
+                seed=2026
+            )
+            print(f"  ✅ SD text baseline saved: sd_baseline_text.png")
+        except Exception as e:
+            print(f"  ⚠️ SD text baseline generation failed: {str(e)}")
+        
+        # ========== SD BASELINE TAGS (text + tags baseline) ==========
+        # Generate image using "{adjective} {location}, {tag1}, {tag2}, ..." as prompt
+        # Uses model's native prompt encoding (no custom embedding fusion)
+        print(f"\n{'='*80}")
+        print(f"[SD BASELINE TAGS] Generating baseline with learned tags")
+        print(f"{'='*80}")
+        
+        try:
+            sd_tags_output = os.path.join(slider_output_dir, "sd_baseline_tags.png")
+            generate_sd_tags_baseline(
                 session_folder=session_folder,
                 location=target_location,
-                output_folder=slider_output_dir
+                output_path=sd_tags_output,
+                seed=2026
             )
-            print(f"  ✅ Baseline tags image saved: {os.path.basename(baseline_tags_path)}")
+            print(f"  ✅ SD tags baseline saved: sd_baseline_tags.png")
         except Exception as e:
-            print(f"  ⚠️ Baseline tags generation failed: {str(e)}")
+            print(f"  ⚠️ SD tags baseline generation failed: {str(e)}")
         
-        # ========== LLM STYLE TRANSFER (for ALL locations) ==========
-        # Uses exploration selected image as reference for style transfer
+        # ========== SD STYLE TRANSFER (img2img baseline) ==========
+        # Uses exploration selected image as reference for img2img
+        # Uses model's native prompt encoding (no custom embedding fusion)
         original_location = final_selection.get("location", "")
-        is_new_location = location and location != original_location
         
         print(f"\n{'='*80}")
-        print(f"[LLM STYLE TRANSFER] Generating style transfer image")
+        print(f"[SD STYLE TRANSFER] Generating img2img baseline")
         print(f"{'='*80}")
         print(f"  Original location: {original_location}")
         print(f"  Target location: {target_location}")
@@ -844,37 +899,57 @@ def _generate_slider_sync(session_id: str, location: str, session: dict):
         if reference_image_path and os.path.exists(reference_image_path):
             print(f"  Reference image: {os.path.basename(reference_image_path)}")
             
-            # Build the style transfer prompt based on whether it's original or new location
-            if is_new_location:
-                style_transfer_prompt = (
-                    f"This user selected this image as their preferred example of a {adjective} {original_location}. "
-                    f"Generate a {adjective} {target_location} that matches this user's personal aesthetic"
-                )
-            else:
-                # For original location, generate another image in the same style
-                style_transfer_prompt = (
-                    f"This user selected this image as their preferred example of a {adjective} {target_location}. "
-                    f"Generate another {adjective} {target_location} that matches this user's personal aesthetic"
-                )
-            print(f"  Prompt: {style_transfer_prompt}")
-            
-            # Output path for style transfer image
-            style_transfer_output = os.path.join(slider_output_dir, "llm_style_transfer.png")
+            # Output path for SD img2img baseline
+            sd_img2img_output = os.path.join(slider_output_dir, "sd_style_transfer.png")
             
             try:
-                generated_path = generate_image_with_reference(
+                generate_sd_img2img_baseline(
                     input_image_path=reference_image_path,
-                    text_prompt=style_transfer_prompt,
-                    output_path=style_transfer_output
+                    adjective=adjective,
+                    original_location=original_location,
+                    target_location=target_location,
+                    output_path=sd_img2img_output,
+                    seed=2026
                 )
-                print(f"  ✅ Style transfer image saved: {os.path.basename(generated_path)}")
+                print(f"  ✅ SD img2img baseline saved: sd_style_transfer.png")
             except Exception as e:
-                print(f"  ⚠️ Style transfer failed: {str(e)}")
+                import traceback
+                error_details = traceback.format_exc()
+                print(f"  ❌ SD img2img baseline generation FAILED: {str(e)}")
+                print(f"  Error details:\n{error_details}")
+                # Log the error to the session
+                create_eval_session_log(
+                    session_folder,
+                    session.get("user_id", "anonymous"),
+                    "sd_img2img_baseline_error",
+                    {
+                        "error": str(e),
+                        "reference_image": reference_image_path,
+                        "target_location": target_location,
+                        "traceback": error_details
+                    }
+                )
         else:
-            print(f"  ⚠️ Reference image not found")
+            print(f"  ⚠️ Reference image not found, skipping img2img baseline")
         
-        # NOTE: Baseline image for all locations comes from baseline_generic folder
-        # No need to generate llm_baseline.png - get-comparison-images uses baseline_generic
+        # ========== SD PREFERENCES BASELINE (txt2img with structured preferences) ==========
+        # Uses positive/negative/neutral features from user tag preferences
+        # Prompt: "{adjective} {location}, positive features: [...], negative features: [...], neutral features: [...]"
+        print(f"\n{'='*80}")
+        print(f"[SD PREFERENCES BASELINE] Generating baseline with structured preferences")
+        print(f"{'='*80}")
+        
+        try:
+            sd_prefs_output = os.path.join(slider_output_dir, "sd_baseline_prefs.png")
+            generate_sd_preferences_baseline(
+                session_folder=session_folder,
+                location=target_location,
+                output_path=sd_prefs_output,
+                seed=2026
+            )
+            print(f"  ✅ SD preferences baseline saved: sd_baseline_prefs.png")
+        except Exception as e:
+            print(f"  ⚠️ SD preferences baseline generation failed: {str(e)}")
         
         return {
             "success": True,
@@ -1074,19 +1149,14 @@ class ComparisonImagesRequest(BaseModel):
 @app.post("/api/eval/get-comparison-images")
 def get_comparison_images(request: ComparisonImagesRequest):
     """
-    Get 4 comparison images for a location, randomized.
+    Get 5 comparison images for a location, randomized.
     
-    For initial round (bedroom):
-    - baseline_generic_{adjective}/{Location}/{Adjective}_{Location}.png (generic LLM baseline)
-    - slider/{location}/eval_alpha_1.00_*.png (SDXL personalized)
-    - slider/{location}/eval_alphaRef_1.00_*.png (SDXL with reference)
-    - slider/{location}/llm_baseline_tags.png (LLM with learned tags)
-    
-    For other locations:
-    - baseline_generic_{adjective}/{Location}/{Adjective}_{Location}.png (generic LLM baseline)
-    - slider/{location}/eval_alpha_1.00_*.png (SDXL personalized)
-    - slider/{location}/llm_style_transfer.png (LLM style transfer)
-    - slider/{location}/llm_baseline_tags.png (LLM with learned tags)
+    All images are now generated using Stable Diffusion:
+    - slider/{location}/sd_baseline_text.png (SD text-only baseline)
+    - slider/{location}/eval_alpha_1.00_*.png (SDXL personalized with custom embeddings - "ours")
+    - slider/{location}/sd_style_transfer.png (SD img2img style transfer)
+    - slider/{location}/sd_baseline_tags.png (SD text + tags baseline)
+    - slider/{location}/sd_baseline_prefs.png (SD with positive/negative/neutral features)
     
     Returns images in randomized order with a mapping to identify them later.
     """
@@ -1095,59 +1165,6 @@ def get_comparison_images(request: ComparisonImagesRequest):
     session_folder = SESSION_LOGS_DIR / request.session_log
     if not session_folder.exists():
         raise HTTPException(404, f"Session log not found: {request.session_log}")
-    
-    # Load adjective from final_selection.json
-    final_selection_path = session_folder / "final_selection.json"
-    if not final_selection_path.exists():
-        raise HTTPException(404, f"final_selection.json not found in session: {request.session_log}")
-    
-    with open(final_selection_path, 'r') as f:
-        final_selection = json.load(f)
-    
-    adjective = final_selection.get("adjective", "")
-    if not adjective:
-        raise HTTPException(400, f"No adjective found in final_selection.json for session: {request.session_log}")
-    
-    print(f"[GET-COMPARISON] Session adjective: {adjective}")
-    
-    # Find baseline folder (case-insensitive match for adjective)
-    baseline_generic_folder = None
-    baseline_adjective_name = None
-    available_baseline_folders = [f.name for f in LLM_SCRIPTS_DIR.iterdir() 
-                                  if f.is_dir() and f.name.startswith("baseline_generic_")]
-    
-    for folder_name in available_baseline_folders:
-        # Extract adjective from folder name (after "baseline_generic_")
-        folder_adjective = folder_name.replace("baseline_generic_", "")
-        if folder_adjective.lower() == adjective.lower():
-            baseline_generic_folder = LLM_SCRIPTS_DIR / folder_name
-            baseline_adjective_name = folder_adjective
-            break
-    
-    if not baseline_generic_folder or not baseline_generic_folder.exists():
-        raise HTTPException(404, f"Baseline folder not found for adjective: {adjective}. Available: {available_baseline_folders}")
-    
-    # Find baseline image for the location (handle case sensitivity)
-    baseline_folder = None
-    baseline_folder_name = None
-    available_locations = [f.name for f in baseline_generic_folder.iterdir() if f.is_dir()]
-    print(f"[GET-COMPARISON] Available locations in baseline_generic_{adjective}: {available_locations}")
-    
-    for folder in baseline_generic_folder.iterdir():
-        if folder.is_dir() and folder.name.lower().replace("_", " ") == request.location.lower().replace("_", " "):
-            baseline_folder = folder
-            baseline_folder_name = folder.name
-            break
-    
-    if not baseline_folder or not baseline_folder.exists():
-        raise HTTPException(404, f"Baseline location not found: {request.location}. Available: {available_locations}")
-    
-    baseline_images = list(baseline_folder.glob("*.png"))
-    if not baseline_images:
-        raise HTTPException(404, f"No baseline image found for: {request.location}")
-    
-    baseline_image_name = baseline_images[0].name
-    baseline_url = f"/llm_scripts/baseline_generic_{baseline_adjective_name}/{baseline_folder_name}/{baseline_image_name}"
     
     # Find slider folder for this location (handle case sensitivity)
     slider_dir = session_folder / "slider"
@@ -1168,7 +1185,13 @@ def get_comparison_images(request: ComparisonImagesRequest):
     
     print(f"[GET-COMPARISON] Found slider folder: {location_folder_name}")
     
-    # Find alpha_1.00 image
+    # Find SD text-only baseline (sd_baseline_text.png)
+    baseline_text_path = location_folder / "sd_baseline_text.png"
+    if not baseline_text_path.exists():
+        raise HTTPException(404, f"No sd_baseline_text.png found for: {request.location}")
+    baseline_url = f"/session_logs/{request.session_log}/slider/{location_folder_name}/sd_baseline_text.png"
+    
+    # Find alpha_1.00 image (ours - personalized with custom embeddings)
     alpha_images = list(location_folder.glob("eval_alpha_1.00_*.png"))
     if not alpha_images:
         raise HTTPException(404, f"No eval_alpha_1.00 image found for: {request.location}")
@@ -1176,28 +1199,37 @@ def get_comparison_images(request: ComparisonImagesRequest):
     alpha_image_name = alpha_images[0].name
     alpha_url = f"/session_logs/{request.session_log}/slider/{location_folder_name}/{alpha_image_name}"
     
-    # Find third image: llm_style_transfer.png (same for all locations)
-    style_transfer_path = location_folder / "llm_style_transfer.png"
+    # Find SD img2img style transfer (sd_style_transfer.png)
+    style_transfer_path = location_folder / "sd_style_transfer.png"
     if not style_transfer_path.exists():
-        raise HTTPException(404, f"No llm_style_transfer.png found for: {request.location}")
-    third_image_name = "llm_style_transfer.png"
-    third_image_type = "style_transfer"
+        raise HTTPException(404, f"No sd_style_transfer.png found for: {request.location}")
+    style_transfer_url = f"/session_logs/{request.session_log}/slider/{location_folder_name}/sd_style_transfer.png"
     
-    third_url = f"/session_logs/{request.session_log}/slider/{location_folder_name}/{third_image_name}"
-    
-    # Find fourth image: llm_baseline_tags.png (LLM with learned tags)
-    baseline_tags_path = location_folder / "llm_baseline_tags.png"
+    # Find SD tags baseline (sd_baseline_tags.png)
+    baseline_tags_path = location_folder / "sd_baseline_tags.png"
     if not baseline_tags_path.exists():
-        raise HTTPException(404, f"No llm_baseline_tags.png found for: {request.location}")
+        raise HTTPException(404, f"No sd_baseline_tags.png found for: {request.location}")
+    tags_url = f"/session_logs/{request.session_log}/slider/{location_folder_name}/sd_baseline_tags.png"
     
-    tags_url = f"/session_logs/{request.session_log}/slider/{location_folder_name}/llm_baseline_tags.png"
+    # Find SD preferences baseline (sd_baseline_prefs.png)
+    baseline_prefs_path = location_folder / "sd_baseline_prefs.png"
+    if not baseline_prefs_path.exists():
+        raise HTTPException(404, f"No sd_baseline_prefs.png found for: {request.location}")
+    prefs_url = f"/session_logs/{request.session_log}/slider/{location_folder_name}/sd_baseline_prefs.png"
     
-    # Build images list with identifiers (4 images)
+    # Build images list with identifiers (5 images)
+    # All use Stable Diffusion:
+    # - baseline: SD text-only baseline (model's native prompt encoding)
+    # - personalized: SDXL with custom-fused embeddings (ours)
+    # - style_transfer: SD img2img baseline (model's native prompt encoding)
+    # - baseline_tags: SD text+tags baseline (model's native prompt encoding)
+    # - baseline_prefs: SD with positive/negative/neutral features (model's native prompt encoding)
     images = [
-        {"id": "baseline", "url": baseline_url, "filename": baseline_image_name, "type": "baseline"},
+        {"id": "baseline", "url": baseline_url, "filename": "sd_baseline_text.png", "type": "baseline"},
         {"id": "alpha", "url": alpha_url, "filename": alpha_image_name, "type": "personalized"},
-        {"id": "third", "url": third_url, "filename": third_image_name, "type": third_image_type},
-        {"id": "tags", "url": tags_url, "filename": "llm_baseline_tags.png", "type": "baseline_tags"}
+        {"id": "third", "url": style_transfer_url, "filename": "sd_style_transfer.png", "type": "style_transfer"},
+        {"id": "tags", "url": tags_url, "filename": "sd_baseline_tags.png", "type": "baseline_tags"},
+        {"id": "prefs", "url": prefs_url, "filename": "sd_baseline_prefs.png", "type": "baseline_prefs"}
     ]
     
     # Randomize order
@@ -1206,7 +1238,7 @@ def get_comparison_images(request: ComparisonImagesRequest):
     # Create position mapping (which position each image ended up in)
     position_mapping = {img["id"]: idx for idx, img in enumerate(images)}
     
-    print(f"[GET-COMPARISON] Success! Returning 4 images for {request.location}")
+    print(f"[GET-COMPARISON] Success! Returning 5 images for {request.location}")
     
     return {
         "images": images,
@@ -1256,8 +1288,8 @@ def save_ranking(request: SaveRankingRequest):
     num_ranked = len(rank_order["rankings"])
     print(f"[EVAL] Total locations ranked: {num_ranked}/8")
     
-    if num_ranked >= 8:
-        print(f"[EVAL] ✅ All 8 locations ranked! Generating histograms automatically...")
+    if num_ranked >= 6:
+        print(f"[EVAL] ✅ All 6 locations ranked! Generating histograms automatically...")
         try:
             histogram_result = generate_histograms(str(rank_order_path), show=False)
             print(f"[EVAL] ✅ Histograms generated successfully!")

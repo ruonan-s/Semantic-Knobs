@@ -70,7 +70,7 @@ function App() {
   const [currentRankingLocation, setCurrentRankingLocation] = useState(null);
   const [comparisonImages, setComparisonImages] = useState([]);
   const [rankings, setRankings] = useState({});  // {location: {1: filename, 2: filename, 3: filename}}
-  const [currentRanking, setCurrentRanking] = useState({1: null, 2: null, 3: null, 4: null});
+  const [currentRanking, setCurrentRanking] = useState({1: null, 2: null, 3: null, 4: null, 5: null});
   const [sliderScores, setSliderScores] = useState({});  // {imageId: score (1-7)}
   const [sessionLogs, setSessionLogs] = useState([]);
   const [selectedSessionLog, setSelectedSessionLog] = useState(null);
@@ -622,7 +622,7 @@ function App() {
     
     // Update title immediately for responsive UI
     setCurrentRankingLocation(locationName);
-    setCurrentRanking({1: null, 2: null, 3: null, 4: null});
+    setCurrentRanking({1: null, 2: null, 3: null, 4: null, 5: null});
     setSliderScores({});  // Reset slider scores
     setRankingSaved(false);
     setImagesLoaded({});
@@ -663,7 +663,7 @@ function App() {
     
     // Update title immediately for responsive UI
     setCurrentRankingLocation(locationName);
-    setCurrentRanking({1: null, 2: null, 3: null, 4: null});
+    setCurrentRanking({1: null, 2: null, 3: null, 4: null, 5: null});
     setSliderScores({});  // Reset slider scores
     setRankingSaved(false);
     setImagesLoaded({});
@@ -690,9 +690,9 @@ function App() {
       
       // Check if this location has saved rankings and restore them
       const savedRanking = rankings[locationName];
-      if (savedRanking && Object.keys(savedRanking).length === 4) {
+      if (savedRanking && Object.keys(savedRanking).length === 5) {
         // Map saved filenames back to image IDs
-        const restoredRanking = {1: null, 2: null, 3: null, 4: null};
+        const restoredRanking = {1: null, 2: null, 3: null, 4: null, 5: null};
         const restoredScores = {};
         
         for (const [rank, rankData] of Object.entries(savedRanking)) {
@@ -761,15 +761,15 @@ function App() {
       }
     }
     
-    if (Object.keys(rankingData).length !== 4) {
-      addStatusMessage('Please rank all 4 images before saving');
+    if (Object.keys(rankingData).length !== 5) {
+      addStatusMessage('Please rank all 5 images before saving');
       return;
     }
     
     // Check that all images have slider scores
     const missingScores = Object.entries(rankingData).filter(([rank, data]) => !data.score);
     if (missingScores.length > 0) {
-      addStatusMessage('Please rate all 4 images with the preference slider before saving');
+      addStatusMessage('Please rate all 5 images with the preference slider before saving');
       return;
     }
     
@@ -1128,7 +1128,7 @@ function App() {
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {availableLocations.map((loc, idx) => {
-                const isRanked = rankings[loc.name] && Object.keys(rankings[loc.name]).length === 4;
+                const isRanked = rankings[loc.name] && Object.keys(rankings[loc.name]).length === 5;
                 const isCurrent = currentRankingLocation === loc.name;
                 // Check generation status
                 const genStatus = locationGenStatus[loc.name] || 'pending';
@@ -1278,7 +1278,7 @@ function App() {
                     Context: {adjective} {currentRankingLocation}
                   </h2>
                   <p style={{ color: '#666', margin: '5px 0 0 0' }}>
-                    Rank the images based on how much you like each space, from most liked (1) to least liked (4).
+                    Rank the images based on how much you like each space, from most liked (1) to least liked (5).
                     <br />
                     Rank based on your personal liking, not on an objective definition or prior selections.
                   </p>
@@ -1373,10 +1373,11 @@ function App() {
                               const rankColors = {
                                 1: '#22c55e', // green
                                 2: '#84cc16', // lime/yellow-green
-                                3: '#f97316', // orange
-                                4: '#ef4444'  // red
+                                3: '#facc15', // yellow
+                                4: '#f97316', // orange
+                                5: '#ef4444'  // red
                               };
-                              const ordinals = { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th' };
+                              const ordinals = { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th', 5: '5th' };
                               return (
                                 <div style={{
                                   position: 'absolute',
@@ -1407,14 +1408,15 @@ function App() {
                             justifyContent: 'center',
                             backgroundColor: '#f8f9fa'
                           }}>
-                            {[1, 2, 3, 4].map(rank => {
+                            {[1, 2, 3, 4, 5].map(rank => {
                               const rankColors = {
                                 1: '#22c55e', // green
                                 2: '#84cc16', // lime/yellow-green
-                                3: '#f97316', // orange
-                                4: '#ef4444'  // red
+                                3: '#facc15', // yellow
+                                4: '#f97316', // orange
+                                5: '#ef4444'  // red
                               };
-                              const ordinals = { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th' };
+                              const ordinals = { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th', 5: '5th' };
                               const isSelected = currentRanking[rank] === img.id;
                               return (
                                 <button
@@ -1579,7 +1581,7 @@ function App() {
                   <button
                     onClick={saveCurrentRanking}
                     disabled={(() => {
-                      const allRanked = Object.values(currentRanking).filter(Boolean).length === 4;
+                      const allRanked = Object.values(currentRanking).filter(Boolean).length === 5;
                       const allScored = Object.values(currentRanking).filter(Boolean).every(imageId => sliderScores[imageId]);
                       return isSavingRanking || rankingSaved || !allRanked || !allScored;
                     })()}
@@ -1589,7 +1591,7 @@ function App() {
                       fontWeight: '500',
                       backgroundColor: (() => {
                         if (rankingSaved) return '#17a2b8';  // Blue when saved
-                        const allRanked = Object.values(currentRanking).filter(Boolean).length === 4;
+                        const allRanked = Object.values(currentRanking).filter(Boolean).length === 5;
                         const allScored = Object.values(currentRanking).filter(Boolean).every(imageId => sliderScores[imageId]);
                         return allRanked && allScored ? '#28a745' : '#ccc';
                       })(),
@@ -1597,7 +1599,7 @@ function App() {
                       border: 'none',
                       borderRadius: '8px',
                       cursor: (() => {
-                        const allRanked = Object.values(currentRanking).filter(Boolean).length === 4;
+                        const allRanked = Object.values(currentRanking).filter(Boolean).length === 5;
                         const allScored = Object.values(currentRanking).filter(Boolean).every(imageId => sliderScores[imageId]);
                         return rankingSaved || !allRanked || !allScored ? 'not-allowed' : 'pointer';
                       })(),

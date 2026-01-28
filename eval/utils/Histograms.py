@@ -9,13 +9,17 @@ def categorize_method(filename: str) -> str:
     """Categorize image filenames into method types."""
     if filename.startswith("eval_alpha_"):
         return "Ours"
-    elif filename == "llm_style_transfer.png":
-        return "LLM text+image"
-    elif filename == "llm_baseline_tags.png":
-        return "LLM text+tags"
+    elif filename in ("sd_style_transfer.png", "llm_style_transfer.png"):
+        return "text+image"
+    elif filename in ("sd_baseline_tags.png", "llm_baseline_tags.png"):
+        return "text+tags"
+    elif filename == "sd_baseline_prefs.png":
+        return "text+prefs"
+    elif filename == "sd_baseline_text.png":
+        return "text"
     else:
-        # Everything else (Calm_*, Inviting_*, Refreshing_*, Cozy_*, etc.) is "LLM text"
-        return "LLM text"
+        # Everything else (Calm_*, Inviting_*, Refreshing_*, Cozy_*, etc.) is "text"
+        return "text"
 
 
 def load_rank_order(json_path: str) -> dict:
@@ -57,11 +61,11 @@ def compute_rank_histogram(data: dict) -> dict:
 def plot_rank_histogram(histogram: dict, output_path: str = None, title: str = "Rank Distribution by Method", show: bool = True):
     """
     Plot a grouped bar chart showing rank distribution for each method.
-    X-axis: Ranks (1, 2, 3, 4)
+    X-axis: Ranks (1, 2, 3, 4, 5)
     Colors: Different methods
     """
     methods = sorted(histogram.keys())
-    ranks = [1, 2, 3, 4]
+    ranks = [1, 2, 3, 4, 5]
     
     # Prepare data matrix: rows = methods, cols = ranks
     data_matrix = np.zeros((len(methods), len(ranks)))
@@ -77,13 +81,14 @@ def plot_rank_histogram(histogram: dict, output_path: str = None, title: str = "
     width = 0.8 / n_methods  # divide available space among methods
     
     # Color scheme for methods - similar colors for related methods
-    # Baselines (LLM): shades of gray/blue
+    # Baselines: shades of gray/blue
     # Ours: red
     method_color_map = {
-        'LLM text': '#4B5563',             # Dark gray
-        'LLM text+tags': '#6B7280',        # Gray
-        'LLM text+image': '#9CA3AF',       # Light gray
-        'Ours': '#DC2626',                 # Red
+        'text': '#90FCF9',             # Dark gray
+        'text+tags': '#9448BC',        # Gray
+        'text+prefs': '#A1D2CE',       # Light gray
+        'text+image': '#63B4D1',       # Blue
+        'Ours': '#DC2626',             # Red
     }
     
     # Create grouped bars - one bar per method at each rank position
@@ -164,20 +169,25 @@ def categorize_condition(filename: str) -> str:
     Categorize image filenames into condition types for score analysis.
     
     Returns:
-    - "LLM text": Original/reference images (any file not matching the special cases below)
-    - "LLM text+image": llm_style_transfer.png
-    - "LLM text+tags": llm_baseline_tags.png
-    - "Ours": eval_alpha_* images
+    - "text": Text-only baseline (sd_baseline_text.png or generic baselines)
+    - "text+image": Style transfer (sd_style_transfer.png or llm_style_transfer.png)
+    - "text+tags": Tags baseline (sd_baseline_tags.png or llm_baseline_tags.png)
+    - "text+prefs": Preferences baseline (sd_baseline_prefs.png with positive/negative/neutral features)
+    - "Ours": eval_alpha_* images (custom embedding fusion)
     """
-    if filename == "llm_style_transfer.png":
-        return "LLM text+image"
-    elif filename == "llm_baseline_tags.png":
-        return "LLM text+tags"
+    if filename in ("sd_style_transfer.png", "llm_style_transfer.png"):
+        return "text+image"
+    elif filename in ("sd_baseline_tags.png", "llm_baseline_tags.png"):
+        return "text+tags"
+    elif filename == "sd_baseline_prefs.png":
+        return "text+prefs"
     elif filename.startswith("eval_alpha_"):
         return "Ours"
+    elif filename == "sd_baseline_text.png":
+        return "text"
     else:
-        # Everything else (Calm_*, Inviting_*, Refreshing_*, Cozy_*, etc.) is "LLM text"
-        return "LLM text"
+        # Everything else (Calm_*, Inviting_*, Refreshing_*, Cozy_*, etc.) is "text"
+        return "text"
 
 
 def plot_score_by_condition(data: dict, output_path: str = None, title: str = "Preference Score Distribution by Condition", show: bool = True):
@@ -186,10 +196,10 @@ def plot_score_by_condition(data: dict, output_path: str = None, title: str = "P
     Shows box plots of scores (1-7) for each condition.
     
     Conditions:
-    1. Original images (Refreshing_*, Cozy_*, etc.) → "LLM text"
-    2. "llm_style_transfer.png" → "LLM text+image"
-    3. "llm_baseline_tags.png" → "LLM text+tags"
-    4. "eval_alpha_1.00_*" → "Ours"
+    1. Text-only baseline (sd_baseline_text.png or generic) → "text"
+    2. Img2img style transfer (sd_style_transfer.png) → "text+image"
+    3. Text + tags baseline (sd_baseline_tags.png) → "text+tags"
+    4. Custom embedding fusion (eval_alpha_1.00_*) → "Ours"
     
     Only works with new format that includes "score" field.
     """
@@ -211,22 +221,23 @@ def plot_score_by_condition(data: dict, output_path: str = None, title: str = "P
         return None, None
     
     # Define order of conditions
-    condition_order = ["LLM text", "LLM text+image", "LLM text+tags", "Ours"]
+    condition_order = ["text", "text+image", "text+tags", "text+prefs", "Ours"]
     conditions = [c for c in condition_order if c in condition_scores]
     score_data = [condition_scores[c] for c in conditions]
     
     # Create figure
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(12, 6))
     
     # Create box plot with different colors for each condition
     positions = list(range(1, len(conditions) + 1))
     
     # Color scheme for conditions
     condition_colors = {
-        'LLM text': '#6B7280',       # Gray
-        'LLM text+image': '#3B82F6', # Blue
-        'LLM text+tags': '#8B5CF6',  # Purple
-        'Ours': '#DC2626',           # Red
+        'text': '#6B7280',       # Gray
+        'text+image': '#3B82F6', # Blue
+        'text+tags': '#8B5CF6',  # Purple
+        'text+prefs': '#F59E0B', # Amber/Orange
+        'Ours': '#DC2626',       # Red
     }
     
     bp = ax.boxplot(score_data, positions=positions, widths=0.6, 
@@ -319,8 +330,8 @@ def plot_average_rank(histogram: dict, output_path: str = None, title: str = "Av
     ax.set_xlabel('Average Rank (lower is better)', fontsize=12)
     ax.set_ylabel('Method', fontsize=12)
     ax.set_title(title, fontsize=14, fontweight='bold')
-    ax.set_xlim(0, 5)
-    ax.axvline(x=2.5, color='gray', linestyle='--', alpha=0.5, label='Midpoint')
+    ax.set_xlim(0, 6)
+    ax.axvline(x=3.0, color='gray', linestyle='--', alpha=0.5, label='Midpoint')
     
     plt.tight_layout()
     
@@ -445,7 +456,7 @@ if __name__ == "__main__":
     
     if len(sys.argv) < 2:
         # Default to the sample file
-        json_path = "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P04_Inviting_Livingroom_Sample_2026-01-08_17-33-49/rank_order.json"
+        json_path = "/home/nancy/Semantic-Knobs/eval/session_logs/eval_test_5_Calm_Home_Office_Sample_2026-01-27_19-20-14/rank_order.json"
     else:
         json_path = sys.argv[1]
     

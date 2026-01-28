@@ -34,6 +34,17 @@ def categorize_method(filename: str) -> str:
     else:
         return "LLM text"
 
+def extract_adjective(folder_name: str) -> str:
+    """Extract adjective from session folder name.
+    
+    Example: 'eval_P01_Calm_Home_Office_Sample_2026-01-08_09-51-23' -> 'Calm'
+    """
+    parts = folder_name.split('_')
+    if len(parts) >= 3:
+        # Adjective is the third part (index 2)
+        return parts[2]
+    return "Unknown"
+
 def load_all_sessions(session_logs_dir: str):
     """Load all rank_order.json files from session directories."""
     base_path = Path(session_logs_dir)
@@ -50,6 +61,8 @@ def load_all_sessions(session_logs_dir: str):
                     participant = parts[1] if len(parts) > 1 else "Unknown"
                     data['participant'] = participant
                     data['session_folder'] = session_dir.name
+                    # Extract adjective from folder name
+                    data['adjective'] = extract_adjective(session_dir.name)
                     all_data.append(data)
     
     return all_data
@@ -67,8 +80,14 @@ def aggregate_data(all_sessions):
     ranks_by_participant = defaultdict(lambda: defaultdict(list))  # {participant: {method: [ranks]}}
     first_place_by_location = defaultdict(lambda: defaultdict(int))
     
+    # Adjective-based data structures
+    ranks_by_adjective = defaultdict(lambda: defaultdict(list))  # {adjective: {method: [ranks]}}
+    scores_by_adjective = defaultdict(lambda: defaultdict(list))  # {adjective: {method: [scores]}}
+    first_place_by_adjective = defaultdict(lambda: defaultdict(int))  # {adjective: {method: count}}
+    
     for session in all_sessions:
         participant = session.get('participant', 'Unknown')
+        adjective = session.get('adjective', 'Unknown')
         rankings = session.get('rankings', {})
         
         for location, ranks in rankings.items():
@@ -93,15 +112,20 @@ def aggregate_data(all_sessions):
                 # Ranks by participant
                 ranks_by_participant[participant][method].append(rank)
                 
+                # Ranks by adjective
+                ranks_by_adjective[adjective][method].append(rank)
+                
                 # Scores
                 if score > 0:
                     scores_by_method[method].append(score)
                     scores_by_location[location][method].append(score)
                     scores_by_participant[participant][method].append(score)
+                    scores_by_adjective[adjective][method].append(score)
                 
                 # First place counts
                 if rank == 1:
                     first_place_by_location[location][method] += 1
+                    first_place_by_adjective[adjective][method] += 1
     
     return {
         'rank_counts': rank_counts,
@@ -110,6 +134,9 @@ def aggregate_data(all_sessions):
         'scores_by_participant': scores_by_participant,
         'ranks_by_participant': ranks_by_participant,
         'first_place_by_location': first_place_by_location,
+        'ranks_by_adjective': ranks_by_adjective,
+        'scores_by_adjective': scores_by_adjective,
+        'first_place_by_adjective': first_place_by_adjective,
     }
 
 # Color scheme
@@ -490,6 +517,192 @@ def plot_avg_rank_by_participant(ranks_by_participant, output_path=None):
     plt.show()
     return fig
 
+def plot_avg_rank_by_adjective(ranks_by_adjective, output_path=None):
+    """Plot 9: Average rank by adjective for each method."""
+    fig, ax = plt.subplots(figsize=(12, 7))
+    
+    adjectives = sorted(ranks_by_adjective.keys())
+    methods = METHOD_ORDER
+    
+    x = np.arange(len(adjectives))
+    width = 0.18
+    
+    for i, method in enumerate(methods):
+        avg_ranks = []
+        for adj in adjectives:
+            ranks = ranks_by_adjective[adj].get(method, [])
+            avg_ranks.append(np.mean(ranks) if ranks else 0)
+        
+        offset = (i - 1.5) * width
+        bars = ax.bar(x + offset, avg_ranks, width, label=method, 
+                     color=METHOD_COLORS[method], edgecolor='white', linewidth=0.8)
+        
+        # Add value labels
+        for bar in bars:
+            height = bar.get_height()
+            if height > 0:
+                ax.annotate(f'{height:.2f}',
+                           xy=(bar.get_x() + bar.get_width()/2, height),
+                           xytext=(0, 3), textcoords="offset points",
+                           ha='center', va='bottom', fontsize=9, fontweight='bold')
+    
+    ax.set_xlabel('Adjective', fontweight='bold', fontsize=12)
+    ax.set_ylabel('Average Rank (lower = better)', fontweight='bold', fontsize=12)
+    ax.set_title('Average Rank by Adjective', fontweight='bold', fontsize=14)
+    ax.set_xticks(x)
+    ax.set_xticklabels(adjectives, fontsize=11)
+    ax.set_ylim(0, 4.5)
+    ax.axhline(y=2.5, color='gray', linestyle='--', alpha=0.5, label='Midpoint')
+    ax.legend(title='Method', loc='upper right', fontsize=9)
+    ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    
+    # Invert y-axis interpretation note
+    ax.text(0.02, 0.98, '↓ Lower is better', transform=ax.transAxes, 
+           fontsize=10, verticalalignment='top', style='italic', color='gray')
+    
+    plt.tight_layout()
+    if output_path:
+        plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
+        print(f"Saved: {output_path}")
+    plt.show()
+    return fig
+
+def plot_first_place_by_adjective(first_place_by_adjective, output_path=None):
+    """Plot 10: First place wins by adjective - stacked bar chart."""
+    fig, ax = plt.subplots(figsize=(12, 6))
+    
+    adjectives = sorted(first_place_by_adjective.keys())
+    x = np.arange(len(adjectives))
+    width = 0.6
+    
+    bottom = np.zeros(len(adjectives))
+    
+    for method in METHOD_ORDER:
+        values = [first_place_by_adjective[adj].get(method, 0) for adj in adjectives]
+        bars = ax.bar(x, values, width, label=method, color=METHOD_COLORS[method],
+               bottom=bottom, edgecolor='white', linewidth=0.5)
+        
+        # Add value labels inside bars if there's space
+        for bar, val in zip(bars, values):
+            if val > 0:
+                ax.text(bar.get_x() + bar.get_width()/2, 
+                       bar.get_y() + bar.get_height()/2,
+                       f'{int(val)}', ha='center', va='center',
+                       fontsize=9, fontweight='bold', color='white')
+        bottom += values
+    
+    ax.set_xlabel('Adjective', fontweight='bold')
+    ax.set_ylabel('First Place Wins', fontweight='bold')
+    ax.set_title('First Place Wins by Adjective', fontweight='bold', fontsize=14)
+    ax.set_xticks(x)
+    ax.set_xticklabels(adjectives, fontsize=11)
+    ax.legend(title='Method', loc='upper right')
+    ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    
+    plt.tight_layout()
+    if output_path:
+        plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
+        print(f"Saved: {output_path}")
+    plt.show()
+    return fig
+
+def plot_adjective_heatmap(scores_by_adjective, output_path=None):
+    """Plot 11: Adjective preferences heatmap."""
+    fig, ax = plt.subplots(figsize=(10, 6))
+    
+    adjectives = sorted(scores_by_adjective.keys())
+    methods = METHOD_ORDER
+    
+    # Build matrix of average scores
+    matrix = np.zeros((len(adjectives), len(methods)))
+    for i, adj in enumerate(adjectives):
+        for j, m in enumerate(methods):
+            scores = scores_by_adjective[adj].get(m, [])
+            matrix[i, j] = np.mean(scores) if scores else np.nan
+    
+    im = ax.imshow(matrix, cmap='RdYlGn', aspect='auto', vmin=1, vmax=7)
+    
+    # Add colorbar
+    cbar = ax.figure.colorbar(im, ax=ax, shrink=0.8)
+    cbar.set_label('Average Score', fontweight='bold')
+    
+    # Add value annotations
+    for i in range(len(adjectives)):
+        for j in range(len(methods)):
+            val = matrix[i, j]
+            if not np.isnan(val):
+                text_color = 'white' if val < 3.5 or val > 5.5 else 'black'
+                ax.text(j, i, f'{val:.2f}', ha='center', va='center', 
+                       color=text_color, fontsize=11, fontweight='bold')
+    
+    ax.set_xticks(range(len(methods)))
+    ax.set_xticklabels(methods, rotation=30, ha='right')
+    ax.set_yticks(range(len(adjectives)))
+    ax.set_yticklabels(adjectives)
+    ax.set_xlabel('Method', fontweight='bold')
+    ax.set_ylabel('Adjective', fontweight='bold')
+    ax.set_title('Average Score by Adjective and Method', fontweight='bold', fontsize=14)
+    
+    plt.tight_layout()
+    if output_path:
+        plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
+        print(f"Saved: {output_path}")
+    plt.show()
+    return fig
+
+def plot_adjective_rank_variance(ranks_by_adjective, output_path=None):
+    """Plot 12: Rank variance by adjective for each method."""
+    fig, ax = plt.subplots(figsize=(12, 7))
+    
+    adjectives = sorted(ranks_by_adjective.keys())
+    methods = METHOD_ORDER
+    
+    x = np.arange(len(adjectives))
+    width = 0.18
+    
+    for i, method in enumerate(methods):
+        variances = []
+        for adj in adjectives:
+            ranks = ranks_by_adjective[adj].get(method, [])
+            variances.append(np.var(ranks) if ranks else 0)
+        
+        offset = (i - 1.5) * width
+        bars = ax.bar(x + offset, variances, width, label=method, 
+                     color=METHOD_COLORS[method], edgecolor='white', linewidth=0.8)
+        
+        # Add value labels
+        for bar in bars:
+            height = bar.get_height()
+            if height > 0:
+                ax.annotate(f'{height:.2f}',
+                           xy=(bar.get_x() + bar.get_width()/2, height),
+                           xytext=(0, 3), textcoords="offset points",
+                           ha='center', va='bottom', fontsize=8, fontweight='bold')
+    
+    ax.set_xlabel('Adjective', fontweight='bold', fontsize=12)
+    ax.set_ylabel('Rank Variance (lower = more consistent)', fontweight='bold', fontsize=12)
+    ax.set_title('Rank Variance by Adjective', fontweight='bold', fontsize=14)
+    ax.set_xticks(x)
+    ax.set_xticklabels(adjectives, fontsize=11)
+    ax.legend(title='Method', loc='upper right', fontsize=9)
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    
+    # Add note
+    ax.text(0.02, 0.98, '↓ Lower is better (more consistent)', transform=ax.transAxes, 
+           fontsize=10, verticalalignment='top', style='italic', color='gray')
+    
+    plt.tight_layout()
+    if output_path:
+        plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
+        print(f"Saved: {output_path}")
+    plt.show()
+    return fig
+
 def main():
     # Configuration
     SESSION_LOGS_DIR = "/home/nancy/Semantic-Knobs/eval/session_logs"
@@ -499,6 +712,12 @@ def main():
     print("Loading all sessions...")
     all_sessions = load_all_sessions(SESSION_LOGS_DIR)
     print(f"Loaded {len(all_sessions)} sessions")
+    
+    # Print adjective distribution
+    adjective_counts = defaultdict(int)
+    for session in all_sessions:
+        adjective_counts[session.get('adjective', 'Unknown')] += 1
+    print(f"Adjectives found: {dict(adjective_counts)}")
     
     print("\nAggregating data...")
     agg = aggregate_data(all_sessions)
@@ -530,7 +749,20 @@ def main():
     plot_avg_rank_by_participant(agg['ranks_by_participant'],
                                 OUTPUT_DIR / "8_avg_rank_by_participant.png")
     
-    print(f"\n✅ All visualizations saved to: {OUTPUT_DIR}")
+    # New adjective-based visualizations
+    plot_avg_rank_by_adjective(agg['ranks_by_adjective'],
+                              OUTPUT_DIR / "9_avg_rank_by_adjective.png")
+    
+    plot_first_place_by_adjective(agg['first_place_by_adjective'],
+                                  OUTPUT_DIR / "10_first_place_by_adjective.png")
+    
+    plot_adjective_heatmap(agg['scores_by_adjective'],
+                          OUTPUT_DIR / "11_adjective_heatmap.png")
+    
+    plot_adjective_rank_variance(agg['ranks_by_adjective'],
+                                OUTPUT_DIR / "12_adjective_rank_variance.png")
+    
+    print(f"\nAll visualizations saved to: {OUTPUT_DIR}")
     
     # Print summary statistics
     print("\n" + "="*60)
@@ -579,6 +811,68 @@ def main():
     print("-" * 68)
     for method, stats in sorted_by_var:
         print(f"{method:<20} {stats['avg_rank']:<12.2f} {stats['rank_std']:<12.2f} {stats['rank_var']:<12.2f} {stats['score_std']:<12.2f}")
+    
+    # Print adjective-based statistics
+    print("\n" + "="*60)
+    print("STATISTICS BY ADJECTIVE (P01-P06)")
+    print("="*60)
+    
+    for adjective in sorted(agg['ranks_by_adjective'].keys()):
+        print(f"\n{'='*40}")
+        print(f"ADJECTIVE: {adjective}")
+        print(f"{'='*40}")
+        
+        # Calculate stats for each method under this adjective
+        adj_stats = []
+        for method in METHOD_ORDER:
+            ranks = agg['ranks_by_adjective'][adjective].get(method, [])
+            scores = agg['scores_by_adjective'][adjective].get(method, [])
+            first_place = agg['first_place_by_adjective'][adjective].get(method, 0)
+            
+            if ranks:
+                avg_rank = np.mean(ranks)
+                rank_std = np.std(ranks)
+                rank_var = np.var(ranks)
+                total = len(ranks)
+                first_pct = first_place / total * 100 if total > 0 else 0
+                avg_score = np.mean(scores) if scores else 0
+                score_std = np.std(scores) if scores else 0
+                
+                adj_stats.append({
+                    'method': method,
+                    'avg_rank': avg_rank,
+                    'rank_std': rank_std,
+                    'rank_var': rank_var,
+                    'avg_score': avg_score,
+                    'score_std': score_std,
+                    'first_place': first_place,
+                    'first_pct': first_pct,
+                    'total': total
+                })
+        
+        # Print table for this adjective
+        print(f"\n{'Method':<18} {'Avg Rank':<10} {'Rank Var':<10} {'Avg Score':<10} {'1st Place':<12}")
+        print("-" * 60)
+        for s in sorted(adj_stats, key=lambda x: x['avg_rank']):
+            print(f"{s['method']:<18} {s['avg_rank']:<10.2f} {s['rank_var']:<10.2f} {s['avg_score']:<10.2f} {s['first_place']} ({s['first_pct']:.1f}%)")
+    
+    # Summary comparison across adjectives
+    print("\n" + "="*60)
+    print("CROSS-ADJECTIVE COMPARISON")
+    print("="*60)
+    print("\nBest performing method (lowest avg rank) by adjective:")
+    for adjective in sorted(agg['ranks_by_adjective'].keys()):
+        best_method = None
+        best_avg = float('inf')
+        for method in METHOD_ORDER:
+            ranks = agg['ranks_by_adjective'][adjective].get(method, [])
+            if ranks:
+                avg = np.mean(ranks)
+                if avg < best_avg:
+                    best_avg = avg
+                    best_method = method
+        if best_method:
+            print(f"  {adjective:<15}: {best_method:<18} (avg rank: {best_avg:.2f})")
 
 if __name__ == "__main__":
     main()
