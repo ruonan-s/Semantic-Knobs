@@ -1,0 +1,110 @@
+{
+  "stage": "impression",
+  "session_id": "eval_Calm_Home_Office_Sample_2026-01-28_04-06-33",
+  "timestamp": "2026-01-28T04:07:19.426676",
+  "num_concepts": 4,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 204,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "large windows",
+      "weight": 0.28665614128112793,
+      "score": 0.7392134666442871,
+      "utility_std": 1.0080673694610596,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "stone accents",
+      "weight": 0.272636741399765,
+      "score": 0.689070463180542,
+      "utility_std": 1.0080673694610596,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "stone accents"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "lush greenery",
+      "weight": 0.23386748135089874,
+      "score": 0.5356847047805786,
+      "utility_std": 1.0080673694610596,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "lush greenery"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "Minimalist decor",
+      "weight": 0.2068396508693695,
+      "score": 0.4128739833831787,
+      "utility_std": 1.0080673694610596,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Minimalist decor"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_1_0_4",
+      "text": "large windows",
+      "utility": 0.7392134666442871,
+      "uncertainty": 1.0080673694610596,
+      "weight": 0.28665614128112793,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_5",
+      "text": "stone accents",
+      "utility": 0.689070463180542,
+      "uncertainty": 1.0080673694610596,
+      "weight": 0.272636741399765,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_3",
+      "text": "lush greenery",
+      "utility": 0.5356847047805786,
+      "uncertainty": 1.0080673694610596,
+      "weight": 0.23386748135089874,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_2",
+      "text": "Minimalist decor",
+      "utility": 0.4128739833831787,
+      "uncertainty": 1.0080673694610596,
+      "weight": 0.2068396508693695,
+      "source_image_idx": 3,
+      "category": "positive"
+    }
+  ]
+}

@@ -1,409 +1,315 @@
 """
-HITL Sampler - Continuous Aesthetic Discovery in Reduced CLIP Space
+HITL Sampler - UCB-Based Multi-Point Composition Sampler
 
-Operates in a PCA-reduced space (e.g., 32 dims) for efficient GP learning,
-then reconstructs to 768-dim for SDXL injection.
+Implements Upper Confidence Bound (UCB) acquisition for selecting 10 diverse
+points from the GP utility surface to compose images for ordinal ranking.
 
-Sampling Strategies:
-1. Centroid Sampling (Exploitation): Points near the current preference mean μ
-2. SLERP Interpolation: Semantic bridges between high-utility concepts
-3. UCB Perturbations (Exploration): Noise in high-uncertainty directions
+Supports multi-modal preferences by finding multiple local maxima with
+diversity constraints.
 """
 
 import numpy as np
 from typing import List, Dict, Tuple, Optional
 from dataclasses import dataclass
 
-from dim_reducer import EmbeddingReducer, slerp_reduced
+from exploration_GP import PreferenceLearner
 
 
 @dataclass
-class ContinuousComposition:
+class CompositionSample:
     """
-    A composition of 10 points sampled from continuous embedding space.
+    A single image composition with 10 sampled feature points.
     
-    Points are stored in FULL 768-dim space (after reconstruction from
-    reduced space) for direct injection into SDXL.
+    Each composition represents a set of aesthetic concepts to be combined
+    in a single generated image via weighted attention.
     """
-    points: np.ndarray           # (10, 768) - 10 CLIP embedding vectors
-    points_reduced: np.ndarray   # (10, reduced_dim) - reduced space points
-    weights: np.ndarray          # (10,) - attention weights per point
-    sampling_strategies: List[str]  # How each point was sampled
-    ucb_scores: np.ndarray       # UCB score for each point
-    utilities: np.ndarray        # Predicted utility μ(z) for each point
-    uncertainties: np.ndarray    # Predicted uncertainty σ(z) for each point
+    points: np.ndarray       # (10, 768) - 10 CLIP embeddings
+    weights: np.ndarray      # (10,) - attention weights per point
+    tag_labels: List[str]    # Labels for each point (for debugging/display)
+    tag_indices: List[int]   # Indices into original tag list
+    point_ucb_scores: np.ndarray  # UCB score for each point (for analysis)
 
 
-class ContinuousEmbeddingSampler:
+def cosine_similarity(a: np.ndarray, b: np.ndarray) -> float:
+    """Compute cosine similarity between two vectors."""
+    norm_a = np.linalg.norm(a)
+    norm_b = np.linalg.norm(b)
+    if norm_a < 1e-8 or norm_b < 1e-8:
+        return 0.0
+    return float(np.dot(a, b) / (norm_a * norm_b))
+
+
+class HITLSampler:
     """
-    Sample points in reduced CLIP embedding space using GP-guided strategies.
+    UCB-based sampler for 10-point feature compositions.
     
-    The sampler operates in PCA-reduced space (e.g., 32 dims) where:
-    - GP predictions are more accurate (better coverage)
-    - Convergence is faster (fewer dimensions)
-    - Sampling is more meaningful (captures semantic subspace)
+    Instead of sampling from a single Gaussian, queries the GP's utility surface
+    to find MULTIPLE local maxima - supporting multi-modal preferences
+    (e.g., user likes BOTH "dark/cozy" AND "bright/minimalist").
     
-    After sampling, points are reconstructed to 768-dim for SDXL.
+    The sampler uses Upper Confidence Bound (UCB) acquisition:
+        UCB(x) = mu(x) + beta * sigma(x)
+    
+    This balances exploitation (high utility) with exploration (high uncertainty).
     """
     
     def __init__(
-        self,
-        gp,  # Any object with predict_utility(points) -> (mu, sigma)
-        reducer: EmbeddingReducer,
-        positive_embeddings_768: np.ndarray,   # (N_pos, 768) original embeddings
-        negative_embeddings_768: np.ndarray,   # (N_neg, 768)
-        neutral_embeddings_768: Optional[np.ndarray] = None,
-        beta: float = 2.0,
-        perturbation_scale: float = 0.3,       # Larger in reduced space
-        n_centroid: int = 4,
-        n_slerp: int = 3,
-        n_perturbation: int = 3,
+        self, 
+        preference_gp: PreferenceLearner,
+        all_tag_embeddings: np.ndarray,  # (N, 768) all available tag embeddings
+        all_tag_labels: List[str],
+        beta: float = 2.0,               # UCB exploration coefficient
+        diversity_threshold: float = 0.85,  # Cosine similarity threshold for diversity
+        weight_temperature: float = 1.0     # Temperature for attention weight softmax
     ):
         """
-        Initialize the sampler with reduced embeddings.
+        Initialize the HITL sampler.
         
         Args:
-            gp: Any object with predict_utility(points) -> (mu, sigma) interface
-            reducer: Fitted EmbeddingReducer for dimension reduction
-            positive_embeddings_768: Original 768-dim positive embeddings
-            negative_embeddings_768: Original 768-dim negative embeddings
-            neutral_embeddings_768: Original 768-dim neutral embeddings
-            beta: UCB exploration coefficient
-            perturbation_scale: Scale for exploration noise (in reduced space)
+            preference_gp: PreferenceLearner GP from exploration
+            all_tag_embeddings: (N, 768) array of all candidate tag embeddings
+            all_tag_labels: List of tag text labels corresponding to embeddings
+            beta: UCB exploration coefficient (higher = more exploration)
+            diversity_threshold: Max cosine similarity between selected points
+            weight_temperature: Temperature for softmax when computing attention weights
         """
-        self.gp = gp
-        self.reducer = reducer
-        self.reduced_dim = reducer.dim
-        
-        # Store original 768-dim embeddings for reconstruction reference
-        self._pos_768 = np.array(positive_embeddings_768)
-        self._neg_768 = np.array(negative_embeddings_768) if len(negative_embeddings_768) > 0 else np.zeros((0, 768))
-        self._neu_768 = np.array(neutral_embeddings_768) if neutral_embeddings_768 is not None and len(neutral_embeddings_768) > 0 else np.zeros((0, 768))
-        
-        # Reduce embeddings to working space
-        self.positive_emb = reducer.reduce(self._pos_768) if len(self._pos_768) > 0 else np.zeros((0, self.reduced_dim))
-        self.negative_emb = reducer.reduce(self._neg_768) if len(self._neg_768) > 0 else np.zeros((0, self.reduced_dim))
-        self.neutral_emb = reducer.reduce(self._neu_768) if len(self._neu_768) > 0 else np.zeros((0, self.reduced_dim))
-        
+        self.gp = preference_gp
+        self.embeddings = np.array(all_tag_embeddings)
+        self.labels = list(all_tag_labels)
         self.beta = beta
-        self.perturbation_scale = perturbation_scale
-        self.n_centroid = n_centroid
-        self.n_slerp = n_slerp
-        self.n_perturbation = n_perturbation
+        self.diversity_threshold = diversity_threshold
+        self.weight_temperature = weight_temperature
         
-        # Current mean in REDUCED space
-        if len(self.positive_emb) > 0:
-            self.current_mean = self.positive_emb.mean(axis=0)
-        else:
-            self.current_mean = np.zeros(self.reduced_dim)
+        # Precompute normalized embeddings for faster similarity computation
+        norms = np.linalg.norm(self.embeddings, axis=1, keepdims=True)
+        self.normalized_embeddings = self.embeddings / np.maximum(norms, 1e-8)
         
-        # Covariance in reduced space
-        if len(self.positive_emb) > 1:
-            centered = self.positive_emb - self.current_mean
-            self.current_cov = np.cov(centered.T) + 1e-4 * np.eye(self.reduced_dim)
-        else:
-            self.current_cov = 0.1 * np.eye(self.reduced_dim)
-        
-        # Candidate pool in reduced space
-        self.all_candidates = self._build_candidate_pool()
-        self._ucb_cache = None
-        
-        print(f"[Sampler] Initialized in {self.reduced_dim}-dim reduced space")
-    
-    def _build_candidate_pool(self) -> np.ndarray:
-        """Build pool of candidate points in reduced space."""
-        candidates = []
-        
-        if len(self.positive_emb) > 0:
-            candidates.append(self.positive_emb)
-        
-        if len(self.neutral_emb) > 0:
-            candidates.append(self.neutral_emb)
-        
-        # Generate SLERP interpolations between positive pairs
-        if len(self.positive_emb) >= 2:
-            interp_points = []
-            n_pos = len(self.positive_emb)
-            for i in range(min(n_pos, 5)):
-                for j in range(i + 1, min(n_pos, 5)):
-                    for t in [0.25, 0.5, 0.75]:
-                        interp = slerp_reduced(self.positive_emb[i], self.positive_emb[j], t)
-                        interp_points.append(interp)
-            if interp_points:
-                candidates.append(np.array(interp_points))
-        
-        if candidates:
-            return np.vstack(candidates)
-        else:
-            return np.random.randn(10, self.reduced_dim) * 0.1
+        # Cache for UCB scores (recomputed after GP update)
+        self._ucb_cache: Optional[np.ndarray] = None
+        self._mu_cache: Optional[np.ndarray] = None
+        self._sigma_cache: Optional[np.ndarray] = None
     
     def invalidate_cache(self):
         """Invalidate UCB cache after GP update."""
         self._ucb_cache = None
+        self._mu_cache = None
+        self._sigma_cache = None
     
-    def update_distribution(self, preferred_points_768: np.ndarray, learning_rate: float = 0.3):
+    def _compute_ucb_scores(self) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
         """
-        Update the sampling distribution based on preferred points.
-        
-        Args:
-            preferred_points_768: (K, 768) embeddings from preferred images
-            learning_rate: How much to shift toward new preferences
-        """
-        if len(preferred_points_768) == 0:
-            return
-        
-        # Reduce to working space
-        preferred_reduced = self.reducer.reduce(preferred_points_768)
-        new_mean = preferred_reduced.mean(axis=0)
-        
-        self.current_mean = (1 - learning_rate) * self.current_mean + learning_rate * new_mean
-        
-        # Shrink covariance
-        if len(preferred_reduced) > 1:
-            centered = preferred_reduced - new_mean
-            new_cov = np.cov(centered.T) + 1e-4 * np.eye(self.reduced_dim)
-            self.current_cov = (1 - learning_rate) * self.current_cov + learning_rate * new_cov
-        else:
-            self.current_cov *= (1 - learning_rate * 0.5)
-    
-    def _compute_ucb(self, points_reduced: np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
-        """Compute UCB scores for points in reduced space."""
-        mu, sigma = self.gp.predict_utility(points_reduced)
-        ucb = mu + self.beta * sigma
-        return ucb, mu, sigma
-    
-    def _apply_repelling_force(self, point: np.ndarray) -> np.ndarray:
-        """Apply repelling force from negative embeddings in reduced space."""
-        if len(self.negative_emb) == 0:
-            return point
-        
-        point_norm = point / (np.linalg.norm(point) + 1e-8)
-        
-        repulsion = np.zeros(self.reduced_dim)
-        for neg in self.negative_emb:
-            neg_norm = neg / (np.linalg.norm(neg) + 1e-8)
-            similarity = np.dot(point_norm, neg_norm)
-            
-            if similarity > 0.3:
-                direction = point_norm - neg_norm
-                direction = direction / (np.linalg.norm(direction) + 1e-8)
-                force = (similarity - 0.3) * 0.5
-                repulsion += force * direction
-        
-        new_point = point + repulsion
-        return new_point / (np.linalg.norm(new_point) + 1e-8)
-    
-    def _sample_centroid_points(self, n: int) -> Tuple[np.ndarray, List[str]]:
-        """Sample points near the current preference centroid."""
-        points = []
-        strategies = []
-        
-        for _ in range(n):
-            noise = np.random.randn(self.reduced_dim) * self.perturbation_scale * 0.5
-            point = self.current_mean + noise
-            point = self._apply_repelling_force(point)
-            points.append(point)
-            strategies.append("centroid")
-        
-        return np.array(points), strategies
-    
-    def _sample_slerp_points(self, n: int) -> Tuple[np.ndarray, List[str]]:
-        """Sample points via SLERP interpolation between high-utility embeddings."""
-        points = []
-        strategies = []
-        
-        if len(self.positive_emb) < 2:
-            return self._sample_centroid_points(n)
-        
-        ucb, mu, sigma = self._compute_ucb(self.positive_emb)
-        
-        top_k = min(5, len(self.positive_emb))
-        top_indices = np.argsort(ucb)[-top_k:]
-        
-        for _ in range(n):
-            idx_pair = np.random.choice(top_indices, size=2, replace=False)
-            v0 = self.positive_emb[idx_pair[0]]
-            v1 = self.positive_emb[idx_pair[1]]
-            
-            t = np.random.uniform(0.2, 0.8)
-            point = slerp_reduced(v0, v1, t)
-            point = self._apply_repelling_force(point)
-            
-            points.append(point)
-            strategies.append("slerp")
-        
-        return np.array(points), strategies
-    
-    def _sample_perturbation_points(self, n: int) -> Tuple[np.ndarray, List[str]]:
-        """Sample points via UCB-guided perturbations."""
-        points = []
-        strategies = []
-        
-        ucb, mu, sigma = self._compute_ucb(self.all_candidates)
-        
-        top_k = min(10, len(self.all_candidates))
-        top_indices = np.argsort(ucb)[-top_k:]
-        
-        for _ in range(n):
-            base_idx = np.random.choice(top_indices)
-            base_point = self.all_candidates[base_idx]
-            
-            local_sigma = sigma[base_idx]
-            noise_scale = self.perturbation_scale * (1 + local_sigma)
-            noise = np.random.randn(self.reduced_dim) * noise_scale
-            
-            point = base_point + noise
-            point = self._apply_repelling_force(point)
-            point = point / (np.linalg.norm(point) + 1e-8)
-            
-            points.append(point)
-            strategies.append("perturbation")
-        
-        return np.array(points), strategies
-    
-    def sample_composition(self, n_points: int = 10) -> ContinuousComposition:
-        """
-        Sample a composition of n_points from the reduced embedding space.
-        
-        After sampling in reduced space, reconstructs to 768-dim for SDXL.
+        Compute UCB scores for all candidate embeddings.
         
         Returns:
-            ContinuousComposition with both reduced and 768-dim points
+            (ucb_scores, mu, sigma) - arrays of shape (N,)
         """
-        all_points_reduced = []
-        all_strategies = []
+        if self._ucb_cache is not None:
+            return self._ucb_cache, self._mu_cache, self._sigma_cache
         
-        n_centroid = min(self.n_centroid, n_points)
-        n_slerp = min(self.n_slerp, n_points - n_centroid)
-        n_perturbation = n_points - n_centroid - n_slerp
+        # Get GP predictions
+        mu, sigma = self.gp.predict_utility(self.embeddings)
         
-        if n_centroid > 0:
-            points, strategies = self._sample_centroid_points(n_centroid)
-            all_points_reduced.append(points)
-            all_strategies.extend(strategies)
+        # UCB acquisition function
+        ucb_scores = mu + self.beta * sigma
         
-        if n_slerp > 0:
-            points, strategies = self._sample_slerp_points(n_slerp)
-            all_points_reduced.append(points)
-            all_strategies.extend(strategies)
+        # Cache results
+        self._ucb_cache = ucb_scores
+        self._mu_cache = mu
+        self._sigma_cache = sigma
         
-        if n_perturbation > 0:
-            points, strategies = self._sample_perturbation_points(n_perturbation)
-            all_points_reduced.append(points)
-            all_strategies.extend(strategies)
-        
-        all_points_reduced = np.vstack(all_points_reduced)
-        
-        # Compute UCB scores in reduced space
-        ucb, mu, sigma = self._compute_ucb(all_points_reduced)
-        
-        # Compute attention weights from utilities
-        weights = self._compute_attention_weights(mu)
-        
-        # RECONSTRUCT to 768-dim for SDXL
-        points_768 = self.reducer.reconstruct(all_points_reduced)
-        
-        return ContinuousComposition(
-            points=points_768,
-            points_reduced=all_points_reduced,
-            weights=weights,
-            sampling_strategies=all_strategies,
-            ucb_scores=ucb,
-            utilities=mu,
-            uncertainties=sigma
-        )
+        return ucb_scores, mu, sigma
     
-    def _compute_attention_weights(self, utilities: np.ndarray, temperature: float = 1.0) -> np.ndarray:
-        """Compute attention weights from utilities using softmax."""
-        utilities_shifted = utilities - np.max(utilities)
-        exp_u = np.exp(utilities_shifted / temperature)
-        weights = exp_u / (np.sum(exp_u) + 1e-8)
+    def _select_diverse_maxima(
+        self, 
+        scores: np.ndarray, 
+        k: int,
+        excluded_indices: Optional[set] = None
+    ) -> List[int]:
+        """
+        Greedy selection: pick highest UCB, then exclude similar points.
         
-        min_weight = 0.05
-        weights = np.clip(weights, min_weight, None)
-        weights = weights / np.sum(weights)
+        This ensures selected points are semantically diverse, supporting
+        multi-modal preferences where user may like unrelated aesthetic concepts.
+        
+        Args:
+            scores: UCB scores for all candidates
+            k: Number of points to select
+            excluded_indices: Indices to exclude from selection
+            
+        Returns:
+            List of selected indices
+        """
+        selected = []
+        available = set(range(len(scores)))
+        
+        if excluded_indices:
+            available -= excluded_indices
+        
+        for _ in range(k):
+            if not available:
+                break
+            
+            # Pick highest scoring available point
+            best_idx = max(available, key=lambda i: scores[i])
+            selected.append(best_idx)
+            available.remove(best_idx)
+            
+            # Remove points too similar to selected (cosine > threshold)
+            to_remove = []
+            best_emb_norm = self.normalized_embeddings[best_idx]
+            
+            for idx in available:
+                # Compute cosine similarity using precomputed normalized embeddings
+                sim = np.dot(best_emb_norm, self.normalized_embeddings[idx])
+                if sim > self.diversity_threshold:
+                    to_remove.append(idx)
+            
+            available -= set(to_remove)
+        
+        return selected
+    
+    def _compute_attention_weights(self, ucb_scores: np.ndarray) -> np.ndarray:
+        """
+        Compute attention weights from UCB scores using softmax.
+        
+        Higher UCB scores get higher attention weights, scaled by temperature.
+        
+        Args:
+            ucb_scores: UCB scores for selected points
+            
+        Returns:
+            Softmax-normalized attention weights
+        """
+        # Shift for numerical stability
+        scores_shifted = ucb_scores - np.max(ucb_scores)
+        exp_scores = np.exp(scores_shifted / self.weight_temperature)
+        weights = exp_scores / (np.sum(exp_scores) + 1e-8)
         
         return weights
     
-    def sample_negative_composition(self, n_points: int = 10) -> ContinuousComposition:
-        """Sample points for negative prompt (CFG)."""
-        if len(self.negative_emb) == 0:
-            points_reduced = np.random.randn(n_points, self.reduced_dim) * 0.1
-            points_768 = self.reducer.reconstruct(points_reduced)
-            return ContinuousComposition(
-                points=points_768,
-                points_reduced=points_reduced,
-                weights=np.ones(n_points) / n_points,
-                sampling_strategies=["random"] * n_points,
-                ucb_scores=np.zeros(n_points),
-                utilities=np.zeros(n_points) - 1.0,
-                uncertainties=np.ones(n_points)
-            )
+    def sample_composition(
+        self, 
+        n_points: int = 10,
+        excluded_indices: Optional[set] = None
+    ) -> CompositionSample:
+        """
+        Select n_points using UCB acquisition with diversity constraint.
         
-        points_reduced = []
-        strategies = []
+        Finds diverse local maxima to support multi-modal preferences
+        (e.g., user likes BOTH "dark/cozy" AND "bright/minimalist").
         
-        for i in range(n_points):
-            neg_idx = i % len(self.negative_emb)
-            base = self.negative_emb[neg_idx]
+        Args:
+            n_points: Number of points to select (default 10)
+            excluded_indices: Indices to exclude from this sample
             
-            noise = np.random.randn(self.reduced_dim) * 0.1
-            point = base + noise
-            point = point / (np.linalg.norm(point) + 1e-8)
+        Returns:
+            CompositionSample with selected points, weights, and metadata
+        """
+        # Get UCB scores
+        ucb_scores, mu, sigma = self._compute_ucb_scores()
+        
+        # Select diverse maxima
+        selected_indices = self._select_diverse_maxima(
+            ucb_scores, n_points, excluded_indices
+        )
+        
+        # If we couldn't select enough due to diversity constraints, relax and try again
+        if len(selected_indices) < n_points:
+            # Fall back to top-K without diversity
+            remaining = n_points - len(selected_indices)
+            available = set(range(len(ucb_scores))) - set(selected_indices)
+            if excluded_indices:
+                available -= excluded_indices
             
-            points_reduced.append(point)
-            strategies.append("negative")
+            sorted_available = sorted(available, key=lambda i: ucb_scores[i], reverse=True)
+            selected_indices.extend(sorted_available[:remaining])
         
-        points_reduced = np.array(points_reduced)
-        ucb, mu, sigma = self._compute_ucb(points_reduced)
-        weights = np.ones(n_points) / n_points
+        # Extract selected data
+        selected_indices = selected_indices[:n_points]  # Ensure exactly n_points
         
-        # Reconstruct to 768-dim
-        points_768 = self.reducer.reconstruct(points_reduced)
+        points = self.embeddings[selected_indices]
+        labels = [self.labels[i] for i in selected_indices]
+        point_ucb = ucb_scores[selected_indices]
         
-        return ContinuousComposition(
-            points=points_768,
-            points_reduced=points_reduced,
+        # Compute attention weights
+        weights = self._compute_attention_weights(point_ucb)
+        
+        return CompositionSample(
+            points=points,
             weights=weights,
-            sampling_strategies=strategies,
-            ucb_scores=ucb,
-            utilities=mu,
-            uncertainties=sigma
+            tag_labels=labels,
+            tag_indices=selected_indices,
+            point_ucb_scores=point_ucb
         )
     
-    def sample_batch(self, batch_size: int = 4, n_points: int = 10) -> List[ContinuousComposition]:
-        """Sample a batch of compositions for ranking."""
+    def sample_batch(
+        self, 
+        batch_size: int = 4, 
+        n_points: int = 10,
+        ensure_diversity_across_batch: bool = True
+    ) -> List[CompositionSample]:
+        """
+        Sample multiple compositions for a ranking round.
+        
+        Args:
+            batch_size: Number of compositions to generate (default 4)
+            n_points: Points per composition (default 10)
+            ensure_diversity_across_batch: If True, ensure some diversity
+                across compositions by excluding recently selected points
+                
+        Returns:
+            List of CompositionSample objects
+        """
         compositions = []
+        excluded = set()
         
         for i in range(batch_size):
-            exploit_ratio = 1 - (i / batch_size) * 0.5
+            sample = self.sample_composition(
+                n_points=n_points,
+                excluded_indices=excluded if ensure_diversity_across_batch else None
+            )
+            compositions.append(sample)
             
-            self.n_centroid = int(n_points * exploit_ratio * 0.4)
-            self.n_slerp = int(n_points * 0.3)
-            self.n_perturbation = n_points - self.n_centroid - self.n_slerp
-            
-            comp = self.sample_composition(n_points)
-            compositions.append(comp)
-        
-        self.n_centroid = 4
-        self.n_slerp = 3
-        self.n_perturbation = 3
+            # Add top-3 points from this sample to exclusion set
+            # This ensures some variation across the batch
+            if ensure_diversity_across_batch:
+                top_3_idx = np.argsort(sample.point_ucb_scores)[-3:]
+                for idx in top_3_idx:
+                    excluded.add(sample.tag_indices[idx])
         
         return compositions
     
-    def get_current_variance(self) -> float:
-        """Get the current uncertainty in the preferred region (reduced space)."""
-        test_points = [self.current_mean]
-        for _ in range(9):
-            noise = np.random.randn(self.reduced_dim) * self.perturbation_scale
-            test_points.append(self.current_mean + noise)
+    def get_utility_statistics(self) -> Dict:
+        """
+        Get statistics about the current GP utility surface.
         
-        test_points = np.array(test_points)
-        _, sigma = self.gp.predict_utility(test_points)
+        Useful for monitoring convergence and understanding preference distribution.
+        """
+        ucb_scores, mu, sigma = self._compute_ucb_scores()
         
-        return float(np.mean(sigma))
-
-
-# Backward compatibility
-CompositionSample = ContinuousComposition
-HITLSampler = ContinuousEmbeddingSampler
+        return {
+            "mean_utility": float(np.mean(mu)),
+            "std_utility": float(np.std(mu)),
+            "max_utility": float(np.max(mu)),
+            "min_utility": float(np.min(mu)),
+            "mean_uncertainty": float(np.mean(sigma)),
+            "max_uncertainty": float(np.max(sigma)),
+            "mean_ucb": float(np.mean(ucb_scores)),
+            "max_ucb": float(np.max(ucb_scores)),
+            "n_candidates": len(mu),
+        }
+    
+    def get_top_k_by_utility(self, k: int = 10) -> List[Tuple[str, float, float]]:
+        """
+        Get top-K tags by GP utility (not UCB).
+        
+        Returns:
+            List of (tag_label, utility, uncertainty) tuples
+        """
+        _, mu, sigma = self._compute_ucb_scores()
+        
+        top_indices = np.argsort(mu)[-k:][::-1]
+        
+        return [
+            (self.labels[i], float(mu[i]), float(sigma[i]))
+            for i in top_indices
+        ]

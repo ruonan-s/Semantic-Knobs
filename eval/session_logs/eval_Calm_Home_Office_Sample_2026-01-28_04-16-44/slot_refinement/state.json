@@ -1,0 +1,177 @@
+{
+  "session_id": "eval_Calm_Home_Office_Sample_2026-01-28_04-16-44",
+  "stage": "elimination",
+  "base_prompt": "Calm Home Office",
+  "raw_tags": [
+    "minimalist design",
+    "neutral color palette",
+    "sleek cabinetry",
+    "soft diffused lighting",
+    "simple chair design",
+    "clean lines",
+    "minimalist decor",
+    "lush greenery",
+    "large windows",
+    "earthy tones",
+    "clean lines",
+    "cozy atmosphere",
+    "warm wood tones",
+    "soft ambient lighting",
+    "plush gray chair",
+    "minimalist decor"
+  ],
+  "round_count": 1,
+  "updated_at": "2026-01-28 04:17:37",
+  "dedup_result": {
+    "original_count": 16,
+    "deduplicated_count": 14,
+    "unique_tags": [
+      "clean lines",
+      "minimalist decor",
+      "large windows",
+      "lush greenery",
+      "warm wood tones",
+      "neutral color palette",
+      "soft ambient lighting",
+      "cozy atmosphere",
+      "minimalist design",
+      "sleek cabinetry",
+      "soft diffused lighting",
+      "earthy tones",
+      "plush gray chair",
+      "simple chair design"
+    ],
+    "duplicates_removed": []
+  },
+  "slots": [
+    {
+      "name": "overall_aesthetic",
+      "description": "The guiding stylistic philosophy and sense of simplicity for the space.",
+      "tags": [
+        "clean lines",
+        "minimalist decor",
+        "minimalist design"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "lighting_quality",
+      "description": "The general feel and characteristics of artificial or ambient illumination.",
+      "tags": [
+        "soft ambient lighting",
+        "soft diffused lighting"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "color_material_palette",
+      "description": "The dominant color scheme and the warmth or naturalness of primary materials.",
+      "tags": [
+        "warm wood tones",
+        "neutral color palette",
+        "earthy tones"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "greenery_integration",
+      "description": "How natural plant life is incorporated to bring organic elements into the design.",
+      "tags": [
+        "lush greenery"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "architectural_features",
+      "description": "Key structural elements that influence natural light, views, and spatial openness.",
+      "tags": [
+        "large windows"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "primary_seating_style",
+      "description": "The specific design, comfort, and material attributes of the main seating furniture.",
+      "tags": [
+        "plush gray chair",
+        "simple chair design"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "storage_cabinetry_style",
+      "description": "The design aesthetic and integration of storage solutions and built-in elements.",
+      "tags": [
+        "sleek cabinetry"
+      ],
+      "importance": 0.5
+    }
+  ],
+  "elimination": {
+    "slot_states": {
+      "overall_aesthetic": {
+        "current_winner": "clean lines",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "clean lines": 1.0,
+          "minimalist decor": 1.0,
+          "minimalist design": 1.0
+        }
+      },
+      "lighting_quality": {
+        "current_winner": "soft ambient lighting",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "soft ambient lighting": 1.0,
+          "soft diffused lighting": 1.0
+        }
+      },
+      "color_material_palette": {
+        "current_winner": "warm wood tones",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "warm wood tones": 1.0,
+          "neutral color palette": 1.0,
+          "earthy tones": 1.0
+        }
+      },
+      "greenery_integration": {
+        "current_winner": "lush greenery",
+        "confidence": 1.0,
+        "is_resolved": true,
+        "tag_scores": {
+          "lush greenery": 1.0
+        }
+      },
+      "architectural_features": {
+        "current_winner": "large windows",
+        "confidence": 1.0,
+        "is_resolved": true,
+        "tag_scores": {
+          "large windows": 1.0
+        }
+      },
+      "primary_seating_style": {
+        "current_winner": "plush gray chair",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "plush gray chair": 1.0,
+          "simple chair design": 1.0
+        }
+      },
+      "storage_cabinetry_style": {
+        "current_winner": "sleek cabinetry",
+        "confidence": 1.0,
+        "is_resolved": true,
+        "tag_scores": {
+          "sleek cabinetry": 1.0
+        }
+      }
+    },
+    "round_history": []
+  }
+}

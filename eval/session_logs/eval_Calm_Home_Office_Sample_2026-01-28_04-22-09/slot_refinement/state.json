@@ -1,0 +1,509 @@
+{
+  "session_id": "eval_Calm_Home_Office_Sample_2026-01-28_04-22-09",
+  "stage": "complete",
+  "base_prompt": "Calm Home Office",
+  "raw_tags": [
+    "neutral color palette",
+    "natural wood table",
+    "sleek cabinetry",
+    "soft diffused lighting",
+    "floor-to-ceiling curtains",
+    "simple chair design",
+    "clean lines",
+    "wooden desk",
+    "minimalist decor",
+    "lush greenery",
+    "large windows",
+    "stone accents",
+    "earthy tones",
+    "warm wood tones",
+    "sleek modern desk",
+    "soft ambient lighting",
+    "plush gray chair"
+  ],
+  "round_count": 13,
+  "updated_at": "2026-01-28 04:28:39",
+  "dedup_result": {
+    "original_count": 17,
+    "deduplicated_count": 17,
+    "unique_tags": [
+      "soft diffused lighting",
+      "minimalist decor",
+      "soft ambient lighting",
+      "simple chair design",
+      "lush greenery",
+      "sleek modern desk",
+      "large windows",
+      "clean lines",
+      "wooden desk",
+      "earthy tones",
+      "plush gray chair",
+      "sleek cabinetry",
+      "stone accents",
+      "warm wood tones",
+      "natural wood table",
+      "neutral color palette",
+      "floor-to-ceiling curtains"
+    ],
+    "duplicates_removed": []
+  },
+  "slots": [
+    {
+      "name": "lighting_quality",
+      "description": "How the artificial or ambient light feels in the space, focusing on its character rather than source.",
+      "tags": [
+        "soft diffused lighting",
+        "soft ambient lighting"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "natural_light_source",
+      "description": "How natural light is introduced or managed within the environment.",
+      "tags": [
+        "large windows",
+        "floor-to-ceiling curtains"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "greenery_presence",
+      "description": "The extent and style of plant life integrated into the design.",
+      "tags": [
+        "lush greenery"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "desk_design",
+      "description": "The primary work surface's style, material, and overall aesthetic.",
+      "tags": [
+        "sleek modern desk",
+        "wooden desk",
+        "natural wood table"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "chair_design",
+      "description": "The main seating's style, material, and comfort emphasis.",
+      "tags": [
+        "simple chair design",
+        "plush gray chair"
+      ],
+      "importance": 0.4
+    },
+    {
+      "name": "overall_aesthetic",
+      "description": "The overarching decorative theme and foundational design principles.",
+      "tags": [
+        "minimalist decor",
+        "clean lines"
+      ],
+      "importance": 0.4
+    },
+    {
+      "name": "color_palette",
+      "description": "The dominant color scheme and material tones used throughout the space.",
+      "tags": [
+        "earthy tones",
+        "neutral color palette",
+        "warm wood tones"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "storage_solutions",
+      "description": "The type and style of integrated storage elements.",
+      "tags": [
+        "sleek cabinetry"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "material_accents",
+      "description": "Specific decorative materials used to add texture or detail.",
+      "tags": [
+        "stone accents"
+      ],
+      "importance": 0.5
+    }
+  ],
+  "elimination": {
+    "slot_states": {
+      "lighting_quality": {
+        "current_winner": "soft ambient lighting",
+        "confidence": 0.95,
+        "is_resolved": true,
+        "tag_scores": {
+          "soft diffused lighting": 0.55,
+          "soft ambient lighting": 1.7499999999999998
+        }
+      },
+      "natural_light_source": {
+        "current_winner": "large windows",
+        "confidence": 0.8500000000000001,
+        "is_resolved": true,
+        "tag_scores": {
+          "large windows": 1.5,
+          "floor-to-ceiling curtains": 0.7999999999999998
+        }
+      },
+      "greenery_presence": {
+        "current_winner": "lush greenery",
+        "confidence": 1.0,
+        "is_resolved": true,
+        "tag_scores": {
+          "lush greenery": 1.0
+        }
+      },
+      "desk_design": {
+        "current_winner": "wooden desk",
+        "confidence": 0.775,
+        "is_resolved": true,
+        "tag_scores": {
+          "sleek modern desk": 1.2,
+          "wooden desk": 1.75,
+          "natural wood table": 0.25000000000000006
+        }
+      },
+      "chair_design": {
+        "current_winner": "plush gray chair",
+        "confidence": 0.95,
+        "is_resolved": true,
+        "tag_scores": {
+          "simple chair design": 0.55,
+          "plush gray chair": 1.7499999999999998
+        }
+      },
+      "overall_aesthetic": {
+        "current_winner": "minimalist decor",
+        "confidence": 0.8500000000000001,
+        "is_resolved": true,
+        "tag_scores": {
+          "minimalist decor": 1.5,
+          "clean lines": 0.7999999999999998
+        }
+      },
+      "color_palette": {
+        "current_winner": "neutral color palette",
+        "confidence": 0.95,
+        "is_resolved": true,
+        "tag_scores": {
+          "earthy tones": 0.8999999999999999,
+          "neutral color palette": 1.85,
+          "warm wood tones": 0.49999999999999983
+        }
+      },
+      "storage_solutions": {
+        "current_winner": "sleek cabinetry",
+        "confidence": 1.0,
+        "is_resolved": true,
+        "tag_scores": {
+          "sleek cabinetry": 1.0
+        }
+      },
+      "material_accents": {
+        "current_winner": "stone accents",
+        "confidence": 1.0,
+        "is_resolved": true,
+        "tag_scores": {
+          "stone accents": 1.0
+        }
+      }
+    },
+    "round_history": [
+      {
+        "round_num": 1,
+        "round_type": "exploration",
+        "focus_slot": null,
+        "selected_idx": 0,
+        "selected_tags": {
+          "lighting_quality": "soft ambient lighting",
+          "natural_light_source": "floor-to-ceiling curtains",
+          "greenery_presence": "lush greenery",
+          "desk_design": "wooden desk",
+          "chair_design": "plush gray chair",
+          "overall_aesthetic": "clean lines",
+          "color_palette": "warm wood tones",
+          "storage_solutions": "sleek cabinetry",
+          "material_accents": "stone accents"
+        },
+        "newly_resolved": [],
+        "eliminations": []
+      },
+      {
+        "round_num": 2,
+        "round_type": "head_to_head",
+        "focus_slot": "lighting_quality",
+        "selected_idx": 3,
+        "selected_tags": {
+          "natural_light_source": "floor-to-ceiling curtains",
+          "greenery_presence": "lush greenery",
+          "desk_design": "wooden desk",
+          "chair_design": "plush gray chair",
+          "overall_aesthetic": "clean lines",
+          "color_palette": "warm wood tones",
+          "storage_solutions": "sleek cabinetry",
+          "material_accents": "stone accents",
+          "lighting_quality": "soft ambient lighting"
+        },
+        "newly_resolved": [
+          "lighting_quality"
+        ],
+        "eliminations": []
+      },
+      {
+        "round_num": 3,
+        "round_type": "head_to_head",
+        "focus_slot": "natural_light_source",
+        "selected_idx": 0,
+        "selected_tags": {
+          "lighting_quality": "soft ambient lighting",
+          "greenery_presence": "lush greenery",
+          "desk_design": "wooden desk",
+          "chair_design": "plush gray chair",
+          "overall_aesthetic": "clean lines",
+          "color_palette": "warm wood tones",
+          "storage_solutions": "sleek cabinetry",
+          "material_accents": "stone accents",
+          "natural_light_source": "large windows"
+        },
+        "newly_resolved": [
+          "natural_light_source"
+        ],
+        "eliminations": []
+      },
+      {
+        "round_num": 4,
+        "round_type": "head_to_head",
+        "focus_slot": "desk_design",
+        "selected_idx": 0,
+        "selected_tags": {
+          "lighting_quality": "soft ambient lighting",
+          "natural_light_source": "large windows",
+          "greenery_presence": "lush greenery",
+          "chair_design": "plush gray chair",
+          "overall_aesthetic": "clean lines",
+          "color_palette": "warm wood tones",
+          "storage_solutions": "sleek cabinetry",
+          "material_accents": "stone accents",
+          "desk_design": "sleek modern desk"
+        },
+        "newly_resolved": [],
+        "eliminations": []
+      },
+      {
+        "round_num": 5,
+        "round_type": "head_to_head",
+        "focus_slot": "chair_design",
+        "selected_idx": 2,
+        "selected_tags": {
+          "lighting_quality": "soft ambient lighting",
+          "natural_light_source": "large windows",
+          "greenery_presence": "lush greenery",
+          "desk_design": "sleek modern desk",
+          "overall_aesthetic": "clean lines",
+          "color_palette": "warm wood tones",
+          "storage_solutions": "sleek cabinetry",
+          "material_accents": "stone accents"
+        },
+        "newly_resolved": [],
+        "eliminations": []
+      },
+      {
+        "round_num": 6,
+        "round_type": "head_to_head",
+        "focus_slot": "chair_design",
+        "selected_idx": 1,
+        "selected_tags": {
+          "lighting_quality": "soft ambient lighting",
+          "natural_light_source": "large windows",
+          "greenery_presence": "lush greenery",
+          "desk_design": "sleek modern desk",
+          "overall_aesthetic": "clean lines",
+          "color_palette": "warm wood tones",
+          "storage_solutions": "sleek cabinetry",
+          "material_accents": "stone accents",
+          "chair_design": "plush gray chair"
+        },
+        "newly_resolved": [
+          "chair_design"
+        ],
+        "eliminations": []
+      },
+      {
+        "round_num": 7,
+        "round_type": "head_to_head",
+        "focus_slot": "overall_aesthetic",
+        "selected_idx": 2,
+        "selected_tags": {
+          "lighting_quality": "soft ambient lighting",
+          "natural_light_source": "large windows",
+          "greenery_presence": "lush greenery",
+          "desk_design": "sleek modern desk",
+          "chair_design": "plush gray chair",
+          "color_palette": "warm wood tones",
+          "storage_solutions": "sleek cabinetry",
+          "material_accents": "stone accents"
+        },
+        "newly_resolved": [],
+        "eliminations": []
+      },
+      {
+        "round_num": 8,
+        "round_type": "head_to_head",
+        "focus_slot": "overall_aesthetic",
+        "selected_idx": 0,
+        "selected_tags": {
+          "lighting_quality": "soft ambient lighting",
+          "natural_light_source": "large windows",
+          "greenery_presence": "lush greenery",
+          "desk_design": "sleek modern desk",
+          "chair_design": "plush gray chair",
+          "color_palette": "warm wood tones",
+          "storage_solutions": "sleek cabinetry",
+          "material_accents": "stone accents",
+          "overall_aesthetic": "minimalist decor"
+        },
+        "newly_resolved": [
+          "overall_aesthetic"
+        ],
+        "eliminations": []
+      },
+      {
+        "round_num": 9,
+        "round_type": "head_to_head",
+        "focus_slot": "color_palette",
+        "selected_idx": 0,
+        "selected_tags": {
+          "lighting_quality": "soft ambient lighting",
+          "natural_light_source": "large windows",
+          "greenery_presence": "lush greenery",
+          "desk_design": "sleek modern desk",
+          "chair_design": "plush gray chair",
+          "overall_aesthetic": "minimalist decor",
+          "storage_solutions": "sleek cabinetry",
+          "material_accents": "stone accents",
+          "color_palette": "earthy tones"
+        },
+        "newly_resolved": [],
+        "eliminations": []
+      },
+      {
+        "round_num": 10,
+        "round_type": "head_to_head",
+        "focus_slot": "desk_design",
+        "selected_idx": 1,
+        "selected_tags": {
+          "lighting_quality": "soft ambient lighting",
+          "natural_light_source": "large windows",
+          "greenery_presence": "lush greenery",
+          "chair_design": "plush gray chair",
+          "overall_aesthetic": "minimalist decor",
+          "color_palette": "earthy tones",
+          "storage_solutions": "sleek cabinetry",
+          "material_accents": "stone accents",
+          "desk_design": "wooden desk"
+        },
+        "newly_resolved": [
+          "desk_design"
+        ],
+        "eliminations": []
+      },
+      {
+        "round_num": 11,
+        "round_type": "head_to_head",
+        "focus_slot": "color_palette",
+        "selected_idx": 1,
+        "selected_tags": {
+          "lighting_quality": "soft ambient lighting",
+          "natural_light_source": "large windows",
+          "greenery_presence": "lush greenery",
+          "desk_design": "wooden desk",
+          "chair_design": "plush gray chair",
+          "overall_aesthetic": "minimalist decor",
+          "storage_solutions": "sleek cabinetry",
+          "material_accents": "stone accents",
+          "color_palette": "neutral color palette"
+        },
+        "newly_resolved": [],
+        "eliminations": []
+      },
+      {
+        "round_num": 12,
+        "round_type": "head_to_head",
+        "focus_slot": "color_palette",
+        "selected_idx": 1,
+        "selected_tags": {
+          "lighting_quality": "soft ambient lighting",
+          "natural_light_source": "large windows",
+          "greenery_presence": "lush greenery",
+          "desk_design": "wooden desk",
+          "chair_design": "plush gray chair",
+          "overall_aesthetic": "minimalist decor",
+          "storage_solutions": "sleek cabinetry",
+          "material_accents": "stone accents",
+          "color_palette": "neutral color palette"
+        },
+        "newly_resolved": [
+          "color_palette"
+        ],
+        "eliminations": []
+      }
+    ]
+  },
+  "refinement": {
+    "weights": {
+      "soft ambient lighting": 0.8372093023255817,
+      "large windows": 0.8372093023255817,
+      "lush greenery": 0.8372093023255817,
+      "wooden desk": 0.8372093023255817,
+      "plush gray chair": 0.6697674418604653,
+      "minimalist decor": 0.6697674418604653,
+      "neutral color palette": 0.8372093023255817,
+      "sleek cabinetry": 0.8372093023255817,
+      "stone accents": 0.8372093023255817
+    },
+    "history": [
+      {
+        "soft ambient lighting": 0.8372093023255814,
+        "large windows": 0.8372093023255814,
+        "lush greenery": 0.8372093023255814,
+        "wooden desk": 0.8372093023255814,
+        "plush gray chair": 0.6697674418604652,
+        "minimalist decor": 0.6697674418604652,
+        "neutral color palette": 0.8372093023255814,
+        "sleek cabinetry": 0.8372093023255814,
+        "stone accents": 0.8372093023255814
+      }
+    ],
+    "round_history": [
+      {
+        "round_num": 1,
+        "selected_idx": 1,
+        "selected_strategy": "exaggerated",
+        "gradients": {
+          "soft ambient lighting": 0.0,
+          "large windows": 0.0,
+          "lush greenery": 0.0,
+          "wooden desk": 0.0,
+          "plush gray chair": 0.0,
+          "minimalist decor": 0.0,
+          "neutral color palette": 0.0,
+          "sleek cabinetry": 0.0,
+          "stone accents": 0.0
+        },
+        "weight_updates": {
+          "soft ambient lighting": 0.0,
+          "large windows": 0.0,
+          "lush greenery": 0.0,
+          "wooden desk": 0.0,
+          "plush gray chair": 0.0,
+          "minimalist decor": 0.0,
+          "neutral color palette": 0.0,
+          "sleek cabinetry": 0.0,
+          "stone accents": 0.0
+        },
+        "max_change": 0.0,
+        "is_converged": 

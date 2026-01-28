@@ -1,0 +1,206 @@
+{
+  "session_id": "eval_Calm_Home_Office_Sample_2026-01-28_04-14-46",
+  "stage": "elimination",
+  "base_prompt": "Calm Home Office",
+  "raw_tags": [
+    "natural wood table",
+    "sleek cabinetry",
+    "soft diffused lighting",
+    "floor-to-ceiling curtains",
+    "modern aesthetic",
+    "subtle elegance",
+    "natural lighting",
+    "wooden desk",
+    "minimalist decor",
+    "lush greenery",
+    "large windows",
+    "warm wood tones",
+    "soft ambient lighting",
+    "plush gray chair",
+    "minimalist decor"
+  ],
+  "round_count": 0,
+  "updated_at": "2026-01-28 04:15:20",
+  "dedup_result": {
+    "original_count": 15,
+    "deduplicated_count": 14,
+    "unique_tags": [
+      "minimalist decor",
+      "wooden desk",
+      "soft diffused lighting",
+      "subtle elegance",
+      "soft ambient lighting",
+      "modern aesthetic",
+      "natural wood table",
+      "lush greenery",
+      "sleek cabinetry",
+      "large windows",
+      "floor-to-ceiling curtains",
+      "warm wood tones",
+      "plush gray chair",
+      "natural lighting"
+    ],
+    "duplicates_removed": []
+  },
+  "slots": [
+    {
+      "name": "Lighting Quality",
+      "description": "The type and characteristic of illumination within the space, influencing the mood and visibility.",
+      "tags": [
+        "soft diffused lighting",
+        "soft ambient lighting",
+        "natural lighting"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "Overall Aesthetic",
+      "description": "The overarching design style, feel, and decorative approach of the environment.",
+      "tags": [
+        "minimalist decor",
+        "subtle elegance",
+        "modern aesthetic"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "Work Surface",
+      "description": "The primary desk or table used for working, including its material and general style.",
+      "tags": [
+        "wooden desk",
+        "natural wood table"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "Seating",
+      "description": "The primary chair or seating option provided in the workspace.",
+      "tags": [
+        "plush gray chair"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "Architectural Feature",
+      "description": "Prominent structural elements or significant openings in the space, such as windows.",
+      "tags": [
+        "large windows"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "Window Treatment",
+      "description": "Elements used to cover, adorn, or control light for windows.",
+      "tags": [
+        "floor-to-ceiling curtains"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "Greenery & Nature",
+      "description": "The incorporation of plants and natural elements to bring life into the space.",
+      "tags": [
+        "lush greenery"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "Storage Solutions",
+      "description": "Types of storage and organizational units present in the design.",
+      "tags": [
+        "sleek cabinetry"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "Material & Tones",
+      "description": "Dominant materials and their associated color temperatures used throughout the design.",
+      "tags": [
+        "warm wood tones"
+      ],
+      "importance": 0.5
+    }
+  ],
+  "elimination": {
+    "slot_states": {
+      "Lighting Quality": {
+        "current_winner": "soft diffused lighting",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "soft diffused lighting": 1.0,
+          "soft ambient lighting": 1.0,
+          "natural lighting": 1.0
+        }
+      },
+      "Overall Aesthetic": {
+        "current_winner": "minimalist decor",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "minimalist decor": 1.0,
+          "subtle elegance": 1.0,
+          "modern aesthetic": 1.0
+        }
+      },
+      "Work Surface": {
+        "current_winner": "wooden desk",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "wooden desk": 1.0,
+          "natural wood table": 1.0
+        }
+      },
+      "Seating": {
+        "current_winner": "plush gray chair",
+        "confidence": 1.0,
+        "is_resolved": true,
+        "tag_scores": {
+          "plush gray chair": 1.0
+        }
+      },
+      "Architectural Feature": {
+        "current_winner": "large windows",
+        "confidence": 1.0,
+        "is_resolved": true,
+        "tag_scores": {
+          "large windows": 1.0
+        }
+      },
+      "Window Treatment": {
+        "current_winner": "floor-to-ceiling curtains",
+        "confidence": 1.0,
+        "is_resolved": true,
+        "tag_scores": {
+          "floor-to-ceiling curtains": 1.0
+        }
+      },
+      "Greenery & Nature": {
+        "current_winner": "lush greenery",
+        "confidence": 1.0,
+        "is_resolved": true,
+        "tag_scores": {
+          "lush greenery": 1.0
+        }
+      },
+      "Storage Solutions": {
+        "current_winner": "sleek cabinetry",
+        "confidence": 1.0,
+        "is_resolved": true,
+        "tag_scores": {
+          "sleek cabinetry": 1.0
+        }
+      },
+      "Material & Tones": {
+        "current_winner": "warm wood tones",
+        "confidence": 1.0,
+        "is_resolved": true,
+        "tag_scores": {
+          "warm wood tones": 1.0
+        }
+      }
+    },
+    "round_history": []
+  }
+}

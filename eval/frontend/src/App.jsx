@@ -6,6 +6,7 @@ import JsonPanel from './components/JsonPanel';
 import InlineTagDisplay from './components/InlineTagDisplay';
 import ConceptRefinementPanel from './components/ConceptRefinementPanel';
 import HITLRefinementPanel from './components/HITLRefinementPanel';
+import SlotRefinementPanel from './components/SlotRefinementPanel';
 
 /**
  * Fisher-Yates shuffle algorithm to randomize array order
@@ -92,6 +93,20 @@ function App() {
   const [hitlGpVariance, setHitlGpVariance] = useState(null);
   const [hitlStatusMessage, setHitlStatusMessage] = useState('');
   const [isHitlLoading, setIsHitlLoading] = useState(false);
+  
+  // Slot-based Refinement state
+  const [slotRound, setSlotRound] = useState(1);
+  const [slotStage, setSlotStage] = useState('elimination');  // 'elimination' or 'weight_refinement'
+  const [slotRoundType, setSlotRoundType] = useState('exploration');
+  const [slotFocusSlot, setSlotFocusSlot] = useState(null);
+  const [slotImages, setSlotImages] = useState([]);
+  const [slotCompositions, setSlotCompositions] = useState([]);
+  const [slotWeightConfigs, setSlotWeightConfigs] = useState([]);
+  const [slotsStatus, setSlotsStatus] = useState([]);
+  const [slotCurrentWeights, setSlotCurrentWeights] = useState(null);
+  const [slotStatusMessage, setSlotStatusMessage] = useState('');
+  const [isSlotLoading, setIsSlotLoading] = useState(false);
+  const [slotInitData, setSlotInitData] = useState(null);  // Store dedup/slot creation info
   
   const imageRefs = useRef({});
   const conceptTagHandlerRef = useRef(null);
@@ -680,11 +695,11 @@ function App() {
       
       const data = await res.json();
       
-      // Update convergence state
-      setHitlGpVariance(data.gp_variance);
+      // Update convergence state (now using image variance)
+      setHitlGpVariance(data.image_variance ?? data.gp_variance);
       setIsHitlConverged(data.converged);
       
-      addStatusMessage(`Round ${hitlRound} completed. GP variance: ${data.gp_variance?.toFixed(4)}`);
+      addStatusMessage(`Round ${hitlRound} completed. Image variance: ${(data.image_variance ?? data.gp_variance)?.toFixed(4)}`);
       
       if (data.converged) {
         setHitlStatusMessage('Preferences have converged! You can finalize now.');
@@ -751,6 +766,209 @@ function App() {
     // Change stage first, then initialize
     setStage('hitl_refinement');
     await initializeHITL();
+  };
+  
+  // ============== Slot-Based Refinement Functions ==============
+  
+  // Initialize slot refinement session
+  const initializeSlotRefinement = async () => {
+    setIsSlotLoading(true);
+    setSlotStatusMessage('Analyzing tags and creating semantic slots...');
+    
+    try {
+      const res = await fetch('/api/slot-refinement/initialize', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          session_id: sessionId
+        })
+      });
+      
+      if (!res.ok) {
+        throw new Error(`Failed to initialize slot refinement: ${res.status}`);
+      }
+      
+      const data = await res.json();
+      setSlotInitData(data);
+      setSlotsStatus(data.slot_creation?.slots?.map(s => ({
+        name: s.name,
+        winner: null,
+        confidence: 0,
+        is_resolved: s.tags.length <= 1,
+        remaining_tags: s.tags
+      })) || []);
+      
+      addStatusMessage(`Created ${data.slot_creation?.num_slots || 0} semantic slots from ${data.deduplication?.deduplicated_count || 0} tags`);
+      
+      // Generate first round
+      await generateSlotRound();
+      
+    } catch (error) {
+      console.error('Error initializing slot refinement:', error);
+      addStatusMessage(`Error: ${error.message}`);
+      setSlotStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsSlotLoading(false);
+    }
+  };
+  
+  // Generate a round of slot refinement images
+  const generateSlotRound = async () => {
+    setIsSlotLoading(true);
+    setSlotStatusMessage(`Generating images for round ${slotRound}...`);
+    
+    try {
+      const res = await fetch('/api/slot-refinement/generate-round', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: sessionId })
+      });
+      
+      if (!res.ok) {
+        throw new Error(`Failed to generate round: ${res.status}`);
+      }
+      
+      const data = await res.json();
+      
+      // Update state with round data
+      setSlotRound(data.round_num || slotRound);
+      setSlotStage(data.stage);
+      setSlotRoundType(data.round_type);
+      setSlotFocusSlot(data.focus_slot);
+      
+      // Convert image paths to URLs
+      const imageUrls = (data.images || []).map((path, idx) => ({
+        id: idx,
+        url: `/api/eval/image?path=${encodeURIComponent(path)}`,
+        filename: path.split('/').pop()
+      }));
+      setSlotImages(imageUrls);
+      
+      setSlotCompositions(data.compositions || []);
+      setSlotWeightConfigs(data.weight_configs || []);
+      setSlotsStatus(data.slots_status || slotsStatus);
+      setSlotCurrentWeights(data.current_weights);
+      setSlotStatusMessage('');
+      
+      addStatusMessage(`Generated ${imageUrls.length} images for round ${data.round_num}`);
+      
+    } catch (error) {
+      console.error('Error generating slot round:', error);
+      addStatusMessage(`Error: ${error.message}`);
+      setSlotStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsSlotLoading(false);
+    }
+  };
+  
+  // Submit selection for slot refinement
+  const submitSlotSelection = async (selectedIdx) => {
+    setIsSlotLoading(true);
+    setSlotStatusMessage('Processing selection...');
+    
+    try {
+      const res = await fetch('/api/slot-refinement/submit-feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          session_id: sessionId,
+          selected_idx: selectedIdx
+        })
+      });
+      
+      if (!res.ok) {
+        throw new Error(`Failed to submit selection: ${res.status}`);
+      }
+      
+      const data = await res.json();
+      
+      // Update slots status
+      if (data.slots_status) {
+        setSlotsStatus(data.slots_status);
+      }
+      if (data.current_weights) {
+        setSlotCurrentWeights(data.current_weights);
+      }
+      
+      // Check if complete
+      if (data.is_complete) {
+        addStatusMessage('Refinement complete!');
+        await finalizeSlotRefinement();
+        return;
+      }
+      
+      // Log progress
+      if (data.newly_resolved?.length > 0) {
+        addStatusMessage(`Resolved slots: ${data.newly_resolved.join(', ')}`);
+      }
+      
+      // Generate next round
+      setSlotRound(prev => prev + 1);
+      await generateSlotRound();
+      
+    } catch (error) {
+      console.error('Error submitting slot selection:', error);
+      addStatusMessage(`Error: ${error.message}`);
+      setSlotStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsSlotLoading(false);
+    }
+  };
+  
+  // Finalize slot refinement
+  const finalizeSlotRefinement = async () => {
+    setIsSlotLoading(true);
+    setSlotStatusMessage('Finalizing preferences...');
+    
+    try {
+      const res = await fetch('/api/slot-refinement/finalize', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: sessionId })
+      });
+      
+      if (!res.ok) {
+        throw new Error(`Failed to finalize: ${res.status}`);
+      }
+      
+      const data = await res.json();
+      addStatusMessage(`Saved ${data.final_tags?.length || 0} optimized tags`);
+      
+      // Proceed to evaluation
+      await proceedToEvaluation();
+      
+    } catch (error) {
+      console.error('Error finalizing slot refinement:', error);
+      addStatusMessage(`Error: ${error.message}`);
+      setSlotStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsSlotLoading(false);
+    }
+  };
+  
+  // Start slot-based refinement (called from exploration stage)
+  const handleStartSlotRefinement = async () => {
+    if (!selectedImage) {
+      addStatusMessage('Please select an image before continuing');
+      return;
+    }
+    
+    // Reset slot refinement state
+    setSlotRound(1);
+    setSlotStage('elimination');
+    setSlotRoundType('exploration');
+    setSlotFocusSlot(null);
+    setSlotImages([]);
+    setSlotCompositions([]);
+    setSlotWeightConfigs([]);
+    setSlotsStatus([]);
+    setSlotCurrentWeights(null);
+    setSlotStatusMessage('');
+    setSlotInitData(null);
+    
+    // Change stage
+    setStage('slot_refinement');
+    await initializeSlotRefinement();
   };
   
   // Proceed to evaluation after HITL (shared logic with handleSkipToSlider)
@@ -847,8 +1065,8 @@ function App() {
     }
   };
 
-  // Custom stages for eval (with HITL refinement)
-  const evalStages = ['landing', 'impression', 'hitl_refinement', 'evaluation', 'slider_generation'];
+  // Custom stages for eval (with slot-based refinement)
+  const evalStages = ['landing', 'impression', 'slot_refinement', 'evaluation', 'slider_generation'];
 
   // ============== Ranking/Evaluation Functions ==============
 
@@ -1400,6 +1618,82 @@ function App() {
                 setHitlImages([]);
                 setIsHitlConverged(false);
                 setHitlGpVariance(null);
+              }}
+              style={{
+                padding: '10px 20px',
+                backgroundColor: '#6c757d',
+                color: 'white',
+                border: 'none',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '14px'
+              }}
+            >
+              ← Back to Exploration
+            </button>
+          </div>
+        </div>
+      ) : stage === 'slot_refinement' ? (
+        // ============== SLOT-BASED REFINEMENT STAGE ==============
+        <div>
+          {/* Show initialization info */}
+          {slotInitData && slotRound === 1 && !isSlotLoading && (
+            <div style={{
+              padding: '16px',
+              marginBottom: '20px',
+              backgroundColor: '#f0fdf4',
+              borderRadius: '8px',
+              border: '1px solid #bbf7d0'
+            }}>
+              <h4 style={{ margin: '0 0 8px 0', color: '#166534' }}>
+                Semantic Slots Created
+              </h4>
+              <p style={{ margin: '0 0 8px 0', color: '#15803d', fontSize: '14px' }}>
+                {slotInitData.deduplication?.original_count} tags → {slotInitData.deduplication?.deduplicated_count} unique → {slotInitData.slot_creation?.num_slots} slots
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                {slotInitData.slot_creation?.slots?.map((slot, idx) => (
+                  <span key={idx} style={{
+                    padding: '4px 10px',
+                    backgroundColor: 'white',
+                    borderRadius: '16px',
+                    fontSize: '12px',
+                    color: '#166534',
+                    border: '1px solid #bbf7d0'
+                  }}>
+                    {slot.name.replace(/_/g, ' ')} ({slot.tags.length})
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          <SlotRefinementPanel
+            sessionId={sessionId}
+            round={slotRound}
+            stage={slotStage}
+            roundType={slotRoundType}
+            focusSlot={slotFocusSlot}
+            images={slotImages}
+            compositions={slotCompositions}
+            weightConfigs={slotWeightConfigs}
+            slotsStatus={slotsStatus}
+            currentWeights={slotCurrentWeights}
+            isLoading={isSlotLoading}
+            onSubmitSelection={submitSlotSelection}
+            onFinalize={finalizeSlotRefinement}
+            statusMessage={slotStatusMessage}
+          />
+          
+          {/* Back button */}
+          <div style={{ textAlign: 'center', marginTop: '20px' }}>
+            <button
+              onClick={() => {
+                setStage('impression');
+                setSlotRound(1);
+                setSlotImages([]);
+                setSlotsStatus([]);
+                setSlotInitData(null);
               }}
               style={{
                 padding: '10px 20px',
@@ -2374,9 +2668,9 @@ function App() {
 
           {/* Action Buttons */}
           <div style={{ display: 'flex', gap: '10px', marginTop: '20px', flexWrap: 'wrap' }}>
-            {/* Refine Preferences Button (HITL) */}
+            {/* Refine Preferences Button - Slot-Based */}
             <button
-              onClick={handleStartHITL}
+              onClick={handleStartSlotRefinement}
               disabled={!selectedImage || isLoading || !conceptSystemReady}
               style={{
                 padding: '12px 24px',

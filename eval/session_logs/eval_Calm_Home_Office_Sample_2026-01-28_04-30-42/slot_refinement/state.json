@@ -1,0 +1,267 @@
+{
+  "session_id": "eval_Calm_Home_Office_Sample_2026-01-28_04-30-42",
+  "stage": "elimination",
+  "base_prompt": "Calm Home Office",
+  "raw_tags": [
+    "minimalist design",
+    "neutral color palette",
+    "natural wood table",
+    "clean lines",
+    "open space layout",
+    "modern aesthetic",
+    "subtle elegance",
+    "calm atmosphere",
+    "natural lighting",
+    "wooden desk",
+    "minimalist decor",
+    "lush greenery",
+    "large windows",
+    "stone accents",
+    "earthy tones",
+    "clean lines",
+    "cozy atmosphere",
+    "ceramic pots",
+    "modern simplicity",
+    "contemporary elegance",
+    "warm wood tones",
+    "minimalist decor",
+    "neutral color palette",
+    "spacious layout",
+    "Scandinavian design",
+    "Natural light",
+    "Soft textures",
+    "Neutral tones",
+    "Wooden furniture",
+    "Cozy atmosphere",
+    "Simple layout",
+    "Casual elegance"
+  ],
+  "round_count": 1,
+  "updated_at": "2026-01-28 04:32:47",
+  "dedup_result": {
+    "original_count": 32,
+    "deduplicated_count": 27,
+    "unique_tags": [
+      "minimalist decor",
+      "clean lines",
+      "neutral color palette",
+      "modern aesthetic",
+      "cozy atmosphere",
+      "Scandinavian design",
+      "Neutral tones",
+      "wooden desk",
+      "open space layout",
+      "natural lighting",
+      "warm wood tones",
+      "Casual elegance",
+      "lush greenery",
+      "calm atmosphere",
+      "large windows",
+      "Soft textures",
+      "natural wood table",
+      "modern simplicity",
+      "ceramic pots",
+      "contemporary elegance",
+      "subtle elegance",
+      "spacious layout",
+      "earthy tones",
+      "minimalist design",
+      "stone accents",
+      "Simple layout",
+      "Wooden furniture"
+    ],
+    "duplicates_removed": [
+      [
+        "Natural light",
+        "natural lighting"
+      ]
+    ]
+  },
+  "slots": [
+    {
+      "name": "Overarching Design Style",
+      "description": "The fundamental aesthetic direction or cultural influence guiding the overall design.",
+      "tags": [
+        "minimalist design",
+        "modern aesthetic",
+        "Scandinavian design"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "Design Qualities & Principles",
+      "description": "Specific characteristics, approaches, or principles that define the visual execution of the design.",
+      "tags": [
+        "minimalist decor",
+        "modern simplicity",
+        "clean lines",
+        "contemporary elegance"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "Color & Tonal Palette",
+      "description": "The primary color scheme and general tonal qualities, including warmth or specific color families.",
+      "tags": [
+        "neutral color palette",
+        "Neutral tones",
+        "earthy tones",
+        "warm wood tones"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "Key Materials & Textures",
+      "description": "Specific non-furniture materials and tactile qualities used as accents or defining elements in the space.",
+      "tags": [
+        "stone accents",
+        "Soft textures"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "Furniture Focus",
+      "description": "The primary type or material of furniture emphasized in the space.",
+      "tags": [
+        "wooden desk",
+        "natural wood table",
+        "Wooden furniture"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "Spatial Experience & Layout",
+      "description": "How the space is arranged, its perceived openness, and features contributing to its overall feel.",
+      "tags": [
+        "open space layout",
+        "spacious layout",
+        "Simple layout",
+        "large windows"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "Mood & Ambiance",
+      "description": "The dominant emotional atmosphere, comfort level, and type of sophistication desired for the environment.",
+      "tags": [
+        "cozy atmosphere",
+        "calm atmosphere",
+        "Casual elegance",
+        "subtle elegance"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "Greenery & Planter Elements",
+      "description": "The incorporation of natural plant life and associated decorative containers.",
+      "tags": [
+        "lush greenery",
+        "ceramic pots"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "Lighting Type",
+      "description": "The primary source and inherent quality of illumination in the space.",
+      "tags": [
+        "natural lighting"
+      ],
+      "importance": 0.5
+    }
+  ],
+  "elimination": {
+    "slot_states": {
+      "Overarching Design Style": {
+        "current_winner": "minimalist design",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "minimalist design": 1.0,
+          "modern aesthetic": 1.0,
+          "Scandinavian design": 1.0
+        }
+      },
+      "Design Qualities & Principles": {
+        "current_winner": "minimalist decor",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "minimalist decor": 1.0,
+          "modern simplicity": 1.0,
+          "clean lines": 1.0,
+          "contemporary elegance": 1.0
+        }
+      },
+      "Color & Tonal Palette": {
+        "current_winner": "neutral color palette",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "neutral color palette": 1.0,
+          "Neutral tones": 1.0,
+          "earthy tones": 1.0,
+          "warm wood tones": 1.0
+        }
+      },
+      "Key Materials & Textures": {
+        "current_winner": "stone accents",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "stone accents": 1.0,
+          "Soft textures": 1.0
+        }
+      },
+      "Furniture Focus": {
+        "current_winner": "wooden desk",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "wooden desk": 1.0,
+          "natural wood table": 1.0,
+          "Wooden furniture": 1.0
+        }
+      },
+      "Spatial Experience & Layout": {
+        "current_winner": "open space layout",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "open space layout": 1.0,
+          "spacious layout": 1.0,
+          "Simple layout": 1.0,
+          "large windows": 1.0
+        }
+      },
+      "Mood & Ambiance": {
+        "current_winner": "cozy atmosphere",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "cozy atmosphere": 1.0,
+          "calm atmosphere": 1.0,
+          "Casual elegance": 1.0,
+          "subtle elegance": 1.0
+        }
+      },
+      "Greenery & Planter Elements": {
+        "current_winner": "lush greenery",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "lush greenery": 1.0,
+          "ceramic pots": 1.0
+        }
+      },
+      "Lighting Type": {
+        "current_winner": "natural lighting",
+        "confidence": 1.0,
+        "is_resolved": true,
+        "tag_scores": {
+          "natural lighting": 1.0
+        }
+      }
+    },
+    "round_history": []
+  }
+}

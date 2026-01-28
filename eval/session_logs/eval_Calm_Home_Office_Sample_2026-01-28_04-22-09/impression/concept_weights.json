@@ -1,0 +1,156 @@
+{
+  "stage": "impression",
+  "session_id": "eval_Calm_Home_Office_Sample_2026-01-28_04-22-09",
+  "timestamp": "2026-01-28T04:30:21.083608",
+  "num_concepts": 6,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 66,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "stone accents",
+      "weight": 0.1897919774055481,
+      "score": 1.0420266389846802,
+      "utility_std": 1.0101816654205322,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "stone accents"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "lush greenery",
+      "weight": 0.18957583606243134,
+      "score": 1.0408871173858643,
+      "utility_std": 1.0101816654205322,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "lush greenery"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "large windows",
+      "weight": 0.17559881508350372,
+      "score": 0.9642998576164246,
+      "utility_std": 1.0101816654205322,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "earthy tones",
+      "weight": 0.15796595811843872,
+      "score": 0.8584774732589722,
+      "utility_std": 1.0101816654205322,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "earthy tones"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "Minimalist decor",
+      "weight": 0.15199843049049377,
+      "score": 0.8199681043624878,
+      "utility_std": 1.0101816654205322,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Minimalist decor"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "wooden desk",
+      "weight": 0.13506892323493958,
+      "score": 0.7018829584121704,
+      "utility_std": 1.0101816654205322,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden desk"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_1_0_5",
+      "text": "stone accents",
+      "utility": 1.0420266389846802,
+      "uncertainty": 1.0101816654205322,
+      "weight": 0.1897919774055481,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_3",
+      "text": "lush greenery",
+      "utility": 1.0408871173858643,
+      "uncertainty": 1.0101816654205322,
+      "weight": 0.18957583606243134,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_4",
+      "text": "large windows",
+      "utility": 0.9642998576164246,
+      "uncertainty": 1.0101816654205322,
+      "weight": 0.17559881508350372,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_6",
+      "text": "earthy tones",
+      "utility": 0.8584774732589722,
+      "uncertainty": 1.0101816654205322,
+      "weight": 0.15796595811843872,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_2",
+      "text": "Minimalist decor",
+      "utility": 0.8199681043624878,
+      "uncertainty": 1.0101816654205322,
+      "weight": 0.15199843049049377,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "wooden desk",
+      "utility": 0.7018829584121704,
+      "uncertainty": 1.0101816654205322,
+      "weight": 0.13506892323493958,
+      "source_image_idx": 1,
+      "category": "positive"
+    }
+  ]
+}

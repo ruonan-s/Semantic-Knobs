@@ -1,0 +1,113 @@
+{
+  "user_id": "anonymous",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Refreshing_Caf\u00e9_Sample2_2026-01-28_02-43-06",
+  "created_at": "2026-01-28T02:43:06.459238",
+  "events": [
+    {
+      "timestamp": "2026-01-28T02:43:06.459248",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Refreshing_Caf\u00e9_Sample2"
+      }
+    },
+    {
+      "timestamp": "2026-01-28T02:44:43.190967",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Refreshing Caf\u00e9"
+      }
+    },
+    {
+      "timestamp": "2026-01-28T02:45:59.394244",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "gp_variance": 0.9079560041427612,
+        "is_converged": true
+      }
+    },
+    {
+      "timestamp": "2026-01-28T02:46:58.690087",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 2,
+        "ranking": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "gp_variance": 0.9082375764846802,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-28T02:48:01.737944",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 3,
+        "ranking": [
+          1,
+          2,
+          3,
+          0
+        ],
+        "gp_variance": 0.9143307209014893,
+        "is_converged": true
+      }
+    },
+    {
+      "timestamp": "2026-01-28T02:48:06.742809",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 4,
+        "ranking": [
+          1,
+          2,
+          3,
+          0
+        ],
+        "gp_variance": 0.9143919348716736,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-28T02:49:01.812803",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 5,
+        "ranking": [
+          2,
+          3,
+          1,
+          0
+        ],
+        "gp_variance": 0.9143927097320557,
+        "is_converged": true
+      }
+    },
+    {
+      "timestamp": "2026-01-28T02:49:05.028413",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 6,
+        "ranking": [
+          2,
+          3,
+          1,
+          0
+        ],
+        "gp_variance": 0.9078361988067627,
+        "is_converged": false
+      }
+    }
+  ]
+}

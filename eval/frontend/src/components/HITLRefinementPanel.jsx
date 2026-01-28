@@ -11,7 +11,7 @@ function HITLRefinementPanel({
   sessionId,
   round,
   images,           // Array of { id, url, filename }
-  gpVariance,       // Current GP variance (lower = more confident)
+  gpVariance,       // Current image variance (lower = images more similar = converging)
   isConverged,      // Whether the GP has converged
   isLoading,        // Loading state for image generation
   onSubmitRanking,  // Callback when user submits ranking
@@ -99,11 +99,6 @@ function HITLRefinementPanel({
     4: '4th'
   };
   
-  // Calculate convergence percentage (inverse of variance, capped)
-  const convergencePercent = gpVariance !== null 
-    ? Math.min(100, Math.max(0, (1 - gpVariance) * 100))
-    : 0;
-  
   return (
     <div style={{ padding: '20px' }}>
       {/* Header */}
@@ -122,44 +117,6 @@ function HITLRefinementPanel({
           </p>
         </div>
         
-        {/* Convergence indicator */}
-        <div style={{
-          padding: '12px 20px',
-          backgroundColor: isConverged ? '#d4edda' : '#e7f3ff',
-          borderRadius: '8px',
-          border: `1px solid ${isConverged ? '#c3e6cb' : '#b8daff'}`,
-          textAlign: 'center',
-          minWidth: '180px'
-        }}>
-          <div style={{ 
-            fontSize: '12px', 
-            color: isConverged ? '#155724' : '#004085',
-            marginBottom: '4px'
-          }}>
-            {isConverged ? 'Preferences Refined!' : 'Preferences Converging...'}
-          </div>
-          
-          {/* Progress bar */}
-          <div style={{
-            height: '8px',
-            backgroundColor: '#e9ecef',
-            borderRadius: '4px',
-            overflow: 'hidden'
-          }}>
-            <div style={{
-              height: '100%',
-              width: `${convergencePercent}%`,
-              backgroundColor: isConverged ? '#28a745' : '#007bff',
-              transition: 'width 0.5s ease'
-            }} />
-          </div>
-          
-          {gpVariance !== null && (
-            <div style={{ fontSize: '11px', color: '#666', marginTop: '4px' }}>
-              GP Variance: {gpVariance.toFixed(3)}
-            </div>
-          )}
-        </div>
       </div>
       
       {/* Status message */}

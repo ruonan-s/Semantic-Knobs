@@ -1,0 +1,155 @@
+{
+  "session_id": "eval_Calm_Home_Office_Sample_2026-01-28_03-58-05",
+  "stage": "elimination",
+  "base_prompt": "Calm Home Office",
+  "raw_tags": [
+    "natural lighting",
+    "clean lines",
+    "minimalist design",
+    "lush greenery",
+    "ceramic pots",
+    "earthy tones",
+    "stone accents",
+    "large windows",
+    "Simple layout",
+    "wooden desk",
+    "neutral color palette",
+    "warm wood tones"
+  ],
+  "round_count": 0,
+  "updated_at": "2026-01-28 04:09:42",
+  "dedup_result": {
+    "original_count": 12,
+    "deduplicated_count": 12,
+    "unique_tags": [
+      "clean lines",
+      "earthy tones",
+      "warm wood tones",
+      "neutral color palette",
+      "stone accents",
+      "minimalist design",
+      "Simple layout",
+      "lush greenery",
+      "natural lighting",
+      "large windows",
+      "ceramic pots",
+      "wooden desk"
+    ],
+    "duplicates_removed": []
+  },
+  "slots": [
+    {
+      "name": "aesthetic_style",
+      "description": "The overarching design philosophy and visual coherence.",
+      "tags": [
+        "minimalist design",
+        "clean lines"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "color_material_palette",
+      "description": "The dominant color scheme and primary material textures.",
+      "tags": [
+        "neutral color palette",
+        "earthy tones",
+        "warm wood tones",
+        "stone accents"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "lighting_openness",
+      "description": "How light enters the space and its general openness.",
+      "tags": [
+        "natural lighting",
+        "large windows"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "greenery_integration",
+      "description": "The presence and style of plants and their containers.",
+      "tags": [
+        "lush greenery",
+        "ceramic pots"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "spatial_layout",
+      "description": "The arrangement and flow of the space.",
+      "tags": [
+        "Simple layout"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "key_furniture",
+      "description": "A significant piece of furniture that defines the space's function.",
+      "tags": [
+        "wooden desk"
+      ],
+      "importance": 0.5
+    }
+  ],
+  "elimination": {
+    "slot_states": {
+      "aesthetic_style": {
+        "current_winner": "minimalist design",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "minimalist design": 1.0,
+          "clean lines": 1.0
+        }
+      },
+      "color_material_palette": {
+        "current_winner": "neutral color palette",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "neutral color palette": 1.0,
+          "earthy tones": 1.0,
+          "warm wood tones": 1.0,
+          "stone accents": 1.0
+        }
+      },
+      "lighting_openness": {
+        "current_winner": "natural lighting",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "natural lighting": 1.0,
+          "large windows": 1.0
+        }
+      },
+      "greenery_integration": {
+        "current_winner": "lush greenery",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "lush greenery": 1.0,
+          "ceramic pots": 1.0
+        }
+      },
+      "spatial_layout": {
+        "current_winner": "Simple layout",
+        "confidence": 1.0,
+        "is_resolved": true,
+        "tag_scores": {
+          "Simple layout": 1.0
+        }
+      },
+      "key_furniture": {
+        "current_winner": "wooden desk",
+        "confidence": 1.0,
+        "is_resolved": true,
+        "tag_scores": {
+          "wooden desk": 1.0
+        }
+      }
+    },
+    "round_history": []
+  }
+}

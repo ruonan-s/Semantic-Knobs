@@ -21,8 +21,9 @@ sys.path.insert(0, str(BACKEND_DIR))
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(SDXL_DIR))  # For SDXL internal imports like diffusion_runner
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, List, Dict
@@ -52,6 +53,9 @@ from gp_session import get_or_create_gp_session, gp_exploration_sessions, GPExpl
 
 # Import HITL refinement system
 from hitl_session import HITLRefinementSession
+
+# Import Slot-based refinement system
+from Refinement_steps import SlotRefinementSession, SlotRefinementConfig
 
 # ============== Mode Toggle ==============
 # Set to True to use GP-based preference learning, False for original softmax approach
@@ -106,6 +110,42 @@ if BACKEND_SESSIONS_DIR.exists():
 
 # In-memory session store for eval
 eval_sessions = {}
+
+
+# ============== Image Serving ==============
+
+@app.get("/api/eval/image")
+async def get_eval_image(path: str = Query(..., description="Absolute path to the image")):
+    """Serve an image file from the session logs directory."""
+    from pathlib import Path
+    
+    image_path = Path(path)
+    
+    # Security: ensure the path is within allowed directories
+    allowed_dirs = [SESSION_LOGS_DIR, PREDEFINED_INPUT_DIR, BACKEND_SESSIONS_DIR]
+    is_allowed = any(
+        str(image_path).startswith(str(allowed_dir))
+        for allowed_dir in allowed_dirs
+    )
+    
+    if not is_allowed:
+        raise HTTPException(403, "Access denied: path not in allowed directories")
+    
+    if not image_path.exists():
+        raise HTTPException(404, f"Image not found: {path}")
+    
+    # Determine media type
+    suffix = image_path.suffix.lower()
+    media_types = {
+        '.png': 'image/png',
+        '.jpg': 'image/jpeg',
+        '.jpeg': 'image/jpeg',
+        '.gif': 'image/gif',
+        '.webp': 'image/webp'
+    }
+    media_type = media_types.get(suffix, 'application/octet-stream')
+    
+    return FileResponse(str(image_path), media_type=media_type)
 
 
 # ============== Models ==============
@@ -1255,8 +1295,8 @@ async def generate_hitl_round(request: HITLGenerateRequest):
     if not hitl.is_initialized:
         raise HTTPException(400, "HITL session not initialized")
     
-    if hitl.is_converged:
-        raise HTTPException(400, "HITL session already converged")
+    # Let user continue as many rounds as they want - no convergence blocking
+    # They can finalize whenever they're satisfied
     
     try:
         # Run in thread pool for non-blocking generation
@@ -1280,14 +1320,12 @@ async def generate_hitl_round(request: HITLGenerateRequest):
                 "path": path
             })
         
-        # Build compositions summary (continuous embeddings, no tag labels)
+        # Build compositions summary
         comp_summaries = []
         for comp in compositions:
             comp_summaries.append({
-                "strategies": comp.sampling_strategies[:5],  # Sampling strategies used
+                "tags": comp.tag_labels[:5],  # Top 5 tags
                 "weights": comp.weights[:5].tolist(),
-                "mean_utility": float(comp.utilities.mean()) if hasattr(comp, 'utilities') else 0.0,
-                "mean_uncertainty": float(comp.uncertainties.mean()) if hasattr(comp, 'uncertainties') else 0.0,
             })
         
         return HITLGenerateResponse(
@@ -1431,6 +1469,338 @@ def get_hitl_status(session_id: str):
         "exists": True,
         "session_id": session_id,
         **hitl.get_status()
+    }
+
+
+# ============== Slot-Based Refinement Endpoints ==============
+
+# In-memory store for slot refinement sessions
+slot_refinement_sessions: Dict[str, SlotRefinementSession] = {}
+
+
+class SlotRefineInitRequest(BaseModel):
+    session_id: str
+
+
+class SlotRefineInitResponse(BaseModel):
+    status: str
+    stage: str
+    deduplication: dict
+    slot_creation: dict
+
+
+class SlotRoundRequest(BaseModel):
+    session_id: str
+
+
+class SlotRoundResponse(BaseModel):
+    round_num: int
+    stage: str
+    round_type: str
+    images: List[str]
+    focus_slot: Optional[str] = None
+    compositions: Optional[List[dict]] = None
+    weight_configs: Optional[List[dict]] = None
+    slots_status: Optional[List[dict]] = None
+    current_weights: Optional[dict] = None
+
+
+class SlotFeedbackRequest(BaseModel):
+    session_id: str
+    selected_idx: int
+
+
+class SlotFeedbackResponse(BaseModel):
+    stage: str
+    is_complete: bool
+    slots_status: Optional[List[dict]] = None
+    current_weights: Optional[dict] = None
+    newly_resolved: Optional[List[str]] = None
+    eliminations: Optional[List] = None
+    weight_updates: Optional[dict] = None
+    max_change: Optional[float] = None
+
+
+class SlotFinalizeRequest(BaseModel):
+    session_id: str
+
+
+class SlotFinalizeResponse(BaseModel):
+    base_prompt: str
+    final_tags: List[dict]
+    final_prompt: str
+    summary: dict
+    description: str
+
+
+@app.post("/api/slot-refinement/initialize", response_model=SlotRefineInitResponse)
+def initialize_slot_refinement(request: SlotRefineInitRequest):
+    """
+    Initialize slot-based refinement from exploration outputs.
+    
+    Runs Stage 1 (Deduplication) and Stage 2 (Semantic Slots via LLM).
+    After this, the session is ready for elimination rounds.
+    """
+    global _eval_sdxl_runner
+    
+    # Get session from eval_sessions or find from session_logs
+    session = eval_sessions.get(request.session_id)
+    if session:
+        session_folder = Path(session["folder"])
+    else:
+        # Try to find session folder directly in session_logs
+        session_folder = SESSION_LOGS_DIR / request.session_id
+        if not session_folder.exists():
+            raise HTTPException(404, f"Session not found: {request.session_id}")
+        print(f"[SlotRefine] Found session folder directly: {session_folder}")
+    
+    # Check for existing session (idempotent)
+    if request.session_id in slot_refinement_sessions:
+        session = slot_refinement_sessions[request.session_id]
+        return SlotRefineInitResponse(
+            status="already_initialized",
+            stage=session.stage.value,
+            deduplication={
+                "original_count": len(session.raw_tags),
+                "deduplicated_count": session.dedup_result.deduplicated_count if session.dedup_result else 0,
+                "duplicates_merged": session.dedup_result.duplicates_removed if session.dedup_result else []
+            },
+            slot_creation={
+                "num_slots": len(session.slots),
+                "slots": [
+                    {"name": s.name, "description": s.description, "tags": s.tags, "importance": s.importance}
+                    for s in session.slots
+                ],
+                "reasoning": ""
+            }
+        )
+    
+    # Get session info for GP access
+    eval_session = eval_sessions.get(request.session_id)
+    use_gp = eval_session.get("use_gp", USE_GP_EXPLORATION) if eval_session else USE_GP_EXPLORATION
+    descriptor = eval_session.get("descriptor", "") if eval_session else ""
+    
+    # IMPORTANT: Create tag_preferences.json from GP session if needed
+    tag_prefs_path = session_folder / "impression" / "tag_preferences.json"
+    
+    if not tag_prefs_path.exists():
+        key = f"{request.session_id}_impression"
+        if use_gp and key in gp_exploration_sessions:
+            gp_session = gp_exploration_sessions[key]
+            print(f"[SlotRefine] Creating tag_preferences.json from GP session...")
+            
+            # Fit GP if not already fitted (need at least 3 preference pairs)
+            try:
+                if hasattr(gp_session, 'gp_system') and hasattr(gp_session.gp_system, 'learner'):
+                    if not gp_session.gp_system.learner.is_fitted:
+                        n_pairs = len(gp_session.gp_system.learner.preference_pairs)
+                        if n_pairs >= 3:
+                            print(f"[SlotRefine] Fitting GP on {n_pairs} pairs...")
+                            gp_session.gp_system.learner.fit(n_epochs=100, verbose=True)
+                        else:
+                            print(f"[SlotRefine] Not enough pairs to fit GP ({n_pairs} < 3)")
+            except Exception as e:
+                print(f"[SlotRefine] Warning: Could not fit GP: {e}")
+            
+            # Get positive/negative tags from GP tag_states
+            positive_tags = []
+            negative_tags = []
+            neutral_tags = []
+            
+            # Use tag_states directly (tag_id -> 'liked'/'disliked'/'neutral')
+            for tag_id, state in gp_session.tag_states.items():
+                # Get the actual tag text from raw_tags
+                if tag_id in gp_session.raw_tags:
+                    label = gp_session.raw_tags[tag_id].text  # RawTag uses .text not .label
+                else:
+                    # Extract label from tag_id format: tag_stage_imageId_tagIdx
+                    label = tag_id.replace("tag_", "").replace("_", " ")
+                
+                if state == 'liked':
+                    positive_tags.append(label)
+                elif state == 'disliked':
+                    negative_tags.append(label)
+                else:
+                    neutral_tags.append(label)
+            
+            print(f"[SlotRefine] Found {len(positive_tags)} positive, {len(negative_tags)} negative, {len(neutral_tags)} neutral tags")
+            
+            tag_preferences_data = {
+                "descriptor": descriptor,
+                "positive": positive_tags,
+                "negative": negative_tags,
+                "neutral": neutral_tags
+            }
+            
+            tag_prefs_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(tag_prefs_path, 'w') as f:
+                json.dump(tag_preferences_data, f, indent=2)
+            print(f"[SlotRefine] Saved tag_preferences.json: {len(positive_tags)} positive, {len(negative_tags)} negative")
+        else:
+            # Fall back to concept_weights.json
+            concept_weights_path = session_folder / "impression" / "concept_weights.json"
+            if concept_weights_path.exists():
+                print(f"[SlotRefine] Using concept_weights.json as fallback")
+                tag_prefs_path = concept_weights_path
+            else:
+                raise HTTPException(404, f"No tag data found - need GP session or concept_weights.json")
+    
+    print(f"[SlotRefine API] Using: {tag_prefs_path}")
+    
+    # Initialize SDXL if needed
+    pipe = None
+    if _eval_sdxl_runner is None:
+        try:
+            from SDXL.sdxl_runner import SDXLRunner
+            print("[SlotRefine API] Initializing SDXL runner...")
+            _eval_sdxl_runner = SDXLRunner(
+                model_id="stabilityai/stable-diffusion-xl-base-1.0",
+                height=512,
+                width=512
+            )
+            # SDXLRunner stores pipeline at runner.pipe
+            if hasattr(_eval_sdxl_runner, 'runner') and hasattr(_eval_sdxl_runner.runner, 'pipe'):
+                pipe = _eval_sdxl_runner.runner.pipe
+            print("[SlotRefine API] SDXL runner initialized")
+        except Exception as e:
+            print(f"[SlotRefine API] Warning: Could not initialize SDXL: {e}")
+    else:
+        # Get pipeline from existing runner
+        if hasattr(_eval_sdxl_runner, 'runner') and hasattr(_eval_sdxl_runner.runner, 'pipe'):
+            pipe = _eval_sdxl_runner.runner.pipe
+    
+    # Create session
+    session = SlotRefinementSession(
+        session_id=request.session_id,
+        session_folder=str(session_folder),
+        pipe=pipe,
+        sdxl_runner=_eval_sdxl_runner
+    )
+    
+    # Initialize from exploration
+    try:
+        result = session.initialize_from_exploration(str(tag_prefs_path))
+    except Exception as e:
+        raise HTTPException(500, f"Failed to initialize slot refinement: {e}")
+    
+    slot_refinement_sessions[request.session_id] = session
+    
+    return SlotRefineInitResponse(
+        status=result["status"],
+        stage=result["stage"],
+        deduplication=result["deduplication"],
+        slot_creation=result["slot_creation"]
+    )
+
+
+@app.post("/api/slot-refinement/generate-round", response_model=SlotRoundResponse)
+async def generate_slot_round(request: SlotRoundRequest):
+    """
+    Generate images for the next round.
+    
+    Returns image paths and round metadata.
+    """
+    session = slot_refinement_sessions.get(request.session_id)
+    if not session:
+        raise HTTPException(404, f"Slot refinement session not found: {request.session_id}")
+    
+    if session.is_complete:
+        raise HTTPException(400, "Session already complete")
+    
+    try:
+        result = session.generate_round()
+    except Exception as e:
+        print(f"[SlotRefine API] Error generating round: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(500, f"Failed to generate round: {e}")
+    
+    return SlotRoundResponse(
+        round_num=result["round_num"],
+        stage=result["stage"],
+        round_type=result["round_type"],
+        images=result["images"],
+        focus_slot=result.get("focus_slot"),
+        compositions=result.get("compositions"),
+        weight_configs=result.get("weight_configs"),
+        slots_status=result.get("slots_status"),
+        current_weights=result.get("current_weights")
+    )
+
+
+@app.post("/api/slot-refinement/submit-feedback", response_model=SlotFeedbackResponse)
+def submit_slot_feedback(request: SlotFeedbackRequest):
+    """
+    Submit user selection for current round.
+    
+    Updates slot scores or weights based on stage.
+    """
+    session = slot_refinement_sessions.get(request.session_id)
+    if not session:
+        raise HTTPException(404, f"Slot refinement session not found: {request.session_id}")
+    
+    try:
+        result = session.submit_feedback(request.selected_idx)
+    except Exception as e:
+        print(f"[SlotRefine API] Error processing feedback: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(500, f"Failed to process feedback: {e}")
+    
+    return SlotFeedbackResponse(
+        stage=result["stage"],
+        is_complete=session.is_complete,
+        slots_status=result.get("slots_status"),
+        current_weights=result.get("current_weights"),
+        newly_resolved=result.get("newly_resolved"),
+        eliminations=result.get("eliminations"),
+        weight_updates=result.get("weight_updates"),
+        max_change=result.get("max_change")
+    )
+
+
+@app.post("/api/slot-refinement/finalize", response_model=SlotFinalizeResponse)
+def finalize_slot_refinement(request: SlotFinalizeRequest):
+    """
+    Finalize refinement and get final weighted tags.
+    
+    Saves refined_preferences.json to session folder.
+    """
+    session = slot_refinement_sessions.get(request.session_id)
+    if not session:
+        raise HTTPException(404, f"Slot refinement session not found: {request.session_id}")
+    
+    try:
+        result = session.finalize()
+    except Exception as e:
+        print(f"[SlotRefine API] Error finalizing: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(500, f"Failed to finalize: {e}")
+    
+    # Clean up session
+    del slot_refinement_sessions[request.session_id]
+    
+    return SlotFinalizeResponse(
+        base_prompt=result["base_prompt"],
+        final_tags=result["final_tags"],
+        final_prompt=result["final_prompt"],
+        summary=result["summary"],
+        description=result.get("description", "")
+    )
+
+
+@app.get("/api/slot-refinement/status/{session_id}")
+def get_slot_refinement_status(session_id: str):
+    """Get the status of a slot refinement session."""
+    session = slot_refinement_sessions.get(session_id)
+    if not session:
+        return {"exists": False, "session_id": session_id}
+    
+    return {
+        "exists": True,
+        "session_id": session_id,
+        **session.get_status()
     }
 
 

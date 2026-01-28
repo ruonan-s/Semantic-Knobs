@@ -1,0 +1,242 @@
+{
+  "session_id": "test_slot_session",
+  "stage": "elimination",
+  "base_prompt": "Refreshing Caf\u00e9",
+  "raw_tags": [
+    "natural light",
+    "clean lines",
+    "open layout",
+    "neutral tones",
+    "contemporary style",
+    "bright atmosphere",
+    "lush greenery",
+    "modern wooden furniture",
+    "natural lighting",
+    "open floor plan",
+    "hanging plants",
+    "large windows",
+    "eco-friendly design",
+    "integrated nature elements",
+    "bright and airy",
+    "contemporary aesthetics",
+    "coastal theme",
+    "natural materials",
+    "abundant natural light",
+    "blue accent windows",
+    "sheer curtains",
+    "open layout",
+    "light wood flooring",
+    "natural light",
+    "cozy seating",
+    "soft textiles",
+    "clean lines",
+    "casual layout"
+  ],
+  "round_count": 1,
+  "updated_at": "2026-01-28 03:56:55",
+  "dedup_result": {
+    "original_count": 28,
+    "deduplicated_count": 22,
+    "unique_tags": [
+      "natural light",
+      "clean lines",
+      "open layout",
+      "integrated nature elements",
+      "eco-friendly design",
+      "contemporary style",
+      "hanging plants",
+      "lush greenery",
+      "open floor plan",
+      "sheer curtains",
+      "cozy seating",
+      "large windows",
+      "casual layout",
+      "bright atmosphere",
+      "soft textiles",
+      "coastal theme",
+      "bright and airy",
+      "blue accent windows",
+      "modern wooden furniture",
+      "light wood flooring",
+      "natural materials",
+      "neutral tones"
+    ],
+    "duplicates_removed": [
+      [
+        "abundant natural light",
+        "natural light"
+      ],
+      [
+        "natural lighting",
+        "natural light"
+      ],
+      [
+        "contemporary aesthetics",
+        "contemporary style"
+      ]
+    ]
+  },
+  "slots": [
+    {
+      "name": "lighting_and_ambience",
+      "description": "How the space is illuminated and the overall bright, airy feeling it evokes.",
+      "tags": [
+        "natural light",
+        "bright atmosphere",
+        "bright and airy",
+        "large windows"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "spatial_arrangement",
+      "description": "The overall organization and flow of the floor plan and interaction areas.",
+      "tags": [
+        "open layout",
+        "open floor plan",
+        "casual layout"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "nature_integration",
+      "description": "The methods and extent of incorporating natural elements and plant life.",
+      "tags": [
+        "integrated nature elements",
+        "hanging plants",
+        "lush greenery"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "primary_design_style",
+      "description": "The overarching aesthetic or conceptual framework guiding the design.",
+      "tags": [
+        "contemporary style",
+        "coastal theme",
+        "eco-friendly design"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "furnishings_and_seating",
+      "description": "The selection and style of key furniture pieces and seating options.",
+      "tags": [
+        "cozy seating",
+        "modern wooden furniture"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "material_and_texture_palette",
+      "description": "The choice of primary surface materials and their tactile qualities.",
+      "tags": [
+        "natural materials",
+        "light wood flooring",
+        "soft textiles"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "decorative_details_and_accents",
+      "description": "Specific elements that add visual interest, color, or define window treatments.",
+      "tags": [
+        "neutral tones",
+        "blue accent windows",
+        "sheer curtains"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "form_and_detailing_style",
+      "description": "The characteristic visual style of shapes, outlines, and overall crispness within the design.",
+      "tags": [
+        "clean lines"
+      ],
+      "importance": 0.5
+    }
+  ],
+  "elimination": {
+    "slot_states": {
+      "lighting_and_ambience": {
+        "current_winner": "natural light",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "natural light": 1.0,
+          "bright atmosphere": 1.0,
+          "bright and airy": 1.0,
+          "large windows": 1.0
+        }
+      },
+      "spatial_arrangement": {
+        "current_winner": "open layout",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "open layout": 1.0,
+          "open floor plan": 1.0,
+          "casual layout": 1.0
+        }
+      },
+      "nature_integration": {
+        "current_winner": "integrated nature elements",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "integrated nature elements": 1.0,
+          "hanging plants": 1.0,
+          "lush greenery": 1.0
+        }
+      },
+      "primary_design_style": {
+        "current_winner": "contemporary style",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "contemporary style": 1.0,
+          "coastal theme": 1.0,
+          "eco-friendly design": 1.0
+        }
+      },
+      "furnishings_and_seating": {
+        "current_winner": "cozy seating",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "cozy seating": 1.0,
+          "modern wooden furniture": 1.0
+        }
+      },
+      "material_and_texture_palette": {
+        "current_winner": "natural materials",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "natural materials": 1.0,
+          "light wood flooring": 1.0,
+          "soft textiles": 1.0
+        }
+      },
+      "decorative_details_and_accents": {
+        "current_winner": "neutral tones",
+        "confidence": 0.0,
+        "is_resolved": false,
+        "tag_scores": {
+          "neutral tones": 1.0,
+          "blue accent windows": 1.0,
+          "sheer curtains": 1.0
+        }
+      },
+      "form_and_detailing_style": {
+        "current_winner": "clean lines",
+        "confidence": 1.0,
+        "is_resolved": true,
+        "tag_scores": {
+          "clean lines": 1.0
+        }
+      }
+    },
+    "round_history": []
+  }
+}

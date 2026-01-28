@@ -754,15 +754,112 @@ class AdaptivePreferenceSystem:
         
         return tag_texts, weights, tag_details
     
+    def _get_all_positive_tags_with_weights(
+        self,
+        min_cos_distance: float = 0.15,
+        tau: float = 1.0,
+        min_utility: float = 0.3  # Threshold for "positive" based on GP utility
+    ) -> Tuple[List[str], np.ndarray, List[Dict]]:
+        """
+        Get ALL tags with positive GP utility, with learned weights.
+        
+        Unlike get_top_k_tags_for_generation which limits to top-K,
+        this returns ALL positive-utility tags to preserve the full user preference.
+        
+        Args:
+            min_cos_distance: Minimum cosine distance for deduplication
+            tau: Temperature for softmax normalization
+            min_utility: Minimum GP utility to be considered "positive"
+        
+        Returns:
+            (tag_texts, weights, tag_details)
+        """
+        if not self.all_tags:
+            return [], np.array([]), []
+        
+        # Get all tags and their GP utilities
+        tags = list(self.all_tags.values())
+        embeddings = np.stack([t.embedding for t in tags])
+        utilities, uncertainties = self.learner.predict_utility(embeddings)
+        
+        # Select tags with positive utility (GP learned they are preferred)
+        positive_indices = [i for i, u in enumerate(utilities) if u >= min_utility]
+        
+        if not positive_indices:
+            # Fallback: if no positive-utility tags, use top-K by utility
+            return self.get_top_k_tags_for_generation(k=10, min_cos_distance=min_cos_distance)
+        
+        # Get positive tags
+        positive_tags = [tags[i] for i in positive_indices]
+        positive_utilities = utilities[positive_indices]
+        positive_uncertainties = uncertainties[positive_indices]
+        positive_embeddings = embeddings[positive_indices]
+        
+        if not positive_tags:
+            return [], np.array([]), []
+        
+        # Sort by utility (descending) for deduplication priority
+        sorted_indices = np.argsort(positive_utilities)[::-1]
+        
+        # Deduplicate by cosine distance (keep highest utility when similar)
+        selected_indices = []
+        selected_embs = []
+        
+        for idx in sorted_indices:
+            emb = positive_embeddings[idx]
+            emb_norm = emb / (np.linalg.norm(emb) + 1e-8)
+            
+            # Check cosine distance to already selected tags
+            is_duplicate = False
+            for sel_emb in selected_embs:
+                cos_sim = np.dot(emb_norm, sel_emb)
+                cos_distance = 1 - cos_sim
+                if cos_distance < min_cos_distance:  # Too similar
+                    is_duplicate = True
+                    break
+            
+            if not is_duplicate:
+                selected_indices.append(idx)
+                selected_embs.append(emb_norm)
+        
+        if not selected_indices:
+            return [], np.array([]), []
+        
+        # Build output
+        tag_texts = [positive_tags[i].text for i in selected_indices]
+        selected_utilities = np.array([positive_utilities[i] for i in selected_indices])
+        selected_uncertainties = np.array([positive_uncertainties[i] for i in selected_indices])
+        
+        # Softmax normalization
+        exp_u = np.exp(selected_utilities / tau)
+        weights = exp_u / (exp_u.sum() + 1e-8)
+        
+        # Build detailed info
+        tag_details = []
+        for i, idx in enumerate(selected_indices):
+            tag = positive_tags[idx]
+            tag_details.append({
+                'tag_id': tag.id,
+                'text': tag.text,
+                'utility': float(selected_utilities[i]),
+                'uncertainty': float(selected_uncertainties[i]),
+                'weight': float(weights[i]),
+                'source_image_idx': tag.source_image_idx,
+                'category': 'positive'  # GP utility >= threshold
+            })
+        
+        return tag_texts, weights, tag_details
+    
     def save_raw_tag_weights(
         self,
         session_folder: str,
         stage: str = "impression",
-        k: int = 10,
-        min_cos_distance: float = 0.15
+        k: int = None,  # None = all positive tags
+        min_cos_distance: float = 0.15,
+        include_all_positive: bool = True
     ) -> str:
         """
-        Save top-K raw tag weights to disk (no clustering).
+        Save raw tag weights to disk (no clustering).
         
         This saves individual tag weights based on GP utilities,
         bypassing the concept clustering step for more faithful
@@ -774,8 +871,9 @@ class AdaptivePreferenceSystem:
         Args:
             session_folder: Path to the session folder
             stage: Stage name (default: "impression")
-            k: Number of top tags to save
+            k: Number of top tags to save (None = all positive tags)
             min_cos_distance: Minimum cosine distance for deduplication
+            include_all_positive: If True, include all liked tags (ignore k)
         
         Returns:
             Path to the saved file
@@ -784,11 +882,17 @@ class AdaptivePreferenceSystem:
         import json
         from datetime import datetime
         
-        # Get top-K tags
-        tag_texts, weights, tag_details = self.get_top_k_tags_for_generation(
-            k=k,
-            min_cos_distance=min_cos_distance
-        )
+        if include_all_positive:
+            # Get ALL positive (liked) tags with their GP-learned weights
+            tag_texts, weights, tag_details = self._get_all_positive_tags_with_weights(
+                min_cos_distance=min_cos_distance
+            )
+        else:
+            # Legacy: Get top-K tags
+            tag_texts, weights, tag_details = self.get_top_k_tags_for_generation(
+                k=k or 10,
+                min_cos_distance=min_cos_distance
+            )
         
         if not tag_texts:
             print("[GP SAVE_RAW_WEIGHTS] No tags to save")
@@ -839,7 +943,8 @@ class AdaptivePreferenceSystem:
         with open(weights_file, 'w') as f:
             json.dump(weights_data, f, indent=2)
         
-        print(f"[GP SAVE_RAW_WEIGHTS] Saved {len(tag_details)} raw tags to {weights_file}")
+        mode_str = "positive" if include_all_positive else f"top-{k}"
+        print(f"[GP SAVE_RAW_WEIGHTS] Saved {len(tag_details)} {mode_str} tags to {weights_file}")
         top_3 = [f"{d['text']}: {d['weight']:.3f} (u={d['utility']:.2f})" for d in tag_details[:3]]
         print(f"[GP SAVE_RAW_WEIGHTS] Top 3: {top_3}")
         
