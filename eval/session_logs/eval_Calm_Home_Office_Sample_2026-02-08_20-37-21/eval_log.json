@@ -1,0 +1,51 @@
+{
+  "user_id": "anonymous",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Calm_Home_Office_Sample_2026-02-08_20-37-21",
+  "created_at": "2026-02-08T20:37:21.080172",
+  "events": [
+    {
+      "timestamp": "2026-02-08T20:37:21.080177",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Calm_Home_Office_Sample"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T20:37:52.431062",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Calm Home Office",
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T20:39:08.453189",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          2,
+          1,
+          0,
+          3
+        ],
+        "image_variance": 0.099,
+        "beta": 2.0,
+        "tags_updated": 20,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-08T20:40:08.034763",
+      "type": "hitl_rollback",
+      "data": {
+        "from_round": 1,
+        "to_round": 1,
+        "tags_boosted": [],
+        "tags_penalized": []
+      }
+    }
+  ]
+}

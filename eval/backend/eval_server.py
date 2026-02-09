@@ -21,9 +21,8 @@ sys.path.insert(0, str(BACKEND_DIR))
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(SDXL_DIR))  # For SDXL internal imports like diffusion_runner
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, List, Dict
@@ -51,11 +50,17 @@ from concept_refinement import get_or_create_session as get_refinement_session, 
 # Import GP exploration system
 from gp_session import get_or_create_gp_session, gp_exploration_sessions, GPExplorationSession
 
-# Import HITL refinement system
+# Import HITL refinement system (V1 - composition-level GP)
 from hitl_session import HITLRefinementSession
+
+# Import HITL refinement system V2 (tag-level GP) - NEW
+from hitl_session_v2 import HITLRefinementSessionV2
 
 # Import Slot-based refinement system
 from Refinement_steps import SlotRefinementSession, SlotRefinementConfig
+
+# Import Tag GP Refinement system
+from tag_gp_refiner import TagGPRefiner, GPRefinerConfig
 
 # ============== Mode Toggle ==============
 # Set to True to use GP-based preference learning, False for original softmax approach
@@ -110,42 +115,6 @@ if BACKEND_SESSIONS_DIR.exists():
 
 # In-memory session store for eval
 eval_sessions = {}
-
-
-# ============== Image Serving ==============
-
-@app.get("/api/eval/image")
-async def get_eval_image(path: str = Query(..., description="Absolute path to the image")):
-    """Serve an image file from the session logs directory."""
-    from pathlib import Path
-    
-    image_path = Path(path)
-    
-    # Security: ensure the path is within allowed directories
-    allowed_dirs = [SESSION_LOGS_DIR, PREDEFINED_INPUT_DIR, BACKEND_SESSIONS_DIR]
-    is_allowed = any(
-        str(image_path).startswith(str(allowed_dir))
-        for allowed_dir in allowed_dirs
-    )
-    
-    if not is_allowed:
-        raise HTTPException(403, "Access denied: path not in allowed directories")
-    
-    if not image_path.exists():
-        raise HTTPException(404, f"Image not found: {path}")
-    
-    # Determine media type
-    suffix = image_path.suffix.lower()
-    media_types = {
-        '.png': 'image/png',
-        '.jpg': 'image/jpeg',
-        '.jpeg': 'image/jpeg',
-        '.gif': 'image/gif',
-        '.webp': 'image/webp'
-    }
-    media_type = media_types.get(suffix, 'application/octet-stream')
-    
-    return FileResponse(str(image_path), media_type=media_type)
 
 
 # ============== Models ==============
@@ -671,10 +640,134 @@ async def proxy_get_tags(request: dict):
     return {"tags": []}
 
 
+def _generate_hitl_v2_image(
+    session_folder: str,
+    adjective: str,
+    target_location: str,
+    output_path: str,
+    seed: int = 2026
+) -> bool:
+    """
+    Generate "ours" image using the exact same method as the HITL V2 refinement stage.
+    
+    Uses fuse_composition + generate_with_hooks with the finalized best tags and weights
+    from the GP refinement, only replacing the location in the prompt.
+    
+    Args:
+        session_folder: Path to session folder containing refined_preferences_v2.json
+        adjective: Style adjective (e.g., "Calm")
+        target_location: Target location (e.g., "Home Office", "Bedroom")
+        output_path: Where to save the generated image
+        seed: Random seed for generation
+        
+    Returns:
+        True if generation succeeded, False otherwise
+    """
+    import numpy as np
+    
+    from hitl_fuser import HITLCompositionFuser, generate_with_hooks
+    from hitl_sampler import CompositionSample
+    
+    # Load refined preferences from V2
+    v2_path = os.path.join(session_folder, "refined_preferences_v2.json")
+    if not os.path.exists(v2_path):
+        print(f"[HITL V2 EVAL] refined_preferences_v2.json not found at {v2_path}")
+        return False
+    
+    with open(v2_path, 'r') as f:
+        refined_data = json.load(f)
+    
+    final_tags = refined_data.get("tags", [])
+    weights_dict = refined_data.get("weights", {})
+    
+    if not final_tags:
+        print(f"[HITL V2 EVAL] No tags in refined_preferences_v2.json")
+        return False
+    
+    # Extract tag labels and their weights (same order as final_tags)
+    tag_labels = list(final_tags)
+    tag_weights = [weights_dict.get(tag, 0.1) for tag in tag_labels]
+    
+    # Compute cross-attention weights using same method as refinement stage
+    # (softmax scaled to range around 1.0)
+    mus = np.array(tag_weights)
+    exp_mu = np.exp(mus - np.max(mus))
+    softmax = exp_mu / (exp_mu.sum() + 1e-8)
+    attn_weights = 0.5 + softmax * len(mus)
+    attn_weights = attn_weights * (len(mus) / attn_weights.sum())
+    
+    print(f"\n{'='*80}")
+    print(f"[HITL V2 EVAL] Generating with refinement-stage method")
+    print(f"  Adjective: {adjective}")
+    print(f"  Location: {target_location}")
+    print(f"  Tags ({len(tag_labels)}): {tag_labels[:5]}...")
+    print(f"  Attention weights: {[f'{w:.3f}' for w in attn_weights[:5]]}...")
+    print(f"{'='*80}")
+    
+    # Build base prompt: "{adjective} {location}" — same as refinement stage
+    base_prompt = f"{adjective} {target_location}"
+    neg_phrases = [
+        "illustration", "plan view", "bird's-eye view",
+        "cartoon", "anime", "isometric", "sketch",
+        "low quality", "blurry", "text", "watermark", "human"
+    ]
+    
+    # Get or create SDXL runner (reuse global)
+    global _eval_sdxl_runner
+    if '_eval_sdxl_runner' not in globals() or _eval_sdxl_runner is None:
+        from SDXL.sdxl_runner import SDXLRunner
+        print("  Initializing SDXL runner...")
+        _eval_sdxl_runner = SDXLRunner(
+            model_id="stabilityai/stable-diffusion-xl-base-1.0",
+            device=None,
+            height=1024,
+            width=1024,
+            steps=30,
+            guidance_scale=7.5
+        )
+    
+    pipe = _eval_sdxl_runner.runner.pipe
+    device = _eval_sdxl_runner.runner.device
+    
+    # Create fuser — same as refinement stage
+    hitl_fuser = HITLCompositionFuser(pipe=pipe, device=device)
+    
+    # Create CompositionSample — identical to hitl_session_v2._generate_images
+    comp_sample = CompositionSample(
+        points=np.zeros((len(tag_labels), 768)),  # Placeholder - not used in generation
+        weights=np.array(attn_weights),
+        tag_labels=tag_labels,
+        tag_indices=list(range(len(tag_labels))),
+        point_ucb_scores=np.array(tag_weights),
+    )
+    
+    # Fuse composition — identical to refinement stage
+    prompt_embeds, pooled, neg_embeds, neg_pooled, attn_controller = hitl_fuser.fuse_composition(
+        comp_sample,
+        base_prompt=base_prompt,
+        neg_phrases=neg_phrases
+    )
+    
+    # Generate with hooks — identical to refinement stage
+    image = generate_with_hooks(
+        pipe,
+        prompt_embeds, pooled,
+        neg_embeds, neg_pooled,
+        attn_controller,
+        seed=seed
+    )
+    
+    image.save(output_path)
+    print(f"  Saved: {os.path.basename(output_path)}")
+    
+    return True
+
+
 def _generate_slider_sync(session_id: str, location: str, session: dict):
     """
     Synchronous slider generation - runs in thread pool to avoid blocking event loop.
-    Uses exploration selected image for style transfer (no need for rank #1 reference).
+    
+    Uses HITL V2 refined tags/weights for "ours" image, then generates baselines.
     """
     import numpy as np
     import torch
@@ -683,18 +776,21 @@ def _generate_slider_sync(session_id: str, location: str, session: dict):
     session_folder = session["folder"]
     
     try:
-        print("\n" + "=" * 80)
-        print(f"[EVAL SLIDER] Generating slider with EXPLORATION weights")
-        print(f"[EVAL SLIDER] Session: {session_id}")
-        print("=" * 80)
+        # Check for HITL V2 refinement output
+        v2_prefs_path = os.path.join(session_folder, "refined_preferences_v2.json")
+        has_v2_refinement = os.path.exists(v2_prefs_path)
         
-        # Load exploration concept_weights.json
-        concept_weights_path = os.path.join(session_folder, "impression", "concept_weights.json")
-        if not os.path.exists(concept_weights_path):
-            return {"error": True, "status_code": 404, "message": "concept_weights.json not found in impression stage"}
-        
-        with open(concept_weights_path, 'r') as f:
-            concept_weights_data = json.load(f)
+        if has_v2_refinement:
+            print("\n" + "=" * 80)
+            print(f"[EVAL SLIDER] Generating with HITL V2 refinement (fuse_composition + generate_with_hooks)")
+            print(f"[EVAL SLIDER] Session: {session_id}")
+            print("=" * 80)
+        else:
+            print("\n" + "=" * 80)
+            print(f"[EVAL SLIDER] ERROR: No refined_preferences_v2.json found")
+            print(f"[EVAL SLIDER] Session: {session_id}")
+            print("=" * 80)
+            return {"error": True, "status_code": 404, "message": "refined_preferences_v2.json not found. HITL refinement must be completed first."}
         
         # Load final_selection.json for adjective/location
         final_selection_path = os.path.join(session_folder, "final_selection.json")
@@ -704,68 +800,21 @@ def _generate_slider_sync(session_id: str, location: str, session: dict):
         with open(final_selection_path, 'r') as f:
             final_selection = json.load(f)
         
-        # Load preferences.json
-        preferences_path = os.path.join(session_folder, "preferences.json")
-        prefs = {}
-        if os.path.exists(preferences_path):
-            with open(preferences_path, 'r') as f:
-                prefs = json.load(f)
-        
         # Get adjective and location
         adjective = final_selection.get("adjective", "")
         target_location = location if location else final_selection.get("location", "")
         descriptor = f"{adjective} {target_location}"
         
-        # Check if this is a café/coffeeshop context - add photorealistic prefix to tags only
-        target_location_lower = target_location.lower()
-        is_cafe_context = (
-            "café" in target_location_lower or 
-            "cafe" in target_location_lower or 
-            "coffeeshop" in target_location_lower or 
-            "coffee shop" in target_location_lower
-        )
-        
         print(f"  Adjective: {adjective}")
         print(f"  Location: {target_location}")
         print(f"  Descriptor: {descriptor}")
         
-        # Get exploration weights
-        concept_weights = concept_weights_data.get("concept_weights", [])
-        if not concept_weights:
-            return {"error": True, "status_code": 400, "message": "No concept weights found"}
-        
-        # Build concepts with location prefix
-        concepts = []
-        weights = []
-        for cw in concept_weights:
-            if is_cafe_context:
-                concepts.append({
-                    "id": cw.get("concept_id", ""),
-                    "label": f"photorealistic {target_location} with {cw['label']}"
-                })
-            else:
-                concepts.append({
-                    "id": cw.get("concept_id", ""),
-                    "label": f"{target_location} with {cw['label']}"
-                })
-            weights.append(cw.get("weight", 0.0))
-        
-        w_exploration = np.array(weights)
-        w_exploration_norm = w_exploration / (w_exploration.sum() + 1e-8)
-        
-        print(f"  Exploration concepts: {len(concepts)}")
-        print(f"  Weights sum: {w_exploration.sum():.4f}")
-        
-        # Get top-K concepts
-        top_k = 10
-        sorted_indices = np.argsort(w_exploration_norm)[::-1]
-        actual_top_k = min(top_k, len(concepts))
-        top_indices = sorted_indices[:actual_top_k]
-        
-        tag_phrases = [concepts[idx]['label'] for idx in top_indices]
-        tag_weights = np.array([float(w_exploration_norm[idx]) for idx in top_indices])
-        
-        print(f"  Top {actual_top_k} concepts: {[c.split(' with ')[-1] for c in tag_phrases[:3]]}")
+        # Load preferences.json (needed for style transfer baseline)
+        preferences_path = os.path.join(session_folder, "preferences.json")
+        prefs = {}
+        if os.path.exists(preferences_path):
+            with open(preferences_path, 'r') as f:
+                prefs = json.load(f)
         
         # Create output directory
         slider_output_dir = os.path.join(session_folder, "slider", target_location.replace(" ", "_"))
@@ -799,73 +848,40 @@ def _generate_slider_sync(session_id: str, location: str, session: dict):
                 # Share runner with SD baselines module to avoid loading model twice
                 set_sd_baseline_runner(_eval_sdxl_runner.runner)
         
-        if _eval_slider_fuser is None:
+        if _eval_sdxl_runner is None or _eval_sdxl_runner.runner.pipe is None:
             return {"error": True, "status_code": 500, "message": "SDXL pipeline not available"}
         
-        # Generate images with alpha interpolation
-        neg_phrases = ["plan view", "bird's-eye view","illustration", "cartoon", "anime", "CGI", "human"]
-        
-        # Only generate alpha=1.0 for evaluation (skip intermediate values)
-        alphas = [1.0]
+        # ========== Generate "ours" image using HITL V2 method ==========
+        # Same generation as refinement stage, just with target_location swapped in
         seed_base = 2026
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        ours_filename = f"eval_alpha_1.00_{timestamp}.png"
+        ours_filepath = os.path.join(slider_output_dir, ours_filename)
         
-        results = []
+        success = _generate_hitl_v2_image(
+            session_folder=session_folder,
+            adjective=adjective,
+            target_location=target_location,
+            output_path=ours_filepath,
+            seed=seed_base
+        )
         
-        print(f"\n  Generating {len(alphas)} image(s) (alpha=1.0 only)...")
+        if not success:
+            return {"error": True, "status_code": 500, "message": "Failed to generate HITL V2 image"}
         
-        for i, alpha in enumerate(alphas):
-            print(f"  [{i+1}/{len(alphas)}] Alpha = {alpha:.2f}")
-            
-            prompt_embeds, pooled, neg_embeds, neg_pooled = _eval_slider_fuser.fuse_with_alpha(
-                descriptor=descriptor,
-                tag_phrases=tag_phrases,
-                tag_weights=tag_weights,
-                alpha=alpha,
-                neg_phrases=neg_phrases,
-                max_negatives=20
-            )
-            
-            generator = torch.Generator(device=_eval_sdxl_runner.runner.device).manual_seed(seed_base + i)
-            
-            image = _eval_sdxl_runner.runner.pipe(
-                prompt_embeds=prompt_embeds,
-                negative_prompt_embeds=neg_embeds,
-                pooled_prompt_embeds=pooled,
-                negative_pooled_prompt_embeds=neg_pooled,
-                height=1024,
-                width=1024,
-                num_inference_steps=30,
-                guidance_scale=7.5,
-                generator=generator
-            ).images[0]
-            
-            results.append((alpha, image, None))
-        
-        # Save images and build response
-        slider_images = []
-        for alpha, img, ref_flag in results:
-            filename = f"eval_alpha_{alpha:.2f}_{timestamp}.png"
-            
-            filepath = os.path.join(slider_output_dir, filename)
-            img.save(filepath)
-            
-            # URL relative to session_logs
-            rel_path = os.path.relpath(filepath, SESSION_LOGS_DIR)
-            url = f"/session_logs/{rel_path}"
-            
-            slider_images.append({"alpha": alpha, "url": url})
-            print(f"  Saved: {filename}")
+        # Build response for the "ours" image
+        rel_path = os.path.relpath(ours_filepath, SESSION_LOGS_DIR)
+        slider_images = [{"alpha": 1.0, "url": f"/session_logs/{rel_path}"}]
         
         # Log success
         create_eval_session_log(
             session_folder,
             session.get("user_id", "anonymous"),
             "slider_generation_complete",
-            {"success": True, "image_count": len(slider_images)}
+            {"success": True, "image_count": 1, "method": "hitl_v2"}
         )
         
-        print(f"\n  ✅ Generated {len(slider_images)} images for eval slider")
+        print(f"\n  ✅ Generated HITL V2 image for eval slider")
         
         # ========== SD BASELINE TEXT (text-only baseline) ==========
         # Generate image using only "{adjective} {location}" as prompt
@@ -1113,7 +1129,8 @@ async def process_gp_round(request: dict):
 # ============== HITL Refinement Endpoints ==============
 
 # In-memory store for HITL refinement sessions
-hitl_sessions: Dict[str, HITLRefinementSession] = {}
+# Now uses V2 (tag-level GP) instead of V1 (composition-level GP)
+hitl_sessions: Dict[str, HITLRefinementSessionV2] = {}
 
 
 class HITLInitRequest(BaseModel):
@@ -1231,14 +1248,13 @@ def initialize_hitl(request: HITLInitRequest):
         pipe = _eval_sdxl_runner.runner.pipe
     
     try:
-        # Idempotent: load existing or create new
-        hitl = HITLRefinementSession.load_or_create(
+        # Use V2 (tag-level GP) for HITL refinement
+        hitl = HITLRefinementSessionV2.load_or_create(
             session_id=request.session_id,
             session_folder=session_folder,
-            sdxl_runner=_eval_sdxl_runner if '_eval_sdxl_runner' in globals() else None,
             pipe=pipe,
             base_prompt=base_prompt,
-            negative_phrases=negative_phrases
+            negative_prompt=", ".join(negative_phrases) if negative_phrases else "",
         )
         hitl_sessions[request.session_id] = hitl
         
@@ -1250,16 +1266,26 @@ def initialize_hitl(request: HITLInitRequest):
             {
                 "round_count": hitl.round_count,
                 "is_restored": hitl.round_count > 0,
-                "base_prompt": base_prompt
+                "base_prompt": base_prompt,
+                "version": "v2_tag_level_gp"
             }
         )
+        
+        # Get top tags for response
+        top_tags = []
+        if hitl.refiner:
+            sorted_tags = sorted(hitl.refiner.tags.values(), key=lambda t: t.mu, reverse=True)[:5]
+            top_tags = [
+                {"label": t.text, "utility": round(t.mu, 3), "uncertainty": round(t.sigma, 3)}
+                for t in sorted_tags
+            ]
         
         return HITLInitResponse(
             success=True,
             round_count=hitl.round_count,
             is_initialized=hitl.is_initialized,
             is_converged=hitl.is_converged,
-            top_concepts=hitl.get_top_concepts(k=5)
+            top_concepts=top_tags
         )
     except Exception as e:
         print(f"[HITL] Error initializing: {e}")
@@ -1278,6 +1304,7 @@ class HITLGenerateResponse(BaseModel):
     round_number: int
     images: List[dict]
     compositions: List[dict]
+    best_picks: Optional[List[dict]] = None
 
 
 @app.post("/api/hitl/generate-round", response_model=HITLGenerateResponse)
@@ -1303,7 +1330,7 @@ async def generate_hitl_round(request: HITLGenerateRequest):
         loop = asyncio.get_event_loop()
         result = await loop.run_in_executor(
             generation_executor,
-            lambda: hitl.generate_round(q=request.num_images)
+            lambda: hitl.generate_round()
         )
         
         compositions, image_paths = result
@@ -1320,19 +1347,37 @@ async def generate_hitl_round(request: HITLGenerateRequest):
                 "path": path
             })
         
-        # Build compositions summary
+        # Build compositions summary (V2 uses CompositionV2 objects)
         comp_summaries = []
         for comp in compositions:
             comp_summaries.append({
+                "option_id": comp.option_id,
+                "strategy": comp.strategy,
                 "tags": comp.tag_labels[:5],  # Top 5 tags
-                "weights": comp.weights[:5].tolist(),
+                "weights": comp.weights[:5],
+                "mus": comp.mus[:5],
             })
+        
+        # Use refiner.current_round which is incremented inside generate_round_options()
+        # hitl.round_count only updates after record_ranking, so it lags by 1
+        current_round = hitl.refiner.current_round if hitl.refiner else hitl.round_count
+        
+        # Build best picks with URLs for gallery
+        best_picks = hitl.get_best_picks_list()
+        for pick in best_picks:
+            if pick.get("image_path"):
+                try:
+                    rel = os.path.relpath(pick["image_path"], SESSION_LOGS_DIR)
+                    pick["url"] = f"/session_logs/{rel}"
+                except ValueError:
+                    pick["url"] = None
         
         return HITLGenerateResponse(
             success=True,
-            round_number=hitl.round_count,
+            round_number=current_round,
             images=images,
-            compositions=comp_summaries
+            compositions=comp_summaries,
+            best_picks=best_picks if best_picks else None
         )
     except Exception as e:
         print(f"[HITL] Error generating round: {e}")
@@ -1359,9 +1404,10 @@ class HITLRankResponse(BaseModel):
 @app.post("/api/hitl/submit-ranking", response_model=HITLRankResponse)
 def submit_hitl_ranking(request: HITLRankRequest):
     """
-    Submit ordinal ranking and update GP with pairwise comparisons.
+    Submit ordinal ranking and update tag utilities via tag-level GP.
     
-    Convergence is based on GP VARIANCE in preferred region, not mu shift.
+    V2: Updates individual tag μ (utility) and σ (uncertainty) based on
+    pairwise comparisons extracted from the ranking.
     """
     hitl = hitl_sessions.get(request.session_id)
     if not hitl:
@@ -1379,7 +1425,9 @@ def submit_hitl_ranking(request: HITLRankRequest):
                 {
                     "round": result["round"],
                     "ranking": request.ranking,
-                    "gp_variance": result["gp_variance"],
+                    "image_variance": result.get("image_variance", 0),
+                    "beta": result.get("beta", 0),
+                    "tags_updated": result.get("tags_updated", 0),
                     "is_converged": result["is_converged"]
                 }
             )
@@ -1387,10 +1435,10 @@ def submit_hitl_ranking(request: HITLRankRequest):
         return HITLRankResponse(
             success=True,
             round_number=result["round"],
-            gp_variance=result["gp_variance"],
+            gp_variance=result.get("image_variance", 0),  # Use image variance for V2
             is_converged=result["is_converged"],
             next_round_ready=not result["is_converged"],
-            total_pairs=result["total_pairs"]
+            total_pairs=result.get("comparisons_made", 6)  # 6 comparisons from 4 options
         )
     except Exception as e:
         print(f"[HITL] Error recording ranking: {e}")
@@ -1413,17 +1461,17 @@ class HITLFinalizeResponse(BaseModel):
 @app.post("/api/hitl/finalize", response_model=HITLFinalizeResponse)
 def finalize_hitl(request: HITLFinalizeRequest):
     """
-    Finalize refinement and save to final_selection.json.
+    Finalize refinement and export best tags with attention weights.
     
-    This exports the refined GP preferences to the format expected by
-    slider generation.
+    V2: Outputs top 10 tags with softmax-normalized weights based on
+    learned tag utilities (μ values).
     """
     hitl = hitl_sessions.get(request.session_id)
     if not hitl:
         raise HTTPException(404, f"HITL session not found: {request.session_id}")
     
     try:
-        output_path = hitl.finalize()
+        output = hitl.finalize()
         
         session = eval_sessions.get(request.session_id)
         if session:
@@ -1433,15 +1481,20 @@ def finalize_hitl(request: HITLFinalizeRequest):
                 "hitl_finalize",
                 {
                     "rounds_completed": hitl.round_count,
-                    "total_pairs": len(hitl.optimizer.all_pairs) if hitl.optimizer else 0
+                    "total_comparisons": hitl.round_count * 6,  # 6 per round
+                    "final_tags": output.get("tags", [])[:5],
+                    "version": "v2_tag_level_gp"
                 }
             )
+        
+        # Get output path
+        output_path = str(hitl.session_folder / "refined_preferences_v2.json")
         
         result = HITLFinalizeResponse(
             success=True,
             final_selection_path=output_path,
             rounds_completed=hitl.round_count,
-            total_pairs=len(hitl.optimizer.all_pairs) if hitl.optimizer else 0
+            total_pairs=hitl.round_count * 6  # 6 pairwise comparisons per round
         )
         
         # Clean up session
@@ -1472,10 +1525,80 @@ def get_hitl_status(session_id: str):
     }
 
 
+class HITLRollbackRequest(BaseModel):
+    session_id: str
+    target_round: int
+
+
+@app.post("/api/hitl/rollback")
+def rollback_hitl(request: HITLRollbackRequest):
+    """
+    Roll back to a previous round's state.
+    
+    The user preferred round X's output over current rounds.
+    Restores tag states, injects preference bonus, and resumes from that round.
+    """
+    hitl = hitl_sessions.get(request.session_id)
+    if not hitl:
+        raise HTTPException(404, f"HITL session not found: {request.session_id}")
+    
+    try:
+        result = hitl.rollback_to_round(request.target_round)
+        
+        session = eval_sessions.get(request.session_id)
+        if session:
+            create_eval_session_log(
+                session["folder"],
+                session.get("user_id", "anonymous"),
+                "hitl_rollback",
+                {
+                    "from_round": result["from_round"],
+                    "to_round": result["to_round"],
+                    "tags_boosted": result["tags_boosted"][:5],
+                    "tags_penalized": result["tags_penalized"][:5],
+                }
+            )
+        
+        return {
+            "success": True,
+            **result,
+        }
+    except Exception as e:
+        print(f"[HITL] Error rolling back: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(500, str(e))
+
+
+@app.get("/api/hitl/best-picks/{session_id}")
+def get_hitl_best_picks(session_id: str):
+    """Get the best (1st-ranked) images from each round for the gallery."""
+    hitl = hitl_sessions.get(session_id)
+    if not hitl:
+        raise HTTPException(404, f"HITL session not found: {session_id}")
+    
+    picks = hitl.get_best_picks_list()
+    
+    # Add URLs for each pick
+    for pick in picks:
+        if pick.get("image_path"):
+            try:
+                rel_path = os.path.relpath(pick["image_path"], SESSION_LOGS_DIR)
+                pick["url"] = f"/session_logs/{rel_path}"
+            except ValueError:
+                pick["url"] = None
+    
+    return {
+        "session_id": session_id,
+        "best_picks": picks,
+    }
+
+
 # ============== Slot-Based Refinement Endpoints ==============
 
 # In-memory store for slot refinement sessions
 slot_refinement_sessions: Dict[str, SlotRefinementSession] = {}
+gp_refinement_sessions: Dict[str, TagGPRefiner] = {}
 
 
 class SlotRefineInitRequest(BaseModel):
@@ -1575,75 +1698,70 @@ def initialize_slot_refinement(request: SlotRefineInitRequest):
             }
         )
     
-    # Get session info for GP access
-    eval_session = eval_sessions.get(request.session_id)
-    use_gp = eval_session.get("use_gp", USE_GP_EXPLORATION) if eval_session else USE_GP_EXPLORATION
-    descriptor = eval_session.get("descriptor", "") if eval_session else ""
-    
-    # IMPORTANT: Create tag_preferences.json from GP session if needed
+    # IMPORTANT: Save tag_preferences.json from GP session if it doesn't exist
     tag_prefs_path = session_folder / "impression" / "tag_preferences.json"
     
     if not tag_prefs_path.exists():
+        # Try to get from GP session and save
         key = f"{request.session_id}_impression"
-        if use_gp and key in gp_exploration_sessions:
-            gp_session = gp_exploration_sessions[key]
-            print(f"[SlotRefine] Creating tag_preferences.json from GP session...")
+        gp_session = gp_exploration_sessions.get(key)
+        
+        if gp_session:
+            # Save tag preferences (positive/negative/neutral)
+            tag_prefs = gp_session.get_tag_preferences()
+            positive_tags = [tag for tag, pref in tag_prefs.items() if pref == "positive"]
+            negative_tags = [tag for tag, pref in tag_prefs.items() if pref == "negative"]
+            neutral_tags = [tag for tag, pref in tag_prefs.items() if pref is None]
             
-            # Fit GP if not already fitted (need at least 3 preference pairs)
-            try:
-                if hasattr(gp_session, 'gp_system') and hasattr(gp_session.gp_system, 'learner'):
-                    if not gp_session.gp_system.learner.is_fitted:
-                        n_pairs = len(gp_session.gp_system.learner.preference_pairs)
-                        if n_pairs >= 3:
-                            print(f"[SlotRefine] Fitting GP on {n_pairs} pairs...")
-                            gp_session.gp_system.learner.fit(n_epochs=100, verbose=True)
-                        else:
-                            print(f"[SlotRefine] Not enough pairs to fit GP ({n_pairs} < 3)")
-            except Exception as e:
-                print(f"[SlotRefine] Warning: Could not fit GP: {e}")
-            
-            # Get positive/negative tags from GP tag_states
-            positive_tags = []
-            negative_tags = []
-            neutral_tags = []
-            
-            # Use tag_states directly (tag_id -> 'liked'/'disliked'/'neutral')
-            for tag_id, state in gp_session.tag_states.items():
-                # Get the actual tag text from raw_tags
-                if tag_id in gp_session.raw_tags:
-                    label = gp_session.raw_tags[tag_id].text  # RawTag uses .text not .label
-                else:
-                    # Extract label from tag_id format: tag_stage_imageId_tagIdx
-                    label = tag_id.replace("tag_", "").replace("_", " ")
-                
-                if state == 'liked':
-                    positive_tags.append(label)
-                elif state == 'disliked':
-                    negative_tags.append(label)
-                else:
-                    neutral_tags.append(label)
-            
-            print(f"[SlotRefine] Found {len(positive_tags)} positive, {len(negative_tags)} negative, {len(neutral_tags)} neutral tags")
+            # Get descriptor from session
+            descriptor = ""
+            if session:
+                descriptor = f"{session.get('adjective', '')} {session.get('location', '')}".strip()
             
             tag_preferences_data = {
-                "descriptor": descriptor,
                 "positive": positive_tags,
                 "negative": negative_tags,
-                "neutral": neutral_tags
+                "neutral": neutral_tags,
+                "descriptor": descriptor
             }
             
             tag_prefs_path.parent.mkdir(parents=True, exist_ok=True)
             with open(tag_prefs_path, 'w') as f:
                 json.dump(tag_preferences_data, f, indent=2)
-            print(f"[SlotRefine] Saved tag_preferences.json: {len(positive_tags)} positive, {len(negative_tags)} negative")
+            print(f"[SlotRefine API] Saved tag_preferences.json: {len(positive_tags)} positive, {len(negative_tags)} negative")
         else:
-            # Fall back to concept_weights.json
+            # No GP session - check for concept_weights.json and convert
             concept_weights_path = session_folder / "impression" / "concept_weights.json"
             if concept_weights_path.exists():
-                print(f"[SlotRefine] Using concept_weights.json as fallback")
-                tag_prefs_path = concept_weights_path
+                with open(concept_weights_path) as f:
+                    cw_data = json.load(f)
+                
+                # Extract positive/negative from concept_weights
+                positive_tags = [
+                    cw["label"] for cw in cw_data.get("concept_weights", [])
+                    if cw.get("category") == "positive"
+                ]
+                negative_tags = [
+                    cw["label"] for cw in cw_data.get("concept_weights", [])
+                    if cw.get("category") == "negative"
+                ]
+                
+                # Extract descriptor from session_id
+                session_id = cw_data.get("session_id", request.session_id)
+                descriptor = session_id.replace("eval_", "").split("_Sample")[0].replace("_", " ")
+                
+                tag_preferences_data = {
+                    "positive": positive_tags,
+                    "negative": negative_tags,
+                    "neutral": [],
+                    "descriptor": descriptor
+                }
+                
+                with open(tag_prefs_path, 'w') as f:
+                    json.dump(tag_preferences_data, f, indent=2)
+                print(f"[SlotRefine API] Created tag_preferences.json from concept_weights: {len(positive_tags)} positive, {len(negative_tags)} negative")
             else:
-                raise HTTPException(404, f"No tag data found - need GP session or concept_weights.json")
+                raise HTTPException(404, f"No GP session and no concept_weights.json found")
     
     print(f"[SlotRefine API] Using: {tag_prefs_path}")
     
@@ -1658,16 +1776,12 @@ def initialize_slot_refinement(request: SlotRefineInitRequest):
                 height=512,
                 width=512
             )
-            # SDXLRunner stores pipeline at runner.pipe
-            if hasattr(_eval_sdxl_runner, 'runner') and hasattr(_eval_sdxl_runner.runner, 'pipe'):
-                pipe = _eval_sdxl_runner.runner.pipe
+            pipe = _eval_sdxl_runner.pipe
             print("[SlotRefine API] SDXL runner initialized")
         except Exception as e:
             print(f"[SlotRefine API] Warning: Could not initialize SDXL: {e}")
     else:
-        # Get pipeline from existing runner
-        if hasattr(_eval_sdxl_runner, 'runner') and hasattr(_eval_sdxl_runner.runner, 'pipe'):
-            pipe = _eval_sdxl_runner.runner.pipe
+        pipe = _eval_sdxl_runner.pipe
     
     # Create session
     session = SlotRefinementSession(
@@ -1801,6 +1915,343 @@ def get_slot_refinement_status(session_id: str):
         "exists": True,
         "session_id": session_id,
         **session.get_status()
+    }
+
+
+# ============== Tag GP Refinement Endpoints ==============
+# New principled GP-based refinement with ranking feedback
+
+class GPRefineInitRequest(BaseModel):
+    session_id: str
+
+
+class GPRefineInitResponse(BaseModel):
+    status: str
+    positive_tags: int
+    neutral_tags: int
+    total_tags: int
+    categories: dict
+
+
+class GPRoundResponse(BaseModel):
+    round_num: int
+    beta: float
+    max_overlap: float
+    options: List[dict]
+    images: Optional[List[str]] = None  # Image paths if generated
+
+
+class GPRankingRequest(BaseModel):
+    session_id: str
+    ranking: List[int]  # Option IDs from best to worst, e.g. [2, 0, 3, 1]
+
+
+class GPRankingResponse(BaseModel):
+    round_num: int
+    pairwise_comparisons: int
+    top_tags: List[dict]
+    is_complete: bool
+
+
+class GPFinalResponse(BaseModel):
+    final_tags: List[str]
+    weights: Dict[str, float]
+    rounds_completed: int
+    total_comparisons: int
+
+
+@app.post("/api/gp-refinement/initialize", response_model=GPRefineInitResponse)
+def initialize_gp_refinement(request: GPRefineInitRequest):
+    """
+    Initialize GP-based tag refinement from exploration outputs.
+    
+    Uses positive and neutral tags from exploration, assigns prior utilities
+    based on whether tags appeared in selected images.
+    """
+    # Get session info
+    session = eval_sessions.get(request.session_id)
+    if session:
+        session_folder = Path(session["folder"])
+    else:
+        session_folder = SESSION_LOGS_DIR / request.session_id
+        if not session_folder.exists():
+            raise HTTPException(404, f"Session not found: {request.session_id}")
+    
+    # Check for existing session (idempotent)
+    if request.session_id in gp_refinement_sessions:
+        refiner = gp_refinement_sessions[request.session_id]
+        from tag_gp_refiner import TagCategory
+        return GPRefineInitResponse(
+            status="already_initialized",
+            positive_tags=len(refiner.positive_tag_ids),
+            neutral_tags=len(refiner.neutral_tag_ids),
+            total_tags=len(refiner.tags),
+            categories={
+                cat.value: sum(1 for t in refiner.tags.values() if t.category == cat)
+                for cat in TagCategory
+            }
+        )
+    
+    # Load tag preferences
+    tag_prefs_path = session_folder / "impression" / "tag_preferences.json"
+    concept_weights_path = session_folder / "impression" / "concept_weights.json"
+    
+    positive_tags = []
+    neutral_tags = []
+    selected_image_tags = set()
+    
+    if tag_prefs_path.exists():
+        with open(tag_prefs_path) as f:
+            data = json.load(f)
+        positive_tags = data.get("positive", [])
+        neutral_tags = data.get("neutral", [])
+        # Note: selected_image_tags would need to be tracked during exploration
+    elif concept_weights_path.exists():
+        with open(concept_weights_path) as f:
+            data = json.load(f)
+        for cw in data.get("concept_weights", []):
+            if cw.get("category") == "positive" or cw.get("score", 0) > 0.5:
+                positive_tags.append(cw["label"])
+            elif cw.get("category") == "neutral" or -0.5 <= cw.get("score", 0) <= 0.5:
+                neutral_tags.append(cw["label"])
+    else:
+        # Try GP session
+        key = f"{request.session_id}_impression"
+        gp_session = gp_exploration_sessions.get(key)
+        if gp_session:
+            tag_prefs = gp_session.get_tag_preferences()
+            positive_tags = [tag for tag, pref in tag_prefs.items() if pref == "positive"]
+            neutral_tags = [tag for tag, pref in tag_prefs.items() if pref is None]
+        else:
+            raise HTTPException(404, "No tag preferences found")
+    
+    # Assume first half of positive tags were in selected images (heuristic)
+    # In real usage, this should come from exploration tracking
+    selected_image_tags = set(positive_tags[:len(positive_tags)//2])
+    
+    # Create refiner
+    refiner = TagGPRefiner()
+    
+    # Set up logging
+    refiner.set_logger(request.session_id, session_folder)
+    
+    result = refiner.initialize_from_exploration(
+        positive_tags=positive_tags,
+        neutral_tags=neutral_tags,
+        selected_image_tags=selected_image_tags,
+    )
+    
+    gp_refinement_sessions[request.session_id] = refiner
+    
+    # Save state
+    state_path = session_folder / "gp_refinement" / "state.json"
+    state_path.parent.mkdir(parents=True, exist_ok=True)
+    refiner.save_state(state_path)
+    
+    print(f"[GP Refine] Initialized: {len(positive_tags)} positive, {len(neutral_tags)} neutral tags")
+    
+    return GPRefineInitResponse(
+        status=result["status"],
+        positive_tags=result["positive_tags"],
+        neutral_tags=result["neutral_tags"],
+        total_tags=result["total_tags"],
+        categories=result["categories"]
+    )
+
+
+@app.post("/api/gp-refinement/generate-round")
+async def generate_gp_round(request: GPRefineInitRequest):
+    """
+    Generate 4 options for the current round with cross-attention weighted images.
+    
+    Each option contains 10 tags with different selection strategies:
+    - Option 0: Exploitation (highest mean μ)
+    - Option 1: Exploration (highest uncertainty σ)
+    - Option 2: UCB Balanced (μ + β × σ)
+    - Option 3: Challenger (top tags with swaps)
+    
+    Images are generated using SDXL with cross-attention weighting based on tag utilities.
+    """
+    global _eval_sdxl_runner
+    
+    refiner = gp_refinement_sessions.get(request.session_id)
+    if not refiner:
+        raise HTTPException(404, f"GP refinement session not found: {request.session_id}")
+    
+    if refiner.is_complete:
+        raise HTTPException(400, "Refinement already complete (6 rounds)")
+    
+    # Generate options (tag selections)
+    options = refiner.generate_round_options()
+    
+    # Setup SDXL pipeline if not already done
+    if refiner.pipe is None and _eval_sdxl_runner is not None:
+        # Get base prompt from session
+        session = eval_sessions.get(request.session_id)
+        if session:
+            base_prompt = f"{session.get('adjective', '')} {session.get('location', '')}".strip()
+        else:
+            # Extract from session_id (e.g., "eval_Cozy_Bedroom_Sample_2026...")
+            parts = request.session_id.replace("eval_", "").split("_Sample")[0]
+            base_prompt = parts.replace("_", " ")
+        
+        refiner.set_sdxl_pipeline(
+            pipe=_eval_sdxl_runner.pipe,
+            base_prompt=base_prompt,
+            image_height=512,
+            image_width=512,
+            num_inference_steps=30,
+            guidance_scale=7.5,
+        )
+    
+    # Generate images if pipeline is available
+    image_paths = []
+    if refiner.pipe is not None:
+        try:
+            session_folder = SESSION_LOGS_DIR / request.session_id
+            round_dir = session_folder / "gp_refinement" / f"round_{refiner.current_round}"
+            
+            # Run image generation in thread pool to not block event loop
+            image_paths = await asyncio.get_event_loop().run_in_executor(
+                generation_executor,
+                lambda: refiner.generate_round_images(round_dir)
+            )
+            
+            print(f"[GP Refine] Generated {len(image_paths)} images for round {refiner.current_round}")
+        except Exception as e:
+            print(f"[GP Refine] Image generation failed: {e}")
+            import traceback
+            traceback.print_exc()
+    else:
+        print("[GP Refine] No SDXL pipeline available, returning options without images")
+    
+    return GPRoundResponse(
+        round_num=refiner.current_round,
+        beta=round(refiner.beta, 2),
+        max_overlap=round(refiner.max_overlap, 2),
+        options=[opt.to_dict() for opt in options],
+        images=image_paths if image_paths else None
+    )
+
+
+@app.post("/api/gp-refinement/submit-ranking", response_model=GPRankingResponse)
+def submit_gp_ranking(request: GPRankingRequest):
+    """
+    Submit user ranking for current round.
+    
+    Ranking is a list of option IDs from best to worst.
+    E.g., [2, 0, 3, 1] means Option 2 is best, Option 1 is worst.
+    
+    This generates 6 pairwise comparisons and updates tag utilities.
+    """
+    refiner = gp_refinement_sessions.get(request.session_id)
+    if not refiner:
+        raise HTTPException(404, f"GP refinement session not found: {request.session_id}")
+    
+    try:
+        result = refiner.submit_ranking(request.ranking)
+    except ValueError as e:
+        raise HTTPException(400, str(e))
+    
+    # Get top tags for response
+    sorted_tags = sorted(
+        refiner.tags.values(),
+        key=lambda t: t.mu,
+        reverse=True
+    )[:10]
+    
+    top_tags = [
+        {"text": t.text, "mu": round(t.mu, 3), "sigma": round(t.sigma, 3)}
+        for t in sorted_tags
+    ]
+    
+    # Save state
+    session_folder = SESSION_LOGS_DIR / request.session_id
+    state_path = session_folder / "gp_refinement" / "state.json"
+    refiner.save_state(state_path)
+    
+    return GPRankingResponse(
+        round_num=result.round_num,
+        pairwise_comparisons=len(result.pairwise_comparisons),
+        top_tags=top_tags,
+        is_complete=refiner.is_complete
+    )
+
+
+@app.post("/api/gp-refinement/finalize", response_model=GPFinalResponse)
+def finalize_gp_refinement(request: GPRefineInitRequest):
+    """
+    Finalize GP refinement and get final weighted tags.
+    
+    Returns top 10 tags with softmax-normalized weights.
+    Saves refined_preferences.json to session folder.
+    """
+    refiner = gp_refinement_sessions.get(request.session_id)
+    if not refiner:
+        raise HTTPException(404, f"GP refinement session not found: {request.session_id}")
+    
+    final_tags, weights = refiner.get_final_selection(n_tags=10, use_softmax=True)
+    
+    # Save to refined_preferences.json
+    session_folder = SESSION_LOGS_DIR / request.session_id
+    output_path = session_folder / "gp_refinement" / "refined_preferences.json"
+    
+    full_result = refiner.get_final_result()
+    
+    output_data = {
+        "final_tags": [
+            {"tag": tag, "weight": weights[tag], "usage": "cross_attention_map_scaling"}
+            for tag in final_tags
+        ],
+        "all_tag_details": full_result["all_tag_details"],
+        "summary": {
+            "rounds_completed": full_result["rounds_completed"],
+            "total_comparisons": full_result["total_comparisons"],
+        },
+        "round_history": full_result["round_history"],
+    }
+    
+    with open(output_path, 'w') as f:
+        json.dump(output_data, f, indent=2)
+    
+    print(f"[GP Refine] Saved final result to {output_path}")
+    
+    # Clean up session
+    del gp_refinement_sessions[request.session_id]
+    
+    return GPFinalResponse(
+        final_tags=final_tags,
+        weights=weights,
+        rounds_completed=full_result["rounds_completed"],
+        total_comparisons=full_result["total_comparisons"]
+    )
+
+
+@app.get("/api/gp-refinement/status/{session_id}")
+def get_gp_refinement_status(session_id: str):
+    """Get the status of a GP refinement session."""
+    refiner = gp_refinement_sessions.get(session_id)
+    if not refiner:
+        return {"exists": False, "session_id": session_id}
+    
+    sorted_tags = sorted(
+        refiner.tags.values(),
+        key=lambda t: t.mu,
+        reverse=True
+    )[:10]
+    
+    return {
+        "exists": True,
+        "session_id": session_id,
+        "current_round": refiner.current_round,
+        "max_rounds": refiner.config.max_rounds,
+        "is_complete": refiner.is_complete,
+        "total_tags": len(refiner.tags),
+        "beta": round(refiner.beta, 2) if refiner.current_round > 0 else 2.0,
+        "top_tags": [
+            {"text": t.text, "mu": round(t.mu, 3), "sigma": round(t.sigma, 3)}
+            for t in sorted_tags
+        ]
     }
 
 

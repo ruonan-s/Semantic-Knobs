@@ -369,6 +369,44 @@ class HITLCompositionFuser:
         
         return prompt_embeds, pooled, neg_embeds, neg_pooled, attn_controller
     
+    def fuse_tags_with_weights(
+        self,
+        tag_labels: List[str],
+        tag_weights: List[float],
+        base_prompt: str,
+        neg_phrases: Optional[List[str]] = None
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, CrossAttentionController]:
+        """
+        Simplified API: Fuse tag labels and weights directly into embeddings with attention control.
+        
+        This is a convenience method that creates a minimal CompositionSample internally.
+        
+        Args:
+            tag_labels: List of tag strings (e.g., ["warm lighting", "natural wood"])
+            tag_weights: List of attention weights for each tag
+            base_prompt: Base prompt (e.g., "Calm Home Office")
+            neg_phrases: Optional negative prompt phrases
+            
+        Returns:
+            (prompt_embeds, pooled, neg_embeds, neg_pooled, attn_controller)
+        """
+        # Create a minimal CompositionSample
+        n_tags = len(tag_labels)
+        dummy_points = np.zeros((n_tags, 768))  # Not used for prompt building
+        weights = np.array(tag_weights)
+        tag_indices = list(range(n_tags))
+        ucb_scores = weights.copy()
+        
+        composition = CompositionSample(
+            points=dummy_points,
+            weights=weights,
+            tag_labels=tag_labels,
+            tag_indices=tag_indices,
+            point_ucb_scores=ucb_scores
+        )
+        
+        return self.fuse_composition(composition, base_prompt, neg_phrases)
+    
     def clear_cache(self):
         self._embedding_cache.clear()
 

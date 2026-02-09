@@ -1,0 +1,136 @@
+{
+  "user_id": "GP_testing",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_GP_testing_Calm_Home_Office_Sample_2026-01-29_12-28-07",
+  "created_at": "2026-01-29T12:28:07.435901",
+  "events": [
+    {
+      "timestamp": "2026-01-29T12:28:07.435905",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Calm_Home_Office_Sample"
+      }
+    },
+    {
+      "timestamp": "2026-01-29T12:29:44.891809",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Calm Home Office"
+      }
+    },
+    {
+      "timestamp": "2026-01-29T12:30:49.189272",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          1,
+          3,
+          0,
+          2
+        ],
+        "gp_variance": 0.907884955406189,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-29T12:31:48.773389",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 2,
+        "ranking": [
+          1,
+          0,
+          2,
+          3
+        ],
+        "gp_variance": 0.9142244458198547,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-29T12:32:53.644382",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 3,
+        "ranking": [
+          0,
+          2,
+          3,
+          1
+        ],
+        "gp_variance": 0.9145343899726868,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-29T12:34:03.760856",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 4,
+        "ranking": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "gp_variance": 0.9079030752182007,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-29T12:35:16.499432",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 5,
+        "ranking": [
+          1,
+          3,
+          0,
+          2
+        ],
+        "gp_variance": 0.9144018888473511,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-29T12:36:20.239662",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 6,
+        "ranking": [
+          0,
+          3,
+          1,
+          2
+        ],
+        "gp_variance": 0.9081212878227234,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-29T12:37:36.234622",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 7,
+        "ranking": [
+          0,
+          3,
+          1,
+          2
+        ],
+        "gp_variance": 0.9076341390609741,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-29T12:38:31.655112",
+      "type": "hitl_finalize",
+      "data": {
+        "rounds_completed": 7,
+        "total_pairs": 312
+      }
+    }
+  ]
+}

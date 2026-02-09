@@ -1,0 +1,161 @@
+======================================================================
+SESSION ANALYSIS SUMMARY
+======================================================================
+Session: eval_Text-GP_Calm_Home_Office_Sample_2026-02-03_12-52-20
+Base Prompt: Calm Home Office
+Rounds: 8
+Converged: False
+Analysis Time: 2026-02-03T13:08:06.657581
+
+----------------------------------------------------------------------
+EXPLORATION PREFERENCES
+----------------------------------------------------------------------
+  Positive: 31 tags
+  Neutral: 11 tags
+  Negative: 6 tags
+
+----------------------------------------------------------------------
+ROUND 1
+  GP Variance: 0.9078
+----------------------------------------------------------------------
+  Options:
+    🏆[0] pos=1 | avg_w=0.100 | minimalist design, Simple layout, clean lines...
+      [1] pos=2 | avg_w=0.100 | minimalist decor, modern aesthetic, clean lines...
+      [2] pos=3 | avg_w=0.100 | minimalist decor, neutral color palette, natural lighting...
+    💀[3] pos=4 | avg_w=0.100 | Minimalist decor, neutral color palette, Modern elegance...
+  Ranking: [0, 1, 2, 3]
+  Comparisons: 6
+  Top comparison (0 > 1):
+    Only in winner: ['Simple layout', 'minimalist design', 'lush greenery']...
+    Only in loser: ['open space layout', 'modern aesthetic', 'minimalist decor']...
+
+----------------------------------------------------------------------
+ROUND 2
+  GP Variance: 0.9143
+----------------------------------------------------------------------
+  Options:
+      [0] pos=2 | avg_w=0.100 | minimalist design, Simple layout, clean lines...
+      [1] pos=3 | avg_w=0.100 | minimalist decor, clean lines, modern aesthetic...
+    💀[2] pos=4 | avg_w=0.100 | minimalist decor, neutral color palette, natural lighting...
+    🏆[3] pos=1 | avg_w=0.100 | Minimalist decor, neutral color palette, Modern elegance...
+  Ranking: [3, 0, 1, 2]
+  Comparisons: 6
+  Top comparison (3 > 0):
+    Only in winner: ['Natural light', 'Modern elegance', 'open space layout']...
+    Only in loser: ['Casual elegance', 'Simple layout', 'minimalist design']...
+
+----------------------------------------------------------------------
+ROUND 3
+  GP Variance: 0.9144
+----------------------------------------------------------------------
+  Options:
+    🏆[0] pos=1 | avg_w=0.100 | minimalist design, Simple layout, clean lines...
+      [1] pos=2 | avg_w=0.100 | minimalist decor, modern aesthetic, clean lines...
+      [2] pos=3 | avg_w=0.100 | minimalist decor, neutral color palette, natural lighting...
+    💀[3] pos=4 | avg_w=0.100 | Minimalist decor, neutral color palette, Modern elegance...
+  Ranking: [0, 1, 2, 3]
+  Comparisons: 6
+  Top comparison (0 > 1):
+    Only in winner: ['Simple layout', 'minimalist design', 'lush greenery']...
+    Only in loser: ['open space layout', 'modern aesthetic', 'minimalist decor']...
+
+----------------------------------------------------------------------
+ROUND 4
+  GP Variance: 0.9142
+----------------------------------------------------------------------
+  Options:
+    💀[0] pos=4 | avg_w=0.100 | minimalist design, Simple layout, clean lines...
+    🏆[1] pos=1 | avg_w=0.100 | minimalist decor, clean lines, modern aesthetic...
+      [2] pos=3 | avg_w=0.100 | minimalist decor, neutral color palette, natural lighting...
+      [3] pos=2 | avg_w=0.100 | Minimalist decor, neutral color palette, modern simplicity...
+  Ranking: [1, 3, 2, 0]
+  Comparisons: 6
+  Top comparison (1 > 3):
+    Only in winner: ['natural lighting', 'modern aesthetic', 'Casual elegance']...
+    Only in loser: ['natural wood table', 'modern simplicity', 'lush greenery']...
+
+----------------------------------------------------------------------
+ROUND 5
+  GP Variance: 0.9143
+----------------------------------------------------------------------
+  Options:
+    🏆[0] pos=1 | avg_w=0.100 | minimalist design, Simple layout, clean lines...
+    💀[1] pos=4 | avg_w=0.100 | minimalist decor, clean lines, modern aesthetic...
+      [2] pos=3 | avg_w=0.100 | minimalist decor, neutral color palette, natural lighting...
+      [3] pos=2 | avg_w=0.100 | Minimalist decor, neutral color palette, Modern elegance...
+  Ranking: [0, 3, 2, 1]
+  Comparisons: 6
+  Top comparison (0 > 3):
+    Only in winner: ['Casual elegance', 'Simple layout', 'minimalist design']...
+    Only in loser: ['Natural light', 'Modern elegance', 'open space layout']...
+
+----------------------------------------------------------------------
+ROUND 6
+  GP Variance: 0.9141
+----------------------------------------------------------------------
+  Options:
+      [0] pos=3 | avg_w=0.100 | minimalist design, Simple layout, clean lines...
+    💀[1] pos=4 | avg_w=0.100 | minimalist decor, clean lines, modern aesthetic...
+    🏆[2] pos=1 | avg_w=0.100 | minimalist decor, neutral color palette, natural lighting...
+      [3] pos=2 | avg_w=0.100 | Minimalist decor, neutral color palette, Modern elegance...
+  Ranking: [2, 3, 0, 1]
+  Comparisons: 6
+  Top comparison (2 > 3):
+    Only in winner: ['natural wood table', 'natural lighting', 'minimalist decor']...
+    Only in loser: ['Minimalist decor', 'Natural light', 'Warm lighting']...
+
+----------------------------------------------------------------------
+ROUND 7
+  GP Variance: 0.9080
+----------------------------------------------------------------------
+  Options:
+    🏆[0] pos=1 | avg_w=0.100 | minimalist design, Simple layout, clean lines...
+      [1] pos=2 | avg_w=0.100 | minimalist decor, clean lines, modern aesthetic...
+      [2] pos=3 | avg_w=0.100 | minimalist decor, neutral color palette, natural lighting...
+    💀[3] pos=4 | avg_w=0.100 | Minimalist decor, neutral color palette, Modern elegance...
+  Ranking: [0, 1, 2, 3]
+  Comparisons: 6
+  Top comparison (0 > 1):
+    Only in winner: ['Simple layout', 'minimalist design', 'lush greenery']...
+    Only in loser: ['open space layout', 'modern aesthetic', 'minimalist decor']...
+
+----------------------------------------------------------------------
+ROUND 8
+  GP Variance: 0.9079
+----------------------------------------------------------------------
+  Options:
+      [0] pos=2 | avg_w=0.100 | minimalist design, Simple layout, clean lines...
+      [1] pos=3 | avg_w=0.100 | minimalist decor, clean lines, modern aesthetic...
+    🏆[2] pos=1 | avg_w=0.100 | minimalist decor, neutral color palette, natural lighting...
+    💀[3] pos=4 | avg_w=0.100 | Minimalist decor, neutral color palette, Modern elegance...
+  Ranking: [2, 0, 1, 3]
+  Comparisons: 6
+  Top comparison (2 > 0):
+    Only in winner: ['open space layout', 'Modern elegance', 'lush greenery']...
+    Only in loser: ['Simple layout', 'minimalist design', 'clean lines']...
+
+======================================================================
+TAG STATISTICS
+======================================================================
+Total unique tags: 20
+
+Top 15 by Win Rate:
+   1. minimalist design              | win=50% lose=12% | shown=8 avg_pos=1.9
+   2. Simple layout                  | win=50% lose=12% | shown=8 avg_pos=1.9
+   3. lush greenery                  | win=32% lose=23% | shown=22 avg_pos=2.4
+   4. clean lines                    | win=31% lose=19% | shown=16 avg_pos=2.2
+   5. Casual elegance                | win=31% lose=19% | shown=16 avg_pos=2.2
+   6. natural lighting               | win=29% lose=17% | shown=24 avg_pos=2.4
+   7. calm atmosphere                | win=27% lose=27% | shown=30 avg_pos=2.5
+   8. neutral color palette          | win=25% lose=25% | shown=32 avg_pos=2.5
+   9. large windows                  | win=25% lose=25% | shown=32 avg_pos=2.5
+  10. earthy tones                   | win=25% lose=25% | shown=32 avg_pos=2.5
+  11. natural wood table             | win=22% lose=11% | shown=9 avg_pos=2.4
+  12. Modern elegance                | win=21% lose=36% | shown=14 avg_pos=2.8
+  13. minimalist decor               | win=19% lose=19% | shown=16 avg_pos=2.6
+  14. open space layout              | win=17% lose=29% | shown=24 avg_pos=2.7
+  15. modern aesthetic               | win=12% lose=25% | shown=8 avg_pos=2.6
+
+======================================================================
+FINAL SELECTION
+======================================================================

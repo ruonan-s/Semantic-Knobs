@@ -1,0 +1,85 @@
+{
+  "user_id": "anonymous",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Inviting_Livingroom_Sample_2026-01-28_09-07-38",
+  "created_at": "2026-01-28T09:07:38.462424",
+  "events": [
+    {
+      "timestamp": "2026-01-28T09:07:38.462434",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Inviting_Livingroom_Sample"
+      }
+    },
+    {
+      "timestamp": "2026-01-28T09:09:20.797316",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Inviting Livingroom"
+      }
+    },
+    {
+      "timestamp": "2026-01-28T09:11:00.044178",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          3,
+          1,
+          2,
+          0
+        ],
+        "gp_variance": 0.9144184589385986,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-28T09:12:46.932806",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 2,
+        "ranking": [
+          3,
+          2,
+          1,
+          0
+        ],
+        "gp_variance": 0.914534866809845,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-28T09:13:49.626504",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 3,
+        "ranking": [
+          3,
+          2,
+          1,
+          0
+        ],
+        "gp_variance": 0.9143078327178955,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-01-28T09:17:40.343016",
+      "type": "hitl_finalize",
+      "data": {
+        "rounds_completed": 3,
+        "total_pairs": 343
+      }
+    },
+    {
+      "timestamp": "2026-01-28T09:18:00.791683",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_1_0",
+        "concept_count": 12,
+        "gp_mode": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,3628 @@
+{
+  "metadata": {
+    "session_id": "eval_Text-GP_Calm_Home_Office_Sample_2026-02-03_12-52-20",
+    "analysis_timestamp": "2026-02-03T13:08:06.657581",
+    "rounds_completed": 8,
+    "is_converged": false,
+    "base_prompt": "Calm Home Office"
+  },
+  "tag_preferences": {
+    "positive": [
+      "minimalist design",
+      "neutral color palette",
+      "natural wood table",
+      "clean lines",
+      "open space layout",
+      "modern aesthetic",
+      "subtle elegance",
+      "calm atmosphere",
+      "natural lighting",
+      "wooden desk",
+      "minimalist decor",
+      "lush greenery",
+      "large windows",
+      "stone accents",
+      "earthy tones",
+      "clean lines",
+      "ceramic pots",
+      "modern simplicity",
+      "contemporary elegance",
+      "minimalist decor",
+      "neutral color palette",
+      "spacious layout",
+      "Scandinavian design",
+      "Natural light",
+      "Minimalist decor",
+      "Soft textures",
+      "Neutral tones",
+      "Wooden furniture",
+      "Modern elegance",
+      "Warm lighting",
+      "Casual elegance"
+    ],
+    "negative": [
+      "sleek cabinetry",
+      "plush gray chair",
+      "luxurious materials",
+      "sophisticated atmosphere",
+      "textured wall paneling",
+      "Textured fabrics"
+    ],
+    "neutral": [
+      "soft diffused lighting",
+      "floor-to-ceiling curtains",
+      "simple chair design",
+      "cozy atmosphere",
+      "curtained backdrop",
+      "warm wood tones",
+      "sleek modern desk",
+      "soft ambient lighting",
+      "curtain-filtered daylight",
+      "Cozy atmosphere",
+      "Simple layout"
+    ]
+  },
+  "rounds": [
+    {
+      "round_num": 1,
+      "timestamp": "2026-02-03T12:55:10.322176",
+      "ranking": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "gp_variance": 0.9077550172805786,
+      "options": [
+        {
+          "option_id": 0,
+          "position": 1,
+          "is_winner": true,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist design",
+              "weight": 0.1204,
+              "ucb_score": 2.3977
+            },
+            {
+              "text": "Simple layout",
+              "weight": 0.1079,
+              "ucb_score": 2.288
+            },
+            {
+              "text": "clean lines",
+              "weight": 0.1076,
+              "ucb_score": 2.2852
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1047,
+              "ucb_score": 2.2579
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1044,
+              "ucb_score": 2.2545
+            },
+            {
+              "text": "Casual elegance",
+              "weight": 0.0932,
+              "ucb_score": 2.1411
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0919,
+              "ucb_score": 2.1276
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0917,
+              "ucb_score": 2.1254
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0902,
+              "ucb_score": 2.1089
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0881,
+              "ucb_score": 2.0848
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2071
+        },
+        {
+          "option_id": 1,
+          "position": 2,
+          "is_winner": false,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist decor",
+              "weight": 0.1101,
+              "ucb_score": 2.3121
+            },
+            {
+              "text": "modern aesthetic",
+              "weight": 0.1076,
+              "ucb_score": 2.2887
+            },
+            {
+              "text": "clean lines",
+              "weight": 0.1072,
+              "ucb_score": 2.2852
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1043,
+              "ucb_score": 2.2579
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.104,
+              "ucb_score": 2.2545
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.101,
+              "ucb_score": 2.2254
+            },
+            {
+              "text": "Casual elegance",
+              "weight": 0.0928,
+              "ucb_score": 2.1411
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0916,
+              "ucb_score": 2.1276
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0914,
+              "ucb_score": 2.1254
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0899,
+              "ucb_score": 2.1089
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2127
+        },
+        {
+          "option_id": 2,
+          "position": 3,
+          "is_winner": false,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist decor",
+              "weight": 0.1136,
+              "ucb_score": 2.3121
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1076,
+              "ucb_score": 2.2579
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1072,
+              "ucb_score": 2.2545
+            },
+            {
+              "text": "Modern elegance",
+              "weight": 0.1052,
+              "ucb_score": 2.2354
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1041,
+              "ucb_score": 2.2254
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0944,
+              "ucb_score": 2.1276
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0942,
+              "ucb_score": 2.1254
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0927,
+              "ucb_score": 2.1089
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0905,
+              "ucb_score": 2.0848
+            },
+            {
+              "text": "natural wood table",
+              "weight": 0.0904,
+              "ucb_score": 2.0838
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.1816
+        },
+        {
+          "option_id": 3,
+          "position": 4,
+          "is_winner": false,
+          "is_loser": true,
+          "tags": [
+            {
+              "text": "Minimalist decor",
+              "weight": 0.1133,
+              "ucb_score": 2.3121
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1073,
+              "ucb_score": 2.2579
+            },
+            {
+              "text": "Modern elegance",
+              "weight": 0.1049,
+              "ucb_score": 2.2354
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1039,
+              "ucb_score": 2.2254
+            },
+            {
+              "text": "Natural light",
+              "weight": 0.1029,
+              "ucb_score": 2.2158
+            },
+            {
+              "text": "Warm lighting",
+              "weight": 0.0968,
+              "ucb_score": 2.1546
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0942,
+              "ucb_score": 2.1276
+            },
+            {
+              "text": "large windows",
+              "weight": 0.094,
+              "ucb_score": 2.1254
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0925,
+              "ucb_score": 2.1089
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0903,
+              "ucb_score": 2.0848
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.1848
+        }
+      ],
+      "pairwise_comparisons": [
+        {
+          "better_option": 0,
+          "worse_option": 1,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "Simple layout",
+            "minimalist design",
+            "lush greenery"
+          ],
+          "tags_only_in_worse": [
+            "open space layout",
+            "modern aesthetic",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "Casual elegance",
+            "earthy tones",
+            "clean lines",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 0,
+          "worse_option": 2,
+          "rank_distance": 2,
+          "tags_only_in_better": [
+            "Simple layout",
+            "minimalist design",
+            "clean lines",
+            "Casual elegance"
+          ],
+          "tags_only_in_worse": [
+            "natural wood table",
+            "open space layout",
+            "Modern elegance",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "earthy tones",
+            "lush greenery",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 0,
+          "worse_option": 3,
+          "rank_distance": 3,
+          "tags_only_in_better": [
+            "Casual elegance",
+            "Simple layout",
+            "minimalist design",
+            "clean lines",
+            "natural lighting"
+          ],
+          "tags_only_in_worse": [
+            "Natural light",
+            "Modern elegance",
+            "open space layout",
+            "Minimalist decor",
+            "Warm lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "lush greenery",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 1,
+          "worse_option": 2,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "modern aesthetic",
+            "clean lines",
+            "Casual elegance"
+          ],
+          "tags_only_in_worse": [
+            "natural wood table",
+            "lush greenery",
+            "Modern elegance"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "minimalist decor",
+            "earthy tones",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 1,
+          "worse_option": 3,
+          "rank_distance": 2,
+          "tags_only_in_better": [
+            "modern aesthetic",
+            "Casual elegance",
+            "minimalist decor",
+            "clean lines",
+            "natural lighting"
+          ],
+          "tags_only_in_worse": [
+            "Modern elegance",
+            "lush greenery",
+            "Natural light",
+            "Minimalist decor",
+            "Warm lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 2,
+          "worse_option": 3,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "natural wood table",
+            "natural lighting",
+            "minimalist decor"
+          ],
+          "tags_only_in_worse": [
+            "Minimalist decor",
+            "Natural light",
+            "Warm lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "lush greenery",
+            "Modern elegance",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        }
+      ]
+    },
+    {
+      "round_num": 2,
+      "timestamp": "2026-02-03T12:56:28.144659",
+      "ranking": [
+        3,
+        0,
+        1,
+        2
+      ],
+      "gp_variance": 0.9142835736274719,
+      "options": [
+        {
+          "option_id": 0,
+          "position": 2,
+          "is_winner": false,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist design",
+              "weight": 0.1201,
+              "ucb_score": 2.3844
+            },
+            {
+              "text": "Simple layout",
+              "weight": 0.1078,
+              "ucb_score": 2.2765
+            },
+            {
+              "text": "clean lines",
+              "weight": 0.1077,
+              "ucb_score": 2.2755
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1049,
+              "ucb_score": 2.2493
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1041,
+              "ucb_score": 2.2413
+            },
+            {
+              "text": "Casual elegance",
+              "weight": 0.0931,
+              "ucb_score": 2.1293
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0922,
+              "ucb_score": 2.1204
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0915,
+              "ucb_score": 2.1118
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0905,
+              "ucb_score": 2.1014
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.088,
+              "ucb_score": 2.0738
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.1964
+        },
+        {
+          "option_id": 1,
+          "position": 3,
+          "is_winner": false,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist decor",
+              "weight": 0.1097,
+              "ucb_score": 2.2952
+            },
+            {
+              "text": "clean lines",
+              "weight": 0.1075,
+              "ucb_score": 2.2755
+            },
+            {
+              "text": "modern aesthetic",
+              "weight": 0.1071,
+              "ucb_score": 2.2714
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1048,
+              "ucb_score": 2.2493
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1039,
+              "ucb_score": 2.2413
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1003,
+              "ucb_score": 2.2063
+            },
+            {
+              "text": "Casual elegance",
+              "weight": 0.0929,
+              "ucb_score": 2.1293
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0921,
+              "ucb_score": 2.1204
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0913,
+              "ucb_score": 2.1118
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0904,
+              "ucb_score": 2.1014
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2002
+        },
+        {
+          "option_id": 2,
+          "position": 4,
+          "is_winner": false,
+          "is_loser": true,
+          "tags": [
+            {
+              "text": "minimalist decor",
+              "weight": 0.1131,
+              "ucb_score": 2.2952
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.108,
+              "ucb_score": 2.2493
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1072,
+              "ucb_score": 2.2413
+            },
+            {
+              "text": "Modern elegance",
+              "weight": 0.1048,
+              "ucb_score": 2.2183
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1035,
+              "ucb_score": 2.2063
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.095,
+              "ucb_score": 2.1204
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0942,
+              "ucb_score": 2.1118
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0932,
+              "ucb_score": 2.1014
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0907,
+              "ucb_score": 2.0738
+            },
+            {
+              "text": "Scandinavian design",
+              "weight": 0.0904,
+              "ucb_score": 2.0708
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.1688
+        },
+        {
+          "option_id": 3,
+          "position": 1,
+          "is_winner": true,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "Minimalist decor",
+              "weight": 0.1129,
+              "ucb_score": 2.2952
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1078,
+              "ucb_score": 2.2493
+            },
+            {
+              "text": "Modern elegance",
+              "weight": 0.1045,
+              "ucb_score": 2.2183
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1033,
+              "ucb_score": 2.2063
+            },
+            {
+              "text": "Natural light",
+              "weight": 0.1028,
+              "ucb_score": 2.202
+            },
+            {
+              "text": "Warm lighting",
+              "weight": 0.0966,
+              "ucb_score": 2.1398
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0948,
+              "ucb_score": 2.1204
+            },
+            {
+              "text": "large windows",
+              "weight": 0.094,
+              "ucb_score": 2.1118
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.093,
+              "ucb_score": 2.1014
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0904,
+              "ucb_score": 2.0738
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.1718
+        }
+      ],
+      "pairwise_comparisons": [
+        {
+          "better_option": 3,
+          "worse_option": 0,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "Natural light",
+            "Modern elegance",
+            "open space layout",
+            "Minimalist decor",
+            "Warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "Casual elegance",
+            "Simple layout",
+            "minimalist design",
+            "clean lines",
+            "natural lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "lush greenery",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 3,
+          "worse_option": 1,
+          "rank_distance": 2,
+          "tags_only_in_better": [
+            "Modern elegance",
+            "lush greenery",
+            "Natural light",
+            "Minimalist decor",
+            "Warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "modern aesthetic",
+            "Casual elegance",
+            "minimalist decor",
+            "clean lines",
+            "natural lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 3,
+          "worse_option": 2,
+          "rank_distance": 3,
+          "tags_only_in_better": [
+            "Minimalist decor",
+            "Natural light",
+            "Warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "Scandinavian design",
+            "natural lighting",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "lush greenery",
+            "Modern elegance",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 0,
+          "worse_option": 1,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "Simple layout",
+            "minimalist design",
+            "lush greenery"
+          ],
+          "tags_only_in_worse": [
+            "open space layout",
+            "modern aesthetic",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "Casual elegance",
+            "earthy tones",
+            "clean lines",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 0,
+          "worse_option": 2,
+          "rank_distance": 2,
+          "tags_only_in_better": [
+            "Simple layout",
+            "minimalist design",
+            "clean lines",
+            "Casual elegance"
+          ],
+          "tags_only_in_worse": [
+            "open space layout",
+            "Scandinavian design",
+            "Modern elegance",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "earthy tones",
+            "lush greenery",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 1,
+          "worse_option": 2,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "modern aesthetic",
+            "clean lines",
+            "Casual elegance"
+          ],
+          "tags_only_in_worse": [
+            "Scandinavian design",
+            "lush greenery",
+            "Modern elegance"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "minimalist decor",
+            "earthy tones",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        }
+      ]
+    },
+    {
+      "round_num": 3,
+      "timestamp": "2026-02-03T12:58:34.466146",
+      "ranking": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "gp_variance": 0.9144191741943359,
+      "options": [
+        {
+          "option_id": 0,
+          "position": 1,
+          "is_winner": true,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist design",
+              "weight": 0.1207,
+              "ucb_score": 2.4345
+            },
+            {
+              "text": "Simple layout",
+              "weight": 0.1083,
+              "ucb_score": 2.3259
+            },
+            {
+              "text": "clean lines",
+              "weight": 0.1079,
+              "ucb_score": 2.322
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1052,
+              "ucb_score": 2.2968
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1041,
+              "ucb_score": 2.2867
+            },
+            {
+              "text": "Casual elegance",
+              "weight": 0.0931,
+              "ucb_score": 2.1745
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.092,
+              "ucb_score": 2.1626
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0906,
+              "ucb_score": 2.1472
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0904,
+              "ucb_score": 2.1454
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0879,
+              "ucb_score": 2.1173
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2413
+        },
+        {
+          "option_id": 1,
+          "position": 2,
+          "is_winner": false,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist decor",
+              "weight": 0.1099,
+              "ucb_score": 2.3427
+            },
+            {
+              "text": "modern aesthetic",
+              "weight": 0.1077,
+              "ucb_score": 2.3224
+            },
+            {
+              "text": "clean lines",
+              "weight": 0.1077,
+              "ucb_score": 2.322
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.105,
+              "ucb_score": 2.2968
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1039,
+              "ucb_score": 2.2867
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1005,
+              "ucb_score": 2.2534
+            },
+            {
+              "text": "Casual elegance",
+              "weight": 0.0929,
+              "ucb_score": 2.1745
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0918,
+              "ucb_score": 2.1626
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0904,
+              "ucb_score": 2.1472
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0902,
+              "ucb_score": 2.1454
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2454
+        },
+        {
+          "option_id": 2,
+          "position": 3,
+          "is_winner": false,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist decor",
+              "weight": 0.1135,
+              "ucb_score": 2.3427
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1084,
+              "ucb_score": 2.2968
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1073,
+              "ucb_score": 2.2867
+            },
+            {
+              "text": "Modern elegance",
+              "weight": 0.105,
+              "ucb_score": 2.2656
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1038,
+              "ucb_score": 2.2534
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0948,
+              "ucb_score": 2.1626
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0933,
+              "ucb_score": 2.1472
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0932,
+              "ucb_score": 2.1454
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0906,
+              "ucb_score": 2.1173
+            },
+            {
+              "text": "natural wood table",
+              "weight": 0.0902,
+              "ucb_score": 2.1137
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2131
+        },
+        {
+          "option_id": 3,
+          "position": 4,
+          "is_winner": false,
+          "is_loser": true,
+          "tags": [
+            {
+              "text": "Minimalist decor",
+              "weight": 0.1132,
+              "ucb_score": 2.3427
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1081,
+              "ucb_score": 2.2968
+            },
+            {
+              "text": "Modern elegance",
+              "weight": 0.1048,
+              "ucb_score": 2.2656
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1035,
+              "ucb_score": 2.2534
+            },
+            {
+              "text": "Natural light",
+              "weight": 0.1031,
+              "ucb_score": 2.2492
+            },
+            {
+              "text": "Warm lighting",
+              "weight": 0.0967,
+              "ucb_score": 2.1851
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0945,
+              "ucb_score": 2.1626
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0931,
+              "ucb_score": 2.1472
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0929,
+              "ucb_score": 2.1454
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0903,
+              "ucb_score": 2.1173
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2165
+        }
+      ],
+      "pairwise_comparisons": [
+        {
+          "better_option": 0,
+          "worse_option": 1,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "Simple layout",
+            "minimalist design",
+            "lush greenery"
+          ],
+          "tags_only_in_worse": [
+            "open space layout",
+            "modern aesthetic",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "Casual elegance",
+            "earthy tones",
+            "clean lines",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 0,
+          "worse_option": 2,
+          "rank_distance": 2,
+          "tags_only_in_better": [
+            "Simple layout",
+            "minimalist design",
+            "clean lines",
+            "Casual elegance"
+          ],
+          "tags_only_in_worse": [
+            "natural wood table",
+            "open space layout",
+            "Modern elegance",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "earthy tones",
+            "lush greenery",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 0,
+          "worse_option": 3,
+          "rank_distance": 3,
+          "tags_only_in_better": [
+            "Casual elegance",
+            "Simple layout",
+            "minimalist design",
+            "clean lines",
+            "natural lighting"
+          ],
+          "tags_only_in_worse": [
+            "Natural light",
+            "Modern elegance",
+            "open space layout",
+            "Minimalist decor",
+            "Warm lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "lush greenery",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 1,
+          "worse_option": 2,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "modern aesthetic",
+            "clean lines",
+            "Casual elegance"
+          ],
+          "tags_only_in_worse": [
+            "natural wood table",
+            "lush greenery",
+            "Modern elegance"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "minimalist decor",
+            "earthy tones",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 1,
+          "worse_option": 3,
+          "rank_distance": 2,
+          "tags_only_in_better": [
+            "modern aesthetic",
+            "Casual elegance",
+            "minimalist decor",
+            "clean lines",
+            "natural lighting"
+          ],
+          "tags_only_in_worse": [
+            "Modern elegance",
+            "lush greenery",
+            "Natural light",
+            "Minimalist decor",
+            "Warm lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 2,
+          "worse_option": 3,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "natural wood table",
+            "natural lighting",
+            "minimalist decor"
+          ],
+          "tags_only_in_worse": [
+            "Minimalist decor",
+            "Natural light",
+            "Warm lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "lush greenery",
+            "Modern elegance",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        }
+      ]
+    },
+    {
+      "round_num": 4,
+      "timestamp": "2026-02-03T13:00:15.846860",
+      "ranking": [
+        1,
+        3,
+        2,
+        0
+      ],
+      "gp_variance": 0.9141923785209656,
+      "options": [
+        {
+          "option_id": 0,
+          "position": 4,
+          "is_winner": false,
+          "is_loser": true,
+          "tags": [
+            {
+              "text": "minimalist design",
+              "weight": 0.1208,
+              "ucb_score": 2.4196
+            },
+            {
+              "text": "Simple layout",
+              "weight": 0.1088,
+              "ucb_score": 2.3149
+            },
+            {
+              "text": "clean lines",
+              "weight": 0.1082,
+              "ucb_score": 2.3091
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1047,
+              "ucb_score": 2.2765
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1036,
+              "ucb_score": 2.2659
+            },
+            {
+              "text": "Casual elegance",
+              "weight": 0.0934,
+              "ucb_score": 2.1623
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.092,
+              "ucb_score": 2.1472
+            },
+            {
+              "text": "large windows",
+              "weight": 0.091,
+              "ucb_score": 2.1368
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0903,
+              "ucb_score": 2.1288
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0873,
+              "ucb_score": 2.095
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2256
+        },
+        {
+          "option_id": 1,
+          "position": 1,
+          "is_winner": true,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist decor",
+              "weight": 0.1096,
+              "ucb_score": 2.3237
+            },
+            {
+              "text": "clean lines",
+              "weight": 0.1081,
+              "ucb_score": 2.3091
+            },
+            {
+              "text": "modern aesthetic",
+              "weight": 0.1076,
+              "ucb_score": 2.3045
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1046,
+              "ucb_score": 2.2765
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1035,
+              "ucb_score": 2.2659
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1002,
+              "ucb_score": 2.234
+            },
+            {
+              "text": "Casual elegance",
+              "weight": 0.0933,
+              "ucb_score": 2.1623
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0919,
+              "ucb_score": 2.1472
+            },
+            {
+              "text": "large windows",
+              "weight": 0.091,
+              "ucb_score": 2.1368
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0902,
+              "ucb_score": 2.1288
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2289
+        },
+        {
+          "option_id": 2,
+          "position": 3,
+          "is_winner": false,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist decor",
+              "weight": 0.114,
+              "ucb_score": 2.3237
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1088,
+              "ucb_score": 2.2765
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1076,
+              "ucb_score": 2.2659
+            },
+            {
+              "text": "modern simplicity",
+              "weight": 0.1054,
+              "ucb_score": 2.2454
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1042,
+              "ucb_score": 2.234
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0946,
+              "ucb_score": 2.1368
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0938,
+              "ucb_score": 2.1288
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0907,
+              "ucb_score": 2.095
+            },
+            {
+              "text": "natural wood table",
+              "weight": 0.0905,
+              "ucb_score": 2.0931
+            },
+            {
+              "text": "Scandinavian design",
+              "weight": 0.0903,
+              "ucb_score": 2.091
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.189
+        },
+        {
+          "option_id": 3,
+          "position": 2,
+          "is_winner": false,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "Minimalist decor",
+              "weight": 0.1137,
+              "ucb_score": 2.3237
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1085,
+              "ucb_score": 2.2765
+            },
+            {
+              "text": "modern simplicity",
+              "weight": 0.1051,
+              "ucb_score": 2.2454
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.104,
+              "ucb_score": 2.234
+            },
+            {
+              "text": "Natural light",
+              "weight": 0.103,
+              "ucb_score": 2.2246
+            },
+            {
+              "text": "Warm lighting",
+              "weight": 0.0971,
+              "ucb_score": 2.1658
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0943,
+              "ucb_score": 2.1368
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0936,
+              "ucb_score": 2.1288
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0905,
+              "ucb_score": 2.095
+            },
+            {
+              "text": "natural wood table",
+              "weight": 0.0903,
+              "ucb_score": 2.0931
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.1924
+        }
+      ],
+      "pairwise_comparisons": [
+        {
+          "better_option": 1,
+          "worse_option": 3,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "natural lighting",
+            "modern aesthetic",
+            "Casual elegance",
+            "minimalist decor",
+            "clean lines",
+            "calm atmosphere"
+          ],
+          "tags_only_in_worse": [
+            "natural wood table",
+            "modern simplicity",
+            "lush greenery",
+            "Natural light",
+            "Minimalist decor",
+            "Warm lighting"
+          ],
+          "shared_tags": [
+            "earthy tones",
+            "neutral color palette",
+            "open space layout",
+            "large windows"
+          ]
+        },
+        {
+          "better_option": 1,
+          "worse_option": 2,
+          "rank_distance": 2,
+          "tags_only_in_better": [
+            "modern aesthetic",
+            "calm atmosphere",
+            "clean lines",
+            "Casual elegance"
+          ],
+          "tags_only_in_worse": [
+            "natural wood table",
+            "lush greenery",
+            "Scandinavian design",
+            "modern simplicity"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "minimalist decor",
+            "earthy tones",
+            "open space layout",
+            "natural lighting"
+          ]
+        },
+        {
+          "better_option": 1,
+          "worse_option": 0,
+          "rank_distance": 3,
+          "tags_only_in_better": [
+            "open space layout",
+            "modern aesthetic",
+            "minimalist decor"
+          ],
+          "tags_only_in_worse": [
+            "Simple layout",
+            "minimalist design",
+            "lush greenery"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "Casual elegance",
+            "earthy tones",
+            "clean lines",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 3,
+          "worse_option": 2,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "Minimalist decor",
+            "Natural light",
+            "Warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "Scandinavian design",
+            "natural lighting",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural wood table",
+            "modern simplicity",
+            "earthy tones",
+            "lush greenery",
+            "open space layout"
+          ]
+        },
+        {
+          "better_option": 3,
+          "worse_option": 0,
+          "rank_distance": 2,
+          "tags_only_in_better": [
+            "natural wood table",
+            "modern simplicity",
+            "Natural light",
+            "open space layout",
+            "Minimalist decor",
+            "Warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "natural lighting",
+            "Casual elegance",
+            "Simple layout",
+            "minimalist design",
+            "clean lines",
+            "calm atmosphere"
+          ],
+          "shared_tags": [
+            "earthy tones",
+            "neutral color palette",
+            "lush greenery",
+            "large windows"
+          ]
+        },
+        {
+          "better_option": 2,
+          "worse_option": 0,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "natural wood table",
+            "modern simplicity",
+            "minimalist decor",
+            "open space layout",
+            "Scandinavian design"
+          ],
+          "tags_only_in_worse": [
+            "Casual elegance",
+            "Simple layout",
+            "minimalist design",
+            "clean lines",
+            "calm atmosphere"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "lush greenery",
+            "natural lighting"
+          ]
+        }
+      ]
+    },
+    {
+      "round_num": 5,
+      "timestamp": "2026-02-03T13:01:22.436690",
+      "ranking": [
+        0,
+        3,
+        2,
+        1
+      ],
+      "gp_variance": 0.9143440127372742,
+      "options": [
+        {
+          "option_id": 0,
+          "position": 1,
+          "is_winner": true,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist design",
+              "weight": 0.1206,
+              "ucb_score": 2.4256
+            },
+            {
+              "text": "Simple layout",
+              "weight": 0.1083,
+              "ucb_score": 2.3174
+            },
+            {
+              "text": "clean lines",
+              "weight": 0.1081,
+              "ucb_score": 2.3155
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1051,
+              "ucb_score": 2.288
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1039,
+              "ucb_score": 2.2767
+            },
+            {
+              "text": "Casual elegance",
+              "weight": 0.0934,
+              "ucb_score": 2.1694
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0919,
+              "ucb_score": 2.1539
+            },
+            {
+              "text": "large windows",
+              "weight": 0.091,
+              "ucb_score": 2.1431
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0903,
+              "ucb_score": 2.1365
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0874,
+              "ucb_score": 2.103
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2329
+        },
+        {
+          "option_id": 1,
+          "position": 4,
+          "is_winner": false,
+          "is_loser": true,
+          "tags": [
+            {
+              "text": "minimalist decor",
+              "weight": 0.1099,
+              "ucb_score": 2.3348
+            },
+            {
+              "text": "clean lines",
+              "weight": 0.1078,
+              "ucb_score": 2.3155
+            },
+            {
+              "text": "modern aesthetic",
+              "weight": 0.1076,
+              "ucb_score": 2.3137
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1049,
+              "ucb_score": 2.288
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1037,
+              "ucb_score": 2.2767
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1004,
+              "ucb_score": 2.2444
+            },
+            {
+              "text": "Casual elegance",
+              "weight": 0.0931,
+              "ucb_score": 2.1694
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0917,
+              "ucb_score": 2.1539
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0907,
+              "ucb_score": 2.1431
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0901,
+              "ucb_score": 2.1365
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2376
+        },
+        {
+          "option_id": 2,
+          "position": 3,
+          "is_winner": false,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist decor",
+              "weight": 0.1136,
+              "ucb_score": 2.3348
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1084,
+              "ucb_score": 2.288
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1072,
+              "ucb_score": 2.2767
+            },
+            {
+              "text": "Modern elegance",
+              "weight": 0.1052,
+              "ucb_score": 2.2574
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1038,
+              "ucb_score": 2.2444
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0948,
+              "ucb_score": 2.1539
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0938,
+              "ucb_score": 2.1431
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0932,
+              "ucb_score": 2.1365
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0901,
+              "ucb_score": 2.103
+            },
+            {
+              "text": "Scandinavian design",
+              "weight": 0.0898,
+              "ucb_score": 2.0994
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2037
+        },
+        {
+          "option_id": 3,
+          "position": 2,
+          "is_winner": false,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "Minimalist decor",
+              "weight": 0.1133,
+              "ucb_score": 2.3348
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1081,
+              "ucb_score": 2.288
+            },
+            {
+              "text": "Modern elegance",
+              "weight": 0.1049,
+              "ucb_score": 2.2574
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1035,
+              "ucb_score": 2.2444
+            },
+            {
+              "text": "Natural light",
+              "weight": 0.1027,
+              "ucb_score": 2.2361
+            },
+            {
+              "text": "Warm lighting",
+              "weight": 0.0966,
+              "ucb_score": 2.1756
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0946,
+              "ucb_score": 2.1539
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0935,
+              "ucb_score": 2.1431
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0929,
+              "ucb_score": 2.1365
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0899,
+              "ucb_score": 2.103
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2073
+        }
+      ],
+      "pairwise_comparisons": [
+        {
+          "better_option": 0,
+          "worse_option": 3,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "Casual elegance",
+            "Simple layout",
+            "minimalist design",
+            "clean lines",
+            "natural lighting"
+          ],
+          "tags_only_in_worse": [
+            "Natural light",
+            "Modern elegance",
+            "open space layout",
+            "Minimalist decor",
+            "Warm lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "lush greenery",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 0,
+          "worse_option": 2,
+          "rank_distance": 2,
+          "tags_only_in_better": [
+            "Simple layout",
+            "minimalist design",
+            "clean lines",
+            "Casual elegance"
+          ],
+          "tags_only_in_worse": [
+            "open space layout",
+            "Scandinavian design",
+            "Modern elegance",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "earthy tones",
+            "lush greenery",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 0,
+          "worse_option": 1,
+          "rank_distance": 3,
+          "tags_only_in_better": [
+            "Simple layout",
+            "minimalist design",
+            "lush greenery"
+          ],
+          "tags_only_in_worse": [
+            "open space layout",
+            "modern aesthetic",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "Casual elegance",
+            "earthy tones",
+            "clean lines",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 3,
+          "worse_option": 2,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "Minimalist decor",
+            "Natural light",
+            "Warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "Scandinavian design",
+            "natural lighting",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "lush greenery",
+            "Modern elegance",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 3,
+          "worse_option": 1,
+          "rank_distance": 2,
+          "tags_only_in_better": [
+            "Modern elegance",
+            "lush greenery",
+            "Natural light",
+            "Minimalist decor",
+            "Warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "modern aesthetic",
+            "Casual elegance",
+            "minimalist decor",
+            "clean lines",
+            "natural lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 2,
+          "worse_option": 1,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "Scandinavian design",
+            "lush greenery",
+            "Modern elegance"
+          ],
+          "tags_only_in_worse": [
+            "modern aesthetic",
+            "clean lines",
+            "Casual elegance"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "minimalist decor",
+            "earthy tones",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        }
+      ]
+    },
+    {
+      "round_num": 6,
+      "timestamp": "2026-02-03T13:02:36.996067",
+      "ranking": [
+        2,
+        3,
+        0,
+        1
+      ],
+      "gp_variance": 0.9140741229057312,
+      "options": [
+        {
+          "option_id": 0,
+          "position": 3,
+          "is_winner": false,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist design",
+              "weight": 0.1203,
+              "ucb_score": 2.4136
+            },
+            {
+              "text": "Simple layout",
+              "weight": 0.1083,
+              "ucb_score": 2.3084
+            },
+            {
+              "text": "clean lines",
+              "weight": 0.1082,
+              "ucb_score": 2.3076
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1051,
+              "ucb_score": 2.2783
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1039,
+              "ucb_score": 2.2665
+            },
+            {
+              "text": "Casual elegance",
+              "weight": 0.0932,
+              "ucb_score": 2.1586
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0918,
+              "ucb_score": 2.1431
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0909,
+              "ucb_score": 2.1334
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0906,
+              "ucb_score": 2.1298
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0876,
+              "ucb_score": 2.0961
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2235
+        },
+        {
+          "option_id": 1,
+          "position": 4,
+          "is_winner": false,
+          "is_loser": true,
+          "tags": [
+            {
+              "text": "minimalist decor",
+              "weight": 0.1093,
+              "ucb_score": 2.3183
+            },
+            {
+              "text": "clean lines",
+              "weight": 0.1081,
+              "ucb_score": 2.3076
+            },
+            {
+              "text": "modern aesthetic",
+              "weight": 0.1074,
+              "ucb_score": 2.3004
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.105,
+              "ucb_score": 2.2783
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1038,
+              "ucb_score": 2.2665
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1002,
+              "ucb_score": 2.231
+            },
+            {
+              "text": "Casual elegance",
+              "weight": 0.0932,
+              "ucb_score": 2.1586
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0917,
+              "ucb_score": 2.1431
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0908,
+              "ucb_score": 2.1334
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0905,
+              "ucb_score": 2.1298
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2267
+        },
+        {
+          "option_id": 2,
+          "position": 1,
+          "is_winner": true,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist decor",
+              "weight": 0.113,
+              "ucb_score": 2.3183
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1085,
+              "ucb_score": 2.2783
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1073,
+              "ucb_score": 2.2665
+            },
+            {
+              "text": "Modern elegance",
+              "weight": 0.1047,
+              "ucb_score": 2.2422
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1035,
+              "ucb_score": 2.231
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0948,
+              "ucb_score": 2.1431
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0939,
+              "ucb_score": 2.1334
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0936,
+              "ucb_score": 2.1298
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0905,
+              "ucb_score": 2.0961
+            },
+            {
+              "text": "natural wood table",
+              "weight": 0.0902,
+              "ucb_score": 2.0934
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.1932
+        },
+        {
+          "option_id": 3,
+          "position": 2,
+          "is_winner": false,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "Minimalist decor",
+              "weight": 0.1127,
+              "ucb_score": 2.3183
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1083,
+              "ucb_score": 2.2783
+            },
+            {
+              "text": "Modern elegance",
+              "weight": 0.1044,
+              "ucb_score": 2.2422
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1033,
+              "ucb_score": 2.231
+            },
+            {
+              "text": "Natural light",
+              "weight": 0.1028,
+              "ucb_score": 2.2262
+            },
+            {
+              "text": "Warm lighting",
+              "weight": 0.0967,
+              "ucb_score": 2.1647
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0946,
+              "ucb_score": 2.1431
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0937,
+              "ucb_score": 2.1334
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0933,
+              "ucb_score": 2.1298
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0902,
+              "ucb_score": 2.0961
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.1963
+        }
+      ],
+      "pairwise_comparisons": [
+        {
+          "better_option": 2,
+          "worse_option": 3,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "natural wood table",
+            "natural lighting",
+            "minimalist decor"
+          ],
+          "tags_only_in_worse": [
+            "Minimalist decor",
+            "Natural light",
+            "Warm lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "lush greenery",
+            "Modern elegance",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 2,
+          "worse_option": 0,
+          "rank_distance": 2,
+          "tags_only_in_better": [
+            "natural wood table",
+            "open space layout",
+            "Modern elegance",
+            "minimalist decor"
+          ],
+          "tags_only_in_worse": [
+            "Simple layout",
+            "minimalist design",
+            "clean lines",
+            "Casual elegance"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "earthy tones",
+            "lush greenery",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 2,
+          "worse_option": 1,
+          "rank_distance": 3,
+          "tags_only_in_better": [
+            "natural wood table",
+            "lush greenery",
+            "Modern elegance"
+          ],
+          "tags_only_in_worse": [
+            "modern aesthetic",
+            "clean lines",
+            "Casual elegance"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "minimalist decor",
+            "earthy tones",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 3,
+          "worse_option": 0,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "Natural light",
+            "Modern elegance",
+            "open space layout",
+            "Minimalist decor",
+            "Warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "Casual elegance",
+            "Simple layout",
+            "minimalist design",
+            "clean lines",
+            "natural lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "lush greenery",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 3,
+          "worse_option": 1,
+          "rank_distance": 2,
+          "tags_only_in_better": [
+            "Modern elegance",
+            "lush greenery",
+            "Natural light",
+            "Minimalist decor",
+            "Warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "modern aesthetic",
+            "Casual elegance",
+            "minimalist decor",
+            "clean lines",
+            "natural lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 0,
+          "worse_option": 1,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "Simple layout",
+            "minimalist design",
+            "lush greenery"
+          ],
+          "tags_only_in_worse": [
+            "open space layout",
+            "modern aesthetic",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "Casual elegance",
+            "earthy tones",
+            "clean lines",
+            "calm atmosphere"
+          ]
+        }
+      ]
+    },
+    {
+      "round_num": 7,
+      "timestamp": "2026-02-03T13:03:37.116319",
+      "ranking": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "gp_variance": 0.908037543296814,
+      "options": [
+        {
+          "option_id": 0,
+          "position": 1,
+          "is_winner": true,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist design",
+              "weight": 0.1202,
+              "ucb_score": 2.3935
+            },
+            {
+              "text": "Simple layout",
+              "weight": 0.1079,
+              "ucb_score": 2.286
+            },
+            {
+              "text": "clean lines",
+              "weight": 0.1077,
+              "ucb_score": 2.284
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1047,
+              "ucb_score": 2.2561
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1042,
+              "ucb_score": 2.2509
+            },
+            {
+              "text": "Casual elegance",
+              "weight": 0.093,
+              "ucb_score": 2.1374
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0919,
+              "ucb_score": 2.1255
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0912,
+              "ucb_score": 2.1176
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0908,
+              "ucb_score": 2.113
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0885,
+              "ucb_score": 2.0876
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2051
+        },
+        {
+          "option_id": 1,
+          "position": 2,
+          "is_winner": false,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist decor",
+              "weight": 0.1095,
+              "ucb_score": 2.3013
+            },
+            {
+              "text": "clean lines",
+              "weight": 0.1076,
+              "ucb_score": 2.284
+            },
+            {
+              "text": "modern aesthetic",
+              "weight": 0.1071,
+              "ucb_score": 2.2792
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1047,
+              "ucb_score": 2.2561
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1041,
+              "ucb_score": 2.2509
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1004,
+              "ucb_score": 2.2148
+            },
+            {
+              "text": "Casual elegance",
+              "weight": 0.0929,
+              "ucb_score": 2.1374
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0918,
+              "ucb_score": 2.1255
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0911,
+              "ucb_score": 2.1176
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0907,
+              "ucb_score": 2.113
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.208
+        },
+        {
+          "option_id": 2,
+          "position": 3,
+          "is_winner": false,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist decor",
+              "weight": 0.1128,
+              "ucb_score": 2.3013
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1079,
+              "ucb_score": 2.2561
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1073,
+              "ucb_score": 2.2509
+            },
+            {
+              "text": "Modern elegance",
+              "weight": 0.1047,
+              "ucb_score": 2.226
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1035,
+              "ucb_score": 2.2148
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0947,
+              "ucb_score": 2.1255
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0939,
+              "ucb_score": 2.1176
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0935,
+              "ucb_score": 2.113
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0911,
+              "ucb_score": 2.0876
+            },
+            {
+              "text": "natural wood table",
+              "weight": 0.0907,
+              "ucb_score": 2.0826
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.1775
+        },
+        {
+          "option_id": 3,
+          "position": 4,
+          "is_winner": false,
+          "is_loser": true,
+          "tags": [
+            {
+              "text": "Minimalist decor",
+              "weight": 0.1126,
+              "ucb_score": 2.3013
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1077,
+              "ucb_score": 2.2561
+            },
+            {
+              "text": "Modern elegance",
+              "weight": 0.1045,
+              "ucb_score": 2.226
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1033,
+              "ucb_score": 2.2148
+            },
+            {
+              "text": "Natural light",
+              "weight": 0.1029,
+              "ucb_score": 2.2111
+            },
+            {
+              "text": "Warm lighting",
+              "weight": 0.0965,
+              "ucb_score": 2.1472
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0945,
+              "ucb_score": 2.1255
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0937,
+              "ucb_score": 2.1176
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0933,
+              "ucb_score": 2.113
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.091,
+              "ucb_score": 2.0876
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.18
+        }
+      ],
+      "pairwise_comparisons": [
+        {
+          "better_option": 0,
+          "worse_option": 1,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "Simple layout",
+            "minimalist design",
+            "lush greenery"
+          ],
+          "tags_only_in_worse": [
+            "open space layout",
+            "modern aesthetic",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "Casual elegance",
+            "earthy tones",
+            "clean lines",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 0,
+          "worse_option": 2,
+          "rank_distance": 2,
+          "tags_only_in_better": [
+            "Simple layout",
+            "minimalist design",
+            "clean lines",
+            "Casual elegance"
+          ],
+          "tags_only_in_worse": [
+            "natural wood table",
+            "open space layout",
+            "Modern elegance",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "earthy tones",
+            "lush greenery",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 0,
+          "worse_option": 3,
+          "rank_distance": 3,
+          "tags_only_in_better": [
+            "Casual elegance",
+            "Simple layout",
+            "minimalist design",
+            "clean lines",
+            "natural lighting"
+          ],
+          "tags_only_in_worse": [
+            "Natural light",
+            "Modern elegance",
+            "open space layout",
+            "Minimalist decor",
+            "Warm lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "lush greenery",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 1,
+          "worse_option": 2,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "modern aesthetic",
+            "clean lines",
+            "Casual elegance"
+          ],
+          "tags_only_in_worse": [
+            "natural wood table",
+            "lush greenery",
+            "Modern elegance"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "minimalist decor",
+            "earthy tones",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 1,
+          "worse_option": 3,
+          "rank_distance": 2,
+          "tags_only_in_better": [
+            "modern aesthetic",
+            "Casual elegance",
+            "minimalist decor",
+            "clean lines",
+            "natural lighting"
+          ],
+          "tags_only_in_worse": [
+            "Modern elegance",
+            "lush greenery",
+            "Natural light",
+            "Minimalist decor",
+            "Warm lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 2,
+          "worse_option": 3,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "natural wood table",
+            "natural lighting",
+            "minimalist decor"
+          ],
+          "tags_only_in_worse": [
+            "Minimalist decor",
+            "Natural light",
+            "Warm lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "lush greenery",
+            "Modern elegance",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        }
+      ]
+    },
+    {
+      "round_num": 8,
+      "timestamp": "2026-02-03T13:05:07.341908",
+      "ranking": [
+        2,
+        0,
+        1,
+        3
+      ],
+      "gp_variance": 0.9078890085220337,
+      "options": [
+        {
+          "option_id": 0,
+          "position": 2,
+          "is_winner": false,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist design",
+              "weight": 0.121,
+              "ucb_score": 2.4089
+            },
+            {
+              "text": "Simple layout",
+              "weight": 0.1087,
+              "ucb_score": 2.3015
+            },
+            {
+              "text": "clean lines",
+              "weight": 0.1084,
+              "ucb_score": 2.2994
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1047,
+              "ucb_score": 2.2638
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.104,
+              "ucb_score": 2.2578
+            },
+            {
+              "text": "Casual elegance",
+              "weight": 0.0933,
+              "ucb_score": 2.1493
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0918,
+              "ucb_score": 2.1331
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0904,
+              "ucb_score": 2.1173
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0903,
+              "ucb_score": 2.1164
+            },
+            {
+              "text": "natural wood table",
+              "weight": 0.0874,
+              "ucb_score": 2.0837
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2131
+        },
+        {
+          "option_id": 1,
+          "position": 3,
+          "is_winner": false,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist decor",
+              "weight": 0.1095,
+              "ucb_score": 2.3102
+            },
+            {
+              "text": "clean lines",
+              "weight": 0.1084,
+              "ucb_score": 2.2994
+            },
+            {
+              "text": "modern aesthetic",
+              "weight": 0.1076,
+              "ucb_score": 2.2926
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1046,
+              "ucb_score": 2.2638
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1039,
+              "ucb_score": 2.2578
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1003,
+              "ucb_score": 2.2225
+            },
+            {
+              "text": "Casual elegance",
+              "weight": 0.0933,
+              "ucb_score": 2.1493
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0918,
+              "ucb_score": 2.1331
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0903,
+              "ucb_score": 2.1173
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0902,
+              "ucb_score": 2.1164
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.2162
+        },
+        {
+          "option_id": 2,
+          "position": 1,
+          "is_winner": true,
+          "is_loser": false,
+          "tags": [
+            {
+              "text": "minimalist decor",
+              "weight": 0.1133,
+              "ucb_score": 2.3102
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1082,
+              "ucb_score": 2.2638
+            },
+            {
+              "text": "natural lighting",
+              "weight": 0.1075,
+              "ucb_score": 2.2578
+            },
+            {
+              "text": "Modern elegance",
+              "weight": 0.1049,
+              "ucb_score": 2.2336
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1038,
+              "ucb_score": 2.2225
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0949,
+              "ucb_score": 2.1331
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0934,
+              "ucb_score": 2.1173
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0933,
+              "ucb_score": 2.1164
+            },
+            {
+              "text": "natural wood table",
+              "weight": 0.0903,
+              "ucb_score": 2.0837
+            },
+            {
+              "text": "lush greenery",
+              "weight": 0.0902,
+              "ucb_score": 2.0827
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.1821
+        },
+        {
+          "option_id": 3,
+          "position": 4,
+          "is_winner": false,
+          "is_loser": true,
+          "tags": [
+            {
+              "text": "Minimalist decor",
+              "weight": 0.113,
+              "ucb_score": 2.3102
+            },
+            {
+              "text": "neutral color palette",
+              "weight": 0.1079,
+              "ucb_score": 2.2638
+            },
+            {
+              "text": "Modern elegance",
+              "weight": 0.1047,
+              "ucb_score": 2.2336
+            },
+            {
+              "text": "open space layout",
+              "weight": 0.1035,
+              "ucb_score": 2.2225
+            },
+            {
+              "text": "Natural light",
+              "weight": 0.1031,
+              "ucb_score": 2.2181
+            },
+            {
+              "text": "Warm lighting",
+              "weight": 0.0966,
+              "ucb_score": 2.153
+            },
+            {
+              "text": "calm atmosphere",
+              "weight": 0.0947,
+              "ucb_score": 2.1331
+            },
+            {
+              "text": "earthy tones",
+              "weight": 0.0932,
+              "ucb_score": 2.1173
+            },
+            {
+              "text": "large windows",
+              "weight": 0.0931,
+              "ucb_score": 2.1164
+            },
+            {
+              "text": "natural wood table",
+              "weight": 0.0901,
+              "ucb_score": 2.0837
+            }
+          ],
+          "avg_weight": 0.1,
+          "avg_ucb": 2.1852
+        }
+      ],
+      "pairwise_comparisons": [
+        {
+          "better_option": 2,
+          "worse_option": 0,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "open space layout",
+            "Modern elegance",
+            "lush greenery",
+            "minimalist decor"
+          ],
+          "tags_only_in_worse": [
+            "Simple layout",
+            "minimalist design",
+            "clean lines",
+            "Casual elegance"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "natural wood table",
+            "earthy tones",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 2,
+          "worse_option": 1,
+          "rank_distance": 2,
+          "tags_only_in_better": [
+            "natural wood table",
+            "lush greenery",
+            "Modern elegance"
+          ],
+          "tags_only_in_worse": [
+            "modern aesthetic",
+            "clean lines",
+            "Casual elegance"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "minimalist decor",
+            "earthy tones",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 2,
+          "worse_option": 3,
+          "rank_distance": 3,
+          "tags_only_in_better": [
+            "natural lighting",
+            "lush greenery",
+            "minimalist decor"
+          ],
+          "tags_only_in_worse": [
+            "Minimalist decor",
+            "Natural light",
+            "Warm lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural wood table",
+            "earthy tones",
+            "Modern elegance",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 0,
+          "worse_option": 1,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "natural wood table",
+            "Simple layout",
+            "minimalist design"
+          ],
+          "tags_only_in_worse": [
+            "open space layout",
+            "modern aesthetic",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural lighting",
+            "Casual elegance",
+            "earthy tones",
+            "clean lines",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 0,
+          "worse_option": 3,
+          "rank_distance": 2,
+          "tags_only_in_better": [
+            "Casual elegance",
+            "Simple layout",
+            "minimalist design",
+            "clean lines",
+            "natural lighting"
+          ],
+          "tags_only_in_worse": [
+            "Natural light",
+            "Modern elegance",
+            "open space layout",
+            "Minimalist decor",
+            "Warm lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "natural wood table",
+            "earthy tones",
+            "calm atmosphere"
+          ]
+        },
+        {
+          "better_option": 1,
+          "worse_option": 3,
+          "rank_distance": 1,
+          "tags_only_in_better": [
+            "modern aesthetic",
+            "Casual elegance",
+            "minimalist decor",
+            "clean lines",
+            "natural lighting"
+          ],
+          "tags_only_in_worse": [
+            "natural wood table",
+            "Natural light",
+            "Modern elegance",
+            "Minimalist decor",
+            "Warm lighting"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "large windows",
+            "earthy tones",
+            "open space layout",
+            "calm atmosphere"
+          ]
+        }
+      ]
+    }
+  ],
+  "tag_statistics": {
+    "total_unique_tags": 20,
+    "tags_by_win_rate": [
+      {
+        "tag": "minimalist design",
+        "times_shown": 8,
+        "times_in_winner": 4,
+        "times_in_loser": 1,
+        "win_rate": 0.5,
+        "lose_rate": 0.125,
+        "avg_weight": 0.1205,
+        "avg_position": 1.88,
+        "avg_weight_when_winning": 0.1205,
+        "final_ucb": 2.4089,
+        "ucb_trend": 0.0112
+      },
+      {
+        "tag": "Simple layout",
+        "times_shown": 8,
+        "times_in_winner": 4,
+        "times_in_loser": 1,
+        "win_rate": 0.5,
+        "lose_rate": 0.125,
+        "avg_weight": 0.1082,
+        "avg_position": 1.88,
+        "avg_weight_when_winning": 0.1081,
+        "final_ucb": 2.3015,
+        "ucb_trend": 0.0135
+      },
+      {
+        "tag": "lush greenery",
+        "times_shown": 22,
+        "times_in_winner": 7,
+        "times_in_loser": 5,
+        "win_rate": 0.318,
+        "lose_rate": 0.227,
+        "avg_weight": 0.0896,
+        "avg_position": 2.41,
+        "avg_weight_when_winning": 0.089,
+        "final_ucb": 2.0827,
+        "ucb_trend": -0.0021
+      },
+      {
+        "tag": "clean lines",
+        "times_shown": 16,
+        "times_in_winner": 5,
+        "times_in_loser": 3,
+        "win_rate": 0.312,
+        "lose_rate": 0.188,
+        "avg_weight": 0.1079,
+        "avg_position": 2.25,
+        "avg_weight_when_winning": 0.1079,
+        "final_ucb": 2.2994,
+        "ucb_trend": 0.0142
+      },
+      {
+        "tag": "Casual elegance",
+        "times_shown": 16,
+        "times_in_winner": 5,
+        "times_in_loser": 3,
+        "win_rate": 0.312,
+        "lose_rate": 0.188,
+        "avg_weight": 0.0931,
+        "avg_position": 2.25,
+        "avg_weight_when_winning": 0.0932,
+        "final_ucb": 2.1493,
+        "ucb_trend": 0.0082
+      },
+      {
+        "tag": "natural lighting",
+        "times_shown": 24,
+        "times_in_winner": 7,
+        "times_in_loser": 4,
+        "win_rate": 0.292,
+        "lose_rate": 0.167,
+        "avg_weight": 0.1051,
+        "avg_position": 2.38,
+        "avg_weight_when_winning": 0.105,
+        "final_ucb": 2.2578,
+        "ucb_trend": 0.0032
+      },
+      {
+        "tag": "calm atmosphere",
+        "times_shown": 30,
+        "times_in_winner": 8,
+        "times_in_loser": 8,
+        "win_rate": 0.267,
+        "lose_rate": 0.267,
+        "avg_weight": 0.0932,
+        "avg_position": 2.5,
+        "avg_weight_when_winning": 0.093,
+        "final_ucb": 2.1331,
+        "ucb_trend": 0.0054
+      },
+      {
+        "tag": "neutral color palette",
+        "times_shown": 32,
+        "times_in_winner": 8,
+        "times_in_loser": 8,
+        "win_rate": 0.25,
+        "lose_rate": 0.25,
+        "avg_weight": 0.1064,
+        "avg_position": 2.5,
+        "avg_weight_when_winning": 0.1061,
+        "final_ucb": 2.2638,
+        "ucb_trend": 0.006
+      },
+      {
+        "tag": "large windows",
+        "times_shown": 32,
+        "times_in_winner": 8,
+        "times_in_loser": 8,
+        "win_rate": 0.25,
+        "lose_rate": 0.25,
+        "avg_weight": 0.0923,
+        "avg_position": 2.5,
+        "avg_weight_when_winning": 0.092,
+        "final_ucb": 2.1164,
+        "ucb_trend": -0.009
+      },
+      {
+        "tag": "earthy tones",
+        "times_shown": 32,
+        "times_in_winner": 8,
+        "times_in_loser": 8,
+        "win_rate": 0.25,
+        "lose_rate": 0.25,
+        "avg_weight": 0.0918,
+        "avg_position": 2.5,
+        "avg_weight_when_winning": 0.0915,
+        "final_ucb": 2.1173,
+        "ucb_trend": 0.0084
+      },
+      {
+        "tag": "natural wood table",
+        "times_shown": 9,
+        "times_in_winner": 2,
+        "times_in_loser": 1,
+        "win_rate": 0.222,
+        "lose_rate": 0.111,
+        "avg_weight": 0.09,
+        "avg_position": 2.44,
+        "avg_weight_when_winning": 0.0903,
+        "final_ucb": 2.0837,
+        "ucb_trend": -0.0001
+      },
+      {
+        "tag": "Modern elegance",
+        "times_shown": 14,
+        "times_in_winner": 3,
+        "times_in_loser": 5,
+        "win_rate": 0.214,
+        "lose_rate": 0.357,
+        "avg_weight": 0.1048,
+        "avg_position": 2.79,
+        "avg_weight_when_winning": 0.1047,
+        "final_ucb": 2.2336,
+        "ucb_trend": -0.0018
+      },
+      {
+        "tag": "minimalist decor",
+        "times_shown": 16,
+        "times_in_winner": 3,
+        "times_in_loser": 3,
+        "win_rate": 0.188,
+        "lose_rate": 0.188,
+        "avg_weight": 0.1115,
+        "avg_position": 2.62,
+        "avg_weight_when_winning": 0.112,
+        "final_ucb": 2.3102,
+        "ucb_trend": -0.0018
+      },
+      {
+        "tag": "open space layout",
+        "times_shown": 24,
+        "times_in_winner": 4,
+        "times_in_loser": 7,
+        "win_rate": 0.167,
+        "lose_rate": 0.292,
+        "avg_weight": 0.1026,
+        "avg_position": 2.71,
+        "avg_weight_when_winning": 0.1027,
+        "final_ucb": 2.2225,
+        "ucb_trend": -0.0029
+      },
+      {
+        "tag": "modern aesthetic",
+        "times_shown": 8,
+        "times_in_winner": 1,
+        "times_in_loser": 2,
+        "win_rate": 0.125,
+        "lose_rate": 0.25,
+        "avg_weight": 0.1075,
+        "avg_position": 2.62,
+        "avg_weight_when_winning": 0.1076,
+        "final_ucb": 2.2926,
+        "ucb_trend": 0.0039
+      },
+      {
+        "tag": "Minimalist decor",
+        "times_shown": 8,
+        "times_in_winner": 1,
+        "times_in_loser": 4,
+        "win_rate": 0.125,
+        "lose_rate": 0.5,
+        "avg_weight": 0.1131,
+        "avg_position": 2.88,
+        "avg_weight_when_winning": 0.1129,
+        "final_ucb": 2.3102,
+        "ucb_trend": -0.0018
+      },
+      {
+        "tag": "Natural light",
+        "times_shown": 8,
+        "times_in_winner": 1,
+        "times_in_loser": 4,
+        "win_rate": 0.125,
+        "lose_rate": 0.5,
+        "avg_weight": 0.1029,
+        "avg_position": 2.88,
+        "avg_weight_when_winning": 0.1028,
+        "final_ucb": 2.2181,
+        "ucb_trend": 0.0023
+      },
+      {
+        "tag": "Warm lighting",
+        "times_shown": 8,
+        "times_in_winner": 1,
+        "times_in_loser": 4,
+        "win_rate": 0.125,
+        "lose_rate": 0.5,
+        "avg_weight": 0.0967,
+        "avg_position": 2.88,
+        "avg_weight_when_winning": 0.0966,
+        "final_ucb": 2.153,
+        "ucb_trend": -0.0015
+      },
+      {
+        "tag": "modern simplicity",
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0,
+        "win_rate": 0.0,
+        "lose_rate": 0.0,
+        "avg_weight": 0.1053,
+        "avg_position": 2.5,
+        "avg_weight_when_winning": null,
+        "final_ucb": 2.2454,
+        "ucb_trend": 0.0
+      },
+      {
+        "tag": "Scandinavian design",
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1,
+        "win_rate": 0.0,
+        "lose_rate": 0.333,
+        "avg_weight": 0.0902,
+        "avg_position": 3.33,
+        "avg_weight_when_winning": null,
+        "final_ucb": 2.0994,
+        "ucb_trend": 0.0286
+      }
+    ],
+    "top_10_by_win_rate": [
+      {
+        "tag": "minimalist design",
+        "win_rate": 0.5,
+        "times_shown": 8
+      },
+      {
+        "tag": "Simple layout",
+        "win_rate": 0.5,
+        "times_shown": 8
+      },
+      {
+        "tag": "lush greenery",
+        "win_rate": 0.318,
+        "times_shown": 22
+      },
+      {
+        "tag": "clean lines",
+        "win_rate": 0.312,
+        "times_shown": 16
+      },
+      {
+        "tag": "Casual elegance",
+        "win_rate": 0.312,
+        "times_shown": 16
+      },
+      {
+        "tag": "natural lighting",
+        "win_rate": 0.292,
+        "times_shown": 24
+      },
+      {
+        "tag": "calm atmosphere",
+        "win_rate": 0.267,
+        "times_shown": 30
+      },
+      {
+        "tag": "neutral color palette",
+        "win_rate": 0.25,
+        "times_shown": 32
+      },
+      {
+        "tag": "large windows",
+        "win_rate": 0.25,
+        "times_shown": 32
+      },
+      {
+        "tag": "earthy tones",
+        "win_rate": 0.25,
+        "times_shown": 32
+      }
+    ]
+  },
+  "final_selection": {
+    "adjective": "Calm",
+    "location": "Home Office",
+    "descriptor": "Calm Home Office",
+    "session_id": "[fast]_Calm_Home_Office_2026-01-07_16-14-01",
+    "created_at": "2026-01-07T16:14:01.492261"
+  },
+  "warnings": []
+}

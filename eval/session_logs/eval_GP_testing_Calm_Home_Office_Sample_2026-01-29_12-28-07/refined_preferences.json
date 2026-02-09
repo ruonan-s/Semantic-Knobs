@@ -1,0 +1,82 @@
+{
+  "stage": "hitl_refinement",
+  "session_id": "eval_GP_testing_Calm_Home_Office_Sample_2026-01-29_12-28-07",
+  "timestamp": "2026-01-29T12:38:31.654837",
+  "rounds_completed": 7,
+  "total_pairs": 312,
+  "is_converged": false,
+  "final_tags": [
+    {
+      "concept_id": "refined_0",
+      "label": "minimalist design",
+      "attn_map_weight": 0.11576436460018158,
+      "utility": 2.3567018508911133,
+      "tag_index": 0
+    },
+    {
+      "concept_id": "refined_1",
+      "label": "neutral color palette",
+      "attn_map_weight": 0.11238676309585571,
+      "utility": 2.3270912170410156,
+      "tag_index": 1
+    },
+    {
+      "concept_id": "refined_2",
+      "label": "clean lines",
+      "attn_map_weight": 0.10901471972465515,
+      "utility": 2.296627998352051,
+      "tag_index": 5
+    },
+    {
+      "concept_id": "refined_3",
+      "label": "natural lighting",
+      "attn_map_weight": 0.10425470769405365,
+      "utility": 2.2519822120666504,
+      "tag_index": 10
+    },
+    {
+      "concept_id": "refined_4",
+      "label": "Simple layout",
+      "attn_map_weight": 0.10390544682741165,
+      "utility": 2.248626470565796,
+      "tag_index": 46
+    },
+    {
+      "concept_id": "refined_5",
+      "label": "earthy tones",
+      "attn_map_weight": 0.09650774300098419,
+      "utility": 2.1747684478759766,
+      "tag_index": 16
+    },
+    {
+      "concept_id": "refined_6",
+      "label": "Casual elegance",
+      "attn_map_weight": 0.09254268556833267,
+      "utility": 2.13281512260437,
+      "tag_index": 29
+    },
+    {
+      "concept_id": "refined_7",
+      "label": "large windows",
+      "attn_map_weight": 0.0893622487783432,
+      "utility": 2.0978434085845947,
+      "tag_index": 14
+    },
+    {
+      "concept_id": "refined_8",
+      "label": "stone accents",
+      "attn_map_weight": 0.08931951969861984,
+      "utility": 2.097365140914917,
+      "tag_index": 15
+    },
+    {
+      "concept_id": "refined_9",
+      "label": "soft diffused lighting",
+      "attn_map_weight": 0.08694183826446533,
+      "utility": 2.0703845024108887,
+      "tag_index": 3
+    }
+  ],
+  "usage": "cross_attention_map_scaling",
+  "description": "Each tag's weight scales its tokens' attention map contribution during image generation"
+}

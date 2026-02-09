@@ -11,29 +11,10 @@ Orchestrates the complete 4-stage refinement pipeline with SDXL integration:
 import os
 import json
 import time
-import numpy as np
 from pathlib import Path
 from dataclasses import dataclass, field, asdict
 from typing import Optional, Any, Dict, List
 from enum import Enum
-
-
-def _convert_to_json_serializable(obj):
-    """Recursively convert numpy types to Python native types for JSON serialization."""
-    if isinstance(obj, dict):
-        return {k: _convert_to_json_serializable(v) for k, v in obj.items()}
-    elif isinstance(obj, (list, tuple)):
-        return [_convert_to_json_serializable(v) for v in obj]
-    elif isinstance(obj, (np.integer, np.int64, np.int32)):
-        return int(obj)
-    elif isinstance(obj, (np.floating, np.float64, np.float32)):
-        return float(obj)
-    elif isinstance(obj, np.bool_):
-        return bool(obj)
-    elif isinstance(obj, np.ndarray):
-        return obj.tolist()
-    else:
-        return obj
 
 from .deduplication import deduplicate_tags, DeduplicationResult
 from .semantic_slots import create_semantic_slots_sync, SemanticSlot, SlotCreationResult
@@ -73,8 +54,7 @@ class SlotRefinementConfig:
     image_width: int = 512
     image_height: int = 512
     num_inference_steps: int = 30
-    guidance_scale: float = 7.5
-    negative_prompt: str = "illustration, painted, drawing, cartoon, anime, isometric, diorama, miniature, 3D render, CGI, concept art, stylized, toon shading, people, person, human"
+    negative_prompt: str = "illustration, painted, drawing, cartoon, anime, isometric, diorama, miniature, 3D render, CGI, concept art, stylized, toon shading, human"
 
 
 @dataclass
@@ -361,35 +341,33 @@ class SlotRefinementSession:
         full_prompt = f"{self.config.base_prompt} with features: {prompt.replace(self.config.base_prompt + ', ', '')}"
         
         print(f"[SlotRefine] Generating image: {full_prompt[:80]}...")
-        print(f"[SlotRefine] Negative prompt: {self.config.negative_prompt[:60]}...")
-        print(f"[SlotRefine] guidance_scale={self.config.guidance_scale}, steps={self.config.num_inference_steps}")
         
-        # Try to get the actual pipeline
-        pipe = None
         if self.sdxl_runner:
-            # SDXLRunner stores pipeline at runner.pipe
-            if hasattr(self.sdxl_runner, 'runner') and hasattr(self.sdxl_runner.runner, 'pipe'):
-                pipe = self.sdxl_runner.runner.pipe
-            elif hasattr(self.sdxl_runner, 'pipe'):
-                pipe = self.sdxl_runner.pipe
-        elif self.pipe:
-            pipe = self.pipe
+            # Use SDXLRunner
+            images = self.sdxl_runner.generate(
+                prompt=full_prompt,
+                negative_prompt=self.config.negative_prompt,
+                height=self.config.image_height,
+                width=self.config.image_width,
+                num_inference_steps=self.config.num_inference_steps,
+                num_images=1
+            )
+            if images:
+                images[0].save(str(output_path))
+                return output_path
         
-        if pipe:
-            try:
-                result = pipe(
-                    prompt=full_prompt,
-                    negative_prompt=self.config.negative_prompt,
-                    height=self.config.image_height,
-                    width=self.config.image_width,
-                    num_inference_steps=self.config.num_inference_steps,
-                    guidance_scale=self.config.guidance_scale
-                )
-                if result.images:
-                    result.images[0].save(str(output_path))
-                    return output_path
-            except Exception as e:
-                print(f"[SlotRefine] SDXL generation error: {e}")
+        elif self.pipe:
+            # Use pipeline directly
+            result = self.pipe(
+                prompt=full_prompt,
+                negative_prompt=self.config.negative_prompt,
+                height=self.config.image_height,
+                width=self.config.image_width,
+                num_inference_steps=self.config.num_inference_steps
+            )
+            if result.images:
+                result.images[0].save(str(output_path))
+                return output_path
         
         # Fallback: create placeholder
         print(f"[SlotRefine] Warning: No SDXL pipeline, creating placeholder")
@@ -419,31 +397,30 @@ class SlotRefinementSession:
         
         print(f"[SlotRefine] Generating weighted image...")
         
-        # Try to get the actual pipeline
-        pipe = None
         if self.sdxl_runner:
-            if hasattr(self.sdxl_runner, 'runner') and hasattr(self.sdxl_runner.runner, 'pipe'):
-                pipe = self.sdxl_runner.runner.pipe
-            elif hasattr(self.sdxl_runner, 'pipe'):
-                pipe = self.sdxl_runner.pipe
-        elif self.pipe:
-            pipe = self.pipe
+            images = self.sdxl_runner.generate(
+                prompt=full_prompt,
+                negative_prompt=self.config.negative_prompt,
+                height=self.config.image_height,
+                width=self.config.image_width,
+                num_inference_steps=self.config.num_inference_steps,
+                num_images=1
+            )
+            if images:
+                images[0].save(str(output_path))
+                return output_path
         
-        if pipe:
-            try:
-                result = pipe(
-                    prompt=full_prompt,
-                    negative_prompt=self.config.negative_prompt,
-                    height=self.config.image_height,
-                    width=self.config.image_width,
-                    num_inference_steps=self.config.num_inference_steps,
-                    guidance_scale=self.config.guidance_scale
-                )
-                if result.images:
-                    result.images[0].save(str(output_path))
-                    return output_path
-            except Exception as e:
-                print(f"[SlotRefine] SDXL generation error: {e}")
+        elif self.pipe:
+            result = self.pipe(
+                prompt=full_prompt,
+                negative_prompt=self.config.negative_prompt,
+                height=self.config.image_height,
+                width=self.config.image_width,
+                num_inference_steps=self.config.num_inference_steps
+            )
+            if result.images:
+                result.images[0].save(str(output_path))
+                return output_path
         
         # Fallback
         print(f"[SlotRefine] Warning: No SDXL pipeline, creating placeholder")
@@ -737,9 +714,6 @@ class SlotRefinementSession:
                 "history": self.refiner.state.history,
                 "round_history": self.refiner.round_history
             }
-        
-        # Convert all numpy types to Python native types
-        state = _convert_to_json_serializable(state)
         
         with open(self.state_file, 'w') as f:
             json.dump(state, f, indent=2)

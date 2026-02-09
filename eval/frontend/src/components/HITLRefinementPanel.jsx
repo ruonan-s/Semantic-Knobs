@@ -16,6 +16,8 @@ function HITLRefinementPanel({
   isLoading,        // Loading state for image generation
   onSubmitRanking,  // Callback when user submits ranking
   onFinalize,       // Callback when user finalizes refinement
+  onRollback,       // Callback when user clicks a previous best pick to rollback
+  bestPicks,        // Array of { round, url, tags } - 1st-ranked images from previous rounds
   statusMessage     // Optional status message to display
 }) {
   // Ranking state: maps rank (1-4) to image index (0-3)
@@ -118,6 +120,92 @@ function HITLRefinementPanel({
         </div>
         
       </div>
+      
+      {/* Best Picks Gallery - Previous round winners */}
+      {bestPicks && bestPicks.length > 0 && !isLoading && (
+        <div style={{
+          marginBottom: '20px',
+          padding: '15px',
+          backgroundColor: '#f8f9fa',
+          borderRadius: '10px',
+          border: '1px solid #e9ecef'
+        }}>
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: '10px'
+          }}>
+            <span style={{ fontSize: '14px', fontWeight: '600', color: '#495057' }}>
+              Previous Best Picks
+            </span>
+            <span style={{ fontSize: '12px', color: '#868e96' }}>
+              Not satisfied? Click a previous winner to go back to that round
+            </span>
+          </div>
+          <div style={{
+            display: 'flex',
+            gap: '10px',
+            overflowX: 'auto',
+            paddingBottom: '5px'
+          }}>
+            {bestPicks.map((pick) => (
+              <div
+                key={`pick-${pick.round}`}
+                onClick={() => onRollback && onRollback(pick.round)}
+                style={{
+                  flex: '0 0 auto',
+                  width: '100px',
+                  cursor: 'pointer',
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  border: '2px solid #dee2e6',
+                  transition: 'all 0.2s ease',
+                  position: 'relative',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#007bff';
+                  e.currentTarget.style.transform = 'scale(1.05)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,123,255,0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '#dee2e6';
+                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                <div style={{
+                  width: '100px',
+                  height: '100px',
+                  backgroundColor: '#e9ecef'
+                }}>
+                  {pick.url && (
+                    <img
+                      src={pick.url}
+                      alt={`Round ${pick.round} winner`}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                      }}
+                    />
+                  )}
+                </div>
+                <div style={{
+                  padding: '4px 6px',
+                  backgroundColor: '#fff',
+                  textAlign: 'center',
+                  fontSize: '11px',
+                  color: '#495057',
+                  fontWeight: '600',
+                }}>
+                  R{pick.round}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
       
       {/* Status message */}
       {statusMessage && (
@@ -323,7 +411,7 @@ function HITLRefinementPanel({
             gap: '20px',
             marginTop: '20px'
           }}>
-            {/* Submit Ranking button */}
+            {/* Submit Ranking & Continue button */}
             <button
               onClick={handleSubmit}
               disabled={!allRanked}
@@ -350,48 +438,48 @@ function HITLRefinementPanel({
                 }
               }}
             >
-              Submit Ranking & Continue
+              Submit Ranking & Continue →
             </button>
             
-            {/* Finalize button - shown after a few rounds or when converged */}
-            {(round >= 2 || isConverged) && (
-              <button
-                onClick={onFinalize}
-                style={{
-                  padding: '14px 40px',
-                  fontSize: '16px',
-                  fontWeight: '600',
-                  backgroundColor: isConverged ? '#28a745' : '#6c757d',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  boxShadow: isConverged ? '0 4px 12px rgba(40, 167, 69, 0.3)' : 'none'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.opacity = '0.9';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.opacity = '1';
-                }}
-              >
-                {isConverged ? 'Finalize Preferences' : 'Finish Early'}
-              </button>
-            )}
+            {/* Finalize button - always visible so user can stop anytime */}
+            <button
+              onClick={onFinalize}
+              disabled={round < 1}
+              style={{
+                padding: '14px 40px',
+                fontSize: '16px',
+                fontWeight: '600',
+                backgroundColor: '#28a745',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                boxShadow: '0 4px 12px rgba(40, 167, 69, 0.3)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#218838';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#28a745';
+              }}
+            >
+              Finish & Save Preferences ✓
+            </button>
           </div>
           
-          {/* Ranking hint */}
-          {!allRanked && (
-            <p style={{
-              textAlign: 'center',
-              color: '#666',
-              fontSize: '14px',
-              marginTop: '15px'
-            }}>
-              Click on rank buttons below each image to assign rankings
-            </p>
-          )}
+          {/* Round progress hint */}
+          <p style={{
+            textAlign: 'center',
+            color: '#666',
+            fontSize: '13px',
+            marginTop: '15px'
+          }}>
+            {!allRanked 
+              ? 'Click rank buttons below each image to assign rankings (1st to 4th)'
+              : `Round ${round} complete • Click "Continue" for more refinement, or "Finish" to proceed to evaluation`
+            }
+          </p>
         </>
       )}
     </div>

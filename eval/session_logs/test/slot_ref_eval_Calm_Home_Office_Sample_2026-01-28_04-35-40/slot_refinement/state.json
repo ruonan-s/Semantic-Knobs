@@ -1,0 +1,542 @@
+{
+  "session_id": "eval_Calm_Home_Office_Sample_2026-01-28_04-35-40",
+  "stage": "complete",
+  "base_prompt": "Calm Home Office",
+  "raw_tags": [
+    "minimalist design",
+    "neutral color palette",
+    "natural wood table",
+    "clean lines",
+    "open space layout",
+    "modern aesthetic",
+    "calm atmosphere",
+    "natural lighting",
+    "wooden desk",
+    "minimalist decor",
+    "lush greenery",
+    "large windows",
+    "stone accents",
+    "earthy tones",
+    "clean lines",
+    "ceramic pots",
+    "modern simplicity",
+    "contemporary elegance",
+    "warm wood tones",
+    "sleek modern desk",
+    "spacious layout",
+    "Scandinavian design",
+    "Natural light",
+    "Minimalist decor",
+    "Soft textures",
+    "Neutral tones",
+    "Wooden furniture",
+    "Cozy atmosphere",
+    "Modern elegance",
+    "Warm lighting"
+  ],
+  "round_count": 12,
+  "updated_at": "2026-01-28 04:41:50",
+  "dedup_result": {
+    "original_count": 30,
+    "deduplicated_count": 27,
+    "unique_tags": [
+      "clean lines",
+      "Warm lighting",
+      "Scandinavian design",
+      "ceramic pots",
+      "minimalist decor",
+      "open space layout",
+      "natural wood table",
+      "spacious layout",
+      "neutral color palette",
+      "Neutral tones",
+      "wooden desk",
+      "warm wood tones",
+      "natural lighting",
+      "earthy tones",
+      "large windows",
+      "modern aesthetic",
+      "modern simplicity",
+      "calm atmosphere",
+      "lush greenery",
+      "stone accents",
+      "contemporary elegance",
+      "Modern elegance",
+      "Cozy atmosphere",
+      "minimalist design",
+      "Wooden furniture",
+      "sleek modern desk",
+      "Soft textures"
+    ],
+    "duplicates_removed": [
+      [
+        "Natural light",
+        "natural lighting"
+      ]
+    ]
+  },
+  "slots": [
+    {
+      "name": "design_style",
+      "description": "The overarching aesthetic framework or design movement.",
+      "tags": [
+        "Scandinavian design",
+        "minimalist design",
+        "modern aesthetic"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "color_palette",
+      "description": "The general color scheme and dominant tones of the space.",
+      "tags": [
+        "neutral color palette",
+        "Neutral tones",
+        "earthy tones"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "lighting_quality",
+      "description": "The type and characteristic feel of the illumination.",
+      "tags": [
+        "Warm lighting",
+        "natural lighting"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "spatial_configuration",
+      "description": "How the space is laid out and perceived in terms of openness and size.",
+      "tags": [
+        "open space layout",
+        "spacious layout",
+        "large windows"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "atmosphere_mood",
+      "description": "The emotional ambiance or feeling the room evokes.",
+      "tags": [
+        "calm atmosphere",
+        "Cozy atmosphere"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "primary_furniture",
+      "description": "The style and material choices for key furniture pieces, especially the workspace.",
+      "tags": [
+        "natural wood table",
+        "wooden desk",
+        "sleek modern desk",
+        "Wooden furniture"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "accent_materials_textures",
+      "description": "Specific materials and textural elements used for accents and details.",
+      "tags": [
+        "ceramic pots",
+        "stone accents",
+        "warm wood tones",
+        "Soft textures"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "greenery_integration",
+      "description": "The presence and style of botanical elements in the design.",
+      "tags": [
+        "lush greenery"
+      ],
+      "importance": 0.5
+    },
+    {
+      "name": "decorative_approach",
+      "description": "The philosophy and visual characteristics of decorative elements and detailing.",
+      "tags": [
+        "minimalist decor",
+        "clean lines"
+      ],
+      "importance": 0.5
+    }
+  ],
+  "elimination": {
+    "slot_states": {
+      "design_style": {
+        "current_winner": "modern aesthetic",
+        "confidence": 0.95,
+        "is_resolved": true,
+        "tag_scores": {
+          "Scandinavian design": 0.55,
+          "minimalist design": 0.55,
+          "modern aesthetic": 2.05
+        }
+      },
+      "color_palette": {
+        "current_winner": "earthy tones",
+        "confidence": 0.95,
+        "is_resolved": true,
+        "tag_scores": {
+          "neutral color palette": 0.25000000000000006,
+          "Neutral tones": 0.7999999999999998,
+          "earthy tones": 2.15
+        }
+      },
+      "lighting_quality": {
+        "current_winner": "natural lighting",
+        "confidence": 0.95,
+        "is_resolved": true,
+        "tag_scores": {
+          "Warm lighting": 0.55,
+          "natural lighting": 1.7499999999999998
+        }
+      },
+      "spatial_configuration": {
+        "current_winner": "open space layout",
+        "confidence": 0.775,
+        "is_resolved": true,
+        "tag_scores": {
+          "open space layout": 1.75,
+          "spacious layout": 1.2,
+          "large windows": 0.25000000000000006
+        }
+      },
+      "atmosphere_mood": {
+        "current_winner": "calm atmosphere",
+        "confidence": 0.95,
+        "is_resolved": true,
+        "tag_scores": {
+          "calm atmosphere": 1.7499999999999998,
+          "Cozy atmosphere": 0.55
+        }
+      },
+      "primary_furniture": {
+        "current_winner": "wooden desk",
+        "confidence": 0.95,
+        "is_resolved": true,
+        "tag_scores": {
+          "natural wood table": 0.55,
+          "wooden desk": 2.05,
+          "sleek modern desk": 0.55,
+          "Wooden furniture": 0.55
+        }
+      },
+      "accent_materials_textures": {
+        "current_winner": "warm wood tones",
+        "confidence": 0.95,
+        "is_resolved": true,
+        "tag_scores": {
+          "ceramic pots": 0.55,
+          "stone accents": 0.55,
+          "warm wood tones": 2.05,
+          "Soft textures": 0.55
+        }
+      },
+      "greenery_integration": {
+        "current_winner": "lush greenery",
+        "confidence": 1.0,
+        "is_resolved": true,
+        "tag_scores": {
+          "lush greenery": 1.0
+        }
+      },
+      "decorative_approach": {
+        "current_winner": "clean lines",
+        "confidence": 0.95,
+        "is_resolved": true,
+        "tag_scores": {
+          "minimalist decor": 0.55,
+          "clean lines": 1.7499999999999998
+        }
+      }
+    },
+    "round_history": [
+      {
+        "round_num": 1,
+        "round_type": "exploration",
+        "focus_slot": null,
+        "selected_idx": 2,
+        "selected_tags": {
+          "design_style": "modern aesthetic",
+          "color_palette": "Neutral tones",
+          "lighting_quality": "natural lighting",
+          "spatial_configuration": "open space layout",
+          "atmosphere_mood": "calm atmosphere",
+          "primary_furniture": "wooden desk",
+          "accent_materials_textures": "warm wood tones",
+          "greenery_integration": "lush greenery",
+          "decorative_approach": "clean lines"
+        },
+        "newly_resolved": [],
+        "eliminations": []
+      },
+      {
+        "round_num": 2,
+        "round_type": "head_to_head",
+        "focus_slot": "design_style",
+        "selected_idx": 2,
+        "selected_tags": {
+          "color_palette": "Neutral tones",
+          "lighting_quality": "natural lighting",
+          "spatial_configuration": "open space layout",
+          "atmosphere_mood": "calm atmosphere",
+          "primary_furniture": "wooden desk",
+          "accent_materials_textures": "warm wood tones",
+          "greenery_integration": "lush greenery",
+          "decorative_approach": "clean lines",
+          "design_style": "modern aesthetic"
+        },
+        "newly_resolved": [
+          "design_style"
+        ],
+        "eliminations": []
+      },
+      {
+        "round_num": 3,
+        "round_type": "head_to_head",
+        "focus_slot": "color_palette",
+        "selected_idx": 2,
+        "selected_tags": {
+          "design_style": "modern aesthetic",
+          "lighting_quality": "natural lighting",
+          "spatial_configuration": "open space layout",
+          "atmosphere_mood": "calm atmosphere",
+          "primary_furniture": "wooden desk",
+          "accent_materials_textures": "warm wood tones",
+          "greenery_integration": "lush greenery",
+          "decorative_approach": "clean lines",
+          "color_palette": "earthy tones"
+        },
+        "newly_resolved": [],
+        "eliminations": []
+      },
+      {
+        "round_num": 4,
+        "round_type": "head_to_head",
+        "focus_slot": "lighting_quality",
+        "selected_idx": 1,
+        "selected_tags": {
+          "design_style": "modern aesthetic",
+          "color_palette": "earthy tones",
+          "spatial_configuration": "open space layout",
+          "atmosphere_mood": "calm atmosphere",
+          "primary_furniture": "wooden desk",
+          "accent_materials_textures": "warm wood tones",
+          "greenery_integration": "lush greenery",
+          "decorative_approach": "clean lines",
+          "lighting_quality": "natural lighting"
+        },
+        "newly_resolved": [
+          "lighting_quality"
+        ],
+        "eliminations": []
+      },
+      {
+        "round_num": 5,
+        "round_type": "head_to_head",
+        "focus_slot": "spatial_configuration",
+        "selected_idx": 1,
+        "selected_tags": {
+          "design_style": "modern aesthetic",
+          "color_palette": "earthy tones",
+          "lighting_quality": "natural lighting",
+          "atmosphere_mood": "calm atmosphere",
+          "primary_furniture": "wooden desk",
+          "accent_materials_textures": "warm wood tones",
+          "greenery_integration": "lush greenery",
+          "decorative_approach": "clean lines",
+          "spatial_configuration": "spacious layout"
+        },
+        "newly_resolved": [],
+        "eliminations": []
+      },
+      {
+        "round_num": 6,
+        "round_type": "head_to_head",
+        "focus_slot": "atmosphere_mood",
+        "selected_idx": 3,
+        "selected_tags": {
+          "design_style": "modern aesthetic",
+          "color_palette": "earthy tones",
+          "lighting_quality": "natural lighting",
+          "spatial_configuration": "spacious layout",
+          "primary_furniture": "wooden desk",
+          "accent_materials_textures": "warm wood tones",
+          "greenery_integration": "lush greenery",
+          "decorative_approach": "clean lines",
+          "atmosphere_mood": "calm atmosphere"
+        },
+        "newly_resolved": [
+          "atmosphere_mood"
+        ],
+        "eliminations": []
+      },
+      {
+        "round_num": 7,
+        "round_type": "head_to_head",
+        "focus_slot": "primary_furniture",
+        "selected_idx": 1,
+        "selected_tags": {
+          "design_style": "modern aesthetic",
+          "color_palette": "earthy tones",
+          "lighting_quality": "natural lighting",
+          "spatial_configuration": "spacious layout",
+          "atmosphere_mood": "calm atmosphere",
+          "accent_materials_textures": "warm wood tones",
+          "greenery_integration": "lush greenery",
+          "decorative_approach": "clean lines",
+          "primary_furniture": "wooden desk"
+        },
+        "newly_resolved": [
+          "primary_furniture"
+        ],
+        "eliminations": []
+      },
+      {
+        "round_num": 8,
+        "round_type": "head_to_head",
+        "focus_slot": "accent_materials_textures",
+        "selected_idx": 2,
+        "selected_tags": {
+          "design_style": "modern aesthetic",
+          "color_palette": "earthy tones",
+          "lighting_quality": "natural lighting",
+          "spatial_configuration": "spacious layout",
+          "atmosphere_mood": "calm atmosphere",
+          "primary_furniture": "wooden desk",
+          "greenery_integration": "lush greenery",
+          "decorative_approach": "clean lines",
+          "accent_materials_textures": "warm wood tones"
+        },
+        "newly_resolved": [
+          "accent_materials_textures"
+        ],
+        "eliminations": []
+      },
+      {
+        "round_num": 9,
+        "round_type": "head_to_head",
+        "focus_slot": "decorative_approach",
+        "selected_idx": 1,
+        "selected_tags": {
+          "design_style": "modern aesthetic",
+          "color_palette": "earthy tones",
+          "lighting_quality": "natural lighting",
+          "spatial_configuration": "spacious layout",
+          "atmosphere_mood": "calm atmosphere",
+          "primary_furniture": "wooden desk",
+          "accent_materials_textures": "warm wood tones",
+          "greenery_integration": "lush greenery",
+          "decorative_approach": "clean lines"
+        },
+        "newly_resolved": [
+          "decorative_approach"
+        ],
+        "eliminations": []
+      },
+      {
+        "round_num": 10,
+        "round_type": "head_to_head",
+        "focus_slot": "color_palette",
+        "selected_idx": 2,
+        "selected_tags": {
+          "design_style": "modern aesthetic",
+          "lighting_quality": "natural lighting",
+          "spatial_configuration": "spacious layout",
+          "atmosphere_mood": "calm atmosphere",
+          "primary_furniture": "wooden desk",
+          "accent_materials_textures": "warm wood tones",
+          "greenery_integration": "lush greenery",
+          "decorative_approach": "clean lines",
+          "color_palette": "earthy tones"
+        },
+        "newly_resolved": [
+          "color_palette"
+        ],
+        "eliminations": []
+      },
+      {
+        "round_num": 11,
+        "round_type": "head_to_head",
+        "focus_slot": "spatial_configuration",
+        "selected_idx": 0,
+        "selected_tags": {
+          "design_style": "modern aesthetic",
+          "color_palette": "earthy tones",
+          "lighting_quality": "natural lighting",
+          "atmosphere_mood": "calm atmosphere",
+          "primary_furniture": "wooden desk",
+          "accent_materials_textures": "warm wood tones",
+          "greenery_integration": "lush greenery",
+          "decorative_approach": "clean lines",
+          "spatial_configuration": "open space layout"
+        },
+        "newly_resolved": [
+          "spatial_configuration"
+        ],
+        "eliminations": []
+      }
+    ]
+  },
+  "refinement": {
+    "weights": {
+      "modern aesthetic": 0.8000000000000003,
+      "earthy tones": 0.8000000000000003,
+      "natural lighting": 0.8000000000000003,
+      "open space layout": 0.8000000000000003,
+      "calm atmosphere": 0.8000000000000003,
+      "wooden desk": 0.8000000000000003,
+      "warm wood tones": 0.8000000000000003,
+      "lush greenery": 0.8000000000000003,
+      "clean lines": 0.8000000000000003
+    },
+    "history": [
+      {
+        "modern aesthetic": 0.8,
+        "earthy tones": 0.8,
+        "natural lighting": 0.8,
+        "open space layout": 0.8,
+        "calm atmosphere": 0.8,
+        "wooden desk": 0.8,
+        "warm wood tones": 0.8,
+        "lush greenery": 0.8,
+        "clean lines": 0.8
+      }
+    ],
+    "round_history": [
+      {
+        "round_num": 1,
+        "selected_idx": 3,
+        "selected_strategy": "perturbed",
+        "gradients": {
+          "modern aesthetic": 0.0,
+          "earthy tones": 0.0,
+          "natural lighting": 0.0,
+          "open space layout": 0.0,
+          "calm atmosphere": 0.0,
+          "wooden desk": 0.0,
+          "warm wood tones": 0.0,
+          "lush greenery": 0.0,
+          "clean lines": 0.0
+        },
+        "weight_updates": {
+          "modern aesthetic": 0.0,
+          "earthy tones": 0.0,
+          "natural lighting": 0.0,
+          "open space layout": 0.0,
+          "calm atmosphere": 0.0,
+          "wooden desk": 0.0,
+          "warm wood tones": 0.0,
+          "lush greenery": 0.0,
+          "clean lines": 0.0
+        },
+        "max_change": 0.0,
+        "is_converged": true
+      }
+    ]
+  }
+}

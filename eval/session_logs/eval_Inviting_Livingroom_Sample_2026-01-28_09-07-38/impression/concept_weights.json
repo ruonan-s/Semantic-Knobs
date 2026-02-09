@@ -1,0 +1,294 @@
+{
+  "stage": "impression",
+  "session_id": "eval_Inviting_Livingroom_Sample_2026-01-28_09-07-38",
+  "timestamp": "2026-01-28T09:18:00.789495",
+  "num_concepts": 12,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 902,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "open layout",
+      "weight": 0.11183462291955948,
+      "score": 0.923823356628418,
+      "utility_std": 1.0064446926116943,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "open layout"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "warm wood flooring",
+      "weight": 0.09818344563245773,
+      "score": 0.7936397194862366,
+      "utility_std": 1.0064446926116943,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm wood flooring"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "natural light",
+      "weight": 0.09470344334840775,
+      "score": 0.757552444934845,
+      "utility_std": 1.0064446926116943,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "natural light"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "neutral color palette",
+      "weight": 0.09418344497680664,
+      "score": 0.7520464658737183,
+      "utility_std": 1.0064446926116943,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "neutral color palette"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "lush greenery view",
+      "weight": 0.0878140777349472,
+      "score": 0.6820238828659058,
+      "utility_std": 1.0064446926116943,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "lush greenery view"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "warm lighting",
+      "weight": 0.08214649558067322,
+      "score": 0.6153062582015991,
+      "utility_std": 1.0064446926116943,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "inviting cozy atmosphere",
+      "weight": 0.08213932067155838,
+      "score": 0.6152188777923584,
+      "utility_std": 1.0064446926116943,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "inviting cozy atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "minimalist decor",
+      "weight": 0.07916689664125443,
+      "score": 0.578360378742218,
+      "utility_std": 1.0064446926116943,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "minimalist decor"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "wooden coffee table",
+      "weight": 0.07061611115932465,
+      "score": 0.4640604555606842,
+      "utility_std": 1.0064446926116943,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden coffee table"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "large window",
+      "weight": 0.07012070715427399,
+      "score": 0.45702028274536133,
+      "utility_std": 1.0064446926116943,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large window"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_10",
+      "label": "wooden elements",
+      "weight": 0.06824932247400284,
+      "score": 0.4299696385860443,
+      "utility_std": 1.0064446926116943,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden elements"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_11",
+      "label": "natural materials",
+      "weight": 0.060842134058475494,
+      "score": 0.3150845766067505,
+      "utility_std": 1.0064446926116943,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "natural materials"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_1_0_9",
+      "text": "open layout",
+      "utility": 0.923823356628418,
+      "uncertainty": 1.0064446926116943,
+      "weight": 0.11183462291955948,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "warm wood flooring",
+      "utility": 0.7936397194862366,
+      "uncertainty": 1.0064446926116943,
+      "weight": 0.09818344563245773,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_8",
+      "text": "natural light",
+      "utility": 0.757552444934845,
+      "uncertainty": 1.0064446926116943,
+      "weight": 0.09470344334840775,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_0",
+      "text": "neutral color palette",
+      "utility": 0.7520464658737183,
+      "uncertainty": 1.0064446926116943,
+      "weight": 0.09418344497680664,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_2",
+      "text": "lush greenery view",
+      "utility": 0.6820238828659058,
+      "uncertainty": 1.0064446926116943,
+      "weight": 0.0878140777349472,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_2",
+      "text": "warm lighting",
+      "utility": 0.6153062582015991,
+      "uncertainty": 1.0064446926116943,
+      "weight": 0.08214649558067322,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_11",
+      "text": "inviting cozy atmosphere",
+      "utility": 0.6152188777923584,
+      "uncertainty": 1.0064446926116943,
+      "weight": 0.08213932067155838,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_6",
+      "text": "minimalist decor",
+      "utility": 0.578360378742218,
+      "uncertainty": 1.0064446926116943,
+      "weight": 0.07916689664125443,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_6",
+      "text": "wooden coffee table",
+      "utility": 0.4640604555606842,
+      "uncertainty": 1.0064446926116943,
+      "weight": 0.07061611115932465,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_3",
+      "text": "large window",
+      "utility": 0.45702028274536133,
+      "uncertainty": 1.0064446926116943,
+      "weight": 0.07012070715427399,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_5",
+      "text": "wooden elements",
+      "utility": 0.4299696385860443,
+      "uncertainty": 1.0064446926116943,
+      "weight": 0.06824932247400284,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_10",
+      "text": "natural materials",
+      "utility": 0.3150845766067505,
+      "uncertainty": 1.0064446926116943,
+      "weight": 0.060842134058475494,
+      "source_image_idx": 2,
+      "category": "positive"
+    }
+  ]
+}

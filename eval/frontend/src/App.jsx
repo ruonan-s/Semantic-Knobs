@@ -93,6 +93,7 @@ function App() {
   const [hitlGpVariance, setHitlGpVariance] = useState(null);
   const [hitlStatusMessage, setHitlStatusMessage] = useState('');
   const [isHitlLoading, setIsHitlLoading] = useState(false);
+  const [hitlBestPicks, setHitlBestPicks] = useState([]);
   
   // Slot-based Refinement state
   const [slotRound, setSlotRound] = useState(1);
@@ -660,9 +661,14 @@ function App() {
       
       // Set images for display
       setHitlImages(data.images || []);
-      setHitlRound(data.round || hitlRound);
+      setHitlRound(data.round_number || data.round || hitlRound);
       setHitlStatusMessage('');
-      addStatusMessage(`Generated ${data.images?.length || 0} images for round ${data.round}`);
+      addStatusMessage(`Generated ${data.images?.length || 0} images for round ${data.round_number || data.round}`);
+      
+      // Update best picks gallery from backend
+      if (data.best_picks) {
+        setHitlBestPicks(data.best_picks);
+      }
       
     } catch (error) {
       console.error('Error generating HITL round:', error);
@@ -697,20 +703,51 @@ function App() {
       
       // Update convergence state (now using image variance)
       setHitlGpVariance(data.image_variance ?? data.gp_variance);
-      setIsHitlConverged(data.converged);
+      setIsHitlConverged(data.is_converged ?? data.converged ?? false);
       
-      addStatusMessage(`Round ${hitlRound} completed. Image variance: ${(data.image_variance ?? data.gp_variance)?.toFixed(4)}`);
+      const roundNum = data.round_number || hitlRound;
+      addStatusMessage(`Round ${roundNum} completed. Image variance: ${(data.image_variance ?? data.gp_variance)?.toFixed(4)}`);
       
-      if (data.converged) {
-        setHitlStatusMessage('Preferences have converged! You can finalize now.');
-      } else {
-        // Generate next round
-        setHitlRound(prev => prev + 1);
-        await generateHITLRound();
-      }
+      // Always generate next round - user decides when to stop via "Finish" button
+      await generateHITLRound();
       
     } catch (error) {
       console.error('Error submitting ranking:', error);
+      addStatusMessage(`Error: ${error.message}`);
+      setHitlStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsHitlLoading(false);
+    }
+  };
+  
+  // Roll back to a previous round
+  const handleHITLRollback = async (targetRound) => {
+    setIsHitlLoading(true);
+    setHitlStatusMessage(`Rolling back to round ${targetRound}...`);
+    
+    try {
+      const res = await fetch('/api/hitl/rollback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          session_id: sessionId,
+          target_round: targetRound
+        })
+      });
+      
+      if (!res.ok) {
+        throw new Error(`Failed to rollback: ${res.status}`);
+      }
+      
+      const data = await res.json();
+      
+      addStatusMessage(`Rolled back from round ${data.from_round} to round ${data.to_round}`);
+      
+      // Generate next round from the rolled-back state
+      await generateHITLRound();
+      
+    } catch (error) {
+      console.error('Error rolling back:', error);
       addStatusMessage(`Error: ${error.message}`);
       setHitlStatusMessage(`Error: ${error.message}`);
     } finally {
@@ -1065,8 +1102,8 @@ function App() {
     }
   };
 
-  // Custom stages for eval (with slot-based refinement)
-  const evalStages = ['landing', 'impression', 'slot_refinement', 'evaluation', 'slider_generation'];
+  // Custom stages for eval (with HITL refinement or slot-based refinement)
+  const evalStages = ['landing', 'impression', 'hitl_refinement', 'slot_refinement', 'evaluation', 'slider_generation'];
 
   // ============== Ranking/Evaluation Functions ==============
 
@@ -1606,6 +1643,8 @@ function App() {
             isLoading={isHitlLoading}
             onSubmitRanking={submitHITLRanking}
             onFinalize={finalizeHITL}
+            onRollback={handleHITLRollback}
+            bestPicks={hitlBestPicks}
             statusMessage={hitlStatusMessage}
           />
           
@@ -2668,9 +2707,28 @@ function App() {
 
           {/* Action Buttons */}
           <div style={{ display: 'flex', gap: '10px', marginTop: '20px', flexWrap: 'wrap' }}>
-            {/* Refine Preferences Button - Slot-Based */}
+            {/* Slot-Based Refinement Button (Primary) */}
             <button
               onClick={handleStartSlotRefinement}
+              disabled={!selectedImage || isLoading || !conceptSystemReady}
+              style={{
+                padding: '12px 24px',
+                backgroundColor: isLoading ? '#ccc' : (selectedImage && conceptSystemReady ? '#8b5cf6' : '#ccc'),
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: (!selectedImage || isLoading || !conceptSystemReady) ? 'not-allowed' : 'pointer',
+                fontSize: '16px',
+                fontWeight: '500',
+                transition: 'background-color 0.3s ease'
+              }}
+            >
+              {isLoading ? 'Processing...' : 'Slot Refinement'}
+            </button>
+            
+            {/* Refine Preferences Button (HITL - Legacy) */}
+            <button
+              onClick={handleStartHITL}
               disabled={!selectedImage || isLoading || !conceptSystemReady}
               style={{
                 padding: '12px 24px',
@@ -2684,7 +2742,7 @@ function App() {
                 transition: 'background-color 0.3s ease'
               }}
             >
-              {isLoading ? 'Processing...' : 'Refine Preferences'}
+              {isLoading ? 'Processing...' : 'GP Refinement'}
             </button>
             
             {/* Skip to Evaluation Button */}

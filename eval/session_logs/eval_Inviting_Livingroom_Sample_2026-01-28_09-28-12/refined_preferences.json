@@ -1,0 +1,82 @@
+{
+  "stage": "hitl_refinement",
+  "session_id": "eval_Inviting_Livingroom_Sample_2026-01-28_09-28-12",
+  "timestamp": "2026-01-28T09:35:16.942247",
+  "rounds_completed": 4,
+  "total_pairs": 336,
+  "is_converged": false,
+  "final_tags": [
+    {
+      "concept_id": "refined_0",
+      "label": "neutral color palette",
+      "attn_map_weight": 0.1095319390296936,
+      "utility": 2.140446186065674,
+      "tag_index": 0
+    },
+    {
+      "concept_id": "refined_1",
+      "label": "open layout",
+      "attn_map_weight": 0.10775867849588394,
+      "utility": 2.12412428855896,
+      "tag_index": 15
+    },
+    {
+      "concept_id": "refined_2",
+      "label": "warm lighting",
+      "attn_map_weight": 0.10532840341329575,
+      "utility": 2.1013131141662598,
+      "tag_index": 16
+    },
+    {
+      "concept_id": "refined_3",
+      "label": "warm wooden floors",
+      "attn_map_weight": 0.10496634989976883,
+      "utility": 2.097869873046875,
+      "tag_index": 24
+    },
+    {
+      "concept_id": "refined_4",
+      "label": "inviting cozy atmosphere",
+      "attn_map_weight": 0.10150586068630219,
+      "utility": 2.0643465518951416,
+      "tag_index": 25
+    },
+    {
+      "concept_id": "refined_5",
+      "label": "natural light",
+      "attn_map_weight": 0.10080475360155106,
+      "utility": 2.05741548538208,
+      "tag_index": 14
+    },
+    {
+      "concept_id": "refined_6",
+      "label": "wooden coffee table",
+      "attn_map_weight": 0.09595031291246414,
+      "utility": 2.0080604553222656,
+      "tag_index": 5
+    },
+    {
+      "concept_id": "refined_7",
+      "label": "wooden elements",
+      "attn_map_weight": 0.09335388988256454,
+      "utility": 1.9806275367736816,
+      "tag_index": 17
+    },
+    {
+      "concept_id": "refined_8",
+      "label": "lush greenery view",
+      "attn_map_weight": 0.09267036616802216,
+      "utility": 1.9732787609100342,
+      "tag_index": 10
+    },
+    {
+      "concept_id": "refined_9",
+      "label": "large window",
+      "attn_map_weight": 0.08812946081161499,
+      "utility": 1.923036813735962,
+      "tag_index": 3
+    }
+  ],
+  "usage": "cross_attention_map_scaling",
+  "description": "Each tag's weight scales its tokens' attention map contribution during image generation"
+}

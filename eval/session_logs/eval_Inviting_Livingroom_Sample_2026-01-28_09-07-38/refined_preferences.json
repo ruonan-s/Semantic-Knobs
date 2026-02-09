@@ -1,0 +1,82 @@
+{
+  "stage": "hitl_refinement",
+  "session_id": "eval_Inviting_Livingroom_Sample_2026-01-28_09-07-38",
+  "timestamp": "2026-01-28T09:17:40.342750",
+  "rounds_completed": 3,
+  "total_pairs": 343,
+  "is_converged": false,
+  "final_tags": [
+    {
+      "concept_id": "refined_0",
+      "label": "neutral color palette",
+      "attn_map_weight": 0.11007861793041229,
+      "utility": 2.1762337684631348,
+      "tag_index": 0
+    },
+    {
+      "concept_id": "refined_1",
+      "label": "open layout",
+      "attn_map_weight": 0.10844269394874573,
+      "utility": 2.1612608432769775,
+      "tag_index": 15
+    },
+    {
+      "concept_id": "refined_2",
+      "label": "inviting cozy atmosphere",
+      "attn_map_weight": 0.10525554418563843,
+      "utility": 2.131430149078369,
+      "tag_index": 24
+    },
+    {
+      "concept_id": "refined_3",
+      "label": "warm wooden floors",
+      "attn_map_weight": 0.10517872124910355,
+      "utility": 2.130699872970581,
+      "tag_index": 23
+    },
+    {
+      "concept_id": "refined_4",
+      "label": "soft natural lighting",
+      "attn_map_weight": 0.10129323601722717,
+      "utility": 2.0930585861206055,
+      "tag_index": 21
+    },
+    {
+      "concept_id": "refined_5",
+      "label": "wooden coffee table",
+      "attn_map_weight": 0.09749063104391098,
+      "utility": 2.054795265197754,
+      "tag_index": 5
+    },
+    {
+      "concept_id": "refined_6",
+      "label": "wooden elements",
+      "attn_map_weight": 0.09535825252532959,
+      "utility": 2.032679796218872,
+      "tag_index": 16
+    },
+    {
+      "concept_id": "refined_7",
+      "label": "minimalist decor",
+      "attn_map_weight": 0.09400971233844757,
+      "utility": 2.018437147140503,
+      "tag_index": 3
+    },
+    {
+      "concept_id": "refined_8",
+      "label": "lush greenery view",
+      "attn_map_weight": 0.09252321720123291,
+      "utility": 2.0024986267089844,
+      "tag_index": 10
+    },
+    {
+      "concept_id": "refined_9",
+      "label": "ambient lighting",
+      "attn_map_weight": 0.09036929160356522,
+      "utility": 1.9789434671401978,
+      "tag_index": 38
+    }
+  ],
+  "usage": "cross_attention_map_scaling",
+  "description": "Each tag's weight scales its tokens' attention map contribution during image generation"
+}
