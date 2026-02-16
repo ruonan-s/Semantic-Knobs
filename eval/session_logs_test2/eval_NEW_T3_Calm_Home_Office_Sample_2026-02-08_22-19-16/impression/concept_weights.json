@@ -1,0 +1,64 @@
+{
+  "stage": "impression",
+  "session_id": "eval_NEW_T3_Calm_Home_Office_Sample_2026-02-08_22-19-16",
+  "timestamp": "2026-02-08T22:29:32.089724",
+  "num_concepts": 2,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 320,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "plush gray chair",
+      "weight": 0.5492846369743347,
+      "score": 0.7005171775817871,
+      "utility_std": 1.0072264671325684,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "plush gray chair"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "sleek modern desk",
+      "weight": 0.4507153332233429,
+      "score": 0.5027363896369934,
+      "utility_std": 1.0072264671325684,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "sleek modern desk"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_2_0_4",
+      "text": "plush gray chair",
+      "utility": 0.7005171775817871,
+      "uncertainty": 1.0072264671325684,
+      "weight": 0.5492846369743347,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_2",
+      "text": "sleek modern desk",
+      "utility": 0.5027363896369934,
+      "uncertainty": 1.0072264671325684,
+      "weight": 0.4507153332233429,
+      "source_image_idx": 2,
+      "category": "positive"
+    }
+  ]
+}

@@ -1,0 +1,363 @@
+{
+  "stage": "impression",
+  "session_id": "eval_NEW_T6_Inspiring_Reading_Nook_Sample_2026-02-09_14-45-07",
+  "timestamp": "2026-02-09T14:50:33.329448",
+  "num_concepts": 15,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 394,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "plush cushions",
+      "weight": 0.0926712155342102,
+      "score": 0.9069797992706299,
+      "utility_std": 1.009324073791504,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "plush cushions"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "star-shaped pillow",
+      "weight": 0.0872243270277977,
+      "score": 0.8464051485061646,
+      "utility_std": 1.009324073791504,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "star-shaped pillow"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "whimsical mural",
+      "weight": 0.08624459058046341,
+      "score": 0.8351092338562012,
+      "utility_std": 1.009324073791504,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "whimsical mural"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "vibrant color scheme",
+      "weight": 0.0778450071811676,
+      "score": 0.7326416373252869,
+      "utility_std": 1.009324073791504,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "vibrant color scheme"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "foliage decor",
+      "weight": 0.07607924193143845,
+      "score": 0.7096972465515137,
+      "utility_std": 1.009324073791504,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "foliage decor"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "textured materials",
+      "weight": 0.0728229209780693,
+      "score": 0.6659525632858276,
+      "utility_std": 1.009324073791504,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "textured materials"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "curved architecture",
+      "weight": 0.06871167570352554,
+      "score": 0.6078411340713501,
+      "utility_std": 1.009324073791504,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "curved architecture"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "cosy nook",
+      "weight": 0.06228061392903328,
+      "score": 0.5095721483230591,
+      "utility_std": 1.009324073791504,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "cosy nook"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "textured throw blanket",
+      "weight": 0.056526560336351395,
+      "score": 0.4126325845718384,
+      "utility_std": 1.009324073791504,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "textured throw blanket"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "floating shelves",
+      "weight": 0.05528564006090164,
+      "score": 0.3904350697994232,
+      "utility_std": 1.009324073791504,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "floating shelves"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_10",
+      "label": "relaxing atmosphere",
+      "weight": 0.05428650230169296,
+      "score": 0.37219756841659546,
+      "utility_std": 1.009324073791504,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "relaxing atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_11",
+      "label": "contemporary design",
+      "weight": 0.05363227054476738,
+      "score": 0.36007288098335266,
+      "utility_std": 1.009324073791504,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "contemporary design"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_12",
+      "label": "plush velvet chair",
+      "weight": 0.053038083016872406,
+      "score": 0.3489322066307068,
+      "utility_std": 1.009324073791504,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "plush velvet chair"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_13",
+      "label": "simple layout",
+      "weight": 0.05234489217400551,
+      "score": 0.33577626943588257,
+      "utility_std": 1.009324073791504,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "simple layout"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_14",
+      "label": "stone accent wall",
+      "weight": 0.05100639536976814,
+      "score": 0.30987298488616943,
+      "utility_std": 1.009324073791504,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "stone accent wall"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_3_0_5",
+      "text": "plush cushions",
+      "utility": 0.9069797992706299,
+      "uncertainty": 1.009324073791504,
+      "weight": 0.0926712155342102,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_6",
+      "text": "star-shaped pillow",
+      "utility": 0.8464051485061646,
+      "uncertainty": 1.009324073791504,
+      "weight": 0.0872243270277977,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_3",
+      "text": "whimsical mural",
+      "utility": 0.8351092338562012,
+      "uncertainty": 1.009324073791504,
+      "weight": 0.08624459058046341,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_1",
+      "text": "vibrant color scheme",
+      "utility": 0.7326416373252869,
+      "uncertainty": 1.009324073791504,
+      "weight": 0.0778450071811676,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_9",
+      "text": "foliage decor",
+      "utility": 0.7096972465515137,
+      "uncertainty": 1.009324073791504,
+      "weight": 0.07607924193143845,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_10",
+      "text": "textured materials",
+      "utility": 0.6659525632858276,
+      "uncertainty": 1.009324073791504,
+      "weight": 0.0728229209780693,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_4",
+      "text": "curved architecture",
+      "utility": 0.6078411340713501,
+      "uncertainty": 1.009324073791504,
+      "weight": 0.06871167570352554,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_0",
+      "text": "cosy nook",
+      "utility": 0.5095721483230591,
+      "uncertainty": 1.009324073791504,
+      "weight": 0.06228061392903328,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_5",
+      "text": "textured throw blanket",
+      "utility": 0.4126325845718384,
+      "uncertainty": 1.009324073791504,
+      "weight": 0.056526560336351395,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_7",
+      "text": "floating shelves",
+      "utility": 0.3904350697994232,
+      "uncertainty": 1.009324073791504,
+      "weight": 0.05528564006090164,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_11",
+      "text": "relaxing atmosphere",
+      "utility": 0.37219756841659546,
+      "uncertainty": 1.009324073791504,
+      "weight": 0.05428650230169296,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_11",
+      "text": "contemporary design",
+      "utility": 0.36007288098335266,
+      "uncertainty": 1.009324073791504,
+      "weight": 0.05363227054476738,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_3",
+      "text": "plush velvet chair",
+      "utility": 0.3489322066307068,
+      "uncertainty": 1.009324073791504,
+      "weight": 0.053038083016872406,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_7",
+      "text": "simple layout",
+      "utility": 0.33577626943588257,
+      "uncertainty": 1.009324073791504,
+      "weight": 0.05234489217400551,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_5",
+      "text": "stone accent wall",
+      "utility": 0.30987298488616943,
+      "uncertainty": 1.009324073791504,
+      "weight": 0.05100639536976814,
+      "source_image_idx": 0,
+      "category": "positive"
+    }
+  ]
+}

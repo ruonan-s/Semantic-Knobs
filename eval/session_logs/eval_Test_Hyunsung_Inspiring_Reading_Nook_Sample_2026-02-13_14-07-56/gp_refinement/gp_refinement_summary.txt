@@ -1,0 +1,90 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_Test_Hyunsung_Inspiring_Reading_Nook_Sample_2026-02-13_14-07-56
+Started: 2026-02-13T14:12:05.701347
+Rounds: 3
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 14
+  Neutral tags: 19
+  Total: 33
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.26 | floor-to-ceiling windows, natural light, minimalist decor...
+    [1] explore      | avg_μ=+0.50 | soft lighting, minimalist decor, zen atmosphere...
+    [2] ucb          | avg_μ=+0.26 | vintage globe, neutral color palette, warm ambient lighting...
+    [3] challenger   | avg_μ=+0.18 | organic textures, cozy atmosphere, textured throw blanket...
+  Ranking: [1, 2, 3, 0]
+  Comparisons: 6
+  Tags updated: 22
+  Top 5 after round:
+    1. soft lighting             μ=+0.785 σ=0.430
+    2. wooden furniture          μ=+0.785 σ=0.430
+    3. cozy seating area         μ=+0.695 σ=0.365
+    4. zen atmosphere            μ=+0.695 σ=0.365
+    5. wooden bookshelves        μ=+0.695 σ=0.365
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.42 | soft lighting, wooden furniture, cozy seating area...
+    [1] explore      | avg_μ=+0.25 | wooden flooring, soft lighting, neutral color palette...
+    [2] ucb          | avg_μ=+0.40 | minimalist decor, wooden furniture, floor-to-ceiling windows...
+    [3] challenger   | avg_μ=+0.35 | soft lighting, soft ambient lighting, plush cushions...
+  Ranking: [3, 2, 0, 1]
+  Comparisons: 6
+  Tags updated: 23
+  Top 5 after round:
+    1. wooden furniture          μ=+1.056 σ=0.264
+    2. clean lines               μ=+0.946 σ=0.224
+    3. wooden bookshelves        μ=+0.880 σ=0.191
+    4. soft lighting             μ=+0.700 σ=0.264
+    5. warm materials            μ=+0.675 σ=0.264
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.54 | wooden furniture, clean lines, wooden bookshelves...
+    [1] explore      | avg_μ=+0.15 | wooden flooring, soft lighting, neutral color palette...
+    [2] ucb          | avg_μ=+0.47 | soft lighting, soft ambient lighting, wooden furniture...
+    [3] challenger   | avg_μ=+0.72 | soft lighting, zen atmosphere, wooden furniture...
+  Ranking: [3, 2, 1, 0]
+  Comparisons: 6
+  Tags updated: 18
+  Top 5 after round:
+    1. wooden furniture          μ=+1.137 σ=0.162
+    2. clean lines               μ=+1.028 σ=0.138
+    3. wooden bookshelves        μ=+0.962 σ=0.117
+    4. natural light             μ=+0.847 σ=0.264
+    5. floor-to-ceiling windows  μ=+0.843 σ=0.264
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. wooden furniture               | w=0.135 | μ=+1.137 | win_rate=43%
+   2. clean lines                    | w=0.121 | μ=+1.028 | win_rate=33%
+   3. wooden bookshelves             | w=0.113 | μ=+0.962 | win_rate=43%
+   4. natural light                  | w=0.101 | μ=+0.847 | win_rate=30%
+   5. floor-to-ceiling windows       | w=0.100 | μ=+0.843 | win_rate=30%
+   6. organic textures               | w=0.100 | μ=+0.843 | win_rate=30%
+   7. soft lighting                  | w=0.087 | μ=+0.700 | win_rate=38%
+   8. warm materials                 | w=0.085 | μ=+0.675 | win_rate=25%
+   9. cozy seating area              | w=0.079 | μ=+0.610 | win_rate=40%
+  10. zen atmosphere                 | w=0.079 | μ=+0.610 | win_rate=40%
+
+  Convergence: True
+  Top-10 stability: 9/10 tags same as previous round
+
+======================================================================
+WARNINGS (2)
+======================================================================
+  [rollback] Rolled back from round 1 to round 1. Boosted: [], Penalized: []
+  [rollback] Rolled back from round 3 to round 3. Boosted: [], Penalized: []

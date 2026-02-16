@@ -1,0 +1,455 @@
+{
+  "stage": "impression",
+  "session_id": "eval_NEW_DAVID2_Calm_Home_Office_Sample_2026-02-09_15-21-18",
+  "timestamp": "2026-02-09T15:27:17.127752",
+  "num_concepts": 19,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 250,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "Simple layout",
+      "weight": 0.10318989306688309,
+      "score": 1.8546361923217773,
+      "utility_std": 1.0015466213226318,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Simple layout"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "Natural light",
+      "weight": 0.0953892171382904,
+      "score": 1.7760308980941772,
+      "utility_std": 1.0015466213226318,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Natural light"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "Casual elegance",
+      "weight": 0.09121541678905487,
+      "score": 1.7312891483306885,
+      "utility_std": 1.0015466213226318,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Casual elegance"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "Soft textures",
+      "weight": 0.08432170748710632,
+      "score": 1.6527045965194702,
+      "utility_std": 1.0015466213226318,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Soft textures"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "calm atmosphere",
+      "weight": 0.07219310104846954,
+      "score": 1.4974098205566406,
+      "utility_std": 1.0015466213226318,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "calm atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "minimalist design",
+      "weight": 0.06798812747001648,
+      "score": 1.4373984336853027,
+      "utility_std": 1.0015466213226318,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "minimalist design"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "soft diffused lighting",
+      "weight": 0.06711649894714355,
+      "score": 1.4244952201843262,
+      "utility_std": 1.0015466213226318,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "soft diffused lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "Warm lighting",
+      "weight": 0.06561403721570969,
+      "score": 1.4018549919128418,
+      "utility_std": 1.0015466213226318,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Warm lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "clean lines",
+      "weight": 0.0565132312476635,
+      "score": 1.252540111541748,
+      "utility_std": 1.0015466213226318,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "clean lines"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "Scandinavian design",
+      "weight": 0.04181790351867676,
+      "score": 0.9513898491859436,
+      "utility_std": 1.0015466213226318,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Scandinavian design"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_10",
+      "label": "luxurious materials",
+      "weight": 0.03828335180878639,
+      "score": 0.8630804419517517,
+      "utility_std": 1.0015466213226318,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "luxurious materials"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_11",
+      "label": "neutral color palette",
+      "weight": 0.03065352328121662,
+      "score": 0.6408129334449768,
+      "utility_std": 1.0015466213226318,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "neutral color palette"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_12",
+      "label": "large windows",
+      "weight": 0.02895139716565609,
+      "score": 0.5836837291717529,
+      "utility_std": 1.0015466213226318,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_13",
+      "label": "curtained backdrop",
+      "weight": 0.027486098930239677,
+      "score": 0.5317456722259521,
+      "utility_std": 1.0015466213226318,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "curtained backdrop"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_14",
+      "label": "Textured fabrics",
+      "weight": 0.026601044461131096,
+      "score": 0.49901580810546875,
+      "utility_std": 1.0015466213226318,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Textured fabrics"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_15",
+      "label": "warm wood tones",
+      "weight": 0.026532035320997238,
+      "score": 0.49641820788383484,
+      "utility_std": 1.0015466213226318,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm wood tones"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_16",
+      "label": "Wooden furniture",
+      "weight": 0.02637857012450695,
+      "score": 0.49061715602874756,
+      "utility_std": 1.0015466213226318,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Wooden furniture"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_17",
+      "label": "simple chair design",
+      "weight": 0.026243209838867188,
+      "score": 0.48547255992889404,
+      "utility_std": 1.0015466213226318,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "simple chair design"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_18",
+      "label": "natural wood table",
+      "weight": 0.02351168543100357,
+      "score": 0.3755629360675812,
+      "utility_std": 1.0015466213226318,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "natural wood table"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_3_0_7",
+      "text": "Simple layout",
+      "utility": 1.8546361923217773,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.10318989306688309,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_1",
+      "text": "Natural light",
+      "utility": 1.7760308980941772,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.0953892171382904,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_10",
+      "text": "Casual elegance",
+      "utility": 1.7312891483306885,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.09121541678905487,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_3",
+      "text": "Soft textures",
+      "utility": 1.6527045965194702,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.08432170748710632,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_11",
+      "text": "calm atmosphere",
+      "utility": 1.4974098205566406,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.07219310104846954,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_0",
+      "text": "minimalist design",
+      "utility": 1.4373984336853027,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.06798812747001648,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_4",
+      "text": "soft diffused lighting",
+      "utility": 1.4244952201843262,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.06711649894714355,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_9",
+      "text": "Warm lighting",
+      "utility": 1.4018549919128418,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.06561403721570969,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_7",
+      "text": "clean lines",
+      "utility": 1.252540111541748,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.0565132312476635,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_0",
+      "text": "Scandinavian design",
+      "utility": 0.9513898491859436,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.04181790351867676,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_7",
+      "text": "luxurious materials",
+      "utility": 0.8630804419517517,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.03828335180878639,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_6",
+      "text": "neutral color palette",
+      "utility": 0.6408129334449768,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.03065352328121662,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_4",
+      "text": "large windows",
+      "utility": 0.5836837291717529,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.02895139716565609,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_10",
+      "text": "curtained backdrop",
+      "utility": 0.5317456722259521,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.027486098930239677,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_11",
+      "text": "Textured fabrics",
+      "utility": 0.49901580810546875,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.026601044461131096,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_1",
+      "text": "warm wood tones",
+      "utility": 0.49641820788383484,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.026532035320997238,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_5",
+      "text": "Wooden furniture",
+      "utility": 0.49061715602874756,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.02637857012450695,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_6",
+      "text": "simple chair design",
+      "utility": 0.48547255992889404,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.026243209838867188,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_2",
+      "text": "natural wood table",
+      "utility": 0.3755629360675812,
+      "uncertainty": 1.0015466213226318,
+      "weight": 0.02351168543100357,
+      "source_image_idx": 0,
+      "category": "positive"
+    }
+  ]
+}

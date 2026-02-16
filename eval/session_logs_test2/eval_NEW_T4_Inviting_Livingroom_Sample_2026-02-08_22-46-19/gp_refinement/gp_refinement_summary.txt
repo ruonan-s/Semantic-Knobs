@@ -1,0 +1,89 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_NEW_T4_Inviting_Livingroom_Sample_2026-02-08_22-46-19
+Started: 2026-02-08T22:49:30.936064
+Rounds: 3
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 23
+  Neutral tags: 22
+  Total: 45
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.26 | neutral color palette, cozy textiles, ambient lighting...
+    [1] explore      | avg_μ=+0.42 | modern elegance, warm wood flooring, woven textures...
+    [2] ucb          | avg_μ=+0.42 | elegant marble fireplace, plush velvet furniture, soft textures...
+    [3] challenger   | avg_μ=+0.50 | modern elegance, warm wood flooring, soft natural lighting...
+  Ranking: [3, 2, 1, 0]
+  Comparisons: 6
+  Tags updated: 21
+  Top 5 after round:
+    1. contemporary artwork      μ=+0.785 σ=0.430
+    2. soft natural lighting     μ=+0.785 σ=0.430
+    3. trimmed large windows     μ=+0.785 σ=0.430
+    4. inviting atmosphere       μ=+0.695 σ=0.365
+    5. modern elegance           μ=+0.695 σ=0.365
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.41 | contemporary artwork, soft natural lighting, trimmed large windows...
+    [1] explore      | avg_μ=+0.24 | warm wooden floors, lush greenery view, inviting cozy atmosphere...
+    [2] ucb          | avg_μ=+0.50 | warm wooden floors, soft natural lighting, inviting cozy atmosphere...
+    [3] challenger   | avg_μ=+0.63 | elegant marble fireplace, warm wooden floors, soft natural lighting...
+  Ranking: [1, 0, 2, 3]
+  Comparisons: 6
+  Tags updated: 21
+  Top 5 after round:
+    1. inviting atmosphere       μ=+0.780 σ=0.224
+    2. modern elegance           μ=+0.780 σ=0.224
+    3. luxurious drapes          μ=+0.685 σ=0.365
+    4. inviting cozy atmosphere  μ=+0.685 σ=0.365
+    5. ambient lighting          μ=+0.675 σ=0.264
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.48 | inviting atmosphere, modern elegance, luxurious drapes...
+    [1] explore      | avg_μ=+0.16 | warm wooden floors, minimalist decor, woven textures...
+    [2] ucb          | avg_μ=+0.35 | modern elegance, warm wooden floors, inviting cozy atmosphere...
+    [3] challenger   | avg_μ=+0.61 | modern elegance, warm wooden floors, inviting cozy atmosphere...
+  Ranking: [3, 0, 1, 2]
+  Comparisons: 6
+  Tags updated: 20
+  Top 5 after round:
+    1. trimmed large windows     μ=+0.938 σ=0.117
+    2. inviting atmosphere       μ=+0.862 σ=0.138
+    3. modern elegance           μ=+0.862 σ=0.138
+    4. contemporary artwork      μ=+0.853 σ=0.138
+    5. luxurious drapes          μ=+0.766 σ=0.224
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. trimmed large windows          | w=0.120 | μ=+0.938 | win_rate=40%
+   2. inviting atmosphere            | w=0.111 | μ=+0.862 | win_rate=33%
+   3. modern elegance                | w=0.111 | μ=+0.862 | win_rate=33%
+   4. contemporary artwork           | w=0.110 | μ=+0.853 | win_rate=33%
+   5. luxurious drapes               | w=0.101 | μ=+0.766 | win_rate=40%
+   6. inviting cozy atmosphere       | w=0.101 | μ=+0.766 | win_rate=40%
+   7. ambient lighting               | w=0.100 | μ=+0.757 | win_rate=33%
+   8. large window                   | w=0.092 | μ=+0.676 | win_rate=50%
+   9. soft natural lighting          | w=0.078 | μ=+0.514 | win_rate=25%
+  10. warm wood flooring             | w=0.078 | μ=+0.510 | win_rate=25%
+
+  Convergence: False
+  Top-10 stability: 9/10 tags same as previous round
+
+======================================================================
+WARNINGS (1)
+======================================================================
+  [rollback] Rolled back from round 3 to round 3. Boosted: [], Penalized: []

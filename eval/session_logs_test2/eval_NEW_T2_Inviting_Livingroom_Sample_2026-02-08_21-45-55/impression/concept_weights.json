@@ -1,0 +1,202 @@
+{
+  "stage": "impression",
+  "session_id": "eval_NEW_T2_Inviting_Livingroom_Sample_2026-02-08_21-45-55",
+  "timestamp": "2026-02-08T21:50:33.587283",
+  "num_concepts": 8,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 339,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "elegant marble fireplace",
+      "weight": 0.162113219499588,
+      "score": 0.7570227980613708,
+      "utility_std": 1.0025538206100464,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "elegant marble fireplace"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "warm wooden floors",
+      "weight": 0.13584889471530914,
+      "score": 0.5802711248397827,
+      "utility_std": 1.0025538206100464,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm wooden floors"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "sophisticated decor",
+      "weight": 0.12705162167549133,
+      "score": 0.5133214592933655,
+      "utility_std": 1.0025538206100464,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "sophisticated decor"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "open layout design",
+      "weight": 0.12548744678497314,
+      "score": 0.5009336471557617,
+      "utility_std": 1.0025538206100464,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "open layout design"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "plush velvet furniture",
+      "weight": 0.11583341658115387,
+      "score": 0.4208810329437256,
+      "utility_std": 1.0025538206100464,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "plush velvet furniture"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "trimmed large windows",
+      "weight": 0.11345095187425613,
+      "score": 0.400098592042923,
+      "utility_std": 1.0025538206100464,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "trimmed large windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "luxurious drapes",
+      "weight": 0.1106247529387474,
+      "score": 0.3748718798160553,
+      "utility_std": 1.0025538206100464,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "luxurious drapes"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "inviting cozy atmosphere",
+      "weight": 0.10958972573280334,
+      "score": 0.36547163128852844,
+      "utility_std": 1.0025538206100464,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "inviting cozy atmosphere"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_3_0_3",
+      "text": "elegant marble fireplace",
+      "utility": 0.7570227980613708,
+      "uncertainty": 1.0025538206100464,
+      "weight": 0.162113219499588,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_9",
+      "text": "warm wooden floors",
+      "utility": 0.5802711248397827,
+      "uncertainty": 1.0025538206100464,
+      "weight": 0.13584889471530914,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_7",
+      "text": "sophisticated decor",
+      "utility": 0.5133214592933655,
+      "uncertainty": 1.0025538206100464,
+      "weight": 0.12705162167549133,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_8",
+      "text": "open layout design",
+      "utility": 0.5009336471557617,
+      "uncertainty": 1.0025538206100464,
+      "weight": 0.12548744678497314,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_2",
+      "text": "plush velvet furniture",
+      "utility": 0.4208810329437256,
+      "uncertainty": 1.0025538206100464,
+      "weight": 0.11583341658115387,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_6",
+      "text": "trimmed large windows",
+      "utility": 0.400098592042923,
+      "uncertainty": 1.0025538206100464,
+      "weight": 0.11345095187425613,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_10",
+      "text": "luxurious drapes",
+      "utility": 0.3748718798160553,
+      "uncertainty": 1.0025538206100464,
+      "weight": 0.1106247529387474,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_11",
+      "text": "inviting cozy atmosphere",
+      "utility": 0.36547163128852844,
+      "uncertainty": 1.0025538206100464,
+      "weight": 0.10958972573280334,
+      "source_image_idx": 3,
+      "category": "positive"
+    }
+  ]
+}

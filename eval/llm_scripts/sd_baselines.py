@@ -409,30 +409,31 @@ def generate_sd_preferences_baseline(
     negative_tags = tag_prefs_data.get("negative", [])[:max_tags_per_category]
     neutral_tags = tag_prefs_data.get("neutral", [])[:max_tags_per_category]
     
-    # Build the structured prompt
+    # Build the positive prompt with positive tags only
     prompt_parts = [f"{adjective} {location}"]
     
     if positive_tags:
-        prompt_parts.append(f"positive features: {', '.join(positive_tags)}")
-    if negative_tags:
-        prompt_parts.append(f"negative features: {', '.join(negative_tags)}")
-    if neutral_tags:
-        prompt_parts.append(f"neutral features: {', '.join(neutral_tags)}")
+        prompt_parts.append(f"{', '.join(positive_tags)}")
     
     positive_prompt = ", ".join(prompt_parts)
     
-    # Ensure negative_prompt is a string (not tuple/list)
+    # Move negative tags into the negative prompt (so the model avoids them)
     if isinstance(negative_prompt, (tuple, list)):
         negative_prompt = ", ".join(str(item) for item in negative_prompt)
     elif not isinstance(negative_prompt, str):
         negative_prompt = str(negative_prompt)
     
+    if negative_tags:
+        neg_tags_str = ", ".join(negative_tags)
+        negative_prompt = f"{negative_prompt}, {neg_tags_str}"
+    
     print(f"[SD Prefs Baseline] Generating for: {location}")
     print(f"[SD Prefs Baseline] Adjective: {adjective}")
     print(f"[SD Prefs Baseline] Positive tags ({len(positive_tags)}): {positive_tags}")
-    print(f"[SD Prefs Baseline] Negative tags ({len(negative_tags)}): {negative_tags}")
+    print(f"[SD Prefs Baseline] Negative tags -> neg prompt ({len(negative_tags)}): {negative_tags}")
     print(f"[SD Prefs Baseline] Neutral tags ({len(neutral_tags)}): {neutral_tags}")
-    print(f"[SD Prefs Baseline] Full prompt: {positive_prompt[:150]}...")
+    print(f"[SD Prefs Baseline] Positive prompt: {positive_prompt[:150]}...")
+    print(f"[SD Prefs Baseline] Negative prompt: {negative_prompt[:150]}...")
     print(f"[SD Prefs Baseline] Seed: {seed}, Steps: {steps}, Guidance: {guidance_scale}")
     
     # Generate using model's native prompt encoding

@@ -1,0 +1,185 @@
+{
+  "user_id": "NEW_T2",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_NEW_T2_Inviting_Livingroom_Sample_2026-02-08_21-45-55",
+  "created_at": "2026-02-08T21:45:55.973003",
+  "events": [
+    {
+      "timestamp": "2026-02-08T21:45:55.973012",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Inviting_Livingroom_Sample"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:47:21.231090",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Inviting Livingroom",
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:48:30.002596",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          3,
+          1,
+          0,
+          2
+        ],
+        "image_variance": 0.1107,
+        "beta": 2.0,
+        "tags_updated": 21,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:49:25.022354",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 2,
+        "ranking": [
+          3,
+          2,
+          1,
+          0
+        ],
+        "image_variance": 0.1413,
+        "beta": 1.667,
+        "tags_updated": 19,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:50:31.241210",
+      "type": "hitl_finalize",
+      "data": {
+        "rounds_completed": 2,
+        "total_comparisons": 12,
+        "final_tags": [
+          "modern classic style",
+          "elegant marble fireplace",
+          "warm lighting",
+          "large window",
+          "plush velvet furniture"
+        ],
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:50:33.588118",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_3_0",
+        "concept_count": 8,
+        "gp_mode": true
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:50:33.737381",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:50:45.005274",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:51:53.234791",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Reading Nook",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:52:04.574972",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:52:45.402826",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bedroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:52:56.752183",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:53:37.613329",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Home Office",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:53:48.969758",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:54:29.819763",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bathroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:54:41.185087",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:55:22.083177",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Kitchen",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:55:33.413129",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    }
+  ]
+}

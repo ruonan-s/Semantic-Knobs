@@ -1,0 +1,3230 @@
+{
+  "metadata": {
+    "session_id": "eval_Inviting_Livingroom_Sample_2026-02-12_14-20-08",
+    "log_version": "1.0",
+    "start_time": "2026-02-12T14:29:48.729327",
+    "end_time": "2026-02-12T14:34:29.626007"
+  },
+  "initialization": {
+    "session_id": "eval_Inviting_Livingroom_Sample_2026-02-12_14-20-08",
+    "timestamp": "2026-02-12T14:29:48.729327",
+    "config": {
+      "max_rounds": 999,
+      "tags_per_option": 10,
+      "base_learning_rate": 0.15,
+      "sigma_shrink_factor": 0.85,
+      "priors": {
+        "positive_selected": {
+          "mu": 1.0,
+          "sigma": 0.5
+        },
+        "positive_other": {
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        "neutral_selected": {
+          "mu": 0.0,
+          "sigma": 0.5
+        },
+        "neutral_other": {
+          "mu": -0.3,
+          "sigma": 0.7
+        }
+      }
+    },
+    "input_summary": {
+      "total_positive": 38,
+      "total_neutral": 0,
+      "total_tags": 38,
+      "in_selected_images": 0
+    },
+    "categories": {
+      "positive_selected": {
+        "count": 0,
+        "tags": []
+      },
+      "positive_other": {
+        "count": 38,
+        "tags": [
+          "neutral color palette",
+          "cozy textiles",
+          "ambient lighting",
+          "large window",
+          "minimalist decor",
+          "soft textures",
+          "wooden coffee table",
+          "plush sofas",
+          "candles for warmth",
+          "layered rugs",
+          "inviting atmosphere",
+          "modern elegance",
+          "modern rustic style",
+          "warm wood flooring",
+          "lush greenery view",
+          "large glass windows",
+          "earthy color palette",
+          "woven textures",
+          "curved seating",
+          "natural light",
+          "open layout",
+          "botanical accents",
+          "organic shapes",
+          "warm lighting",
+          "wooden elements",
+          "cozy atmosphere",
+          "cushioned seating",
+          "natural materials",
+          "modern classic style",
+          "plush velvet furniture",
+          "elegant marble fireplace",
+          "contemporary artwork",
+          "soft natural lighting",
+          "trimmed large windows",
+          "sophisticated decor",
+          "open layout design",
+          "warm wooden floors",
+          "inviting cozy atmosphere"
+        ]
+      },
+      "neutral_selected": {
+        "count": 0,
+        "tags": []
+      },
+      "neutral_other": {
+        "count": 0,
+        "tags": []
+      }
+    },
+    "all_tags": [
+      {
+        "tag_id": "pos_0",
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_1",
+        "text": "cozy textiles",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_2",
+        "text": "ambient lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_3",
+        "text": "large window",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_4",
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_5",
+        "text": "soft textures",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_6",
+        "text": "wooden coffee table",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_7",
+        "text": "plush sofas",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_8",
+        "text": "candles for warmth",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_9",
+        "text": "layered rugs",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_10",
+        "text": "inviting atmosphere",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_11",
+        "text": "modern elegance",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_12",
+        "text": "modern rustic style",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_13",
+        "text": "warm wood flooring",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_14",
+        "text": "lush greenery view",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_15",
+        "text": "large glass windows",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_16",
+        "text": "earthy color palette",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_17",
+        "text": "woven textures",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_18",
+        "text": "curved seating",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_19",
+        "text": "natural light",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_20",
+        "text": "open layout",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_21",
+        "text": "botanical accents",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_22",
+        "text": "organic shapes",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_23",
+        "text": "warm lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_24",
+        "text": "wooden elements",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_25",
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_26",
+        "text": "cushioned seating",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_27",
+        "text": "natural materials",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_28",
+        "text": "modern classic style",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_29",
+        "text": "plush velvet furniture",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_30",
+        "text": "elegant marble fireplace",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_31",
+        "text": "contemporary artwork",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_32",
+        "text": "soft natural lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_33",
+        "text": "trimmed large windows",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_34",
+        "text": "sophisticated decor",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_35",
+        "text": "open layout design",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_36",
+        "text": "warm wooden floors",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_37",
+        "text": "inviting cozy atmosphere",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      }
+    ],
+    "prior_ordering": "positive_selected > positive_other > neutral_selected > neutral_other"
+  },
+  "rounds": [
+    {
+      "round_num": 1,
+      "timestamp": "2026-02-12T14:29:48.797601",
+      "parameters": {
+        "beta": 2.0,
+        "max_overlap": 0.5,
+        "learning_rate": 0.15
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_0",
+              "text": "neutral color palette",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "cozy textiles",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "ambient lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "large window",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "soft textures",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "wooden coffee table",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "plush sofas",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "candles for warmth",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "layered rugs",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_3",
+              "text": "large window",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "lush greenery view",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "neutral color palette",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "plush sofas",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "modern elegance",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "modern rustic style",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "candles for warmth",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "warm wood flooring",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "inviting atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "cozy textiles",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_16",
+              "text": "earthy color palette",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "large window",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_18",
+              "text": "curved seating",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "plush sofas",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_15",
+              "text": "large glass windows",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "candles for warmth",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "wooden coffee table",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "natural light",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_17",
+              "text": "woven textures",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "cozy textiles",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_7",
+              "text": "plush sofas",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "modern elegance",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "modern rustic style",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "wooden coffee table",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "open layout",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "inviting atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "layered rugs",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "cozy textiles",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_21",
+              "text": "botanical accents",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5,
+          "avg_sigma": 0.7,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "candles for warmth",
+            "plush sofas",
+            "cozy textiles",
+            "large window",
+            "neutral color palette"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "candles for warmth",
+            "plush sofas",
+            "wooden coffee table",
+            "cozy textiles",
+            "large window"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "minimalist decor",
+            "wooden coffee table",
+            "plush sofas",
+            "layered rugs",
+            "cozy textiles"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "candles for warmth",
+            "plush sofas",
+            "large window",
+            "cozy textiles"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "modern elegance",
+            "plush sofas",
+            "inviting atmosphere",
+            "modern rustic style",
+            "cozy textiles"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "wooden coffee table",
+            "plush sofas",
+            "cozy textiles"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.5,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        1,
+        3,
+        0,
+        2
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 1,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "candles for warmth",
+            "warm wood flooring",
+            "large window",
+            "neutral color palette",
+            "lush greenery view"
+          ],
+          "tags_only_in_worse": [
+            "minimalist decor",
+            "wooden coffee table",
+            "layered rugs",
+            "open layout",
+            "botanical accents"
+          ],
+          "shared_tags": [
+            "modern elegance",
+            "plush sofas",
+            "inviting atmosphere",
+            "modern rustic style",
+            "cozy textiles"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 0,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "modern elegance",
+            "inviting atmosphere",
+            "modern rustic style",
+            "warm wood flooring",
+            "lush greenery view"
+          ],
+          "tags_only_in_worse": [
+            "soft textures",
+            "minimalist decor",
+            "ambient lighting",
+            "wooden coffee table",
+            "layered rugs"
+          ],
+          "shared_tags": [
+            "candles for warmth",
+            "plush sofas",
+            "cozy textiles",
+            "large window",
+            "neutral color palette"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 2,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "modern elegance",
+            "inviting atmosphere",
+            "modern rustic style",
+            "warm wood flooring",
+            "neutral color palette",
+            "lush greenery view"
+          ],
+          "tags_only_in_worse": [
+            "natural light",
+            "wooden coffee table",
+            "large glass windows",
+            "woven textures",
+            "earthy color palette",
+            "curved seating"
+          ],
+          "shared_tags": [
+            "candles for warmth",
+            "plush sofas",
+            "large window",
+            "cozy textiles"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "modern elegance",
+            "inviting atmosphere",
+            "modern rustic style",
+            "open layout",
+            "botanical accents"
+          ],
+          "tags_only_in_worse": [
+            "soft textures",
+            "ambient lighting",
+            "candles for warmth",
+            "large window",
+            "neutral color palette"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "wooden coffee table",
+            "plush sofas",
+            "layered rugs",
+            "cozy textiles"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "modern elegance",
+            "minimalist decor",
+            "layered rugs",
+            "inviting atmosphere",
+            "modern rustic style",
+            "open layout",
+            "botanical accents"
+          ],
+          "tags_only_in_worse": [
+            "natural light",
+            "candles for warmth",
+            "large glass windows",
+            "large window",
+            "woven textures",
+            "earthy color palette",
+            "curved seating"
+          ],
+          "shared_tags": [
+            "wooden coffee table",
+            "plush sofas",
+            "cozy textiles"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "soft textures",
+            "minimalist decor",
+            "ambient lighting",
+            "layered rugs",
+            "neutral color palette"
+          ],
+          "tags_only_in_worse": [
+            "natural light",
+            "large glass windows",
+            "woven textures",
+            "earthy color palette",
+            "curved seating"
+          ],
+          "shared_tags": [
+            "candles for warmth",
+            "plush sofas",
+            "wooden coffee table",
+            "cozy textiles",
+            "large window"
+          ],
+          "num_differentiating": 10
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_3",
+          "text": "large window",
+          "mu_before": 0.5,
+          "mu_after": 0.41,
+          "mu_delta": -0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "lush greenery view",
+          "mu_before": 0.5,
+          "mu_after": 0.785,
+          "mu_delta": 0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "neutral color palette",
+          "mu_before": 0.5,
+          "mu_after": 0.695,
+          "mu_delta": 0.195,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "candles for warmth",
+          "mu_before": 0.5,
+          "mu_after": 0.41,
+          "mu_delta": -0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "warm wood flooring",
+          "mu_before": 0.5,
+          "mu_after": 0.785,
+          "mu_delta": 0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_20",
+          "text": "open layout",
+          "mu_before": 0.5,
+          "mu_after": 0.59,
+          "mu_delta": 0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "minimalist decor",
+          "mu_before": 0.5,
+          "mu_after": 0.5,
+          "mu_delta": 0.0,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "wooden coffee table",
+          "mu_before": 0.5,
+          "mu_after": 0.215,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "layered rugs",
+          "mu_before": 0.5,
+          "mu_after": 0.5,
+          "mu_delta": 0.0,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_21",
+          "text": "botanical accents",
+          "mu_before": 0.5,
+          "mu_after": 0.59,
+          "mu_delta": 0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "modern rustic style",
+          "mu_before": 0.5,
+          "mu_after": 0.875,
+          "mu_delta": 0.375,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "modern elegance",
+          "mu_before": 0.5,
+          "mu_after": 0.875,
+          "mu_delta": 0.375,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "inviting atmosphere",
+          "mu_before": 0.5,
+          "mu_after": 0.875,
+          "mu_delta": 0.375,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "soft textures",
+          "mu_before": 0.5,
+          "mu_after": 0.41,
+          "mu_delta": -0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "ambient lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.41,
+          "mu_delta": -0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_16",
+          "text": "earthy color palette",
+          "mu_before": 0.5,
+          "mu_after": 0.215,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_18",
+          "text": "curved seating",
+          "mu_before": 0.5,
+          "mu_after": 0.215,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_15",
+          "text": "large glass windows",
+          "mu_before": 0.5,
+          "mu_after": 0.215,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_19",
+          "text": "natural light",
+          "mu_before": 0.5,
+          "mu_after": 0.215,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_17",
+          "text": "woven textures",
+          "mu_before": 0.5,
+          "mu_after": 0.215,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_10",
+          "text": "inviting atmosphere",
+          "mu": 0.875,
+          "sigma": 0.3654
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_11",
+          "text": "modern elegance",
+          "mu": 0.875,
+          "sigma": 0.3654
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_12",
+          "text": "modern rustic style",
+          "mu": 0.875,
+          "sigma": 0.3654
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_13",
+          "text": "warm wood flooring",
+          "mu": 0.785,
+          "sigma": 0.4299
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_14",
+          "text": "lush greenery view",
+          "mu": 0.785,
+          "sigma": 0.4299
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_0",
+          "text": "neutral color palette",
+          "mu": 0.695,
+          "sigma": 0.3654
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_20",
+          "text": "open layout",
+          "mu": 0.59,
+          "sigma": 0.4299
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_21",
+          "text": "botanical accents",
+          "mu": 0.59,
+          "sigma": 0.4299
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_1",
+          "text": "cozy textiles",
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_4",
+          "text": "minimalist decor",
+          "mu": 0.5,
+          "sigma": 0.3654
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": 0.215,
+          "max": 0.875,
+          "mean": 0.5,
+          "std": 0.1746
+        },
+        "sigma_distribution": {
+          "min": 0.3654,
+          "max": 0.7,
+          "mean": 0.5477
+        },
+        "tags_updated": 20,
+        "unique_tags_updated": 20,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 11.0,
+        "ranking_received": [
+          1,
+          3,
+          0,
+          2
+        ],
+        "best_option_strategy": "explore",
+        "worst_option_strategy": "ucb"
+      }
+    },
+    {
+      "round_num": 2,
+      "timestamp": "2026-02-12T14:31:36.219245",
+      "parameters": {
+        "beta": 1.6667,
+        "max_overlap": 0.5,
+        "learning_rate": 0.1425
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_10",
+              "text": "inviting atmosphere",
+              "mu": 0.875,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "modern elegance",
+              "mu": 0.875,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "modern rustic style",
+              "mu": 0.875,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "warm wood flooring",
+              "mu": 0.785,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "lush greenery view",
+              "mu": 0.785,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "neutral color palette",
+              "mu": 0.695,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "open layout",
+              "mu": 0.59,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_21",
+              "text": "botanical accents",
+              "mu": 0.59,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "cozy textiles",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.3654,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.707,
+          "avg_sigma": 0.4247,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_23",
+              "text": "warm lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_29",
+              "text": "plush velvet furniture",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_28",
+              "text": "modern classic style",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_26",
+              "text": "cushioned seating",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_25",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "plush sofas",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "organic shapes",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_27",
+              "text": "natural materials",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_24",
+              "text": "wooden elements",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "cozy textiles",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_30",
+              "text": "elegant marble fireplace",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_23",
+              "text": "warm lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_29",
+              "text": "plush velvet furniture",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_31",
+              "text": "contemporary artwork",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_26",
+              "text": "cushioned seating",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_25",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "plush sofas",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_32",
+              "text": "soft natural lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_33",
+              "text": "trimmed large windows",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "layered rugs",
+              "mu": 0.5,
+              "sigma": 0.3654,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5,
+          "avg_sigma": 0.6665,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_23",
+              "text": "warm lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "modern rustic style",
+              "mu": 0.875,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "modern elegance",
+              "mu": 0.875,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "plush sofas",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "organic shapes",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_34",
+              "text": "sophisticated decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "warm wood flooring",
+              "mu": 0.785,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_35",
+              "text": "open layout design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "cozy textiles",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_21",
+              "text": "botanical accents",
+              "mu": 0.59,
+              "sigma": 0.4299,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.6125,
+          "avg_sigma": 0.5791,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "cozy textiles"
+          ],
+          "overlap_count": 1,
+          "overlap_fraction": 0.1,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [],
+          "overlap_count": 0,
+          "overlap_fraction": 0.0,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "modern elegance",
+            "modern rustic style",
+            "cozy textiles",
+            "warm wood flooring",
+            "botanical accents"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "cozy atmosphere",
+            "plush sofas",
+            "plush velvet furniture",
+            "warm lighting",
+            "cushioned seating"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "plush sofas",
+            "warm lighting",
+            "organic shapes",
+            "cozy textiles"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "plush sofas",
+            "warm lighting"
+          ],
+          "overlap_count": 2,
+          "overlap_fraction": 0.2,
+          "max_allowed": 0.5,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        0,
+        3,
+        1,
+        2
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 0,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "minimalist decor",
+            "inviting atmosphere",
+            "open layout",
+            "neutral color palette",
+            "lush greenery view"
+          ],
+          "tags_only_in_worse": [
+            "open layout design",
+            "plush sofas",
+            "warm lighting",
+            "organic shapes",
+            "sophisticated decor"
+          ],
+          "shared_tags": [
+            "modern elegance",
+            "modern rustic style",
+            "cozy textiles",
+            "warm wood flooring",
+            "botanical accents"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "modern elegance",
+            "minimalist decor",
+            "inviting atmosphere",
+            "modern rustic style",
+            "open layout",
+            "warm wood flooring",
+            "botanical accents",
+            "neutral color palette",
+            "lush greenery view"
+          ],
+          "tags_only_in_worse": [
+            "natural materials",
+            "cozy atmosphere",
+            "plush sofas",
+            "wooden elements",
+            "cushioned seating",
+            "modern classic style",
+            "warm lighting",
+            "organic shapes",
+            "plush velvet furniture"
+          ],
+          "shared_tags": [
+            "cozy textiles"
+          ],
+          "num_differentiating": 18
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "modern elegance",
+            "minimalist decor",
+            "inviting atmosphere",
+            "modern rustic style",
+            "open layout",
+            "warm wood flooring",
+            "cozy textiles",
+            "botanical accents",
+            "neutral color palette",
+            "lush greenery view"
+          ],
+          "tags_only_in_worse": [
+            "contemporary artwork",
+            "soft natural lighting",
+            "cozy atmosphere",
+            "plush sofas",
+            "layered rugs",
+            "cushioned seating",
+            "elegant marble fireplace",
+            "warm lighting",
+            "trimmed large windows",
+            "plush velvet furniture"
+          ],
+          "shared_tags": [],
+          "num_differentiating": 20
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "open layout design",
+            "modern elegance",
+            "modern rustic style",
+            "warm wood flooring",
+            "botanical accents",
+            "sophisticated decor"
+          ],
+          "tags_only_in_worse": [
+            "natural materials",
+            "cozy atmosphere",
+            "wooden elements",
+            "cushioned seating",
+            "modern classic style",
+            "plush velvet furniture"
+          ],
+          "shared_tags": [
+            "plush sofas",
+            "warm lighting",
+            "organic shapes",
+            "cozy textiles"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "open layout design",
+            "modern elegance",
+            "modern rustic style",
+            "cozy textiles",
+            "warm wood flooring",
+            "organic shapes",
+            "botanical accents",
+            "sophisticated decor"
+          ],
+          "tags_only_in_worse": [
+            "contemporary artwork",
+            "soft natural lighting",
+            "cozy atmosphere",
+            "layered rugs",
+            "cushioned seating",
+            "elegant marble fireplace",
+            "trimmed large windows",
+            "plush velvet furniture"
+          ],
+          "shared_tags": [
+            "plush sofas",
+            "warm lighting"
+          ],
+          "num_differentiating": 16
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "natural materials",
+            "wooden elements",
+            "modern classic style",
+            "cozy textiles",
+            "organic shapes"
+          ],
+          "tags_only_in_worse": [
+            "contemporary artwork",
+            "soft natural lighting",
+            "layered rugs",
+            "elegant marble fireplace",
+            "trimmed large windows"
+          ],
+          "shared_tags": [
+            "cozy atmosphere",
+            "plush sofas",
+            "plush velvet furniture",
+            "warm lighting",
+            "cushioned seating"
+          ],
+          "num_differentiating": 10
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_14",
+          "text": "lush greenery view",
+          "mu_before": 0.785,
+          "mu_after": 1.0557,
+          "mu_delta": 0.2707,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "neutral color palette",
+          "mu_before": 0.695,
+          "mu_after": 0.9657,
+          "mu_delta": 0.2707,
+          "sigma_before": 0.3654,
+          "sigma_after": 0.2244,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_20",
+          "text": "open layout",
+          "mu_before": 0.59,
+          "mu_after": 0.8607,
+          "mu_delta": 0.2707,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "minimalist decor",
+          "mu_before": 0.5,
+          "mu_after": 0.7707,
+          "mu_delta": 0.2707,
+          "sigma_before": 0.3654,
+          "sigma_after": 0.2244,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "inviting atmosphere",
+          "mu_before": 0.875,
+          "mu_after": 1.1458,
+          "mu_delta": 0.2707,
+          "sigma_before": 0.3654,
+          "sigma_after": 0.2244,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_23",
+          "text": "warm lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.2293,
+          "mu_delta": -0.2707,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "plush sofas",
+          "mu_before": 0.5,
+          "mu_after": 0.2293,
+          "mu_delta": -0.2707,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_22",
+          "text": "organic shapes",
+          "mu_before": 0.5,
+          "mu_after": 0.5,
+          "mu_delta": 0.0,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_34",
+          "text": "sophisticated decor",
+          "mu_before": 0.5,
+          "mu_after": 0.5855,
+          "mu_delta": 0.0855,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_35",
+          "text": "open layout design",
+          "mu_before": 0.5,
+          "mu_after": 0.5855,
+          "mu_delta": 0.0855,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "modern rustic style",
+          "mu_before": 0.875,
+          "mu_after": 1.2312,
+          "mu_delta": 0.3562,
+          "sigma_before": 0.3654,
+          "sigma_after": 0.1907,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "modern elegance",
+          "mu_before": 0.875,
+          "mu_after": 1.2312,
+          "mu_delta": 0.3562,
+          "sigma_before": 0.3654,
+          "sigma_after": 0.1907,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "warm wood flooring",
+          "mu_before": 0.785,
+          "mu_after": 1.1412,
+          "mu_delta": 0.3562,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.2244,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_21",
+          "text": "botanical accents",
+          "mu_before": 0.59,
+          "mu_after": 0.9462,
+          "mu_delta": 0.3562,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.2244,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_29",
+          "text": "plush velvet furniture",
+          "mu_before": 0.5,
+          "mu_after": 0.1438,
+          "mu_delta": -0.3562,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_28",
+          "text": "modern classic style",
+          "mu_before": 0.5,
+          "mu_after": 0.4145,
+          "mu_delta": -0.0855,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_26",
+          "text": "cushioned seating",
+          "mu_before": 0.5,
+          "mu_after": 0.1438,
+          "mu_delta": -0.3562,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_25",
+          "text": "cozy atmosphere",
+          "mu_before": 0.5,
+          "mu_after": 0.1438,
+          "mu_delta": -0.3562,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_27",
+          "text": "natural materials",
+          "mu_before": 0.5,
+          "mu_after": 0.4145,
+          "mu_delta": -0.0855,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_24",
+          "text": "wooden elements",
+          "mu_before": 0.5,
+          "mu_after": 0.4145,
+          "mu_delta": -0.0855,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "cozy textiles",
+          "mu_before": 0.5,
+          "mu_after": 0.7708,
+          "mu_delta": 0.2708,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_30",
+          "text": "elegant marble fireplace",
+          "mu_before": 0.5,
+          "mu_after": 0.2293,
+          "mu_delta": -0.2707,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_31",
+          "text": "contemporary artwork",
+          "mu_before": 0.5,
+          "mu_after": 0.2293,
+          "mu_delta": -0.2707,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_32",
+          "text": "soft natural lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.2293,
+          "mu_delta": -0.2707,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_33",
+          "text": "trimmed large windows",
+          "mu_before": 0.5,
+          "mu_after": 0.2293,
+          "mu_delta": -0.2707,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "layered rugs",
+          "mu_before": 0.5,
+          "mu_after": 0.2293,
+          "mu_delta": -0.2707,
+          "sigma_before": 0.3654,
+          "sigma_after": 0.2244,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_11",
+          "text": "modern elegance",
+          "mu": 1.2312,
+          "sigma": 0.1907
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_12",
+          "text": "modern rustic style",
+          "mu": 1.2312,
+          "sigma": 0.1907
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_10",
+          "text": "inviting atmosphere",
+          "mu": 1.1458,
+          "sigma": 0.2244
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_13",
+          "text": "warm wood flooring",
+          "mu": 1.1412,
+          "sigma": 0.2244
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_14",
+          "text": "lush greenery view",
+          "mu": 1.0557,
+          "sigma": 0.264
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_0",
+          "text": "neutral color palette",
+          "mu": 0.9657,
+          "sigma": 0.2244
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_21",
+          "text": "botanical accents",
+          "mu": 0.9462,
+          "sigma": 0.2244
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_20",
+          "text": "open layout",
+          "mu": 0.8607,
+          "sigma": 0.264
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_1",
+          "text": "cozy textiles",
+          "mu": 0.7708,
+          "sigma": 0.4299
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_4",
+          "text": "minimalist decor",
+          "mu": 0.7707,
+          "sigma": 0.2244
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": 0.1438,
+          "max": 1.2312,
+          "mean": 0.5,
+          "std": 0.3383
+        },
+        "sigma_distribution": {
+          "min": 0.1907,
+          "max": 0.7,
+          "mean": 0.3836
+        },
+        "tags_updated": 26,
+        "unique_tags_updated": 26,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 14.333333333333334,
+        "ranking_received": [
+          0,
+          3,
+          1,
+          2
+        ],
+        "best_option_strategy": "exploit",
+        "worst_option_strategy": "ucb"
+      }
+    }
+  ],
+  "final": {
+    "timestamp": "2026-02-12T14:34:29.625725",
+    "rounds_completed": 2,
+    "total_comparisons": 12,
+    "total_tag_updates": 46,
+    "final_tags": [
+      {
+        "rank": 1,
+        "text": "modern elegance",
+        "weight": 0.1228,
+        "final_mu": 1.2312,
+        "final_sigma": 0.1907,
+        "category": "positive_other",
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 0,
+        "win_rate": 0.5
+      },
+      {
+        "rank": 2,
+        "text": "modern rustic style",
+        "weight": 0.1228,
+        "final_mu": 1.2312,
+        "final_sigma": 0.1907,
+        "category": "positive_other",
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 0,
+        "win_rate": 0.5
+      },
+      {
+        "rank": 3,
+        "text": "inviting atmosphere",
+        "weight": 0.1128,
+        "final_mu": 1.1458,
+        "final_sigma": 0.2244,
+        "category": "positive_other",
+        "times_shown": 3,
+        "times_in_winner": 2,
+        "times_in_loser": 0,
+        "win_rate": 0.667
+      },
+      {
+        "rank": 4,
+        "text": "warm wood flooring",
+        "weight": 0.1122,
+        "final_mu": 1.1412,
+        "final_sigma": 0.2244,
+        "category": "positive_other",
+        "times_shown": 3,
+        "times_in_winner": 2,
+        "times_in_loser": 0,
+        "win_rate": 0.667
+      },
+      {
+        "rank": 5,
+        "text": "lush greenery view",
+        "weight": 0.103,
+        "final_mu": 1.0557,
+        "final_sigma": 0.264,
+        "category": "positive_other",
+        "times_shown": 2,
+        "times_in_winner": 2,
+        "times_in_loser": 0,
+        "win_rate": 1.0
+      },
+      {
+        "rank": 6,
+        "text": "neutral color palette",
+        "weight": 0.0942,
+        "final_mu": 0.9657,
+        "final_sigma": 0.2244,
+        "category": "positive_other",
+        "times_shown": 3,
+        "times_in_winner": 2,
+        "times_in_loser": 0,
+        "win_rate": 0.667
+      },
+      {
+        "rank": 7,
+        "text": "botanical accents",
+        "weight": 0.0924,
+        "final_mu": 0.9462,
+        "final_sigma": 0.2244,
+        "category": "positive_other",
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0,
+        "win_rate": 0.333
+      },
+      {
+        "rank": 8,
+        "text": "open layout",
+        "weight": 0.0848,
+        "final_mu": 0.8607,
+        "final_sigma": 0.264,
+        "category": "positive_other",
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0,
+        "win_rate": 0.5
+      },
+      {
+        "rank": 9,
+        "text": "cozy textiles",
+        "weight": 0.0775,
+        "final_mu": 0.7708,
+        "final_sigma": 0.4299,
+        "category": "positive_other",
+        "times_shown": 7,
+        "times_in_winner": 2,
+        "times_in_loser": 1,
+        "win_rate": 0.286
+      },
+      {
+        "rank": 10,
+        "text": "minimalist decor",
+        "weight": 0.0775,
+        "final_mu": 0.7707,
+        "final_sigma": 0.2244,
+        "category": "positive_other",
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0,
+        "win_rate": 0.333
+      }
+    ],
+    "final_trajectories": {
+      "modern elegance": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.875,
+          "sigma": 0.3654
+        },
+        {
+          "round": 2,
+          "mu": 1.2312,
+          "sigma": 0.1907
+        }
+      ],
+      "modern rustic style": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.875,
+          "sigma": 0.3654
+        },
+        {
+          "round": 2,
+          "mu": 1.2312,
+          "sigma": 0.1907
+        }
+      ],
+      "inviting atmosphere": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.875,
+          "sigma": 0.3654
+        },
+        {
+          "round": 2,
+          "mu": 1.1458,
+          "sigma": 0.2244
+        }
+      ],
+      "warm wood flooring": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.785,
+          "sigma": 0.4299
+        },
+        {
+          "round": 2,
+          "mu": 1.1412,
+          "sigma": 0.2244
+        }
+      ],
+      "lush greenery view": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.785,
+          "sigma": 0.4299
+        },
+        {
+          "round": 2,
+          "mu": 1.0557,
+          "sigma": 0.264
+        }
+      ],
+      "neutral color palette": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.695,
+          "sigma": 0.3654
+        },
+        {
+          "round": 2,
+          "mu": 0.9657,
+          "sigma": 0.2244
+        }
+      ],
+      "botanical accents": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.59,
+          "sigma": 0.4299
+        },
+        {
+          "round": 2,
+          "mu": 0.9462,
+          "sigma": 0.2244
+        }
+      ],
+      "open layout": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.59,
+          "sigma": 0.4299
+        },
+        {
+          "round": 2,
+          "mu": 0.8607,
+          "sigma": 0.264
+        }
+      ],
+      "cozy textiles": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 2,
+          "mu": 0.7708,
+          "sigma": 0.4299
+        }
+      ],
+      "minimalist decor": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5,
+          "sigma": 0.3654
+        },
+        {
+          "round": 2,
+          "mu": 0.7707,
+          "sigma": 0.2244
+        }
+      ]
+    },
+    "convergence_analysis": {
+      "top_10_stability": "10/10 tags same as previous round",
+      "mu_spread": 1.0875,
+      "avg_final_sigma": 0.3836,
+      "min_final_sigma": 0.1907,
+      "converged": false
+    },
+    "warnings_summary": {
+      "total": 1,
+      "by_type": {
+        "low_neutral_count": 1
+      }
+    }
+  },
+  "warnings": [
+    {
+      "type": "low_neutral_count",
+      "message": "Only 0 neutral tags. Exploration may be limited.",
+      "timestamp": "2026-02-12T14:29:48.729461"
+    }
+  ],
+  "tag_trajectories": {
+    "pos_0": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.695,
+        "sigma": 0.3654
+      },
+      {
+        "round": 2,
+        "mu": 0.9657,
+        "sigma": 0.2244
+      }
+    ],
+    "pos_1": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.7708,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_2": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.41,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.41,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_3": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.41,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.41,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_4": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.3654
+      },
+      {
+        "round": 2,
+        "mu": 0.7707,
+        "sigma": 0.2244
+      }
+    ],
+    "pos_5": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.41,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.41,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_6": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.215,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.215,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_7": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.2293,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_8": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.41,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.41,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_9": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.3654
+      },
+      {
+        "round": 2,
+        "mu": 0.2293,
+        "sigma": 0.2244
+      }
+    ],
+    "pos_10": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.875,
+        "sigma": 0.3654
+      },
+      {
+        "round": 2,
+        "mu": 1.1458,
+        "sigma": 0.2244
+      }
+    ],
+    "pos_11": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.875,
+        "sigma": 0.3654
+      },
+      {
+        "round": 2,
+        "mu": 1.2312,
+        "sigma": 0.1907
+      }
+    ],
+    "pos_12": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.875,
+        "sigma": 0.3654
+      },
+      {
+        "round": 2,
+        "mu": 1.2312,
+        "sigma": 0.1907
+      }
+    ],
+    "pos_13": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.785,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 1.1412,
+        "sigma": 0.2244
+      }
+    ],
+    "pos_14": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.785,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 1.0557,
+        "sigma": 0.264
+      }
+    ],
+    "pos_15": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.215,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.215,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_16": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.215,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.215,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_17": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.215,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.215,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_18": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.215,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.215,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_19": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.215,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.215,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_20": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.59,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.8607,
+        "sigma": 0.264
+      }
+    ],
+    "pos_21": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.59,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.9462,
+        "sigma": 0.2244
+      }
+    ],
+    "pos_22": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.5,
+        "sigma": 0.3654
+      }
+    ],
+    "pos_23": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.2293,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_24": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.4145,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_25": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.1438,
+        "sigma": 0.3654
+      }
+    ],
+    "pos_26": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.1438,
+        "sigma": 0.3654
+      }
+    ],
+    "pos_27": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.4145,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_28": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.4145,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_29": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.1438,
+        "sigma": 0.3654
+      }
+    ],
+    "pos_30": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.2293,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_31": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.2293,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_32": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.2293,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_33": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.2293,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_34": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.5855,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_35": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.5855,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_36": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.5,
+        "sigma": 0.7
+      }
+    ],
+    "pos_37": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.5,
+        "sigma": 0.7
+      }
+    ]
+  }
+}

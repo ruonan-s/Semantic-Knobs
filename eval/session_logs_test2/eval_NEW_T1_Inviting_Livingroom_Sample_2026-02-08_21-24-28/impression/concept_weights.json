@@ -1,0 +1,110 @@
+{
+  "stage": "impression",
+  "session_id": "eval_NEW_T1_Inviting_Livingroom_Sample_2026-02-08_21-24-28",
+  "timestamp": "2026-02-08T21:33:52.000517",
+  "num_concepts": 4,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 200,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "elegant marble fireplace",
+      "weight": 0.3074721693992615,
+      "score": 0.8157567977905273,
+      "utility_std": 1.002265453338623,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "elegant marble fireplace"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "plush velvet furniture",
+      "weight": 0.2630053460597992,
+      "score": 0.6595466136932373,
+      "utility_std": 1.002265453338623,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "plush velvet furniture"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "trimmed large windows",
+      "weight": 0.24079282581806183,
+      "score": 0.5713090896606445,
+      "utility_std": 1.002265453338623,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "trimmed large windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "soft natural lighting",
+      "weight": 0.1887296885251999,
+      "score": 0.32768797874450684,
+      "utility_std": 1.002265453338623,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "soft natural lighting"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_3_0_3",
+      "text": "elegant marble fireplace",
+      "utility": 0.8157567977905273,
+      "uncertainty": 1.002265453338623,
+      "weight": 0.3074721693992615,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_2",
+      "text": "plush velvet furniture",
+      "utility": 0.6595466136932373,
+      "uncertainty": 1.002265453338623,
+      "weight": 0.2630053460597992,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_6",
+      "text": "trimmed large windows",
+      "utility": 0.5713090896606445,
+      "uncertainty": 1.002265453338623,
+      "weight": 0.24079282581806183,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_5",
+      "text": "soft natural lighting",
+      "utility": 0.32768797874450684,
+      "uncertainty": 1.002265453338623,
+      "weight": 0.1887296885251999,
+      "source_image_idx": 3,
+      "category": "positive"
+    }
+  ]
+}

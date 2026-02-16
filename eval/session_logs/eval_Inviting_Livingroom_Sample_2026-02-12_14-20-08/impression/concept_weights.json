@@ -1,0 +1,133 @@
+{
+  "stage": "impression",
+  "session_id": "eval_Inviting_Livingroom_Sample_2026-02-12_14-20-08",
+  "timestamp": "2026-02-12T14:34:58.016119",
+  "num_concepts": 5,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 1905,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "wooden coffee table",
+      "weight": 0.22367706894874573,
+      "score": 0.5037596225738525,
+      "utility_std": 1.0062845945358276,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden coffee table"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "plush sofas",
+      "weight": 0.2054087221622467,
+      "score": 0.4185580015182495,
+      "utility_std": 1.0062845945358276,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "plush sofas"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "neutral color palette",
+      "weight": 0.19355086982250214,
+      "score": 0.3590966463088989,
+      "utility_std": 1.0062845945358276,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "neutral color palette"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "ambient lighting",
+      "weight": 0.18922531604766846,
+      "score": 0.33649468421936035,
+      "utility_std": 1.0062845945358276,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "ambient lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "candles for warmth",
+      "weight": 0.18813803791999817,
+      "score": 0.33073222637176514,
+      "utility_std": 1.0062845945358276,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "candles for warmth"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_0_0_6",
+      "text": "wooden coffee table",
+      "utility": 0.5037596225738525,
+      "uncertainty": 1.0062845945358276,
+      "weight": 0.22367706894874573,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_7",
+      "text": "plush sofas",
+      "utility": 0.4185580015182495,
+      "uncertainty": 1.0062845945358276,
+      "weight": 0.2054087221622467,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_0",
+      "text": "neutral color palette",
+      "utility": 0.3590966463088989,
+      "uncertainty": 1.0062845945358276,
+      "weight": 0.19355086982250214,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_2",
+      "text": "ambient lighting",
+      "utility": 0.33649468421936035,
+      "uncertainty": 1.0062845945358276,
+      "weight": 0.18922531604766846,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_8",
+      "text": "candles for warmth",
+      "utility": 0.33073222637176514,
+      "uncertainty": 1.0062845945358276,
+      "weight": 0.18813803791999817,
+      "source_image_idx": 0,
+      "category": "positive"
+    }
+  ]
+}

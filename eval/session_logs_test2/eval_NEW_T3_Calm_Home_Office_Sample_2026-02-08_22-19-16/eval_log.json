@@ -1,0 +1,185 @@
+{
+  "user_id": "NEW_T3",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_NEW_T3_Calm_Home_Office_Sample_2026-02-08_22-19-16",
+  "created_at": "2026-02-08T22:19:16.463344",
+  "events": [
+    {
+      "timestamp": "2026-02-08T22:19:16.463354",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Calm_Home_Office_Sample"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:25:29.437933",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Calm Home Office",
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:26:48.326983",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          1,
+          0,
+          3,
+          2
+        ],
+        "image_variance": 0.0963,
+        "beta": 2.0,
+        "tags_updated": 21,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:28:23.721778",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 2,
+        "ranking": [
+          2,
+          1,
+          0,
+          3
+        ],
+        "image_variance": 0.1084,
+        "beta": 1.667,
+        "tags_updated": 23,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:29:29.292763",
+      "type": "hitl_finalize",
+      "data": {
+        "rounds_completed": 2,
+        "total_comparisons": 12,
+        "final_tags": [
+          "Textured fabrics",
+          "minimalist decor",
+          "natural lighting",
+          "warm wood tones",
+          "sleek modern desk"
+        ],
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:29:32.095625",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_2_0",
+        "concept_count": 2,
+        "gp_mode": true
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:29:32.246969",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:29:43.353037",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:30:24.420210",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Kitchen",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:30:35.642289",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:31:16.559765",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Reading Nook",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:31:27.775829",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:32:08.710763",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bedroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:32:19.942916",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:33:00.886271",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Livingroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:33:12.113359",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:33:53.074259",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bathroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:34:04.341373",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    }
+  ]
+}

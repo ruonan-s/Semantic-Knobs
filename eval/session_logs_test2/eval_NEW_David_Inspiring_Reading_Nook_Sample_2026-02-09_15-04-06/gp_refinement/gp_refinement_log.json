@@ -1,0 +1,4130 @@
+{
+  "metadata": {
+    "session_id": "eval_NEW_David_Inspiring_Reading_Nook_Sample_2026-02-09_15-04-06",
+    "log_version": "1.0",
+    "start_time": "2026-02-09T15:05:58.832960",
+    "end_time": "2026-02-09T15:10:49.578458"
+  },
+  "initialization": {
+    "session_id": "eval_NEW_David_Inspiring_Reading_Nook_Sample_2026-02-09_15-04-06",
+    "timestamp": "2026-02-09T15:05:58.832960",
+    "config": {
+      "max_rounds": 999,
+      "tags_per_option": 10,
+      "base_learning_rate": 0.15,
+      "sigma_shrink_factor": 0.85,
+      "priors": {
+        "positive_selected": {
+          "mu": 1.0,
+          "sigma": 0.5
+        },
+        "positive_other": {
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        "neutral_selected": {
+          "mu": 0.0,
+          "sigma": 0.5
+        },
+        "neutral_other": {
+          "mu": -0.3,
+          "sigma": 0.7
+        }
+      }
+    },
+    "input_summary": {
+      "total_positive": 13,
+      "total_neutral": 20,
+      "total_tags": 33,
+      "in_selected_images": 0
+    },
+    "categories": {
+      "positive_selected": {
+        "count": 0,
+        "tags": []
+      },
+      "positive_other": {
+        "count": 13,
+        "tags": [
+          "floor-to-ceiling windows",
+          "natural light",
+          "stone accent wall",
+          "cozy seating area",
+          "contemporary design",
+          "warm ambient lighting",
+          "minimalist style",
+          "cozy atmosphere",
+          "simple layout",
+          "calming aesthetic",
+          "warm materials",
+          "floating shelves",
+          "warm accent lights"
+        ]
+      },
+      "neutral_selected": {
+        "count": 0,
+        "tags": []
+      },
+      "neutral_other": {
+        "count": 20,
+        "tags": [
+          "minimalist decor",
+          "wooden flooring",
+          "neutral color palette",
+          "indoor plants",
+          "open layout",
+          "zen atmosphere",
+          "wooden bookshelves",
+          "rich mahogany finish",
+          "ornate ceiling details",
+          "antique map decor",
+          "cozy reading nook",
+          "shelved artifacts",
+          "soft lighting",
+          "wooden furniture",
+          "modern lamp",
+          "clean lines",
+          "cosy nook",
+          "soft ambient lighting",
+          "textured materials",
+          "relaxing atmosphere"
+        ]
+      }
+    },
+    "all_tags": [
+      {
+        "tag_id": "pos_0",
+        "text": "floor-to-ceiling windows",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_1",
+        "text": "natural light",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_2",
+        "text": "stone accent wall",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_3",
+        "text": "cozy seating area",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_4",
+        "text": "contemporary design",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_5",
+        "text": "warm ambient lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_6",
+        "text": "minimalist style",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_7",
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_8",
+        "text": "simple layout",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_9",
+        "text": "calming aesthetic",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_10",
+        "text": "warm materials",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_11",
+        "text": "floating shelves",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_12",
+        "text": "warm accent lights",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_0",
+        "text": "minimalist decor",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_1",
+        "text": "wooden flooring",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_2",
+        "text": "neutral color palette",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_3",
+        "text": "indoor plants",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_4",
+        "text": "open layout",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_5",
+        "text": "zen atmosphere",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_6",
+        "text": "wooden bookshelves",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_7",
+        "text": "rich mahogany finish",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_8",
+        "text": "ornate ceiling details",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_9",
+        "text": "antique map decor",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_10",
+        "text": "cozy reading nook",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_11",
+        "text": "shelved artifacts",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_12",
+        "text": "soft lighting",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_13",
+        "text": "wooden furniture",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_14",
+        "text": "modern lamp",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_15",
+        "text": "clean lines",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_16",
+        "text": "cosy nook",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_17",
+        "text": "soft ambient lighting",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_18",
+        "text": "textured materials",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_19",
+        "text": "relaxing atmosphere",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      }
+    ],
+    "prior_ordering": "positive_selected > positive_other > neutral_selected > neutral_other"
+  },
+  "rounds": [
+    {
+      "round_num": 1,
+      "timestamp": "2026-02-09T15:05:58.856130",
+      "parameters": {
+        "beta": 2.0,
+        "max_overlap": 0.5,
+        "learning_rate": 0.15
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_0",
+              "text": "floor-to-ceiling windows",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "natural light",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "stone accent wall",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "cozy seating area",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "contemporary design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "warm ambient lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "minimalist style",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "minimalist decor",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "wooden flooring",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "neutral color palette",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.26,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_8",
+              "text": "simple layout",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "floating shelves",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "minimalist style",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "natural light",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "stone accent wall",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "warm materials",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "contemporary design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "calming aesthetic",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "wooden flooring",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.42,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_12",
+              "text": "warm accent lights",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "minimalist style",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_4",
+              "text": "open layout",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "stone accent wall",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "contemporary design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_3",
+              "text": "indoor plants",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "floor-to-ceiling windows",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_6",
+              "text": "wooden bookshelves",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_5",
+              "text": "zen atmosphere",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "wooden flooring",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.1,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_8",
+              "text": "simple layout",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "minimalist style",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "stone accent wall",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "cozy seating area",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "contemporary design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_7",
+              "text": "rich mahogany finish",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "floor-to-ceiling windows",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_8",
+              "text": "ornate ceiling details",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_9",
+              "text": "antique map decor",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.26,
+          "avg_sigma": 0.7,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "minimalist style",
+            "wooden flooring",
+            "contemporary design",
+            "stone accent wall",
+            "natural light"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "minimalist style",
+            "floor-to-ceiling windows",
+            "wooden flooring",
+            "stone accent wall",
+            "contemporary design"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "minimalist style",
+            "floor-to-ceiling windows",
+            "cozy seating area",
+            "stone accent wall",
+            "contemporary design"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "wooden flooring",
+            "stone accent wall",
+            "contemporary design",
+            "minimalist style"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "minimalist style",
+            "cozy atmosphere",
+            "simple layout",
+            "stone accent wall",
+            "contemporary design"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "stone accent wall",
+            "contemporary design",
+            "minimalist style",
+            "floor-to-ceiling windows"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.5,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        3,
+        1,
+        2,
+        0
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "rich mahogany finish",
+            "floor-to-ceiling windows",
+            "cozy seating area",
+            "ornate ceiling details",
+            "antique map decor"
+          ],
+          "tags_only_in_worse": [
+            "floating shelves",
+            "calming aesthetic",
+            "warm materials",
+            "wooden flooring",
+            "natural light"
+          ],
+          "shared_tags": [
+            "minimalist style",
+            "cozy atmosphere",
+            "simple layout",
+            "contemporary design",
+            "stone accent wall"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "cozy atmosphere",
+            "simple layout",
+            "rich mahogany finish",
+            "cozy seating area",
+            "ornate ceiling details",
+            "antique map decor"
+          ],
+          "tags_only_in_worse": [
+            "zen atmosphere",
+            "indoor plants",
+            "warm accent lights",
+            "open layout",
+            "wooden flooring",
+            "wooden bookshelves"
+          ],
+          "shared_tags": [
+            "stone accent wall",
+            "contemporary design",
+            "minimalist style",
+            "floor-to-ceiling windows"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 0,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "cozy atmosphere",
+            "simple layout",
+            "rich mahogany finish",
+            "ornate ceiling details",
+            "antique map decor"
+          ],
+          "tags_only_in_worse": [
+            "wooden flooring",
+            "minimalist decor",
+            "neutral color palette",
+            "natural light",
+            "warm ambient lighting"
+          ],
+          "shared_tags": [
+            "minimalist style",
+            "floor-to-ceiling windows",
+            "cozy seating area",
+            "stone accent wall",
+            "contemporary design"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "cozy atmosphere",
+            "simple layout",
+            "calming aesthetic",
+            "warm materials",
+            "natural light",
+            "floating shelves"
+          ],
+          "tags_only_in_worse": [
+            "zen atmosphere",
+            "indoor plants",
+            "warm accent lights",
+            "floor-to-ceiling windows",
+            "open layout",
+            "wooden bookshelves"
+          ],
+          "shared_tags": [
+            "wooden flooring",
+            "stone accent wall",
+            "contemporary design",
+            "minimalist style"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 0,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "cozy atmosphere",
+            "simple layout",
+            "calming aesthetic",
+            "warm materials",
+            "floating shelves"
+          ],
+          "tags_only_in_worse": [
+            "floor-to-ceiling windows",
+            "cozy seating area",
+            "minimalist decor",
+            "neutral color palette",
+            "warm ambient lighting"
+          ],
+          "shared_tags": [
+            "minimalist style",
+            "wooden flooring",
+            "stone accent wall",
+            "contemporary design",
+            "natural light"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "zen atmosphere",
+            "indoor plants",
+            "warm accent lights",
+            "open layout",
+            "wooden bookshelves"
+          ],
+          "tags_only_in_worse": [
+            "cozy seating area",
+            "minimalist decor",
+            "neutral color palette",
+            "natural light",
+            "warm ambient lighting"
+          ],
+          "shared_tags": [
+            "minimalist style",
+            "floor-to-ceiling windows",
+            "wooden flooring",
+            "stone accent wall",
+            "contemporary design"
+          ],
+          "num_differentiating": 10
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_3",
+          "text": "cozy seating area",
+          "mu_before": 0.5,
+          "mu_after": 0.5,
+          "mu_delta": 0.0,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_7",
+          "text": "rich mahogany finish",
+          "mu_before": -0.3,
+          "mu_after": -0.015,
+          "mu_delta": 0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "floor-to-ceiling windows",
+          "mu_before": 0.5,
+          "mu_after": 0.41,
+          "mu_delta": -0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_8",
+          "text": "ornate ceiling details",
+          "mu_before": -0.3,
+          "mu_after": -0.015,
+          "mu_delta": 0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_9",
+          "text": "antique map decor",
+          "mu_before": -0.3,
+          "mu_after": -0.015,
+          "mu_delta": 0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "floating shelves",
+          "mu_before": 0.5,
+          "mu_after": 0.59,
+          "mu_delta": 0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "natural light",
+          "mu_before": 0.5,
+          "mu_after": 0.305,
+          "mu_delta": -0.195,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "calming aesthetic",
+          "mu_before": 0.5,
+          "mu_after": 0.59,
+          "mu_delta": 0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "warm materials",
+          "mu_before": 0.5,
+          "mu_after": 0.59,
+          "mu_delta": 0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_1",
+          "text": "wooden flooring",
+          "mu_before": -0.3,
+          "mu_after": -0.585,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "simple layout",
+          "mu_before": 0.5,
+          "mu_after": 0.875,
+          "mu_delta": 0.375,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "cozy atmosphere",
+          "mu_before": 0.5,
+          "mu_after": 0.875,
+          "mu_delta": 0.375,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "warm accent lights",
+          "mu_before": 0.5,
+          "mu_after": 0.41,
+          "mu_delta": -0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_4",
+          "text": "open layout",
+          "mu_before": -0.3,
+          "mu_after": -0.39,
+          "mu_delta": -0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_3",
+          "text": "indoor plants",
+          "mu_before": -0.3,
+          "mu_after": -0.39,
+          "mu_delta": -0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_6",
+          "text": "wooden bookshelves",
+          "mu_before": -0.3,
+          "mu_after": -0.39,
+          "mu_delta": -0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_5",
+          "text": "zen atmosphere",
+          "mu_before": -0.3,
+          "mu_after": -0.39,
+          "mu_delta": -0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_2",
+          "text": "neutral color palette",
+          "mu_before": -0.3,
+          "mu_after": -0.585,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "warm ambient lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.215,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "minimalist decor",
+          "mu_before": -0.3,
+          "mu_after": -0.585,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_7",
+          "text": "cozy atmosphere",
+          "mu": 0.875,
+          "sigma": 0.3654
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_8",
+          "text": "simple layout",
+          "mu": 0.875,
+          "sigma": 0.3654
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_9",
+          "text": "calming aesthetic",
+          "mu": 0.59,
+          "sigma": 0.4299
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_10",
+          "text": "warm materials",
+          "mu": 0.59,
+          "sigma": 0.4299
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_11",
+          "text": "floating shelves",
+          "mu": 0.59,
+          "sigma": 0.4299
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_2",
+          "text": "stone accent wall",
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_3",
+          "text": "cozy seating area",
+          "mu": 0.5,
+          "sigma": 0.3654
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_4",
+          "text": "contemporary design",
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_6",
+          "text": "minimalist style",
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_0",
+          "text": "floor-to-ceiling windows",
+          "mu": 0.41,
+          "sigma": 0.4299
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.585,
+          "max": 0.875,
+          "mean": 0.0152,
+          "std": 0.4465
+        },
+        "sigma_distribution": {
+          "min": 0.3654,
+          "max": 0.7,
+          "mean": 0.5285
+        },
+        "tags_updated": 20,
+        "unique_tags_updated": 20,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 10.666666666666666,
+        "ranking_received": [
+          3,
+          1,
+          2,
+          0
+        ],
+        "best_option_strategy": "challenger",
+        "worst_option_strategy": "exploit"
+      }
+    },
+    {
+      "round_num": 2,
+      "timestamp": "2026-02-09T15:07:15.937859",
+      "parameters": {
+        "beta": 1.6667,
+        "max_overlap": 0.5,
+        "learning_rate": 0.1425
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_7",
+              "text": "cozy atmosphere",
+              "mu": 0.875,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "simple layout",
+              "mu": 0.875,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "calming aesthetic",
+              "mu": 0.59,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "warm materials",
+              "mu": 0.59,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "floating shelves",
+              "mu": 0.59,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "stone accent wall",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "cozy seating area",
+              "mu": 0.5,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_7",
+              "text": "rich mahogany finish",
+              "mu": -0.015,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_8",
+              "text": "ornate ceiling details",
+              "mu": -0.015,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_9",
+              "text": "antique map decor",
+              "mu": -0.015,
+              "sigma": 0.4299,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.4475,
+          "avg_sigma": 0.4376,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_5",
+              "text": "warm ambient lighting",
+              "mu": 0.215,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_12",
+              "text": "soft lighting",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "minimalist style",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_10",
+              "text": "cozy reading nook",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "contemporary design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "stone accent wall",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "warm materials",
+              "mu": 0.59,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "floor-to-ceiling windows",
+              "mu": 0.41,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "calming aesthetic",
+              "mu": 0.59,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_11",
+              "text": "shelved artifacts",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.2405,
+          "avg_sigma": 0.592,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "neu_12",
+              "text": "soft lighting",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "simple layout",
+              "mu": 0.875,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "warm accent lights",
+              "mu": 0.41,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_10",
+              "text": "cozy reading nook",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "contemporary design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "stone accent wall",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "warm materials",
+              "mu": 0.59,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "natural light",
+              "mu": 0.305,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "cozy atmosphere",
+              "mu": 0.875,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_13",
+              "text": "wooden furniture",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.3155,
+          "avg_sigma": 0.5456,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "neu_14",
+              "text": "modern lamp",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_15",
+              "text": "clean lines",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "floating shelves",
+              "mu": 0.59,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "minimalist style",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "contemporary design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "stone accent wall",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "cozy seating area",
+              "mu": 0.5,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "cozy atmosphere",
+              "mu": 0.875,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "calming aesthetic",
+              "mu": 0.59,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "floor-to-ceiling windows",
+              "mu": 0.41,
+              "sigma": 0.4299,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.3865,
+          "avg_sigma": 0.552,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "calming aesthetic",
+            "stone accent wall",
+            "warm materials"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "cozy atmosphere",
+            "simple layout",
+            "stone accent wall",
+            "warm materials"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "cozy atmosphere",
+            "calming aesthetic",
+            "cozy seating area",
+            "stone accent wall",
+            "floating shelves"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "soft lighting",
+            "warm materials",
+            "stone accent wall",
+            "contemporary design",
+            "cozy reading nook"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "minimalist style",
+            "calming aesthetic",
+            "floor-to-ceiling windows",
+            "stone accent wall",
+            "contemporary design"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "cozy atmosphere",
+            "stone accent wall",
+            "contemporary design"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.5,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        0,
+        3,
+        1,
+        2
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 0,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "simple layout",
+            "rich mahogany finish",
+            "warm materials",
+            "ornate ceiling details",
+            "antique map decor"
+          ],
+          "tags_only_in_worse": [
+            "minimalist style",
+            "floor-to-ceiling windows",
+            "modern lamp",
+            "contemporary design",
+            "clean lines"
+          ],
+          "shared_tags": [
+            "cozy atmosphere",
+            "calming aesthetic",
+            "cozy seating area",
+            "stone accent wall",
+            "floating shelves"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "cozy atmosphere",
+            "simple layout",
+            "rich mahogany finish",
+            "cozy seating area",
+            "ornate ceiling details",
+            "floating shelves",
+            "antique map decor"
+          ],
+          "tags_only_in_worse": [
+            "shelved artifacts",
+            "soft lighting",
+            "minimalist style",
+            "floor-to-ceiling windows",
+            "contemporary design",
+            "warm ambient lighting",
+            "cozy reading nook"
+          ],
+          "shared_tags": [
+            "calming aesthetic",
+            "stone accent wall",
+            "warm materials"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "rich mahogany finish",
+            "calming aesthetic",
+            "cozy seating area",
+            "ornate ceiling details",
+            "floating shelves",
+            "antique map decor"
+          ],
+          "tags_only_in_worse": [
+            "soft lighting",
+            "warm accent lights",
+            "wooden furniture",
+            "contemporary design",
+            "natural light",
+            "cozy reading nook"
+          ],
+          "shared_tags": [
+            "cozy atmosphere",
+            "simple layout",
+            "stone accent wall",
+            "warm materials"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "cozy atmosphere",
+            "cozy seating area",
+            "modern lamp",
+            "clean lines",
+            "floating shelves"
+          ],
+          "tags_only_in_worse": [
+            "shelved artifacts",
+            "soft lighting",
+            "warm materials",
+            "warm ambient lighting",
+            "cozy reading nook"
+          ],
+          "shared_tags": [
+            "minimalist style",
+            "calming aesthetic",
+            "floor-to-ceiling windows",
+            "stone accent wall",
+            "contemporary design"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "minimalist style",
+            "calming aesthetic",
+            "floor-to-ceiling windows",
+            "cozy seating area",
+            "clean lines",
+            "modern lamp",
+            "floating shelves"
+          ],
+          "tags_only_in_worse": [
+            "soft lighting",
+            "warm accent lights",
+            "simple layout",
+            "warm materials",
+            "wooden furniture",
+            "natural light",
+            "cozy reading nook"
+          ],
+          "shared_tags": [
+            "cozy atmosphere",
+            "stone accent wall",
+            "contemporary design"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "shelved artifacts",
+            "minimalist style",
+            "calming aesthetic",
+            "floor-to-ceiling windows",
+            "warm ambient lighting"
+          ],
+          "tags_only_in_worse": [
+            "warm accent lights",
+            "simple layout",
+            "cozy atmosphere",
+            "wooden furniture",
+            "natural light"
+          ],
+          "shared_tags": [
+            "soft lighting",
+            "warm materials",
+            "stone accent wall",
+            "contemporary design",
+            "cozy reading nook"
+          ],
+          "num_differentiating": 10
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_8",
+          "text": "simple layout",
+          "mu_before": 0.875,
+          "mu_after": 0.875,
+          "mu_delta": 0.0,
+          "sigma_before": 0.3654,
+          "sigma_after": 0.1907,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_7",
+          "text": "rich mahogany finish",
+          "mu_before": -0.015,
+          "mu_after": 0.2557,
+          "mu_delta": 0.2707,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_8",
+          "text": "ornate ceiling details",
+          "mu_before": -0.015,
+          "mu_after": 0.2557,
+          "mu_delta": 0.2707,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_9",
+          "text": "antique map decor",
+          "mu_before": -0.015,
+          "mu_after": 0.2557,
+          "mu_delta": 0.2707,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "warm materials",
+          "mu_before": 0.59,
+          "mu_after": 0.5045,
+          "mu_delta": -0.0855,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_14",
+          "text": "modern lamp",
+          "mu_before": -0.3,
+          "mu_after": -0.2145,
+          "mu_delta": 0.0855,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_15",
+          "text": "clean lines",
+          "mu_before": -0.3,
+          "mu_after": -0.2145,
+          "mu_delta": 0.0855,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "minimalist style",
+          "mu_before": 0.5,
+          "mu_after": 0.5,
+          "mu_delta": 0.0,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "contemporary design",
+          "mu_before": 0.5,
+          "mu_after": 0.2293,
+          "mu_delta": -0.2707,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "floor-to-ceiling windows",
+          "mu_before": 0.41,
+          "mu_after": 0.41,
+          "mu_delta": 0.0,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.2244,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "floating shelves",
+          "mu_before": 0.59,
+          "mu_after": 0.9462,
+          "mu_delta": 0.3562,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.2244,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "cozy seating area",
+          "mu_before": 0.5,
+          "mu_after": 0.8562,
+          "mu_delta": 0.3562,
+          "sigma_before": 0.3654,
+          "sigma_after": 0.1907,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "cozy atmosphere",
+          "mu_before": 0.875,
+          "mu_after": 0.9605,
+          "mu_delta": 0.0855,
+          "sigma_before": 0.3654,
+          "sigma_after": 0.2244,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "warm ambient lighting",
+          "mu_before": 0.215,
+          "mu_after": 0.1295,
+          "mu_delta": -0.0855,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_12",
+          "text": "soft lighting",
+          "mu_before": -0.3,
+          "mu_after": -0.6562,
+          "mu_delta": -0.3562,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_10",
+          "text": "cozy reading nook",
+          "mu_before": -0.3,
+          "mu_after": -0.6562,
+          "mu_delta": -0.3562,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_11",
+          "text": "shelved artifacts",
+          "mu_before": -0.3,
+          "mu_after": -0.3855,
+          "mu_delta": -0.0855,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "calming aesthetic",
+          "mu_before": 0.59,
+          "mu_after": 0.8607,
+          "mu_delta": 0.2708,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "warm accent lights",
+          "mu_before": 0.41,
+          "mu_after": 0.1392,
+          "mu_delta": -0.2707,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "natural light",
+          "mu_before": 0.305,
+          "mu_after": 0.0343,
+          "mu_delta": -0.2707,
+          "sigma_before": 0.3654,
+          "sigma_after": 0.2244,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_13",
+          "text": "wooden furniture",
+          "mu_before": -0.3,
+          "mu_after": -0.5707,
+          "mu_delta": -0.2707,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_7",
+          "text": "cozy atmosphere",
+          "mu": 0.9605,
+          "sigma": 0.2244
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_11",
+          "text": "floating shelves",
+          "mu": 0.9462,
+          "sigma": 0.2244
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_8",
+          "text": "simple layout",
+          "mu": 0.875,
+          "sigma": 0.1907
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_9",
+          "text": "calming aesthetic",
+          "mu": 0.8607,
+          "sigma": 0.264
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_3",
+          "text": "cozy seating area",
+          "mu": 0.8562,
+          "sigma": 0.1907
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_10",
+          "text": "warm materials",
+          "mu": 0.5045,
+          "sigma": 0.264
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_2",
+          "text": "stone accent wall",
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_6",
+          "text": "minimalist style",
+          "mu": 0.5,
+          "sigma": 0.3654
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_0",
+          "text": "floor-to-ceiling windows",
+          "mu": 0.41,
+          "sigma": 0.2244
+        },
+        {
+          "rank": 10,
+          "tag_id": "neu_7",
+          "text": "rich mahogany finish",
+          "mu": 0.2557,
+          "sigma": 0.264
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.6562,
+          "max": 0.9605,
+          "mean": 0.0152,
+          "std": 0.5129
+        },
+        "sigma_distribution": {
+          "min": 0.1907,
+          "max": 0.7,
+          "mean": 0.3904
+        },
+        "tags_updated": 21,
+        "unique_tags_updated": 21,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 11.666666666666666,
+        "ranking_received": [
+          0,
+          3,
+          1,
+          2
+        ],
+        "best_option_strategy": "exploit",
+        "worst_option_strategy": "ucb"
+      }
+    },
+    {
+      "round_num": 3,
+      "timestamp": "2026-02-09T15:08:27.313137",
+      "parameters": {
+        "beta": 1.3333,
+        "max_overlap": 0.7,
+        "learning_rate": 0.1354
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_7",
+              "text": "cozy atmosphere",
+              "mu": 0.9605,
+              "sigma": 0.2244,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "floating shelves",
+              "mu": 0.9462,
+              "sigma": 0.2244,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "simple layout",
+              "mu": 0.875,
+              "sigma": 0.1907,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "calming aesthetic",
+              "mu": 0.8607,
+              "sigma": 0.264,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "cozy seating area",
+              "mu": 0.8562,
+              "sigma": 0.1907,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "warm materials",
+              "mu": 0.5045,
+              "sigma": 0.264,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "stone accent wall",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_7",
+              "text": "rich mahogany finish",
+              "mu": 0.2557,
+              "sigma": 0.264,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_8",
+              "text": "ornate ceiling details",
+              "mu": 0.2557,
+              "sigma": 0.264,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_9",
+              "text": "antique map decor",
+              "mu": 0.2557,
+              "sigma": 0.264,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.627,
+          "avg_sigma": 0.285,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_5",
+              "text": "warm ambient lighting",
+              "mu": 0.1295,
+              "sigma": 0.264,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_16",
+              "text": "cosy nook",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_18",
+              "text": "textured materials",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_17",
+              "text": "soft ambient lighting",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "warm accent lights",
+              "mu": 0.1392,
+              "sigma": 0.264,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "minimalist style",
+              "mu": 0.5,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "contemporary design",
+              "mu": 0.2293,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "stone accent wall",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "warm materials",
+              "mu": 0.5045,
+              "sigma": 0.264,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "calming aesthetic",
+              "mu": 0.8607,
+              "sigma": 0.264,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.1963,
+          "avg_sigma": 0.4651,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "neu_18",
+              "text": "textured materials",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_16",
+              "text": "cosy nook",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "simple layout",
+              "mu": 0.875,
+              "sigma": 0.1907,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_17",
+              "text": "soft ambient lighting",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "floating shelves",
+              "mu": 0.9462,
+              "sigma": 0.2244,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "minimalist style",
+              "mu": 0.5,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "stone accent wall",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "cozy seating area",
+              "mu": 0.8562,
+              "sigma": 0.1907,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "cozy atmosphere",
+              "mu": 0.9605,
+              "sigma": 0.2244,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "calming aesthetic",
+              "mu": 0.8607,
+              "sigma": 0.264,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.4599,
+          "avg_sigma": 0.426,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_8",
+              "text": "simple layout",
+              "mu": 0.875,
+              "sigma": 0.1907,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "floating shelves",
+              "mu": 0.9462,
+              "sigma": 0.2244,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "minimalist style",
+              "mu": 0.5,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "contemporary design",
+              "mu": 0.2293,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "stone accent wall",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "cozy seating area",
+              "mu": 0.8562,
+              "sigma": 0.1907,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "cozy atmosphere",
+              "mu": 0.9605,
+              "sigma": 0.2244,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "calming aesthetic",
+              "mu": 0.8607,
+              "sigma": 0.264,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "floor-to-ceiling windows",
+              "mu": 0.41,
+              "sigma": 0.2244,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "warm materials",
+              "mu": 0.5045,
+              "sigma": 0.264,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.6643,
+          "avg_sigma": 0.3078,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "calming aesthetic",
+            "stone accent wall",
+            "warm materials"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.7,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "cozy atmosphere",
+            "simple layout",
+            "calming aesthetic",
+            "cozy seating area",
+            "stone accent wall",
+            "floating shelves"
+          ],
+          "overlap_count": 6,
+          "overlap_fraction": 0.6,
+          "max_allowed": 0.7,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "cozy atmosphere",
+            "simple layout",
+            "calming aesthetic",
+            "warm materials",
+            "cozy seating area",
+            "stone accent wall",
+            "floating shelves"
+          ],
+          "overlap_count": 7,
+          "overlap_fraction": 0.7,
+          "max_allowed": 0.7,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "cosy nook",
+            "minimalist style",
+            "textured materials",
+            "calming aesthetic",
+            "soft ambient lighting",
+            "stone accent wall"
+          ],
+          "overlap_count": 6,
+          "overlap_fraction": 0.6,
+          "max_allowed": 0.7,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "minimalist style",
+            "calming aesthetic",
+            "warm materials",
+            "contemporary design",
+            "stone accent wall"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.7,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "minimalist style",
+            "cozy atmosphere",
+            "simple layout",
+            "calming aesthetic",
+            "cozy seating area",
+            "stone accent wall",
+            "floating shelves"
+          ],
+          "overlap_count": 7,
+          "overlap_fraction": 0.7,
+          "max_allowed": 0.7,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        2,
+        3,
+        0,
+        1
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 2,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "soft ambient lighting",
+            "cosy nook",
+            "textured materials"
+          ],
+          "tags_only_in_worse": [
+            "contemporary design",
+            "warm materials",
+            "floor-to-ceiling windows"
+          ],
+          "shared_tags": [
+            "minimalist style",
+            "cozy atmosphere",
+            "simple layout",
+            "calming aesthetic",
+            "cozy seating area",
+            "stone accent wall",
+            "floating shelves"
+          ],
+          "num_differentiating": 6
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 0,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "soft ambient lighting",
+            "cosy nook",
+            "minimalist style",
+            "textured materials"
+          ],
+          "tags_only_in_worse": [
+            "ornate ceiling details",
+            "rich mahogany finish",
+            "antique map decor",
+            "warm materials"
+          ],
+          "shared_tags": [
+            "cozy atmosphere",
+            "simple layout",
+            "calming aesthetic",
+            "cozy seating area",
+            "stone accent wall",
+            "floating shelves"
+          ],
+          "num_differentiating": 8
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 1,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "cozy seating area",
+            "cozy atmosphere",
+            "simple layout",
+            "floating shelves"
+          ],
+          "tags_only_in_worse": [
+            "warm ambient lighting",
+            "warm accent lights",
+            "contemporary design",
+            "warm materials"
+          ],
+          "shared_tags": [
+            "cosy nook",
+            "minimalist style",
+            "textured materials",
+            "calming aesthetic",
+            "soft ambient lighting",
+            "stone accent wall"
+          ],
+          "num_differentiating": 8
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "contemporary design",
+            "minimalist style",
+            "floor-to-ceiling windows"
+          ],
+          "tags_only_in_worse": [
+            "ornate ceiling details",
+            "rich mahogany finish",
+            "antique map decor"
+          ],
+          "shared_tags": [
+            "cozy atmosphere",
+            "simple layout",
+            "calming aesthetic",
+            "warm materials",
+            "cozy seating area",
+            "stone accent wall",
+            "floating shelves"
+          ],
+          "num_differentiating": 6
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "cozy atmosphere",
+            "simple layout",
+            "floor-to-ceiling windows",
+            "cozy seating area",
+            "floating shelves"
+          ],
+          "tags_only_in_worse": [
+            "cosy nook",
+            "textured materials",
+            "warm accent lights",
+            "soft ambient lighting",
+            "warm ambient lighting"
+          ],
+          "shared_tags": [
+            "minimalist style",
+            "calming aesthetic",
+            "warm materials",
+            "stone accent wall",
+            "contemporary design"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "cozy atmosphere",
+            "simple layout",
+            "rich mahogany finish",
+            "cozy seating area",
+            "ornate ceiling details",
+            "floating shelves",
+            "antique map decor"
+          ],
+          "tags_only_in_worse": [
+            "cosy nook",
+            "minimalist style",
+            "textured materials",
+            "warm accent lights",
+            "soft ambient lighting",
+            "contemporary design",
+            "warm ambient lighting"
+          ],
+          "shared_tags": [
+            "calming aesthetic",
+            "stone accent wall",
+            "warm materials"
+          ],
+          "num_differentiating": 14
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "neu_18",
+          "text": "textured materials",
+          "mu_before": -0.3,
+          "mu_after": -0.3,
+          "mu_delta": 0.0,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_16",
+          "text": "cosy nook",
+          "mu_before": -0.3,
+          "mu_after": -0.3,
+          "mu_delta": 0.0,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_17",
+          "text": "soft ambient lighting",
+          "mu_before": -0.3,
+          "mu_after": -0.3,
+          "mu_delta": 0.0,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "contemporary design",
+          "mu_before": 0.2293,
+          "mu_after": 0.0533,
+          "mu_delta": -0.176,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.2244,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "warm materials",
+          "mu_before": 0.5045,
+          "mu_after": 0.2473,
+          "mu_delta": -0.2572,
+          "sigma_before": 0.264,
+          "sigma_after": 0.1621,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "floor-to-ceiling windows",
+          "mu_before": 0.41,
+          "mu_after": 0.4912,
+          "mu_delta": 0.0812,
+          "sigma_before": 0.2244,
+          "sigma_after": 0.1378,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "minimalist style",
+          "mu_before": 0.5,
+          "mu_after": 0.5812,
+          "mu_delta": 0.0812,
+          "sigma_before": 0.3654,
+          "sigma_after": 0.2244,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_8",
+          "text": "ornate ceiling details",
+          "mu_before": 0.2557,
+          "mu_after": 0.1745,
+          "mu_delta": -0.0812,
+          "sigma_before": 0.264,
+          "sigma_after": 0.1621,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_9",
+          "text": "antique map decor",
+          "mu_before": 0.2557,
+          "mu_after": 0.1745,
+          "mu_delta": -0.0812,
+          "sigma_before": 0.264,
+          "sigma_after": 0.1621,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_7",
+          "text": "rich mahogany finish",
+          "mu_before": 0.2557,
+          "mu_after": 0.1745,
+          "mu_delta": -0.0812,
+          "sigma_before": 0.264,
+          "sigma_after": 0.1621,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "cozy seating area",
+          "mu_before": 0.8562,
+          "mu_after": 1.1135,
+          "mu_delta": 0.2572,
+          "sigma_before": 0.1907,
+          "sigma_after": 0.1171,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "floating shelves",
+          "mu_before": 0.9462,
+          "mu_after": 1.2035,
+          "mu_delta": 0.2572,
+          "sigma_before": 0.2244,
+          "sigma_after": 0.1378,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "cozy atmosphere",
+          "mu_before": 0.9605,
+          "mu_after": 1.2177,
+          "mu_delta": 0.2572,
+          "sigma_before": 0.2244,
+          "sigma_after": 0.1378,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "simple layout",
+          "mu_before": 0.875,
+          "mu_after": 1.1322,
+          "mu_delta": 0.2572,
+          "sigma_before": 0.1907,
+          "sigma_after": 0.1171,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "warm ambient lighting",
+          "mu_before": 0.1295,
+          "mu_after": -0.1277,
+          "mu_delta": -0.2572,
+          "sigma_before": 0.264,
+          "sigma_after": 0.1621,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "warm accent lights",
+          "mu_before": 0.1392,
+          "mu_after": -0.118,
+          "mu_delta": -0.2572,
+          "sigma_before": 0.264,
+          "sigma_after": 0.1621,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_7",
+          "text": "cozy atmosphere",
+          "mu": 1.2177,
+          "sigma": 0.1378
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_11",
+          "text": "floating shelves",
+          "mu": 1.2035,
+          "sigma": 0.1378
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_8",
+          "text": "simple layout",
+          "mu": 1.1322,
+          "sigma": 0.1171
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_3",
+          "text": "cozy seating area",
+          "mu": 1.1135,
+          "sigma": 0.1171
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_9",
+          "text": "calming aesthetic",
+          "mu": 0.8607,
+          "sigma": 0.264
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_6",
+          "text": "minimalist style",
+          "mu": 0.5812,
+          "sigma": 0.2244
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_2",
+          "text": "stone accent wall",
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_0",
+          "text": "floor-to-ceiling windows",
+          "mu": 0.4912,
+          "sigma": 0.1378
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_10",
+          "text": "warm materials",
+          "mu": 0.2473,
+          "sigma": 0.1621
+        },
+        {
+          "rank": 10,
+          "tag_id": "neu_7",
+          "text": "rich mahogany finish",
+          "mu": 0.1745,
+          "sigma": 0.1621
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.6562,
+          "max": 1.2177,
+          "mean": 0.0152,
+          "std": 0.5674
+        },
+        "sigma_distribution": {
+          "min": 0.1171,
+          "max": 0.7,
+          "mean": 0.3186
+        },
+        "tags_updated": 16,
+        "unique_tags_updated": 16,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 8.666666666666666,
+        "ranking_received": [
+          2,
+          3,
+          0,
+          1
+        ],
+        "best_option_strategy": "ucb",
+        "worst_option_strategy": "explore"
+      }
+    }
+  ],
+  "final": {
+    "timestamp": "2026-02-09T15:10:49.578357",
+    "rounds_completed": 3,
+    "total_comparisons": 18,
+    "total_tag_updates": 57,
+    "final_tags": [
+      {
+        "rank": 1,
+        "text": "cozy atmosphere",
+        "weight": 0.1484,
+        "final_mu": 1.2177,
+        "final_sigma": 0.1378,
+        "category": "positive_other",
+        "times_shown": 8,
+        "times_in_winner": 3,
+        "times_in_loser": 1,
+        "win_rate": 0.375
+      },
+      {
+        "rank": 2,
+        "text": "floating shelves",
+        "weight": 0.1463,
+        "final_mu": 1.2035,
+        "final_sigma": 0.1378,
+        "category": "positive_other",
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 0,
+        "win_rate": 0.333
+      },
+      {
+        "rank": 3,
+        "text": "simple layout",
+        "weight": 0.1363,
+        "final_mu": 1.1322,
+        "final_sigma": 0.1171,
+        "category": "positive_other",
+        "times_shown": 7,
+        "times_in_winner": 3,
+        "times_in_loser": 1,
+        "win_rate": 0.429
+      },
+      {
+        "rank": 4,
+        "text": "cozy seating area",
+        "weight": 0.1337,
+        "final_mu": 1.1135,
+        "final_sigma": 0.1171,
+        "category": "positive_other",
+        "times_shown": 7,
+        "times_in_winner": 3,
+        "times_in_loser": 1,
+        "win_rate": 0.429
+      },
+      {
+        "rank": 5,
+        "text": "calming aesthetic",
+        "weight": 0.1039,
+        "final_mu": 0.8607,
+        "final_sigma": 0.264,
+        "category": "positive_other",
+        "times_shown": 8,
+        "times_in_winner": 2,
+        "times_in_loser": 1,
+        "win_rate": 0.25
+      },
+      {
+        "rank": 6,
+        "text": "minimalist style",
+        "weight": 0.0785,
+        "final_mu": 0.5812,
+        "final_sigma": 0.2244,
+        "category": "positive_other",
+        "times_shown": 9,
+        "times_in_winner": 2,
+        "times_in_loser": 2,
+        "win_rate": 0.222
+      },
+      {
+        "rank": 7,
+        "text": "stone accent wall",
+        "weight": 0.0724,
+        "final_mu": 0.5,
+        "final_sigma": 0.7,
+        "category": "positive_other",
+        "times_shown": 12,
+        "times_in_winner": 3,
+        "times_in_loser": 3,
+        "win_rate": 0.25
+      },
+      {
+        "rank": 8,
+        "text": "floor-to-ceiling windows",
+        "weight": 0.0718,
+        "final_mu": 0.4912,
+        "final_sigma": 0.1378,
+        "category": "positive_other",
+        "times_shown": 6,
+        "times_in_winner": 1,
+        "times_in_loser": 1,
+        "win_rate": 0.167
+      },
+      {
+        "rank": 9,
+        "text": "warm materials",
+        "weight": 0.0562,
+        "final_mu": 0.2473,
+        "final_sigma": 0.1621,
+        "category": "positive_other",
+        "times_shown": 7,
+        "times_in_winner": 1,
+        "times_in_loser": 2,
+        "win_rate": 0.143
+      },
+      {
+        "rank": 10,
+        "text": "rich mahogany finish",
+        "weight": 0.0523,
+        "final_mu": 0.1745,
+        "final_sigma": 0.1621,
+        "category": "neutral_other",
+        "times_shown": 3,
+        "times_in_winner": 2,
+        "times_in_loser": 0,
+        "win_rate": 0.667
+      }
+    ],
+    "final_trajectories": {
+      "cozy atmosphere": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.875,
+          "sigma": 0.3654
+        },
+        {
+          "round": 2,
+          "mu": 0.9605,
+          "sigma": 0.2244
+        },
+        {
+          "round": 3,
+          "mu": 1.2177,
+          "sigma": 0.1378
+        }
+      ],
+      "floating shelves": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.59,
+          "sigma": 0.4299
+        },
+        {
+          "round": 2,
+          "mu": 0.9462,
+          "sigma": 0.2244
+        },
+        {
+          "round": 3,
+          "mu": 1.2035,
+          "sigma": 0.1378
+        }
+      ],
+      "simple layout": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.875,
+          "sigma": 0.3654
+        },
+        {
+          "round": 2,
+          "mu": 0.875,
+          "sigma": 0.1907
+        },
+        {
+          "round": 3,
+          "mu": 1.1322,
+          "sigma": 0.1171
+        }
+      ],
+      "cozy seating area": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5,
+          "sigma": 0.3654
+        },
+        {
+          "round": 2,
+          "mu": 0.8562,
+          "sigma": 0.1907
+        },
+        {
+          "round": 3,
+          "mu": 1.1135,
+          "sigma": 0.1171
+        }
+      ],
+      "calming aesthetic": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.59,
+          "sigma": 0.4299
+        },
+        {
+          "round": 2,
+          "mu": 0.8607,
+          "sigma": 0.264
+        },
+        {
+          "round": 3,
+          "mu": 0.8607,
+          "sigma": 0.264
+        }
+      ],
+      "minimalist style": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 2,
+          "mu": 0.5,
+          "sigma": 0.3654
+        },
+        {
+          "round": 3,
+          "mu": 0.5812,
+          "sigma": 0.2244
+        }
+      ],
+      "stone accent wall": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 2,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 3,
+          "mu": 0.5,
+          "sigma": 0.7
+        }
+      ],
+      "floor-to-ceiling windows": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.41,
+          "sigma": 0.4299
+        },
+        {
+          "round": 2,
+          "mu": 0.41,
+          "sigma": 0.2244
+        },
+        {
+          "round": 3,
+          "mu": 0.4912,
+          "sigma": 0.1378
+        }
+      ],
+      "warm materials": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.59,
+          "sigma": 0.4299
+        },
+        {
+          "round": 2,
+          "mu": 0.5045,
+          "sigma": 0.264
+        },
+        {
+          "round": 3,
+          "mu": 0.2473,
+          "sigma": 0.1621
+        }
+      ],
+      "rich mahogany finish": [
+        {
+          "round": 0,
+          "mu": -0.3,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": -0.015,
+          "sigma": 0.4299
+        },
+        {
+          "round": 2,
+          "mu": 0.2557,
+          "sigma": 0.264
+        },
+        {
+          "round": 3,
+          "mu": 0.1745,
+          "sigma": 0.1621
+        }
+      ]
+    },
+    "convergence_analysis": {
+      "top_10_stability": "10/10 tags same as previous round",
+      "mu_spread": 1.874,
+      "avg_final_sigma": 0.3186,
+      "min_final_sigma": 0.1171,
+      "converged": false
+    },
+    "warnings_summary": {
+      "total": 0,
+      "by_type": {}
+    }
+  },
+  "warnings": [],
+  "tag_trajectories": {
+    "pos_0": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.41,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.41,
+        "sigma": 0.2244
+      },
+      {
+        "round": 3,
+        "mu": 0.4912,
+        "sigma": 0.1378
+      }
+    ],
+    "pos_1": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.305,
+        "sigma": 0.3654
+      },
+      {
+        "round": 2,
+        "mu": 0.0343,
+        "sigma": 0.2244
+      },
+      {
+        "round": 3,
+        "mu": 0.0343,
+        "sigma": 0.2244
+      }
+    ],
+    "pos_2": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": 0.5,
+        "sigma": 0.7
+      }
+    ],
+    "pos_3": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.3654
+      },
+      {
+        "round": 2,
+        "mu": 0.8562,
+        "sigma": 0.1907
+      },
+      {
+        "round": 3,
+        "mu": 1.1135,
+        "sigma": 0.1171
+      }
+    ],
+    "pos_4": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.2293,
+        "sigma": 0.4299
+      },
+      {
+        "round": 3,
+        "mu": 0.0533,
+        "sigma": 0.2244
+      }
+    ],
+    "pos_5": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.215,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.1295,
+        "sigma": 0.264
+      },
+      {
+        "round": 3,
+        "mu": -0.1277,
+        "sigma": 0.1621
+      }
+    ],
+    "pos_6": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.5,
+        "sigma": 0.3654
+      },
+      {
+        "round": 3,
+        "mu": 0.5812,
+        "sigma": 0.2244
+      }
+    ],
+    "pos_7": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.875,
+        "sigma": 0.3654
+      },
+      {
+        "round": 2,
+        "mu": 0.9605,
+        "sigma": 0.2244
+      },
+      {
+        "round": 3,
+        "mu": 1.2177,
+        "sigma": 0.1378
+      }
+    ],
+    "pos_8": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.875,
+        "sigma": 0.3654
+      },
+      {
+        "round": 2,
+        "mu": 0.875,
+        "sigma": 0.1907
+      },
+      {
+        "round": 3,
+        "mu": 1.1322,
+        "sigma": 0.1171
+      }
+    ],
+    "pos_9": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.59,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.8607,
+        "sigma": 0.264
+      },
+      {
+        "round": 3,
+        "mu": 0.8607,
+        "sigma": 0.264
+      }
+    ],
+    "pos_10": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.59,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.5045,
+        "sigma": 0.264
+      },
+      {
+        "round": 3,
+        "mu": 0.2473,
+        "sigma": 0.1621
+      }
+    ],
+    "pos_11": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.59,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.9462,
+        "sigma": 0.2244
+      },
+      {
+        "round": 3,
+        "mu": 1.2035,
+        "sigma": 0.1378
+      }
+    ],
+    "pos_12": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.41,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.1392,
+        "sigma": 0.264
+      },
+      {
+        "round": 3,
+        "mu": -0.118,
+        "sigma": 0.1621
+      }
+    ],
+    "neu_0": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.585,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": -0.585,
+        "sigma": 0.4299
+      },
+      {
+        "round": 3,
+        "mu": -0.585,
+        "sigma": 0.4299
+      }
+    ],
+    "neu_1": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.585,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": -0.585,
+        "sigma": 0.4299
+      },
+      {
+        "round": 3,
+        "mu": -0.585,
+        "sigma": 0.4299
+      }
+    ],
+    "neu_2": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.585,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": -0.585,
+        "sigma": 0.4299
+      },
+      {
+        "round": 3,
+        "mu": -0.585,
+        "sigma": 0.4299
+      }
+    ],
+    "neu_3": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.39,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": -0.39,
+        "sigma": 0.4299
+      },
+      {
+        "round": 3,
+        "mu": -0.39,
+        "sigma": 0.4299
+      }
+    ],
+    "neu_4": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.39,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": -0.39,
+        "sigma": 0.4299
+      },
+      {
+        "round": 3,
+        "mu": -0.39,
+        "sigma": 0.4299
+      }
+    ],
+    "neu_5": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.39,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": -0.39,
+        "sigma": 0.4299
+      },
+      {
+        "round": 3,
+        "mu": -0.39,
+        "sigma": 0.4299
+      }
+    ],
+    "neu_6": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.39,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": -0.39,
+        "sigma": 0.4299
+      },
+      {
+        "round": 3,
+        "mu": -0.39,
+        "sigma": 0.4299
+      }
+    ],
+    "neu_7": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.015,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.2557,
+        "sigma": 0.264
+      },
+      {
+        "round": 3,
+        "mu": 0.1745,
+        "sigma": 0.1621
+      }
+    ],
+    "neu_8": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.015,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.2557,
+        "sigma": 0.264
+      },
+      {
+        "round": 3,
+        "mu": 0.1745,
+        "sigma": 0.1621
+      }
+    ],
+    "neu_9": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.015,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.2557,
+        "sigma": 0.264
+      },
+      {
+        "round": 3,
+        "mu": 0.1745,
+        "sigma": 0.1621
+      }
+    ],
+    "neu_10": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.6562,
+        "sigma": 0.3654
+      },
+      {
+        "round": 3,
+        "mu": -0.6562,
+        "sigma": 0.3654
+      }
+    ],
+    "neu_11": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3855,
+        "sigma": 0.4299
+      },
+      {
+        "round": 3,
+        "mu": -0.3855,
+        "sigma": 0.4299
+      }
+    ],
+    "neu_12": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.6562,
+        "sigma": 0.3654
+      },
+      {
+        "round": 3,
+        "mu": -0.6562,
+        "sigma": 0.3654
+      }
+    ],
+    "neu_13": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.5707,
+        "sigma": 0.4299
+      },
+      {
+        "round": 3,
+        "mu": -0.5707,
+        "sigma": 0.4299
+      }
+    ],
+    "neu_14": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.2145,
+        "sigma": 0.4299
+      },
+      {
+        "round": 3,
+        "mu": -0.2145,
+        "sigma": 0.4299
+      }
+    ],
+    "neu_15": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.2145,
+        "sigma": 0.4299
+      },
+      {
+        "round": 3,
+        "mu": -0.2145,
+        "sigma": 0.4299
+      }
+    ],
+    "neu_16": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": -0.3,
+        "sigma": 0.3654
+      }
+    ],
+    "neu_17": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": -0.3,
+        "sigma": 0.3654
+      }
+    ],
+    "neu_18": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": -0.3,
+        "sigma": 0.3654
+      }
+    ],
+    "neu_19": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": -0.3,
+        "sigma": 0.7
+      }
+    ]
+  }
+}

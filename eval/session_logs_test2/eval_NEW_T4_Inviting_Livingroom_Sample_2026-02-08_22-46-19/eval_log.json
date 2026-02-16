@@ -1,0 +1,212 @@
+{
+  "user_id": "NEW_T4",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_NEW_T4_Inviting_Livingroom_Sample_2026-02-08_22-46-19",
+  "created_at": "2026-02-08T22:46:19.558912",
+  "events": [
+    {
+      "timestamp": "2026-02-08T22:46:19.558919",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Inviting_Livingroom_Sample"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:49:30.936673",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Inviting Livingroom",
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:51:02.958108",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          3,
+          2,
+          1,
+          0
+        ],
+        "image_variance": 0.1359,
+        "beta": 2.0,
+        "tags_updated": 21,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:52:38.476872",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 2,
+        "ranking": [
+          1,
+          0,
+          2,
+          3
+        ],
+        "image_variance": 0.1218,
+        "beta": 1.667,
+        "tags_updated": 21,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:53:52.120957",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 3,
+        "ranking": [
+          3,
+          0,
+          1,
+          2
+        ],
+        "image_variance": 0.1231,
+        "beta": 1.333,
+        "tags_updated": 20,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:54:55.598940",
+      "type": "hitl_rollback",
+      "data": {
+        "from_round": 3,
+        "to_round": 3,
+        "tags_boosted": [],
+        "tags_penalized": []
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:56:13.783791",
+      "type": "hitl_finalize",
+      "data": {
+        "rounds_completed": 3,
+        "total_comparisons": 18,
+        "final_tags": [
+          "trimmed large windows",
+          "inviting atmosphere",
+          "modern elegance",
+          "contemporary artwork",
+          "luxurious drapes"
+        ],
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:56:18.785838",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_3_0",
+        "concept_count": 8,
+        "gp_mode": true
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:56:18.936493",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:56:30.089853",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:57:10.870492",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bathroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:57:22.193359",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:58:03.036954",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bedroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:58:14.361749",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:58:55.200058",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Kitchen",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:59:06.493857",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:59:47.359210",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Reading Nook",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T22:59:58.702254",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T23:00:39.547020",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Home Office",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T23:00:50.835863",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 1,
+        "method": "hitl_v2"
+      }
+    }
+  ]
+}

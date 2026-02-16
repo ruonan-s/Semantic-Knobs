@@ -1,0 +1,66 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_NEW_T6_Inspiring_Reading_Nook_Sample_2026-02-09_14-45-07
+Started: 2026-02-09T14:46:47.757430
+Rounds: 2
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 20
+  Neutral tags: 22
+  Total: 42
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.26 | floor-to-ceiling windows, natural light, organic textures...
+    [1] explore      | avg_μ=+0.42 | calming aesthetic, whimsical mural, zen atmosphere...
+    [2] ucb          | avg_μ=+0.42 | floating shelves, plush cushions, warm accent lights...
+    [3] challenger   | avg_μ=+0.50 | relaxing atmosphere, calming aesthetic, textured materials...
+  Ranking: [2, 0, 3, 1]
+  Comparisons: 6
+  Tags updated: 20
+  Top 5 after round:
+    1. curved architecture       μ=+0.785 σ=0.430
+    2. plush cushions            μ=+0.785 σ=0.430
+    3. star-shaped pillow        μ=+0.785 σ=0.430
+    4. floating shelves          μ=+0.785 σ=0.430
+    5. warm accent lights        μ=+0.785 σ=0.430
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.47 | curved architecture, plush cushions, star-shaped pillow...
+    [1] explore      | avg_μ=+0.24 | cozy seating area, zen atmosphere, contemporary design...
+    [2] ucb          | avg_μ=+0.42 | plush cushions, curved architecture, zen atmosphere...
+    [3] challenger   | avg_μ=+0.62 | relaxing atmosphere, floating shelves, plush cushions...
+  Ranking: [3, 2, 0, 1]
+  Comparisons: 6
+  Tags updated: 22
+  Top 5 after round:
+    1. curved architecture       μ=+1.056 σ=0.264
+    2. plush cushions            μ=+1.056 σ=0.264
+    3. floating shelves          μ=+0.970 σ=0.224
+    4. warm accent lights        μ=+0.970 σ=0.224
+    5. star-shaped pillow        μ=+0.785 σ=0.224
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. curved architecture            | w=0.126 | μ=+1.056 | win_rate=50%
+   2. plush cushions                 | w=0.126 | μ=+1.056 | win_rate=50%
+   3. floating shelves               | w=0.116 | μ=+0.970 | win_rate=67%
+   4. warm accent lights             | w=0.116 | μ=+0.970 | win_rate=67%
+   5. star-shaped pillow             | w=0.096 | μ=+0.785 | win_rate=33%
+   6. floor-to-ceiling windows       | w=0.088 | μ=+0.700 | win_rate=33%
+   7. textured materials             | w=0.087 | μ=+0.681 | win_rate=50%
+   8. relaxing atmosphere            | w=0.087 | μ=+0.681 | win_rate=50%
+   9. organic textures               | w=0.079 | μ=+0.586 | win_rate=29%
+  10. stone accent wall              | w=0.079 | μ=+0.586 | win_rate=0%
+
+  Convergence: False
+  Top-10 stability: 8/10 tags same as previous round

@@ -1,0 +1,107 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_NEW_T1_Inviting_Livingroom_Sample_2026-02-08_21-24-28
+Started: 2026-02-08T21:26:13.025471
+Rounds: 4
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 16
+  Neutral tags: 27
+  Total: 43
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.26 | neutral color palette, cozy textiles, ambient lighting...
+    [1] explore      | avg_μ=+0.26 | soft textures, large glass windows, wooden coffee table...
+    [2] ucb          | avg_μ=+0.26 | plush velvet furniture, soft textures, elegant marble fireplace...
+    [3] challenger   | avg_μ=+0.34 | candles for warmth, modern rustic style, large glass windows...
+  Ranking: [3, 1, 0, 2]
+  Comparisons: 6
+  Tags updated: 21
+  Top 5 after round:
+    1. warm wood flooring        μ=+0.875 σ=0.365
+    2. large glass windows       μ=+0.875 σ=0.365
+    3. warm lighting             μ=+0.875 σ=0.365
+    4. neutral color palette     μ=+0.695 σ=0.365
+    5. candles for warmth        μ=+0.695 σ=0.365
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.50 | warm wood flooring, large glass windows, warm lighting...
+    [1] explore      | avg_μ=+0.20 | cozy textiles, plush velvet furniture, soft textures...
+    [2] ucb          | avg_μ=+0.46 | large glass windows, elegant marble fireplace, woven textures...
+    [3] challenger   | avg_μ=+0.45 | soft natural lighting, cozy textiles, curved seating...
+  Ranking: [0, 2, 3, 1]
+  Comparisons: 6
+  Tags updated: 22
+  Top 5 after round:
+    1. warm wood flooring        μ=+1.231 σ=0.191
+    2. large glass windows       μ=+1.231 σ=0.191
+    3. warm lighting             μ=+1.146 σ=0.224
+    4. neutral color palette     μ=+0.966 σ=0.224
+    5. candles for warmth        μ=+0.966 σ=0.224
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.75 | warm wood flooring, large glass windows, warm lighting...
+    [1] explore      | avg_μ=+0.06 | plush velvet furniture, soft textures, botanical accents...
+    [2] ucb          | avg_μ=+0.61 | candles for warmth, large glass windows, botanical accents...
+    [3] challenger   | avg_μ=+0.79 | candles for warmth, large glass windows, elegant marble fireplace...
+  Ranking: [2, 3, 0, 1]
+  Comparisons: 6
+  Tags updated: 18
+  Top 5 after round:
+    1. warm wood flooring        μ=+1.488 σ=0.117
+    2. large glass windows       μ=+1.488 σ=0.117
+    3. warm lighting             μ=+1.403 σ=0.138
+    4. neutral color palette     μ=+1.223 σ=0.138
+    5. candles for warmth        μ=+1.223 σ=0.138
+
+----------------------------------------------------------------------
+ROUND 4 (β=1.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.88 | warm wood flooring, large glass windows, warm lighting...
+    [1] explore      | avg_μ=-0.04 | cozy textiles, rich textiles, soft textures...
+    [2] ucb          | avg_μ=+0.77 | candles for warmth, large glass windows, organic shapes...
+    [3] challenger   | avg_μ=+0.52 | large glass windows, organic shapes, elegant marble fireplace...
+  Ranking: [3, 0, 2, 1]
+  Comparisons: 6
+  Tags updated: 21
+  Top 5 after round:
+    1. large glass windows       μ=+1.733 σ=0.100
+    2. warm lighting             μ=+1.647 σ=0.100
+    3. warm wood flooring        μ=+1.488 σ=0.100
+    4. neutral color palette     μ=+1.467 σ=0.100
+    5. layered rugs              μ=+1.382 σ=0.100
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. large glass windows            | w=0.171 | μ=+1.733 | win_rate=40%
+   2. warm lighting                  | w=0.157 | μ=+1.647 | win_rate=36%
+   3. warm wood flooring             | w=0.134 | μ=+1.488 | win_rate=33%
+   4. neutral color palette          | w=0.131 | μ=+1.467 | win_rate=36%
+   5. layered rugs                   | w=0.121 | μ=+1.382 | win_rate=40%
+   6. candles for warmth             | w=0.103 | μ=+1.223 | win_rate=38%
+   7. cozy atmosphere                | w=0.055 | μ=+0.590 | win_rate=23%
+   8. modern classic style           | w=0.045 | μ=+0.388 | win_rate=14%
+   9. elegant marble fireplace       | w=0.044 | μ=+0.369 | win_rate=20%
+  10. modern elegance                | w=0.039 | μ=+0.252 | win_rate=50%
+
+  Convergence: False
+  Top-10 stability: 9/10 tags same as previous round
+
+======================================================================
+WARNINGS (1)
+======================================================================
+  [rollback] Rolled back from round 1 to round 1. Boosted: [], Penalized: []

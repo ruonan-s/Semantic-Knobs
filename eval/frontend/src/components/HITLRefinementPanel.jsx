@@ -74,14 +74,11 @@ function HITLRefinementPanel({
   const handleSubmit = useCallback(() => {
     if (!allRanked) return;
     
-    // Convert ranking to array format expected by backend
-    // ranking[1] = 2 means image at index 2 is ranked 1st
-    // We need to produce [rank of image 0, rank of image 1, rank of image 2, rank of image 3]
-    const rankingArray = [];
-    for (let i = 0; i < 4; i++) {
-      const rank = getImageRank(i);
-      rankingArray.push(rank - 1); // Convert to 0-indexed
-    }
+    // Convert ranking to array format expected by backend:
+    // [best_option_id, 2nd_best_id, 3rd_id, worst_id]
+    // ranking state is {1: imageIdx, 2: imageIdx, 3: imageIdx, 4: imageIdx}
+    // where ranking[1] = image index of the 1st-place image
+    const rankingArray = [ranking[1], ranking[2], ranking[3], ranking[4]];
     
     onSubmitRanking(rankingArray);
   }, [allRanked, ranking, onSubmitRanking]);

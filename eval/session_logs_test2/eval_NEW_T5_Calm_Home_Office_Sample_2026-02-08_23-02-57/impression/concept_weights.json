@@ -1,0 +1,156 @@
+{
+  "stage": "impression",
+  "session_id": "eval_NEW_T5_Calm_Home_Office_Sample_2026-02-08_23-02-57",
+  "timestamp": "2026-02-08T23:09:32.708744",
+  "num_concepts": 6,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 172,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "neutral color palette",
+      "weight": 0.21594081819057465,
+      "score": 1.0447351932525635,
+      "utility_std": 1.0024683475494385,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "neutral color palette"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "warm wood tones",
+      "weight": 0.18392062187194824,
+      "score": 0.8842350244522095,
+      "utility_std": 1.0024683475494385,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm wood tones"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "curtain-filtered daylight",
+      "weight": 0.17143294215202332,
+      "score": 0.8139230012893677,
+      "utility_std": 1.0024683475494385,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "curtain-filtered daylight"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "spacious layout",
+      "weight": 0.16502971947193146,
+      "score": 0.7758563160896301,
+      "utility_std": 1.0024683475494385,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "spacious layout"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "luxurious materials",
+      "weight": 0.14055651426315308,
+      "score": 0.615340530872345,
+      "utility_std": 1.0024683475494385,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "luxurious materials"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "earthy tones",
+      "weight": 0.12311937659978867,
+      "score": 0.4828851819038391,
+      "utility_std": 1.0024683475494385,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "earthy tones"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_2_0_6",
+      "text": "neutral color palette",
+      "utility": 1.0447351932525635,
+      "uncertainty": 1.0024683475494385,
+      "weight": 0.21594081819057465,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_1",
+      "text": "warm wood tones",
+      "utility": 0.8842350244522095,
+      "uncertainty": 1.0024683475494385,
+      "weight": 0.18392062187194824,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_8",
+      "text": "curtain-filtered daylight",
+      "utility": 0.8139230012893677,
+      "uncertainty": 1.0024683475494385,
+      "weight": 0.17143294215202332,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_11",
+      "text": "spacious layout",
+      "utility": 0.7758563160896301,
+      "uncertainty": 1.0024683475494385,
+      "weight": 0.16502971947193146,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_7",
+      "text": "luxurious materials",
+      "utility": 0.615340530872345,
+      "uncertainty": 1.0024683475494385,
+      "weight": 0.14055651426315308,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_6",
+      "text": "earthy tones",
+      "utility": 0.4828851819038391,
+      "uncertainty": 1.0024683475494385,
+      "weight": 0.12311937659978867,
+      "source_image_idx": 1,
+      "category": "positive"
+    }
+  ]
+}

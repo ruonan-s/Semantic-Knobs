@@ -748,6 +748,29 @@ def _generate_hitl_v2_image(
         neg_phrases=neg_phrases
     )
     
+    # --- Boost location tokens in attention map ---
+    # Tags learned from the original location (e.g., Living Room) can dominate 
+    # cross-attention when transferred to a new location (e.g., Bathroom).
+    # Boosting the target location tokens ensures the model strongly attends to the
+    # correct room type, while tags influence style/aesthetics.
+    tags_str = ", ".join(tag_labels)
+    full_prompt = f"{base_prompt} with features: {tags_str}"
+    
+    # Map both the full base_prompt and just the location to their token indices
+    concepts_to_boost = [target_location]
+    location_map, _ = hitl_fuser._tokenize_and_map(full_prompt, concepts_to_boost)
+    
+    LOCATION_BOOST = 3.0  # Location tokens get 3x attention (tags max at ~1.5x)
+    
+    boosted_count = 0
+    for concept in concepts_to_boost:
+        if concept in location_map:
+            for idx in location_map[concept]:
+                attn_controller.token_weight_map.weights[idx] = LOCATION_BOOST
+                boosted_count += 1
+    
+    print(f"  Location boost: boosted {boosted_count} tokens for '{target_location}' to {LOCATION_BOOST}x")
+    
     # Generate with hooks — identical to refinement stage
     image = generate_with_hooks(
         pipe,
