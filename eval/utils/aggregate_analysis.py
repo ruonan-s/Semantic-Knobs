@@ -27,9 +27,15 @@ def categorize_method(filename: str) -> str:
     """Categorize image filenames into method types."""
     if filename.startswith("eval_alpha_"):
         return "Ours"
+    elif filename == "user_customized.png":
+        return "user_customized"
     elif filename == "llm_style_transfer.png":
         return "LLM text+image"
+    elif filename == "sd_style_transfer.png":
+        return "LLM text+image"
     elif filename == "llm_baseline_tags.png":
+        return "LLM text+tags"
+    elif filename == "sd_baseline_tags.png":
         return "LLM text+tags"
     else:
         return "LLM text"
@@ -143,10 +149,10 @@ def aggregate_data(all_sessions):
 METHOD_COLORS = {
     'LLM text': '#6B7280',       # Gray
     'LLM text+image': '#3B82F6', # Blue
-    'LLM text+tags': '#8B5CF6',  # Purple
+    'user_customized': '#2563EB',# Strong blue
     'Ours': '#DC2626',           # Red
 }
-METHOD_ORDER = ['LLM text', 'LLM text+tags', 'LLM text+image', 'Ours']
+METHOD_ORDER = ['LLM text', 'LLM text+image', 'user_customized', 'Ours']
 
 def plot_aggregate_rank_distribution(rank_counts, output_path=None):
     """Plot 1: Aggregate rank distribution as grouped bar chart."""

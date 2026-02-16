@@ -1,0 +1,501 @@
+{
+  "stage": "impression",
+  "session_id": "eval_Cozy_Bedroom_Sample_2026-02-16_16-17-43",
+  "timestamp": "2026-02-16T16:24:55.865086",
+  "num_concepts": 21,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 922,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "soft lighting",
+      "weight": 0.08050114661455154,
+      "score": 1.5128366947174072,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "soft lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "indoor plants",
+      "weight": 0.07345060259103775,
+      "score": 1.4211784601211548,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "indoor plants"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "cozy atmosphere",
+      "weight": 0.06859896332025528,
+      "score": 1.3528428077697754,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "cozy atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "wooden flooring",
+      "weight": 0.06638844311237335,
+      "score": 1.3200883865356445,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden flooring"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "airy space",
+      "weight": 0.06594355404376984,
+      "score": 1.3133645057678223,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "airy space"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "natural materials",
+      "weight": 0.0636586844921112,
+      "score": 1.2781012058258057,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "natural materials"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "textured textiles",
+      "weight": 0.06308544427156448,
+      "score": 1.2690554857254028,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "textured textiles"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "warm tones",
+      "weight": 0.05009761080145836,
+      "score": 1.0385386943817139,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm tones"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "nature-inspired decor",
+      "weight": 0.048830535262823105,
+      "score": 1.0129212141036987,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "nature-inspired decor"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "minimalist decor",
+      "weight": 0.04736897349357605,
+      "score": 0.982532799243927,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "minimalist decor"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_10",
+      "label": "rustic wood logs",
+      "weight": 0.040768127888441086,
+      "score": 0.8324660062789917,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "rustic wood logs"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_11",
+      "label": "plush bedding",
+      "weight": 0.040422651916742325,
+      "score": 0.823955774307251,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "plush bedding"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_12",
+      "label": "classic furniture",
+      "weight": 0.03829298913478851,
+      "score": 0.769832193851471,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "classic furniture"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_13",
+      "label": "earthy color palette",
+      "weight": 0.03817877545952797,
+      "score": 0.7668451070785522,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "earthy color palette"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_14",
+      "label": "neutral bedding",
+      "weight": 0.03811842203140259,
+      "score": 0.7652630805969238,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "neutral bedding"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_15",
+      "label": "large window view",
+      "weight": 0.03745972365140915,
+      "score": 0.7478315830230713,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large window view"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_16",
+      "label": "log cabin style",
+      "weight": 0.032822538167238235,
+      "score": 0.6156808733940125,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "log cabin style"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_17",
+      "label": "vintage rugs",
+      "weight": 0.029931752011179924,
+      "score": 0.5234851837158203,
+      "utility_std": 1.0042680501937866,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "vintage rugs"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_18",
+      "label": "simple layout",
+      "weight": 0.02662050537765026,
+      "score": 0.40624719858169556,
+      "utility_std": 1.0042680501937866,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "simple layout"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_19",
+      "label": "wooden ceiling beams",
+      "weight": 0.025020495057106018,
+      "score": 0.34426063299179077,
+      "utility_std": 1.0042680501937866,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden ceiling beams"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_20",
+      "label": "white walls",
+      "weight": 0.02444000355899334,
+      "score": 0.3207866847515106,
+      "utility_std": 1.0042680501937866,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "white walls"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_0_0_5",
+      "text": "soft lighting",
+      "utility": 1.5128366947174072,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.08050114661455154,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_4",
+      "text": "indoor plants",
+      "utility": 1.4211784601211548,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.07345060259103775,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_8",
+      "text": "cozy atmosphere",
+      "utility": 1.3528428077697754,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.06859896332025528,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_2",
+      "text": "wooden flooring",
+      "utility": 1.3200883865356445,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.06638844311237335,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_11",
+      "text": "airy space",
+      "utility": 1.3133645057678223,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.06594355404376984,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_11",
+      "text": "natural materials",
+      "utility": 1.2781012058258057,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.0636586844921112,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_10",
+      "text": "textured textiles",
+      "utility": 1.2690554857254028,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.06308544427156448,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_10",
+      "text": "warm tones",
+      "utility": 1.0385386943817139,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.05009761080145836,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_11",
+      "text": "nature-inspired decor",
+      "utility": 1.0129212141036987,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.048830535262823105,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_0",
+      "text": "minimalist decor",
+      "utility": 0.982532799243927,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.04736897349357605,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_0",
+      "text": "rustic wood logs",
+      "utility": 0.8324660062789917,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.040768127888441086,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_7",
+      "text": "plush bedding",
+      "utility": 0.823955774307251,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.040422651916742325,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_9",
+      "text": "classic furniture",
+      "utility": 0.769832193851471,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.03829298913478851,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_7",
+      "text": "earthy color palette",
+      "utility": 0.7668451070785522,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.03817877545952797,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_4",
+      "text": "neutral bedding",
+      "utility": 0.7652630805969238,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.03811842203140259,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_3",
+      "text": "large window view",
+      "utility": 0.7478315830230713,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.03745972365140915,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_6",
+      "text": "log cabin style",
+      "utility": 0.6156808733940125,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.032822538167238235,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_9",
+      "text": "vintage rugs",
+      "utility": 0.5234851837158203,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.029931752011179924,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_7",
+      "text": "simple layout",
+      "utility": 0.40624719858169556,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.02662050537765026,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_8",
+      "text": "wooden ceiling beams",
+      "utility": 0.34426063299179077,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.025020495057106018,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_1",
+      "text": "white walls",
+      "utility": 0.3207866847515106,
+      "uncertainty": 1.0042680501937866,
+      "weight": 0.02444000355899334,
+      "source_image_idx": 0,
+      "category": "positive"
+    }
+  ]
+}

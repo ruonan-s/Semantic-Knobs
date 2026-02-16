@@ -6,9 +6,10 @@ function ProgressBar({ currentStage }) {
     return null;
   }
 
-  // Stages for eval with HITL refinement: Exploration → Refinement → Rank
+  // Stages for eval with manual customization + HITL refinement
   const stages = [
     { id: 'impression', label: 'Exploration' },
+    { id: 'manual_tag_weights', label: 'User Customization' },
     { id: 'hitl_refinement', label: 'Refinement' },
     { id: 'evaluation', label: 'Rank' }
   ];

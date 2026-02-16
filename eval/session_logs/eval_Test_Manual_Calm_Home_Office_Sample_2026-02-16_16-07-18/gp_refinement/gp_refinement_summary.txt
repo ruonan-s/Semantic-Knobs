@@ -1,0 +1,48 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_Test_Manual_Calm_Home_Office_Sample_2026-02-16_16-07-18
+Started: 2026-02-16T16:08:44.332297
+Rounds: 1
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 22
+  Neutral tags: 21
+  Total: 43
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.26 | minimalist design, neutral color palette, natural wood table...
+    [1] explore      | avg_μ=+0.42 | modern aesthetic, neutral color palette, calm atmosphere...
+    [2] ucb          | avg_μ=+0.42 | neutral color palette, lush greenery, floor-to-ceiling curtains...
+    [3] challenger   | avg_μ=+0.50 | cozy atmosphere, simple chair design, modern aesthetic...
+  Ranking: [2, 3, 0, 1]
+  Comparisons: 6
+  Tags updated: 21
+  Top 5 after round:
+    1. minimalist decor          μ=+0.785 σ=0.430
+    2. lush greenery             μ=+0.785 σ=0.430
+    3. large windows             μ=+0.785 σ=0.430
+    4. stone accents             μ=+0.785 σ=0.430
+    5. earthy tones              μ=+0.785 σ=0.430
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. minimalist decor               | w=0.112 | μ=+0.785 | win_rate=100%
+   2. lush greenery                  | w=0.112 | μ=+0.785 | win_rate=100%
+   3. large windows                  | w=0.112 | μ=+0.785 | win_rate=100%
+   4. stone accents                  | w=0.112 | μ=+0.785 | win_rate=100%
+   5. earthy tones                   | w=0.112 | μ=+0.785 | win_rate=100%
+   6. clean lines                    | w=0.092 | μ=+0.590 | win_rate=0%
+   7. cozy atmosphere                | w=0.092 | μ=+0.590 | win_rate=0%
+   8. ceramic pots                   | w=0.092 | μ=+0.590 | win_rate=0%
+   9. minimalist design              | w=0.084 | μ=+0.500 | win_rate=0%
+  10. sleek cabinetry                | w=0.084 | μ=+0.500 | win_rate=25%
+
+  Convergence: Unknown
+  Top-10 stability: N/A

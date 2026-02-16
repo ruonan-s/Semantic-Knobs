@@ -20,6 +20,18 @@ const shuffleArray = (array) => {
   return shuffled;
 };
 
+const DEFAULT_RANK_COUNT = 4;
+
+const createEmptyRanking = (count = DEFAULT_RANK_COUNT) =>
+  Object.fromEntries(Array.from({ length: count }, (_, idx) => [idx + 1, null]));
+
+const getOrdinalLabel = (rank) => {
+  if (rank === 1) return '1st';
+  if (rank === 2) return '2nd';
+  if (rank === 3) return '3rd';
+  return `${rank}th`;
+};
+
 /**
  * Evaluation Prototype App
  * 
@@ -72,7 +84,7 @@ function App() {
   const [currentRankingLocation, setCurrentRankingLocation] = useState(null);
   const [comparisonImages, setComparisonImages] = useState([]);
   const [rankings, setRankings] = useState({});  // {location: {1: filename, 2: filename, 3: filename}}
-  const [currentRanking, setCurrentRanking] = useState({1: null, 2: null, 3: null, 4: null, 5: null});
+  const [currentRanking, setCurrentRanking] = useState(createEmptyRanking());
   const [sliderScores, setSliderScores] = useState({});  // {imageId: score (1-7)}
   const [sessionLogs, setSessionLogs] = useState([]);
   const [selectedSessionLog, setSelectedSessionLog] = useState(null);
@@ -108,6 +120,13 @@ function App() {
   const [slotStatusMessage, setSlotStatusMessage] = useState('');
   const [isSlotLoading, setIsSlotLoading] = useState(false);
   const [slotInitData, setSlotInitData] = useState(null);  // Store dedup/slot creation info
+
+  // Manual user-customized baseline stage
+  const [manualTagPool, setManualTagPool] = useState([]);
+  const [manualSelectedTags, setManualSelectedTags] = useState([]);
+  const [manualWeights, setManualWeights] = useState({});
+  const [isManualLoading, setIsManualLoading] = useState(false);
+  const [manualStatusMessage, setManualStatusMessage] = useState('');
   
   const imageRefs = useRef({});
   const conceptTagHandlerRef = useRef(null);
@@ -785,24 +804,118 @@ function App() {
       setIsHitlLoading(false);
     }
   };
-  
-  // Start HITL refinement (called from exploration stage)
-  const handleStartHITL = async () => {
+
+  const loadManualTagPool = async () => {
+    if (!sessionId) return;
+
+    setIsManualLoading(true);
+    setManualStatusMessage('Loading positive tag pool...');
+    try {
+      const res = await fetch('/api/eval/manual-tag-pool', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: sessionId, stage: 'impression' })
+      });
+
+      if (!res.ok) {
+        throw new Error(`Failed to load manual tag pool: ${res.status}`);
+      }
+
+      const data = await res.json();
+      const pool = data.tags || [];
+      setManualTagPool(pool);
+      setManualSelectedTags([]);
+      setManualWeights({});
+      setManualStatusMessage(pool.length > 0 ? '' : 'No positive tags available yet. Please like tags in exploration first.');
+    } catch (error) {
+      console.error('Error loading manual tag pool:', error);
+      setManualStatusMessage(`Error: ${error.message}`);
+      addStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsManualLoading(false);
+    }
+  };
+
+  const handleStartManualCustomization = async () => {
     if (!selectedImage) {
       addStatusMessage('Please select an image before continuing');
       return;
     }
-    
-    // Reset HITL state
-    setHitlRound(1);
-    setHitlImages([]);
-    setIsHitlConverged(false);
-    setHitlGpVariance(null);
-    setHitlStatusMessage('');
-    
-    // Change stage first, then initialize
-    setStage('hitl_refinement');
-    await initializeHITL();
+
+    setStage('manual_tag_weights');
+    await loadManualTagPool();
+  };
+
+  const toggleManualTagSelection = (tag) => {
+    setManualSelectedTags(prev => {
+      const isSelected = prev.includes(tag);
+      if (isSelected) {
+        const next = prev.filter(t => t !== tag);
+        setManualWeights(weights => {
+          const nextWeights = { ...weights };
+          delete nextWeights[tag];
+          return nextWeights;
+        });
+        return next;
+      }
+      if (prev.length >= 10) {
+        return prev;
+      }
+      setManualWeights(weights => ({ ...weights, [tag]: weights[tag] ?? 0.1 }));
+      return [...prev, tag];
+    });
+  };
+
+  const handleManualWeightChange = (tag, value) => {
+    setManualWeights(prev => ({ ...prev, [tag]: value }));
+  };
+
+  const continueFromManualCustomization = async () => {
+    if (manualSelectedTags.length !== 10) {
+      setManualStatusMessage('Please select exactly 10 tags before continuing.');
+      return;
+    }
+
+    const payloadWeights = {};
+    for (const tag of manualSelectedTags) {
+      payloadWeights[tag] = Number(manualWeights[tag] ?? 0.1);
+    }
+
+    setIsManualLoading(true);
+    setManualStatusMessage('Saving manual tag weights...');
+    try {
+      const res = await fetch('/api/eval/save-manual-weights', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          session_id: sessionId,
+          selected_image_id: selectedImage,
+          selected_tags: manualSelectedTags,
+          weights: payloadWeights
+        })
+      });
+
+      if (!res.ok) {
+        throw new Error(`Failed to save manual weights: ${res.status}`);
+      }
+
+      addStatusMessage('Saved user manual tag weights');
+
+      // Continue to GP refinement after manual baseline setup
+      setHitlRound(1);
+      setHitlImages([]);
+      setIsHitlConverged(false);
+      setHitlGpVariance(null);
+      setHitlStatusMessage('');
+      setStage('hitl_refinement');
+      await initializeHITL();
+    } catch (error) {
+      console.error('Error saving manual weights:', error);
+      setManualStatusMessage(`Error: ${error.message}`);
+      addStatusMessage(`Error: ${error.message}`);
+    } finally {
+      setIsManualLoading(false);
+    }
   };
   
   // ============== Slot-Based Refinement Functions ==============
@@ -1103,7 +1216,7 @@ function App() {
   };
 
   // Custom stages for eval (with HITL refinement or slot-based refinement)
-  const evalStages = ['landing', 'impression', 'hitl_refinement', 'slot_refinement', 'evaluation', 'slider_generation'];
+  const evalStages = ['landing', 'impression', 'manual_tag_weights', 'hitl_refinement', 'slot_refinement', 'evaluation', 'slider_generation'];
 
   // ============== Ranking/Evaluation Functions ==============
 
@@ -1142,7 +1255,7 @@ function App() {
     
     // Update title immediately for responsive UI
     setCurrentRankingLocation(locationName);
-    setCurrentRanking({1: null, 2: null, 3: null, 4: null, 5: null});
+    setCurrentRanking(createEmptyRanking());
     setSliderScores({});  // Reset slider scores
     setRankingSaved(false);
     setImagesLoaded({});
@@ -1166,6 +1279,7 @@ function App() {
       
       const data = await res.json();
       setComparisonImages(data.images);
+      setCurrentRanking(createEmptyRanking((data.images || []).length || DEFAULT_RANK_COUNT));
       
     } catch (error) {
       console.error('Error loading comparison images:', error);
@@ -1183,7 +1297,7 @@ function App() {
     
     // Update title immediately for responsive UI
     setCurrentRankingLocation(locationName);
-    setCurrentRanking({1: null, 2: null, 3: null, 4: null, 5: null});
+    setCurrentRanking(createEmptyRanking());
     setSliderScores({});  // Reset slider scores
     setRankingSaved(false);
     setImagesLoaded({});
@@ -1207,12 +1321,14 @@ function App() {
       
       const data = await res.json();
       setComparisonImages(data.images);
+      const expectedRanks = (data.images || []).length || DEFAULT_RANK_COUNT;
+      setCurrentRanking(createEmptyRanking(expectedRanks));
       
       // Check if this location has saved rankings and restore them
       const savedRanking = rankings[locationName];
-      if (savedRanking && Object.keys(savedRanking).length === 5) {
+      if (savedRanking && Object.keys(savedRanking).length === expectedRanks) {
         // Map saved filenames back to image IDs
-        const restoredRanking = {1: null, 2: null, 3: null, 4: null, 5: null};
+        const restoredRanking = createEmptyRanking(expectedRanks);
         const restoredScores = {};
         
         for (const [rank, rankData] of Object.entries(savedRanking)) {
@@ -1265,6 +1381,7 @@ function App() {
   // Save ranking for current location
   const saveCurrentRanking = async () => {
     if (!selectedSessionLog || !currentRankingLocation) return;
+    const requiredRankCount = comparisonImages.length || DEFAULT_RANK_COUNT;
     
     // Find filenames and scores for each rank
     const rankingData = {};
@@ -1281,15 +1398,15 @@ function App() {
       }
     }
     
-    if (Object.keys(rankingData).length !== 5) {
-      addStatusMessage('Please rank all 5 images before saving');
+    if (Object.keys(rankingData).length !== requiredRankCount) {
+      addStatusMessage(`Please rank all ${requiredRankCount} images before saving`);
       return;
     }
     
     // Check that all images have slider scores
     const missingScores = Object.entries(rankingData).filter(([rank, data]) => !data.score);
     if (missingScores.length > 0) {
-      addStatusMessage('Please rate all 5 images with the preference slider before saving');
+      addStatusMessage(`Please rate all ${requiredRankCount} images with the preference slider before saving`);
       return;
     }
     
@@ -1631,6 +1748,162 @@ function App() {
             )}
           </div>
         </div>
+      ) : stage === 'manual_tag_weights' ? (
+        // ============== MANUAL TAG CUSTOMIZATION STAGE ==============
+        <div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+            <h2 style={{ margin: 0 }}>User Customization: Pick 10 Tags</h2>
+            <div style={{ color: '#666', fontSize: '14px' }}>
+              {descriptor} | Session: {sessionId}
+            </div>
+          </div>
+
+          <div style={{
+            padding: '16px',
+            backgroundColor: '#f8f9fa',
+            border: '1px solid #dee2e6',
+            borderRadius: '10px',
+            marginBottom: '20px'
+          }}>
+            <div style={{ fontWeight: '600', color: '#333', marginBottom: '6px' }}>
+              Select exactly 10 tags from your positive pool
+            </div>
+            <div style={{ fontSize: '14px', color: '#666' }}>
+              Selected: {manualSelectedTags.length} / 10
+            </div>
+          </div>
+
+          {isManualLoading ? (
+            <div style={{
+              padding: '30px',
+              textAlign: 'center',
+              color: '#666',
+              backgroundColor: '#f8f9fa',
+              borderRadius: '10px',
+              border: '1px solid #dee2e6'
+            }}>
+              Loading...
+            </div>
+          ) : (
+            <>
+              {/* Tag pool */}
+              <div style={{
+                marginBottom: '20px',
+                padding: '16px',
+                border: '1px solid #dee2e6',
+                borderRadius: '10px',
+                backgroundColor: 'white'
+              }}>
+                <div style={{ marginBottom: '12px', fontWeight: '600', color: '#333' }}>Tag Pool</div>
+                {manualTagPool.length === 0 ? (
+                  <div style={{ color: '#666', fontSize: '14px' }}>
+                    No positive tags found yet. Go back and like tags in exploration.
+                  </div>
+                ) : (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                    {manualTagPool.map((tag) => {
+                      const isSelected = manualSelectedTags.includes(tag);
+                      const isDisabled = !isSelected && manualSelectedTags.length >= 10;
+                      return (
+                        <button
+                          key={tag}
+                          onClick={() => toggleManualTagSelection(tag)}
+                          disabled={isDisabled}
+                          style={{
+                            border: isSelected ? '2px solid #007bff' : '1px solid #ced4da',
+                            backgroundColor: isSelected ? '#e7f1ff' : '#fff',
+                            color: '#333',
+                            borderRadius: '18px',
+                            padding: '6px 12px',
+                            fontSize: '13px',
+                            cursor: isDisabled ? 'not-allowed' : 'pointer',
+                            opacity: isDisabled ? 0.5 : 1
+                          }}
+                        >
+                          {tag}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Weight sliders */}
+              <div style={{
+                marginBottom: '20px',
+                padding: '16px',
+                border: '1px solid #dee2e6',
+                borderRadius: '10px',
+                backgroundColor: 'white'
+              }}>
+                <div style={{ marginBottom: '12px', fontWeight: '600', color: '#333' }}>Weights (0.0 - 1.0)</div>
+                {manualSelectedTags.length === 0 ? (
+                  <div style={{ color: '#666', fontSize: '14px' }}>
+                    Select tags to configure weights.
+                  </div>
+                ) : (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    {manualSelectedTags.map((tag) => (
+                      <div key={tag} style={{ display: 'grid', gridTemplateColumns: '220px 1fr 50px', gap: '12px', alignItems: 'center' }}>
+                        <div style={{ fontSize: '14px', color: '#333' }}>{tag}</div>
+                        <input
+                          type="range"
+                          min="0"
+                          max="1"
+                          step="0.01"
+                          value={manualWeights[tag] ?? 0.1}
+                          onChange={(e) => handleManualWeightChange(tag, parseFloat(e.target.value))}
+                        />
+                        <div style={{ fontSize: '13px', color: '#555', textAlign: 'right' }}>
+                          {(manualWeights[tag] ?? 0.1).toFixed(2)}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {manualStatusMessage && (
+                <div style={{ marginBottom: '16px', color: '#b45309', fontSize: '14px' }}>
+                  {manualStatusMessage}
+                </div>
+              )}
+
+              <div style={{ display: 'flex', gap: '10px' }}>
+                <button
+                  onClick={continueFromManualCustomization}
+                  disabled={isManualLoading || manualSelectedTags.length !== 10}
+                  style={{
+                    padding: '12px 22px',
+                    backgroundColor: manualSelectedTags.length === 10 ? '#007bff' : '#ccc',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '6px',
+                    cursor: manualSelectedTags.length === 10 ? 'pointer' : 'not-allowed',
+                    fontSize: '15px',
+                    fontWeight: '500'
+                  }}
+                >
+                  Continue to GP Refinement
+                </button>
+                <button
+                  onClick={() => setStage('impression')}
+                  style={{
+                    padding: '12px 22px',
+                    backgroundColor: '#6c757d',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '6px',
+                    cursor: 'pointer',
+                    fontSize: '15px'
+                  }}
+                >
+                  Back to Exploration
+                </button>
+              </div>
+            </>
+          )}
+        </div>
       ) : stage === 'hitl_refinement' ? (
         // ============== HITL REFINEMENT STAGE ==============
         <div>
@@ -1765,7 +2038,7 @@ function App() {
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {availableLocations.map((loc, idx) => {
-                const isRanked = rankings[loc.name] && Object.keys(rankings[loc.name]).length === 5;
+                const isRanked = rankings[loc.name] && Object.keys(rankings[loc.name]).length === DEFAULT_RANK_COUNT;
                 const isCurrent = currentRankingLocation === loc.name;
                 // Check generation status
                 const genStatus = locationGenStatus[loc.name] || 'pending';
@@ -1915,7 +2188,7 @@ function App() {
                     Context: {adjective} {currentRankingLocation}
                   </h2>
                   <p style={{ color: '#666', margin: '5px 0 0 0' }}>
-                    Rank the images based on how much you like each space, from most liked (1) to least liked (5).
+                    Rank the images based on how much you like each space, from most liked (1) to least liked ({comparisonImages.length || DEFAULT_RANK_COUNT}).
                     <br />
                     Rank based on your personal liking, not on an objective definition or prior selections.
                   </p>
@@ -2011,10 +2284,8 @@ function App() {
                                 1: '#22c55e', // green
                                 2: '#84cc16', // lime/yellow-green
                                 3: '#facc15', // yellow
-                                4: '#f97316', // orange
-                                5: '#ef4444'  // red
+                                4: '#ef4444'  // red
                               };
-                              const ordinals = { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th', 5: '5th' };
                               return (
                                 <div style={{
                                   position: 'absolute',
@@ -2031,7 +2302,7 @@ function App() {
                                   fontSize: '14px',
                                   fontWeight: 'bold'
                                 }}>
-                                  {ordinals[imageRank] || imageRank}
+                                  {getOrdinalLabel(Number(imageRank))}
                                 </div>
                               );
                             })()}
@@ -2045,15 +2316,13 @@ function App() {
                             justifyContent: 'center',
                             backgroundColor: '#f8f9fa'
                           }}>
-                            {[1, 2, 3, 4, 5].map(rank => {
+                            {Array.from({ length: comparisonImages.length || DEFAULT_RANK_COUNT }, (_, idx) => idx + 1).map(rank => {
                               const rankColors = {
                                 1: '#22c55e', // green
                                 2: '#84cc16', // lime/yellow-green
                                 3: '#facc15', // yellow
-                                4: '#f97316', // orange
-                                5: '#ef4444'  // red
+                                4: '#ef4444'  // red
                               };
-                              const ordinals = { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th', 5: '5th' };
                               const isSelected = currentRanking[rank] === img.id;
                               return (
                                 <button
@@ -2072,7 +2341,7 @@ function App() {
                                     transition: 'all 0.2s ease'
                                   }}
                                 >
-                                  {ordinals[rank]}
+                                  {getOrdinalLabel(rank)}
                                 </button>
                               );
                             })}
@@ -2218,7 +2487,8 @@ function App() {
                   <button
                     onClick={saveCurrentRanking}
                     disabled={(() => {
-                      const allRanked = Object.values(currentRanking).filter(Boolean).length === 5;
+                      const requiredRankCount = comparisonImages.length || DEFAULT_RANK_COUNT;
+                      const allRanked = Object.values(currentRanking).filter(Boolean).length === requiredRankCount;
                       const allScored = Object.values(currentRanking).filter(Boolean).every(imageId => sliderScores[imageId]);
                       return isSavingRanking || rankingSaved || !allRanked || !allScored;
                     })()}
@@ -2228,7 +2498,8 @@ function App() {
                       fontWeight: '500',
                       backgroundColor: (() => {
                         if (rankingSaved) return '#17a2b8';  // Blue when saved
-                        const allRanked = Object.values(currentRanking).filter(Boolean).length === 5;
+                        const requiredRankCount = comparisonImages.length || DEFAULT_RANK_COUNT;
+                        const allRanked = Object.values(currentRanking).filter(Boolean).length === requiredRankCount;
                         const allScored = Object.values(currentRanking).filter(Boolean).every(imageId => sliderScores[imageId]);
                         return allRanked && allScored ? '#28a745' : '#ccc';
                       })(),
@@ -2236,7 +2507,8 @@ function App() {
                       border: 'none',
                       borderRadius: '8px',
                       cursor: (() => {
-                        const allRanked = Object.values(currentRanking).filter(Boolean).length === 5;
+                        const requiredRankCount = comparisonImages.length || DEFAULT_RANK_COUNT;
+                        const allRanked = Object.values(currentRanking).filter(Boolean).length === requiredRankCount;
                         const allScored = Object.values(currentRanking).filter(Boolean).every(imageId => sliderScores[imageId]);
                         return rankingSaved || !allRanked || !allScored ? 'not-allowed' : 'pointer';
                       })(),
@@ -2726,9 +2998,9 @@ function App() {
               {isLoading ? 'Processing...' : 'Slot Refinement'}
             </button>
             
-            {/* Refine Preferences Button (HITL - Legacy) */}
+            {/* User Customization + GP Refinement */}
             <button
-              onClick={handleStartHITL}
+              onClick={handleStartManualCustomization}
               disabled={!selectedImage || isLoading || !conceptSystemReady}
               style={{
                 padding: '12px 24px',
@@ -2742,7 +3014,7 @@ function App() {
                 transition: 'background-color 0.3s ease'
               }}
             >
-              {isLoading ? 'Processing...' : 'GP Refinement'}
+              {isLoading ? 'Processing...' : 'User Customization → GP Refinement'}
             </button>
             
             {/* Skip to Evaluation Button */}

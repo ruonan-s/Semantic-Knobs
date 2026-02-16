@@ -1,0 +1,248 @@
+{
+  "stage": "impression",
+  "session_id": "eval_Test_Manual_Calm_Home_Office_Sample_2026-02-16_16-07-18",
+  "timestamp": "2026-02-16T16:10:57.932991",
+  "num_concepts": 10,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 360,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "lush greenery",
+      "weight": 0.12509918212890625,
+      "score": 0.8819177746772766,
+      "utility_std": 1.0066077709197998,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "lush greenery"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "ceramic pots",
+      "weight": 0.11099284887313843,
+      "score": 0.7622766494750977,
+      "utility_std": 1.0066077709197998,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "ceramic pots"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "large windows",
+      "weight": 0.10929857939481735,
+      "score": 0.746894359588623,
+      "utility_std": 1.0066077709197998,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "stone accents",
+      "weight": 0.10754665732383728,
+      "score": 0.730735719203949,
+      "utility_std": 1.0066077709197998,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "stone accents"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "curtained backdrop",
+      "weight": 0.10006795823574066,
+      "score": 0.6586604118347168,
+      "utility_std": 1.0066077709197998,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "curtained backdrop"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "Cozy atmosphere",
+      "weight": 0.09757623821496964,
+      "score": 0.6334449052810669,
+      "utility_std": 1.0066077709197998,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Cozy atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "natural lighting",
+      "weight": 0.09486589580774307,
+      "score": 0.6052751541137695,
+      "utility_std": 1.0066077709197998,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "natural lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "earthy tones",
+      "weight": 0.09318102151155472,
+      "score": 0.5873549580574036,
+      "utility_std": 1.0066077709197998,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "earthy tones"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "clean lines",
+      "weight": 0.08406935632228851,
+      "score": 0.4844530522823334,
+      "utility_std": 1.0066077709197998,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "clean lines"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "wooden desk",
+      "weight": 0.07730215787887573,
+      "score": 0.4005328416824341,
+      "utility_std": 1.0066077709197998,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden desk"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_1_0_3",
+      "text": "lush greenery",
+      "utility": 0.8819177746772766,
+      "uncertainty": 1.0066077709197998,
+      "weight": 0.12509918212890625,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_9",
+      "text": "ceramic pots",
+      "utility": 0.7622766494750977,
+      "uncertainty": 1.0066077709197998,
+      "weight": 0.11099284887313843,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_4",
+      "text": "large windows",
+      "utility": 0.746894359588623,
+      "uncertainty": 1.0066077709197998,
+      "weight": 0.10929857939481735,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_5",
+      "text": "stone accents",
+      "utility": 0.730735719203949,
+      "uncertainty": 1.0066077709197998,
+      "weight": 0.10754665732383728,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_10",
+      "text": "curtained backdrop",
+      "utility": 0.6586604118347168,
+      "uncertainty": 1.0066077709197998,
+      "weight": 0.10006795823574066,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_6",
+      "text": "Cozy atmosphere",
+      "utility": 0.6334449052810669,
+      "uncertainty": 1.0066077709197998,
+      "weight": 0.09757623821496964,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_0",
+      "text": "natural lighting",
+      "utility": 0.6052751541137695,
+      "uncertainty": 1.0066077709197998,
+      "weight": 0.09486589580774307,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_6",
+      "text": "earthy tones",
+      "utility": 0.5873549580574036,
+      "uncertainty": 1.0066077709197998,
+      "weight": 0.09318102151155472,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_7",
+      "text": "clean lines",
+      "utility": 0.4844530522823334,
+      "uncertainty": 1.0066077709197998,
+      "weight": 0.08406935632228851,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "wooden desk",
+      "utility": 0.4005328416824341,
+      "uncertainty": 1.0066077709197998,
+      "weight": 0.07730215787887573,
+      "source_image_idx": 1,
+      "category": "positive"
+    }
+  ]
+}

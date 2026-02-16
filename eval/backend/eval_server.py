@@ -29,6 +29,7 @@ from typing import Optional, List, Dict
 import json
 import random
 import glob as glob_module
+from datetime import datetime
 
 # Import eval utilities
 from eval_utils import (
@@ -71,9 +72,7 @@ LLM_SCRIPTS_PATH = Path(__file__).parent.parent / "llm_scripts"
 sys.path.insert(0, str(LLM_SCRIPTS_PATH))
 from sd_baselines import (
     generate_sd_text_baseline,
-    generate_sd_tags_baseline,
     generate_sd_img2img_baseline,
-    generate_sd_preferences_baseline,
     set_runner as set_sd_baseline_runner
 )
 
@@ -176,6 +175,18 @@ class EvalStatusResponse(BaseModel):
     stage: str
     concepts_initialized: bool
     concept_count: int
+
+
+class ManualTagPoolRequest(BaseModel):
+    session_id: str
+    stage: str = "impression"
+
+
+class SaveManualWeightsRequest(BaseModel):
+    session_id: str
+    selected_tags: List[str]
+    weights: Dict[str, float]
+    selected_image_id: Optional[str] = None
 
 
 # ============== Endpoints ==============
@@ -424,6 +435,118 @@ def get_eval_status(session_id: str):
     }
 
 
+def _extract_positive_tag_pool(session_id: str, session_folder: str, stage: str = "impression") -> List[str]:
+    """
+    Build manual-tag pool from explicit positive clicks, with concept_weights fallback.
+    """
+    tags: List[str] = []
+    key = f"{session_id}_{stage}"
+
+    if key in gp_exploration_sessions:
+        gp_session = gp_exploration_sessions[key]
+        tag_prefs = gp_session.get_tag_preferences()
+        for tag_id, pref in tag_prefs.items():
+            if pref == "positive" and tag_id in gp_session.raw_tags:
+                text = gp_session.raw_tags[tag_id].text.strip()
+                if text:
+                    tags.append(text)
+
+    # Fallback for older sessions / no explicit positive clicks
+    if not tags:
+        concept_weights_path = Path(session_folder) / stage / "concept_weights.json"
+        if concept_weights_path.exists():
+            with open(concept_weights_path, "r") as f:
+                cw_data = json.load(f)
+            for cw in cw_data.get("concept_weights", []):
+                label = str(cw.get("label", "")).strip()
+                category = str(cw.get("category", "")).lower()
+                if label and (not category or category == "positive"):
+                    tags.append(label)
+
+    # Deduplicate while preserving order
+    deduped: List[str] = []
+    seen = set()
+    for tag in tags:
+        key_tag = tag.lower()
+        if key_tag in seen:
+            continue
+        seen.add(key_tag)
+        deduped.append(tag)
+
+    return deduped
+
+
+@app.post("/api/eval/manual-tag-pool")
+def get_manual_tag_pool(request: ManualTagPoolRequest):
+    """Return positive tag pool for manual user customization stage."""
+    session = eval_sessions.get(request.session_id)
+    if not session:
+        raise HTTPException(404, f"Session not found: {request.session_id}")
+
+    pool = _extract_positive_tag_pool(
+        session_id=request.session_id,
+        session_folder=session["folder"],
+        stage=request.stage
+    )
+
+    return {"success": True, "tags": pool, "count": len(pool)}
+
+
+@app.post("/api/eval/save-manual-weights")
+def save_manual_weights(request: SaveManualWeightsRequest):
+    """Persist manual 10-tag selection and weights for user_customized baseline."""
+    session = eval_sessions.get(request.session_id)
+    if not session:
+        raise HTTPException(404, f"Session not found: {request.session_id}")
+
+    selected_tags = [str(t).strip() for t in request.selected_tags if str(t).strip()]
+    if len(selected_tags) != 10:
+        raise HTTPException(400, "Exactly 10 selected tags are required")
+
+    if len(set(tag.lower() for tag in selected_tags)) != 10:
+        raise HTTPException(400, "Selected tags must be unique")
+
+    validated_weights: Dict[str, float] = {}
+    for tag in selected_tags:
+        if tag not in request.weights:
+            raise HTTPException(400, f"Missing weight for tag: {tag}")
+        value = request.weights[tag]
+        if not isinstance(value, (int, float)):
+            raise HTTPException(400, f"Weight must be numeric for tag: {tag}")
+        w = float(value)
+        if w < 0.0 or w > 1.0:
+            raise HTTPException(400, f"Weight out of range [0,1] for tag: {tag}")
+        validated_weights[tag] = w
+
+    stage_dir = Path(session["folder"]) / "impression"
+    stage_dir.mkdir(parents=True, exist_ok=True)
+    out_path = stage_dir / "user_manual_weights.json"
+
+    payload = {
+        "stage": "impression",
+        "session_id": request.session_id,
+        "timestamp": datetime.now().isoformat(),
+        "selected_image_id": request.selected_image_id,
+        "selected_tags": selected_tags,
+        "weights": validated_weights
+    }
+    with open(out_path, "w") as f:
+        json.dump(payload, f, indent=2)
+
+    create_eval_session_log(
+        session["folder"],
+        session.get("user_id", "anonymous"),
+        "save_manual_weights",
+        {
+            "selected_image_id": request.selected_image_id,
+            "tag_count": len(selected_tags),
+            "weights_file": str(out_path)
+        }
+    )
+
+    return {"success": True, "path": str(out_path), "tag_count": len(selected_tags)}
+
+
 # ============== Proxy endpoints to main backend ==============
 # These endpoints proxy to the main backend functionality
 
@@ -645,20 +768,22 @@ def _generate_hitl_v2_image(
     adjective: str,
     target_location: str,
     output_path: str,
-    seed: int = 2026
+    seed: int = 2026,
+    source_mode: str = "ours"
 ) -> bool:
     """
-    Generate "ours" image using the exact same method as the HITL V2 refinement stage.
-    
-    Uses fuse_composition + generate_with_hooks with the finalized best tags and weights
-    from the GP refinement, only replacing the location in the prompt.
+    Generate an image with the same HITL V2 attention-control pipeline used for "ours".
+    Source can be:
+    - "ours": refined_preferences_v2.json
+    - "user_customized": impression/user_manual_weights.json
     
     Args:
-        session_folder: Path to session folder containing refined_preferences_v2.json
+        session_folder: Path to session folder
         adjective: Style adjective (e.g., "Calm")
         target_location: Target location (e.g., "Home Office", "Bedroom")
         output_path: Where to save the generated image
         seed: Random seed for generation
+        source_mode: "ours" or "user_customized"
         
     Returns:
         True if generation succeeded, False otherwise
@@ -668,25 +793,37 @@ def _generate_hitl_v2_image(
     from hitl_fuser import HITLCompositionFuser, generate_with_hooks
     from hitl_sampler import CompositionSample
     
-    # Load refined preferences from V2
-    v2_path = os.path.join(session_folder, "refined_preferences_v2.json")
-    if not os.path.exists(v2_path):
-        print(f"[HITL V2 EVAL] refined_preferences_v2.json not found at {v2_path}")
+    if source_mode == "ours":
+        prefs_path = os.path.join(session_folder, "refined_preferences_v2.json")
+        if not os.path.exists(prefs_path):
+            print(f"[HITL V2 EVAL] refined_preferences_v2.json not found at {prefs_path}")
+            return False
+        with open(prefs_path, "r") as f:
+            refined_data = json.load(f)
+        final_tags = refined_data.get("tags", [])
+        weights_dict = refined_data.get("weights", {})
+        if not final_tags:
+            print("[HITL V2 EVAL] No tags in refined_preferences_v2.json")
+            return False
+        tag_labels = list(final_tags)
+        tag_weights = [float(weights_dict.get(tag, 0.1)) for tag in tag_labels]
+    elif source_mode == "user_customized":
+        manual_path = os.path.join(session_folder, "impression", "user_manual_weights.json")
+        if not os.path.exists(manual_path):
+            print(f"[HITL V2 EVAL] user_manual_weights.json not found at {manual_path}")
+            return False
+        with open(manual_path, "r") as f:
+            manual_data = json.load(f)
+        selected_tags = manual_data.get("selected_tags", [])
+        weights_dict = manual_data.get("weights", {})
+        if not selected_tags:
+            print("[HITL V2 EVAL] No selected_tags in user_manual_weights.json")
+            return False
+        tag_labels = list(selected_tags)
+        tag_weights = [float(weights_dict.get(tag, 0.1)) for tag in tag_labels]
+    else:
+        print(f"[HITL V2 EVAL] Unknown source_mode: {source_mode}")
         return False
-    
-    with open(v2_path, 'r') as f:
-        refined_data = json.load(f)
-    
-    final_tags = refined_data.get("tags", [])
-    weights_dict = refined_data.get("weights", {})
-    
-    if not final_tags:
-        print(f"[HITL V2 EVAL] No tags in refined_preferences_v2.json")
-        return False
-    
-    # Extract tag labels and their weights (same order as final_tags)
-    tag_labels = list(final_tags)
-    tag_weights = [weights_dict.get(tag, 0.1) for tag in tag_labels]
     
     # Compute cross-attention weights using same method as refinement stage
     # (softmax scaled to range around 1.0)
@@ -697,7 +834,7 @@ def _generate_hitl_v2_image(
     attn_weights = attn_weights * (len(mus) / attn_weights.sum())
     
     print(f"\n{'='*80}")
-    print(f"[HITL V2 EVAL] Generating with refinement-stage method")
+    print(f"[HITL V2 EVAL] Generating with refinement-stage method ({source_mode})")
     print(f"  Adjective: {adjective}")
     print(f"  Location: {target_location}")
     print(f"  Tags ({len(tag_labels)}): {tag_labels[:5]}...")
@@ -799,9 +936,11 @@ def _generate_slider_sync(session_id: str, location: str, session: dict):
     session_folder = session["folder"]
     
     try:
-        # Check for HITL V2 refinement output
+        # Check for HITL V2 refinement output (ours)
         v2_prefs_path = os.path.join(session_folder, "refined_preferences_v2.json")
         has_v2_refinement = os.path.exists(v2_prefs_path)
+        manual_weights_path = os.path.join(session_folder, "impression", "user_manual_weights.json")
+        has_manual_weights = os.path.exists(manual_weights_path)
         
         if has_v2_refinement:
             print("\n" + "=" * 80)
@@ -814,6 +953,13 @@ def _generate_slider_sync(session_id: str, location: str, session: dict):
             print(f"[EVAL SLIDER] Session: {session_id}")
             print("=" * 80)
             return {"error": True, "status_code": 404, "message": "refined_preferences_v2.json not found. HITL refinement must be completed first."}
+
+        if not has_manual_weights:
+            print("\n" + "=" * 80)
+            print(f"[EVAL SLIDER] ERROR: No user_manual_weights.json found")
+            print(f"[EVAL SLIDER] Session: {session_id}")
+            print("=" * 80)
+            return {"error": True, "status_code": 404, "message": "user_manual_weights.json not found. Complete manual tag customization before evaluation."}
         
         # Load final_selection.json for adjective/location
         final_selection_path = os.path.join(session_folder, "final_selection.json")
@@ -891,6 +1037,20 @@ def _generate_slider_sync(session_id: str, location: str, session: dict):
         
         if not success:
             return {"error": True, "status_code": 500, "message": "Failed to generate HITL V2 image"}
+
+        # ========== Generate "user_customized" image using same HITL V2 method ==========
+        user_customized_path = os.path.join(slider_output_dir, "user_customized.png")
+        success_user_customized = _generate_hitl_v2_image(
+            session_folder=session_folder,
+            adjective=adjective,
+            target_location=target_location,
+            output_path=user_customized_path,
+            seed=seed_base + 1,
+            source_mode="user_customized"
+        )
+
+        if not success_user_customized:
+            return {"error": True, "status_code": 500, "message": "Failed to generate user_customized image"}
         
         # Build response for the "ours" image
         rel_path = os.path.relpath(ours_filepath, SESSION_LOGS_DIR)
@@ -901,10 +1061,10 @@ def _generate_slider_sync(session_id: str, location: str, session: dict):
             session_folder,
             session.get("user_id", "anonymous"),
             "slider_generation_complete",
-            {"success": True, "image_count": 1, "method": "hitl_v2"}
+            {"success": True, "image_count": 2, "method": "hitl_v2"}
         )
         
-        print(f"\n  ✅ Generated HITL V2 image for eval slider")
+        print(f"\n  ✅ Generated HITL V2 images for eval slider (ours + user_customized)")
         
         # ========== SD BASELINE TEXT (text-only baseline) ==========
         # Generate image using only "{adjective} {location}" as prompt
@@ -924,25 +1084,6 @@ def _generate_slider_sync(session_id: str, location: str, session: dict):
             print(f"  ✅ SD text baseline saved: sd_baseline_text.png")
         except Exception as e:
             print(f"  ⚠️ SD text baseline generation failed: {str(e)}")
-        
-        # ========== SD BASELINE TAGS (text + tags baseline) ==========
-        # Generate image using "{adjective} {location}, {tag1}, {tag2}, ..." as prompt
-        # Uses model's native prompt encoding (no custom embedding fusion)
-        print(f"\n{'='*80}")
-        print(f"[SD BASELINE TAGS] Generating baseline with learned tags")
-        print(f"{'='*80}")
-        
-        try:
-            sd_tags_output = os.path.join(slider_output_dir, "sd_baseline_tags.png")
-            generate_sd_tags_baseline(
-                session_folder=session_folder,
-                location=target_location,
-                output_path=sd_tags_output,
-                seed=2026
-            )
-            print(f"  ✅ SD tags baseline saved: sd_baseline_tags.png")
-        except Exception as e:
-            print(f"  ⚠️ SD tags baseline generation failed: {str(e)}")
         
         # ========== SD STYLE TRANSFER (img2img baseline) ==========
         # Uses exploration selected image as reference for img2img
@@ -1013,25 +1154,6 @@ def _generate_slider_sync(session_id: str, location: str, session: dict):
                 )
         else:
             print(f"  ⚠️ Reference image not found, skipping img2img baseline")
-        
-        # ========== SD PREFERENCES BASELINE (txt2img with structured preferences) ==========
-        # Uses positive/negative/neutral features from user tag preferences
-        # Prompt: "{adjective} {location}, positive features: [...], negative features: [...], neutral features: [...]"
-        print(f"\n{'='*80}")
-        print(f"[SD PREFERENCES BASELINE] Generating baseline with structured preferences")
-        print(f"{'='*80}")
-        
-        try:
-            sd_prefs_output = os.path.join(slider_output_dir, "sd_baseline_prefs.png")
-            generate_sd_preferences_baseline(
-                session_folder=session_folder,
-                location=target_location,
-                output_path=sd_prefs_output,
-                seed=2026
-            )
-            print(f"  ✅ SD preferences baseline saved: sd_baseline_prefs.png")
-        except Exception as e:
-            print(f"  ⚠️ SD preferences baseline generation failed: {str(e)}")
         
         return {
             "success": True,
@@ -2360,15 +2482,14 @@ class ComparisonImagesRequest(BaseModel):
 @app.post("/api/eval/get-comparison-images")
 def get_comparison_images(request: ComparisonImagesRequest):
     """
-    Get 5 comparison images for a location, randomized.
-    
-    All images are now generated using Stable Diffusion:
+    Get 4 comparison images for a location, randomized.
+
+    Conditions:
+    - slider/{location}/user_customized.png (manual user-selected tags/weights, HITL V2 pipeline)
+    - slider/{location}/eval_alpha_1.00_*.png (ours)
     - slider/{location}/sd_baseline_text.png (SD text-only baseline)
-    - slider/{location}/eval_alpha_1.00_*.png (SDXL personalized with custom embeddings - "ours")
     - slider/{location}/sd_style_transfer.png (SD img2img style transfer)
-    - slider/{location}/sd_baseline_tags.png (SD text + tags baseline)
-    - slider/{location}/sd_baseline_prefs.png (SD with positive/negative/neutral features)
-    
+
     Returns images in randomized order with a mapping to identify them later.
     """
     print(f"[GET-COMPARISON] Request: session_log={request.session_log}, location={request.location}, is_initial={request.is_initial_round}")
@@ -2396,6 +2517,12 @@ def get_comparison_images(request: ComparisonImagesRequest):
     
     print(f"[GET-COMPARISON] Found slider folder: {location_folder_name}")
     
+    # Find user_customized
+    user_customized_path = location_folder / "user_customized.png"
+    if not user_customized_path.exists():
+        raise HTTPException(404, f"No user_customized.png found for: {request.location}")
+    user_customized_url = f"/session_logs/{request.session_log}/slider/{location_folder_name}/user_customized.png"
+
     # Find SD text-only baseline (sd_baseline_text.png)
     baseline_text_path = location_folder / "sd_baseline_text.png"
     if not baseline_text_path.exists():
@@ -2416,31 +2543,12 @@ def get_comparison_images(request: ComparisonImagesRequest):
         raise HTTPException(404, f"No sd_style_transfer.png found for: {request.location}")
     style_transfer_url = f"/session_logs/{request.session_log}/slider/{location_folder_name}/sd_style_transfer.png"
     
-    # Find SD tags baseline (sd_baseline_tags.png)
-    baseline_tags_path = location_folder / "sd_baseline_tags.png"
-    if not baseline_tags_path.exists():
-        raise HTTPException(404, f"No sd_baseline_tags.png found for: {request.location}")
-    tags_url = f"/session_logs/{request.session_log}/slider/{location_folder_name}/sd_baseline_tags.png"
-    
-    # Find SD preferences baseline (sd_baseline_prefs.png)
-    baseline_prefs_path = location_folder / "sd_baseline_prefs.png"
-    if not baseline_prefs_path.exists():
-        raise HTTPException(404, f"No sd_baseline_prefs.png found for: {request.location}")
-    prefs_url = f"/session_logs/{request.session_log}/slider/{location_folder_name}/sd_baseline_prefs.png"
-    
-    # Build images list with identifiers (5 images)
-    # All use Stable Diffusion:
-    # - baseline: SD text-only baseline (model's native prompt encoding)
-    # - personalized: SDXL with custom-fused embeddings (ours)
-    # - style_transfer: SD img2img baseline (model's native prompt encoding)
-    # - baseline_tags: SD text+tags baseline (model's native prompt encoding)
-    # - baseline_prefs: SD with positive/negative/neutral features (model's native prompt encoding)
+    # Build images list with identifiers (4 images)
     images = [
+        {"id": "user_customized", "url": user_customized_url, "filename": "user_customized.png", "type": "user_customized"},
         {"id": "baseline", "url": baseline_url, "filename": "sd_baseline_text.png", "type": "baseline"},
         {"id": "alpha", "url": alpha_url, "filename": alpha_image_name, "type": "personalized"},
-        {"id": "third", "url": style_transfer_url, "filename": "sd_style_transfer.png", "type": "style_transfer"},
-        {"id": "tags", "url": tags_url, "filename": "sd_baseline_tags.png", "type": "baseline_tags"},
-        {"id": "prefs", "url": prefs_url, "filename": "sd_baseline_prefs.png", "type": "baseline_prefs"}
+        {"id": "third", "url": style_transfer_url, "filename": "sd_style_transfer.png", "type": "style_transfer"}
     ]
     
     # Randomize order
@@ -2449,7 +2557,7 @@ def get_comparison_images(request: ComparisonImagesRequest):
     # Create position mapping (which position each image ended up in)
     position_mapping = {img["id"]: idx for idx, img in enumerate(images)}
     
-    print(f"[GET-COMPARISON] Success! Returning 5 images for {request.location}")
+    print(f"[GET-COMPARISON] Success! Returning 4 images for {request.location}")
     
     return {
         "images": images,

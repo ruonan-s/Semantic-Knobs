@@ -1,0 +1,66 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_Cozy_Bedroom_Sample_2026-02-16_16-17-43
+Started: 2026-02-16T16:20:31.745255
+Rounds: 2
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 21
+  Neutral tags: 10
+  Total: 31
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.26 | minimalist decor, wooden flooring, indoor plants...
+    [1] explore      | avg_μ=+0.42 | minimalist decor, bright natural light, soft lighting...
+    [2] ucb          | avg_μ=+0.42 | natural materials, minimalist decor, natural lighting...
+    [3] challenger   | avg_μ=+0.50 | minimalist decor, soft lighting, textured textiles...
+  Ranking: [3, 1, 0, 2]
+  Comparisons: 6
+  Tags updated: 21
+  Top 5 after round:
+    1. airy space                μ=+0.875 σ=0.365
+    2. warm lighting             μ=+0.875 σ=0.365
+    3. earthy tones              μ=+0.875 σ=0.365
+    4. nature-inspired decor     μ=+0.785 σ=0.430
+    5. plush bedding             μ=+0.785 σ=0.430
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.48 | airy space, warm lighting, earthy tones...
+    [1] explore      | avg_μ=+0.22 | indoor plants, minimalist decor, soft lighting...
+    [2] ucb          | avg_μ=+0.44 | minimalist decor, bright natural light, soft lighting...
+    [3] challenger   | avg_μ=+0.57 | natural materials, natural lighting, soft lighting...
+  Ranking: [3, 2, 1, 0]
+  Comparisons: 6
+  Tags updated: 22
+  Top 5 after round:
+    1. airy space                μ=+0.961 σ=0.224
+    2. earthy tones              μ=+0.875 σ=0.191
+    3. plush bedding             μ=+0.871 σ=0.264
+    4. soft ambient lighting     μ=+0.871 σ=0.264
+    5. nature-inspired decor     μ=+0.785 σ=0.224
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. airy space                     | w=0.119 | μ=+0.961 | win_rate=40%
+   2. earthy tones                   | w=0.110 | μ=+0.875 | win_rate=50%
+   3. plush bedding                  | w=0.109 | μ=+0.871 | win_rate=50%
+   4. soft ambient lighting          | w=0.109 | μ=+0.871 | win_rate=50%
+   5. nature-inspired decor          | w=0.100 | μ=+0.785 | win_rate=67%
+   6. soft lighting                  | w=0.099 | μ=+0.771 | win_rate=29%
+   7. classic furniture              | w=0.099 | μ=+0.771 | win_rate=33%
+   8. layered textiles               | w=0.090 | μ=+0.675 | win_rate=0%
+   9. warm lighting                  | w=0.084 | μ=+0.604 | win_rate=33%
+  10. bright natural light           | w=0.082 | μ=+0.586 | win_rate=0%
+
+  Convergence: False
+  Top-10 stability: 7/10 tags same as previous round

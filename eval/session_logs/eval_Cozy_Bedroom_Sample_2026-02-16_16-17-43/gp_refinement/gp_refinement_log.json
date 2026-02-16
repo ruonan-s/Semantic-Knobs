@@ -1,0 +1,3017 @@
+{
+  "metadata": {
+    "session_id": "eval_Cozy_Bedroom_Sample_2026-02-16_16-17-43",
+    "log_version": "1.0",
+    "start_time": "2026-02-16T16:20:31.745255",
+    "end_time": "2026-02-16T16:24:48.785701"
+  },
+  "initialization": {
+    "session_id": "eval_Cozy_Bedroom_Sample_2026-02-16_16-17-43",
+    "timestamp": "2026-02-16T16:20:31.745255",
+    "config": {
+      "max_rounds": 999,
+      "tags_per_option": 10,
+      "base_learning_rate": 0.15,
+      "sigma_shrink_factor": 0.85,
+      "priors": {
+        "positive_selected": {
+          "mu": 1.0,
+          "sigma": 0.5
+        },
+        "positive_other": {
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        "neutral_selected": {
+          "mu": 0.0,
+          "sigma": 0.5
+        },
+        "neutral_other": {
+          "mu": -0.3,
+          "sigma": 0.7
+        }
+      }
+    },
+    "input_summary": {
+      "total_positive": 21,
+      "total_neutral": 10,
+      "total_tags": 31,
+      "in_selected_images": 0
+    },
+    "categories": {
+      "positive_selected": {
+        "count": 0,
+        "tags": []
+      },
+      "positive_other": {
+        "count": 21,
+        "tags": [
+          "minimalist decor",
+          "wooden flooring",
+          "indoor plants",
+          "soft lighting",
+          "bright natural light",
+          "cozy atmosphere",
+          "textured textiles",
+          "airy space",
+          "warm lighting",
+          "earthy tones",
+          "wooden furniture",
+          "layered textiles",
+          "natural materials",
+          "large window view",
+          "natural lighting",
+          "earthy color palette",
+          "warm tones",
+          "nature-inspired decor",
+          "plush bedding",
+          "soft ambient lighting",
+          "classic furniture"
+        ]
+      },
+      "neutral_selected": {
+        "count": 0,
+        "tags": []
+      },
+      "neutral_other": {
+        "count": 10,
+        "tags": [
+          "white walls",
+          "neutral bedding",
+          "simple layout",
+          "woven textures",
+          "vintage rugs",
+          "eclectic decor",
+          "rustic wood logs",
+          "plaid bedding",
+          "log cabin style",
+          "wooden ceiling beams"
+        ]
+      }
+    },
+    "all_tags": [
+      {
+        "tag_id": "pos_0",
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_1",
+        "text": "wooden flooring",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_2",
+        "text": "indoor plants",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_3",
+        "text": "soft lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_4",
+        "text": "bright natural light",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_5",
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_6",
+        "text": "textured textiles",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_7",
+        "text": "airy space",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_8",
+        "text": "warm lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_9",
+        "text": "earthy tones",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_10",
+        "text": "wooden furniture",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_11",
+        "text": "layered textiles",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_12",
+        "text": "natural materials",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_13",
+        "text": "large window view",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_14",
+        "text": "natural lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_15",
+        "text": "earthy color palette",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_16",
+        "text": "warm tones",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_17",
+        "text": "nature-inspired decor",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_18",
+        "text": "plush bedding",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_19",
+        "text": "soft ambient lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_20",
+        "text": "classic furniture",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_0",
+        "text": "white walls",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_1",
+        "text": "neutral bedding",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_2",
+        "text": "simple layout",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_3",
+        "text": "woven textures",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_4",
+        "text": "vintage rugs",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_5",
+        "text": "eclectic decor",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_6",
+        "text": "rustic wood logs",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_7",
+        "text": "plaid bedding",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_8",
+        "text": "log cabin style",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_9",
+        "text": "wooden ceiling beams",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      }
+    ],
+    "prior_ordering": "positive_selected > positive_other > neutral_selected > neutral_other"
+  },
+  "rounds": [
+    {
+      "round_num": 1,
+      "timestamp": "2026-02-16T16:20:32.236573",
+      "parameters": {
+        "beta": 2.0,
+        "max_overlap": 0.5,
+        "learning_rate": 0.15
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "wooden flooring",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "indoor plants",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "soft lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "bright natural light",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "textured textiles",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "white walls",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "neutral bedding",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "simple layout",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.26,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "bright natural light",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "soft lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "earthy tones",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "layered textiles",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "white walls",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "airy space",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "warm lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "wooden furniture",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.42,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_12",
+              "text": "natural materials",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "natural lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "soft lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "warm tones",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "white walls",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "wooden flooring",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "large window view",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_15",
+              "text": "earthy color palette",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.42,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "soft lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "textured textiles",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "earthy tones",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_17",
+              "text": "nature-inspired decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "airy space",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "wooden flooring",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "soft ambient lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "warm lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_18",
+              "text": "plush bedding",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5,
+          "avg_sigma": 0.7,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "minimalist decor",
+            "soft lighting",
+            "white walls",
+            "bright natural light",
+            "cozy atmosphere"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "minimalist decor",
+            "soft lighting",
+            "white walls",
+            "wooden flooring",
+            "cozy atmosphere"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "minimalist decor",
+            "wooden flooring",
+            "soft lighting",
+            "textured textiles"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "minimalist decor",
+            "soft lighting",
+            "white walls",
+            "cozy atmosphere"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "minimalist decor",
+            "soft lighting",
+            "airy space",
+            "earthy tones",
+            "warm lighting"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "minimalist decor",
+            "wooden flooring",
+            "soft lighting"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.5,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        3,
+        1,
+        0,
+        2
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "soft ambient lighting",
+            "wooden flooring",
+            "plush bedding",
+            "textured textiles",
+            "nature-inspired decor"
+          ],
+          "tags_only_in_worse": [
+            "layered textiles",
+            "white walls",
+            "bright natural light",
+            "wooden furniture",
+            "cozy atmosphere"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "soft lighting",
+            "airy space",
+            "earthy tones",
+            "warm lighting"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 0,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "soft ambient lighting",
+            "plush bedding",
+            "airy space",
+            "earthy tones",
+            "nature-inspired decor",
+            "warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "white walls",
+            "bright natural light",
+            "indoor plants",
+            "neutral bedding",
+            "simple layout",
+            "cozy atmosphere"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "wooden flooring",
+            "soft lighting",
+            "textured textiles"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "soft ambient lighting",
+            "plush bedding",
+            "textured textiles",
+            "airy space",
+            "earthy tones",
+            "nature-inspired decor",
+            "warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "white walls",
+            "natural lighting",
+            "natural materials",
+            "large window view",
+            "earthy color palette",
+            "warm tones",
+            "cozy atmosphere"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "wooden flooring",
+            "soft lighting"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "layered textiles",
+            "wooden furniture",
+            "airy space",
+            "earthy tones",
+            "warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "wooden flooring",
+            "textured textiles",
+            "indoor plants",
+            "neutral bedding",
+            "simple layout"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "soft lighting",
+            "white walls",
+            "bright natural light",
+            "cozy atmosphere"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "layered textiles",
+            "bright natural light",
+            "airy space",
+            "wooden furniture",
+            "earthy tones",
+            "warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "wooden flooring",
+            "large window view",
+            "natural materials",
+            "natural lighting",
+            "warm tones",
+            "earthy color palette"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "soft lighting",
+            "white walls",
+            "cozy atmosphere"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "bright natural light",
+            "textured textiles",
+            "indoor plants",
+            "neutral bedding",
+            "simple layout"
+          ],
+          "tags_only_in_worse": [
+            "natural lighting",
+            "natural materials",
+            "large window view",
+            "warm tones",
+            "earthy color palette"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "soft lighting",
+            "white walls",
+            "wooden flooring",
+            "cozy atmosphere"
+          ],
+          "num_differentiating": 10
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_6",
+          "text": "textured textiles",
+          "mu_before": 0.5,
+          "mu_after": 0.695,
+          "mu_delta": 0.195,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_17",
+          "text": "nature-inspired decor",
+          "mu_before": 0.5,
+          "mu_after": 0.785,
+          "mu_delta": 0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_19",
+          "text": "soft ambient lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.785,
+          "mu_delta": 0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "wooden flooring",
+          "mu_before": 0.5,
+          "mu_after": 0.41,
+          "mu_delta": -0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_18",
+          "text": "plush bedding",
+          "mu_before": 0.5,
+          "mu_after": 0.785,
+          "mu_delta": 0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "bright natural light",
+          "mu_before": 0.5,
+          "mu_after": 0.5,
+          "mu_delta": 0.0,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "layered textiles",
+          "mu_before": 0.5,
+          "mu_after": 0.59,
+          "mu_delta": 0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "white walls",
+          "mu_before": -0.3,
+          "mu_after": -0.585,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "wooden furniture",
+          "mu_before": 0.5,
+          "mu_after": 0.59,
+          "mu_delta": 0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "cozy atmosphere",
+          "mu_before": 0.5,
+          "mu_after": 0.215,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "earthy tones",
+          "mu_before": 0.5,
+          "mu_after": 0.875,
+          "mu_delta": 0.375,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "airy space",
+          "mu_before": 0.5,
+          "mu_after": 0.875,
+          "mu_delta": 0.375,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "warm lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.875,
+          "mu_delta": 0.375,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_2",
+          "text": "simple layout",
+          "mu_before": -0.3,
+          "mu_after": -0.39,
+          "mu_delta": -0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "indoor plants",
+          "mu_before": 0.5,
+          "mu_after": 0.41,
+          "mu_delta": -0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_1",
+          "text": "neutral bedding",
+          "mu_before": -0.3,
+          "mu_after": -0.39,
+          "mu_delta": -0.09,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_16",
+          "text": "warm tones",
+          "mu_before": 0.5,
+          "mu_after": 0.215,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "natural materials",
+          "mu_before": 0.5,
+          "mu_after": 0.215,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "natural lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.215,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "large window view",
+          "mu_before": 0.5,
+          "mu_after": 0.215,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_15",
+          "text": "earthy color palette",
+          "mu_before": 0.5,
+          "mu_after": 0.215,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_7",
+          "text": "airy space",
+          "mu": 0.875,
+          "sigma": 0.3654
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_8",
+          "text": "warm lighting",
+          "mu": 0.875,
+          "sigma": 0.3654
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_9",
+          "text": "earthy tones",
+          "mu": 0.875,
+          "sigma": 0.3654
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_17",
+          "text": "nature-inspired decor",
+          "mu": 0.785,
+          "sigma": 0.4299
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_18",
+          "text": "plush bedding",
+          "mu": 0.785,
+          "sigma": 0.4299
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_19",
+          "text": "soft ambient lighting",
+          "mu": 0.785,
+          "sigma": 0.4299
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_6",
+          "text": "textured textiles",
+          "mu": 0.695,
+          "sigma": 0.3654
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_10",
+          "text": "wooden furniture",
+          "mu": 0.59,
+          "sigma": 0.4299
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_11",
+          "text": "layered textiles",
+          "mu": 0.59,
+          "sigma": 0.4299
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_0",
+          "text": "minimalist decor",
+          "mu": 0.5,
+          "sigma": 0.7
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.585,
+          "max": 0.875,
+          "mean": 0.2419,
+          "std": 0.4544
+        },
+        "sigma_distribution": {
+          "min": 0.3654,
+          "max": 0.7,
+          "mean": 0.5066
+        },
+        "tags_updated": 21,
+        "unique_tags_updated": 21,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 11.333333333333334,
+        "ranking_received": [
+          3,
+          1,
+          0,
+          2
+        ],
+        "best_option_strategy": "challenger",
+        "worst_option_strategy": "ucb"
+      }
+    },
+    {
+      "round_num": 2,
+      "timestamp": "2026-02-16T16:21:47.185048",
+      "parameters": {
+        "beta": 1.6667,
+        "max_overlap": 0.5,
+        "learning_rate": 0.1425
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_7",
+              "text": "airy space",
+              "mu": 0.875,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "warm lighting",
+              "mu": 0.875,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "earthy tones",
+              "mu": 0.875,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_17",
+              "text": "nature-inspired decor",
+              "mu": 0.785,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_18",
+              "text": "plush bedding",
+              "mu": 0.785,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "soft ambient lighting",
+              "mu": 0.785,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "textured textiles",
+              "mu": 0.695,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_3",
+              "text": "woven textures",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_4",
+              "text": "vintage rugs",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_5",
+              "text": "eclectic decor",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.4775,
+          "avg_sigma": 0.4851,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_2",
+              "text": "indoor plants",
+              "mu": 0.41,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "soft lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_3",
+              "text": "woven textures",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "classic furniture",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "wooden flooring",
+              "mu": 0.41,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_4",
+              "text": "vintage rugs",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "wooden furniture",
+              "mu": 0.59,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_5",
+              "text": "eclectic decor",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "cozy atmosphere",
+              "mu": 0.215,
+              "sigma": 0.4299,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.2225,
+          "avg_sigma": 0.592,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "bright natural light",
+              "mu": 0.5,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "soft lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "layered textiles",
+              "mu": 0.59,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_3",
+              "text": "woven textures",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "classic furniture",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "airy space",
+              "mu": 0.875,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "soft ambient lighting",
+              "mu": 0.785,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_18",
+              "text": "plush bedding",
+              "mu": 0.785,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_4",
+              "text": "vintage rugs",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.4435,
+          "avg_sigma": 0.552,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_12",
+              "text": "natural materials",
+              "mu": 0.215,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "natural lighting",
+              "mu": 0.215,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "soft lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "earthy tones",
+              "mu": 0.875,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_17",
+              "text": "nature-inspired decor",
+              "mu": 0.785,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "airy space",
+              "mu": 0.875,
+              "sigma": 0.3654,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "classic furniture",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "soft ambient lighting",
+              "mu": 0.785,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "large window view",
+              "mu": 0.215,
+              "sigma": 0.4299,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_18",
+              "text": "plush bedding",
+              "mu": 0.785,
+              "sigma": 0.4299,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.575,
+          "avg_sigma": 0.471,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "eclectic decor",
+            "woven textures",
+            "vintage rugs"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "soft ambient lighting",
+            "plush bedding",
+            "airy space",
+            "vintage rugs",
+            "woven textures"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "soft ambient lighting",
+            "plush bedding",
+            "airy space",
+            "earthy tones",
+            "nature-inspired decor"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "minimalist decor",
+            "soft lighting",
+            "classic furniture",
+            "vintage rugs",
+            "woven textures"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "soft lighting",
+            "classic furniture"
+          ],
+          "overlap_count": 2,
+          "overlap_fraction": 0.2,
+          "max_allowed": 0.5,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "soft lighting",
+            "soft ambient lighting",
+            "classic furniture",
+            "plush bedding",
+            "airy space"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.5,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "natural lighting",
+            "natural materials",
+            "earthy tones",
+            "nature-inspired decor",
+            "large window view"
+          ],
+          "tags_only_in_worse": [
+            "minimalist decor",
+            "layered textiles",
+            "bright natural light",
+            "vintage rugs",
+            "woven textures"
+          ],
+          "shared_tags": [
+            "soft lighting",
+            "soft ambient lighting",
+            "classic furniture",
+            "plush bedding",
+            "airy space"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "soft ambient lighting",
+            "natural lighting",
+            "plush bedding",
+            "natural materials",
+            "airy space",
+            "earthy tones",
+            "nature-inspired decor",
+            "large window view"
+          ],
+          "tags_only_in_worse": [
+            "minimalist decor",
+            "wooden flooring",
+            "indoor plants",
+            "wooden furniture",
+            "woven textures",
+            "vintage rugs",
+            "eclectic decor",
+            "cozy atmosphere"
+          ],
+          "shared_tags": [
+            "soft lighting",
+            "classic furniture"
+          ],
+          "num_differentiating": 16
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 0,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "soft lighting",
+            "classic furniture",
+            "natural lighting",
+            "natural materials",
+            "large window view"
+          ],
+          "tags_only_in_worse": [
+            "textured textiles",
+            "vintage rugs",
+            "eclectic decor",
+            "warm lighting",
+            "woven textures"
+          ],
+          "shared_tags": [
+            "soft ambient lighting",
+            "plush bedding",
+            "airy space",
+            "earthy tones",
+            "nature-inspired decor"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "layered textiles",
+            "soft ambient lighting",
+            "bright natural light",
+            "plush bedding",
+            "airy space"
+          ],
+          "tags_only_in_worse": [
+            "wooden flooring",
+            "wooden furniture",
+            "indoor plants",
+            "eclectic decor",
+            "cozy atmosphere"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "soft lighting",
+            "classic furniture",
+            "vintage rugs",
+            "woven textures"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 0,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "minimalist decor",
+            "soft lighting",
+            "layered textiles",
+            "classic furniture",
+            "bright natural light"
+          ],
+          "tags_only_in_worse": [
+            "textured textiles",
+            "earthy tones",
+            "nature-inspired decor",
+            "eclectic decor",
+            "warm lighting"
+          ],
+          "shared_tags": [
+            "soft ambient lighting",
+            "plush bedding",
+            "airy space",
+            "vintage rugs",
+            "woven textures"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "minimalist decor",
+            "soft lighting",
+            "classic furniture",
+            "wooden flooring",
+            "indoor plants",
+            "wooden furniture",
+            "cozy atmosphere"
+          ],
+          "tags_only_in_worse": [
+            "soft ambient lighting",
+            "plush bedding",
+            "textured textiles",
+            "airy space",
+            "earthy tones",
+            "nature-inspired decor",
+            "warm lighting"
+          ],
+          "shared_tags": [
+            "eclectic decor",
+            "woven textures",
+            "vintage rugs"
+          ],
+          "num_differentiating": 14
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_12",
+          "text": "natural materials",
+          "mu_before": 0.215,
+          "mu_after": 0.4857,
+          "mu_delta": 0.2707,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "natural lighting",
+          "mu_before": 0.215,
+          "mu_after": 0.4857,
+          "mu_delta": 0.2707,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "earthy tones",
+          "mu_before": 0.875,
+          "mu_after": 0.875,
+          "mu_delta": 0.0,
+          "sigma_before": 0.3654,
+          "sigma_after": 0.1907,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_17",
+          "text": "nature-inspired decor",
+          "mu_before": 0.785,
+          "mu_after": 0.785,
+          "mu_delta": 0.0,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.2244,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "large window view",
+          "mu_before": 0.215,
+          "mu_after": 0.4857,
+          "mu_delta": 0.2707,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "minimalist decor",
+          "mu_before": 0.5,
+          "mu_after": 0.5,
+          "mu_delta": 0.0,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "bright natural light",
+          "mu_before": 0.5,
+          "mu_after": 0.5855,
+          "mu_delta": 0.0855,
+          "sigma_before": 0.3654,
+          "sigma_after": 0.2244,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "layered textiles",
+          "mu_before": 0.59,
+          "mu_after": 0.6755,
+          "mu_delta": 0.0855,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_3",
+          "text": "woven textures",
+          "mu_before": -0.3,
+          "mu_after": -0.5707,
+          "mu_delta": -0.2707,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_4",
+          "text": "vintage rugs",
+          "mu_before": -0.3,
+          "mu_after": -0.5707,
+          "mu_delta": -0.2707,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "airy space",
+          "mu_before": 0.875,
+          "mu_after": 0.9605,
+          "mu_delta": 0.0855,
+          "sigma_before": 0.3654,
+          "sigma_after": 0.2244,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_19",
+          "text": "soft ambient lighting",
+          "mu_before": 0.785,
+          "mu_after": 0.8705,
+          "mu_delta": 0.0855,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_18",
+          "text": "plush bedding",
+          "mu_before": 0.785,
+          "mu_after": 0.8705,
+          "mu_delta": 0.0855,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "indoor plants",
+          "mu_before": 0.41,
+          "mu_after": 0.3245,
+          "mu_delta": -0.0855,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "wooden flooring",
+          "mu_before": 0.41,
+          "mu_after": 0.3245,
+          "mu_delta": -0.0855,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "wooden furniture",
+          "mu_before": 0.59,
+          "mu_after": 0.5045,
+          "mu_delta": -0.0855,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_5",
+          "text": "eclectic decor",
+          "mu_before": -0.3,
+          "mu_after": -0.6562,
+          "mu_delta": -0.3562,
+          "sigma_before": 0.7,
+          "sigma_after": 0.3654,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "cozy atmosphere",
+          "mu_before": 0.215,
+          "mu_after": 0.1295,
+          "mu_delta": -0.0855,
+          "sigma_before": 0.4299,
+          "sigma_after": 0.264,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "soft lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.7708,
+          "mu_delta": 0.2708,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_20",
+          "text": "classic furniture",
+          "mu_before": 0.5,
+          "mu_after": 0.7708,
+          "mu_delta": 0.2708,
+          "sigma_before": 0.7,
+          "sigma_after": 0.4299,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "textured textiles",
+          "mu_before": 0.695,
+          "mu_after": 0.4243,
+          "mu_delta": -0.2707,
+          "sigma_before": 0.3654,
+          "sigma_after": 0.2244,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "warm lighting",
+          "mu_before": 0.875,
+          "mu_after": 0.6042,
+          "mu_delta": -0.2708,
+          "sigma_before": 0.3654,
+          "sigma_after": 0.2244,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_7",
+          "text": "airy space",
+          "mu": 0.9605,
+          "sigma": 0.2244
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_9",
+          "text": "earthy tones",
+          "mu": 0.875,
+          "sigma": 0.1907
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_18",
+          "text": "plush bedding",
+          "mu": 0.8705,
+          "sigma": 0.264
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_19",
+          "text": "soft ambient lighting",
+          "mu": 0.8705,
+          "sigma": 0.264
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_17",
+          "text": "nature-inspired decor",
+          "mu": 0.785,
+          "sigma": 0.2244
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_3",
+          "text": "soft lighting",
+          "mu": 0.7708,
+          "sigma": 0.4299
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_20",
+          "text": "classic furniture",
+          "mu": 0.7708,
+          "sigma": 0.4299
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_11",
+          "text": "layered textiles",
+          "mu": 0.6755,
+          "sigma": 0.264
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_8",
+          "text": "warm lighting",
+          "mu": 0.6042,
+          "sigma": 0.2244
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_4",
+          "text": "bright natural light",
+          "mu": 0.5855,
+          "sigma": 0.2244
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.6562,
+          "max": 0.9605,
+          "mean": 0.2419,
+          "std": 0.513
+        },
+        "sigma_distribution": {
+          "min": 0.1907,
+          "max": 0.7,
+          "mean": 0.3662
+        },
+        "tags_updated": 22,
+        "unique_tags_updated": 22,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 11.666666666666666,
+        "ranking_received": [
+          3,
+          2,
+          1,
+          0
+        ],
+        "best_option_strategy": "challenger",
+        "worst_option_strategy": "exploit"
+      }
+    }
+  ],
+  "final": {
+    "timestamp": "2026-02-16T16:24:48.785614",
+    "rounds_completed": 2,
+    "total_comparisons": 12,
+    "total_tag_updates": 43,
+    "final_tags": [
+      {
+        "rank": 1,
+        "text": "airy space",
+        "weight": 0.1193,
+        "final_mu": 0.9605,
+        "final_sigma": 0.2244,
+        "category": "positive_other",
+        "times_shown": 5,
+        "times_in_winner": 2,
+        "times_in_loser": 1,
+        "win_rate": 0.4
+      },
+      {
+        "rank": 2,
+        "text": "earthy tones",
+        "weight": 0.1096,
+        "final_mu": 0.875,
+        "final_sigma": 0.1907,
+        "category": "positive_other",
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 1,
+        "win_rate": 0.5
+      },
+      {
+        "rank": 3,
+        "text": "plush bedding",
+        "weight": 0.1091,
+        "final_mu": 0.8705,
+        "final_sigma": 0.264,
+        "category": "positive_other",
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 1,
+        "win_rate": 0.5
+      },
+      {
+        "rank": 4,
+        "text": "soft ambient lighting",
+        "weight": 0.1091,
+        "final_mu": 0.8705,
+        "final_sigma": 0.264,
+        "category": "positive_other",
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 1,
+        "win_rate": 0.5
+      },
+      {
+        "rank": 5,
+        "text": "nature-inspired decor",
+        "weight": 0.1001,
+        "final_mu": 0.785,
+        "final_sigma": 0.2244,
+        "category": "positive_other",
+        "times_shown": 3,
+        "times_in_winner": 2,
+        "times_in_loser": 1,
+        "win_rate": 0.667
+      },
+      {
+        "rank": 6,
+        "text": "soft lighting",
+        "weight": 0.0987,
+        "final_mu": 0.7708,
+        "final_sigma": 0.4299,
+        "category": "positive_other",
+        "times_shown": 7,
+        "times_in_winner": 2,
+        "times_in_loser": 1,
+        "win_rate": 0.286
+      },
+      {
+        "rank": 7,
+        "text": "classic furniture",
+        "weight": 0.0987,
+        "final_mu": 0.7708,
+        "final_sigma": 0.4299,
+        "category": "positive_other",
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0,
+        "win_rate": 0.333
+      },
+      {
+        "rank": 8,
+        "text": "layered textiles",
+        "weight": 0.0898,
+        "final_mu": 0.6755,
+        "final_sigma": 0.264,
+        "category": "positive_other",
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0,
+        "win_rate": 0.0
+      },
+      {
+        "rank": 9,
+        "text": "warm lighting",
+        "weight": 0.0836,
+        "final_mu": 0.6042,
+        "final_sigma": 0.2244,
+        "category": "positive_other",
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1,
+        "win_rate": 0.333
+      },
+      {
+        "rank": 10,
+        "text": "bright natural light",
+        "weight": 0.082,
+        "final_mu": 0.5855,
+        "final_sigma": 0.2244,
+        "category": "positive_other",
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 0,
+        "win_rate": 0.0
+      }
+    ],
+    "final_trajectories": {
+      "airy space": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.875,
+          "sigma": 0.3654
+        },
+        {
+          "round": 2,
+          "mu": 0.9605,
+          "sigma": 0.2244
+        }
+      ],
+      "earthy tones": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.875,
+          "sigma": 0.3654
+        },
+        {
+          "round": 2,
+          "mu": 0.875,
+          "sigma": 0.1907
+        }
+      ],
+      "plush bedding": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.785,
+          "sigma": 0.4299
+        },
+        {
+          "round": 2,
+          "mu": 0.8705,
+          "sigma": 0.264
+        }
+      ],
+      "soft ambient lighting": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.785,
+          "sigma": 0.4299
+        },
+        {
+          "round": 2,
+          "mu": 0.8705,
+          "sigma": 0.264
+        }
+      ],
+      "nature-inspired decor": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.785,
+          "sigma": 0.4299
+        },
+        {
+          "round": 2,
+          "mu": 0.785,
+          "sigma": 0.2244
+        }
+      ],
+      "soft lighting": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 2,
+          "mu": 0.7708,
+          "sigma": 0.4299
+        }
+      ],
+      "classic furniture": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 2,
+          "mu": 0.7708,
+          "sigma": 0.4299
+        }
+      ],
+      "layered textiles": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.59,
+          "sigma": 0.4299
+        },
+        {
+          "round": 2,
+          "mu": 0.6755,
+          "sigma": 0.264
+        }
+      ],
+      "warm lighting": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.875,
+          "sigma": 0.3654
+        },
+        {
+          "round": 2,
+          "mu": 0.6042,
+          "sigma": 0.2244
+        }
+      ],
+      "bright natural light": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5,
+          "sigma": 0.3654
+        },
+        {
+          "round": 2,
+          "mu": 0.5855,
+          "sigma": 0.2244
+        }
+      ]
+    },
+    "convergence_analysis": {
+      "top_10_stability": "7/10 tags same as previous round",
+      "mu_spread": 1.6168,
+      "avg_final_sigma": 0.3662,
+      "min_final_sigma": 0.1907,
+      "converged": false
+    },
+    "warnings_summary": {
+      "total": 0,
+      "by_type": {}
+    }
+  },
+  "warnings": [],
+  "tag_trajectories": {
+    "pos_0": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.5,
+        "sigma": 0.3654
+      }
+    ],
+    "pos_1": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.41,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.3245,
+        "sigma": 0.264
+      }
+    ],
+    "pos_2": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.41,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.3245,
+        "sigma": 0.264
+      }
+    ],
+    "pos_3": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.7708,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_4": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.3654
+      },
+      {
+        "round": 2,
+        "mu": 0.5855,
+        "sigma": 0.2244
+      }
+    ],
+    "pos_5": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.215,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.1295,
+        "sigma": 0.264
+      }
+    ],
+    "pos_6": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.695,
+        "sigma": 0.3654
+      },
+      {
+        "round": 2,
+        "mu": 0.4243,
+        "sigma": 0.2244
+      }
+    ],
+    "pos_7": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.875,
+        "sigma": 0.3654
+      },
+      {
+        "round": 2,
+        "mu": 0.9605,
+        "sigma": 0.2244
+      }
+    ],
+    "pos_8": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.875,
+        "sigma": 0.3654
+      },
+      {
+        "round": 2,
+        "mu": 0.6042,
+        "sigma": 0.2244
+      }
+    ],
+    "pos_9": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.875,
+        "sigma": 0.3654
+      },
+      {
+        "round": 2,
+        "mu": 0.875,
+        "sigma": 0.1907
+      }
+    ],
+    "pos_10": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.59,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.5045,
+        "sigma": 0.264
+      }
+    ],
+    "pos_11": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.59,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.6755,
+        "sigma": 0.264
+      }
+    ],
+    "pos_12": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.215,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.4857,
+        "sigma": 0.264
+      }
+    ],
+    "pos_13": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.215,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.4857,
+        "sigma": 0.264
+      }
+    ],
+    "pos_14": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.215,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.4857,
+        "sigma": 0.264
+      }
+    ],
+    "pos_15": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.215,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.215,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_16": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.215,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.215,
+        "sigma": 0.4299
+      }
+    ],
+    "pos_17": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.785,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.785,
+        "sigma": 0.2244
+      }
+    ],
+    "pos_18": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.785,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.8705,
+        "sigma": 0.264
+      }
+    ],
+    "pos_19": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.785,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": 0.8705,
+        "sigma": 0.264
+      }
+    ],
+    "pos_20": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.7708,
+        "sigma": 0.4299
+      }
+    ],
+    "neu_0": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.585,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": -0.585,
+        "sigma": 0.4299
+      }
+    ],
+    "neu_1": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.39,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": -0.39,
+        "sigma": 0.4299
+      }
+    ],
+    "neu_2": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.39,
+        "sigma": 0.4299
+      },
+      {
+        "round": 2,
+        "mu": -0.39,
+        "sigma": 0.4299
+      }
+    ],
+    "neu_3": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.5707,
+        "sigma": 0.4299
+      }
+    ],
+    "neu_4": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.5707,
+        "sigma": 0.4299
+      }
+    ],
+    "neu_5": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.6562,
+        "sigma": 0.3654
+      }
+    ],
+    "neu_6": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      }
+    ],
+    "neu_7": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      }
+    ],
+    "neu_8": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      }
+    ],
+    "neu_9": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      }
+    ]
+  }
+}

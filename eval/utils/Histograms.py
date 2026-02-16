@@ -4,17 +4,26 @@ import numpy as np
 from pathlib import Path
 from collections import defaultdict
 
+# Shared condition palette across all auto-generated plots
+# Keep these colors consistent in rank_histogram, score_by_condition,
+# average_rank, and tag_weight_butterfly.
+CONDITION_COLORS = {
+    "text": "#6B7280",            # gray
+    "text+image": "#5D576B",      # custom
+    "user_customized": "#F7D08A", # custom
+    "Ours": "#F7567C",            # custom
+}
+CONDITION_ORDER = ["text", "text+image", "user_customized", "Ours"]
+
 
 def categorize_method(filename: str) -> str:
     """Categorize image filenames into method types."""
     if filename.startswith("eval_alpha_"):
         return "Ours"
+    elif filename == "user_customized.png":
+        return "user_customized"
     elif filename in ("sd_style_transfer.png", "llm_style_transfer.png"):
         return "text+image"
-    elif filename in ("sd_baseline_tags.png", "llm_baseline_tags.png"):
-        return "text+tags"
-    elif filename == "sd_baseline_prefs.png":
-        return "text+prefs"
     elif filename == "sd_baseline_text.png":
         return "text"
     else:
@@ -61,11 +70,14 @@ def compute_rank_histogram(data: dict) -> dict:
 def plot_rank_histogram(histogram: dict, output_path: str = None, title: str = "Rank Distribution by Method", show: bool = True):
     """
     Plot a grouped bar chart showing rank distribution for each method.
-    X-axis: Ranks (1, 2, 3, 4, 5)
+    X-axis: Ranks (1..N)
     Colors: Different methods
     """
-    methods = sorted(histogram.keys())
-    ranks = [1, 2, 3, 4, 5]
+    methods = [m for m in CONDITION_ORDER if m in histogram]
+    # Preserve unknown methods if they appear
+    methods += [m for m in sorted(histogram.keys()) if m not in methods]
+    all_ranks = sorted({rank for counts in histogram.values() for rank in counts.keys()})
+    ranks = all_ranks if all_ranks else [1, 2, 3, 4]
     
     # Prepare data matrix: rows = methods, cols = ranks
     data_matrix = np.zeros((len(methods), len(ranks)))
@@ -80,21 +92,10 @@ def plot_rank_histogram(histogram: dict, output_path: str = None, title: str = "
     n_methods = len(methods)
     width = 0.8 / n_methods  # divide available space among methods
     
-    # Color scheme for methods - similar colors for related methods
-    # Baselines: shades of gray/blue
-    # Ours: red
-    method_color_map = {
-        'text': '#90FCF9',             # Dark gray
-        'text+tags': '#9448BC',        # Gray
-        'text+prefs': '#A1D2CE',       # Light gray
-        'text+image': '#63B4D1',       # Blue
-        'Ours': '#DC2626',             # Red
-    }
-    
     # Create grouped bars - one bar per method at each rank position
     for i, method in enumerate(methods):
         offset = (i - (n_methods - 1) / 2) * width
-        color = method_color_map.get(method, '#888888')
+        color = CONDITION_COLORS.get(method, '#9CA3AF')
         bars = ax.bar(x + offset, data_matrix[i, :], width, 
                      label=method, color=color, 
                      edgecolor='black', linewidth=0.5)
@@ -171,16 +172,13 @@ def categorize_condition(filename: str) -> str:
     Returns:
     - "text": Text-only baseline (sd_baseline_text.png or generic baselines)
     - "text+image": Style transfer (sd_style_transfer.png or llm_style_transfer.png)
-    - "text+tags": Tags baseline (sd_baseline_tags.png or llm_baseline_tags.png)
-    - "text+prefs": Preferences baseline (sd_baseline_prefs.png with positive/negative/neutral features)
+    - "user_customized": User customized manual tags/weights baseline
     - "Ours": eval_alpha_* images (custom embedding fusion)
     """
+    if filename == "user_customized.png":
+        return "user_customized"
     if filename in ("sd_style_transfer.png", "llm_style_transfer.png"):
         return "text+image"
-    elif filename in ("sd_baseline_tags.png", "llm_baseline_tags.png"):
-        return "text+tags"
-    elif filename == "sd_baseline_prefs.png":
-        return "text+prefs"
     elif filename.startswith("eval_alpha_"):
         return "Ours"
     elif filename == "sd_baseline_text.png":
@@ -198,7 +196,7 @@ def plot_score_by_condition(data: dict, output_path: str = None, title: str = "P
     Conditions:
     1. Text-only baseline (sd_baseline_text.png or generic) → "text"
     2. Img2img style transfer (sd_style_transfer.png) → "text+image"
-    3. Text + tags baseline (sd_baseline_tags.png) → "text+tags"
+    3. User customized baseline (user_customized.png) → "user_customized"
     4. Custom embedding fusion (eval_alpha_1.00_*) → "Ours"
     
     Only works with new format that includes "score" field.
@@ -221,8 +219,8 @@ def plot_score_by_condition(data: dict, output_path: str = None, title: str = "P
         return None, None
     
     # Define order of conditions
-    condition_order = ["text", "text+image", "text+tags", "text+prefs", "Ours"]
-    conditions = [c for c in condition_order if c in condition_scores]
+    conditions = [c for c in CONDITION_ORDER if c in condition_scores]
+    conditions += [c for c in sorted(condition_scores.keys()) if c not in conditions]
     score_data = [condition_scores[c] for c in conditions]
     
     # Create figure
@@ -230,15 +228,6 @@ def plot_score_by_condition(data: dict, output_path: str = None, title: str = "P
     
     # Create box plot with different colors for each condition
     positions = list(range(1, len(conditions) + 1))
-    
-    # Color scheme for conditions
-    condition_colors = {
-        'text': '#6B7280',       # Gray
-        'text+image': '#3B82F6', # Blue
-        'text+tags': '#8B5CF6',  # Purple
-        'text+prefs': '#F59E0B', # Amber/Orange
-        'Ours': '#DC2626',       # Red
-    }
     
     bp = ax.boxplot(score_data, positions=positions, widths=0.6, 
                     patch_artist=True,
@@ -249,7 +238,7 @@ def plot_score_by_condition(data: dict, output_path: str = None, title: str = "P
     
     # Set colors for each box
     for patch, condition in zip(bp['boxes'], conditions):
-        color = condition_colors.get(condition, '#93C5FD')
+        color = CONDITION_COLORS.get(condition, '#9CA3AF')
         patch.set_facecolor(color)
         patch.set_edgecolor('#1E3A8A')
         patch.set_linewidth(1.5)
@@ -319,7 +308,7 @@ def plot_average_rank(histogram: dict, output_path: str = None, title: str = "Av
     # Create bar chart
     fig, ax = plt.subplots(figsize=(10, 5))
     
-    colors = plt.cm.RdYlGn_r(np.linspace(0.2, 0.8, len(methods)))
+    colors = [CONDITION_COLORS.get(m, "#9CA3AF") for m in methods]
     bars = ax.barh(methods, avg_ranks, color=colors, edgecolor= None, linewidth=0.5)
     
     # Add value labels
@@ -330,8 +319,9 @@ def plot_average_rank(histogram: dict, output_path: str = None, title: str = "Av
     ax.set_xlabel('Average Rank (lower is better)', fontsize=12)
     ax.set_ylabel('Method', fontsize=12)
     ax.set_title(title, fontsize=14, fontweight='bold')
-    ax.set_xlim(0, 6)
-    ax.axvline(x=3.0, color='gray', linestyle='--', alpha=0.5, label='Midpoint')
+    max_rank = max((rank for counts in histogram.values() for rank in counts.keys()), default=4)
+    ax.set_xlim(0, max_rank + 1)
+    ax.axvline(x=(max_rank + 1) / 2, color='gray', linestyle='--', alpha=0.5, label='Midpoint')
     
     plt.tight_layout()
     
@@ -344,6 +334,194 @@ def plot_average_rank(histogram: dict, output_path: str = None, title: str = "Av
     else:
         plt.close(fig)
     return fig, ax
+
+
+def _load_weight_map(path: Path, tags_key: str = "selected_tags") -> dict:
+    """Load tag->weight map from a json file."""
+    if not path.exists():
+        return {}
+    with open(path, "r") as f:
+        data = json.load(f)
+    weights = data.get("weights", {}) or {}
+    tags = data.get(tags_key, []) or list(weights.keys())
+
+    out = {}
+    for tag in tags:
+        try:
+            out[str(tag)] = float(weights.get(tag, 0.0))
+        except (TypeError, ValueError):
+            out[str(tag)] = 0.0
+    return out
+
+
+def plot_tag_weight_butterfly(
+    session_dir: str,
+    output_path: str = None,
+    title: str = "User vs GP Tag Weights",
+    show: bool = True,
+    normalize_weights: bool = True
+):
+    """
+    Plot butterfly (back-to-back) chart comparing manual user weights vs GP-refined weights.
+
+    Groups:
+    - Shared tags (both)
+    - User-only tags
+    - GP-only tags
+    """
+    session_path = Path(session_dir)
+    user_path = session_path / "impression" / "user_manual_weights.json"
+    gp_path = session_path / "refined_preferences_v2.json"
+
+    user_weights = _load_weight_map(user_path, tags_key="selected_tags")
+    gp_weights = _load_weight_map(gp_path, tags_key="tags")
+
+    if not user_weights or not gp_weights:
+        print("[HISTOGRAM] Skipping butterfly chart (missing user manual weights or GP refined weights)")
+        return None, None
+
+    # Normalize each side independently so magnitudes are directly comparable
+    # (user sliders can be arbitrary in [0,1], GP is softmax-normalized).
+    if normalize_weights:
+        u_sum = sum(user_weights.values())
+        g_sum = sum(gp_weights.values())
+        if u_sum > 0:
+            user_weights = {k: v / u_sum for k, v in user_weights.items()}
+        if g_sum > 0:
+            gp_weights = {k: v / g_sum for k, v in gp_weights.items()}
+
+    user_tags = set(user_weights.keys())
+    gp_tags = set(gp_weights.keys())
+
+    shared = list(user_tags & gp_tags)
+    user_only = list(user_tags - gp_tags)
+    gp_only = list(gp_tags - user_tags)
+
+    # Sort each group by max(weight) descending
+    shared.sort(key=lambda t: max(user_weights.get(t, 0.0), gp_weights.get(t, 0.0)), reverse=True)
+    user_only.sort(key=lambda t: user_weights.get(t, 0.0), reverse=True)
+    gp_only.sort(key=lambda t: gp_weights.get(t, 0.0), reverse=True)
+
+    rows = shared + user_only + gp_only
+    if not rows:
+        print("[HISTOGRAM] Skipping butterfly chart (no tags to plot)")
+        return None, None
+
+    y = np.arange(len(rows))
+    user_vals = np.array([user_weights.get(t, 0.0) for t in rows], dtype=float)
+    gp_vals = np.array([gp_weights.get(t, 0.0) for t in rows], dtype=float)
+
+    labels = list(rows)
+
+    height = max(6, min(20, 2.8 + 0.45 * len(rows)))
+    fig = plt.figure(figsize=(11, height))
+    gs = fig.add_gridspec(1, 3, width_ratios=[1.35, 0.85, 1.35], wspace=0.02)
+    ax_l = fig.add_subplot(gs[0, 0])
+    ax_c = fig.add_subplot(gs[0, 1], sharey=ax_l)
+    ax_r = fig.add_subplot(gs[0, 2], sharey=ax_l)
+
+    # Clean palette
+    bg = "#F7F8FA"
+    shared_user_c = CONDITION_COLORS["user_customized"]  # purple
+    shared_gp_c = CONDITION_COLORS["Ours"]               # amber
+    center_text = "#2F3747"
+    dim_text = "#8A97AB"
+
+    # Uniform side colors and label color per request
+    left_colors = [shared_user_c] * len(rows)
+    right_colors = [shared_gp_c] * len(rows)
+    label_colors = ["#000000"] * len(rows)
+
+    fig.patch.set_facecolor(bg)
+    ax_l.set_facecolor(bg)
+    ax_c.set_facecolor(bg)
+    ax_r.set_facecolor(bg)
+
+    # Split-panel butterfly with center label column
+    bar_h = 0.72
+    ax_l.barh(y, -user_vals, color=left_colors, alpha=1.0, edgecolor=bg, linewidth=1.0, height=bar_h)
+    ax_r.barh(y, gp_vals, color=right_colors, alpha=1.0, edgecolor=bg, linewidth=1.0, height=bar_h)
+
+    # Group separators (shared / user-only / gp-only)
+    shared_n = len(shared)
+    user_only_n = len(user_only)
+    if shared_n > 0 and user_only_n > 0:
+        ax_l.axhline(shared_n - 0.5, color="#D7DBE3", linestyle="-", linewidth=1.0)
+        ax_c.axhline(shared_n - 0.5, color="#D7DBE3", linestyle="-", linewidth=1.0)
+        ax_r.axhline(shared_n - 0.5, color="#D7DBE3", linestyle="-", linewidth=1.0)
+    if shared_n + user_only_n > 0 and len(gp_only) > 0:
+        ax_l.axhline(shared_n + user_only_n - 0.5, color="#D7DBE3", linestyle="-", linewidth=1.0)
+        ax_c.axhline(shared_n + user_only_n - 0.5, color="#D7DBE3", linestyle="-", linewidth=1.0)
+        ax_r.axhline(shared_n + user_only_n - 0.5, color="#D7DBE3", linestyle="-", linewidth=1.0)
+
+    # Symmetric x limits
+    user_max = float(user_vals.max()) if len(user_vals) > 0 else 0.0
+    gp_max = float(gp_vals.max()) if len(gp_vals) > 0 else 0.0
+    x_max = float(max(user_max, gp_max, 0.01)) * 1.22
+    ax_l.set_xlim(-x_max, 0)
+    ax_r.set_xlim(0, x_max)
+
+    # Hide default axes in center; keep top ticks on left/right
+    ax_c.set_xlim(0, 1)
+    ax_c.set_xticks([])
+    ax_c.set_yticks([])
+    for spine in ax_c.spines.values():
+        spine.set_visible(False)
+
+    for ax_side in (ax_l, ax_r):
+        ax_side.set_yticks([])
+        ax_side.tick_params(axis="y", length=0)
+        ax_side.tick_params(axis="x", bottom=False, top=False, labelbottom=False, labeltop=False, length=0)
+        for s in ax_side.spines.values():
+            s.set_visible(False)
+        ax_side.set_xticks([])
+
+    # first row at top
+    ax_l.invert_yaxis()
+
+    # Center labels (with membership markers already encoded in text)
+    for yi, label, c in zip(y, labels, label_colors):
+        ax_c.text(0.5, yi, label, ha="center", va="center", fontsize=11.5, color=c, fontweight="600")
+
+    # Title
+    fig.suptitle(title, fontsize=13.5, fontweight="bold", color=center_text, y=0.965)
+
+    # Legend-like headers at top (left and right), concise
+    fig.text(0.06, 0.905, "User-defined", ha="left", va="bottom",
+             fontsize=11.5, color="#4C5A6F", fontweight="600")
+
+    fig.text(0.94, 0.905, "GP-refined", ha="right", va="bottom",
+             fontsize=11.5, color="#4C5A6F", fontweight="600")
+
+    # Value labels for every non-zero bar
+    pad = x_max * 0.02
+    for yi, v in enumerate(user_vals):
+        if v > 0:
+            ax_l.text(-v - pad, yi, f"{v:.3f}", ha="right", va="center", fontsize=9, color=dim_text)
+    for yi, v in enumerate(gp_vals):
+        if v > 0:
+            ax_r.text(v + pad, yi, f"{v:.3f}", ha="left", va="center", fontsize=9, color=dim_text)
+
+    # Summary statistics above plot
+    union_n = len(user_tags | gp_tags)
+    jaccard = (len(shared) / union_n) if union_n > 0 else 0.0
+    summary = (
+        f"Shared: {len(shared)}   |   User-only: {len(user_only)}   |   GP-only: {len(gp_only)}"
+        f"   |   Jaccard: {jaccard:.2f}"
+    )
+    fig.text(0.5, 0.948, summary, ha="center", va="top", fontsize=9.5, color=dim_text)
+
+    plt.tight_layout(rect=[0.02, 0.02, 0.98, 0.90])
+
+    if output_path:
+        plt.savefig(output_path, dpi=150, bbox_inches="tight")
+        print(f"Tag butterfly chart saved to: {output_path}")
+
+    if show:
+        plt.show()
+    else:
+        plt.close(fig)
+    return fig, (ax_l, ax_c, ax_r)
 
 
 def generate_histograms(json_path: str, output_dir: str = None, show: bool = False):
@@ -379,6 +557,7 @@ def generate_histograms(json_path: str, output_dir: str = None, show: bool = Fal
     hist_path = output_dir / "rank_histogram.png"
     avg_path = output_dir / "average_rank.png"
     score_condition_path = output_dir / "score_by_condition.png"
+    butterfly_path = output_dir / "tag_weight_butterfly.png"
     
     print(f"[HISTOGRAM] Saving rank_histogram.png to: {hist_path}")
     plot_rank_histogram(histogram, str(hist_path), 
@@ -393,6 +572,15 @@ def generate_histograms(json_path: str, output_dir: str = None, show: bool = Fal
         print(f"[HISTOGRAM] Saving score_by_condition.png to: {score_condition_path}")
         plot_score_by_condition(data, str(score_condition_path),
                                title=f"Preference Score by Condition - {session_name}", show=show)
+
+    # Generate user-vs-GP butterfly chart if both weight files exist
+    print(f"[HISTOGRAM] Saving tag_weight_butterfly.png to: {butterfly_path}")
+    plot_tag_weight_butterfly(
+        session_dir=str(Path(json_path).parent),
+        output_path=str(butterfly_path),
+        title=f"User vs GP Tag Weights - {session_name}",
+        show=show
+    )
     
     print(f"[HISTOGRAM] ✅ Generated histograms for {session_name}")
     return histogram
@@ -437,6 +625,7 @@ def main(json_path: str, output_dir: str = None):
     hist_path = output_dir / "rank_histogram.png"
     avg_path = output_dir / "average_rank.png"
     score_condition_path = output_dir / "score_by_condition.png"
+    butterfly_path = output_dir / "tag_weight_butterfly.png"
     
     plot_rank_histogram(histogram, str(hist_path), 
                        title=f"Rank Distribution - {session_name}", show=True)
@@ -447,6 +636,13 @@ def main(json_path: str, output_dir: str = None):
     if score_stats:
         plot_score_by_condition(data, str(score_condition_path),
                                title=f"Preference Score by Condition - {session_name}", show=True)
+
+    plot_tag_weight_butterfly(
+        session_dir=str(Path(json_path).parent),
+        output_path=str(butterfly_path),
+        title=f"User vs GP Tag Weights - {session_name}",
+        show=True
+    )
     
     return histogram
 
