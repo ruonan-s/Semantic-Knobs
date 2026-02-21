@@ -1282,6 +1282,8 @@ class HITLInitRequest(BaseModel):
     session_id: str
     base_prompt: Optional[str] = None
     negative_phrases: Optional[List[str]] = None
+    num_inference_steps: Optional[int] = None
+    guidance_scale: Optional[float] = None
 
 
 class HITLInitResponse(BaseModel):
@@ -1394,12 +1396,18 @@ def initialize_hitl(request: HITLInitRequest):
     
     try:
         # Use V2 (tag-level GP) for HITL refinement
+        # Faster defaults for refinement loops; caller can override via request.
+        hitl_steps = int(request.num_inference_steps) if request.num_inference_steps is not None else 20
+        hitl_guidance = float(request.guidance_scale) if request.guidance_scale is not None else 6.5
+
         hitl = HITLRefinementSessionV2.load_or_create(
             session_id=request.session_id,
             session_folder=session_folder,
             pipe=pipe,
             base_prompt=base_prompt,
             negative_prompt=", ".join(negative_phrases) if negative_phrases else "",
+            num_inference_steps=hitl_steps,
+            guidance_scale=hitl_guidance,
         )
         hitl_sessions[request.session_id] = hitl
         

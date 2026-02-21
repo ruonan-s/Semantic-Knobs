@@ -1,0 +1,7574 @@
+{
+  "metadata": {
+    "session_id": "eval_Test_P1_Contemplative_Bedroom_2026-02-16_19-36-49",
+    "log_version": "1.0",
+    "start_time": "2026-02-16T19:43:47.164981",
+    "end_time": "2026-02-16T19:50:00.210362"
+  },
+  "initialization": {
+    "session_id": "eval_Test_P1_Contemplative_Bedroom_2026-02-16_19-36-49",
+    "timestamp": "2026-02-16T19:43:47.164981",
+    "config": {
+      "max_rounds": 999,
+      "tags_per_option": 10,
+      "base_learning_rate": 0.12,
+      "sigma_shrink_factor": 0.92,
+      "priors": {
+        "positive_selected": {
+          "mu": 1.0,
+          "sigma": 0.5
+        },
+        "positive_other": {
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        "neutral_selected": {
+          "mu": 0.0,
+          "sigma": 0.5
+        },
+        "neutral_other": {
+          "mu": -0.3,
+          "sigma": 0.7
+        }
+      }
+    },
+    "input_summary": {
+      "total_positive": 11,
+      "total_neutral": 17,
+      "total_tags": 28,
+      "in_selected_images": 0
+    },
+    "categories": {
+      "positive_selected": {
+        "count": 0,
+        "tags": []
+      },
+      "positive_other": {
+        "count": 11,
+        "tags": [
+          "soft neutral tones",
+          "minimalist decor",
+          "cozy atmosphere",
+          "ambient warm lighting",
+          "plush bedding",
+          "serene bedroom setting",
+          "calm ambiance",
+          "urban view",
+          "soft lighting",
+          "open layout",
+          "neutral color palette"
+        ]
+      },
+      "neutral_selected": {
+        "count": 0,
+        "tags": []
+      },
+      "neutral_other": {
+        "count": 17,
+        "tags": [
+          "minimalist design",
+          "wooden accents",
+          "soft natural lighting",
+          "clean lines",
+          "serene ambiance",
+          "spacious layout",
+          "open floor plan",
+          "simple nightstands",
+          "textured throw blanket",
+          "fluffy rug",
+          "natural light",
+          "neutral tones",
+          "textured walls",
+          "minimalistic decor",
+          "rustic side table",
+          "decorative branches",
+          "natural elegance"
+        ]
+      }
+    },
+    "all_tags": [
+      {
+        "tag_id": "pos_0",
+        "text": "soft neutral tones",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_1",
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_2",
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_3",
+        "text": "ambient warm lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_4",
+        "text": "plush bedding",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_5",
+        "text": "serene bedroom setting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_6",
+        "text": "calm ambiance",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_7",
+        "text": "urban view",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_8",
+        "text": "soft lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_9",
+        "text": "open layout",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_10",
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_0",
+        "text": "minimalist design",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_1",
+        "text": "wooden accents",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_2",
+        "text": "soft natural lighting",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_3",
+        "text": "clean lines",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_4",
+        "text": "serene ambiance",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_5",
+        "text": "spacious layout",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_6",
+        "text": "open floor plan",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_7",
+        "text": "simple nightstands",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_8",
+        "text": "textured throw blanket",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_9",
+        "text": "fluffy rug",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_10",
+        "text": "natural light",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_11",
+        "text": "neutral tones",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_12",
+        "text": "textured walls",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_13",
+        "text": "minimalistic decor",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_14",
+        "text": "rustic side table",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_15",
+        "text": "decorative branches",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_16",
+        "text": "natural elegance",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      }
+    ],
+    "prior_ordering": "positive_selected > positive_other > neutral_selected > neutral_other"
+  },
+  "rounds": [
+    {
+      "round_num": 1,
+      "timestamp": "2026-02-16T19:43:47.245836",
+      "parameters": {
+        "beta": 2.0,
+        "max_overlap": 0.4,
+        "learning_rate": 0.12
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_0",
+              "text": "soft neutral tones",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "ambient warm lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "plush bedding",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "calm ambiance",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "minimalist design",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "wooden accents",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "soft natural lighting",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.26,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "neu_4",
+              "text": "serene ambiance",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_3",
+              "text": "clean lines",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "soft lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "minimalist design",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "open layout",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "neutral color palette",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "urban view",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "soft natural lighting",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.18,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "neu_10",
+              "text": "natural light",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_9",
+              "text": "fluffy rug",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "wooden accents",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_7",
+              "text": "simple nightstands",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_6",
+              "text": "open floor plan",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_5",
+              "text": "spacious layout",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "soft natural lighting",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_8",
+              "text": "textured throw blanket",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": -0.14,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_4",
+              "text": "plush bedding",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_14",
+              "text": "rustic side table",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_13",
+              "text": "minimalistic decor",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "soft lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_11",
+              "text": "neutral tones",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "soft neutral tones",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_12",
+              "text": "textured walls",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "urban view",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.18,
+          "avg_sigma": 0.7,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "minimalist design",
+            "cozy atmosphere",
+            "soft natural lighting",
+            "serene bedroom setting"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "minimalist decor",
+            "cozy atmosphere",
+            "soft natural lighting",
+            "wooden accents"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "plush bedding",
+            "cozy atmosphere",
+            "soft neutral tones",
+            "serene bedroom setting"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "cozy atmosphere",
+            "soft natural lighting"
+          ],
+          "overlap_count": 2,
+          "overlap_fraction": 0.2,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "soft lighting",
+            "cozy atmosphere",
+            "serene bedroom setting",
+            "urban view"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "cozy atmosphere"
+          ],
+          "overlap_count": 1,
+          "overlap_fraction": 0.1,
+          "max_allowed": 0.4,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        1,
+        3,
+        0,
+        2
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 1,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "minimalist design",
+            "serene ambiance",
+            "open layout",
+            "neutral color palette",
+            "clean lines",
+            "soft natural lighting"
+          ],
+          "tags_only_in_worse": [
+            "textured walls",
+            "minimalistic decor",
+            "plush bedding",
+            "rustic side table",
+            "neutral tones",
+            "soft neutral tones"
+          ],
+          "shared_tags": [
+            "soft lighting",
+            "cozy atmosphere",
+            "serene bedroom setting",
+            "urban view"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 0,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "serene ambiance",
+            "open layout",
+            "neutral color palette",
+            "clean lines",
+            "urban view",
+            "soft lighting"
+          ],
+          "tags_only_in_worse": [
+            "calm ambiance",
+            "plush bedding",
+            "minimalist decor",
+            "soft neutral tones",
+            "ambient warm lighting",
+            "wooden accents"
+          ],
+          "shared_tags": [
+            "minimalist design",
+            "cozy atmosphere",
+            "soft natural lighting",
+            "serene bedroom setting"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 2,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "minimalist design",
+            "serene ambiance",
+            "serene bedroom setting",
+            "open layout",
+            "neutral color palette",
+            "clean lines",
+            "urban view",
+            "soft lighting"
+          ],
+          "tags_only_in_worse": [
+            "minimalist decor",
+            "textured throw blanket",
+            "wooden accents",
+            "fluffy rug",
+            "open floor plan",
+            "natural light",
+            "spacious layout",
+            "simple nightstands"
+          ],
+          "shared_tags": [
+            "cozy atmosphere",
+            "soft natural lighting"
+          ],
+          "num_differentiating": 16
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "textured walls",
+            "minimalistic decor",
+            "rustic side table",
+            "neutral tones",
+            "urban view",
+            "soft lighting"
+          ],
+          "tags_only_in_worse": [
+            "calm ambiance",
+            "minimalist decor",
+            "minimalist design",
+            "soft natural lighting",
+            "ambient warm lighting",
+            "wooden accents"
+          ],
+          "shared_tags": [
+            "plush bedding",
+            "cozy atmosphere",
+            "soft neutral tones",
+            "serene bedroom setting"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "textured walls",
+            "minimalistic decor",
+            "plush bedding",
+            "rustic side table",
+            "serene bedroom setting",
+            "neutral tones",
+            "soft neutral tones",
+            "urban view",
+            "soft lighting"
+          ],
+          "tags_only_in_worse": [
+            "minimalist decor",
+            "textured throw blanket",
+            "wooden accents",
+            "fluffy rug",
+            "open floor plan",
+            "natural light",
+            "spacious layout",
+            "soft natural lighting",
+            "simple nightstands"
+          ],
+          "shared_tags": [
+            "cozy atmosphere"
+          ],
+          "num_differentiating": 18
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "calm ambiance",
+            "plush bedding",
+            "minimalist design",
+            "serene bedroom setting",
+            "soft neutral tones",
+            "ambient warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "textured throw blanket",
+            "fluffy rug",
+            "open floor plan",
+            "natural light",
+            "spacious layout",
+            "simple nightstands"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "cozy atmosphere",
+            "soft natural lighting",
+            "wooden accents"
+          ],
+          "num_differentiating": 12
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "neu_4",
+          "text": "serene ambiance",
+          "mu_before": -0.3,
+          "mu_after": -0.0085,
+          "mu_delta": 0.2915,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_3",
+          "text": "clean lines",
+          "mu_before": -0.3,
+          "mu_after": -0.0085,
+          "mu_delta": 0.2915,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "neutral color palette",
+          "mu_before": 0.5,
+          "mu_after": 0.7915,
+          "mu_delta": 0.2915,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "minimalist design",
+          "mu_before": -0.3,
+          "mu_after": -0.1001,
+          "mu_delta": 0.1999,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "open layout",
+          "mu_before": 0.5,
+          "mu_after": 0.7915,
+          "mu_delta": 0.2915,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_2",
+          "text": "soft natural lighting",
+          "mu_before": -0.3,
+          "mu_after": -0.3862,
+          "mu_delta": -0.0862,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "plush bedding",
+          "mu_before": 0.5,
+          "mu_after": 0.4947,
+          "mu_delta": -0.0053,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_14",
+          "text": "rustic side table",
+          "mu_before": -0.3,
+          "mu_after": -0.2138,
+          "mu_delta": 0.0862,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_13",
+          "text": "minimalistic decor",
+          "mu_before": -0.3,
+          "mu_after": -0.2138,
+          "mu_delta": 0.0862,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_11",
+          "text": "neutral tones",
+          "mu_before": -0.3,
+          "mu_after": -0.2138,
+          "mu_delta": 0.0862,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "soft neutral tones",
+          "mu_before": 0.5,
+          "mu_after": 0.4947,
+          "mu_delta": -0.0053,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_12",
+          "text": "textured walls",
+          "mu_before": -0.3,
+          "mu_after": -0.2138,
+          "mu_delta": 0.0862,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "soft lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.8777,
+          "mu_delta": 0.3777,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "urban view",
+          "mu_before": 0.5,
+          "mu_after": 0.8777,
+          "mu_delta": 0.3777,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "ambient warm lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.4085,
+          "mu_delta": -0.0915,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "minimalist decor",
+          "mu_before": 0.5,
+          "mu_after": 0.1223,
+          "mu_delta": -0.3777,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_1",
+          "text": "wooden accents",
+          "mu_before": -0.3,
+          "mu_after": -0.6777,
+          "mu_delta": -0.3777,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "calm ambiance",
+          "mu_before": 0.5,
+          "mu_after": 0.4085,
+          "mu_delta": -0.0915,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "serene bedroom setting",
+          "mu_before": 0.5,
+          "mu_after": 0.7862,
+          "mu_delta": 0.2862,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_10",
+          "text": "natural light",
+          "mu_before": -0.3,
+          "mu_after": -0.5862,
+          "mu_delta": -0.2862,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_9",
+          "text": "fluffy rug",
+          "mu_before": -0.3,
+          "mu_after": -0.5862,
+          "mu_delta": -0.2862,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_7",
+          "text": "simple nightstands",
+          "mu_before": -0.3,
+          "mu_after": -0.5862,
+          "mu_delta": -0.2862,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_6",
+          "text": "open floor plan",
+          "mu_before": -0.3,
+          "mu_after": -0.5862,
+          "mu_delta": -0.2862,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_5",
+          "text": "spacious layout",
+          "mu_before": -0.3,
+          "mu_after": -0.5862,
+          "mu_delta": -0.2862,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_8",
+          "text": "textured throw blanket",
+          "mu_before": -0.3,
+          "mu_after": -0.5862,
+          "mu_delta": -0.2862,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_7",
+          "text": "urban view",
+          "mu": 0.8777,
+          "sigma": 0.644
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_8",
+          "text": "soft lighting",
+          "mu": 0.8777,
+          "sigma": 0.644
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_9",
+          "text": "open layout",
+          "mu": 0.7915,
+          "sigma": 0.644
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_10",
+          "text": "neutral color palette",
+          "mu": 0.7915,
+          "sigma": 0.644
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_5",
+          "text": "serene bedroom setting",
+          "mu": 0.7862,
+          "sigma": 0.644
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_2",
+          "text": "cozy atmosphere",
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_0",
+          "text": "soft neutral tones",
+          "mu": 0.4947,
+          "sigma": 0.644
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_4",
+          "text": "plush bedding",
+          "mu": 0.4947,
+          "sigma": 0.644
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_3",
+          "text": "ambient warm lighting",
+          "mu": 0.4085,
+          "sigma": 0.644
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_6",
+          "text": "calm ambiance",
+          "mu": 0.4085,
+          "sigma": 0.644
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.6777,
+          "max": 0.8777,
+          "mean": 0.0143,
+          "std": 0.5188
+        },
+        "sigma_distribution": {
+          "min": 0.644,
+          "max": 0.7,
+          "mean": 0.65
+        },
+        "tags_updated": 25,
+        "unique_tags_updated": 25,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 13.666666666666666,
+        "ranking_received": [
+          1,
+          3,
+          0,
+          2
+        ],
+        "best_option_strategy": "explore",
+        "worst_option_strategy": "ucb",
+        "pairwise_accuracy_before_update": 0.5833333333333334,
+        "ranking_log_likelihood_before_update": -3.5972035114742344
+      }
+    },
+    {
+      "round_num": 2,
+      "timestamp": "2026-02-16T19:44:47.921926",
+      "parameters": {
+        "beta": 1.6667,
+        "max_overlap": 0.4,
+        "learning_rate": 0.1176
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_7",
+              "text": "urban view",
+              "mu": 0.8777,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "soft lighting",
+              "mu": 0.8777,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "open layout",
+              "mu": 0.7915,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "neutral color palette",
+              "mu": 0.7915,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 0.7862,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "soft neutral tones",
+              "mu": 0.4947,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_3",
+              "text": "clean lines",
+              "mu": -0.0085,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_4",
+              "text": "serene ambiance",
+              "mu": -0.0085,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "minimalist design",
+              "mu": -0.1001,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5002,
+          "avg_sigma": 0.6496,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_3",
+              "text": "ambient warm lighting",
+              "mu": 0.4085,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "plush bedding",
+              "mu": 0.4947,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "minimalist decor",
+              "mu": 0.1223,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 0.7862,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "minimalist design",
+              "mu": -0.1001,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "soft neutral tones",
+              "mu": 0.4947,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_15",
+              "text": "decorative branches",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "calm ambiance",
+              "mu": 0.4085,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_16",
+              "text": "natural elegance",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.2515,
+          "avg_sigma": 0.6608,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "neu_14",
+              "text": "rustic side table",
+              "mu": -0.2138,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "neutral color palette",
+              "mu": 0.7915,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 0.7862,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "open layout",
+              "mu": 0.7915,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_13",
+              "text": "minimalistic decor",
+              "mu": -0.2138,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_11",
+              "text": "neutral tones",
+              "mu": -0.2138,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_5",
+              "text": "spacious layout",
+              "mu": -0.5862,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_12",
+              "text": "textured walls",
+              "mu": -0.2138,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "urban view",
+              "mu": 0.8777,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "soft natural lighting",
+              "mu": -0.3862,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.1419,
+          "avg_sigma": 0.644,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_4",
+              "text": "plush bedding",
+              "mu": 0.4947,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_9",
+              "text": "fluffy rug",
+              "mu": -0.5862,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "neutral color palette",
+              "mu": 0.7915,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "open layout",
+              "mu": 0.7915,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "soft neutral tones",
+              "mu": 0.4947,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_7",
+              "text": "simple nightstands",
+              "mu": -0.5862,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "calm ambiance",
+              "mu": 0.4085,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_6",
+              "text": "open floor plan",
+              "mu": -0.5862,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_8",
+              "text": "textured throw blanket",
+              "mu": -0.5862,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.1136,
+          "avg_sigma": 0.6496,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "soft neutral tones",
+            "minimalist design",
+            "cozy atmosphere",
+            "serene bedroom setting"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "urban view",
+            "serene bedroom setting",
+            "open layout",
+            "neutral color palette"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "cozy atmosphere",
+            "soft neutral tones",
+            "open layout",
+            "neutral color palette"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "serene bedroom setting"
+          ],
+          "overlap_count": 1,
+          "overlap_fraction": 0.1,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "calm ambiance",
+            "cozy atmosphere",
+            "plush bedding",
+            "soft neutral tones"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "open layout",
+            "neutral color palette"
+          ],
+          "overlap_count": 2,
+          "overlap_fraction": 0.2,
+          "max_allowed": 0.4,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 1,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "calm ambiance",
+            "decorative branches",
+            "plush bedding",
+            "minimalist design",
+            "minimalist decor",
+            "soft neutral tones",
+            "natural elegance",
+            "cozy atmosphere",
+            "ambient warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "textured walls",
+            "minimalistic decor",
+            "rustic side table",
+            "open layout",
+            "neutral color palette",
+            "neutral tones",
+            "urban view",
+            "spacious layout",
+            "soft natural lighting"
+          ],
+          "shared_tags": [
+            "serene bedroom setting"
+          ],
+          "num_differentiating": 18
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 3,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "decorative branches",
+            "minimalist decor",
+            "minimalist design",
+            "serene bedroom setting",
+            "natural elegance",
+            "ambient warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "textured throw blanket",
+            "open layout",
+            "neutral color palette",
+            "open floor plan",
+            "fluffy rug",
+            "simple nightstands"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "cozy atmosphere",
+            "plush bedding",
+            "soft neutral tones"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 0,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "calm ambiance",
+            "decorative branches",
+            "plush bedding",
+            "minimalist decor",
+            "natural elegance",
+            "ambient warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "serene ambiance",
+            "open layout",
+            "neutral color palette",
+            "clean lines",
+            "urban view",
+            "soft lighting"
+          ],
+          "shared_tags": [
+            "soft neutral tones",
+            "minimalist design",
+            "cozy atmosphere",
+            "serene bedroom setting"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "textured walls",
+            "minimalistic decor",
+            "rustic side table",
+            "serene bedroom setting",
+            "neutral tones",
+            "urban view",
+            "spacious layout",
+            "soft natural lighting"
+          ],
+          "tags_only_in_worse": [
+            "calm ambiance",
+            "textured throw blanket",
+            "plush bedding",
+            "open floor plan",
+            "fluffy rug",
+            "soft neutral tones",
+            "cozy atmosphere",
+            "simple nightstands"
+          ],
+          "shared_tags": [
+            "open layout",
+            "neutral color palette"
+          ],
+          "num_differentiating": 16
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 0,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "textured walls",
+            "minimalistic decor",
+            "rustic side table",
+            "neutral tones",
+            "spacious layout",
+            "soft natural lighting"
+          ],
+          "tags_only_in_worse": [
+            "minimalist design",
+            "serene ambiance",
+            "clean lines",
+            "soft neutral tones",
+            "soft lighting",
+            "cozy atmosphere"
+          ],
+          "shared_tags": [
+            "urban view",
+            "serene bedroom setting",
+            "open layout",
+            "neutral color palette"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "calm ambiance",
+            "textured throw blanket",
+            "plush bedding",
+            "open floor plan",
+            "fluffy rug",
+            "simple nightstands"
+          ],
+          "tags_only_in_worse": [
+            "minimalist design",
+            "serene ambiance",
+            "serene bedroom setting",
+            "clean lines",
+            "urban view",
+            "soft lighting"
+          ],
+          "shared_tags": [
+            "cozy atmosphere",
+            "soft neutral tones",
+            "open layout",
+            "neutral color palette"
+          ],
+          "num_differentiating": 12
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_3",
+          "text": "ambient warm lighting",
+          "mu_before": 0.4085,
+          "mu_after": 0.6935,
+          "mu_delta": 0.285,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "plush bedding",
+          "mu_before": 0.4947,
+          "mu_after": 0.6915,
+          "mu_delta": 0.1969,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "minimalist decor",
+          "mu_before": 0.1223,
+          "mu_after": 0.4074,
+          "mu_delta": 0.285,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "minimalist design",
+          "mu_before": -0.1001,
+          "mu_after": -0.0987,
+          "mu_delta": 0.0014,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "soft neutral tones",
+          "mu_before": 0.4947,
+          "mu_after": 0.4079,
+          "mu_delta": -0.0868,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "cozy atmosphere",
+          "mu_before": 0.5,
+          "mu_after": 0.4132,
+          "mu_delta": -0.0868,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_15",
+          "text": "decorative branches",
+          "mu_before": -0.3,
+          "mu_after": -0.015,
+          "mu_delta": 0.285,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "calm ambiance",
+          "mu_before": 0.4085,
+          "mu_after": 0.6053,
+          "mu_delta": 0.1969,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_16",
+          "text": "natural elegance",
+          "mu_before": -0.3,
+          "mu_after": -0.015,
+          "mu_delta": 0.285,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_14",
+          "text": "rustic side table",
+          "mu_before": -0.2138,
+          "mu_after": -0.127,
+          "mu_delta": 0.0868,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_13",
+          "text": "minimalistic decor",
+          "mu_before": -0.2138,
+          "mu_after": -0.127,
+          "mu_delta": 0.0868,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "neutral color palette",
+          "mu_before": 0.7915,
+          "mu_after": 0.5064,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "open layout",
+          "mu_before": 0.7915,
+          "mu_after": 0.5064,
+          "mu_delta": -0.285,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_11",
+          "text": "neutral tones",
+          "mu_before": -0.2138,
+          "mu_after": -0.127,
+          "mu_delta": 0.0868,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_12",
+          "text": "textured walls",
+          "mu_before": -0.2138,
+          "mu_after": -0.127,
+          "mu_delta": 0.0868,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_5",
+          "text": "spacious layout",
+          "mu_before": -0.5862,
+          "mu_after": -0.4993,
+          "mu_delta": 0.0868,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "urban view",
+          "mu_before": 0.8777,
+          "mu_after": 0.6808,
+          "mu_delta": -0.1969,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_2",
+          "text": "soft natural lighting",
+          "mu_before": -0.3862,
+          "mu_after": -0.2994,
+          "mu_delta": 0.0868,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "serene bedroom setting",
+          "mu_before": 0.7862,
+          "mu_after": 0.8743,
+          "mu_delta": 0.0882,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_9",
+          "text": "fluffy rug",
+          "mu_before": -0.5862,
+          "mu_after": -0.6743,
+          "mu_delta": -0.0882,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_7",
+          "text": "simple nightstands",
+          "mu_before": -0.5862,
+          "mu_after": -0.6743,
+          "mu_delta": -0.0882,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_6",
+          "text": "open floor plan",
+          "mu_before": -0.5862,
+          "mu_after": -0.6743,
+          "mu_delta": -0.0882,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_8",
+          "text": "textured throw blanket",
+          "mu_before": -0.5862,
+          "mu_after": -0.6743,
+          "mu_delta": -0.0882,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_4",
+          "text": "serene ambiance",
+          "mu_before": -0.0085,
+          "mu_after": -0.2922,
+          "mu_delta": -0.2837,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_3",
+          "text": "clean lines",
+          "mu_before": -0.0085,
+          "mu_after": -0.2922,
+          "mu_delta": -0.2837,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "soft lighting",
+          "mu_before": 0.8777,
+          "mu_after": 0.594,
+          "mu_delta": -0.2837,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_5",
+          "text": "serene bedroom setting",
+          "mu": 0.8743,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_3",
+          "text": "ambient warm lighting",
+          "mu": 0.6935,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_4",
+          "text": "plush bedding",
+          "mu": 0.6915,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_7",
+          "text": "urban view",
+          "mu": 0.6808,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_6",
+          "text": "calm ambiance",
+          "mu": 0.6053,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_8",
+          "text": "soft lighting",
+          "mu": 0.594,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_9",
+          "text": "open layout",
+          "mu": 0.5064,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_10",
+          "text": "neutral color palette",
+          "mu": 0.5064,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_2",
+          "text": "cozy atmosphere",
+          "mu": 0.4132,
+          "sigma": 0.644
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_0",
+          "text": "soft neutral tones",
+          "mu": 0.4079,
+          "sigma": 0.5925
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.6777,
+          "max": 0.8743,
+          "mean": 0.0143,
+          "std": 0.5044
+        },
+        "sigma_distribution": {
+          "min": 0.5925,
+          "max": 0.644,
+          "mean": 0.6017
+        },
+        "tags_updated": 26,
+        "unique_tags_updated": 26,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 13.666666666666666,
+        "ranking_received": [
+          1,
+          2,
+          3,
+          0
+        ],
+        "best_option_strategy": "explore",
+        "worst_option_strategy": "exploit",
+        "pairwise_accuracy_before_update": 0.16666666666666666,
+        "ranking_log_likelihood_before_update": -4.742557648442297
+      }
+    },
+    {
+      "round_num": 3,
+      "timestamp": "2026-02-16T19:45:32.862342",
+      "parameters": {
+        "beta": 1.3333,
+        "max_overlap": 0.45,
+        "learning_rate": 0.1152
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 0.8743,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "ambient warm lighting",
+              "mu": 0.6935,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "plush bedding",
+              "mu": 0.6915,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "urban view",
+              "mu": 0.6808,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "calm ambiance",
+              "mu": 0.6053,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "soft lighting",
+              "mu": 0.594,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "open layout",
+              "mu": 0.5064,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_15",
+              "text": "decorative branches",
+              "mu": -0.015,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_16",
+              "text": "natural elegance",
+              "mu": -0.015,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "minimalist design",
+              "mu": -0.0987,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.4517,
+          "avg_sigma": 0.6028,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_3",
+              "text": "ambient warm lighting",
+              "mu": 0.6935,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_10",
+              "text": "natural light",
+              "mu": -0.5862,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "minimalist decor",
+              "mu": 0.4074,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "neutral color palette",
+              "mu": 0.5064,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 0.8743,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "soft neutral tones",
+              "mu": 0.4079,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "cozy atmosphere",
+              "mu": 0.4132,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "wooden accents",
+              "mu": -0.6777,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "calm ambiance",
+              "mu": 0.6053,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_15",
+              "text": "decorative branches",
+              "mu": -0.015,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.2629,
+          "avg_sigma": 0.6131,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_3",
+              "text": "ambient warm lighting",
+              "mu": 0.6935,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_4",
+              "text": "serene ambiance",
+              "mu": -0.2922,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_14",
+              "text": "rustic side table",
+              "mu": -0.127,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_3",
+              "text": "clean lines",
+              "mu": -0.2922,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_13",
+              "text": "minimalistic decor",
+              "mu": -0.127,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "open layout",
+              "mu": 0.5064,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_11",
+              "text": "neutral tones",
+              "mu": -0.127,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_15",
+              "text": "decorative branches",
+              "mu": -0.015,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_12",
+              "text": "textured walls",
+              "mu": -0.127,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_16",
+              "text": "natural elegance",
+              "mu": -0.015,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.0078,
+          "avg_sigma": 0.6028,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_4",
+              "text": "plush bedding",
+              "mu": 0.6915,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "neutral color palette",
+              "mu": 0.5064,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "soft neutral tones",
+              "mu": 0.4079,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "cozy atmosphere",
+              "mu": 0.4132,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_5",
+              "text": "spacious layout",
+              "mu": -0.4993,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "calm ambiance",
+              "mu": 0.6053,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_6",
+              "text": "open floor plan",
+              "mu": -0.6743,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_7",
+              "text": "simple nightstands",
+              "mu": -0.6743,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "urban view",
+              "mu": 0.6808,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "soft natural lighting",
+              "mu": -0.2994,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.1158,
+          "avg_sigma": 0.5976,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "calm ambiance",
+            "serene bedroom setting",
+            "decorative branches",
+            "ambient warm lighting"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "natural elegance",
+            "ambient warm lighting",
+            "decorative branches",
+            "open layout"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "calm ambiance",
+            "plush bedding",
+            "urban view"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "decorative branches",
+            "ambient warm lighting"
+          ],
+          "overlap_count": 2,
+          "overlap_fraction": 0.2,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "calm ambiance",
+            "cozy atmosphere",
+            "soft neutral tones",
+            "neutral color palette"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [],
+          "overlap_count": 0,
+          "overlap_fraction": 0.0,
+          "max_allowed": 0.45,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        0,
+        3,
+        1,
+        2
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 0,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "decorative branches",
+            "minimalist design",
+            "serene bedroom setting",
+            "open layout",
+            "natural elegance",
+            "soft lighting",
+            "ambient warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "spacious layout",
+            "neutral color palette",
+            "open floor plan",
+            "soft neutral tones",
+            "cozy atmosphere",
+            "soft natural lighting",
+            "simple nightstands"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "plush bedding",
+            "urban view"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "plush bedding",
+            "minimalist design",
+            "open layout",
+            "urban view",
+            "natural elegance",
+            "soft lighting"
+          ],
+          "tags_only_in_worse": [
+            "minimalist decor",
+            "neutral color palette",
+            "soft neutral tones",
+            "natural light",
+            "cozy atmosphere",
+            "wooden accents"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "serene bedroom setting",
+            "decorative branches",
+            "ambient warm lighting"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "calm ambiance",
+            "plush bedding",
+            "minimalist design",
+            "serene bedroom setting",
+            "urban view",
+            "soft lighting"
+          ],
+          "tags_only_in_worse": [
+            "textured walls",
+            "minimalistic decor",
+            "serene ambiance",
+            "rustic side table",
+            "neutral tones",
+            "clean lines"
+          ],
+          "shared_tags": [
+            "natural elegance",
+            "ambient warm lighting",
+            "decorative branches",
+            "open layout"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "plush bedding",
+            "open floor plan",
+            "urban view",
+            "spacious layout",
+            "soft natural lighting",
+            "simple nightstands"
+          ],
+          "tags_only_in_worse": [
+            "decorative branches",
+            "minimalist decor",
+            "serene bedroom setting",
+            "natural light",
+            "ambient warm lighting",
+            "wooden accents"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "cozy atmosphere",
+            "soft neutral tones",
+            "neutral color palette"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "calm ambiance",
+            "plush bedding",
+            "neutral color palette",
+            "cozy atmosphere",
+            "open floor plan",
+            "soft neutral tones",
+            "urban view",
+            "spacious layout",
+            "soft natural lighting",
+            "simple nightstands"
+          ],
+          "tags_only_in_worse": [
+            "textured walls",
+            "decorative branches",
+            "minimalistic decor",
+            "serene ambiance",
+            "rustic side table",
+            "open layout",
+            "neutral tones",
+            "clean lines",
+            "natural elegance",
+            "ambient warm lighting"
+          ],
+          "shared_tags": [],
+          "num_differentiating": 20
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "calm ambiance",
+            "minimalist decor",
+            "serene bedroom setting",
+            "neutral color palette",
+            "soft neutral tones",
+            "natural light",
+            "cozy atmosphere",
+            "wooden accents"
+          ],
+          "tags_only_in_worse": [
+            "textured walls",
+            "minimalistic decor",
+            "serene ambiance",
+            "rustic side table",
+            "open layout",
+            "neutral tones",
+            "clean lines",
+            "natural elegance"
+          ],
+          "shared_tags": [
+            "decorative branches",
+            "ambient warm lighting"
+          ],
+          "num_differentiating": 16
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_3",
+          "text": "ambient warm lighting",
+          "mu_before": 0.6935,
+          "mu_after": 0.61,
+          "mu_delta": -0.0835,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "soft lighting",
+          "mu_before": 0.594,
+          "mu_after": 0.868,
+          "mu_delta": 0.274,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "serene bedroom setting",
+          "mu_before": 0.8743,
+          "mu_after": 1.062,
+          "mu_delta": 0.1877,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "open layout",
+          "mu_before": 0.5064,
+          "mu_after": 0.5093,
+          "mu_delta": 0.0029,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "minimalist design",
+          "mu_before": -0.0987,
+          "mu_after": 0.1753,
+          "mu_delta": 0.274,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_15",
+          "text": "decorative branches",
+          "mu_before": -0.015,
+          "mu_after": -0.0984,
+          "mu_delta": -0.0835,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_16",
+          "text": "natural elegance",
+          "mu_before": -0.015,
+          "mu_after": -0.0121,
+          "mu_delta": 0.0029,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "neutral color palette",
+          "mu_before": 0.5064,
+          "mu_after": 0.5035,
+          "mu_delta": -0.0029,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "soft neutral tones",
+          "mu_before": 0.4079,
+          "mu_after": 0.405,
+          "mu_delta": -0.0029,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "cozy atmosphere",
+          "mu_before": 0.4132,
+          "mu_after": 0.4103,
+          "mu_delta": -0.0029,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_7",
+          "text": "simple nightstands",
+          "mu_before": -0.6743,
+          "mu_after": -0.5909,
+          "mu_delta": 0.0835,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_6",
+          "text": "open floor plan",
+          "mu_before": -0.6743,
+          "mu_after": -0.5909,
+          "mu_delta": 0.0835,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_5",
+          "text": "spacious layout",
+          "mu_before": -0.4993,
+          "mu_after": -0.4158,
+          "mu_delta": 0.0835,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_2",
+          "text": "soft natural lighting",
+          "mu_before": -0.2994,
+          "mu_after": -0.2159,
+          "mu_delta": 0.0835,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "plush bedding",
+          "mu_before": 0.6915,
+          "mu_after": 1.0491,
+          "mu_delta": 0.3575,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "urban view",
+          "mu_before": 0.6808,
+          "mu_after": 1.0383,
+          "mu_delta": 0.3575,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_10",
+          "text": "natural light",
+          "mu_before": -0.5862,
+          "mu_after": -0.6725,
+          "mu_delta": -0.0864,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "minimalist decor",
+          "mu_before": 0.4074,
+          "mu_after": 0.321,
+          "mu_delta": -0.0864,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_1",
+          "text": "wooden accents",
+          "mu_before": -0.6777,
+          "mu_after": -0.764,
+          "mu_delta": -0.0864,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "calm ambiance",
+          "mu_before": 0.6053,
+          "mu_after": 0.8765,
+          "mu_delta": 0.2712,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_4",
+          "text": "serene ambiance",
+          "mu_before": -0.2922,
+          "mu_after": -0.5634,
+          "mu_delta": -0.2712,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_14",
+          "text": "rustic side table",
+          "mu_before": -0.127,
+          "mu_after": -0.3981,
+          "mu_delta": -0.2712,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_3",
+          "text": "clean lines",
+          "mu_before": -0.2922,
+          "mu_after": -0.5634,
+          "mu_delta": -0.2712,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_13",
+          "text": "minimalistic decor",
+          "mu_before": -0.127,
+          "mu_after": -0.3981,
+          "mu_delta": -0.2712,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_11",
+          "text": "neutral tones",
+          "mu_before": -0.127,
+          "mu_after": -0.3981,
+          "mu_delta": -0.2712,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_12",
+          "text": "textured walls",
+          "mu_before": -0.127,
+          "mu_after": -0.3981,
+          "mu_delta": -0.2712,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_5",
+          "text": "serene bedroom setting",
+          "mu": 1.062,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_4",
+          "text": "plush bedding",
+          "mu": 1.0491,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_7",
+          "text": "urban view",
+          "mu": 1.0383,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_6",
+          "text": "calm ambiance",
+          "mu": 0.8765,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_8",
+          "text": "soft lighting",
+          "mu": 0.868,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_3",
+          "text": "ambient warm lighting",
+          "mu": 0.61,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_9",
+          "text": "open layout",
+          "mu": 0.5093,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_10",
+          "text": "neutral color palette",
+          "mu": 0.5035,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_2",
+          "text": "cozy atmosphere",
+          "mu": 0.4103,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_0",
+          "text": "soft neutral tones",
+          "mu": 0.405,
+          "sigma": 0.5451
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.764,
+          "max": 1.062,
+          "mean": 0.0143,
+          "std": 0.607
+        },
+        "sigma_distribution": {
+          "min": 0.5451,
+          "max": 0.5925,
+          "mean": 0.5569
+        },
+        "tags_updated": 26,
+        "unique_tags_updated": 26,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 14.333333333333334,
+        "ranking_received": [
+          0,
+          3,
+          1,
+          2
+        ],
+        "best_option_strategy": "exploit",
+        "worst_option_strategy": "ucb",
+        "pairwise_accuracy_before_update": 0.8333333333333334,
+        "ranking_log_likelihood_before_update": -3.3262610558463863
+      }
+    },
+    {
+      "round_num": 4,
+      "timestamp": "2026-02-16T19:46:19.030466",
+      "parameters": {
+        "beta": 1.0,
+        "max_overlap": 0.55,
+        "learning_rate": 0.1129
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 1.062,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "plush bedding",
+              "mu": 1.0491,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "urban view",
+              "mu": 1.0383,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "calm ambiance",
+              "mu": 0.8765,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "soft lighting",
+              "mu": 0.868,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "ambient warm lighting",
+              "mu": 0.61,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "open layout",
+              "mu": 0.5093,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "minimalist design",
+              "mu": 0.1753,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_16",
+              "text": "natural elegance",
+              "mu": -0.0121,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_15",
+              "text": "decorative branches",
+              "mu": -0.0984,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.6078,
+          "avg_sigma": 0.5546,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_3",
+              "text": "ambient warm lighting",
+              "mu": 0.61,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "plush bedding",
+              "mu": 1.0491,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_9",
+              "text": "fluffy rug",
+              "mu": -0.6743,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "minimalist decor",
+              "mu": 0.321,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 1.062,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "soft neutral tones",
+              "mu": 0.405,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "cozy atmosphere",
+              "mu": 0.4103,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "wooden accents",
+              "mu": -0.764,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "calm ambiance",
+              "mu": 0.8765,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_8",
+              "text": "textured throw blanket",
+              "mu": -0.6743,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.2621,
+          "avg_sigma": 0.564,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_3",
+              "text": "ambient warm lighting",
+              "mu": 0.61,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "soft lighting",
+              "mu": 0.868,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "neutral color palette",
+              "mu": 0.5035,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 1.062,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_13",
+              "text": "minimalistic decor",
+              "mu": -0.3981,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "minimalist design",
+              "mu": 0.1753,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_11",
+              "text": "neutral tones",
+              "mu": -0.3981,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_12",
+              "text": "textured walls",
+              "mu": -0.3981,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "calm ambiance",
+              "mu": 0.8765,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "soft natural lighting",
+              "mu": -0.2159,
+              "sigma": 0.5451,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.2685,
+          "avg_sigma": 0.5451,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_4",
+              "text": "plush bedding",
+              "mu": 1.0491,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_14",
+              "text": "rustic side table",
+              "mu": -0.3981,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "neutral color palette",
+              "mu": 0.5035,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 1.062,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "open layout",
+              "mu": 0.5093,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "soft neutral tones",
+              "mu": 0.405,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "cozy atmosphere",
+              "mu": 0.4103,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_5",
+              "text": "spacious layout",
+              "mu": -0.4158,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "calm ambiance",
+              "mu": 0.8765,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "urban view",
+              "mu": 1.0383,
+              "sigma": 0.5451,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.504,
+          "avg_sigma": 0.5498,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "calm ambiance",
+            "plush bedding",
+            "serene bedroom setting",
+            "ambient warm lighting"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "calm ambiance",
+            "minimalist design",
+            "serene bedroom setting",
+            "soft lighting",
+            "ambient warm lighting"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "calm ambiance",
+            "plush bedding",
+            "serene bedroom setting",
+            "open layout",
+            "urban view"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "calm ambiance",
+            "serene bedroom setting",
+            "ambient warm lighting"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "calm ambiance",
+            "plush bedding",
+            "serene bedroom setting",
+            "soft neutral tones",
+            "cozy atmosphere"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "calm ambiance",
+            "serene bedroom setting",
+            "neutral color palette"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.55,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        0,
+        3,
+        2,
+        1
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 0,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "decorative branches",
+            "minimalist design",
+            "natural elegance",
+            "soft lighting",
+            "ambient warm lighting"
+          ],
+          "tags_only_in_worse": [
+            "spacious layout",
+            "rustic side table",
+            "neutral color palette",
+            "soft neutral tones",
+            "cozy atmosphere"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "plush bedding",
+            "serene bedroom setting",
+            "open layout",
+            "urban view"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "decorative branches",
+            "plush bedding",
+            "open layout",
+            "urban view",
+            "natural elegance"
+          ],
+          "tags_only_in_worse": [
+            "textured walls",
+            "minimalistic decor",
+            "neutral color palette",
+            "neutral tones",
+            "soft natural lighting"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "minimalist design",
+            "serene bedroom setting",
+            "soft lighting",
+            "ambient warm lighting"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "decorative branches",
+            "minimalist design",
+            "open layout",
+            "urban view",
+            "natural elegance",
+            "soft lighting"
+          ],
+          "tags_only_in_worse": [
+            "minimalist decor",
+            "textured throw blanket",
+            "fluffy rug",
+            "soft neutral tones",
+            "cozy atmosphere",
+            "wooden accents"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "plush bedding",
+            "serene bedroom setting",
+            "ambient warm lighting"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "plush bedding",
+            "rustic side table",
+            "open layout",
+            "cozy atmosphere",
+            "soft neutral tones",
+            "urban view",
+            "spacious layout"
+          ],
+          "tags_only_in_worse": [
+            "textured walls",
+            "minimalistic decor",
+            "minimalist design",
+            "neutral tones",
+            "soft lighting",
+            "soft natural lighting",
+            "ambient warm lighting"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "serene bedroom setting",
+            "neutral color palette"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "rustic side table",
+            "open layout",
+            "neutral color palette",
+            "urban view",
+            "spacious layout"
+          ],
+          "tags_only_in_worse": [
+            "minimalist decor",
+            "textured throw blanket",
+            "fluffy rug",
+            "ambient warm lighting",
+            "wooden accents"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "plush bedding",
+            "serene bedroom setting",
+            "soft neutral tones",
+            "cozy atmosphere"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "textured walls",
+            "minimalistic decor",
+            "minimalist design",
+            "neutral color palette",
+            "neutral tones",
+            "soft lighting",
+            "soft natural lighting"
+          ],
+          "tags_only_in_worse": [
+            "plush bedding",
+            "textured throw blanket",
+            "minimalist decor",
+            "fluffy rug",
+            "soft neutral tones",
+            "cozy atmosphere",
+            "wooden accents"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "serene bedroom setting",
+            "ambient warm lighting"
+          ],
+          "num_differentiating": 14
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_3",
+          "text": "ambient warm lighting",
+          "mu_before": 0.61,
+          "mu_after": 0.5276,
+          "mu_delta": -0.0824,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "soft lighting",
+          "mu_before": 0.868,
+          "mu_after": 1.0599,
+          "mu_delta": 0.1919,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "minimalist design",
+          "mu_before": 0.1753,
+          "mu_after": 0.3672,
+          "mu_delta": 0.1919,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_15",
+          "text": "decorative branches",
+          "mu_before": -0.0984,
+          "mu_after": 0.1748,
+          "mu_delta": 0.2732,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_16",
+          "text": "natural elegance",
+          "mu_before": -0.0121,
+          "mu_after": 0.2611,
+          "mu_delta": 0.2732,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_14",
+          "text": "rustic side table",
+          "mu_before": -0.3981,
+          "mu_after": -0.3157,
+          "mu_delta": 0.0824,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "neutral color palette",
+          "mu_before": 0.5035,
+          "mu_after": 0.5046,
+          "mu_delta": 0.001,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "soft neutral tones",
+          "mu_before": 0.405,
+          "mu_after": 0.2131,
+          "mu_delta": -0.1919,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "cozy atmosphere",
+          "mu_before": 0.4103,
+          "mu_after": 0.2184,
+          "mu_delta": -0.1919,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_5",
+          "text": "spacious layout",
+          "mu_before": -0.4158,
+          "mu_after": -0.3334,
+          "mu_delta": 0.0824,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "plush bedding",
+          "mu_before": 1.0491,
+          "mu_after": 1.1304,
+          "mu_delta": 0.0814,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "open layout",
+          "mu_before": 0.5093,
+          "mu_after": 0.865,
+          "mu_delta": 0.3557,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "urban view",
+          "mu_before": 1.0383,
+          "mu_after": 1.394,
+          "mu_delta": 0.3557,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_13",
+          "text": "minimalistic decor",
+          "mu_before": -0.3981,
+          "mu_after": -0.4795,
+          "mu_delta": -0.0814,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_11",
+          "text": "neutral tones",
+          "mu_before": -0.3981,
+          "mu_after": -0.4795,
+          "mu_delta": -0.0814,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_12",
+          "text": "textured walls",
+          "mu_before": -0.3981,
+          "mu_after": -0.4795,
+          "mu_delta": -0.0814,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_2",
+          "text": "soft natural lighting",
+          "mu_before": -0.2159,
+          "mu_after": -0.2973,
+          "mu_delta": -0.0814,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_9",
+          "text": "fluffy rug",
+          "mu_before": -0.6743,
+          "mu_after": -0.9486,
+          "mu_delta": -0.2743,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "minimalist decor",
+          "mu_before": 0.321,
+          "mu_after": 0.0467,
+          "mu_delta": -0.2743,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_1",
+          "text": "wooden accents",
+          "mu_before": -0.764,
+          "mu_after": -1.0383,
+          "mu_delta": -0.2743,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_8",
+          "text": "textured throw blanket",
+          "mu_before": -0.6743,
+          "mu_after": -0.9486,
+          "mu_delta": -0.2743,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_7",
+          "text": "urban view",
+          "mu": 1.394,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_4",
+          "text": "plush bedding",
+          "mu": 1.1304,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_5",
+          "text": "serene bedroom setting",
+          "mu": 1.062,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_8",
+          "text": "soft lighting",
+          "mu": 1.0599,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_6",
+          "text": "calm ambiance",
+          "mu": 0.8765,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_9",
+          "text": "open layout",
+          "mu": 0.865,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_3",
+          "text": "ambient warm lighting",
+          "mu": 0.5276,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_10",
+          "text": "neutral color palette",
+          "mu": 0.5046,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 9,
+          "tag_id": "neu_0",
+          "text": "minimalist design",
+          "mu": 0.3672,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 10,
+          "tag_id": "neu_16",
+          "text": "natural elegance",
+          "mu": 0.2611,
+          "sigma": 0.5451
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -1.0383,
+          "max": 1.394,
+          "mean": 0.0143,
+          "std": 0.6943
+        },
+        "sigma_distribution": {
+          "min": 0.5015,
+          "max": 0.5925,
+          "mean": 0.5234
+        },
+        "tags_updated": 21,
+        "unique_tags_updated": 21,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 11.666666666666666,
+        "ranking_received": [
+          0,
+          3,
+          2,
+          1
+        ],
+        "best_option_strategy": "exploit",
+        "worst_option_strategy": "explore",
+        "pairwise_accuracy_before_update": 0.8333333333333334,
+        "ranking_log_likelihood_before_update": -3.7544115786071206
+      }
+    },
+    {
+      "round_num": 5,
+      "timestamp": "2026-02-16T19:47:08.086640",
+      "parameters": {
+        "beta": 0.6667,
+        "max_overlap": 0.55,
+        "learning_rate": 0.1107
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_7",
+              "text": "urban view",
+              "mu": 1.394,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "plush bedding",
+              "mu": 1.1304,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 1.062,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "soft lighting",
+              "mu": 1.0599,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "calm ambiance",
+              "mu": 0.8765,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "open layout",
+              "mu": 0.865,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "ambient warm lighting",
+              "mu": 0.5276,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "minimalist design",
+              "mu": 0.3672,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_16",
+              "text": "natural elegance",
+              "mu": 0.2611,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_15",
+              "text": "decorative branches",
+              "mu": 0.1748,
+              "sigma": 0.5451,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.7719,
+          "avg_sigma": 0.5189,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_3",
+              "text": "ambient warm lighting",
+              "mu": 0.5276,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "plush bedding",
+              "mu": 1.1304,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_10",
+              "text": "natural light",
+              "mu": -0.6725,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_3",
+              "text": "clean lines",
+              "mu": -0.5634,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "minimalist decor",
+              "mu": 0.0467,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 1.062,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "soft neutral tones",
+              "mu": 0.2131,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "cozy atmosphere",
+              "mu": 0.2184,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "wooden accents",
+              "mu": -1.0383,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "calm ambiance",
+              "mu": 0.8765,
+              "sigma": 0.5451,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.1801,
+          "avg_sigma": 0.5324,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "neu_4",
+              "text": "serene ambiance",
+              "mu": -0.5634,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "plush bedding",
+              "mu": 1.1304,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_14",
+              "text": "rustic side table",
+              "mu": -0.3157,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "neutral color palette",
+              "mu": 0.5046,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 1.062,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "minimalist design",
+              "mu": 0.3672,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_5",
+              "text": "spacious layout",
+              "mu": -0.3334,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "urban view",
+              "mu": 1.394,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_16",
+              "text": "natural elegance",
+              "mu": 0.2611,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "soft natural lighting",
+              "mu": -0.2973,
+              "sigma": 0.5015,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.321,
+          "avg_sigma": 0.5146,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_3",
+              "text": "ambient warm lighting",
+              "mu": 0.5276,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "plush bedding",
+              "mu": 1.1304,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "soft lighting",
+              "mu": 1.0599,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "neutral color palette",
+              "mu": 0.5046,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "open layout",
+              "mu": 0.865,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "soft neutral tones",
+              "mu": 0.2131,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "cozy atmosphere",
+              "mu": 0.2184,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_7",
+              "text": "simple nightstands",
+              "mu": -0.5909,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_6",
+              "text": "open floor plan",
+              "mu": -0.5909,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "urban view",
+              "mu": 1.394,
+              "sigma": 0.5015,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.4731,
+          "avg_sigma": 0.5146,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "calm ambiance",
+            "plush bedding",
+            "serene bedroom setting",
+            "ambient warm lighting"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "plush bedding",
+            "minimalist design",
+            "serene bedroom setting",
+            "urban view",
+            "natural elegance"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "plush bedding",
+            "open layout",
+            "urban view",
+            "soft lighting",
+            "ambient warm lighting"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "plush bedding",
+            "serene bedroom setting"
+          ],
+          "overlap_count": 2,
+          "overlap_fraction": 0.2,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "plush bedding",
+            "cozy atmosphere",
+            "soft neutral tones",
+            "ambient warm lighting"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "plush bedding",
+            "urban view",
+            "neutral color palette"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.55,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        3,
+        1,
+        2,
+        0
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "open layout",
+            "neutral color palette",
+            "open floor plan",
+            "urban view",
+            "soft lighting",
+            "simple nightstands"
+          ],
+          "tags_only_in_worse": [
+            "calm ambiance",
+            "minimalist decor",
+            "serene bedroom setting",
+            "clean lines",
+            "natural light",
+            "wooden accents"
+          ],
+          "shared_tags": [
+            "plush bedding",
+            "cozy atmosphere",
+            "soft neutral tones",
+            "ambient warm lighting"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "open layout",
+            "open floor plan",
+            "soft neutral tones",
+            "soft lighting",
+            "cozy atmosphere",
+            "ambient warm lighting",
+            "simple nightstands"
+          ],
+          "tags_only_in_worse": [
+            "minimalist design",
+            "rustic side table",
+            "serene bedroom setting",
+            "serene ambiance",
+            "natural elegance",
+            "spacious layout",
+            "soft natural lighting"
+          ],
+          "shared_tags": [
+            "plush bedding",
+            "urban view",
+            "neutral color palette"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 0,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "neutral color palette",
+            "open floor plan",
+            "soft neutral tones",
+            "cozy atmosphere",
+            "simple nightstands"
+          ],
+          "tags_only_in_worse": [
+            "calm ambiance",
+            "decorative branches",
+            "minimalist design",
+            "serene bedroom setting",
+            "natural elegance"
+          ],
+          "shared_tags": [
+            "plush bedding",
+            "open layout",
+            "urban view",
+            "soft lighting",
+            "ambient warm lighting"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "calm ambiance",
+            "minimalist decor",
+            "clean lines",
+            "soft neutral tones",
+            "natural light",
+            "cozy atmosphere",
+            "ambient warm lighting",
+            "wooden accents"
+          ],
+          "tags_only_in_worse": [
+            "minimalist design",
+            "rustic side table",
+            "serene ambiance",
+            "neutral color palette",
+            "urban view",
+            "natural elegance",
+            "spacious layout",
+            "soft natural lighting"
+          ],
+          "shared_tags": [
+            "plush bedding",
+            "serene bedroom setting"
+          ],
+          "num_differentiating": 16
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 0,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "minimalist decor",
+            "clean lines",
+            "soft neutral tones",
+            "natural light",
+            "cozy atmosphere",
+            "wooden accents"
+          ],
+          "tags_only_in_worse": [
+            "decorative branches",
+            "minimalist design",
+            "open layout",
+            "urban view",
+            "natural elegance",
+            "soft lighting"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "plush bedding",
+            "serene bedroom setting",
+            "ambient warm lighting"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "rustic side table",
+            "serene ambiance",
+            "neutral color palette",
+            "spacious layout",
+            "soft natural lighting"
+          ],
+          "tags_only_in_worse": [
+            "calm ambiance",
+            "decorative branches",
+            "open layout",
+            "soft lighting",
+            "ambient warm lighting"
+          ],
+          "shared_tags": [
+            "plush bedding",
+            "minimalist design",
+            "serene bedroom setting",
+            "urban view",
+            "natural elegance"
+          ],
+          "num_differentiating": 10
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_8",
+          "text": "soft lighting",
+          "mu_before": 1.0599,
+          "mu_after": 1.0619,
+          "mu_delta": 0.002,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "neutral color palette",
+          "mu_before": 0.5046,
+          "mu_after": 0.6918,
+          "mu_delta": 0.1872,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "open layout",
+          "mu_before": 0.865,
+          "mu_after": 0.867,
+          "mu_delta": 0.002,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_7",
+          "text": "simple nightstands",
+          "mu_before": -0.5909,
+          "mu_after": -0.3224,
+          "mu_delta": 0.2684,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_6",
+          "text": "open floor plan",
+          "mu_before": -0.5909,
+          "mu_after": -0.3224,
+          "mu_delta": 0.2684,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "urban view",
+          "mu_before": 1.394,
+          "mu_after": 1.3147,
+          "mu_delta": -0.0792,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_10",
+          "text": "natural light",
+          "mu_before": -0.6725,
+          "mu_after": -0.5933,
+          "mu_delta": 0.0792,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_3",
+          "text": "clean lines",
+          "mu_before": -0.5634,
+          "mu_after": -0.4842,
+          "mu_delta": 0.0792,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "minimalist decor",
+          "mu_before": 0.0467,
+          "mu_after": 0.126,
+          "mu_delta": 0.0792,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "serene bedroom setting",
+          "mu_before": 1.062,
+          "mu_after": 0.7936,
+          "mu_delta": -0.2684,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_1",
+          "text": "wooden accents",
+          "mu_before": -1.0383,
+          "mu_after": -0.9591,
+          "mu_delta": 0.0792,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "calm ambiance",
+          "mu_before": 0.8765,
+          "mu_after": 0.6893,
+          "mu_delta": -0.1872,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "ambient warm lighting",
+          "mu_before": 0.5276,
+          "mu_after": 0.6088,
+          "mu_delta": 0.0812,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "soft neutral tones",
+          "mu_before": 0.2131,
+          "mu_after": 0.5608,
+          "mu_delta": 0.3477,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "cozy atmosphere",
+          "mu_before": 0.2184,
+          "mu_after": 0.5661,
+          "mu_delta": 0.3477,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_4",
+          "text": "serene ambiance",
+          "mu_before": -0.5634,
+          "mu_after": -0.6446,
+          "mu_delta": -0.0812,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_14",
+          "text": "rustic side table",
+          "mu_before": -0.3157,
+          "mu_after": -0.3969,
+          "mu_delta": -0.0812,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "minimalist design",
+          "mu_before": 0.3672,
+          "mu_after": 0.0195,
+          "mu_delta": -0.3477,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_5",
+          "text": "spacious layout",
+          "mu_before": -0.3334,
+          "mu_after": -0.4147,
+          "mu_delta": -0.0812,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_16",
+          "text": "natural elegance",
+          "mu_before": 0.2611,
+          "mu_after": -0.0865,
+          "mu_delta": -0.3477,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_2",
+          "text": "soft natural lighting",
+          "mu_before": -0.2973,
+          "mu_after": -0.3785,
+          "mu_delta": -0.0812,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_15",
+          "text": "decorative branches",
+          "mu_before": 0.1748,
+          "mu_after": -0.0916,
+          "mu_delta": -0.2664,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_7",
+          "text": "urban view",
+          "mu": 1.3147,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_4",
+          "text": "plush bedding",
+          "mu": 1.1304,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_8",
+          "text": "soft lighting",
+          "mu": 1.0619,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_9",
+          "text": "open layout",
+          "mu": 0.867,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_5",
+          "text": "serene bedroom setting",
+          "mu": 0.7936,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_10",
+          "text": "neutral color palette",
+          "mu": 0.6918,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_6",
+          "text": "calm ambiance",
+          "mu": 0.6893,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_3",
+          "text": "ambient warm lighting",
+          "mu": 0.6088,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_2",
+          "text": "cozy atmosphere",
+          "mu": 0.5661,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_0",
+          "text": "soft neutral tones",
+          "mu": 0.5608,
+          "sigma": 0.4614
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.9591,
+          "max": 1.3147,
+          "mean": 0.0143,
+          "std": 0.6706
+        },
+        "sigma_distribution": {
+          "min": 0.4614,
+          "max": 0.5451,
+          "mean": 0.4904
+        },
+        "tags_updated": 22,
+        "unique_tags_updated": 22,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 12.333333333333334,
+        "ranking_received": [
+          3,
+          1,
+          2,
+          0
+        ],
+        "best_option_strategy": "challenger",
+        "worst_option_strategy": "exploit",
+        "pairwise_accuracy_before_update": 0.3333333333333333,
+        "ranking_log_likelihood_before_update": -4.576467278060544
+      }
+    },
+    {
+      "round_num": 6,
+      "timestamp": "2026-02-16T19:47:59.330801",
+      "parameters": {
+        "beta": 0.3333,
+        "max_overlap": 0.6,
+        "learning_rate": 0.1085
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_7",
+              "text": "urban view",
+              "mu": 1.3147,
+              "sigma": 0.4614,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "plush bedding",
+              "mu": 1.1304,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "soft lighting",
+              "mu": 1.0619,
+              "sigma": 0.4614,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "open layout",
+              "mu": 0.867,
+              "sigma": 0.4614,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 0.7936,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "neutral color palette",
+              "mu": 0.6918,
+              "sigma": 0.4614,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "calm ambiance",
+              "mu": 0.6893,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "minimalist design",
+              "mu": 0.0195,
+              "sigma": 0.4614,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_16",
+              "text": "natural elegance",
+              "mu": -0.0865,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_15",
+              "text": "decorative branches",
+              "mu": -0.0916,
+              "sigma": 0.5015,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.639,
+          "avg_sigma": 0.4814,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_3",
+              "text": "ambient warm lighting",
+              "mu": 0.6088,
+              "sigma": 0.4614,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "plush bedding",
+              "mu": 1.1304,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_10",
+              "text": "natural light",
+              "mu": -0.5933,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_9",
+              "text": "fluffy rug",
+              "mu": -0.9486,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "minimalist decor",
+              "mu": 0.126,
+              "sigma": 0.4614,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 0.7936,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "soft neutral tones",
+              "mu": 0.5608,
+              "sigma": 0.4614,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "cozy atmosphere",
+              "mu": 0.5661,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "calm ambiance",
+              "mu": 0.6893,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_8",
+              "text": "textured throw blanket",
+              "mu": -0.9486,
+              "sigma": 0.5451,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.1985,
+          "avg_sigma": 0.5025,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_5",
+              "text": "serene bedroom setting",
+              "mu": 0.7936,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "open layout",
+              "mu": 0.867,
+              "sigma": 0.4614,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_11",
+              "text": "neutral tones",
+              "mu": -0.4795,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_15",
+              "text": "decorative branches",
+              "mu": -0.0916,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_7",
+              "text": "simple nightstands",
+              "mu": -0.3224,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "calm ambiance",
+              "mu": 0.6893,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_6",
+              "text": "open floor plan",
+              "mu": -0.3224,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_12",
+              "text": "textured walls",
+              "mu": -0.4795,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "urban view",
+              "mu": 1.3147,
+              "sigma": 0.4614,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_16",
+              "text": "natural elegance",
+              "mu": -0.0865,
+              "sigma": 0.5015,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.1883,
+          "avg_sigma": 0.4935,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_3",
+              "text": "ambient warm lighting",
+              "mu": 0.6088,
+              "sigma": 0.4614,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "plush bedding",
+              "mu": 1.1304,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "soft lighting",
+              "mu": 1.0619,
+              "sigma": 0.4614,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "neutral color palette",
+              "mu": 0.6918,
+              "sigma": 0.4614,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_13",
+              "text": "minimalistic decor",
+              "mu": -0.4795,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "open layout",
+              "mu": 0.867,
+              "sigma": 0.4614,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "soft neutral tones",
+              "mu": 0.5608,
+              "sigma": 0.4614,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "cozy atmosphere",
+              "mu": 0.5661,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "calm ambiance",
+              "mu": 0.6893,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "urban view",
+              "mu": 1.3147,
+              "sigma": 0.4614,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.7011,
+          "avg_sigma": 0.4774,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "calm ambiance",
+            "plush bedding",
+            "serene bedroom setting"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.6,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "calm ambiance",
+            "decorative branches",
+            "serene bedroom setting",
+            "open layout",
+            "urban view",
+            "natural elegance"
+          ],
+          "overlap_count": 6,
+          "overlap_fraction": 0.6,
+          "max_allowed": 0.6,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "calm ambiance",
+            "plush bedding",
+            "open layout",
+            "neutral color palette",
+            "urban view",
+            "soft lighting"
+          ],
+          "overlap_count": 6,
+          "overlap_fraction": 0.6,
+          "max_allowed": 0.6,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "calm ambiance",
+            "serene bedroom setting"
+          ],
+          "overlap_count": 2,
+          "overlap_fraction": 0.2,
+          "max_allowed": 0.6,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "calm ambiance",
+            "plush bedding",
+            "soft neutral tones",
+            "cozy atmosphere",
+            "ambient warm lighting"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.6,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "calm ambiance",
+            "open layout",
+            "urban view"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.6,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        2,
+        3,
+        0,
+        1
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 2,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "textured walls",
+            "decorative branches",
+            "serene bedroom setting",
+            "neutral tones",
+            "open floor plan",
+            "natural elegance",
+            "simple nightstands"
+          ],
+          "tags_only_in_worse": [
+            "minimalistic decor",
+            "plush bedding",
+            "neutral color palette",
+            "soft neutral tones",
+            "soft lighting",
+            "cozy atmosphere",
+            "ambient warm lighting"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "open layout",
+            "urban view"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 0,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "neutral tones",
+            "textured walls",
+            "open floor plan",
+            "simple nightstands"
+          ],
+          "tags_only_in_worse": [
+            "plush bedding",
+            "minimalist design",
+            "soft lighting",
+            "neutral color palette"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "decorative branches",
+            "serene bedroom setting",
+            "open layout",
+            "urban view",
+            "natural elegance"
+          ],
+          "num_differentiating": 8
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 1,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "textured walls",
+            "decorative branches",
+            "open layout",
+            "neutral tones",
+            "open floor plan",
+            "urban view",
+            "natural elegance",
+            "simple nightstands"
+          ],
+          "tags_only_in_worse": [
+            "plush bedding",
+            "textured throw blanket",
+            "minimalist decor",
+            "fluffy rug",
+            "soft neutral tones",
+            "natural light",
+            "cozy atmosphere",
+            "ambient warm lighting"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "serene bedroom setting"
+          ],
+          "num_differentiating": 16
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "cozy atmosphere",
+            "soft neutral tones",
+            "ambient warm lighting",
+            "minimalistic decor"
+          ],
+          "tags_only_in_worse": [
+            "natural elegance",
+            "minimalist design",
+            "serene bedroom setting",
+            "decorative branches"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "plush bedding",
+            "open layout",
+            "neutral color palette",
+            "urban view",
+            "soft lighting"
+          ],
+          "num_differentiating": 8
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "minimalistic decor",
+            "open layout",
+            "neutral color palette",
+            "urban view",
+            "soft lighting"
+          ],
+          "tags_only_in_worse": [
+            "minimalist decor",
+            "textured throw blanket",
+            "serene bedroom setting",
+            "fluffy rug",
+            "natural light"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "plush bedding",
+            "soft neutral tones",
+            "cozy atmosphere",
+            "ambient warm lighting"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "decorative branches",
+            "minimalist design",
+            "open layout",
+            "neutral color palette",
+            "urban view",
+            "natural elegance",
+            "soft lighting"
+          ],
+          "tags_only_in_worse": [
+            "minimalist decor",
+            "textured throw blanket",
+            "fluffy rug",
+            "soft neutral tones",
+            "natural light",
+            "cozy atmosphere",
+            "ambient warm lighting"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "plush bedding",
+            "serene bedroom setting"
+          ],
+          "num_differentiating": 14
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_5",
+          "text": "serene bedroom setting",
+          "mu_before": 0.7936,
+          "mu_after": 0.7153,
+          "mu_delta": -0.0782,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_11",
+          "text": "neutral tones",
+          "mu_before": -0.4795,
+          "mu_after": -0.2184,
+          "mu_delta": 0.2611,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_15",
+          "text": "decorative branches",
+          "mu_before": -0.0916,
+          "mu_after": 0.0905,
+          "mu_delta": 0.1821,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_7",
+          "text": "simple nightstands",
+          "mu_before": -0.3224,
+          "mu_after": -0.0613,
+          "mu_delta": 0.2611,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_12",
+          "text": "textured walls",
+          "mu_before": -0.4795,
+          "mu_after": -0.2184,
+          "mu_delta": 0.2611,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_6",
+          "text": "open floor plan",
+          "mu_before": -0.3224,
+          "mu_after": -0.0613,
+          "mu_delta": 0.2611,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_16",
+          "text": "natural elegance",
+          "mu_before": -0.0865,
+          "mu_after": 0.0956,
+          "mu_delta": 0.1821,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "ambient warm lighting",
+          "mu_before": 0.6088,
+          "mu_after": 0.4267,
+          "mu_delta": -0.1821,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4244,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "plush bedding",
+          "mu_before": 1.1304,
+          "mu_after": 0.8693,
+          "mu_delta": -0.2611,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "soft lighting",
+          "mu_before": 1.0619,
+          "mu_after": 1.0611,
+          "mu_delta": -0.0008,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4244,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_13",
+          "text": "minimalistic decor",
+          "mu_before": -0.4795,
+          "mu_after": -0.4013,
+          "mu_delta": 0.0782,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "neutral color palette",
+          "mu_before": 0.6918,
+          "mu_after": 0.691,
+          "mu_delta": -0.0008,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4244,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "soft neutral tones",
+          "mu_before": 0.5608,
+          "mu_after": 0.3787,
+          "mu_delta": -0.1821,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4244,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "cozy atmosphere",
+          "mu_before": 0.5661,
+          "mu_after": 0.384,
+          "mu_delta": -0.1821,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "minimalist design",
+          "mu_before": 0.0195,
+          "mu_after": -0.0595,
+          "mu_delta": -0.079,
+          "sigma_before": 0.5451,
+          "sigma_after": 0.4244,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "open layout",
+          "mu_before": 0.867,
+          "mu_after": 1.1273,
+          "mu_delta": 0.2604,
+          "sigma_before": 0.5451,
+          "sigma_after": 0.4244,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "urban view",
+          "mu_before": 1.3147,
+          "mu_after": 1.5751,
+          "mu_delta": 0.2604,
+          "sigma_before": 0.5451,
+          "sigma_after": 0.4244,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_10",
+          "text": "natural light",
+          "mu_before": -0.5933,
+          "mu_after": -0.8536,
+          "mu_delta": -0.2604,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_9",
+          "text": "fluffy rug",
+          "mu_before": -0.9486,
+          "mu_after": -1.209,
+          "mu_delta": -0.2604,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "minimalist decor",
+          "mu_before": 0.126,
+          "mu_after": -0.1344,
+          "mu_delta": -0.2604,
+          "sigma_before": 0.5451,
+          "sigma_after": 0.4244,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_8",
+          "text": "textured throw blanket",
+          "mu_before": -0.9486,
+          "mu_after": -1.209,
+          "mu_delta": -0.2604,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_7",
+          "text": "urban view",
+          "mu": 1.5751,
+          "sigma": 0.4244
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_9",
+          "text": "open layout",
+          "mu": 1.1273,
+          "sigma": 0.4244
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_8",
+          "text": "soft lighting",
+          "mu": 1.0611,
+          "sigma": 0.4244
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_4",
+          "text": "plush bedding",
+          "mu": 0.8693,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_5",
+          "text": "serene bedroom setting",
+          "mu": 0.7153,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_10",
+          "text": "neutral color palette",
+          "mu": 0.691,
+          "sigma": 0.4244
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_6",
+          "text": "calm ambiance",
+          "mu": 0.6893,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_3",
+          "text": "ambient warm lighting",
+          "mu": 0.4267,
+          "sigma": 0.4244
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_2",
+          "text": "cozy atmosphere",
+          "mu": 0.384,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_0",
+          "text": "soft neutral tones",
+          "mu": 0.3787,
+          "sigma": 0.4244
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -1.209,
+          "max": 1.5751,
+          "mean": 0.0143,
+          "std": 0.696
+        },
+        "sigma_distribution": {
+          "min": 0.4244,
+          "max": 0.5015,
+          "mean": 0.4608
+        },
+        "tags_updated": 21,
+        "unique_tags_updated": 21,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 11.666666666666666,
+        "ranking_received": [
+          2,
+          3,
+          0,
+          1
+        ],
+        "best_option_strategy": "ucb",
+        "worst_option_strategy": "explore",
+        "pairwise_accuracy_before_update": 0.6666666666666666,
+        "ranking_log_likelihood_before_update": -4.116294242945062
+      }
+    }
+  ],
+  "final": {
+    "timestamp": "2026-02-16T19:50:00.210070",
+    "rounds_completed": 6,
+    "total_comparisons": 36,
+    "total_tag_updates": 141,
+    "final_tags": [
+      {
+        "rank": 1,
+        "text": "urban view",
+        "weight": 0.1763,
+        "final_mu": 1.4848,
+        "final_sigma": 0.3905,
+        "category": "positive_other",
+        "times_shown": 11,
+        "times_in_winner": 4,
+        "times_in_loser": 2,
+        "win_rate": 0.364
+      },
+      {
+        "rank": 2,
+        "text": "soft lighting",
+        "weight": 0.1369,
+        "final_mu": 1.232,
+        "final_sigma": 0.3905,
+        "category": "positive_other",
+        "times_shown": 8,
+        "times_in_winner": 4,
+        "times_in_loser": 2,
+        "win_rate": 0.5
+      },
+      {
+        "rank": 3,
+        "text": "plush bedding",
+        "weight": 0.1237,
+        "final_mu": 1.1304,
+        "final_sigma": 0.5015,
+        "category": "positive_other",
+        "times_shown": 13,
+        "times_in_winner": 4,
+        "times_in_loser": 2,
+        "win_rate": 0.308
+      },
+      {
+        "rank": 4,
+        "text": "open layout",
+        "weight": 0.1035,
+        "final_mu": 0.952,
+        "final_sigma": 0.4244,
+        "category": "positive_other",
+        "times_shown": 10,
+        "times_in_winner": 4,
+        "times_in_loser": 3,
+        "win_rate": 0.4
+      },
+      {
+        "rank": 5,
+        "text": "ambient warm lighting",
+        "weight": 0.087,
+        "final_mu": 0.7789,
+        "final_sigma": 0.3905,
+        "category": "positive_other",
+        "times_shown": 11,
+        "times_in_winner": 4,
+        "times_in_loser": 3,
+        "win_rate": 0.364
+      },
+      {
+        "rank": 6,
+        "text": "neutral color palette",
+        "weight": 0.0868,
+        "final_mu": 0.7768,
+        "final_sigma": 0.4244,
+        "category": "positive_other",
+        "times_shown": 10,
+        "times_in_winner": 2,
+        "times_in_loser": 1,
+        "win_rate": 0.2
+      },
+      {
+        "rank": 7,
+        "text": "cozy atmosphere",
+        "weight": 0.0834,
+        "final_mu": 0.7362,
+        "final_sigma": 0.4244,
+        "category": "positive_other",
+        "times_shown": 13,
+        "times_in_winner": 3,
+        "times_in_loser": 3,
+        "win_rate": 0.231
+      },
+      {
+        "rank": 8,
+        "text": "soft neutral tones",
+        "weight": 0.0829,
+        "final_mu": 0.7309,
+        "final_sigma": 0.3905,
+        "category": "positive_other",
+        "times_shown": 11,
+        "times_in_winner": 2,
+        "times_in_loser": 2,
+        "win_rate": 0.182
+      },
+      {
+        "rank": 9,
+        "text": "serene bedroom setting",
+        "weight": 0.0628,
+        "final_mu": 0.4534,
+        "final_sigma": 0.4625,
+        "category": "positive_other",
+        "times_shown": 15,
+        "times_in_winner": 4,
+        "times_in_loser": 3,
+        "win_rate": 0.267
+      },
+      {
+        "rank": 10,
+        "text": "calm ambiance",
+        "weight": 0.0566,
+        "final_mu": 0.3491,
+        "final_sigma": 0.4625,
+        "category": "positive_other",
+        "times_shown": 12,
+        "times_in_winner": 3,
+        "times_in_loser": 2,
+        "win_rate": 0.25
+      }
+    ],
+    "final_trajectories": {
+      "urban view": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.8777,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.6808,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 1.0383,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 1.394,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 1.3147,
+          "sigma": 0.4614
+        },
+        {
+          "round": 6,
+          "mu": 1.5751,
+          "sigma": 0.4244
+        }
+      ],
+      "soft lighting": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.8777,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.594,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.868,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 1.0599,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 1.0619,
+          "sigma": 0.4614
+        },
+        {
+          "round": 6,
+          "mu": 1.0611,
+          "sigma": 0.4244
+        }
+      ],
+      "plush bedding": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.4947,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.6915,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 1.0491,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 1.1304,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 1.1304,
+          "sigma": 0.5015
+        },
+        {
+          "round": 6,
+          "mu": 0.8693,
+          "sigma": 0.4614
+        }
+      ],
+      "open layout": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.7915,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.5064,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.5093,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 0.865,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 0.867,
+          "sigma": 0.4614
+        },
+        {
+          "round": 6,
+          "mu": 1.1273,
+          "sigma": 0.4244
+        }
+      ],
+      "ambient warm lighting": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.4085,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.6935,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.61,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 0.5276,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 0.6088,
+          "sigma": 0.4614
+        },
+        {
+          "round": 6,
+          "mu": 0.4267,
+          "sigma": 0.4244
+        }
+      ],
+      "neutral color palette": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.7915,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.5064,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.5035,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 0.5046,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 0.6918,
+          "sigma": 0.4614
+        },
+        {
+          "round": 6,
+          "mu": 0.691,
+          "sigma": 0.4244
+        }
+      ],
+      "cozy atmosphere": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 2,
+          "mu": 0.4132,
+          "sigma": 0.644
+        },
+        {
+          "round": 3,
+          "mu": 0.4103,
+          "sigma": 0.5925
+        },
+        {
+          "round": 4,
+          "mu": 0.2184,
+          "sigma": 0.5451
+        },
+        {
+          "round": 5,
+          "mu": 0.5661,
+          "sigma": 0.5015
+        },
+        {
+          "round": 6,
+          "mu": 0.384,
+          "sigma": 0.4614
+        }
+      ],
+      "soft neutral tones": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.4947,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.4079,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.405,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 0.2131,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 0.5608,
+          "sigma": 0.4614
+        },
+        {
+          "round": 6,
+          "mu": 0.3787,
+          "sigma": 0.4244
+        }
+      ],
+      "serene bedroom setting": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.7862,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.8743,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 1.062,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 1.062,
+          "sigma": 0.5451
+        },
+        {
+          "round": 5,
+          "mu": 0.7936,
+          "sigma": 0.5015
+        },
+        {
+          "round": 6,
+          "mu": 0.7153,
+          "sigma": 0.4614
+        }
+      ],
+      "calm ambiance": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.4085,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.6053,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.8765,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 0.8765,
+          "sigma": 0.5451
+        },
+        {
+          "round": 5,
+          "mu": 0.6893,
+          "sigma": 0.5015
+        },
+        {
+          "round": 6,
+          "mu": 0.6893,
+          "sigma": 0.5015
+        }
+      ]
+    },
+    "convergence_analysis": {
+      "top_10_stability": "10/10 tags same as previous round",
+      "mu_spread": 2.5289,
+      "avg_final_sigma": 0.4607,
+      "min_final_sigma": 0.3905,
+      "converged": false
+    },
+    "warnings_summary": {
+      "total": 1,
+      "by_type": {
+        "rollback": 1
+      }
+    }
+  },
+  "warnings": [
+    {
+      "type": "rollback",
+      "message": "Rolled back from round 6 to round 5. Boosted: ['ambient warm lighting', 'soft neutral tones', 'cozy atmosphere'], Penalized: ['serene bedroom setting', 'minimalist design', 'decorative branches']",
+      "timestamp": "2026-02-16T19:49:19.247575"
+    }
+  ],
+  "tag_trajectories": {
+    "pos_0": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4947,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4079,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.405,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.2131,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 0.5608,
+        "sigma": 0.4614
+      },
+      {
+        "round": 6,
+        "mu": 0.3787,
+        "sigma": 0.4244
+      }
+    ],
+    "pos_1": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.1223,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4074,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.321,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.0467,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 0.126,
+        "sigma": 0.4614
+      },
+      {
+        "round": 6,
+        "mu": -0.1344,
+        "sigma": 0.4244
+      }
+    ],
+    "pos_2": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.4132,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.4103,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.2184,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.5661,
+        "sigma": 0.5015
+      },
+      {
+        "round": 6,
+        "mu": 0.384,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_3": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4085,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.6935,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.61,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.5276,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 0.6088,
+        "sigma": 0.4614
+      },
+      {
+        "round": 6,
+        "mu": 0.4267,
+        "sigma": 0.4244
+      }
+    ],
+    "pos_4": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4947,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.6915,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 1.0491,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 1.1304,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 1.1304,
+        "sigma": 0.5015
+      },
+      {
+        "round": 6,
+        "mu": 0.8693,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_5": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.7862,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.8743,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 1.062,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 1.062,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.7936,
+        "sigma": 0.5015
+      },
+      {
+        "round": 6,
+        "mu": 0.7153,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_6": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4085,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.6053,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.8765,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.8765,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.6893,
+        "sigma": 0.5015
+      },
+      {
+        "round": 6,
+        "mu": 0.6893,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_7": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.8777,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.6808,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 1.0383,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 1.394,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 1.3147,
+        "sigma": 0.4614
+      },
+      {
+        "round": 6,
+        "mu": 1.5751,
+        "sigma": 0.4244
+      }
+    ],
+    "pos_8": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.8777,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.594,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.868,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 1.0599,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 1.0619,
+        "sigma": 0.4614
+      },
+      {
+        "round": 6,
+        "mu": 1.0611,
+        "sigma": 0.4244
+      }
+    ],
+    "pos_9": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.7915,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.5064,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.5093,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.865,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 0.867,
+        "sigma": 0.4614
+      },
+      {
+        "round": 6,
+        "mu": 1.1273,
+        "sigma": 0.4244
+      }
+    ],
+    "pos_10": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.7915,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.5064,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.5035,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.5046,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 0.6918,
+        "sigma": 0.4614
+      },
+      {
+        "round": 6,
+        "mu": 0.691,
+        "sigma": 0.4244
+      }
+    ],
+    "neu_0": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.1001,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.0987,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.1753,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.3672,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 0.0195,
+        "sigma": 0.4614
+      },
+      {
+        "round": 6,
+        "mu": -0.0595,
+        "sigma": 0.4244
+      }
+    ],
+    "neu_1": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.6777,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.6777,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.764,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": -1.0383,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": -0.9591,
+        "sigma": 0.5015
+      },
+      {
+        "round": 6,
+        "mu": -0.9591,
+        "sigma": 0.5015
+      }
+    ],
+    "neu_2": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3862,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.2994,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.2159,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": -0.2973,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": -0.3785,
+        "sigma": 0.4614
+      },
+      {
+        "round": 6,
+        "mu": -0.3785,
+        "sigma": 0.4614
+      }
+    ],
+    "neu_3": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.0085,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.2922,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.5634,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": -0.5634,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": -0.4842,
+        "sigma": 0.5015
+      },
+      {
+        "round": 6,
+        "mu": -0.4842,
+        "sigma": 0.5015
+      }
+    ],
+    "neu_4": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.0085,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.2922,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.5634,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": -0.5634,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": -0.6446,
+        "sigma": 0.5015
+      },
+      {
+        "round": 6,
+        "mu": -0.6446,
+        "sigma": 0.5015
+      }
+    ],
+    "neu_5": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.5862,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.4993,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.4158,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": -0.3334,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": -0.4147,
+        "sigma": 0.4614
+      },
+      {
+        "round": 6,
+        "mu": -0.4147,
+        "sigma": 0.4614
+      }
+    ],
+    "neu_6": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.5862,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.6743,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.5909,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": -0.5909,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": -0.3224,
+        "sigma": 0.5015
+      },
+      {
+        "round": 6,
+        "mu": -0.0613,
+        "sigma": 0.4614
+      }
+    ],
+    "neu_7": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.5862,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.6743,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.5909,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": -0.5909,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": -0.3224,
+        "sigma": 0.5015
+      },
+      {
+        "round": 6,
+        "mu": -0.0613,
+        "sigma": 0.4614
+      }
+    ],
+    "neu_8": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.5862,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.6743,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.6743,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": -0.9486,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": -0.9486,
+        "sigma": 0.5451
+      },
+      {
+        "round": 6,
+        "mu": -1.209,
+        "sigma": 0.5015
+      }
+    ],
+    "neu_9": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.5862,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.6743,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.6743,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": -0.9486,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": -0.9486,
+        "sigma": 0.5451
+      },
+      {
+        "round": 6,
+        "mu": -1.209,
+        "sigma": 0.5015
+      }
+    ],
+    "neu_10": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.5862,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.5862,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.6725,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": -0.6725,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": -0.5933,
+        "sigma": 0.5451
+      },
+      {
+        "round": 6,
+        "mu": -0.8536,
+        "sigma": 0.5015
+      }
+    ],
+    "neu_11": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.2138,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.127,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.3981,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": -0.4795,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": -0.4795,
+        "sigma": 0.5015
+      },
+      {
+        "round": 6,
+        "mu": -0.2184,
+        "sigma": 0.4614
+      }
+    ],
+    "neu_12": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.2138,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.127,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.3981,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": -0.4795,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": -0.4795,
+        "sigma": 0.5015
+      },
+      {
+        "round": 6,
+        "mu": -0.2184,
+        "sigma": 0.4614
+      }
+    ],
+    "neu_13": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.2138,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.127,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.3981,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": -0.4795,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": -0.4795,
+        "sigma": 0.5015
+      },
+      {
+        "round": 6,
+        "mu": -0.4013,
+        "sigma": 0.4614
+      }
+    ],
+    "neu_14": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.2138,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.127,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.3981,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": -0.3157,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": -0.3969,
+        "sigma": 0.4614
+      },
+      {
+        "round": 6,
+        "mu": -0.3969,
+        "sigma": 0.4614
+      }
+    ],
+    "neu_15": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.015,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.0984,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.1748,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": -0.0916,
+        "sigma": 0.5015
+      },
+      {
+        "round": 6,
+        "mu": 0.0905,
+        "sigma": 0.4614
+      }
+    ],
+    "neu_16": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.015,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.0121,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.2611,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": -0.0865,
+        "sigma": 0.5015
+      },
+      {
+        "round": 6,
+        "mu": 0.0956,
+        "sigma": 0.4614
+      }
+    ]
+  }
+}

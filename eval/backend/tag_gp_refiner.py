@@ -66,9 +66,9 @@ class GPRefinerConfig:
     prior_neutral_other_sigma: float = 0.7
     
     # Learning parameters
-    base_learning_rate: float = 0.15
-    learning_rate_decay: float = 0.95  # Per round
-    sigma_shrink_factor: float = 0.85  # How much to reduce σ on feedback
+    base_learning_rate: float = 0.12
+    learning_rate_decay: float = 0.98  # Per round
+    sigma_shrink_factor: float = 0.92  # How much to reduce σ on feedback
     min_sigma: float = 0.1  # Floor for uncertainty
     
     # Preference strength by rank distance
@@ -80,12 +80,14 @@ class GPRefinerConfig:
     
     # Diversity constraints (max overlap as fraction)
     diversity_schedule: Dict[int, float] = field(default_factory=lambda: {
-        1: 0.50,  # Round 1-2: max 50% overlap
-        2: 0.50,
-        3: 0.70,  # Round 3-4: max 70% overlap
-        4: 0.70,
-        5: 0.80,  # Round 5-6: max 80-90% overlap
-        6: 0.90,
+        1: 0.40,  # Round 1-3: keep options clearly distinct
+        2: 0.40,
+        3: 0.45,
+        4: 0.55,  # Round 4-6: still diverse, start mild convergence
+        5: 0.55,
+        6: 0.60,
+        7: 0.70,  # Later rounds can converge more
+        8: 0.75,
     })
 
 
@@ -169,6 +171,7 @@ class RoundResult:
     ranking: List[int]  # User ranking [best_option_id, ..., worst_option_id]
     pairwise_comparisons: List[Tuple[int, int]]  # (better_id, worse_id) pairs
     tag_updates: Dict[str, Dict[str, float]]  # tag_id -> {mu_delta, sigma_factor}
+    diagnostics: Dict[str, Any] = field(default_factory=dict)
     
     def to_dict(self) -> Dict:
         return {
@@ -177,6 +180,7 @@ class RoundResult:
             "ranking": self.ranking,
             "pairwise_comparisons": self.pairwise_comparisons,
             "tag_updates": self.tag_updates,
+            "diagnostics": self.diagnostics,
         }
 
 
@@ -758,7 +762,7 @@ class TagGPRefiner:
         
         # Swap 2-3 tags
         num_swaps = min(3, len(alternatives))
-        if self.current_round >= 4:
+        if self.current_round >= 8:
             num_swaps = 2  # Fewer swaps in later rounds
         
         # Remove lowest-scoring tags from base
@@ -856,7 +860,11 @@ class TagGPRefiner:
                     continue
                 
                 # Score and select replacements
-                available_scored = [(tid, self.tags[tid].mu) for tid in available]
+                # Prefer uncertain-but-promising replacements to keep exploration alive.
+                available_scored = [
+                    (tid, self.tags[tid].sigma + 0.35 * self.tags[tid].mu)
+                    for tid in available
+                ]
                 available_scored.sort(key=lambda x: x[1], reverse=True)
                 
                 replacements = [tid for tid, _ in available_scored[:num_to_swap]]
@@ -886,6 +894,13 @@ class TagGPRefiner:
         """
         if len(ranking) != len(self.current_options):
             raise ValueError(f"Ranking must have {len(self.current_options)} elements")
+        if len(set(ranking)) != len(ranking):
+            raise ValueError("Ranking contains duplicate option IDs")
+        valid_option_ids = {opt.option_id for opt in self.current_options}
+        if set(ranking) != valid_option_ids:
+            raise ValueError(
+                f"Ranking IDs {ranking} do not match current option IDs {sorted(valid_option_ids)}"
+            )
         
         # Generate all pairwise comparisons
         pairwise = []
@@ -895,17 +910,32 @@ class TagGPRefiner:
         
         print(f"\n[GPRefiner] Processing ranking: {ranking}")
         print(f"  Generated {len(pairwise)} pairwise comparisons")
+
+        # Pre-update diagnostics (how well model predicted user's ranking)
+        option_id_to_option = {opt.option_id: opt for opt in self.current_options}
+        option_scores_before, option_unc_before = self._compute_option_scores()
+        ranking_diagnostics = self._compute_ranking_diagnostics(
+            ranking=ranking,
+            pairwise=pairwise,
+            option_scores=option_scores_before,
+            option_uncertainty=option_unc_before
+        )
         
         # Process each comparison
         tag_updates: Dict[str, Dict[str, float]] = {}
+        sigma_update_counts: Dict[str, int] = {}
         
         for better_id, worse_id in pairwise:
             rank_better = ranking.index(better_id)
             rank_worse = ranking.index(worse_id)
             rank_distance = rank_worse - rank_better
-            
-            preference_strength = self.config.rank_distance_weights.get(
-                rank_distance, 0.5
+
+            preference_strength = self._compute_pairwise_strength(
+                better_id=better_id,
+                worse_id=worse_id,
+                rank_distance=rank_distance,
+                option_scores=option_scores_before,
+                option_uncertainty=option_unc_before
             )
             
             updates = self._process_pairwise_comparison(
@@ -916,20 +946,25 @@ class TagGPRefiner:
             for tag_id, update in updates.items():
                 if tag_id not in tag_updates:
                     tag_updates[tag_id] = {"mu_delta": 0.0, "sigma_factor": 1.0}
+                    sigma_update_counts[tag_id] = 0
                 tag_updates[tag_id]["mu_delta"] += update["mu_delta"]
                 tag_updates[tag_id]["sigma_factor"] *= update["sigma_factor"]
+                sigma_update_counts[tag_id] += 1
         
         # Apply accumulated updates
         for tag_id, update in tag_updates.items():
             tag = self.tags[tag_id]
             tag.mu += update["mu_delta"]
+            # Use geometric mean of shrink factors so σ does not collapse too fast
+            # when the same tag appears in many pairwise updates in one round.
+            sigma_count = max(1, sigma_update_counts.get(tag_id, 1))
+            sigma_factor = update["sigma_factor"] ** (1.0 / sigma_count)
             tag.sigma = max(
                 self.config.min_sigma,
-                tag.sigma * update["sigma_factor"]
+                tag.sigma * sigma_factor
             )
         
         # Update tracking
-        option_id_to_option = {opt.option_id: opt for opt in self.current_options}
         for opt in self.current_options:
             for tag_id in opt.tag_ids:
                 self.tags[tag_id].times_shown += 1
@@ -949,6 +984,7 @@ class TagGPRefiner:
             ranking=ranking,
             pairwise_comparisons=pairwise,
             tag_updates=tag_updates,
+            diagnostics=ranking_diagnostics,
         )
         
         self.round_history.append(result)
@@ -1006,10 +1042,154 @@ class TagGPRefiner:
                     "ranking_received": ranking,
                     "best_option_strategy": option_id_to_option[ranking[0]].strategy.value,
                     "worst_option_strategy": option_id_to_option[ranking[-1]].strategy.value,
+                    "pairwise_accuracy_before_update": ranking_diagnostics.get("pairwise_accuracy_before_update"),
+                    "ranking_log_likelihood_before_update": ranking_diagnostics.get("ranking_log_likelihood_before_update"),
                 }
             )
         
         return result
+
+    def _compute_option_scores(self) -> Tuple[Dict[int, float], Dict[int, float]]:
+        """
+        Compute per-option utility/uncertainty summaries before updates.
+        """
+        option_scores: Dict[int, float] = {}
+        option_unc: Dict[int, float] = {}
+        for opt in self.current_options:
+            tag_states = [self.tags[tid] for tid in opt.tag_ids if tid in self.tags]
+            if not tag_states:
+                option_scores[opt.option_id] = 0.0
+                option_unc[opt.option_id] = 1.0
+                continue
+            mus = np.array([t.mu for t in tag_states], dtype=float)
+            sigmas = np.array([t.sigma for t in tag_states], dtype=float)
+            # Align prediction score with image generation more closely:
+            # weighted utility over tags instead of plain mean μ.
+            # Weights mimic attention emphasis from relative μ within option.
+            temp = 0.8
+            exp_m = np.exp((mus - mus.max()) / max(1e-6, temp))
+            w = exp_m / (exp_m.sum() + 1e-8)
+            utility = mus + 0.20 * sigmas
+            option_scores[opt.option_id] = float(np.dot(w, utility))
+            option_unc[opt.option_id] = float(np.dot(w, sigmas))
+        return option_scores, option_unc
+
+    def _compute_pairwise_strength(
+        self,
+        better_id: int,
+        worse_id: int,
+        rank_distance: int,
+        option_scores: Dict[int, float],
+        option_uncertainty: Dict[int, float],
+    ) -> float:
+        """
+        Calibrated pairwise preference strength:
+        - Base from rank distance schedule
+        - Stronger when rank distance is larger
+        - Slightly stronger when compared options are uncertain
+        """
+        base = self.config.rank_distance_weights.get(rank_distance, 0.5)
+
+        # Smooth distance factor for robustness when #options changes
+        max_dist = max(1, len(self.current_options) - 1)
+        dist_norm = max(0.0, min(1.0, rank_distance / max_dist))
+        distance_factor = 0.8 + 0.4 * dist_norm  # [0.8, 1.2]
+
+        unc = (option_uncertainty.get(better_id, 0.5) + option_uncertainty.get(worse_id, 0.5)) / 2.0
+        unc_factor = 1.0 + min(0.2, 0.1 * unc)  # modest boost in uncertain regions
+
+        # Slightly de-emphasize very obvious pairs (large current score gap),
+        # prioritize close calls where ranking feedback is most informative.
+        score_gap = abs(option_scores.get(better_id, 0.0) - option_scores.get(worse_id, 0.0))
+        gap_factor = max(0.85, 1.1 - min(0.25, 0.15 * score_gap))
+
+        calibrated = base * distance_factor * unc_factor * gap_factor
+        return float(max(0.05, min(1.5, calibrated)))
+
+    def _compute_ranking_diagnostics(
+        self,
+        ranking: List[int],
+        pairwise: List[Tuple[int, int]],
+        option_scores: Dict[int, float],
+        option_uncertainty: Dict[int, float],
+    ) -> Dict[str, Any]:
+        """
+        Pre-update diagnostics for analyzing model learning quality.
+        """
+        if not pairwise:
+            return {
+                "pairwise_accuracy_before_update": 0.0,
+                "ranking_log_likelihood_before_update": 0.0,
+                "mean_pair_margin_before_update": 0.0,
+                "predicted_top_option_before_update": float(ranking[0]) if ranking else -1.0,
+            }
+
+        correct = 0.0
+        log_lik = 0.0
+        margins = []
+
+        for better_id, worse_id in pairwise:
+            s_b = option_scores.get(better_id, 0.0)
+            s_w = option_scores.get(worse_id, 0.0)
+            margin = s_b - s_w
+            margins.append(margin)
+
+            if margin > 0:
+                correct += 1.0
+            elif margin == 0:
+                correct += 0.5
+
+            # Bradley-Terry-style pair probability with uncertainty-scaled temperature
+            tau = max(0.15, (option_uncertainty.get(better_id, 0.5) + option_uncertainty.get(worse_id, 0.5)) / 2.0)
+            z = margin / tau
+            p = 1.0 / (1.0 + np.exp(-z))
+            p = float(np.clip(p, 1e-6, 1.0 - 1e-6))
+            log_lik += float(np.log(p))
+
+        pairwise_acc = correct / len(pairwise)
+        mean_margin = float(np.mean(margins)) if margins else 0.0
+        predicted_top = max(option_scores.items(), key=lambda x: x[1])[0] if option_scores else -1
+        predicted_ranking = [oid for oid, _ in sorted(option_scores.items(), key=lambda x: x[1], reverse=True)]
+
+        # Full-ranking agreement diagnostics
+        rank_pos_true = {oid: i for i, oid in enumerate(ranking)}
+        rank_pos_pred = {oid: i for i, oid in enumerate(predicted_ranking)}
+        common_ids = [oid for oid in predicted_ranking if oid in rank_pos_true]
+
+        if len(common_ids) >= 2:
+            true_vals = np.array([rank_pos_true[oid] for oid in common_ids], dtype=float)
+            pred_vals = np.array([rank_pos_pred[oid] for oid in common_ids], dtype=float)
+            # Spearman over rank positions (manual, no scipy dependency)
+            true_centered = true_vals - true_vals.mean()
+            pred_centered = pred_vals - pred_vals.mean()
+            denom = np.sqrt((true_centered ** 2).sum() * (pred_centered ** 2).sum()) + 1e-8
+            spearman = float((true_centered * pred_centered).sum() / denom)
+        else:
+            spearman = 0.0
+
+        # Kendall-like pair agreement between predicted and actual full ranking
+        concordant = 0.0
+        total = 0.0
+        for i, a in enumerate(common_ids):
+            for b in common_ids[i + 1:]:
+                total += 1.0
+                actual_pref = rank_pos_true[a] < rank_pos_true[b]
+                pred_pref = rank_pos_pred[a] < rank_pos_pred[b]
+                if actual_pref == pred_pref:
+                    concordant += 1.0
+        kendall_pair_agreement = float(concordant / total) if total > 0 else 0.0
+
+        return {
+            "pairwise_accuracy_before_update": float(pairwise_acc),
+            "ranking_log_likelihood_before_update": float(log_lik),
+            "mean_pair_margin_before_update": float(mean_margin),
+            "predicted_top_option_before_update": float(predicted_top),
+            "actual_top_option": float(ranking[0]) if ranking else -1.0,
+            "predicted_ranking_before_update": [int(x) for x in predicted_ranking],
+            "actual_ranking": [int(x) for x in ranking],
+            "spearman_rank_corr_before_update": float(spearman),
+            "kendall_pair_agreement_before_update": float(kendall_pair_agreement),
+        }
     
     def _process_pairwise_comparison(
         self,

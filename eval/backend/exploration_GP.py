@@ -60,21 +60,25 @@ class PreferenceExtractor:
     """
     Extract preference pairs from EXPLICIT user clicks only.
     
-    Only creates pairs where BOTH sides were explicitly clicked:
+    Only creates pairs from explicit clicks, with weak neutral constraints:
     - Liked > Disliked (strongest signal)
     - Liked in selected image > Liked in other images (weak signal)
-    
-    NO implicit signals from neutral tags or image selection.
+    - Liked > Neutral (very weak, optional)
+    - Neutral > Disliked (very weak, optional)
     """
     
     def __init__(
         self,
         strength_liked_vs_disliked: float = 1.0,
         strength_liked_selected_vs_liked_other: float = 0.3,
+        strength_liked_vs_neutral: float = 0.15,
+        strength_neutral_vs_disliked: float = 0.10,
     ):
         self.strengths = {
             'liked_vs_disliked': strength_liked_vs_disliked,
             'liked_selected_vs_liked_other': strength_liked_selected_vs_liked_other,
+            'liked_vs_neutral': strength_liked_vs_neutral,
+            'neutral_vs_disliked': strength_neutral_vs_disliked,
         }
     
     def extract(self, interaction: InteractionRound) -> List[PreferencePair]:
@@ -85,7 +89,9 @@ class PreferenceExtractor:
         - Explicitly liked tags > Explicitly disliked tags
         - Liked in selected image > Liked in other images (if user clicked both)
         
-        Neutral tags are IGNORED - no implicit learning from image selection.
+        Weakly constrains:
+        - liked > neutral
+        - neutral > disliked
         """
         pairs = []
         selected_idx = interaction.selected_image_idx
@@ -94,6 +100,7 @@ class PreferenceExtractor:
         liked_selected = []  # Liked tags in selected image
         liked_other = []     # Liked tags in non-selected images
         disliked_all = []    # All disliked tags
+        neutral_all = []     # All neutral tags
         
         for img_idx, tags in enumerate(interaction.images):
             is_selected = (img_idx == selected_idx)
@@ -108,7 +115,8 @@ class PreferenceExtractor:
                         liked_other.append(emb)
                 elif state == 'disliked':
                     disliked_all.append(emb)
-                # Neutral tags are IGNORED - no pairs generated
+                else:
+                    neutral_all.append(emb)
         
         all_liked = liked_selected + liked_other
         
@@ -128,6 +136,22 @@ class PreferenceExtractor:
                 for b in liked_other:
                     pairs.append(PreferencePair(
                         a, b, self.strengths['liked_selected_vs_liked_other']
+                    ))
+
+        # 3. Weak constraint: liked > neutral
+        if all_liked and neutral_all and self.strengths['liked_vs_neutral'] > 0:
+            for a in all_liked:
+                for b in neutral_all:
+                    pairs.append(PreferencePair(
+                        a, b, self.strengths['liked_vs_neutral']
+                    ))
+
+        # 4. Weak constraint: neutral > disliked
+        if neutral_all and disliked_all and self.strengths['neutral_vs_disliked'] > 0:
+            for a in neutral_all:
+                for b in disliked_all:
+                    pairs.append(PreferencePair(
+                        a, b, self.strengths['neutral_vs_disliked']
                     ))
         
         return pairs

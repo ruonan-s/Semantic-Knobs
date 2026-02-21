@@ -1,0 +1,3800 @@
+{
+  "version": "2.0",
+  "session_id": "eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56",
+  "round_count": 6,
+  "generation_counter": 7,
+  "is_initialized": true,
+  "is_converged": false,
+  "rankings_history": [
+    [
+      0,
+      3,
+      2,
+      1
+    ],
+    [
+      1,
+      2,
+      0,
+      3
+    ],
+    [
+      2,
+      1,
+      0,
+      3
+    ],
+    [
+      2,
+      1,
+      0,
+      3
+    ],
+    [
+      3,
+      2,
+      1,
+      0
+    ],
+    [
+      2,
+      3,
+      1,
+      0
+    ]
+  ],
+  "compositions_history": [
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "spacious layout",
+          "soft neutral tones",
+          "minimalist decor",
+          "cozy atmosphere",
+          "wooden floor",
+          "ambient warm lighting",
+          "simple nightstands",
+          "minimalist design",
+          "soft natural lighting",
+          "clean lines"
+        ],
+        "weights": [
+          1.1319,
+          1.1319,
+          1.1319,
+          1.1319,
+          1.1319,
+          1.1319,
+          1.1319,
+          0.6922,
+          0.6922,
+          0.6922
+        ],
+        "mus": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.3,
+          -0.3,
+          -0.3
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_0_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "serene ambiance",
+          "simple nightstands",
+          "spacious layout",
+          "cozy atmosphere",
+          "neutral color palette",
+          "traditional architecture",
+          "open layout",
+          "natural light",
+          "soft lighting",
+          "clean lines"
+        ],
+        "weights": [
+          0.6922,
+          1.1319,
+          1.1319,
+          1.1319,
+          1.1319,
+          0.6922,
+          1.1319,
+          1.1319,
+          1.1319,
+          0.6922
+        ],
+        "mus": [
+          -0.3,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.3,
+          0.5,
+          0.5,
+          0.5,
+          -0.3
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_0_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "plush bedding",
+          "minimalist decor",
+          "serene bedroom setting",
+          "cozy atmosphere",
+          "soft natural lighting",
+          "open floor plan",
+          "neutral tones",
+          "textured throw blanket",
+          "sheer curtains",
+          "clean lines"
+        ],
+        "weights": [
+          0.8688,
+          1.525,
+          0.8688,
+          1.525,
+          0.8688,
+          0.8688,
+          0.8688,
+          0.8688,
+          0.8688,
+          0.8688
+        ],
+        "mus": [
+          -0.3,
+          0.5,
+          -0.3,
+          0.5,
+          -0.3,
+          -0.3,
+          -0.3,
+          -0.3,
+          -0.3,
+          -0.3
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_0_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "simple nightstands",
+          "soft neutral tones",
+          "spacious layout",
+          "linen bedding",
+          "organic materials",
+          "textured walls",
+          "minimalistic decor",
+          "open layout",
+          "natural light",
+          "decorative branches"
+        ],
+        "weights": [
+          1.2533,
+          1.2533,
+          1.2533,
+          0.7467,
+          0.7467,
+          0.7467,
+          0.7467,
+          1.2533,
+          1.2533,
+          0.7467
+        ],
+        "mus": [
+          0.5,
+          0.5,
+          0.5,
+          -0.3,
+          -0.3,
+          -0.3,
+          -0.3,
+          0.5,
+          0.5,
+          -0.3
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_0_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "soft neutral tones",
+          "wooden floor",
+          "ambient warm lighting",
+          "minimalist decor",
+          "spacious layout",
+          "simple nightstands",
+          "cozy atmosphere",
+          "minimalist design",
+          "soft natural lighting",
+          "textured walls"
+        ],
+        "weights": [
+          1.2987,
+          1.2171,
+          1.2171,
+          1.1439,
+          1.0512,
+          1.0512,
+          0.9362,
+          0.7304,
+          0.6976,
+          0.6565
+        ],
+        "mus": [
+          0.8826,
+          0.7943,
+          0.7943,
+          0.7079,
+          0.5864,
+          0.5864,
+          0.4118,
+          -0.0057,
+          -0.0921,
+          -0.2118
+        ],
+        "sigmas": [
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_1_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "ambient warm lighting",
+          "spacious layout",
+          "soft neutral tones",
+          "soft lighting",
+          "concrete walls",
+          "natural elegance",
+          "open layout",
+          "natural light",
+          "wooden floor",
+          "calm ambiance"
+        ],
+        "weights": [
+          1.3323,
+          1.1448,
+          1.4245,
+          0.8869,
+          0.6678,
+          0.6678,
+          0.9379,
+          0.9379,
+          1.3323,
+          0.6678
+        ],
+        "mus": [
+          0.7943,
+          0.5864,
+          0.8826,
+          0.2039,
+          -0.3,
+          -0.3,
+          0.2921,
+          0.2921,
+          0.7943,
+          -0.3
+        ],
+        "sigmas": [
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.7,
+          0.7,
+          0.644,
+          0.644,
+          0.644,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_1_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "minimalist decor",
+          "simple nightstands",
+          "cozy atmosphere",
+          "soft natural lighting",
+          "linen bedding",
+          "natural elegance",
+          "neutral color palette",
+          "minimalistic decor",
+          "oversized artwork",
+          "large grid windows"
+        ],
+        "weights": [
+          1.5291,
+          1.3924,
+          1.2226,
+          0.8706,
+          0.8101,
+          0.7698,
+          1.0557,
+          0.8101,
+          0.7698,
+          0.7698
+        ],
+        "mus": [
+          0.7079,
+          0.5864,
+          0.4118,
+          -0.0921,
+          -0.2118,
+          -0.3,
+          0.2039,
+          -0.2118,
+          -0.3,
+          -0.3
+        ],
+        "sigmas": [
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.7,
+          0.644,
+          0.644,
+          0.7,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_1_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "ambient warm lighting",
+          "plush bedding",
+          "minimalist decor",
+          "spacious layout",
+          "organic materials",
+          "open floor plan",
+          "natural light",
+          "wooden floor",
+          "sheer curtains",
+          "decorative branches"
+        ],
+        "weights": [
+          1.4468,
+          0.6752,
+          1.3546,
+          1.2378,
+          0.7405,
+          0.6752,
+          1.0072,
+          1.4468,
+          0.6752,
+          0.7405
+        ],
+        "mus": [
+          0.7943,
+          -0.3864,
+          0.7079,
+          0.5864,
+          -0.2118,
+          -0.3864,
+          0.2921,
+          0.7943,
+          -0.3864,
+          -0.2118
+        ],
+        "sigmas": [
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_1_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "soft neutral tones",
+          "wooden floor",
+          "ambient warm lighting",
+          "simple nightstands",
+          "open layout",
+          "spacious layout",
+          "soft lighting",
+          "natural elegance",
+          "calm ambiance",
+          "concrete walls"
+        ],
+        "weights": [
+          1.4972,
+          1.1329,
+          1.1329,
+          1.04,
+          1.0362,
+          0.9829,
+          0.9768,
+          0.7567,
+          0.7221,
+          0.7221
+        ],
+        "mus": [
+          1.0845,
+          0.7091,
+          0.7091,
+          0.5856,
+          0.5801,
+          0.5012,
+          0.4919,
+          0.0733,
+          -0.012,
+          -0.012
+        ],
+        "sigmas": [
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.644,
+          0.644,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_2_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "ambient warm lighting",
+          "serene ambiance",
+          "minimalist decor",
+          "simple nightstands",
+          "spacious layout",
+          "cozy atmosphere",
+          "traditional architecture",
+          "natural light",
+          "wooden floor",
+          "clean lines"
+        ],
+        "weights": [
+          1.325,
+          0.6022,
+          1.0759,
+          1.2098,
+          1.1389,
+          1.0693,
+          0.6022,
+          0.9875,
+          1.325,
+          0.6643
+        ],
+        "mus": [
+          0.7091,
+          -0.5961,
+          0.4199,
+          0.5856,
+          0.5012,
+          0.4109,
+          -0.5961,
+          0.293,
+          0.7091,
+          -0.3882
+        ],
+        "sigmas": [
+          0.5925,
+          0.644,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.644,
+          0.5925,
+          0.5925,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_2_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "minimalist design",
+          "spacious layout",
+          "concrete walls",
+          "soft natural lighting",
+          "neutral color palette",
+          "minimalistic decor",
+          "open layout",
+          "oversized artwork",
+          "calm ambiance",
+          "large grid windows"
+        ],
+        "weights": [
+          0.8829,
+          1.3277,
+          0.9286,
+          0.8823,
+          1.1377,
+          0.8642,
+          1.4094,
+          0.8193,
+          0.9286,
+          0.8193
+        ],
+        "mus": [
+          -0.0918,
+          0.5012,
+          -0.012,
+          -0.093,
+          0.2891,
+          -0.1265,
+          0.5801,
+          -0.2148,
+          -0.012,
+          -0.2148
+        ],
+        "sigmas": [
+          0.5925,
+          0.5925,
+          0.644,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.644,
+          0.644,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_2_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "minimalist decor",
+          "serene bedroom setting",
+          "cozy atmosphere",
+          "linen bedding",
+          "neutral tones",
+          "textured throw blanket",
+          "textured walls",
+          "natural light",
+          "wooden floor",
+          "soft lighting"
+        ],
+        "weights": [
+          1.2004,
+          0.7205,
+          1.1927,
+          0.8354,
+          0.7205,
+          0.7205,
+          0.7564,
+          1.0971,
+          1.4913,
+          1.2652
+        ],
+        "mus": [
+          0.4199,
+          -0.3864,
+          0.4109,
+          -0.1265,
+          -0.3864,
+          -0.3864,
+          -0.2979,
+          0.293,
+          0.7091,
+          0.4919
+        ],
+        "sigmas": [
+          0.5925,
+          0.644,
+          0.5925,
+          0.5925,
+          0.644,
+          0.644,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_2_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "soft neutral tones",
+          "spacious layout",
+          "open layout",
+          "ambient warm lighting",
+          "simple nightstands",
+          "neutral color palette",
+          "wooden floor",
+          "minimalist design",
+          "soft natural lighting",
+          "calm ambiance"
+        ],
+        "weights": [
+          1.353,
+          1.1495,
+          1.145,
+          1.0957,
+          1.0071,
+          0.9917,
+          0.9101,
+          0.7831,
+          0.7826,
+          0.7823
+        ],
+        "mus": [
+          1.0028,
+          0.7802,
+          0.7746,
+          0.7119,
+          0.5884,
+          0.5653,
+          0.4329,
+          0.1843,
+          0.1832,
+          0.1825
+        ],
+        "sigmas": [
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5925
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_3_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "ambient warm lighting",
+          "serene ambiance",
+          "minimalist decor",
+          "simple nightstands",
+          "spacious layout",
+          "soft neutral tones",
+          "cozy atmosphere",
+          "traditional architecture",
+          "wooden floor",
+          "clean lines"
+        ],
+        "weights": [
+          1.2563,
+          0.6049,
+          0.9007,
+          1.1491,
+          1.3215,
+          1.5678,
+          0.8956,
+          0.6049,
+          1.0316,
+          0.6676
+        ],
+        "mus": [
+          0.7119,
+          -0.5116,
+          0.2254,
+          0.5884,
+          0.7802,
+          1.0028,
+          0.2164,
+          -0.5116,
+          0.4329,
+          -0.3037
+        ],
+        "sigmas": [
+          0.5451,
+          0.5925,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5925,
+          0.5451,
+          0.5925
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_3_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "soft neutral tones",
+          "soft lighting",
+          "concrete walls",
+          "neutral color palette",
+          "minimalistic decor",
+          "open layout",
+          "oversized artwork",
+          "wooden floor",
+          "calm ambiance",
+          "large grid windows"
+        ],
+        "weights": [
+          1.5427,
+          0.8392,
+          0.8658,
+          1.1142,
+          0.8486,
+          1.296,
+          0.8051,
+          1.0174,
+          0.8658,
+          0.8051
+        ],
+        "mus": [
+          1.0028,
+          0.1312,
+          0.1825,
+          0.5653,
+          0.1496,
+          0.7746,
+          0.0614,
+          0.4329,
+          0.1825,
+          0.0614
+        ],
+        "sigmas": [
+          0.5451,
+          0.5451,
+          0.5925,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5925,
+          0.5451,
+          0.5925,
+          0.5925
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_3_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "ambient warm lighting",
+          "simple nightstands",
+          "minimalist decor",
+          "soft neutral tones",
+          "organic materials",
+          "concrete walls",
+          "cozy atmosphere",
+          "natural elegance",
+          "neutral color palette",
+          "natural light"
+        ],
+        "weights": [
+          1.2562,
+          1.149,
+          0.9007,
+          1.5677,
+          0.6083,
+          0.8768,
+          0.8956,
+          0.7824,
+          1.1303,
+          0.8331
+        ],
+        "mus": [
+          0.7119,
+          0.5884,
+          0.2254,
+          1.0028,
+          -0.4989,
+          0.1825,
+          0.2164,
+          -0.0084,
+          0.5653,
+          0.0985
+        ],
+        "sigmas": [
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5925,
+          0.5925,
+          0.5451,
+          0.5925,
+          0.5451,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_3_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "soft neutral tones",
+          "open layout",
+          "spacious layout",
+          "wooden floor",
+          "neutral color palette",
+          "ambient warm lighting",
+          "soft lighting",
+          "minimalistic decor",
+          "calm ambiance",
+          "large grid windows"
+        ],
+        "weights": [
+          1.3086,
+          1.2754,
+          1.1145,
+          1.0608,
+          0.9128,
+          0.8866,
+          0.871,
+          0.881,
+          0.8545,
+          0.8348
+        ],
+        "mus": [
+          1.0028,
+          0.9681,
+          0.7808,
+          0.7096,
+          0.4821,
+          0.4358,
+          0.4073,
+          0.4258,
+          0.376,
+          0.3375
+        ],
+        "sigmas": [
+          0.5451,
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5451,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_4_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "ambient warm lighting",
+          "minimalist decor",
+          "simple nightstands",
+          "soft neutral tones",
+          "cozy atmosphere",
+          "spacious layout",
+          "open floor plan",
+          "wooden floor",
+          "sheer curtains",
+          "plush bedding"
+        ],
+        "weights": [
+          1.1003,
+          0.8454,
+          1.0112,
+          1.6854,
+          0.8408,
+          1.4163,
+          0.5862,
+          1.3419,
+          0.5862,
+          0.5862
+        ],
+        "mus": [
+          0.4358,
+          0.0319,
+          0.3123,
+          1.0028,
+          0.0229,
+          0.7808,
+          -0.6736,
+          0.7096,
+          -0.6736,
+          -0.6736
+        ],
+        "sigmas": [
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5451,
+          0.5015,
+          0.5015,
+          0.5925,
+          0.5015,
+          0.5925,
+          0.5925
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_4_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "ambient warm lighting",
+          "clean lines",
+          "minimalist design",
+          "concrete walls",
+          "soft natural lighting",
+          "oversized artwork",
+          "wooden floor",
+          "soft lighting",
+          "calm ambiance",
+          "large grid windows"
+        ],
+        "weights": [
+          1.0937,
+          0.7278,
+          0.8778,
+          0.9232,
+          0.8771,
+          1.0226,
+          1.3333,
+          1.0724,
+          1.0496,
+          1.0226
+        ],
+        "mus": [
+          0.4358,
+          -0.2205,
+          0.1018,
+          0.1819,
+          0.1006,
+          0.3375,
+          0.7096,
+          0.4073,
+          0.376,
+          0.3375
+        ],
+        "sigmas": [
+          0.5015,
+          0.5451,
+          0.5015,
+          0.5451,
+          0.5015,
+          0.5451,
+          0.5015,
+          0.5015,
+          0.5451,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_4_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "ambient warm lighting",
+          "simple nightstands",
+          "spacious layout",
+          "concrete walls",
+          "natural elegance",
+          "minimalistic decor",
+          "open layout",
+          "oversized artwork",
+          "natural light",
+          "wooden floor"
+        ],
+        "weights": [
+          0.9991,
+          0.9218,
+          1.2734,
+          0.8498,
+          0.6571,
+          0.9925,
+          1.4671,
+          0.9368,
+          0.6936,
+          1.2088
+        ],
+        "mus": [
+          0.4358,
+          0.3123,
+          0.7808,
+          0.1819,
+          -0.2851,
+          0.4258,
+          0.9681,
+          0.3375,
+          -0.1782,
+          0.7096
+        ],
+        "sigmas": [
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5451,
+          0.5451,
+          0.5015,
+          0.5015,
+          0.5451,
+          0.5015,
+          0.5015
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_4_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "open layout",
+          "wooden floor",
+          "spacious layout",
+          "soft neutral tones",
+          "simple nightstands",
+          "ambient warm lighting",
+          "soft lighting",
+          "oversized artwork",
+          "concrete walls",
+          "minimalistic decor"
+        ],
+        "weights": [
+          1.2971,
+          1.0751,
+          1.0697,
+          1.0371,
+          0.9336,
+          0.8975,
+          0.7887,
+          1.0559,
+          0.9517,
+          0.8936
+        ],
+        "mus": [
+          0.9714,
+          0.7096,
+          0.7023,
+          0.657,
+          0.4979,
+          0.4358,
+          0.2216,
+          0.6833,
+          0.5277,
+          0.429
+        ],
+        "sigmas": [
+          0.4614,
+          0.5015,
+          0.4614,
+          0.5015,
+          0.4614,
+          0.5015,
+          0.4614,
+          0.5015,
+          0.5015,
+          0.4614
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_5_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "ambient warm lighting",
+          "minimalist decor",
+          "simple nightstands",
+          "soft neutral tones",
+          "spacious layout",
+          "cozy atmosphere",
+          "serene bedroom setting",
+          "neutral tones",
+          "textured throw blanket",
+          "wooden floor"
+        ],
+        "weights": [
+          1.1509,
+          0.8364,
+          1.2033,
+          1.3532,
+          1.4006,
+          0.8319,
+          0.6051,
+          0.6051,
+          0.6051,
+          1.4084
+        ],
+        "mus": [
+          0.4358,
+          -0.0498,
+          0.4979,
+          0.657,
+          0.7023,
+          -0.0588,
+          -0.6655,
+          -0.6655,
+          -0.6655,
+          0.7096
+        ],
+        "sigmas": [
+          0.5015,
+          0.4614,
+          0.4614,
+          0.5015,
+          0.4614,
+          0.4614,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5015
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_5_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "ambient warm lighting",
+          "minimalist design",
+          "simple nightstands",
+          "spacious layout",
+          "concrete walls",
+          "neutral color palette",
+          "open layout",
+          "wooden floor",
+          "calm ambiance",
+          "large grid windows"
+        ],
+        "weights": [
+          0.9621,
+          0.8203,
+          1.0024,
+          1.1541,
+          1.0226,
+          0.839,
+          1.4075,
+          1.1601,
+          0.8252,
+          0.8067
+        ],
+        "mus": [
+          0.4358,
+          0.1802,
+          0.4979,
+          0.7023,
+          0.5277,
+          0.218,
+          0.9714,
+          0.7096,
+          0.1904,
+          0.1519
+        ],
+        "sigmas": [
+          0.5015,
+          0.4614,
+          0.4614,
+          0.4614,
+          0.5015,
+          0.4614,
+          0.4614,
+          0.5015,
+          0.5015,
+          0.5015
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_5_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "minimalist design",
+          "simple nightstands",
+          "soft neutral tones",
+          "spacious layout",
+          "soft natural lighting",
+          "natural elegance",
+          "open layout",
+          "oversized artwork",
+          "wooden floor",
+          "calm ambiance"
+        ],
+        "weights": [
+          0.8076,
+          0.9849,
+          1.0973,
+          1.1327,
+          0.807,
+          0.7224,
+          1.3795,
+          1.1177,
+          1.1386,
+          0.8124
+        ],
+        "mus": [
+          0.1802,
+          0.4979,
+          0.657,
+          0.7023,
+          0.179,
+          -0.0178,
+          0.9714,
+          0.6833,
+          0.7096,
+          0.1904
+        ],
+        "sigmas": [
+          0.4614,
+          0.4614,
+          0.5015,
+          0.4614,
+          0.4614,
+          0.5015,
+          0.4614,
+          0.5015,
+          0.5015,
+          0.5015
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_5_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "open layout",
+          "wooden floor",
+          "spacious layout",
+          "simple nightstands",
+          "neutral color palette",
+          "soft neutral tones",
+          "ambient warm lighting",
+          "calm ambiance",
+          "concrete walls",
+          "minimalist design"
+        ],
+        "weights": [
+          1.3823,
+          1.0796,
+          1.0742,
+          0.9372,
+          0.9263,
+          0.8783,
+          0.8578,
+          0.9575,
+          0.9554,
+          0.9512
+        ],
+        "mus": [
+          1.0501,
+          0.7096,
+          0.7023,
+          0.4979,
+          0.4797,
+          0.3952,
+          0.3569,
+          0.531,
+          0.5276,
+          0.5208
+        ],
+        "sigmas": [
+          0.4244,
+          0.5015,
+          0.4614,
+          0.4614,
+          0.4244,
+          0.4614,
+          0.4614,
+          0.4614,
+          0.4614,
+          0.4244
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_6_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "ambient warm lighting",
+          "serene ambiance",
+          "simple nightstands",
+          "minimalist decor",
+          "soft neutral tones",
+          "spacious layout",
+          "traditional architecture",
+          "natural light",
+          "wooden floor",
+          "decorative branches"
+        ],
+        "weights": [
+          1.0958,
+          0.681,
+          1.2113,
+          0.8026,
+          1.1256,
+          1.4104,
+          0.681,
+          0.9167,
+          1.4183,
+          0.6573
+        ],
+        "mus": [
+          0.3569,
+          -0.4284,
+          0.4979,
+          -0.1286,
+          0.3952,
+          0.7023,
+          -0.4284,
+          0.0892,
+          0.7096,
+          -0.4989
+        ],
+        "sigmas": [
+          0.4614,
+          0.5451,
+          0.4614,
+          0.4244,
+          0.4614,
+          0.4614,
+          0.5451,
+          0.4614,
+          0.5015,
+          0.5925
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_6_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "ambient warm lighting",
+          "minimalist design",
+          "simple nightstands",
+          "spacious layout",
+          "concrete walls",
+          "soft natural lighting",
+          "oversized artwork",
+          "wooden floor",
+          "calm ambiance",
+          "large grid windows"
+        ],
+        "weights": [
+          0.9051,
+          1.007,
+          0.9917,
+          1.141,
+          1.0115,
+          0.8512,
+          0.9933,
+          1.1469,
+          1.0138,
+          0.9385
+        ],
+        "mus": [
+          0.3569,
+          0.5208,
+          0.4979,
+          0.7023,
+          0.5276,
+          0.2579,
+          0.5003,
+          0.7096,
+          0.531,
+          0.4136
+        ],
+        "sigmas": [
+          0.4614,
+          0.4244,
+          0.4614,
+          0.4614,
+          0.4614,
+          0.4244,
+          0.4614,
+          0.5015,
+          0.4614,
+          0.4614
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_6_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "minimalist design",
+          "simple nightstands",
+          "spacious layout",
+          "concrete walls",
+          "natural elegance",
+          "minimalistic decor",
+          "open layout",
+          "oversized artwork",
+          "wooden floor",
+          "calm ambiance"
+        ],
+        "weights": [
+          0.9736,
+          0.9591,
+          1.101,
+          0.9779,
+          0.7376,
+          0.7829,
+          1.4203,
+          0.9606,
+          1.1067,
+          0.9801
+        ],
+        "mus": [
+          0.5208,
+          0.4979,
+          0.7023,
+          0.5276,
+          0.0611,
+          0.1671,
+          1.0501,
+          0.5003,
+          0.7096,
+          0.531
+        ],
+        "sigmas": [
+          0.4244,
+          0.4614,
+          0.4614,
+          0.4614,
+          0.4614,
+          0.4244,
+          0.4244,
+          0.4614,
+          0.5015,
+          0.4614
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_6_img_3.png"
+      }
+    ]
+  ],
+  "tag_states": {
+    "pos_0": {
+      "text": "spacious layout",
+      "category": "positive_other",
+      "mu": 0.702338,
+      "sigma": 0.461357,
+      "times_shown": 18,
+      "times_in_winner": 5,
+      "times_in_loser": 4
+    },
+    "pos_1": {
+      "text": "soft neutral tones",
+      "category": "positive_other",
+      "mu": 0.395236,
+      "sigma": 0.461357,
+      "times_shown": 14,
+      "times_in_winner": 3,
+      "times_in_loser": 3
+    },
+    "pos_2": {
+      "text": "minimalist decor",
+      "category": "positive_other",
+      "mu": -0.128556,
+      "sigma": 0.424449,
+      "times_shown": 11,
+      "times_in_winner": 1,
+      "times_in_loser": 3
+    },
+    "pos_3": {
+      "text": "cozy atmosphere",
+      "category": "positive_other",
+      "mu": -0.137556,
+      "sigma": 0.424449,
+      "times_shown": 11,
+      "times_in_winner": 1,
+      "times_in_loser": 3
+    },
+    "pos_4": {
+      "text": "wooden floor",
+      "category": "positive_other",
+      "mu": 0.709648,
+      "sigma": 0.501475,
+      "times_shown": 18,
+      "times_in_winner": 5,
+      "times_in_loser": 4
+    },
+    "pos_5": {
+      "text": "ambient warm lighting",
+      "category": "positive_other",
+      "mu": 0.356949,
+      "sigma": 0.461357,
+      "times_shown": 16,
+      "times_in_winner": 4,
+      "times_in_loser": 4
+    },
+    "pos_6": {
+      "text": "simple nightstands",
+      "category": "positive_other",
+      "mu": 0.497948,
+      "sigma": 0.461357,
+      "times_shown": 16,
+      "times_in_winner": 3,
+      "times_in_loser": 3
+    },
+    "pos_7": {
+      "text": "natural light",
+      "category": "positive_other",
+      "mu": 0.089161,
+      "sigma": 0.461357,
+      "times_shown": 8,
+      "times_in_winner": 2,
+      "times_in_loser": 4
+    },
+    "pos_8": {
+      "text": "soft lighting",
+      "category": "positive_other",
+      "mu": -0.040229,
+      "sigma": 0.424449,
+      "times_shown": 8,
+      "times_in_winner": 2,
+      "times_in_loser": 4
+    },
+    "pos_9": {
+      "text": "open layout",
+      "category": "positive_other",
+      "mu": 1.050095,
+      "sigma": 0.424449,
+      "times_shown": 12,
+      "times_in_winner": 5,
+      "times_in_loser": 3
+    },
+    "pos_10": {
+      "text": "neutral color palette",
+      "category": "positive_other",
+      "mu": 0.479711,
+      "sigma": 0.424449,
+      "times_shown": 8,
+      "times_in_winner": 3,
+      "times_in_loser": 3
+    },
+    "neu_0": {
+      "text": "minimalist design",
+      "category": "neutral_other",
+      "mu": 0.520836,
+      "sigma": 0.424449,
+      "times_shown": 7,
+      "times_in_winner": 3,
+      "times_in_loser": 0
+    },
+    "neu_1": {
+      "text": "soft natural lighting",
+      "category": "neutral_other",
+      "mu": 0.25791,
+      "sigma": 0.424449,
+      "times_shown": 8,
+      "times_in_winner": 2,
+      "times_in_loser": 0
+    },
+    "neu_2": {
+      "text": "clean lines",
+      "category": "neutral_other",
+      "mu": -0.142055,
+      "sigma": 0.501475,
+      "times_shown": 6,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "neu_3": {
+      "text": "traditional architecture",
+      "category": "neutral_other",
+      "mu": -0.428406,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "neu_4": {
+      "text": "serene ambiance",
+      "category": "neutral_other",
+      "mu": -0.428406,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "neu_5": {
+      "text": "open floor plan",
+      "category": "neutral_other",
+      "mu": -0.755252,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "neu_6": {
+      "text": "sheer curtains",
+      "category": "neutral_other",
+      "mu": -0.755252,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "neu_7": {
+      "text": "plush bedding",
+      "category": "neutral_other",
+      "mu": -0.755252,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "neu_8": {
+      "text": "textured throw blanket",
+      "category": "neutral_other",
+      "mu": -0.744197,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "neu_9": {
+      "text": "serene bedroom setting",
+      "category": "neutral_other",
+      "mu": -0.744197,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "neu_10": {
+      "text": "neutral tones",
+      "category": "neutral_other",
+      "mu": -0.744197,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "neu_11": {
+      "text": "textured walls",
+      "category": "neutral_other",
+      "mu": -0.576905,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "neu_12": {
+      "text": "minimalistic decor",
+      "category": "neutral_other",
+      "mu": 0.167127,
+      "sigma": 0.424449,
+      "times_shown": 7,
+      "times_in_winner": 3,
+      "times_in_loser": 2
+    },
+    "neu_13": {
+      "text": "linen bedding",
+      "category": "neutral_other",
+      "mu": -0.405524,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "neu_14": {
+      "text": "organic materials",
+      "category": "neutral_other",
+      "mu": -0.775609,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 0,
+      "times_in_loser": 2
+    },
+    "neu_15": {
+      "text": "decorative branches",
+      "category": "neutral_other",
+      "mu": -0.49889,
+      "sigma": 0.59248,
+      "times_shown": 2,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "neu_16": {
+      "text": "natural elegance",
+      "category": "neutral_other",
+      "mu": 0.061056,
+      "sigma": 0.461357,
+      "times_shown": 6,
+      "times_in_winner": 2,
+      "times_in_loser": 1
+    },
+    "neu_17": {
+      "text": "calm ambiance",
+      "category": "neutral_other",
+      "mu": 0.530976,
+      "sigma": 0.461357,
+      "times_shown": 9,
+      "times_in_winner": 4,
+      "times_in_loser": 1
+    },
+    "neu_18": {
+      "text": "concrete walls",
+      "category": "neutral_other",
+      "mu": 0.527554,
+      "sigma": 0.461357,
+      "times_shown": 9,
+      "times_in_winner": 5,
+      "times_in_loser": 2
+    },
+    "neu_19": {
+      "text": "large grid windows",
+      "category": "neutral_other",
+      "mu": 0.413606,
+      "sigma": 0.461357,
+      "times_shown": 6,
+      "times_in_winner": 3,
+      "times_in_loser": 1
+    },
+    "neu_20": {
+      "text": "oversized artwork",
+      "category": "neutral_other",
+      "mu": 0.50033,
+      "sigma": 0.461357,
+      "times_shown": 7,
+      "times_in_winner": 3,
+      "times_in_loser": 1
+    }
+  },
+  "tag_states_snapshots": {
+    "1": {
+      "pos_0": {
+        "text": "spacious layout",
+        "category": "positive_other",
+        "mu": 0.586438094594398,
+        "sigma": 0.644,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_1": {
+        "text": "soft neutral tones",
+        "category": "positive_other",
+        "mu": 0.8825767231480037,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_2": {
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "mu": 0.7078897610669883,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_3": {
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "mu": 0.4117511325133825,
+        "sigma": 0.644,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_4": {
+        "text": "wooden floor",
+        "category": "positive_other",
+        "mu": 0.7943278556613862,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_5": {
+        "text": "ambient warm lighting",
+        "category": "positive_other",
+        "mu": 0.7943278556613862,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_6": {
+        "text": "simple nightstands",
+        "category": "positive_other",
+        "mu": 0.586438094594398,
+        "sigma": 0.644,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_7": {
+        "text": "natural light",
+        "category": "positive_other",
+        "mu": 0.29211023893301175,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_8": {
+        "text": "soft lighting",
+        "category": "positive_other",
+        "mu": 0.20386137144639427,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_9": {
+        "text": "open layout",
+        "category": "positive_other",
+        "mu": 0.29211023893301175,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_10": {
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "mu": 0.20386137144639427,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_0": {
+        "text": "minimalist design",
+        "category": "neutral_other",
+        "mu": -0.005672144338613794,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_1": {
+        "text": "soft natural lighting",
+        "category": "neutral_other",
+        "mu": -0.09211023893301173,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_2": {
+        "text": "clean lines",
+        "category": "neutral_other",
+        "mu": -0.38824886748661747,
+        "sigma": 0.644,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_3": {
+        "text": "traditional architecture",
+        "category": "neutral_other",
+        "mu": -0.5961386285536057,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_4": {
+        "text": "serene ambiance",
+        "category": "neutral_other",
+        "mu": -0.5961386285536057,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_5": {
+        "text": "open floor plan",
+        "category": "neutral_other",
+        "mu": -0.38643809459439793,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_6": {
+        "text": "sheer curtains",
+        "category": "neutral_other",
+        "mu": -0.38643809459439793,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_7": {
+        "text": "plush bedding",
+        "category": "neutral_other",
+        "mu": -0.38643809459439793,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_8": {
+        "text": "textured throw blanket",
+        "category": "neutral_other",
+        "mu": -0.38643809459439793,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_9": {
+        "text": "serene bedroom setting",
+        "category": "neutral_other",
+        "mu": -0.38643809459439793,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_10": {
+        "text": "neutral tones",
+        "category": "neutral_other",
+        "mu": -0.38643809459439793,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_11": {
+        "text": "textured walls",
+        "category": "neutral_other",
+        "mu": -0.2117511325133825,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_12": {
+        "text": "minimalistic decor",
+        "category": "neutral_other",
+        "mu": -0.2117511325133825,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_13": {
+        "text": "linen bedding",
+        "category": "neutral_other",
+        "mu": -0.2117511325133825,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_14": {
+        "text": "organic materials",
+        "category": "neutral_other",
+        "mu": -0.2117511325133825,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_15": {
+        "text": "decorative branches",
+        "category": "neutral_other",
+        "mu": -0.2117511325133825,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_16": {
+        "text": "natural elegance",
+        "category": "neutral_other",
+        "mu": -0.3,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_17": {
+        "text": "calm ambiance",
+        "category": "neutral_other",
+        "mu": -0.3,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_18": {
+        "text": "concrete walls",
+        "category": "neutral_other",
+        "mu": -0.3,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_19": {
+        "text": "large grid windows",
+        "category": "neutral_other",
+        "mu": -0.3,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_20": {
+        "text": "oversized artwork",
+        "category": "neutral_other",
+        "mu": -0.3,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      }
+    },
+    "2": {
+      "pos_0": {
+        "text": "spacious layout",
+        "category": "positive_other",
+        "mu": 0.5011909860522065,
+        "sigma": 0.59248,
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 2
+      },
+      "pos_1": {
+        "text": "soft neutral tones",
+        "category": "positive_other",
+        "mu": 1.0844681561594132,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "pos_2": {
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "mu": 0.41986444482265983,
+        "sigma": 0.59248,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_3": {
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "mu": 0.41086435782265507,
+        "sigma": 0.59248,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_4": {
+        "text": "wooden floor",
+        "category": "positive_other",
+        "mu": 0.7090807471191947,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_5": {
+        "text": "ambient warm lighting",
+        "category": "positive_other",
+        "mu": 0.7090807471191947,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_6": {
+        "text": "simple nightstands",
+        "category": "positive_other",
+        "mu": 0.5855513199036705,
+        "sigma": 0.59248,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_7": {
+        "text": "natural light",
+        "category": "positive_other",
+        "mu": 0.2929970136237392,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_8": {
+        "text": "soft lighting",
+        "category": "positive_other",
+        "mu": 0.49188668769072275,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_9": {
+        "text": "open layout",
+        "category": "positive_other",
+        "mu": 0.5801355551773402,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_10": {
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "mu": 0.2891084799885858,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_0": {
+        "text": "minimalist design",
+        "category": "neutral_other",
+        "mu": -0.09180602757153278,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_1": {
+        "text": "soft natural lighting",
+        "category": "neutral_other",
+        "mu": -0.09299701362373919,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_2": {
+        "text": "clean lines",
+        "category": "neutral_other",
+        "mu": -0.38824886748661747,
+        "sigma": 0.644,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_3": {
+        "text": "traditional architecture",
+        "category": "neutral_other",
+        "mu": -0.5961386285536057,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_4": {
+        "text": "serene ambiance",
+        "category": "neutral_other",
+        "mu": -0.5961386285536057,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_5": {
+        "text": "open floor plan",
+        "category": "neutral_other",
+        "mu": -0.673576636147999,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_6": {
+        "text": "sheer curtains",
+        "category": "neutral_other",
+        "mu": -0.673576636147999,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_7": {
+        "text": "plush bedding",
+        "category": "neutral_other",
+        "mu": -0.673576636147999,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_8": {
+        "text": "textured throw blanket",
+        "category": "neutral_other",
+        "mu": -0.38643809459439793,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_9": {
+        "text": "serene bedroom setting",
+        "category": "neutral_other",
+        "mu": -0.38643809459439793,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_10": {
+        "text": "neutral tones",
+        "category": "neutral_other",
+        "mu": -0.38643809459439793,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_11": {
+        "text": "textured walls",
+        "category": "neutral_other",
+        "mu": -0.2978850157463015,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_12": {
+        "text": "minimalistic decor",
+        "category": "neutral_other",
+        "mu": -0.12650402397119098,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_13": {
+        "text": "linen bedding",
+        "category": "neutral_other",
+        "mu": -0.12650402397119098,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_14": {
+        "text": "organic materials",
+        "category": "neutral_other",
+        "mu": -0.4988896740669836,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_15": {
+        "text": "decorative branches",
+        "category": "neutral_other",
+        "mu": -0.4988896740669836,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_16": {
+        "text": "natural elegance",
+        "category": "neutral_other",
+        "mu": 0.07327242478652007,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_17": {
+        "text": "calm ambiance",
+        "category": "neutral_other",
+        "mu": -0.011974683755671511,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_18": {
+        "text": "concrete walls",
+        "category": "neutral_other",
+        "mu": -0.011974683755671511,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_19": {
+        "text": "large grid windows",
+        "category": "neutral_other",
+        "mu": -0.21475289145780846,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_20": {
+        "text": "oversized artwork",
+        "category": "neutral_other",
+        "mu": -0.21475289145780846,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      }
+    },
+    "3": {
+      "pos_0": {
+        "text": "spacious layout",
+        "category": "positive_other",
+        "mu": 0.7802113883546753,
+        "sigma": 0.5450816,
+        "times_shown": 9,
+        "times_in_winner": 3,
+        "times_in_loser": 2
+      },
+      "pos_1": {
+        "text": "soft neutral tones",
+        "category": "positive_other",
+        "mu": 1.0027671993720528,
+        "sigma": 0.5450816,
+        "times_shown": 5,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "pos_2": {
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "mu": 0.2254131953104304,
+        "sigma": 0.5450816,
+        "times_shown": 7,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_3": {
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "mu": 0.21641310831042562,
+        "sigma": 0.5450816,
+        "times_shown": 7,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_4": {
+        "text": "wooden floor",
+        "category": "positive_other",
+        "mu": 0.43292854081960497,
+        "sigma": 0.5450816,
+        "times_shown": 7,
+        "times_in_winner": 2,
+        "times_in_loser": 2
+      },
+      "pos_5": {
+        "text": "ambient warm lighting",
+        "category": "positive_other",
+        "mu": 0.7119489431220738,
+        "sigma": 0.5450816,
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_6": {
+        "text": "simple nightstands",
+        "category": "positive_other",
+        "mu": 0.5884195159065496,
+        "sigma": 0.5450816,
+        "times_shown": 7,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_7": {
+        "text": "natural light",
+        "category": "positive_other",
+        "mu": 0.09854576411150975,
+        "sigma": 0.5450816,
+        "times_shown": 6,
+        "times_in_winner": 1,
+        "times_in_loser": 3
+      },
+      "pos_8": {
+        "text": "soft lighting",
+        "category": "positive_other",
+        "mu": 0.1311653286008937,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_9": {
+        "text": "open layout",
+        "category": "positive_other",
+        "mu": 0.7745868046895696,
+        "sigma": 0.5450816,
+        "times_shown": 5,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_10": {
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "mu": 0.5652606862881755,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_0": {
+        "text": "minimalist design",
+        "category": "neutral_other",
+        "mu": 0.18434617872805692,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_1": {
+        "text": "soft natural lighting",
+        "category": "neutral_other",
+        "mu": 0.1831551926758505,
+        "sigma": 0.5450816,
+        "times_shown": 5,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_2": {
+        "text": "clean lines",
+        "category": "neutral_other",
+        "mu": -0.3036797146963781,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_3": {
+        "text": "traditional architecture",
+        "category": "neutral_other",
+        "mu": -0.5115694757633663,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_4": {
+        "text": "serene ambiance",
+        "category": "neutral_other",
+        "mu": -0.5115694757633663,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_5": {
+        "text": "open floor plan",
+        "category": "neutral_other",
+        "mu": -0.673576636147999,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_6": {
+        "text": "sheer curtains",
+        "category": "neutral_other",
+        "mu": -0.673576636147999,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_7": {
+        "text": "plush bedding",
+        "category": "neutral_other",
+        "mu": -0.673576636147999,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_8": {
+        "text": "textured throw blanket",
+        "category": "neutral_other",
+        "mu": -0.6654584968968668,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_9": {
+        "text": "serene bedroom setting",
+        "category": "neutral_other",
+        "mu": -0.6654584968968668,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_10": {
+        "text": "neutral tones",
+        "category": "neutral_other",
+        "mu": -0.6654584968968668,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_11": {
+        "text": "textured walls",
+        "category": "neutral_other",
+        "mu": -0.5769054180487703,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_12": {
+        "text": "minimalistic decor",
+        "category": "neutral_other",
+        "mu": 0.14964818232839872,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_13": {
+        "text": "linen bedding",
+        "category": "neutral_other",
+        "mu": -0.4055244262736598,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_14": {
+        "text": "organic materials",
+        "category": "neutral_other",
+        "mu": -0.4988896740669836,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_15": {
+        "text": "decorative branches",
+        "category": "neutral_other",
+        "mu": -0.4988896740669836,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_16": {
+        "text": "natural elegance",
+        "category": "neutral_other",
+        "mu": -0.008428532000840178,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_17": {
+        "text": "calm ambiance",
+        "category": "neutral_other",
+        "mu": 0.18247656575655793,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_18": {
+        "text": "concrete walls",
+        "category": "neutral_other",
+        "mu": 0.18247656575655793,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_19": {
+        "text": "large grid windows",
+        "category": "neutral_other",
+        "mu": 0.06139931484178124,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_20": {
+        "text": "oversized artwork",
+        "category": "neutral_other",
+        "mu": 0.06139931484178124,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      }
+    },
+    "4": {
+      "pos_0": {
+        "text": "spacious layout",
+        "category": "positive_other",
+        "mu": 0.7807994875955627,
+        "sigma": 0.5014750720000001,
+        "times_shown": 11,
+        "times_in_winner": 3,
+        "times_in_loser": 2
+      },
+      "pos_1": {
+        "text": "soft neutral tones",
+        "category": "positive_other",
+        "mu": 1.0027671993720528,
+        "sigma": 0.5450816,
+        "times_shown": 9,
+        "times_in_winner": 3,
+        "times_in_loser": 1
+      },
+      "pos_2": {
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "mu": 0.031857332139407696,
+        "sigma": 0.5014750720000001,
+        "times_shown": 9,
+        "times_in_winner": 1,
+        "times_in_loser": 3
+      },
+      "pos_3": {
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "mu": 0.022857245139402932,
+        "sigma": 0.5014750720000001,
+        "times_shown": 9,
+        "times_in_winner": 1,
+        "times_in_loser": 3
+      },
+      "pos_4": {
+        "text": "wooden floor",
+        "category": "positive_other",
+        "mu": 0.7096478178099372,
+        "sigma": 0.5014750720000001,
+        "times_shown": 10,
+        "times_in_winner": 3,
+        "times_in_loser": 2
+      },
+      "pos_5": {
+        "text": "ambient warm lighting",
+        "category": "positive_other",
+        "mu": 0.43581776537262884,
+        "sigma": 0.5014750720000001,
+        "times_shown": 9,
+        "times_in_winner": 2,
+        "times_in_loser": 2
+      },
+      "pos_6": {
+        "text": "simple nightstands",
+        "category": "positive_other",
+        "mu": 0.31228833815710466,
+        "sigma": 0.5014750720000001,
+        "times_shown": 10,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_7": {
+        "text": "natural light",
+        "category": "positive_other",
+        "mu": -0.17817351287882258,
+        "sigma": 0.5014750720000001,
+        "times_shown": 7,
+        "times_in_winner": 1,
+        "times_in_loser": 4
+      },
+      "pos_8": {
+        "text": "soft lighting",
+        "category": "positive_other",
+        "mu": 0.40729650635033865,
+        "sigma": 0.5014750720000001,
+        "times_shown": 5,
+        "times_in_winner": 2,
+        "times_in_loser": 2
+      },
+      "pos_9": {
+        "text": "open layout",
+        "category": "positive_other",
+        "mu": 0.9681426678605923,
+        "sigma": 0.5014750720000001,
+        "times_shown": 7,
+        "times_in_winner": 3,
+        "times_in_loser": 1
+      },
+      "pos_10": {
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "mu": 0.48209727246886586,
+        "sigma": 0.5014750720000001,
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 2
+      },
+      "neu_0": {
+        "text": "minimalist design",
+        "category": "neutral_other",
+        "mu": 0.10177086414963468,
+        "sigma": 0.5014750720000001,
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_1": {
+        "text": "soft natural lighting",
+        "category": "neutral_other",
+        "mu": 0.10057987809742827,
+        "sigma": 0.5014750720000001,
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_2": {
+        "text": "clean lines",
+        "category": "neutral_other",
+        "mu": -0.22051630087706847,
+        "sigma": 0.5450816,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_3": {
+        "text": "traditional architecture",
+        "category": "neutral_other",
+        "mu": -0.42840606194405667,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_4": {
+        "text": "serene ambiance",
+        "category": "neutral_other",
+        "mu": -0.42840606194405667,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_5": {
+        "text": "open floor plan",
+        "category": "neutral_other",
+        "mu": -0.673576636147999,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_6": {
+        "text": "sheer curtains",
+        "category": "neutral_other",
+        "mu": -0.673576636147999,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_7": {
+        "text": "plush bedding",
+        "category": "neutral_other",
+        "mu": -0.673576636147999,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_8": {
+        "text": "textured throw blanket",
+        "category": "neutral_other",
+        "mu": -0.6654584968968668,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_9": {
+        "text": "serene bedroom setting",
+        "category": "neutral_other",
+        "mu": -0.6654584968968668,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_10": {
+        "text": "neutral tones",
+        "category": "neutral_other",
+        "mu": -0.6654584968968668,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_11": {
+        "text": "textured walls",
+        "category": "neutral_other",
+        "mu": -0.5769054180487703,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_12": {
+        "text": "minimalistic decor",
+        "category": "neutral_other",
+        "mu": 0.42577936007784367,
+        "sigma": 0.5014750720000001,
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_13": {
+        "text": "linen bedding",
+        "category": "neutral_other",
+        "mu": -0.4055244262736598,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_14": {
+        "text": "organic materials",
+        "category": "neutral_other",
+        "mu": -0.7756089510573159,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "neu_15": {
+        "text": "decorative branches",
+        "category": "neutral_other",
+        "mu": -0.4988896740669836,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_16": {
+        "text": "natural elegance",
+        "category": "neutral_other",
+        "mu": -0.28514780899117254,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_17": {
+        "text": "calm ambiance",
+        "category": "neutral_other",
+        "mu": 0.3760324289275806,
+        "sigma": 0.5450816,
+        "times_shown": 5,
+        "times_in_winner": 3,
+        "times_in_loser": 0
+      },
+      "neu_18": {
+        "text": "concrete walls",
+        "category": "neutral_other",
+        "mu": 0.18188846651567053,
+        "sigma": 0.5450816,
+        "times_shown": 5,
+        "times_in_winner": 3,
+        "times_in_loser": 1
+      },
+      "neu_19": {
+        "text": "large grid windows",
+        "category": "neutral_other",
+        "mu": 0.3375304925912262,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_20": {
+        "text": "oversized artwork",
+        "category": "neutral_other",
+        "mu": 0.3375304925912262,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      }
+    },
+    "5": {
+      "pos_0": {
+        "text": "spacious layout",
+        "category": "positive_other",
+        "mu": 0.7023381778397065,
+        "sigma": 0.4613570662400001,
+        "times_shown": 14,
+        "times_in_winner": 4,
+        "times_in_loser": 3
+      },
+      "pos_1": {
+        "text": "soft neutral tones",
+        "category": "positive_other",
+        "mu": 0.6569708867161158,
+        "sigma": 0.5014750720000001,
+        "times_shown": 11,
+        "times_in_winner": 3,
+        "times_in_loser": 2
+      },
+      "pos_2": {
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "mu": -0.049817832646703974,
+        "sigma": 0.4613570662400001,
+        "times_shown": 10,
+        "times_in_winner": 1,
+        "times_in_loser": 3
+      },
+      "pos_3": {
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "mu": -0.05881791964670874,
+        "sigma": 0.4613570662400001,
+        "times_shown": 10,
+        "times_in_winner": 1,
+        "times_in_loser": 3
+      },
+      "pos_4": {
+        "text": "wooden floor",
+        "category": "positive_other",
+        "mu": 0.7096478178099372,
+        "sigma": 0.5014750720000001,
+        "times_shown": 14,
+        "times_in_winner": 4,
+        "times_in_loser": 3
+      },
+      "pos_5": {
+        "text": "ambient warm lighting",
+        "category": "positive_other",
+        "mu": 0.43581776537262884,
+        "sigma": 0.5014750720000001,
+        "times_shown": 13,
+        "times_in_winner": 3,
+        "times_in_loser": 3
+      },
+      "pos_6": {
+        "text": "simple nightstands",
+        "category": "positive_other",
+        "mu": 0.4979481762710739,
+        "sigma": 0.4613570662400001,
+        "times_shown": 12,
+        "times_in_winner": 2,
+        "times_in_loser": 2
+      },
+      "pos_7": {
+        "text": "natural light",
+        "category": "positive_other",
+        "mu": 0.08916149002125837,
+        "sigma": 0.4613570662400001,
+        "times_shown": 8,
+        "times_in_winner": 2,
+        "times_in_loser": 4
+      },
+      "pos_8": {
+        "text": "soft lighting",
+        "category": "positive_other",
+        "mu": 0.2216366682363694,
+        "sigma": 0.4613570662400001,
+        "times_shown": 7,
+        "times_in_winner": 2,
+        "times_in_loser": 3
+      },
+      "pos_9": {
+        "text": "open layout",
+        "category": "positive_other",
+        "mu": 0.9713565228908478,
+        "sigma": 0.4613570662400001,
+        "times_shown": 9,
+        "times_in_winner": 4,
+        "times_in_loser": 2
+      },
+      "pos_10": {
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "mu": 0.21797612459904048,
+        "sigma": 0.4613570662400001,
+        "times_shown": 7,
+        "times_in_winner": 2,
+        "times_in_loser": 3
+      },
+      "neu_0": {
+        "text": "minimalist design",
+        "category": "neutral_other",
+        "mu": 0.18023217390549084,
+        "sigma": 0.4613570662400001,
+        "times_shown": 5,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_1": {
+        "text": "soft natural lighting",
+        "category": "neutral_other",
+        "mu": 0.17904118785328443,
+        "sigma": 0.4613570662400001,
+        "times_shown": 7,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_2": {
+        "text": "clean lines",
+        "category": "neutral_other",
+        "mu": -0.14205499112121234,
+        "sigma": 0.5014750720000001,
+        "times_shown": 6,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_3": {
+        "text": "traditional architecture",
+        "category": "neutral_other",
+        "mu": -0.42840606194405667,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_4": {
+        "text": "serene ambiance",
+        "category": "neutral_other",
+        "mu": -0.42840606194405667,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_5": {
+        "text": "open floor plan",
+        "category": "neutral_other",
+        "mu": -0.7552518009341107,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_6": {
+        "text": "sheer curtains",
+        "category": "neutral_other",
+        "mu": -0.7552518009341107,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_7": {
+        "text": "plush bedding",
+        "category": "neutral_other",
+        "mu": -0.7552518009341107,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_8": {
+        "text": "textured throw blanket",
+        "category": "neutral_other",
+        "mu": -0.6654584968968668,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_9": {
+        "text": "serene bedroom setting",
+        "category": "neutral_other",
+        "mu": -0.6654584968968668,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_10": {
+        "text": "neutral tones",
+        "category": "neutral_other",
+        "mu": -0.6654584968968668,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_11": {
+        "text": "textured walls",
+        "category": "neutral_other",
+        "mu": -0.5769054180487703,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_12": {
+        "text": "minimalistic decor",
+        "category": "neutral_other",
+        "mu": 0.4289932151080992,
+        "sigma": 0.4613570662400001,
+        "times_shown": 6,
+        "times_in_winner": 3,
+        "times_in_loser": 1
+      },
+      "neu_13": {
+        "text": "linen bedding",
+        "category": "neutral_other",
+        "mu": -0.4055244262736598,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_14": {
+        "text": "organic materials",
+        "category": "neutral_other",
+        "mu": -0.7756089510573159,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "neu_15": {
+        "text": "decorative branches",
+        "category": "neutral_other",
+        "mu": -0.4988896740669836,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_16": {
+        "text": "natural elegance",
+        "category": "neutral_other",
+        "mu": -0.017812806091091593,
+        "sigma": 0.5014750720000001,
+        "times_shown": 5,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "neu_17": {
+        "text": "calm ambiance",
+        "category": "neutral_other",
+        "mu": 0.19037259081361135,
+        "sigma": 0.5014750720000001,
+        "times_shown": 7,
+        "times_in_winner": 3,
+        "times_in_loser": 1
+      },
+      "neu_18": {
+        "text": "concrete walls",
+        "category": "neutral_other",
+        "mu": 0.5276847791716075,
+        "sigma": 0.5014750720000001,
+        "times_shown": 7,
+        "times_in_winner": 4,
+        "times_in_loser": 1
+      },
+      "neu_19": {
+        "text": "large grid windows",
+        "category": "neutral_other",
+        "mu": 0.15187065447725695,
+        "sigma": 0.5014750720000001,
+        "times_shown": 5,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "neu_20": {
+        "text": "oversized artwork",
+        "category": "neutral_other",
+        "mu": 0.6833268052471633,
+        "sigma": 0.5014750720000001,
+        "times_shown": 5,
+        "times_in_winner": 3,
+        "times_in_loser": 0
+      }
+    },
+    "6": {
+      "pos_0": {
+        "text": "spacious layout",
+        "category": "positive_other",
+        "mu": 0.7023381778397065,
+        "sigma": 0.4613570662400001,
+        "times_shown": 18,
+        "times_in_winner": 5,
+        "times_in_loser": 4
+      },
+      "pos_1": {
+        "text": "soft neutral tones",
+        "category": "positive_other",
+        "mu": 0.3952359638987651,
+        "sigma": 0.4613570662400001,
+        "times_shown": 14,
+        "times_in_winner": 3,
+        "times_in_loser": 3
+      },
+      "pos_2": {
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "mu": -0.12855594176405916,
+        "sigma": 0.4244485009408001,
+        "times_shown": 11,
+        "times_in_winner": 1,
+        "times_in_loser": 3
+      },
+      "pos_3": {
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "mu": -0.13755602876406392,
+        "sigma": 0.4244485009408001,
+        "times_shown": 11,
+        "times_in_winner": 1,
+        "times_in_loser": 3
+      },
+      "pos_4": {
+        "text": "wooden floor",
+        "category": "positive_other",
+        "mu": 0.7096478178099372,
+        "sigma": 0.5014750720000001,
+        "times_shown": 18,
+        "times_in_winner": 5,
+        "times_in_loser": 4
+      },
+      "pos_5": {
+        "text": "ambient warm lighting",
+        "category": "positive_other",
+        "mu": 0.35694883924692045,
+        "sigma": 0.4613570662400001,
+        "times_shown": 16,
+        "times_in_winner": 4,
+        "times_in_loser": 4
+      },
+      "pos_6": {
+        "text": "simple nightstands",
+        "category": "positive_other",
+        "mu": 0.4979481762710739,
+        "sigma": 0.4613570662400001,
+        "times_shown": 16,
+        "times_in_winner": 3,
+        "times_in_loser": 3
+      },
+      "pos_7": {
+        "text": "natural light",
+        "category": "positive_other",
+        "mu": 0.08916149002125837,
+        "sigma": 0.4613570662400001,
+        "times_shown": 8,
+        "times_in_winner": 2,
+        "times_in_loser": 4
+      },
+      "pos_8": {
+        "text": "soft lighting",
+        "category": "positive_other",
+        "mu": -0.04022907158933453,
+        "sigma": 0.4244485009408001,
+        "times_shown": 8,
+        "times_in_winner": 2,
+        "times_in_loser": 4
+      },
+      "pos_9": {
+        "text": "open layout",
+        "category": "positive_other",
+        "mu": 1.050094632008203,
+        "sigma": 0.4244485009408001,
+        "times_shown": 12,
+        "times_in_winner": 5,
+        "times_in_loser": 3
+      },
+      "pos_10": {
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "mu": 0.4797110474163912,
+        "sigma": 0.4244485009408001,
+        "times_shown": 8,
+        "times_in_winner": 3,
+        "times_in_loser": 3
+      },
+      "neu_0": {
+        "text": "minimalist design",
+        "category": "neutral_other",
+        "mu": 0.52083602284855,
+        "sigma": 0.4244485009408001,
+        "times_shown": 7,
+        "times_in_winner": 3,
+        "times_in_loser": 0
+      },
+      "neu_1": {
+        "text": "soft natural lighting",
+        "category": "neutral_other",
+        "mu": 0.2579101139789928,
+        "sigma": 0.4244485009408001,
+        "times_shown": 8,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_2": {
+        "text": "clean lines",
+        "category": "neutral_other",
+        "mu": -0.14205499112121234,
+        "sigma": 0.5014750720000001,
+        "times_shown": 6,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_3": {
+        "text": "traditional architecture",
+        "category": "neutral_other",
+        "mu": -0.42840606194405667,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_4": {
+        "text": "serene ambiance",
+        "category": "neutral_other",
+        "mu": -0.42840606194405667,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_5": {
+        "text": "open floor plan",
+        "category": "neutral_other",
+        "mu": -0.7552518009341107,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_6": {
+        "text": "sheer curtains",
+        "category": "neutral_other",
+        "mu": -0.7552518009341107,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_7": {
+        "text": "plush bedding",
+        "category": "neutral_other",
+        "mu": -0.7552518009341107,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_8": {
+        "text": "textured throw blanket",
+        "category": "neutral_other",
+        "mu": -0.744196606014222,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_9": {
+        "text": "serene bedroom setting",
+        "category": "neutral_other",
+        "mu": -0.744196606014222,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_10": {
+        "text": "neutral tones",
+        "category": "neutral_other",
+        "mu": -0.744196606014222,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_11": {
+        "text": "textured walls",
+        "category": "neutral_other",
+        "mu": -0.5769054180487703,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_12": {
+        "text": "minimalistic decor",
+        "category": "neutral_other",
+        "mu": 0.16712747528239524,
+        "sigma": 0.4244485009408001,
+        "times_shown": 7,
+        "times_in_winner": 3,
+        "times_in_loser": 2
+      },
+      "neu_13": {
+        "text": "linen bedding",
+        "category": "neutral_other",
+        "mu": -0.4055244262736598,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_14": {
+        "text": "organic materials",
+        "category": "neutral_other",
+        "mu": -0.7756089510573159,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "neu_15": {
+        "text": "decorative branches",
+        "category": "neutral_other",
+        "mu": -0.4988896740669836,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_16": {
+        "text": "natural elegance",
+        "category": "neutral_other",
+        "mu": 0.0610561200346168,
+        "sigma": 0.4613570662400001,
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "neu_17": {
+        "text": "calm ambiance",
+        "category": "neutral_other",
+        "mu": 0.5309764397566705,
+        "sigma": 0.4613570662400001,
+        "times_shown": 9,
+        "times_in_winner": 4,
+        "times_in_loser": 1
+      },
+      "neu_18": {
+        "text": "concrete walls",
+        "category": "neutral_other",
+        "mu": 0.5275539621632543,
+        "sigma": 0.4613570662400001,
+        "times_shown": 9,
+        "times_in_winner": 5,
+        "times_in_loser": 2
+      },
+      "neu_19": {
+        "text": "large grid windows",
+        "category": "neutral_other",
+        "mu": 0.4136055772946077,
+        "sigma": 0.4613570662400001,
+        "times_shown": 6,
+        "times_in_winner": 3,
+        "times_in_loser": 1
+      },
+      "neu_20": {
+        "text": "oversized artwork",
+        "category": "neutral_other",
+        "mu": 0.5003299915471677,
+        "sigma": 0.4613570662400001,
+        "times_shown": 7,
+        "times_in_winner": 3,
+        "times_in_loser": 1
+      }
+    }
+  },
+  "best_picks": {
+    "1": {
+      "round": 1,
+      "option_id": 0,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_0_img_0.png",
+      "tags": [
+        "spacious layout",
+        "soft neutral tones",
+        "minimalist decor",
+        "cozy atmosphere",
+        "wooden floor",
+        "ambient warm lighting",
+        "simple nightstands",
+        "minimalist design",
+        "soft natural lighting",
+        "clean lines"
+      ],
+      "weights": [
+        1.1319290609254349,
+        1.1319290609254349,
+        1.1319290609254349,
+        1.1319290609254349,
+        1.1319290609254349,
+        1.1319290609254349,
+        1.1319290609254349,
+        0.692165524507319,
+        0.692165524507319,
+        0.692165524507319
+      ],
+      "strategy": "exploit"
+    },
+    "2": {
+      "round": 2,
+      "option_id": 1,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_1_img_1.png",
+      "tags": [
+        "ambient warm lighting",
+        "spacious layout",
+        "soft neutral tones",
+        "soft lighting",
+        "concrete walls",
+        "natural elegance",
+        "open layout",
+        "natural light",
+        "wooden floor",
+        "calm ambiance"
+      ],
+      "weights": [
+        1.3323403590221126,
+        1.1448233222505333,
+        1.4245086634483315,
+        0.8868519175598463,
+        0.6677654624225549,
+        0.6677654624225549,
+        0.9379194957146998,
+        0.9379194957146998,
+        1.3323403590221126,
+        0.6677654624225549
+      ],
+      "strategy": "explore"
+    },
+    "3": {
+      "round": 3,
+      "option_id": 2,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_2_img_2.png",
+      "tags": [
+        "minimalist design",
+        "spacious layout",
+        "concrete walls",
+        "soft natural lighting",
+        "neutral color palette",
+        "minimalistic decor",
+        "open layout",
+        "oversized artwork",
+        "calm ambiance",
+        "large grid windows"
+      ],
+      "weights": [
+        0.8829077897972386,
+        1.3277350599804492,
+        0.9285798342455545,
+        0.8822536439020098,
+        1.1377028573576042,
+        0.8641656942229262,
+        1.4094195297030512,
+        0.8193278782728053,
+        0.9285798342455545,
+        0.8193278782728053
+      ],
+      "strategy": "ucb"
+    },
+    "4": {
+      "round": 4,
+      "option_id": 2,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_3_img_2.png",
+      "tags": [
+        "soft neutral tones",
+        "soft lighting",
+        "concrete walls",
+        "neutral color palette",
+        "minimalistic decor",
+        "open layout",
+        "oversized artwork",
+        "wooden floor",
+        "calm ambiance",
+        "large grid windows"
+      ],
+      "weights": [
+        1.5427275563551748,
+        0.8391999346605898,
+        0.8658340470550675,
+        1.1141718457573557,
+        0.8486367338958835,
+        1.2959877406675717,
+        0.8051106026108359,
+        1.0173868893316174,
+        0.8658340470550675,
+        0.8051106026108359
+      ],
+      "strategy": "ucb"
+    },
+    "5": {
+      "round": 5,
+      "option_id": 3,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_4_img_3.png",
+      "tags": [
+        "ambient warm lighting",
+        "simple nightstands",
+        "spacious layout",
+        "concrete walls",
+        "natural elegance",
+        "minimalistic decor",
+        "open layout",
+        "oversized artwork",
+        "natural light",
+        "wooden floor"
+      ],
+      "weights": [
+        0.9991175854249713,
+        0.9217505480403723,
+        1.273396803376945,
+        0.8498132341257277,
+        0.6570925556363615,
+        0.9924676067010703,
+        1.4670885180684952,
+        0.936792513364303,
+        0.6936468004193846,
+        1.208833834842371
+      ],
+      "strategy": "challenger"
+    },
+    "6": {
+      "round": 6,
+      "option_id": 2,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/hitl/round_5_img_2.png",
+      "tags": [
+        "ambient warm lighting",
+        "minimalist design",
+        "simple nightstands",
+        "spacious layout",
+        "concrete walls",
+        "neutral color palette",
+        "open layout",
+        "wooden floor",
+        "calm ambiance",
+        "large grid windows"
+      ],
+      "weights": [
+        0.9620878422743453,
+        0.8202803400402736,
+        1.002391701715429,
+        1.1541184200117782,
+        1.022585991438856,
+        0.8390109029739168,
+        1.4074776616507205,
+        1.160140044628026,
+        0.8252433064434181,
+        0.8066637888232356
+      ],
+      "strategy": "ucb"
+    }
+  },
+  "positive_tags": [
+    "spacious layout",
+    "soft neutral tones",
+    "minimalist decor",
+    "cozy atmosphere",
+    "wooden floor",
+    "ambient warm lighting",
+    "simple nightstands",
+    "natural light",
+    "soft lighting",
+    "open layout",
+    "neutral color palette"
+  ],
+  "neutral_tags": [
+    "minimalist design",
+    "soft natural lighting",
+    "clean lines",
+    "traditional architecture",
+    "serene ambiance",
+    "open floor plan",
+    "sheer curtains",
+    "plush bedding",
+    "textured throw blanket",
+    "serene bedroom setting",
+    "neutral tones",
+    "textured walls",
+    "minimalistic decor",
+    "linen bedding",
+    "organic materials",
+    "decorative branches",
+    "natural elegance",
+    "calm ambiance",
+    "concrete walls",
+    "large grid windows",
+    "oversized artwork"
+  ],
+  "selected_image_tags": [],
+  "base_prompt": "Contemplative Bedroom",
+  "negative_prompt": "illustration, plan view, bird's-eye view, cartoon, anime, isometric, diorama, miniature, 3D render, CGI, concept art, stylized, toon shading, human",
+  "timestamp": "2026-02-17T18:37:15.328825"
+}

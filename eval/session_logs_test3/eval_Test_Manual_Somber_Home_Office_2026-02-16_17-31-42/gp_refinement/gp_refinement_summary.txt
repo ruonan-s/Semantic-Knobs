@@ -1,0 +1,84 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_Test_Manual_Somber_Home_Office_2026-02-16_17-31-42
+Started: 2026-02-16T17:34:54.973929
+Rounds: 3
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 23
+  Neutral tags: 13
+  Total: 36
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.26 | dark wood desk, dim ambient lighting, minimalist decor...
+    [1] explore      | avg_μ=+0.34 | open book centerpiece, soft natural light, dim ambient lighting...
+    [2] ucb          | avg_μ=+0.26 | soft natural light, airy window styling, dark wood furniture...
+    [3] challenger   | avg_μ=+0.50 | open book centerpiece, open layout, minimalist decor...
+  Ranking: [1, 2, 3, 0]
+  Comparisons: 6
+  Tags updated: 21
+  Top 5 after round:
+    1. simple pottery cups       μ=+0.869 σ=0.430
+    2. calm atmosphere           μ=+0.869 σ=0.430
+    3. textured wooden table     μ=+0.758 σ=0.365
+    4. open book centerpiece     μ=+0.758 σ=0.365
+    5. ceramic vase decor        μ=+0.758 σ=0.365
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.46 | simple pottery cups, calm atmosphere, textured wooden table...
+    [1] explore      | avg_μ=+0.23 | rich book collections, sleek lines, soft lighting...
+    [2] ucb          | avg_μ=+0.37 | rich book collections, calm atmosphere, elegant desk setup...
+    [3] challenger   | avg_μ=+0.60 | open book centerpiece, open layout, sleek lines...
+  Ranking: [0, 3, 1, 2]
+  Comparisons: 6
+  Tags updated: 24
+  Top 5 after round:
+    1. textured wooden table     μ=+1.202 σ=0.191
+    2. open book centerpiece     μ=+1.202 σ=0.191
+    3. ceramic vase decor        μ=+1.202 σ=0.191
+    4. relaxed ambiance          μ=+1.056 σ=0.224
+    5. simple pottery cups       μ=+0.970 σ=0.264
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.75 | textured wooden table, open book centerpiece, ceramic vase decor...
+    [1] explore      | avg_μ=+0.06 | ornate table lamps, historical wall map, soft natural light...
+    [2] ucb          | avg_μ=+0.59 | ornate table lamps, historical wall map, sconce lighting...
+    [3] challenger   | avg_μ=+0.89 | open book centerpiece, monochrome aesthetics, sleek lines...
+  Ranking: [1, 3, 0, 2]
+  Comparisons: 6
+  Tags updated: 21
+  Top 5 after round:
+    1. open book centerpiece     μ=+1.211 σ=0.100
+    2. textured wooden table     μ=+0.901 σ=0.117
+    3. ceramic vase decor        μ=+0.901 σ=0.117
+    4. soft lighting             μ=+0.899 σ=0.191
+    5. monochrome aesthetics     μ=+0.798 σ=0.224
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. open book centerpiece          | w=0.147 | μ=+1.211 | win_rate=33%
+   2. textured wooden table          | w=0.108 | μ=+0.901 | win_rate=29%
+   3. ceramic vase decor             | w=0.108 | μ=+0.901 | win_rate=29%
+   4. soft lighting                  | w=0.108 | μ=+0.899 | win_rate=25%
+   5. monochrome aesthetics          | w=0.098 | μ=+0.798 | win_rate=33%
+   6. relaxed ambiance               | w=0.093 | μ=+0.755 | win_rate=17%
+   7. neutral color palette          | w=0.087 | μ=+0.689 | win_rate=50%
+   8. simple pottery cups            | w=0.086 | μ=+0.669 | win_rate=29%
+   9. airy window styling            | w=0.084 | μ=+0.654 | win_rate=20%
+  10. sleek lines                    | w=0.080 | μ=+0.598 | win_rate=0%
+
+  Convergence: True
+  Top-10 stability: 8/10 tags same as previous round

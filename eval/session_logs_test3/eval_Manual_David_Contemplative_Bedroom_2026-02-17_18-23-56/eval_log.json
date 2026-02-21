@@ -1,0 +1,262 @@
+{
+  "user_id": "Manual_David",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56",
+  "created_at": "2026-02-17T18:23:56.377339",
+  "events": [
+    {
+      "timestamp": "2026-02-17T18:23:56.377346",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Contemplative_Bedroom"
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:27:38.611487",
+      "type": "save_manual_weights",
+      "data": {
+        "selected_image_id": "impression_1_0",
+        "tag_count": 10,
+        "weights_file": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_Manual_David_Contemplative_Bedroom_2026-02-17_18-23-56/impression/user_manual_weights.json"
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:27:44.708138",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Contemplative Bedroom",
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:29:04.656293",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          0,
+          3,
+          2,
+          1
+        ],
+        "image_variance": 0.1293,
+        "beta": 2.0,
+        "tags_updated": 27,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:30:26.505366",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 2,
+        "ranking": [
+          1,
+          2,
+          0,
+          3
+        ],
+        "image_variance": 0.1024,
+        "beta": 1.667,
+        "tags_updated": 26,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:31:33.629337",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 3,
+        "ranking": [
+          2,
+          1,
+          0,
+          3
+        ],
+        "image_variance": 0.1045,
+        "beta": 1.333,
+        "tags_updated": 27,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:32:29.649561",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 4,
+        "ranking": [
+          2,
+          1,
+          0,
+          3
+        ],
+        "image_variance": 0.0944,
+        "beta": 1.0,
+        "tags_updated": 22,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:33:51.248758",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 5,
+        "ranking": [
+          3,
+          2,
+          1,
+          0
+        ],
+        "image_variance": 0.0649,
+        "beta": 0.667,
+        "tags_updated": 21,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:36:44.508646",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 6,
+        "ranking": [
+          2,
+          3,
+          1,
+          0
+        ],
+        "image_variance": 0.0742,
+        "beta": 0.333,
+        "tags_updated": 18,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:37:32.837292",
+      "type": "hitl_finalize",
+      "data": {
+        "rounds_completed": 6,
+        "total_comparisons": 36,
+        "final_tags": [
+          "open layout",
+          "wooden floor",
+          "spacious layout",
+          "calm ambiance",
+          "concrete walls"
+        ],
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:37:47.495261",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_1_0",
+        "concept_count": 12,
+        "gp_mode": true
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:37:47.535485",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:38:09.959123",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:38:29.141591",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Kitchen",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:38:51.748280",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:39:10.982499",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Reading Nook",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:39:33.600396",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:39:52.840512",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Livingroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:40:15.412227",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:40:34.719854",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Home Office",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:40:57.389120",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:41:16.705491",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bathroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-17T18:41:39.379070",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    }
+  ]
+}

@@ -1,0 +1,570 @@
+{
+  "stage": "impression",
+  "session_id": "eval_Test_Manual_Somber_Home_Office_2026-02-16_17-31-42",
+  "timestamp": "2026-02-16T17:40:26.652563",
+  "num_concepts": 24,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 1724,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "minimalist design",
+      "weight": 0.06368422508239746,
+      "score": 1.228641152381897,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "minimalist design"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "simple pottery cups",
+      "weight": 0.05799928307533264,
+      "score": 1.1351350545883179,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "simple pottery cups"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "soft natural light",
+      "weight": 0.0540880523622036,
+      "score": 1.0653176307678223,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "soft natural light"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "textured wooden table",
+      "weight": 0.05218995362520218,
+      "score": 1.0295943021774292,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "textured wooden table"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "airy window styling",
+      "weight": 0.05214117839932442,
+      "score": 1.0286593437194824,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "airy window styling"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "ceramic vase decor",
+      "weight": 0.05134645849466324,
+      "score": 1.0133002996444702,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "ceramic vase decor"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "sheer curtains",
+      "weight": 0.049462392926216125,
+      "score": 0.9759169816970825,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "sheer curtains"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "open book centerpiece",
+      "weight": 0.045681487768888474,
+      "score": 0.8963973522186279,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "open book centerpiece"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "calm atmosphere",
+      "weight": 0.04556756839156151,
+      "score": 0.8939005732536316,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "calm atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "neutral color palette",
+      "weight": 0.043352626264095306,
+      "score": 0.844071626663208,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "neutral color palette"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_10",
+      "label": "sleek lines",
+      "weight": 0.041466642171144485,
+      "score": 0.7995937466621399,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "sleek lines"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_11",
+      "label": "open layout",
+      "weight": 0.04094095155596733,
+      "score": 0.7868351936340332,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "open layout"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_12",
+      "label": "concrete surfaces",
+      "weight": 0.04030250385403633,
+      "score": 0.7711179852485657,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "concrete surfaces"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_13",
+      "label": "modern furniture",
+      "weight": 0.04021173343062401,
+      "score": 0.7688632011413574,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "modern furniture"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_14",
+      "label": "geometric shapes",
+      "weight": 0.039655037224292755,
+      "score": 0.7549222707748413,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "geometric shapes"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_15",
+      "label": "reflective floors",
+      "weight": 0.03931796923279762,
+      "score": 0.746385931968689,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "reflective floors"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_16",
+      "label": "dark wood furniture",
+      "weight": 0.03408025577664375,
+      "score": 0.6034225225448608,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "dark wood furniture"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_17",
+      "label": "monochrome aesthetics",
+      "weight": 0.0330071784555912,
+      "score": 0.5714293122291565,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "monochrome aesthetics"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_18",
+      "label": "dark wood desk",
+      "weight": 0.032919082790613174,
+      "score": 0.5687568187713623,
+      "utility_std": 1.005995512008667,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "dark wood desk"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_19",
+      "label": "large windows",
+      "weight": 0.030637282878160477,
+      "score": 0.49692201614379883,
+      "utility_std": 1.005995512008667,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_20",
+      "label": "mid-century modern",
+      "weight": 0.030062025412917137,
+      "score": 0.4779670536518097,
+      "utility_std": 1.005995512008667,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "mid-century modern"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_21",
+      "label": "elegant desk setup",
+      "weight": 0.028656169772148132,
+      "score": 0.4300731420516968,
+      "utility_std": 1.005995512008667,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "elegant desk setup"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_22",
+      "label": "textured rug",
+      "weight": 0.027269693091511726,
+      "score": 0.3804802894592285,
+      "utility_std": 1.005995512008667,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "textured rug"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_23",
+      "label": "rich book collections",
+      "weight": 0.025960244238376617,
+      "score": 0.33127066493034363,
+      "utility_std": 1.005995512008667,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "rich book collections"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_3_0_0",
+      "text": "minimalist design",
+      "utility": 1.228641152381897,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.06368422508239746,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_7",
+      "text": "simple pottery cups",
+      "utility": 1.1351350545883179,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.05799928307533264,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_2",
+      "text": "soft natural light",
+      "utility": 1.0653176307678223,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.0540880523622036,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_4",
+      "text": "textured wooden table",
+      "utility": 1.0295943021774292,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.05218995362520218,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_11",
+      "text": "airy window styling",
+      "utility": 1.0286593437194824,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.05214117839932442,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_6",
+      "text": "ceramic vase decor",
+      "utility": 1.0133002996444702,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.05134645849466324,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_3",
+      "text": "sheer curtains",
+      "utility": 0.9759169816970825,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.049462392926216125,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_5",
+      "text": "open book centerpiece",
+      "utility": 0.8963973522186279,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.045681487768888474,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_8",
+      "text": "calm atmosphere",
+      "utility": 0.8939005732536316,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.04556756839156151,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "neutral color palette",
+      "utility": 0.844071626663208,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.043352626264095306,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_8",
+      "text": "sleek lines",
+      "utility": 0.7995937466621399,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.041466642171144485,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_5",
+      "text": "open layout",
+      "utility": 0.7868351936340332,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.04094095155596733,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_2",
+      "text": "concrete surfaces",
+      "utility": 0.7711179852485657,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.04030250385403633,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_3",
+      "text": "modern furniture",
+      "utility": 0.7688632011413574,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.04021173343062401,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_4",
+      "text": "geometric shapes",
+      "utility": 0.7549222707748413,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.039655037224292755,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_11",
+      "text": "reflective floors",
+      "utility": 0.746385931968689,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.03931796923279762,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_0",
+      "text": "dark wood furniture",
+      "utility": 0.6034225225448608,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.03408025577664375,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_10",
+      "text": "monochrome aesthetics",
+      "utility": 0.5714293122291565,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.0330071784555912,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_1",
+      "text": "dark wood desk",
+      "utility": 0.5687568187713623,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.032919082790613174,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_7",
+      "text": "large windows",
+      "utility": 0.49692201614379883,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.030637282878160477,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_0",
+      "text": "mid-century modern",
+      "utility": 0.4779670536518097,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.030062025412917137,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_6",
+      "text": "elegant desk setup",
+      "utility": 0.4300731420516968,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.028656169772148132,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_9",
+      "text": "textured rug",
+      "utility": 0.3804802894592285,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.027269693091511726,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_5",
+      "text": "rich book collections",
+      "utility": 0.33127066493034363,
+      "uncertainty": 1.005995512008667,
+      "weight": 0.025960244238376617,
+      "source_image_idx": 2,
+      "category": "positive"
+    }
+  ]
+}

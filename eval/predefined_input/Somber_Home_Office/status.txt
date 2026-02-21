@@ -1,0 +1,56 @@
+[17:18:12] Starting IMPRESSION stage (Optimized Parallel)
+[17:18:12] Created folder: sessions/[fast]_Somber_Home_Office_2026-02-16_17-18-12/impression
+[17:18:12] Generating concepts with user preferences...
+[17:18:12] Starting sequential concept design for impression
+[17:18:12] Design attempt 1/3
+[17:18:22] Generated 4 concepts
+[17:18:22] Generated 4 concepts
+[17:18:22] Saved scenes to: impression.json
+[17:18:22] Generating images and extracting tags in parallel for all 4 scenes...
+[17:18:22] Starting parallel image generation with immediate tag extraction for 4 scenes in impression
+[17:18:22] Starting parallel image generation 0 for impression
+[17:18:22] Starting parallel image generation 1 for impression
+[17:18:22] Scene 0: Modern Gothic Sanctuary
+[17:18:22] Scene 1: Zen Contemplation Nook
+[17:18:22] Starting parallel image generation 2 for impression
+[17:18:22] Calling Gemini API for scene 0 (attempt 1/3)...
+[17:18:22] Calling Gemini API for scene 1 (attempt 1/3)...
+[17:18:22] Scene 2: Timeless Scholar's Study
+[17:18:22] Starting parallel image generation 3 for impression
+[17:18:22] Calling Gemini API for scene 2 (attempt 1/3)...
+[17:18:22] Scene 3: Brutalist Focus Chamber
+[17:18:22] Calling Gemini API for scene 3 (attempt 1/3)...
+[17:18:25] API response received for scene 3: 2 total parts, 1 image parts
+[17:18:25] Processing image 2 for scene 3...
+[17:18:26] Saved: impression_3_0.png for scene 3
+[17:18:26] Scene 3 'Brutalist Focus Chamber': Successfully generated 1 images!
+[17:18:26] Extracting tags for impression_3_0.png (scene 3)...
+[17:18:26] API response received for scene 0: 2 total parts, 1 image parts
+[17:18:26] Processing image 2 for scene 0...
+[17:18:26] API response received for scene 2: 2 total parts, 1 image parts
+[17:18:26] Processing image 2 for scene 2...
+[17:18:26] Saved: impression_0_0.png for scene 0
+[17:18:26] Scene 0 'Modern Gothic Sanctuary': Successfully generated 1 images!
+[17:18:26] Extracting tags for impression_0_0.png (scene 0)...
+[17:18:26] Saved: impression_2_0.png for scene 2
+[17:18:26] Scene 2 'Timeless Scholar's Study': Successfully generated 1 images!
+[17:18:26] Extracting tags for impression_2_0.png (scene 2)...
+[17:18:26] API response received for scene 1: 2 total parts, 1 image parts
+[17:18:26] Processing image 2 for scene 1...
+[17:18:27] Saved: impression_1_0.png for scene 1
+[17:18:27] Scene 1 'Zen Contemplation Nook': Successfully generated 1 images!
+[17:18:27] Extracting tags for impression_1_0.png (scene 1)...
+[17:18:29] Extracted 12 tags from impression_3_0.png (scene 3)
+[17:18:29] ✅ Completed parallel generation + tag extraction for scene 3
+[17:18:30] Extracted 12 tags from impression_1_0.png (scene 1)
+[17:18:30] ✅ Completed parallel generation + tag extraction for scene 1
+[17:18:30] Extracted 12 tags from impression_2_0.png (scene 2)
+[17:18:30] ✅ Completed parallel generation + tag extraction for scene 2
+[17:18:31] Extracted 12 tags from impression_0_0.png (scene 0)
+[17:18:31] ✅ Completed parallel generation + tag extraction for scene 0
+[17:18:31] Parallel image generation with tag extraction completed: 4/4 scenes successful
+[17:18:31] Total tags extracted: 48
+[17:18:31] Successfully generated images and extracted tags for 4 scenes in parallel
+[17:18:31] Saved 48 total tags to: visual_tags.json
+[17:18:31] IMPRESSION stage completed successfully! (Optimized Parallel)
+[17:18:31] Generated 4 concepts with 4 total images

@@ -109,6 +109,8 @@ class HITLRefinementSessionV2:
         
         # State file
         self.state_file = self.session_folder / "hitl_state_v2.json"
+        self.round_diagnostics_file = self.session_folder / "gp_round_diagnostics_v2.jsonl"
+        self.generation_counter = 0
         
         # Tag-level GP refiner
         self.refiner: Optional[TagGPRefiner] = None
@@ -258,6 +260,7 @@ class HITLRefinementSessionV2:
         
         # Generate options using tag-level GP
         options = self.refiner.generate_round_options()
+        self.generation_counter += 1
         
         # Convert to CompositionV2 and compute weights
         compositions = []
@@ -327,6 +330,7 @@ class HITLRefinementSessionV2:
         """
         image_paths = []
         round_num = self.refiner.current_round
+        neg_phrases = self.negative_prompt.split(", ") if self.negative_prompt else []
         
         for i, comp in enumerate(compositions):
             img_filename = f"round_{round_num - 1}_img_{i}.png"
@@ -347,15 +351,19 @@ class HITLRefinementSessionV2:
                     prompt_embeds, pooled, neg_embeds, neg_pooled, attn_controller = self.fuser.fuse_composition(
                         comp_sample,
                         base_prompt=self.base_prompt,
-                        neg_phrases=self.negative_prompt.split(", ") if self.negative_prompt else []
+                        neg_phrases=neg_phrases
                     )
                     
-                    seed = 42 + i + round_num * 100
+                    seed = 42 + i + round_num * 100 + self.generation_counter * 10000
                     image = generate_with_hooks(
                         self.pipe,
                         prompt_embeds, pooled,
                         neg_embeds, neg_pooled,
                         attn_controller,
+                        num_inference_steps=self.num_inference_steps,
+                        guidance_scale=self.guidance_scale,
+                        height=self.image_size[0],
+                        width=self.image_size[1],
                         seed=seed
                     )
                     image.save(img_path)
@@ -439,16 +447,65 @@ class HITLRefinementSessionV2:
             "is_converged": self.is_converged,
             "comparisons_made": len(result.pairwise_comparisons),
             "tags_updated": len(result.tag_updates),
+            "pairwise_accuracy_before_update": round(result.diagnostics.get("pairwise_accuracy_before_update", 0.0), 4),
+            "ranking_log_likelihood_before_update": round(result.diagnostics.get("ranking_log_likelihood_before_update", 0.0), 4),
+            "mean_pair_margin_before_update": round(result.diagnostics.get("mean_pair_margin_before_update", 0.0), 4),
+            "predicted_top_option_before_update": int(result.diagnostics.get("predicted_top_option_before_update", -1)),
+            "actual_top_option": int(result.diagnostics.get("actual_top_option", -1)),
+            "spearman_rank_corr_before_update": round(result.diagnostics.get("spearman_rank_corr_before_update", 0.0), 4),
+            "kendall_pair_agreement_before_update": round(result.diagnostics.get("kendall_pair_agreement_before_update", 0.0), 4),
+            "predicted_ranking_before_update": [
+                int(x) for x in result.diagnostics.get("predicted_ranking_before_update", [])
+            ],
             "top_5_tags": [
                 {"tag": t.text, "mu": round(t.mu, 3), "sigma": round(t.sigma, 3)}
                 for t in sorted(self.refiner.tags.values(), key=lambda x: x.mu, reverse=True)[:5]
             ],
         }
+
+        # Persist round diagnostics for post-hoc analysis across sessions.
+        self._append_round_diagnostics(metrics, ranking, result)
         
         print(f"[HITLSessionV2] Recorded ranking for round {self.round_count}")
         print(f"  β={metrics['beta']}, tags_updated={metrics['tags_updated']}")
         
         return metrics
+
+    def _append_round_diagnostics(self, metrics: Dict, ranking: List[int], result: Any) -> None:
+        """Append one JSONL record per round with learning diagnostics."""
+        try:
+            option_snapshots = []
+            for opt in self.refiner.current_options:
+                tag_states = [self.refiner.tags[tid] for tid in opt.tag_ids if tid in self.refiner.tags]
+                mu_mean = float(np.mean([t.mu for t in tag_states])) if tag_states else 0.0
+                sigma_mean = float(np.mean([t.sigma for t in tag_states])) if tag_states else 0.0
+                option_snapshots.append({
+                    "option_id": int(opt.option_id),
+                    "strategy": str(opt.strategy.value),
+                    "mu_mean": round(mu_mean, 6),
+                    "sigma_mean": round(sigma_mean, 6),
+                    "n_tags": len(opt.tag_ids),
+                })
+
+            payload = {
+                "timestamp": datetime.now().isoformat(),
+                "session_id": self.session_id,
+                "round": int(self.round_count),
+                "ranking": [int(r) for r in ranking],
+                "pairwise_comparisons": [[int(a), int(b)] for a, b in result.pairwise_comparisons],
+                "metrics": metrics,
+                "diagnostics": result.diagnostics,
+                "option_snapshots": option_snapshots,
+                "top_10_tags_after_update": [
+                    {"tag": t.text, "mu": round(float(t.mu), 6), "sigma": round(float(t.sigma), 6)}
+                    for t in sorted(self.refiner.tags.values(), key=lambda x: x.mu, reverse=True)[:10]
+                ],
+            }
+
+            with open(self.round_diagnostics_file, "a") as f:
+                f.write(json.dumps(payload) + "\n")
+        except Exception as e:
+            print(f"[HITLSessionV2] Warning: failed to append round diagnostics: {e}")
     
     def _save_tag_snapshot(self, round_num: int) -> None:
         """Save a snapshot of all tag states for potential rollback."""
@@ -640,6 +697,10 @@ class HITLRefinementSessionV2:
         
         print(f"[HITLSessionV2] Rolling back from round {self.round_count} to round {target_round}")
         
+        # Capture currently displayed options before state restore/truncation.
+        # These are treated as less preferred than the chosen previous best.
+        current_displayed_options = list(self.refiner.current_options) if self.refiner.current_options else []
+
         # Get the winning tags from the target round
         target_best = self.best_picks.get(target_round, {})
         target_best_tags = set(target_best.get("tags", []))
@@ -662,25 +723,67 @@ class HITLRefinementSessionV2:
                 tag.times_in_winner = tag_data.get("times_in_winner", 0)
                 tag.times_in_loser = tag_data.get("times_in_loser", 0)
         
-        # 2. Inject bonus comparison: round X winner > current best
+        # 2. Inject constraints from rollback intent:
+        # chosen previous winner > each currently displayed option
         lr = self.refiner.learning_rate
         tags_boosted = []
         tags_penalized = []
-        
+        applied_pair_constraints = 0
+
+        # Fast text -> tag_id lookup
+        text_to_tag_id = {}
         for tag_id, tag in self.refiner.tags.items():
-            in_target_winner = tag.text in target_best_tags
-            in_current_winner = tag.text in current_best_tags
-            
-            if in_target_winner and not in_current_winner:
-                # Tag was in preferred round's winner - boost
-                tag.mu += lr * 1.0
-                tag.sigma *= 0.9  # Slightly reduce uncertainty
-                tag.sigma = max(tag.sigma, self.refiner.config.min_sigma)
-                tags_boosted.append(tag.text)
-            elif in_current_winner and not in_target_winner:
-                # Tag was in current round's best but user didn't prefer it - penalize
-                tag.mu -= lr * 0.5
-                tags_penalized.append(tag.text)
+            if tag.text not in text_to_tag_id:
+                text_to_tag_id[tag.text] = tag_id
+
+        target_best_ids = {text_to_tag_id[t] for t in target_best_tags if t in text_to_tag_id}
+
+        if target_best_ids and current_displayed_options:
+            constraint_strength = 0.8
+            sigma_shrink = 0.92
+
+            for opt in current_displayed_options:
+                worse_ids = set(opt.tag_ids)
+                only_in_best = target_best_ids - worse_ids
+                only_in_worse = worse_ids - target_best_ids
+
+                if not only_in_best and not only_in_worse:
+                    continue
+
+                applied_pair_constraints += 1
+
+                for tag_id in only_in_best:
+                    tag = self.refiner.tags.get(tag_id)
+                    if not tag:
+                        continue
+                    tag.mu += lr * constraint_strength
+                    tag.sigma = max(self.refiner.config.min_sigma, tag.sigma * sigma_shrink)
+                    tags_boosted.append(tag.text)
+
+                for tag_id in only_in_worse:
+                    tag = self.refiner.tags.get(tag_id)
+                    if not tag:
+                        continue
+                    tag.mu -= lr * constraint_strength
+                    tags_penalized.append(tag.text)
+                    # Keep uncertainty slightly high for "rejected now" tags so they can recover if needed.
+                    tag.sigma = max(self.refiner.config.min_sigma, tag.sigma * 0.98)
+        
+        # Keep a weaker fallback comparison (target winner > latest winner)
+        # for cases where we cannot map/construct pair constraints.
+        if applied_pair_constraints == 0:
+            for tag_id, tag in self.refiner.tags.items():
+                in_target_winner = tag.text in target_best_tags
+                in_current_winner = tag.text in current_best_tags
+                
+                if in_target_winner and not in_current_winner:
+                    tag.mu += lr * 1.0
+                    tag.sigma *= 0.9
+                    tag.sigma = max(tag.sigma, self.refiner.config.min_sigma)
+                    tags_boosted.append(tag.text)
+                elif in_current_winner and not in_target_winner:
+                    tag.mu -= lr * 0.5
+                    tags_penalized.append(tag.text)
         
         # 3. Resume round counter from target round
         old_round = self.round_count
@@ -708,13 +811,17 @@ class HITLRefinementSessionV2:
             "status": "rolled_back",
             "from_round": old_round,
             "to_round": target_round,
+            "applied_pair_constraints": applied_pair_constraints,
             "tags_boosted": tags_boosted,
             "tags_penalized": tags_penalized,
             "remaining_best_picks": list(self.best_picks.keys()),
         }
         
         print(f"[HITLSessionV2] Rollback complete: {old_round} -> {target_round}")
-        print(f"  Boosted {len(tags_boosted)} tags, penalized {len(tags_penalized)} tags")
+        print(
+            f"  Applied {applied_pair_constraints} pair constraints, "
+            f"boosted {len(tags_boosted)} tags, penalized {len(tags_penalized)} tags"
+        )
         
         # Log rollback event
         if self.refiner and self.refiner.logger:
@@ -793,6 +900,7 @@ class HITLRefinementSessionV2:
             "version": "2.0",
             "session_id": self.session_id,
             "round_count": self.round_count,
+            "generation_counter": self.generation_counter,
             "is_initialized": self.is_initialized,
             "is_converged": self.is_converged,
             "rankings_history": self.rankings_history,
@@ -826,6 +934,7 @@ class HITLRefinementSessionV2:
         
         # Restore basic state
         self.round_count = state.get("round_count", 0)
+        self.generation_counter = state.get("generation_counter", 0)
         self.is_initialized = state.get("is_initialized", False)
         self.is_converged = state.get("is_converged", False)
         self.rankings_history = state.get("rankings_history", [])

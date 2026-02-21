@@ -1,0 +1,120 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_Somber_Home_Office_2026-02-16_18-19-52
+Started: 2026-02-16T18:22:19.023946
+Rounds: 5
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 27
+  Neutral tags: 8
+  Total: 35
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.26 | dark wood desk, dim ambient lighting, minimalist decor...
+    [1] explore      | avg_μ=+0.34 | relaxed ambiance, simple pottery cups, textured wooden table...
+    [2] ucb          | avg_μ=+0.34 | concrete surfaces, ornate table lamps, dim ambient lighting...
+    [3] challenger   | avg_μ=+0.50 | sheer curtains, soft lighting, simple pottery cups...
+  Ranking: [3, 0, 2, 1]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. dark wood desk            μ=+0.887 σ=0.644
+    2. sheer curtains            μ=+0.887 σ=0.644
+    3. modern furniture          μ=+0.796 σ=0.644
+    4. geometric shapes          μ=+0.796 σ=0.644
+    5. open layout               μ=+0.796 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.47 | dark wood desk, sheer curtains, modern furniture...
+    [1] explore      | avg_μ=+0.30 | rich book collections, reflective floors, warm ambient lighting...
+    [2] ucb          | avg_μ=+0.45 | soft lighting, warm ambient lighting, simple pottery cups...
+    [3] challenger   | avg_μ=+0.60 | soft lighting, sheer curtains, ornate table lamps...
+  Ranking: [0, 3, 2, 1]
+  Comparisons: 6
+  Tags updated: 24
+  Top 5 after round:
+    1. sheer curtains            μ=+1.259 σ=0.593
+    2. open layout               μ=+1.082 σ=0.593
+    3. modern furniture          μ=+1.081 σ=0.593
+    4. geometric shapes          μ=+1.081 σ=0.593
+    5. soft lighting             μ=+1.081 σ=0.593
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.67 | sheer curtains, open layout, modern furniture...
+    [1] explore      | avg_μ=+0.07 | relaxed ambiance, cozy reading nook, minimalist design...
+    [2] ucb          | avg_μ=+0.40 | concrete surfaces, soft lighting, ornate table lamps...
+    [3] challenger   | avg_μ=+0.67 | soft natural light, soft lighting, textured wooden table...
+  Ranking: [2, 0, 1, 3]
+  Comparisons: 6
+  Tags updated: 27
+  Top 5 after round:
+    1. modern furniture          μ=+1.438 σ=0.545
+    2. sheer curtains            μ=+1.341 σ=0.545
+    3. soft lighting             μ=+1.161 σ=0.545
+    4. dark wood desk            μ=+0.969 σ=0.545
+    5. open layout               μ=+0.887 σ=0.545
+
+----------------------------------------------------------------------
+ROUND 4 (β=1.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.77 | modern furniture, sheer curtains, soft lighting...
+    [1] explore      | avg_μ=+0.01 | reflective floors, warm ambient lighting, dim ambient lighting...
+    [2] ucb          | avg_μ=+0.66 | concrete surfaces, soft natural light, soft lighting...
+    [3] challenger   | avg_μ=+0.75 | concrete surfaces, soft natural light, ornate table lamps...
+  Ranking: [0, 2, 3, 1]
+  Comparisons: 6
+  Tags updated: 27
+  Top 5 after round:
+    1. sheer curtains            μ=+1.675 σ=0.501
+    2. modern furniture          μ=+1.610 σ=0.501
+    3. soft lighting             μ=+1.496 σ=0.501
+    4. dark wood desk            μ=+1.141 σ=0.501
+    5. open layout               μ=+1.136 σ=0.501
+
+----------------------------------------------------------------------
+ROUND 5 (β=0.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+1.02 | sheer curtains, modern furniture, soft lighting...
+    [1] explore      | avg_μ=-0.17 | relaxed ambiance, reflective floors, warm ambient lighting...
+    [2] ucb          | avg_μ=+0.88 | concrete surfaces, soft natural light, soft lighting...
+    [3] challenger   | avg_μ=+0.89 | concrete surfaces, soft natural light, soft lighting...
+  Ranking: [3, 0, 2, 1]
+  Comparisons: 6
+  Tags updated: 27
+  Top 5 after round:
+    1. modern furniture          μ=+1.837 σ=0.461
+    2. soft lighting             μ=+1.723 σ=0.461
+    3. sheer curtains            μ=+1.656 σ=0.461
+    4. dark wood desk            μ=+1.455 σ=0.461
+    5. open layout               μ=+1.450 σ=0.461
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. modern furniture               | w=0.161 | μ=+1.837 | win_rate=46%
+   2. soft lighting                  | w=0.143 | μ=+1.723 | win_rate=42%
+   3. sheer curtains                 | w=0.134 | μ=+1.656 | win_rate=33%
+   4. dark wood desk                 | w=0.110 | μ=+1.455 | win_rate=44%
+   5. open layout                    | w=0.109 | μ=+1.450 | win_rate=44%
+   6. geometric shapes               | w=0.101 | μ=+1.372 | win_rate=40%
+   7. ornate table lamps             | w=0.070 | μ=+1.011 | win_rate=33%
+   8. concrete surfaces              | w=0.059 | μ=+0.836 | win_rate=33%
+   9. soft natural light             | w=0.059 | μ=+0.832 | win_rate=25%
+  10. textured wooden table          | w=0.053 | μ=+0.737 | win_rate=33%
+
+  Convergence: False
+  Top-10 stability: 9/10 tags same as previous round

@@ -1,0 +1,89 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_Hyunsung_Manual_Inviting_Livingroom_Sample_2026-02-17_16-42-41
+Started: 2026-02-17T16:47:31.643416
+Rounds: 3
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 24
+  Neutral tags: 7
+  Total: 31
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.26 | neutral color palette, ambient lighting, large window...
+    [1] explore      | avg_μ=+0.42 | woven textures, inviting atmosphere, neutral color palette...
+    [2] ucb          | avg_μ=+0.34 | warm lighting, botanical accents, large window...
+    [3] challenger   | avg_μ=+0.50 | inviting atmosphere, ambient lighting, neutral color palette...
+  Ranking: [3, 2, 1, 0]
+  Comparisons: 6
+  Tags updated: 27
+  Top 5 after round:
+    1. cushioned seating         μ=+0.796 σ=0.644
+    2. natural materials         μ=+0.796 σ=0.644
+    3. elegant marble fireplace  μ=+0.796 σ=0.644
+    4. open layout design        μ=+0.796 σ=0.644
+    5. warm wooden floors        μ=+0.796 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.45 | cushioned seating, natural materials, elegant marble fireplace...
+    [1] explore      | avg_μ=+0.13 | candles for warmth, soft natural lighting, large window...
+    [2] ucb          | avg_μ=+0.56 | warm lighting, botanical accents, soft natural lighting...
+    [3] challenger   | avg_μ=+0.60 | botanical accents, woven textures, earthy color palette...
+  Ranking: [3, 2, 0, 1]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. warm wooden floors        μ=+1.072 σ=0.593
+    2. elegant marble fireplace  μ=+0.989 σ=0.593
+    3. natural light             μ=+0.956 σ=0.593
+    4. open layout               μ=+0.956 σ=0.593
+    5. botanical accents         μ=+0.956 σ=0.593
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.53 | warm wooden floors, elegant marble fireplace, natural light...
+    [1] explore      | avg_μ=-0.08 | candles for warmth, cozy textiles, large window...
+    [2] ucb          | avg_μ=+0.68 | woven textures, open layout design, natural materials...
+    [3] challenger   | avg_μ=+0.80 | warm lighting, botanical accents, natural materials...
+  Ranking: [3, 2, 0, 1]
+  Comparisons: 6
+  Tags updated: 27
+  Top 5 after round:
+    1. warm wood flooring        μ=+1.153 σ=0.545
+    2. natural light             μ=+1.133 σ=0.545
+    3. botanical accents         μ=+1.133 σ=0.545
+    4. cushioned seating         μ=+1.133 σ=0.545
+    5. open layout design        μ=+1.133 σ=0.545
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. large glass windows            | w=0.110 | μ=+1.347 | win_rate=50%
+   2. warm wood flooring             | w=0.108 | μ=+1.333 | win_rate=43%
+   3. botanical accents              | w=0.106 | μ=+1.314 | win_rate=40%
+   4. cushioned seating              | w=0.106 | μ=+1.314 | win_rate=40%
+   5. natural materials              | w=0.098 | μ=+1.230 | win_rate=50%
+   6. natural light                  | w=0.097 | μ=+1.224 | win_rate=40%
+   7. open layout design             | w=0.097 | μ=+1.223 | win_rate=40%
+   8. warm lighting                  | w=0.096 | μ=+1.211 | win_rate=33%
+   9. wooden elements                | w=0.096 | μ=+1.211 | win_rate=33%
+  10. organic shapes                 | w=0.087 | μ=+1.121 | win_rate=33%
+
+  Convergence: False
+  Top-10 stability: 9/10 tags same as previous round
+
+======================================================================
+WARNINGS (1)
+======================================================================
+  [rollback] Rolled back from round 3 to round 3. Boosted: ['warm lighting', 'natural materials', 'organic shapes'], Penalized: ['contemporary artwork', 'inviting cozy atmosphere', 'plush sofas']

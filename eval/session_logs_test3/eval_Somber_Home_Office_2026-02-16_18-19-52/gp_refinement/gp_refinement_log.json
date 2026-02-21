@@ -1,0 +1,6827 @@
+{
+  "metadata": {
+    "session_id": "eval_Somber_Home_Office_2026-02-16_18-19-52",
+    "log_version": "1.0",
+    "start_time": "2026-02-16T18:22:19.023946",
+    "end_time": "2026-02-16T18:27:35.037891"
+  },
+  "initialization": {
+    "session_id": "eval_Somber_Home_Office_2026-02-16_18-19-52",
+    "timestamp": "2026-02-16T18:22:19.023946",
+    "config": {
+      "max_rounds": 999,
+      "tags_per_option": 10,
+      "base_learning_rate": 0.12,
+      "sigma_shrink_factor": 0.92,
+      "priors": {
+        "positive_selected": {
+          "mu": 1.0,
+          "sigma": 0.5
+        },
+        "positive_other": {
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        "neutral_selected": {
+          "mu": 0.0,
+          "sigma": 0.5
+        },
+        "neutral_other": {
+          "mu": -0.3,
+          "sigma": 0.7
+        }
+      }
+    },
+    "input_summary": {
+      "total_positive": 27,
+      "total_neutral": 8,
+      "total_tags": 35,
+      "in_selected_images": 0
+    },
+    "categories": {
+      "positive_selected": {
+        "count": 0,
+        "tags": []
+      },
+      "positive_other": {
+        "count": 27,
+        "tags": [
+          "dark wood desk",
+          "dim ambient lighting",
+          "minimalist decor",
+          "soft natural light",
+          "sheer curtains",
+          "textured wooden table",
+          "open book centerpiece",
+          "ceramic vase decor",
+          "simple pottery cups",
+          "calm atmosphere",
+          "cozy reading nook",
+          "relaxed ambiance",
+          "airy window styling",
+          "dark wood furniture",
+          "ornate table lamps",
+          "sconce lighting",
+          "minimalist design",
+          "dark color palette",
+          "concrete surfaces",
+          "modern furniture",
+          "geometric shapes",
+          "open layout",
+          "soft lighting",
+          "large windows",
+          "sleek lines",
+          "monochrome aesthetics",
+          "reflective floors"
+        ]
+      },
+      "neutral_selected": {
+        "count": 0,
+        "tags": []
+      },
+      "neutral_other": {
+        "count": 8,
+        "tags": [
+          "mid-century modern",
+          "textured rug",
+          "neutral color palette",
+          "warm ambient lighting",
+          "rich book collections",
+          "elegant desk setup",
+          "historical wall map",
+          "cozy reading atmosphere"
+        ]
+      }
+    },
+    "all_tags": [
+      {
+        "tag_id": "pos_0",
+        "text": "dark wood desk",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_1",
+        "text": "dim ambient lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_2",
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_3",
+        "text": "soft natural light",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_4",
+        "text": "sheer curtains",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_5",
+        "text": "textured wooden table",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_6",
+        "text": "open book centerpiece",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_7",
+        "text": "ceramic vase decor",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_8",
+        "text": "simple pottery cups",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_9",
+        "text": "calm atmosphere",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_10",
+        "text": "cozy reading nook",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_11",
+        "text": "relaxed ambiance",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_12",
+        "text": "airy window styling",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_13",
+        "text": "dark wood furniture",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_14",
+        "text": "ornate table lamps",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_15",
+        "text": "sconce lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_16",
+        "text": "minimalist design",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_17",
+        "text": "dark color palette",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_18",
+        "text": "concrete surfaces",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_19",
+        "text": "modern furniture",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_20",
+        "text": "geometric shapes",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_21",
+        "text": "open layout",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_22",
+        "text": "soft lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_23",
+        "text": "large windows",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_24",
+        "text": "sleek lines",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_25",
+        "text": "monochrome aesthetics",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_26",
+        "text": "reflective floors",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_0",
+        "text": "mid-century modern",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_1",
+        "text": "textured rug",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_2",
+        "text": "neutral color palette",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_3",
+        "text": "warm ambient lighting",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_4",
+        "text": "rich book collections",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_5",
+        "text": "elegant desk setup",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_6",
+        "text": "historical wall map",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_7",
+        "text": "cozy reading atmosphere",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      }
+    ],
+    "prior_ordering": "positive_selected > positive_other > neutral_selected > neutral_other"
+  },
+  "rounds": [
+    {
+      "round_num": 1,
+      "timestamp": "2026-02-16T18:22:19.098656",
+      "parameters": {
+        "beta": 2.0,
+        "max_overlap": 0.4,
+        "learning_rate": 0.12
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_0",
+              "text": "dark wood desk",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "dim ambient lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "soft natural light",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "sheer curtains",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "textured wooden table",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "open book centerpiece",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "mid-century modern",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "textured rug",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "neutral color palette",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.26,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_11",
+              "text": "relaxed ambiance",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "simple pottery cups",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "textured wooden table",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "mid-century modern",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "calm atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "cozy reading nook",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "airy window styling",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "ceramic vase decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "neutral color palette",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.34,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_18",
+              "text": "concrete surfaces",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "ornate table lamps",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "dim ambient lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "minimalist design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "textured rug",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_17",
+              "text": "dark color palette",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_15",
+              "text": "sconce lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "neutral color palette",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "dark wood furniture",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.34,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_4",
+              "text": "sheer curtains",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "soft lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "simple pottery cups",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "textured wooden table",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "modern furniture",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "geometric shapes",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "dark wood desk",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "ceramic vase decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_21",
+              "text": "open layout",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5,
+          "avg_sigma": 0.7,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "mid-century modern",
+            "textured wooden table",
+            "neutral color palette",
+            "minimalist decor"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "minimalist decor",
+            "textured rug",
+            "neutral color palette",
+            "dim ambient lighting"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "minimalist decor",
+            "dark wood desk",
+            "textured wooden table",
+            "sheer curtains"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "minimalist decor",
+            "neutral color palette"
+          ],
+          "overlap_count": 2,
+          "overlap_fraction": 0.2,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "simple pottery cups",
+            "ceramic vase decor",
+            "textured wooden table",
+            "minimalist decor"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "minimalist decor"
+          ],
+          "overlap_count": 1,
+          "overlap_fraction": 0.1,
+          "max_allowed": 0.4,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        3,
+        0,
+        2,
+        1
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 3,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "simple pottery cups",
+            "modern furniture",
+            "ceramic vase decor",
+            "open layout",
+            "geometric shapes",
+            "soft lighting"
+          ],
+          "tags_only_in_worse": [
+            "soft natural light",
+            "dim ambient lighting",
+            "neutral color palette",
+            "textured rug",
+            "mid-century modern",
+            "open book centerpiece"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "dark wood desk",
+            "textured wooden table",
+            "sheer curtains"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "simple pottery cups",
+            "modern furniture",
+            "dark wood desk",
+            "ceramic vase decor",
+            "geometric shapes",
+            "open layout",
+            "textured wooden table",
+            "soft lighting",
+            "sheer curtains"
+          ],
+          "tags_only_in_worse": [
+            "dim ambient lighting",
+            "concrete surfaces",
+            "minimalist design",
+            "sconce lighting",
+            "dark color palette",
+            "ornate table lamps",
+            "neutral color palette",
+            "textured rug",
+            "dark wood furniture"
+          ],
+          "shared_tags": [
+            "minimalist decor"
+          ],
+          "num_differentiating": 18
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "modern furniture",
+            "dark wood desk",
+            "open layout",
+            "geometric shapes",
+            "soft lighting",
+            "sheer curtains"
+          ],
+          "tags_only_in_worse": [
+            "airy window styling",
+            "relaxed ambiance",
+            "cozy reading nook",
+            "neutral color palette",
+            "calm atmosphere",
+            "mid-century modern"
+          ],
+          "shared_tags": [
+            "simple pottery cups",
+            "ceramic vase decor",
+            "textured wooden table",
+            "minimalist decor"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "soft natural light",
+            "dark wood desk",
+            "mid-century modern",
+            "open book centerpiece",
+            "sheer curtains",
+            "textured wooden table"
+          ],
+          "tags_only_in_worse": [
+            "concrete surfaces",
+            "minimalist design",
+            "sconce lighting",
+            "dark color palette",
+            "ornate table lamps",
+            "dark wood furniture"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "textured rug",
+            "neutral color palette",
+            "dim ambient lighting"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "soft natural light",
+            "dim ambient lighting",
+            "dark wood desk",
+            "textured rug",
+            "open book centerpiece",
+            "sheer curtains"
+          ],
+          "tags_only_in_worse": [
+            "airy window styling",
+            "relaxed ambiance",
+            "simple pottery cups",
+            "cozy reading nook",
+            "ceramic vase decor",
+            "calm atmosphere"
+          ],
+          "shared_tags": [
+            "mid-century modern",
+            "textured wooden table",
+            "neutral color palette",
+            "minimalist decor"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "dim ambient lighting",
+            "concrete surfaces",
+            "minimalist design",
+            "sconce lighting",
+            "dark color palette",
+            "ornate table lamps",
+            "textured rug",
+            "dark wood furniture"
+          ],
+          "tags_only_in_worse": [
+            "airy window styling",
+            "relaxed ambiance",
+            "simple pottery cups",
+            "cozy reading nook",
+            "ceramic vase decor",
+            "calm atmosphere",
+            "mid-century modern",
+            "textured wooden table"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "neutral color palette"
+          ],
+          "num_differentiating": 16
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_22",
+          "text": "soft lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.7965,
+          "mu_delta": 0.2965,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "simple pottery cups",
+          "mu_before": 0.5,
+          "mu_after": 0.4991,
+          "mu_delta": -0.0009,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_19",
+          "text": "modern furniture",
+          "mu_before": 0.5,
+          "mu_after": 0.7965,
+          "mu_delta": 0.2965,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_20",
+          "text": "geometric shapes",
+          "mu_before": 0.5,
+          "mu_after": 0.7965,
+          "mu_delta": 0.2965,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "ceramic vase decor",
+          "mu_before": 0.5,
+          "mu_after": 0.4991,
+          "mu_delta": -0.0009,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_21",
+          "text": "open layout",
+          "mu_before": 0.5,
+          "mu_after": 0.7965,
+          "mu_delta": 0.2965,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "soft natural light",
+          "mu_before": 0.5,
+          "mu_after": 0.5902,
+          "mu_delta": 0.0902,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "dim ambient lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.5009,
+          "mu_delta": 0.0009,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "mid-century modern",
+          "mu_before": -0.3,
+          "mu_after": -0.5071,
+          "mu_delta": -0.2071,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_1",
+          "text": "textured rug",
+          "mu_before": -0.3,
+          "mu_after": -0.2991,
+          "mu_delta": 0.0009,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "open book centerpiece",
+          "mu_before": 0.5,
+          "mu_after": 0.5902,
+          "mu_delta": 0.0902,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_2",
+          "text": "neutral color palette",
+          "mu_before": -0.3,
+          "mu_after": -0.5965,
+          "mu_delta": -0.2965,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "sheer curtains",
+          "mu_before": 0.5,
+          "mu_after": 0.8867,
+          "mu_delta": 0.3867,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "textured wooden table",
+          "mu_before": 0.5,
+          "mu_after": 0.5893,
+          "mu_delta": 0.0893,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "dark wood desk",
+          "mu_before": 0.5,
+          "mu_after": 0.8867,
+          "mu_delta": 0.3867,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_18",
+          "text": "concrete surfaces",
+          "mu_before": 0.5,
+          "mu_after": 0.4107,
+          "mu_delta": -0.0893,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "ornate table lamps",
+          "mu_before": 0.5,
+          "mu_after": 0.4107,
+          "mu_delta": -0.0893,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_16",
+          "text": "minimalist design",
+          "mu_before": 0.5,
+          "mu_after": 0.4107,
+          "mu_delta": -0.0893,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_17",
+          "text": "dark color palette",
+          "mu_before": 0.5,
+          "mu_after": 0.4107,
+          "mu_delta": -0.0893,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_15",
+          "text": "sconce lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.4107,
+          "mu_delta": -0.0893,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "dark wood furniture",
+          "mu_before": 0.5,
+          "mu_after": 0.4107,
+          "mu_delta": -0.0893,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "relaxed ambiance",
+          "mu_before": 0.5,
+          "mu_after": 0.2026,
+          "mu_delta": -0.2974,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "cozy reading nook",
+          "mu_before": 0.5,
+          "mu_after": 0.2026,
+          "mu_delta": -0.2974,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "calm atmosphere",
+          "mu_before": 0.5,
+          "mu_after": 0.2026,
+          "mu_delta": -0.2974,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "airy window styling",
+          "mu_before": 0.5,
+          "mu_after": 0.2026,
+          "mu_delta": -0.2974,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_0",
+          "text": "dark wood desk",
+          "mu": 0.8867,
+          "sigma": 0.644
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_4",
+          "text": "sheer curtains",
+          "mu": 0.8867,
+          "sigma": 0.644
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_19",
+          "text": "modern furniture",
+          "mu": 0.7965,
+          "sigma": 0.644
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_20",
+          "text": "geometric shapes",
+          "mu": 0.7965,
+          "sigma": 0.644
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_21",
+          "text": "open layout",
+          "mu": 0.7965,
+          "sigma": 0.644
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_22",
+          "text": "soft lighting",
+          "mu": 0.7965,
+          "sigma": 0.644
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_3",
+          "text": "soft natural light",
+          "mu": 0.5902,
+          "sigma": 0.644
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_6",
+          "text": "open book centerpiece",
+          "mu": 0.5902,
+          "sigma": 0.644
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_5",
+          "text": "textured wooden table",
+          "mu": 0.5893,
+          "sigma": 0.644
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_1",
+          "text": "dim ambient lighting",
+          "mu": 0.5009,
+          "sigma": 0.644
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.5965,
+          "max": 0.8867,
+          "mean": 0.3171,
+          "std": 0.4127
+        },
+        "sigma_distribution": {
+          "min": 0.644,
+          "max": 0.7,
+          "mean": 0.66
+        },
+        "tags_updated": 25,
+        "unique_tags_updated": 25,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 13.666666666666666,
+        "ranking_received": [
+          3,
+          0,
+          2,
+          1
+        ],
+        "best_option_strategy": "challenger",
+        "worst_option_strategy": "explore",
+        "pairwise_accuracy_before_update": 0.5833333333333334,
+        "ranking_log_likelihood_before_update": -4.050416893094242
+      }
+    },
+    {
+      "round_num": 2,
+      "timestamp": "2026-02-16T18:23:13.669163",
+      "parameters": {
+        "beta": 1.6667,
+        "max_overlap": 0.4,
+        "learning_rate": 0.1176
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_0",
+              "text": "dark wood desk",
+              "mu": 0.8867,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "sheer curtains",
+              "mu": 0.8867,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "modern furniture",
+              "mu": 0.7965,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "geometric shapes",
+              "mu": 0.7965,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_21",
+              "text": "open layout",
+              "mu": 0.7965,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "soft lighting",
+              "mu": 0.7965,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "soft natural light",
+              "mu": 0.5902,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "textured rug",
+              "mu": -0.2991,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_3",
+              "text": "warm ambient lighting",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_4",
+              "text": "rich book collections",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.465,
+          "avg_sigma": 0.6552,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "neu_4",
+              "text": "rich book collections",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_26",
+              "text": "reflective floors",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_3",
+              "text": "warm ambient lighting",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "dim ambient lighting",
+              "mu": 0.5009,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "dark wood desk",
+              "mu": 0.8867,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_24",
+              "text": "sleek lines",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_25",
+              "text": "monochrome aesthetics",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_5",
+              "text": "elegant desk setup",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_23",
+              "text": "large windows",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.2988,
+          "avg_sigma": 0.6888,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_22",
+              "text": "soft lighting",
+              "mu": 0.7965,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_3",
+              "text": "warm ambient lighting",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "simple pottery cups",
+              "mu": 0.4991,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "textured wooden table",
+              "mu": 0.5893,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "ceramic vase decor",
+              "mu": 0.4991,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "modern furniture",
+              "mu": 0.7965,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "geometric shapes",
+              "mu": 0.7965,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "open book centerpiece",
+              "mu": 0.5902,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_5",
+              "text": "elegant desk setup",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.4467,
+          "avg_sigma": 0.6608,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_22",
+              "text": "soft lighting",
+              "mu": 0.7965,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "sheer curtains",
+              "mu": 0.8867,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "ornate table lamps",
+              "mu": 0.4107,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "modern furniture",
+              "mu": 0.7965,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "geometric shapes",
+              "mu": 0.7965,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_24",
+              "text": "sleek lines",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_23",
+              "text": "large windows",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_15",
+              "text": "sconce lighting",
+              "mu": 0.4107,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "dark wood furniture",
+              "mu": 0.4107,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.6008,
+          "avg_sigma": 0.6608,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "dark wood desk",
+            "rich book collections",
+            "warm ambient lighting"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "modern furniture",
+            "soft lighting",
+            "geometric shapes",
+            "warm ambient lighting"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "modern furniture",
+            "sheer curtains",
+            "geometric shapes",
+            "soft lighting"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "minimalist decor",
+            "elegant desk setup",
+            "warm ambient lighting"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "minimalist decor",
+            "sleek lines",
+            "large windows"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "minimalist decor",
+            "modern furniture",
+            "geometric shapes",
+            "soft lighting"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        0,
+        3,
+        2,
+        1
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 0,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "soft natural light",
+            "textured rug",
+            "dark wood desk",
+            "rich book collections",
+            "open layout",
+            "warm ambient lighting"
+          ],
+          "tags_only_in_worse": [
+            "minimalist decor",
+            "sconce lighting",
+            "ornate table lamps",
+            "sleek lines",
+            "large windows",
+            "dark wood furniture"
+          ],
+          "shared_tags": [
+            "modern furniture",
+            "sheer curtains",
+            "geometric shapes",
+            "soft lighting"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "soft natural light",
+            "dark wood desk",
+            "rich book collections",
+            "open layout",
+            "textured rug",
+            "sheer curtains"
+          ],
+          "tags_only_in_worse": [
+            "simple pottery cups",
+            "minimalist decor",
+            "ceramic vase decor",
+            "elegant desk setup",
+            "textured wooden table",
+            "open book centerpiece"
+          ],
+          "shared_tags": [
+            "modern furniture",
+            "soft lighting",
+            "geometric shapes",
+            "warm ambient lighting"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "soft natural light",
+            "modern furniture",
+            "geometric shapes",
+            "open layout",
+            "textured rug",
+            "soft lighting",
+            "sheer curtains"
+          ],
+          "tags_only_in_worse": [
+            "dim ambient lighting",
+            "minimalist decor",
+            "elegant desk setup",
+            "reflective floors",
+            "sleek lines",
+            "monochrome aesthetics",
+            "large windows"
+          ],
+          "shared_tags": [
+            "dark wood desk",
+            "rich book collections",
+            "warm ambient lighting"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "sconce lighting",
+            "ornate table lamps",
+            "sleek lines",
+            "sheer curtains",
+            "large windows",
+            "dark wood furniture"
+          ],
+          "tags_only_in_worse": [
+            "simple pottery cups",
+            "ceramic vase decor",
+            "elegant desk setup",
+            "warm ambient lighting",
+            "textured wooden table",
+            "open book centerpiece"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "modern furniture",
+            "geometric shapes",
+            "soft lighting"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "modern furniture",
+            "sconce lighting",
+            "geometric shapes",
+            "ornate table lamps",
+            "sheer curtains",
+            "soft lighting",
+            "dark wood furniture"
+          ],
+          "tags_only_in_worse": [
+            "dim ambient lighting",
+            "dark wood desk",
+            "rich book collections",
+            "elegant desk setup",
+            "reflective floors",
+            "warm ambient lighting",
+            "monochrome aesthetics"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "sleek lines",
+            "large windows"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "simple pottery cups",
+            "modern furniture",
+            "ceramic vase decor",
+            "geometric shapes",
+            "textured wooden table",
+            "soft lighting",
+            "open book centerpiece"
+          ],
+          "tags_only_in_worse": [
+            "dim ambient lighting",
+            "dark wood desk",
+            "rich book collections",
+            "reflective floors",
+            "sleek lines",
+            "monochrome aesthetics",
+            "large windows"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "elegant desk setup",
+            "warm ambient lighting"
+          ],
+          "num_differentiating": 14
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "neu_4",
+          "text": "rich book collections",
+          "mu_before": -0.3,
+          "mu_after": -0.2991,
+          "mu_delta": 0.0009,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "soft natural light",
+          "mu_before": 0.5902,
+          "mu_after": 0.8761,
+          "mu_delta": 0.2859,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_3",
+          "text": "warm ambient lighting",
+          "mu_before": -0.3,
+          "mu_after": -0.3863,
+          "mu_delta": -0.0863,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "dark wood desk",
+          "mu_before": 0.8867,
+          "mu_after": 0.8875,
+          "mu_delta": 0.0009,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_1",
+          "text": "textured rug",
+          "mu_before": -0.2991,
+          "mu_after": -0.0132,
+          "mu_delta": 0.2859,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_21",
+          "text": "open layout",
+          "mu_before": 0.7965,
+          "mu_after": 1.0824,
+          "mu_delta": 0.2859,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "ornate table lamps",
+          "mu_before": 0.4107,
+          "mu_after": 0.4969,
+          "mu_delta": 0.0863,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "minimalist decor",
+          "mu_before": 0.5,
+          "mu_after": 0.2141,
+          "mu_delta": -0.2859,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_24",
+          "text": "sleek lines",
+          "mu_before": 0.5,
+          "mu_after": 0.3012,
+          "mu_delta": -0.1988,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_23",
+          "text": "large windows",
+          "mu_before": 0.5,
+          "mu_after": 0.3012,
+          "mu_delta": -0.1988,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_15",
+          "text": "sconce lighting",
+          "mu_before": 0.4107,
+          "mu_after": 0.4969,
+          "mu_delta": 0.0863,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "dark wood furniture",
+          "mu_before": 0.4107,
+          "mu_after": 0.4969,
+          "mu_delta": 0.0863,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "sheer curtains",
+          "mu_before": 0.8867,
+          "mu_after": 1.2589,
+          "mu_delta": 0.3722,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "simple pottery cups",
+          "mu_before": 0.4991,
+          "mu_after": 0.412,
+          "mu_delta": -0.0871,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "textured wooden table",
+          "mu_before": 0.5893,
+          "mu_after": 0.5022,
+          "mu_delta": -0.0871,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "ceramic vase decor",
+          "mu_before": 0.4991,
+          "mu_after": 0.412,
+          "mu_delta": -0.0871,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "open book centerpiece",
+          "mu_before": 0.5902,
+          "mu_after": 0.5031,
+          "mu_delta": -0.0871,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_5",
+          "text": "elegant desk setup",
+          "mu_before": -0.3,
+          "mu_after": -0.6722,
+          "mu_delta": -0.3722,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_22",
+          "text": "soft lighting",
+          "mu_before": 0.7965,
+          "mu_after": 1.0815,
+          "mu_delta": 0.2851,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_19",
+          "text": "modern furniture",
+          "mu_before": 0.7965,
+          "mu_after": 1.0815,
+          "mu_delta": 0.2851,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_20",
+          "text": "geometric shapes",
+          "mu_before": 0.7965,
+          "mu_after": 1.0815,
+          "mu_delta": 0.2851,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_26",
+          "text": "reflective floors",
+          "mu_before": 0.5,
+          "mu_after": 0.2149,
+          "mu_delta": -0.2851,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "dim ambient lighting",
+          "mu_before": 0.5009,
+          "mu_after": 0.2159,
+          "mu_delta": -0.2851,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_25",
+          "text": "monochrome aesthetics",
+          "mu_before": 0.5,
+          "mu_after": 0.2149,
+          "mu_delta": -0.2851,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_4",
+          "text": "sheer curtains",
+          "mu": 1.2589,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_21",
+          "text": "open layout",
+          "mu": 1.0824,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_19",
+          "text": "modern furniture",
+          "mu": 1.0815,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_20",
+          "text": "geometric shapes",
+          "mu": 1.0815,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_22",
+          "text": "soft lighting",
+          "mu": 1.0815,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_0",
+          "text": "dark wood desk",
+          "mu": 0.8875,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_3",
+          "text": "soft natural light",
+          "mu": 0.8761,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_6",
+          "text": "open book centerpiece",
+          "mu": 0.5031,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_5",
+          "text": "textured wooden table",
+          "mu": 0.5022,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_13",
+          "text": "dark wood furniture",
+          "mu": 0.4969,
+          "sigma": 0.5925
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.6722,
+          "max": 1.2589,
+          "mean": 0.3171,
+          "std": 0.4901
+        },
+        "sigma_distribution": {
+          "min": 0.5925,
+          "max": 0.7,
+          "mean": 0.6236
+        },
+        "tags_updated": 24,
+        "unique_tags_updated": 24,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 13.0,
+        "ranking_received": [
+          0,
+          3,
+          2,
+          1
+        ],
+        "best_option_strategy": "exploit",
+        "worst_option_strategy": "explore",
+        "pairwise_accuracy_before_update": 1.0,
+        "ranking_log_likelihood_before_update": -3.6549116585483716
+      }
+    },
+    {
+      "round_num": 3,
+      "timestamp": "2026-02-16T18:24:31.405065",
+      "parameters": {
+        "beta": 1.3333,
+        "max_overlap": 0.45,
+        "learning_rate": 0.1152
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_4",
+              "text": "sheer curtains",
+              "mu": 1.2589,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_21",
+              "text": "open layout",
+              "mu": 1.0824,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "modern furniture",
+              "mu": 1.0815,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "geometric shapes",
+              "mu": 1.0815,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "soft lighting",
+              "mu": 1.0815,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "dark wood desk",
+              "mu": 0.8875,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "soft natural light",
+              "mu": 0.8761,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "textured rug",
+              "mu": -0.0132,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_4",
+              "text": "rich book collections",
+              "mu": -0.2991,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_6",
+              "text": "historical wall map",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.6737,
+          "avg_sigma": 0.6084,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_11",
+              "text": "relaxed ambiance",
+              "mu": 0.2026,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "cozy reading nook",
+              "mu": 0.2026,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "minimalist design",
+              "mu": 0.4107,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "mid-century modern",
+              "mu": -0.5071,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "calm atmosphere",
+              "mu": 0.2026,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "airy window styling",
+              "mu": 0.2026,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_17",
+              "text": "dark color palette",
+              "mu": 0.4107,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "minimalist decor",
+              "mu": 0.2141,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_7",
+              "text": "cozy reading atmosphere",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_6",
+              "text": "historical wall map",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.0739,
+          "avg_sigma": 0.6552,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_18",
+              "text": "concrete surfaces",
+              "mu": 0.4107,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "soft lighting",
+              "mu": 1.0815,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "ornate table lamps",
+              "mu": 0.4969,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "textured wooden table",
+              "mu": 0.5022,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "modern furniture",
+              "mu": 1.0815,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_7",
+              "text": "cozy reading atmosphere",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "textured rug",
+              "mu": -0.0132,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "open book centerpiece",
+              "mu": 0.5031,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_6",
+              "text": "historical wall map",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "dark wood furniture",
+              "mu": 0.4969,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.396,
+          "avg_sigma": 0.6191,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_3",
+              "text": "soft natural light",
+              "mu": 0.8761,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "soft lighting",
+              "mu": 1.0815,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "textured wooden table",
+              "mu": 0.5022,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "geometric shapes",
+              "mu": 1.0815,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_24",
+              "text": "sleek lines",
+              "mu": 0.3012,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "open book centerpiece",
+              "mu": 0.5031,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_23",
+              "text": "large windows",
+              "mu": 0.3012,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_15",
+              "text": "sconce lighting",
+              "mu": 0.4969,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_21",
+              "text": "open layout",
+              "mu": 1.0824,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "dark wood furniture",
+              "mu": 0.4969,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.6723,
+          "avg_sigma": 0.6028,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "historical wall map"
+          ],
+          "overlap_count": 1,
+          "overlap_fraction": 0.1,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "modern furniture",
+            "historical wall map",
+            "soft lighting",
+            "textured rug"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "soft natural light",
+            "soft lighting",
+            "open layout",
+            "geometric shapes"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "historical wall map",
+            "cozy reading atmosphere"
+          ],
+          "overlap_count": 2,
+          "overlap_fraction": 0.2,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [],
+          "overlap_count": 0,
+          "overlap_fraction": 0.0,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "textured wooden table",
+            "soft lighting",
+            "open book centerpiece",
+            "dark wood furniture"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.45,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        2,
+        0,
+        1,
+        3
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 2,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "concrete surfaces",
+            "ornate table lamps",
+            "cozy reading atmosphere",
+            "textured wooden table",
+            "open book centerpiece",
+            "dark wood furniture"
+          ],
+          "tags_only_in_worse": [
+            "soft natural light",
+            "dark wood desk",
+            "rich book collections",
+            "open layout",
+            "geometric shapes",
+            "sheer curtains"
+          ],
+          "shared_tags": [
+            "modern furniture",
+            "historical wall map",
+            "soft lighting",
+            "textured rug"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "concrete surfaces",
+            "modern furniture",
+            "ornate table lamps",
+            "textured rug",
+            "textured wooden table",
+            "soft lighting",
+            "open book centerpiece",
+            "dark wood furniture"
+          ],
+          "tags_only_in_worse": [
+            "airy window styling",
+            "relaxed ambiance",
+            "minimalist decor",
+            "minimalist design",
+            "cozy reading nook",
+            "dark color palette",
+            "calm atmosphere",
+            "mid-century modern"
+          ],
+          "shared_tags": [
+            "historical wall map",
+            "cozy reading atmosphere"
+          ],
+          "num_differentiating": 16
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 3,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "cozy reading atmosphere",
+            "concrete surfaces",
+            "modern furniture",
+            "historical wall map",
+            "ornate table lamps",
+            "textured rug"
+          ],
+          "tags_only_in_worse": [
+            "soft natural light",
+            "sconce lighting",
+            "open layout",
+            "geometric shapes",
+            "sleek lines",
+            "large windows"
+          ],
+          "shared_tags": [
+            "textured wooden table",
+            "soft lighting",
+            "open book centerpiece",
+            "dark wood furniture"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "soft natural light",
+            "modern furniture",
+            "dark wood desk",
+            "rich book collections",
+            "geometric shapes",
+            "open layout",
+            "textured rug",
+            "soft lighting",
+            "sheer curtains"
+          ],
+          "tags_only_in_worse": [
+            "airy window styling",
+            "relaxed ambiance",
+            "minimalist decor",
+            "minimalist design",
+            "cozy reading nook",
+            "dark color palette",
+            "calm atmosphere",
+            "cozy reading atmosphere",
+            "mid-century modern"
+          ],
+          "shared_tags": [
+            "historical wall map"
+          ],
+          "num_differentiating": 18
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 3,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "modern furniture",
+            "dark wood desk",
+            "historical wall map",
+            "rich book collections",
+            "textured rug",
+            "sheer curtains"
+          ],
+          "tags_only_in_worse": [
+            "large windows",
+            "sconce lighting",
+            "sleek lines",
+            "textured wooden table",
+            "open book centerpiece",
+            "dark wood furniture"
+          ],
+          "shared_tags": [
+            "soft natural light",
+            "soft lighting",
+            "open layout",
+            "geometric shapes"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "airy window styling",
+            "relaxed ambiance",
+            "minimalist decor",
+            "minimalist design",
+            "cozy reading nook",
+            "historical wall map",
+            "dark color palette",
+            "calm atmosphere",
+            "cozy reading atmosphere",
+            "mid-century modern"
+          ],
+          "tags_only_in_worse": [
+            "soft natural light",
+            "large windows",
+            "sconce lighting",
+            "open layout",
+            "geometric shapes",
+            "sleek lines",
+            "textured wooden table",
+            "soft lighting",
+            "open book centerpiece",
+            "dark wood furniture"
+          ],
+          "shared_tags": [],
+          "num_differentiating": 20
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_18",
+          "text": "concrete surfaces",
+          "mu_before": 0.4107,
+          "mu_after": 0.6855,
+          "mu_delta": 0.2748,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "ornate table lamps",
+          "mu_before": 0.4969,
+          "mu_after": 0.7717,
+          "mu_delta": 0.2748,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "textured wooden table",
+          "mu_before": 0.5022,
+          "mu_after": 0.5005,
+          "mu_delta": -0.0017,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_7",
+          "text": "cozy reading atmosphere",
+          "mu_before": -0.3,
+          "mu_after": -0.1051,
+          "mu_delta": 0.1949,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "open book centerpiece",
+          "mu_before": 0.5031,
+          "mu_after": 0.5014,
+          "mu_delta": -0.0017,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "dark wood furniture",
+          "mu_before": 0.4969,
+          "mu_after": 0.4952,
+          "mu_delta": -0.0017,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_4",
+          "text": "rich book collections",
+          "mu_before": -0.2991,
+          "mu_after": -0.2175,
+          "mu_delta": 0.0817,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "soft natural light",
+          "mu_before": 0.8761,
+          "mu_after": 0.6813,
+          "mu_delta": -0.1949,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "sheer curtains",
+          "mu_before": 1.2589,
+          "mu_after": 1.3405,
+          "mu_delta": 0.0817,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_20",
+          "text": "geometric shapes",
+          "mu_before": 1.0815,
+          "mu_after": 0.8866,
+          "mu_delta": -0.1949,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "dark wood desk",
+          "mu_before": 0.8875,
+          "mu_after": 0.9692,
+          "mu_delta": 0.0817,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_21",
+          "text": "open layout",
+          "mu_before": 1.0824,
+          "mu_after": 0.8875,
+          "mu_delta": -0.1949,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_22",
+          "text": "soft lighting",
+          "mu_before": 1.0815,
+          "mu_after": 1.1614,
+          "mu_delta": 0.0799,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_19",
+          "text": "modern furniture",
+          "mu_before": 1.0815,
+          "mu_after": 1.438,
+          "mu_delta": 0.3565,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_1",
+          "text": "textured rug",
+          "mu_before": -0.0132,
+          "mu_after": 0.3433,
+          "mu_delta": 0.3565,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "relaxed ambiance",
+          "mu_before": 0.2026,
+          "mu_after": 0.1227,
+          "mu_delta": -0.0799,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "cozy reading nook",
+          "mu_before": 0.2026,
+          "mu_after": 0.1227,
+          "mu_delta": -0.0799,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_16",
+          "text": "minimalist design",
+          "mu_before": 0.4107,
+          "mu_after": 0.3308,
+          "mu_delta": -0.0799,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "mid-century modern",
+          "mu_before": -0.5071,
+          "mu_after": -0.587,
+          "mu_delta": -0.0799,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "calm atmosphere",
+          "mu_before": 0.2026,
+          "mu_after": 0.1227,
+          "mu_delta": -0.0799,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "airy window styling",
+          "mu_before": 0.2026,
+          "mu_after": 0.1227,
+          "mu_delta": -0.0799,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_17",
+          "text": "dark color palette",
+          "mu_before": 0.4107,
+          "mu_after": 0.3308,
+          "mu_delta": -0.0799,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "minimalist decor",
+          "mu_before": 0.2141,
+          "mu_after": 0.1342,
+          "mu_delta": -0.0799,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_6",
+          "text": "historical wall map",
+          "mu_before": -0.3,
+          "mu_after": -0.0235,
+          "mu_delta": 0.2765,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_24",
+          "text": "sleek lines",
+          "mu_before": 0.3012,
+          "mu_after": 0.0247,
+          "mu_delta": -0.2765,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_23",
+          "text": "large windows",
+          "mu_before": 0.3012,
+          "mu_after": 0.0247,
+          "mu_delta": -0.2765,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_15",
+          "text": "sconce lighting",
+          "mu_before": 0.4969,
+          "mu_after": 0.2204,
+          "mu_delta": -0.2765,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_19",
+          "text": "modern furniture",
+          "mu": 1.438,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_4",
+          "text": "sheer curtains",
+          "mu": 1.3405,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_22",
+          "text": "soft lighting",
+          "mu": 1.1614,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_0",
+          "text": "dark wood desk",
+          "mu": 0.9692,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_21",
+          "text": "open layout",
+          "mu": 0.8875,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_20",
+          "text": "geometric shapes",
+          "mu": 0.8866,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_14",
+          "text": "ornate table lamps",
+          "mu": 0.7717,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_18",
+          "text": "concrete surfaces",
+          "mu": 0.6855,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_3",
+          "text": "soft natural light",
+          "mu": 0.6813,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_6",
+          "text": "open book centerpiece",
+          "mu": 0.5014,
+          "sigma": 0.5451
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.6722,
+          "max": 1.438,
+          "mean": 0.3171,
+          "std": 0.501
+        },
+        "sigma_distribution": {
+          "min": 0.5451,
+          "max": 0.644,
+          "mean": 0.5852
+        },
+        "tags_updated": 27,
+        "unique_tags_updated": 27,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 15.0,
+        "ranking_received": [
+          2,
+          0,
+          1,
+          3
+        ],
+        "best_option_strategy": "ucb",
+        "worst_option_strategy": "challenger",
+        "pairwise_accuracy_before_update": 0.5,
+        "ranking_log_likelihood_before_update": -4.317022948131595
+      }
+    },
+    {
+      "round_num": 4,
+      "timestamp": "2026-02-16T18:25:21.398336",
+      "parameters": {
+        "beta": 1.0,
+        "max_overlap": 0.55,
+        "learning_rate": 0.1129
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_19",
+              "text": "modern furniture",
+              "mu": 1.438,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "sheer curtains",
+              "mu": 1.3405,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "soft lighting",
+              "mu": 1.1614,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "dark wood desk",
+              "mu": 0.9692,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_21",
+              "text": "open layout",
+              "mu": 0.8875,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "geometric shapes",
+              "mu": 0.8866,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "ornate table lamps",
+              "mu": 0.7717,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "textured rug",
+              "mu": 0.3433,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_6",
+              "text": "historical wall map",
+              "mu": -0.0235,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_7",
+              "text": "cozy reading atmosphere",
+              "mu": -0.1051,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.767,
+          "avg_sigma": 0.5649,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_26",
+              "text": "reflective floors",
+              "mu": 0.2149,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_3",
+              "text": "warm ambient lighting",
+              "mu": -0.3863,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "dim ambient lighting",
+              "mu": 0.2159,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "simple pottery cups",
+              "mu": 0.412,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "calm atmosphere",
+              "mu": 0.1227,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "minimalist decor",
+              "mu": 0.1342,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_5",
+              "text": "elegant desk setup",
+              "mu": -0.6722,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_25",
+              "text": "monochrome aesthetics",
+              "mu": 0.2149,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "ceramic vase decor",
+              "mu": 0.412,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "neutral color palette",
+              "mu": -0.5965,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.0072,
+          "avg_sigma": 0.6182,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_18",
+              "text": "concrete surfaces",
+              "mu": 0.6855,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "soft natural light",
+              "mu": 0.6813,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "soft lighting",
+              "mu": 1.1614,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "sheer curtains",
+              "mu": 1.3405,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "textured wooden table",
+              "mu": 0.5005,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "textured rug",
+              "mu": 0.3433,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "open book centerpiece",
+              "mu": 0.5014,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_6",
+              "text": "historical wall map",
+              "mu": -0.0235,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_21",
+              "text": "open layout",
+              "mu": 0.8875,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "dark wood furniture",
+              "mu": 0.4952,
+              "sigma": 0.5451,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.6573,
+          "avg_sigma": 0.5597,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_18",
+              "text": "concrete surfaces",
+              "mu": 0.6855,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "soft natural light",
+              "mu": 0.6813,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "ornate table lamps",
+              "mu": 0.7717,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "minimalist design",
+              "mu": 0.3308,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "modern furniture",
+              "mu": 1.438,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "geometric shapes",
+              "mu": 0.8866,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "dark wood desk",
+              "mu": 0.9692,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_17",
+              "text": "dark color palette",
+              "mu": 0.3308,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "open book centerpiece",
+              "mu": 0.5014,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_21",
+              "text": "open layout",
+              "mu": 0.8875,
+              "sigma": 0.5451,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.7483,
+          "avg_sigma": 0.5593,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [],
+          "overlap_count": 0,
+          "overlap_fraction": 0.0,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "historical wall map",
+            "open layout",
+            "textured rug",
+            "soft lighting",
+            "sheer curtains"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "modern furniture",
+            "dark wood desk",
+            "open layout",
+            "geometric shapes",
+            "ornate table lamps"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [],
+          "overlap_count": 0,
+          "overlap_fraction": 0.0,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [],
+          "overlap_count": 0,
+          "overlap_fraction": 0.0,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "soft natural light",
+            "concrete surfaces",
+            "open book centerpiece",
+            "open layout"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.55,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        0,
+        2,
+        3,
+        1
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "modern furniture",
+            "dark wood desk",
+            "geometric shapes",
+            "ornate table lamps",
+            "cozy reading atmosphere"
+          ],
+          "tags_only_in_worse": [
+            "soft natural light",
+            "concrete surfaces",
+            "textured wooden table",
+            "open book centerpiece",
+            "dark wood furniture"
+          ],
+          "shared_tags": [
+            "historical wall map",
+            "open layout",
+            "textured rug",
+            "soft lighting",
+            "sheer curtains"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 3,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "cozy reading atmosphere",
+            "historical wall map",
+            "textured rug",
+            "soft lighting",
+            "sheer curtains"
+          ],
+          "tags_only_in_worse": [
+            "soft natural light",
+            "concrete surfaces",
+            "minimalist design",
+            "dark color palette",
+            "open book centerpiece"
+          ],
+          "shared_tags": [
+            "modern furniture",
+            "dark wood desk",
+            "open layout",
+            "geometric shapes",
+            "ornate table lamps"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "textured rug",
+            "modern furniture",
+            "dark wood desk",
+            "historical wall map",
+            "open layout",
+            "geometric shapes",
+            "ornate table lamps",
+            "cozy reading atmosphere",
+            "soft lighting",
+            "sheer curtains"
+          ],
+          "tags_only_in_worse": [
+            "dim ambient lighting",
+            "simple pottery cups",
+            "minimalist decor",
+            "ceramic vase decor",
+            "reflective floors",
+            "elegant desk setup",
+            "calm atmosphere",
+            "neutral color palette",
+            "warm ambient lighting",
+            "monochrome aesthetics"
+          ],
+          "shared_tags": [],
+          "num_differentiating": 20
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "historical wall map",
+            "sheer curtains",
+            "textured rug",
+            "textured wooden table",
+            "soft lighting",
+            "dark wood furniture"
+          ],
+          "tags_only_in_worse": [
+            "minimalist design",
+            "dark wood desk",
+            "modern furniture",
+            "geometric shapes",
+            "ornate table lamps",
+            "dark color palette"
+          ],
+          "shared_tags": [
+            "soft natural light",
+            "concrete surfaces",
+            "open book centerpiece",
+            "open layout"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "soft natural light",
+            "concrete surfaces",
+            "historical wall map",
+            "open layout",
+            "sheer curtains",
+            "textured rug",
+            "textured wooden table",
+            "soft lighting",
+            "open book centerpiece",
+            "dark wood furniture"
+          ],
+          "tags_only_in_worse": [
+            "dim ambient lighting",
+            "simple pottery cups",
+            "minimalist decor",
+            "ceramic vase decor",
+            "reflective floors",
+            "elegant desk setup",
+            "calm atmosphere",
+            "neutral color palette",
+            "warm ambient lighting",
+            "monochrome aesthetics"
+          ],
+          "shared_tags": [],
+          "num_differentiating": 20
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "soft natural light",
+            "concrete surfaces",
+            "dark wood desk",
+            "minimalist design",
+            "modern furniture",
+            "geometric shapes",
+            "ornate table lamps",
+            "dark color palette",
+            "open layout",
+            "open book centerpiece"
+          ],
+          "tags_only_in_worse": [
+            "dim ambient lighting",
+            "simple pottery cups",
+            "minimalist decor",
+            "ceramic vase decor",
+            "reflective floors",
+            "elegant desk setup",
+            "calm atmosphere",
+            "neutral color palette",
+            "warm ambient lighting",
+            "monochrome aesthetics"
+          ],
+          "shared_tags": [],
+          "num_differentiating": 20
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_14",
+          "text": "ornate table lamps",
+          "mu_before": 0.7717,
+          "mu_after": 0.9435,
+          "mu_delta": 0.1718,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_19",
+          "text": "modern furniture",
+          "mu_before": 1.438,
+          "mu_after": 1.6097,
+          "mu_delta": 0.1718,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_20",
+          "text": "geometric shapes",
+          "mu_before": 0.8866,
+          "mu_after": 1.0584,
+          "mu_delta": 0.1718,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "dark wood desk",
+          "mu_before": 0.9692,
+          "mu_after": 1.141,
+          "mu_delta": 0.1718,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_7",
+          "text": "cozy reading atmosphere",
+          "mu_before": -0.1051,
+          "mu_after": 0.1522,
+          "mu_delta": 0.2573,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_18",
+          "text": "concrete surfaces",
+          "mu_before": 0.6855,
+          "mu_after": 0.677,
+          "mu_delta": -0.0084,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "soft natural light",
+          "mu_before": 0.6813,
+          "mu_after": 0.6728,
+          "mu_delta": -0.0084,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "textured wooden table",
+          "mu_before": 0.5005,
+          "mu_after": 0.5776,
+          "mu_delta": 0.0771,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "open book centerpiece",
+          "mu_before": 0.5014,
+          "mu_after": 0.4929,
+          "mu_delta": -0.0084,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "dark wood furniture",
+          "mu_before": 0.4952,
+          "mu_after": 0.5723,
+          "mu_delta": 0.0771,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "sheer curtains",
+          "mu_before": 1.3405,
+          "mu_after": 1.675,
+          "mu_delta": 0.3345,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_22",
+          "text": "soft lighting",
+          "mu_before": 1.1614,
+          "mu_after": 1.4959,
+          "mu_delta": 0.3345,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_1",
+          "text": "textured rug",
+          "mu_before": 0.3433,
+          "mu_after": 0.6777,
+          "mu_delta": 0.3345,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_6",
+          "text": "historical wall map",
+          "mu_before": -0.0235,
+          "mu_after": 0.311,
+          "mu_delta": 0.3345,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_16",
+          "text": "minimalist design",
+          "mu_before": 0.3308,
+          "mu_after": 0.2452,
+          "mu_delta": -0.0856,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_17",
+          "text": "dark color palette",
+          "mu_before": 0.3308,
+          "mu_after": 0.2452,
+          "mu_delta": -0.0856,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_21",
+          "text": "open layout",
+          "mu_before": 0.8875,
+          "mu_after": 1.1364,
+          "mu_delta": 0.2489,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_26",
+          "text": "reflective floors",
+          "mu_before": 0.2149,
+          "mu_after": -0.0339,
+          "mu_delta": -0.2489,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_3",
+          "text": "warm ambient lighting",
+          "mu_before": -0.3863,
+          "mu_after": -0.6352,
+          "mu_delta": -0.2489,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "dim ambient lighting",
+          "mu_before": 0.2159,
+          "mu_after": -0.033,
+          "mu_delta": -0.2489,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "simple pottery cups",
+          "mu_before": 0.412,
+          "mu_after": 0.1631,
+          "mu_delta": -0.2489,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "calm atmosphere",
+          "mu_before": 0.1227,
+          "mu_after": -0.1262,
+          "mu_delta": -0.2489,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "minimalist decor",
+          "mu_before": 0.1342,
+          "mu_after": -0.1147,
+          "mu_delta": -0.2489,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_5",
+          "text": "elegant desk setup",
+          "mu_before": -0.6722,
+          "mu_after": -0.9211,
+          "mu_delta": -0.2489,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_25",
+          "text": "monochrome aesthetics",
+          "mu_before": 0.2149,
+          "mu_after": -0.0339,
+          "mu_delta": -0.2489,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "ceramic vase decor",
+          "mu_before": 0.412,
+          "mu_after": 0.1631,
+          "mu_delta": -0.2489,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_2",
+          "text": "neutral color palette",
+          "mu_before": -0.5965,
+          "mu_after": -0.8453,
+          "mu_delta": -0.2489,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_4",
+          "text": "sheer curtains",
+          "mu": 1.675,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_19",
+          "text": "modern furniture",
+          "mu": 1.6097,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_22",
+          "text": "soft lighting",
+          "mu": 1.4959,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_0",
+          "text": "dark wood desk",
+          "mu": 1.141,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_21",
+          "text": "open layout",
+          "mu": 1.1364,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_20",
+          "text": "geometric shapes",
+          "mu": 1.0584,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_14",
+          "text": "ornate table lamps",
+          "mu": 0.9435,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 8,
+          "tag_id": "neu_1",
+          "text": "textured rug",
+          "mu": 0.6777,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_18",
+          "text": "concrete surfaces",
+          "mu": 0.677,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_3",
+          "text": "soft natural light",
+          "mu": 0.6728,
+          "sigma": 0.5015
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.9211,
+          "max": 1.675,
+          "mean": 0.3171,
+          "std": 0.6273
+        },
+        "sigma_distribution": {
+          "min": 0.5015,
+          "max": 0.5925,
+          "mean": 0.5491
+        },
+        "tags_updated": 27,
+        "unique_tags_updated": 27,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 15.333333333333334,
+        "ranking_received": [
+          0,
+          2,
+          3,
+          1
+        ],
+        "best_option_strategy": "exploit",
+        "worst_option_strategy": "explore",
+        "pairwise_accuracy_before_update": 0.8333333333333334,
+        "ranking_log_likelihood_before_update": -2.58376798681719
+      }
+    },
+    {
+      "round_num": 5,
+      "timestamp": "2026-02-16T18:26:05.224947",
+      "parameters": {
+        "beta": 0.6667,
+        "max_overlap": 0.55,
+        "learning_rate": 0.1107
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_4",
+              "text": "sheer curtains",
+              "mu": 1.675,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "modern furniture",
+              "mu": 1.6097,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "soft lighting",
+              "mu": 1.4959,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "dark wood desk",
+              "mu": 1.141,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_21",
+              "text": "open layout",
+              "mu": 1.1364,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "geometric shapes",
+              "mu": 1.0584,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "ornate table lamps",
+              "mu": 0.9435,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "textured rug",
+              "mu": 0.6777,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_6",
+              "text": "historical wall map",
+              "mu": 0.311,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_7",
+              "text": "cozy reading atmosphere",
+              "mu": 0.1522,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 1.0201,
+          "avg_sigma": 0.5197,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_11",
+              "text": "relaxed ambiance",
+              "mu": 0.1227,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_26",
+              "text": "reflective floors",
+              "mu": -0.0339,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_3",
+              "text": "warm ambient lighting",
+              "mu": -0.6352,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "cozy reading nook",
+              "mu": 0.1227,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "mid-century modern",
+              "mu": -0.587,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "airy window styling",
+              "mu": 0.1227,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_24",
+              "text": "sleek lines",
+              "mu": 0.0247,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_25",
+              "text": "monochrome aesthetics",
+              "mu": -0.0339,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_23",
+              "text": "large windows",
+              "mu": 0.0247,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "neutral color palette",
+              "mu": -0.8453,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": -0.1718,
+          "avg_sigma": 0.5925,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_18",
+              "text": "concrete surfaces",
+              "mu": 0.677,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "soft natural light",
+              "mu": 0.6728,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "soft lighting",
+              "mu": 1.4959,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "sheer curtains",
+              "mu": 1.675,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "textured wooden table",
+              "mu": 0.5776,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "modern furniture",
+              "mu": 1.6097,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "textured rug",
+              "mu": 0.6777,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "open book centerpiece",
+              "mu": 0.4929,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_6",
+              "text": "historical wall map",
+              "mu": 0.311,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "dark wood furniture",
+              "mu": 0.5723,
+              "sigma": 0.5015,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.8762,
+          "avg_sigma": 0.5149,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_18",
+              "text": "concrete surfaces",
+              "mu": 0.677,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "soft natural light",
+              "mu": 0.6728,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "soft lighting",
+              "mu": 1.4959,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "minimalist design",
+              "mu": 0.2452,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "textured wooden table",
+              "mu": 0.5776,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "modern furniture",
+              "mu": 1.6097,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "geometric shapes",
+              "mu": 1.0584,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "dark wood desk",
+              "mu": 1.141,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_17",
+              "text": "dark color palette",
+              "mu": 0.2452,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_21",
+              "text": "open layout",
+              "mu": 1.1364,
+              "sigma": 0.5015,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.8859,
+          "avg_sigma": 0.5146,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [],
+          "overlap_count": 0,
+          "overlap_fraction": 0.0,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "modern furniture",
+            "historical wall map",
+            "textured rug",
+            "soft lighting",
+            "sheer curtains"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "modern furniture",
+            "dark wood desk",
+            "open layout",
+            "geometric shapes",
+            "soft lighting"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [],
+          "overlap_count": 0,
+          "overlap_fraction": 0.0,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [],
+          "overlap_count": 0,
+          "overlap_fraction": 0.0,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "soft natural light",
+            "concrete surfaces",
+            "modern furniture",
+            "textured wooden table",
+            "soft lighting"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.55,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        3,
+        0,
+        2,
+        1
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 3,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "soft natural light",
+            "concrete surfaces",
+            "minimalist design",
+            "dark color palette",
+            "textured wooden table"
+          ],
+          "tags_only_in_worse": [
+            "cozy reading atmosphere",
+            "historical wall map",
+            "ornate table lamps",
+            "textured rug",
+            "sheer curtains"
+          ],
+          "shared_tags": [
+            "modern furniture",
+            "dark wood desk",
+            "geometric shapes",
+            "open layout",
+            "soft lighting"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "minimalist design",
+            "dark wood desk",
+            "dark color palette",
+            "open layout",
+            "geometric shapes"
+          ],
+          "tags_only_in_worse": [
+            "dark wood furniture",
+            "historical wall map",
+            "textured rug",
+            "open book centerpiece",
+            "sheer curtains"
+          ],
+          "shared_tags": [
+            "soft natural light",
+            "concrete surfaces",
+            "modern furniture",
+            "textured wooden table",
+            "soft lighting"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "soft natural light",
+            "concrete surfaces",
+            "dark wood desk",
+            "minimalist design",
+            "modern furniture",
+            "geometric shapes",
+            "dark color palette",
+            "open layout",
+            "textured wooden table",
+            "soft lighting"
+          ],
+          "tags_only_in_worse": [
+            "airy window styling",
+            "relaxed ambiance",
+            "mid-century modern",
+            "cozy reading nook",
+            "reflective floors",
+            "neutral color palette",
+            "sleek lines",
+            "warm ambient lighting",
+            "monochrome aesthetics",
+            "large windows"
+          ],
+          "shared_tags": [],
+          "num_differentiating": 20
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "dark wood desk",
+            "geometric shapes",
+            "ornate table lamps",
+            "open layout",
+            "cozy reading atmosphere"
+          ],
+          "tags_only_in_worse": [
+            "soft natural light",
+            "concrete surfaces",
+            "textured wooden table",
+            "open book centerpiece",
+            "dark wood furniture"
+          ],
+          "shared_tags": [
+            "modern furniture",
+            "historical wall map",
+            "textured rug",
+            "soft lighting",
+            "sheer curtains"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "textured rug",
+            "modern furniture",
+            "dark wood desk",
+            "historical wall map",
+            "open layout",
+            "geometric shapes",
+            "ornate table lamps",
+            "cozy reading atmosphere",
+            "soft lighting",
+            "sheer curtains"
+          ],
+          "tags_only_in_worse": [
+            "airy window styling",
+            "relaxed ambiance",
+            "mid-century modern",
+            "cozy reading nook",
+            "reflective floors",
+            "neutral color palette",
+            "sleek lines",
+            "warm ambient lighting",
+            "monochrome aesthetics",
+            "large windows"
+          ],
+          "shared_tags": [],
+          "num_differentiating": 20
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "soft natural light",
+            "concrete surfaces",
+            "modern furniture",
+            "historical wall map",
+            "sheer curtains",
+            "textured rug",
+            "textured wooden table",
+            "soft lighting",
+            "open book centerpiece",
+            "dark wood furniture"
+          ],
+          "tags_only_in_worse": [
+            "airy window styling",
+            "relaxed ambiance",
+            "mid-century modern",
+            "cozy reading nook",
+            "reflective floors",
+            "neutral color palette",
+            "sleek lines",
+            "warm ambient lighting",
+            "monochrome aesthetics",
+            "large windows"
+          ],
+          "shared_tags": [],
+          "num_differentiating": 20
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_18",
+          "text": "concrete surfaces",
+          "mu_before": 0.677,
+          "mu_after": 0.8362,
+          "mu_delta": 0.1592,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "soft natural light",
+          "mu_before": 0.6728,
+          "mu_after": 0.832,
+          "mu_delta": 0.1592,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_16",
+          "text": "minimalist design",
+          "mu_before": 0.2452,
+          "mu_after": 0.491,
+          "mu_delta": 0.2459,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "textured wooden table",
+          "mu_before": 0.5776,
+          "mu_after": 0.7368,
+          "mu_delta": 0.1592,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_17",
+          "text": "dark color palette",
+          "mu_before": 0.2452,
+          "mu_after": 0.491,
+          "mu_delta": 0.2459,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "sheer curtains",
+          "mu_before": 1.675,
+          "mu_after": 1.6562,
+          "mu_delta": -0.0188,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "ornate table lamps",
+          "mu_before": 0.9435,
+          "mu_after": 1.0114,
+          "mu_delta": 0.0679,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_7",
+          "text": "cozy reading atmosphere",
+          "mu_before": 0.1522,
+          "mu_after": 0.2201,
+          "mu_delta": 0.0679,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_1",
+          "text": "textured rug",
+          "mu_before": 0.6777,
+          "mu_after": 0.6589,
+          "mu_delta": -0.0188,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_6",
+          "text": "historical wall map",
+          "mu_before": 0.311,
+          "mu_after": 0.2922,
+          "mu_delta": -0.0188,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_20",
+          "text": "geometric shapes",
+          "mu_before": 1.0584,
+          "mu_after": 1.3721,
+          "mu_delta": 0.3137,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "dark wood desk",
+          "mu_before": 1.141,
+          "mu_after": 1.4547,
+          "mu_delta": 0.3137,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_21",
+          "text": "open layout",
+          "mu_before": 1.1364,
+          "mu_after": 1.4501,
+          "mu_delta": 0.3137,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "open book centerpiece",
+          "mu_before": 0.4929,
+          "mu_after": 0.4062,
+          "mu_delta": -0.0867,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "dark wood furniture",
+          "mu_before": 0.5723,
+          "mu_after": 0.4857,
+          "mu_delta": -0.0867,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_22",
+          "text": "soft lighting",
+          "mu_before": 1.4959,
+          "mu_after": 1.7229,
+          "mu_delta": 0.2271,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_19",
+          "text": "modern furniture",
+          "mu_before": 1.6097,
+          "mu_after": 1.8368,
+          "mu_delta": 0.2271,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "relaxed ambiance",
+          "mu_before": 0.1227,
+          "mu_after": -0.1043,
+          "mu_delta": -0.2271,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_26",
+          "text": "reflective floors",
+          "mu_before": -0.0339,
+          "mu_after": -0.261,
+          "mu_delta": -0.2271,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_3",
+          "text": "warm ambient lighting",
+          "mu_before": -0.6352,
+          "mu_after": -0.8622,
+          "mu_delta": -0.2271,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "cozy reading nook",
+          "mu_before": 0.1227,
+          "mu_after": -0.1043,
+          "mu_delta": -0.2271,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "mid-century modern",
+          "mu_before": -0.587,
+          "mu_after": -0.8141,
+          "mu_delta": -0.2271,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "airy window styling",
+          "mu_before": 0.1227,
+          "mu_after": -0.1043,
+          "mu_delta": -0.2271,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_24",
+          "text": "sleek lines",
+          "mu_before": 0.0247,
+          "mu_after": -0.2024,
+          "mu_delta": -0.2271,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_25",
+          "text": "monochrome aesthetics",
+          "mu_before": -0.0339,
+          "mu_after": -0.261,
+          "mu_delta": -0.2271,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_23",
+          "text": "large windows",
+          "mu_before": 0.0247,
+          "mu_after": -0.2024,
+          "mu_delta": -0.2271,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_2",
+          "text": "neutral color palette",
+          "mu_before": -0.8453,
+          "mu_after": -1.0724,
+          "mu_delta": -0.2271,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_19",
+          "text": "modern furniture",
+          "mu": 1.8368,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_22",
+          "text": "soft lighting",
+          "mu": 1.7229,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_4",
+          "text": "sheer curtains",
+          "mu": 1.6562,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_0",
+          "text": "dark wood desk",
+          "mu": 1.4547,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_21",
+          "text": "open layout",
+          "mu": 1.4501,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_20",
+          "text": "geometric shapes",
+          "mu": 1.3721,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_14",
+          "text": "ornate table lamps",
+          "mu": 1.0114,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_18",
+          "text": "concrete surfaces",
+          "mu": 0.8362,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_3",
+          "text": "soft natural light",
+          "mu": 0.832,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_5",
+          "text": "textured wooden table",
+          "mu": 0.7368,
+          "sigma": 0.4614
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -1.0724,
+          "max": 1.8368,
+          "mean": 0.3171,
+          "std": 0.7542
+        },
+        "sigma_distribution": {
+          "min": 0.4614,
+          "max": 0.5925,
+          "mean": 0.5153
+        },
+        "tags_updated": 27,
+        "unique_tags_updated": 27,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 15.0,
+        "ranking_received": [
+          3,
+          0,
+          2,
+          1
+        ],
+        "best_option_strategy": "challenger",
+        "worst_option_strategy": "explore",
+        "pairwise_accuracy_before_update": 0.6666666666666666,
+        "ranking_log_likelihood_before_update": -2.5282491399691756
+      }
+    }
+  ],
+  "final": {
+    "timestamp": "2026-02-16T18:27:35.037751",
+    "rounds_completed": 5,
+    "total_comparisons": 30,
+    "total_tag_updates": 130,
+    "final_tags": [
+      {
+        "rank": 1,
+        "text": "modern furniture",
+        "weight": 0.1607,
+        "final_mu": 1.8368,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 11,
+        "times_in_winner": 5,
+        "times_in_loser": 0,
+        "win_rate": 0.455
+      },
+      {
+        "rank": 2,
+        "text": "soft lighting",
+        "weight": 0.1434,
+        "final_mu": 1.7229,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 12,
+        "times_in_winner": 5,
+        "times_in_loser": 1,
+        "win_rate": 0.417
+      },
+      {
+        "rank": 3,
+        "text": "sheer curtains",
+        "weight": 0.1342,
+        "final_mu": 1.6562,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 9,
+        "times_in_winner": 3,
+        "times_in_loser": 0,
+        "win_rate": 0.333
+      },
+      {
+        "rank": 4,
+        "text": "dark wood desk",
+        "weight": 0.1097,
+        "final_mu": 1.4547,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 9,
+        "times_in_winner": 4,
+        "times_in_loser": 1,
+        "win_rate": 0.444
+      },
+      {
+        "rank": 5,
+        "text": "open layout",
+        "weight": 0.1092,
+        "final_mu": 1.4501,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 9,
+        "times_in_winner": 4,
+        "times_in_loser": 1,
+        "win_rate": 0.444
+      },
+      {
+        "rank": 6,
+        "text": "geometric shapes",
+        "weight": 0.101,
+        "final_mu": 1.3721,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 10,
+        "times_in_winner": 4,
+        "times_in_loser": 1,
+        "win_rate": 0.4
+      },
+      {
+        "rank": 7,
+        "text": "ornate table lamps",
+        "weight": 0.0704,
+        "final_mu": 1.0114,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 0,
+        "win_rate": 0.333
+      },
+      {
+        "rank": 8,
+        "text": "concrete surfaces",
+        "weight": 0.0591,
+        "final_mu": 0.8362,
+        "final_sigma": 0.5015,
+        "category": "positive_other",
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 0,
+        "win_rate": 0.333
+      },
+      {
+        "rank": 9,
+        "text": "soft natural light",
+        "weight": 0.0588,
+        "final_mu": 0.832,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 8,
+        "times_in_winner": 2,
+        "times_in_loser": 1,
+        "win_rate": 0.25
+      },
+      {
+        "rank": 10,
+        "text": "textured wooden table",
+        "weight": 0.0535,
+        "final_mu": 0.7368,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 9,
+        "times_in_winner": 3,
+        "times_in_loser": 2,
+        "win_rate": 0.333
+      }
+    ],
+    "final_trajectories": {
+      "modern furniture": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.7965,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 1.0815,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 1.438,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 1.6097,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 1.8368,
+          "sigma": 0.4614
+        }
+      ],
+      "soft lighting": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.7965,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 1.0815,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 1.1614,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 1.4959,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 1.7229,
+          "sigma": 0.4614
+        }
+      ],
+      "sheer curtains": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.8867,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 1.2589,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 1.3405,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 1.675,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 1.6562,
+          "sigma": 0.4614
+        }
+      ],
+      "dark wood desk": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.8867,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.8875,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.9692,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 1.141,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 1.4547,
+          "sigma": 0.4614
+        }
+      ],
+      "open layout": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.7965,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 1.0824,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.8875,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 1.1364,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 1.4501,
+          "sigma": 0.4614
+        }
+      ],
+      "geometric shapes": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.7965,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 1.0815,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.8866,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 1.0584,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 1.3721,
+          "sigma": 0.4614
+        }
+      ],
+      "ornate table lamps": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.4107,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.4969,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.7717,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 0.9435,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 1.0114,
+          "sigma": 0.4614
+        }
+      ],
+      "concrete surfaces": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.4107,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.4107,
+          "sigma": 0.644
+        },
+        {
+          "round": 3,
+          "mu": 0.6855,
+          "sigma": 0.5925
+        },
+        {
+          "round": 4,
+          "mu": 0.677,
+          "sigma": 0.5451
+        },
+        {
+          "round": 5,
+          "mu": 0.8362,
+          "sigma": 0.5015
+        }
+      ],
+      "soft natural light": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5902,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.8761,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.6813,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 0.6728,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 0.832,
+          "sigma": 0.4614
+        }
+      ],
+      "textured wooden table": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5893,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.5022,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.5005,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 0.5776,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 0.7368,
+          "sigma": 0.4614
+        }
+      ]
+    },
+    "convergence_analysis": {
+      "top_10_stability": "9/10 tags same as previous round",
+      "mu_spread": 2.9092,
+      "avg_final_sigma": 0.5153,
+      "min_final_sigma": 0.4614,
+      "converged": false
+    },
+    "warnings_summary": {
+      "total": 0,
+      "by_type": {}
+    }
+  },
+  "warnings": [],
+  "tag_trajectories": {
+    "pos_0": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.8867,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.8875,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.9692,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 1.141,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 1.4547,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_1": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5009,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.2159,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.2159,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": -0.033,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": -0.033,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_2": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.2141,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.1342,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": -0.1147,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": -0.1147,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_3": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5902,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.8761,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.6813,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.6728,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 0.832,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_4": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.8867,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 1.2589,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 1.3405,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 1.675,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 1.6562,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_5": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5893,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.5022,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.5005,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.5776,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 0.7368,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_6": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5902,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.5031,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.5014,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.4929,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 0.4062,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_7": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4991,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.412,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.412,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.1631,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.1631,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_8": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4991,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.412,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.412,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.1631,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.1631,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_9": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.2026,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.2026,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.1227,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": -0.1262,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": -0.1262,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_10": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.2026,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.2026,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.1227,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.1227,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": -0.1043,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_11": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.2026,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.2026,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.1227,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.1227,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": -0.1043,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_12": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.2026,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.2026,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.1227,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.1227,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": -0.1043,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_13": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4107,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4969,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.4952,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.5723,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 0.4857,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_14": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4107,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4969,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.7717,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.9435,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 1.0114,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_15": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4107,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4969,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.2204,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.2204,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.2204,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_16": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4107,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4107,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.3308,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.2452,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.491,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_17": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4107,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4107,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.3308,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.2452,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.491,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_18": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4107,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4107,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.6855,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.677,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.8362,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_19": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.7965,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 1.0815,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 1.438,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 1.6097,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 1.8368,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_20": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.7965,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 1.0815,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.8866,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 1.0584,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 1.3721,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_21": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.7965,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 1.0824,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.8875,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 1.1364,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 1.4501,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_22": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.7965,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 1.0815,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 1.1614,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 1.4959,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 1.7229,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_23": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.3012,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.0247,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.0247,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": -0.2024,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_24": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.3012,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.0247,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.0247,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": -0.2024,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_25": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.2149,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.2149,
+        "sigma": 0.644
+      },
+      {
+        "round": 4,
+        "mu": -0.0339,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": -0.261,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_26": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.2149,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.2149,
+        "sigma": 0.644
+      },
+      {
+        "round": 4,
+        "mu": -0.0339,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": -0.261,
+        "sigma": 0.5451
+      }
+    ],
+    "neu_0": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.5071,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.5071,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.587,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": -0.587,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": -0.8141,
+        "sigma": 0.5451
+      }
+    ],
+    "neu_1": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.2991,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.0132,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.3433,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.6777,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 0.6589,
+        "sigma": 0.4614
+      }
+    ],
+    "neu_2": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.5965,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.5965,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.5965,
+        "sigma": 0.644
+      },
+      {
+        "round": 4,
+        "mu": -0.8453,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": -1.0724,
+        "sigma": 0.5451
+      }
+    ],
+    "neu_3": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3863,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.3863,
+        "sigma": 0.644
+      },
+      {
+        "round": 4,
+        "mu": -0.6352,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": -0.8622,
+        "sigma": 0.5451
+      }
+    ],
+    "neu_4": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.2991,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.2175,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": -0.2175,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": -0.2175,
+        "sigma": 0.5925
+      }
+    ],
+    "neu_5": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.6722,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.6722,
+        "sigma": 0.644
+      },
+      {
+        "round": 4,
+        "mu": -0.9211,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": -0.9211,
+        "sigma": 0.5925
+      }
+    ],
+    "neu_6": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": -0.0235,
+        "sigma": 0.644
+      },
+      {
+        "round": 4,
+        "mu": 0.311,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": 0.2922,
+        "sigma": 0.5451
+      }
+    ],
+    "neu_7": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": -0.1051,
+        "sigma": 0.644
+      },
+      {
+        "round": 4,
+        "mu": 0.1522,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": 0.2201,
+        "sigma": 0.5451
+      }
+    ]
+  }
+}

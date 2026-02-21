@@ -1,0 +1,102 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_Manual_Hyunsung_Contemplative_Bedroom_2026-02-17_17-03-46
+Started: 2026-02-17T17:08:31.309886
+Rounds: 4
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 21
+  Neutral tags: 13
+  Total: 34
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.26 | minimalist design, clean lines, traditional architecture...
+    [1] explore      | avg_μ=+0.42 | soft lighting, minimalist decor, minimalist design...
+    [2] ucb          | avg_μ=+0.34 | natural elegance, decorative branches, traditional architecture...
+    [3] challenger   | avg_μ=+0.26 | sheer curtains, minimalist decor, clean lines...
+  Ranking: [2, 0, 3, 1]
+  Comparisons: 6
+  Tags updated: 27
+  Top 5 after round:
+    1. traditional architecture  μ=+0.887 σ=0.644
+    2. organic materials         μ=+0.798 σ=0.644
+    3. rustic side table         μ=+0.798 σ=0.644
+    4. decorative branches       μ=+0.798 σ=0.644
+    5. earthy palette            μ=+0.798 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.53 | traditional architecture, organic materials, rustic side table...
+    [1] explore      | avg_μ=+0.27 | low furniture, traditional architecture, minimalist decor...
+    [2] ucb          | avg_μ=+0.31 | natural elegance, natural light, calm ambiance...
+    [3] challenger   | avg_μ=+0.55 | low furniture, decorative branches, soft lighting...
+  Ranking: [1, 0, 2, 3]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. traditional architecture  μ=+1.262 σ=0.593
+    2. organic materials         μ=+0.885 σ=0.593
+    3. natural elegance          μ=+0.798 σ=0.593
+    4. clean lines               μ=+0.786 σ=0.593
+    5. rustic side table         μ=+0.599 σ=0.593
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.55 | traditional architecture, organic materials, natural elegance...
+    [1] explore      | avg_μ=+0.35 | low furniture, traditional architecture, dark bedding...
+    [2] ucb          | avg_μ=+0.57 | natural elegance, traditional architecture, minimalist decor...
+    [3] challenger   | avg_μ=+0.45 | natural elegance, low furniture, decorative branches...
+  Ranking: [3, 1, 0, 2]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. organic materials         μ=+1.081 σ=0.545
+    2. traditional architecture  μ=+0.981 σ=0.545
+    3. shoji screens             μ=+0.955 σ=0.545
+    4. low furniture             μ=+0.955 σ=0.545
+    5. decorative branches       μ=+0.795 σ=0.545
+
+----------------------------------------------------------------------
+ROUND 4 (β=1.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.64 | organic materials, traditional architecture, shoji screens...
+    [1] explore      | avg_μ=+0.10 | soft lighting, sheer curtains, traditional architecture...
+    [2] ucb          | avg_μ=+0.46 | natural elegance, natural light, clean lines...
+    [3] challenger   | avg_μ=+0.63 | decorative branches, traditional architecture, minimalist decor...
+  Ranking: [0, 2, 3, 1]
+  Comparisons: 6
+  Tags updated: 24
+  Top 5 after round:
+    1. organic materials         μ=+1.266 σ=0.501
+    2. low furniture             μ=+1.224 σ=0.501
+    3. shoji screens             μ=+1.222 σ=0.501
+    4. natural elegance          μ=+1.064 σ=0.501
+    5. decorative branches       μ=+0.979 σ=0.501
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. organic materials              | w=0.138 | μ=+1.266 | win_rate=50%
+   2. low furniture                  | w=0.132 | μ=+1.224 | win_rate=50%
+   3. shoji screens                  | w=0.132 | μ=+1.222 | win_rate=38%
+   4. natural elegance               | w=0.113 | μ=+1.064 | win_rate=38%
+   5. decorative branches            | w=0.103 | μ=+0.979 | win_rate=43%
+   6. traditional architecture       | w=0.096 | μ=+0.898 | win_rate=30%
+   7. clean lines                    | w=0.085 | μ=+0.786 | win_rate=27%
+   8. serene ambiance                | w=0.070 | μ=+0.590 | win_rate=22%
+   9. natural light                  | w=0.066 | μ=+0.531 | win_rate=60%
+  10. earthy palette                 | w=0.065 | μ=+0.508 | win_rate=25%
+
+  Convergence: False
+  Top-10 stability: 9/10 tags same as previous round
