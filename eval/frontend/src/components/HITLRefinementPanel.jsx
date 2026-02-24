@@ -18,11 +18,14 @@ function HITLRefinementPanel({
   onFinalize,       // Callback when user finalizes refinement
   onRollback,       // Callback when user clicks a previous best pick to rollback
   bestPicks,        // Array of { round, url, tags } - 1st-ranked images from previous rounds
-  statusMessage     // Optional status message to display
+  statusMessage,    // Optional status message to display
+  adjective,        // Highlighted adjective portion of the descriptor
+  descriptor        // Full descriptor string (e.g. "Calm Home Office")
 }) {
   // Ranking state: maps rank (1-4) to image index (0-3)
   const [ranking, setRanking] = useState({ 1: null, 2: null, 3: null, 4: null });
   const [imagesLoaded, setImagesLoaded] = useState({});
+  const [isFinalizing, setIsFinalizing] = useState(false);
   
   // Reset ranking when images change (new round)
   useEffect(() => {
@@ -109,7 +112,7 @@ function HITLRefinementPanel({
       }}>
         <div>
           <h2 style={{ margin: 0, color: '#333' }}>
-            Preference Refinement - Round {round}
+            Preference Refinement - Round {round}{descriptor ? <> - <span style={{ color: '#8b5cf6', fontWeight: '700' }}>{adjective}</span>{descriptor.replace(adjective, '')}</> : ''}
           </h2>
           <p style={{ color: '#666', margin: '5px 0 0 0' }}>
             Rank the images from most preferred (1st) to least preferred (4th)
@@ -234,12 +237,12 @@ function HITLRefinementPanel({
             width: '50px',
             height: '50px',
             border: '4px solid #e9ecef',
-            borderTop: '4px solid #007bff',
+            borderTop: isFinalizing ? '4px solid #28a745' : '4px solid #007bff',
             borderRadius: '50%',
             animation: 'spin 1s linear infinite'
           }} />
           <p style={{ marginTop: '20px', color: '#666', fontSize: '16px' }}>
-            Generating images for round {round}...
+            {isFinalizing ? 'Generating Ranking Evaluation...' : `Generating images for round ${round}...`}
           </p>
           <style>{`
             @keyframes spin {
@@ -435,12 +438,12 @@ function HITLRefinementPanel({
                 }
               }}
             >
-              Submit Ranking & Continue →
+              Next Round
             </button>
             
             {/* Finalize button - always visible so user can stop anytime */}
             <button
-              onClick={onFinalize}
+              onClick={() => { setIsFinalizing(true); onFinalize(); }}
               disabled={round < 1}
               style={{
                 padding: '14px 40px',
@@ -461,7 +464,7 @@ function HITLRefinementPanel({
                 e.currentTarget.style.backgroundColor = '#28a745';
               }}
             >
-              Finish & Save Preferences ✓
+              Finish & Save
             </button>
           </div>
           
@@ -474,7 +477,7 @@ function HITLRefinementPanel({
           }}>
             {!allRanked 
               ? 'Click rank buttons below each image to assign rankings (1st to 4th)'
-              : `Round ${round} complete • Click "Continue" for more refinement, or "Finish" to proceed to evaluation`
+              : `Round ${round} complete • Click "Next Round" for more refinement, or "Finish" to proceed to evaluation`
             }
           </p>
         </>

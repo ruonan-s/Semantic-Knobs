@@ -1,0 +1,501 @@
+{
+  "stage": "impression",
+  "session_id": "eval_P01-1_Calm_Home_Office_Sample_2026-02-21_11-58-30",
+  "timestamp": "2026-02-21T12:12:00.794151",
+  "num_concepts": 21,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 2175,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "earthy tones",
+      "weight": 0.06525687873363495,
+      "score": 1.1549931764602661,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "earthy tones"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "lush greenery",
+      "weight": 0.06497564166784286,
+      "score": 1.1506741046905518,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "lush greenery"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "stone accents",
+      "weight": 0.06002320349216461,
+      "score": 1.0713928937911987,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "stone accents"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "ceramic pots",
+      "weight": 0.056934718042612076,
+      "score": 1.0185669660568237,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "ceramic pots"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "warm wood tones",
+      "weight": 0.05685392767190933,
+      "score": 1.0171469449996948,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm wood tones"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "wooden desk",
+      "weight": 0.05649245157837868,
+      "score": 1.0107686519622803,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden desk"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "natural lighting",
+      "weight": 0.05417671054601669,
+      "score": 0.9689127206802368,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "natural lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "Cozy atmosphere",
+      "weight": 0.0538293831050396,
+      "score": 0.9624810814857483,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Cozy atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "clean lines",
+      "weight": 0.05269484221935272,
+      "score": 0.9411791563034058,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "clean lines"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "curtained backdrop",
+      "weight": 0.047578420490026474,
+      "score": 0.839040994644165,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "curtained backdrop"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_10",
+      "label": "large windows",
+      "weight": 0.047336917370557785,
+      "score": 0.8339521288871765,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_11",
+      "label": "soft ambient lighting",
+      "weight": 0.046882499009370804,
+      "score": 0.824306070804596,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "soft ambient lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_12",
+      "label": "Wooden furniture",
+      "weight": 0.04212047532200813,
+      "score": 0.7171956896781921,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Wooden furniture"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_13",
+      "label": "sleek cabinetry",
+      "weight": 0.04011028632521629,
+      "score": 0.6682944297790527,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "sleek cabinetry"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_14",
+      "label": "Casual elegance",
+      "weight": 0.03936948627233505,
+      "score": 0.6496527194976807,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Casual elegance"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_15",
+      "label": "Soft textures",
+      "weight": 0.03930486738681793,
+      "score": 0.6480099558830261,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Soft textures"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_16",
+      "label": "neutral color palette",
+      "weight": 0.03924769163131714,
+      "score": 0.6465542316436768,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "neutral color palette"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_17",
+      "label": "textured wall paneling",
+      "weight": 0.035369280725717545,
+      "score": 0.5425052046775818,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "textured wall paneling"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_18",
+      "label": "minimalist decor",
+      "weight": 0.03471510112285614,
+      "score": 0.5238363742828369,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "minimalist decor"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_19",
+      "label": "Scandinavian design",
+      "weight": 0.03406339883804321,
+      "score": 0.5048851370811462,
+      "utility_std": 1.012752890586853,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Scandinavian design"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_20",
+      "label": "sleek modern desk",
+      "weight": 0.03266385197639465,
+      "score": 0.46293070912361145,
+      "utility_std": 1.012752890586853,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "sleek modern desk"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_1_0_6",
+      "text": "earthy tones",
+      "utility": 1.1549931764602661,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.06525687873363495,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_3",
+      "text": "lush greenery",
+      "utility": 1.1506741046905518,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.06497564166784286,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_5",
+      "text": "stone accents",
+      "utility": 1.0713928937911987,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.06002320349216461,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_9",
+      "text": "ceramic pots",
+      "utility": 1.0185669660568237,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.056934718042612076,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_1",
+      "text": "warm wood tones",
+      "utility": 1.0171469449996948,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.05685392767190933,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "wooden desk",
+      "utility": 1.0107686519622803,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.05649245157837868,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_0",
+      "text": "natural lighting",
+      "utility": 0.9689127206802368,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.05417671054601669,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_6",
+      "text": "Cozy atmosphere",
+      "utility": 0.9624810814857483,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.0538293831050396,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_7",
+      "text": "clean lines",
+      "utility": 0.9411791563034058,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.05269484221935272,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_10",
+      "text": "curtained backdrop",
+      "utility": 0.839040994644165,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.047578420490026474,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_4",
+      "text": "large windows",
+      "utility": 0.8339521288871765,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.047336917370557785,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_3",
+      "text": "soft ambient lighting",
+      "utility": 0.824306070804596,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.046882499009370804,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_5",
+      "text": "Wooden furniture",
+      "utility": 0.7171956896781921,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.04212047532200813,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_3",
+      "text": "sleek cabinetry",
+      "utility": 0.6682944297790527,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.04011028632521629,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_10",
+      "text": "Casual elegance",
+      "utility": 0.6496527194976807,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.03936948627233505,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_3",
+      "text": "Soft textures",
+      "utility": 0.6480099558830261,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.03930486738681793,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_1",
+      "text": "neutral color palette",
+      "utility": 0.6465542316436768,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.03924769163131714,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_10",
+      "text": "textured wall paneling",
+      "utility": 0.5425052046775818,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.035369280725717545,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_5",
+      "text": "minimalist decor",
+      "utility": 0.5238363742828369,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.03471510112285614,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_0",
+      "text": "Scandinavian design",
+      "utility": 0.5048851370811462,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.03406339883804321,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_2",
+      "text": "sleek modern desk",
+      "utility": 0.46293070912361145,
+      "uncertainty": 1.012752890586853,
+      "weight": 0.03266385197639465,
+      "source_image_idx": 2,
+      "category": "positive"
+    }
+  ]
+}

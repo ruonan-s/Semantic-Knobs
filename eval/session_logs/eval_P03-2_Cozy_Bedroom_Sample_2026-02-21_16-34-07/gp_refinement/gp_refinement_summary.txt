@@ -1,0 +1,138 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07
+Started: 2026-02-21T16:47:26.550864
+Rounds: 6
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 12
+  Neutral tags: 21
+  Total: 33
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.26 | wooden flooring, warm lighting, earthy tones...
+    [1] explore      | avg_μ=+0.18 | warm tones, soft ambient lighting, plush bedding...
+    [2] ucb          | avg_μ=-0.06 | textured textiles, bohemian style, earthy tones...
+    [3] challenger   | avg_μ=+0.26 | eclectic decor, earthy color palette, warm tones...
+  Ranking: [2, 1, 0, 3]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. large window view         μ=+0.793 σ=0.644
+    2. earthy tones              μ=+0.702 σ=0.644
+    3. plush bedding             μ=+0.591 σ=0.644
+    4. soft ambient lighting     μ=+0.591 σ=0.644
+    5. woven textures            μ=+0.413 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.38 | large window view, earthy tones, plush bedding...
+    [1] explore      | avg_μ=+0.18 | woven textures, log cabin style, earthy color palette...
+    [2] ucb          | avg_μ=+0.24 | woven textures, warm tones, bohemian style...
+    [3] challenger   | avg_μ=+0.22 | warm tones, nature-inspired decor, soft ambient lighting...
+  Ranking: [3, 0, 1, 2]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. large window view         μ=+1.081 σ=0.593
+    2. earthy tones              μ=+0.990 σ=0.593
+    3. soft ambient lighting     μ=+0.678 σ=0.593
+    4. natural materials         μ=+0.408 σ=0.593
+    5. plush bedding             μ=+0.389 σ=0.593
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.45 | large window view, earthy tones, soft ambient lighting...
+    [1] explore      | avg_μ=+0.21 | woven textures, earthy color palette, traditional layout...
+    [2] ucb          | avg_μ=+0.27 | warm tones, nature-inspired decor, soft ambient lighting...
+    [3] challenger   | avg_μ=+0.22 | woven textures, log cabin style, natural lighting...
+  Ranking: [1, 0, 2, 3]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. earthy tones              μ=+1.272 σ=0.545
+    2. large window view         μ=+1.165 σ=0.545
+    3. natural materials         μ=+0.774 σ=0.545
+    4. wooden flooring           μ=+0.604 σ=0.545
+    5. soft ambient lighting     μ=+0.396 σ=0.545
+
+----------------------------------------------------------------------
+ROUND 4 (β=1.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.53 | earthy tones, large window view, natural materials...
+    [1] explore      | avg_μ=+0.22 | woven textures, eclectic decor, earthy color palette...
+    [2] ucb          | avg_μ=+0.33 | warm tones, nature-inspired decor, traditional layout...
+    [3] challenger   | avg_μ=+0.35 | woven textures, warm tones, soft ambient lighting...
+  Ranking: [0, 3, 2, 1]
+  Comparisons: 6
+  Tags updated: 21
+  Top 5 after round:
+    1. earthy tones              μ=+1.190 σ=0.501
+    2. large window view         μ=+1.165 σ=0.545
+    3. wooden flooring           μ=+0.962 σ=0.501
+    4. natural materials         μ=+0.857 σ=0.501
+    5. soft ambient lighting     μ=+0.671 σ=0.501
+
+----------------------------------------------------------------------
+ROUND 5 (β=0.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.67 | earthy tones, large window view, wooden flooring...
+    [1] explore      | avg_μ=+0.23 | woven textures, earthy tones, elegant armchair...
+    [2] ucb          | avg_μ=+0.35 | textured textiles, warm tones, traditional layout...
+    [3] challenger   | avg_μ=+0.42 | textured textiles, warm tones, soft ambient lighting...
+  Ranking: [3, 2, 0, 1]
+  Comparisons: 6
+  Tags updated: 22
+  Top 5 after round:
+    1. large window view         μ=+1.165 σ=0.545
+    2. earthy tones              μ=+1.110 σ=0.461
+    3. natural materials         μ=+1.046 σ=0.461
+    4. soft ambient lighting     μ=+0.861 σ=0.461
+    5. textured textiles         μ=+0.704 σ=0.461
+
+----------------------------------------------------------------------
+ROUND 6 (β=0.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.73 | large window view, earthy tones, natural materials...
+    [1] explore      | avg_μ=+0.12 | woven textures, bohemian style, earthy tones...
+    [2] ucb          | avg_μ=+0.56 | earthy color palette, traditional layout, earthy tones...
+    [3] challenger   | avg_μ=+0.47 | earthy color palette, textured textiles, soft ambient lighting...
+  Ranking: [0, 1, 3, 2]
+  Comparisons: 6
+  Tags updated: 21
+  Top 5 after round:
+    1. earthy tones              μ=+1.188 σ=0.424
+    2. large window view         μ=+1.165 σ=0.545
+    3. natural materials         μ=+1.045 σ=0.424
+    4. soft ambient lighting     μ=+1.043 σ=0.424
+    5. textured textiles         μ=+0.886 σ=0.424
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. earthy tones                   | w=0.140 | μ=+1.188 | win_rate=35%
+   2. large window view              | w=0.137 | μ=+1.165 | win_rate=29%
+   3. natural materials              | w=0.121 | μ=+1.045 | win_rate=36%
+   4. soft ambient lighting          | w=0.121 | μ=+1.043 | win_rate=29%
+   5. textured textiles              | w=0.103 | μ=+0.886 | win_rate=44%
+   6. warm tones                     | w=0.087 | μ=+0.713 | win_rate=23%
+   7. wooden flooring                | w=0.085 | μ=+0.692 | win_rate=25%
+   8. modern wall art                | w=0.079 | μ=+0.612 | win_rate=38%
+   9. plush bedding                  | w=0.068 | μ=+0.461 | win_rate=17%
+  10. luxurious drapes               | w=0.060 | μ=+0.336 | win_rate=43%
+
+  Convergence: False
+  Top-10 stability: 10/10 tags same as previous round

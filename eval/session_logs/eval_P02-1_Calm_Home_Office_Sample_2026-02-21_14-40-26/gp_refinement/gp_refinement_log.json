@@ -1,0 +1,6809 @@
+{
+  "metadata": {
+    "session_id": "eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26",
+    "log_version": "1.0",
+    "start_time": "2026-02-21T14:49:54.313171",
+    "end_time": "2026-02-21T14:55:39.148317"
+  },
+  "initialization": {
+    "session_id": "eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26",
+    "timestamp": "2026-02-21T14:49:54.313171",
+    "config": {
+      "max_rounds": 999,
+      "tags_per_option": 10,
+      "base_learning_rate": 0.12,
+      "sigma_shrink_factor": 0.92,
+      "priors": {
+        "positive_selected": {
+          "mu": 1.0,
+          "sigma": 0.5
+        },
+        "positive_other": {
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        "neutral_selected": {
+          "mu": 0.0,
+          "sigma": 0.5
+        },
+        "neutral_other": {
+          "mu": -0.3,
+          "sigma": 0.7
+        }
+      }
+    },
+    "input_summary": {
+      "total_positive": 34,
+      "total_neutral": 0,
+      "total_tags": 34,
+      "in_selected_images": 0
+    },
+    "categories": {
+      "positive_selected": {
+        "count": 0,
+        "tags": []
+      },
+      "positive_other": {
+        "count": 34,
+        "tags": [
+          "minimalist design",
+          "neutral color palette",
+          "natural wood table",
+          "sleek cabinetry",
+          "soft diffused lighting",
+          "simple chair design",
+          "clean lines",
+          "open space layout",
+          "modern aesthetic",
+          "subtle elegance",
+          "calm atmosphere",
+          "natural lighting",
+          "wooden desk",
+          "minimalist decor",
+          "large windows",
+          "cozy atmosphere",
+          "ceramic pots",
+          "curtained backdrop",
+          "modern simplicity",
+          "contemporary elegance",
+          "warm wood tones",
+          "sleek modern desk",
+          "soft ambient lighting",
+          "curtain-filtered daylight",
+          "spacious layout",
+          "Scandinavian design",
+          "Natural light",
+          "Soft textures",
+          "Neutral tones",
+          "Simple layout",
+          "Modern elegance",
+          "Warm lighting",
+          "Casual elegance",
+          "Textured fabrics"
+        ]
+      },
+      "neutral_selected": {
+        "count": 0,
+        "tags": []
+      },
+      "neutral_other": {
+        "count": 0,
+        "tags": []
+      }
+    },
+    "all_tags": [
+      {
+        "tag_id": "pos_0",
+        "text": "minimalist design",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_1",
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_2",
+        "text": "natural wood table",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_3",
+        "text": "sleek cabinetry",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_4",
+        "text": "soft diffused lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_5",
+        "text": "simple chair design",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_6",
+        "text": "clean lines",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_7",
+        "text": "open space layout",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_8",
+        "text": "modern aesthetic",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_9",
+        "text": "subtle elegance",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_10",
+        "text": "calm atmosphere",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_11",
+        "text": "natural lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_12",
+        "text": "wooden desk",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_13",
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_14",
+        "text": "large windows",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_15",
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_16",
+        "text": "ceramic pots",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_17",
+        "text": "curtained backdrop",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_18",
+        "text": "modern simplicity",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_19",
+        "text": "contemporary elegance",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_20",
+        "text": "warm wood tones",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_21",
+        "text": "sleek modern desk",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_22",
+        "text": "soft ambient lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_23",
+        "text": "curtain-filtered daylight",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_24",
+        "text": "spacious layout",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_25",
+        "text": "Scandinavian design",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_26",
+        "text": "Natural light",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_27",
+        "text": "Soft textures",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_28",
+        "text": "Neutral tones",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_29",
+        "text": "Simple layout",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_30",
+        "text": "Modern elegance",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_31",
+        "text": "Warm lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_32",
+        "text": "Casual elegance",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_33",
+        "text": "Textured fabrics",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      }
+    ],
+    "prior_ordering": "positive_selected > positive_other > neutral_selected > neutral_other"
+  },
+  "rounds": [
+    {
+      "round_num": 1,
+      "timestamp": "2026-02-21T14:49:54.398652",
+      "parameters": {
+        "beta": 2.0,
+        "max_overlap": 0.4,
+        "learning_rate": 0.12
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "neutral color palette",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "natural wood table",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "sleek cabinetry",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "soft diffused lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "simple chair design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "clean lines",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "open space layout",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "modern aesthetic",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "subtle elegance",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_15",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "wooden desk",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "natural lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "modern aesthetic",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "natural wood table",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "clean lines",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "calm atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "simple chair design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "large windows",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_17",
+              "text": "curtained backdrop",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "warm wood tones",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "ceramic pots",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "open space layout",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "modern aesthetic",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "contemporary elegance",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "simple chair design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_18",
+              "text": "modern simplicity",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_21",
+              "text": "sleek modern desk",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_12",
+              "text": "wooden desk",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_23",
+              "text": "curtain-filtered daylight",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "soft ambient lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "natural lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_25",
+              "text": "Scandinavian design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "calm atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_24",
+              "text": "spacious layout",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "simple chair design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "neutral color palette",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5,
+          "avg_sigma": 0.7,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "simple chair design",
+            "clean lines",
+            "natural wood table",
+            "modern aesthetic"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "simple chair design",
+            "minimalist design",
+            "open space layout",
+            "modern aesthetic"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "simple chair design",
+            "neutral color palette",
+            "minimalist design"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "simple chair design",
+            "modern aesthetic"
+          ],
+          "overlap_count": 2,
+          "overlap_fraction": 0.2,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "simple chair design",
+            "calm atmosphere",
+            "natural lighting",
+            "wooden desk"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "simple chair design",
+            "minimalist design"
+          ],
+          "overlap_count": 2,
+          "overlap_fraction": 0.2,
+          "max_allowed": 0.4,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        0,
+        2,
+        3,
+        1
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "clean lines",
+            "subtle elegance",
+            "neutral color palette",
+            "sleek cabinetry",
+            "soft diffused lighting",
+            "natural wood table"
+          ],
+          "tags_only_in_worse": [
+            "sleek modern desk",
+            "warm wood tones",
+            "curtained backdrop",
+            "ceramic pots",
+            "modern simplicity",
+            "contemporary elegance"
+          ],
+          "shared_tags": [
+            "simple chair design",
+            "minimalist design",
+            "open space layout",
+            "modern aesthetic"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 3,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "clean lines",
+            "open space layout",
+            "subtle elegance",
+            "modern aesthetic",
+            "sleek cabinetry",
+            "soft diffused lighting",
+            "natural wood table"
+          ],
+          "tags_only_in_worse": [
+            "Scandinavian design",
+            "natural lighting",
+            "soft ambient lighting",
+            "calm atmosphere",
+            "curtain-filtered daylight",
+            "spacious layout",
+            "wooden desk"
+          ],
+          "shared_tags": [
+            "simple chair design",
+            "neutral color palette",
+            "minimalist design"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "open space layout",
+            "subtle elegance",
+            "neutral color palette",
+            "sleek cabinetry",
+            "soft diffused lighting",
+            "minimalist design"
+          ],
+          "tags_only_in_worse": [
+            "natural lighting",
+            "calm atmosphere",
+            "cozy atmosphere",
+            "large windows",
+            "minimalist decor",
+            "wooden desk"
+          ],
+          "shared_tags": [
+            "simple chair design",
+            "clean lines",
+            "natural wood table",
+            "modern aesthetic"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "sleek modern desk",
+            "open space layout",
+            "warm wood tones",
+            "curtained backdrop",
+            "ceramic pots",
+            "modern aesthetic",
+            "modern simplicity",
+            "contemporary elegance"
+          ],
+          "tags_only_in_worse": [
+            "Scandinavian design",
+            "natural lighting",
+            "soft ambient lighting",
+            "calm atmosphere",
+            "curtain-filtered daylight",
+            "neutral color palette",
+            "spacious layout",
+            "wooden desk"
+          ],
+          "shared_tags": [
+            "simple chair design",
+            "minimalist design"
+          ],
+          "num_differentiating": 16
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "sleek modern desk",
+            "open space layout",
+            "warm wood tones",
+            "curtained backdrop",
+            "ceramic pots",
+            "modern simplicity",
+            "contemporary elegance",
+            "minimalist design"
+          ],
+          "tags_only_in_worse": [
+            "natural lighting",
+            "clean lines",
+            "calm atmosphere",
+            "natural wood table",
+            "cozy atmosphere",
+            "large windows",
+            "minimalist decor",
+            "wooden desk"
+          ],
+          "shared_tags": [
+            "simple chair design",
+            "modern aesthetic"
+          ],
+          "num_differentiating": 16
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "Scandinavian design",
+            "soft ambient lighting",
+            "curtain-filtered daylight",
+            "neutral color palette",
+            "spacious layout",
+            "minimalist design"
+          ],
+          "tags_only_in_worse": [
+            "clean lines",
+            "modern aesthetic",
+            "natural wood table",
+            "cozy atmosphere",
+            "large windows",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "simple chair design",
+            "calm atmosphere",
+            "natural lighting",
+            "wooden desk"
+          ],
+          "num_differentiating": 12
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_3",
+          "text": "sleek cabinetry",
+          "mu_before": 0.5,
+          "mu_after": 0.7994,
+          "mu_delta": 0.2994,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "soft diffused lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.7994,
+          "mu_delta": 0.2994,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "natural wood table",
+          "mu_before": 0.5,
+          "mu_after": 0.5,
+          "mu_delta": 0.0,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "clean lines",
+          "mu_before": 0.5,
+          "mu_after": 0.5,
+          "mu_delta": 0.0,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "subtle elegance",
+          "mu_before": 0.5,
+          "mu_after": 0.7994,
+          "mu_delta": 0.2994,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "neutral color palette",
+          "mu_before": 0.5,
+          "mu_after": 0.709,
+          "mu_delta": 0.209,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_16",
+          "text": "ceramic pots",
+          "mu_before": 0.5,
+          "mu_after": 0.5904,
+          "mu_delta": 0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_19",
+          "text": "contemporary elegance",
+          "mu_before": 0.5,
+          "mu_after": 0.5904,
+          "mu_delta": 0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_20",
+          "text": "warm wood tones",
+          "mu_before": 0.5,
+          "mu_after": 0.5904,
+          "mu_delta": 0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_17",
+          "text": "curtained backdrop",
+          "mu_before": 0.5,
+          "mu_after": 0.5904,
+          "mu_delta": 0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_18",
+          "text": "modern simplicity",
+          "mu_before": 0.5,
+          "mu_after": 0.5904,
+          "mu_delta": 0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_21",
+          "text": "sleek modern desk",
+          "mu_before": 0.5,
+          "mu_after": 0.5904,
+          "mu_delta": 0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "open space layout",
+          "mu_before": 0.5,
+          "mu_after": 0.8898,
+          "mu_delta": 0.3898,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "modern aesthetic",
+          "mu_before": 0.5,
+          "mu_after": 0.5904,
+          "mu_delta": 0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "wooden desk",
+          "mu_before": 0.5,
+          "mu_after": 0.1102,
+          "mu_delta": -0.3898,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_23",
+          "text": "curtain-filtered daylight",
+          "mu_before": 0.5,
+          "mu_after": 0.4096,
+          "mu_delta": -0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_22",
+          "text": "soft ambient lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.4096,
+          "mu_delta": -0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "natural lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.1102,
+          "mu_delta": -0.3898,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_25",
+          "text": "Scandinavian design",
+          "mu_before": 0.5,
+          "mu_after": 0.4096,
+          "mu_delta": -0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "calm atmosphere",
+          "mu_before": 0.5,
+          "mu_after": 0.1102,
+          "mu_delta": -0.3898,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_24",
+          "text": "spacious layout",
+          "mu_before": 0.5,
+          "mu_after": 0.4096,
+          "mu_delta": -0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "minimalist design",
+          "mu_before": 0.5,
+          "mu_after": 0.7994,
+          "mu_delta": 0.2994,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_15",
+          "text": "cozy atmosphere",
+          "mu_before": 0.5,
+          "mu_after": 0.2006,
+          "mu_delta": -0.2994,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "minimalist decor",
+          "mu_before": 0.5,
+          "mu_after": 0.2006,
+          "mu_delta": -0.2994,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "large windows",
+          "mu_before": 0.5,
+          "mu_after": 0.2006,
+          "mu_delta": -0.2994,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_7",
+          "text": "open space layout",
+          "mu": 0.8898,
+          "sigma": 0.644
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_0",
+          "text": "minimalist design",
+          "mu": 0.7994,
+          "sigma": 0.644
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_3",
+          "text": "sleek cabinetry",
+          "mu": 0.7994,
+          "sigma": 0.644
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_4",
+          "text": "soft diffused lighting",
+          "mu": 0.7994,
+          "sigma": 0.644
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_9",
+          "text": "subtle elegance",
+          "mu": 0.7994,
+          "sigma": 0.644
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_1",
+          "text": "neutral color palette",
+          "mu": 0.709,
+          "sigma": 0.644
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_8",
+          "text": "modern aesthetic",
+          "mu": 0.5904,
+          "sigma": 0.644
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_16",
+          "text": "ceramic pots",
+          "mu": 0.5904,
+          "sigma": 0.644
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_17",
+          "text": "curtained backdrop",
+          "mu": 0.5904,
+          "sigma": 0.644
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_18",
+          "text": "modern simplicity",
+          "mu": 0.5904,
+          "sigma": 0.644
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": 0.1102,
+          "max": 0.8898,
+          "mean": 0.5,
+          "std": 0.2007
+        },
+        "sigma_distribution": {
+          "min": 0.644,
+          "max": 0.7,
+          "mean": 0.6588
+        },
+        "tags_updated": 25,
+        "unique_tags_updated": 25,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 13.666666666666666,
+        "ranking_received": [
+          0,
+          2,
+          3,
+          1
+        ],
+        "best_option_strategy": "exploit",
+        "worst_option_strategy": "explore",
+        "pairwise_accuracy_before_update": 0.5,
+        "ranking_log_likelihood_before_update": -4.1588830833596715
+      }
+    },
+    {
+      "round_num": 2,
+      "timestamp": "2026-02-21T14:51:07.442387",
+      "parameters": {
+        "beta": 1.6667,
+        "max_overlap": 0.4,
+        "learning_rate": 0.1176
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_7",
+              "text": "open space layout",
+              "mu": 0.8898,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist design",
+              "mu": 0.7994,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "sleek cabinetry",
+              "mu": 0.7994,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "soft diffused lighting",
+              "mu": 0.7994,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "subtle elegance",
+              "mu": 0.7994,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "neutral color palette",
+              "mu": 0.709,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "modern aesthetic",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "ceramic pots",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_17",
+              "text": "curtained backdrop",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_18",
+              "text": "modern simplicity",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.7158,
+          "avg_sigma": 0.644,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_27",
+              "text": "Soft textures",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_26",
+              "text": "Natural light",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_29",
+              "text": "Simple layout",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_31",
+              "text": "Warm lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_28",
+              "text": "Neutral tones",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_32",
+              "text": "Casual elegance",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_30",
+              "text": "Modern elegance",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "simple chair design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist design",
+              "mu": 0.7994,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_33",
+              "text": "Textured fabrics",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5299,
+          "avg_sigma": 0.6944,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_26",
+              "text": "Natural light",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "warm wood tones",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "sleek cabinetry",
+              "mu": 0.7994,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_28",
+              "text": "Neutral tones",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "soft diffused lighting",
+              "mu": 0.7994,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "subtle elegance",
+              "mu": 0.7994,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "contemporary elegance",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "simple chair design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist design",
+              "mu": 0.7994,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_21",
+              "text": "sleek modern desk",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.6469,
+          "avg_sigma": 0.6608,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_27",
+              "text": "Soft textures",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_26",
+              "text": "Natural light",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "soft ambient lighting",
+              "mu": 0.4096,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "open space layout",
+              "mu": 0.8898,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "subtle elegance",
+              "mu": 0.7994,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "natural wood table",
+              "mu": 0.5,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "clean lines",
+              "mu": 0.5,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "simple chair design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "neutral color palette",
+              "mu": 0.709,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_18",
+              "text": "modern simplicity",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5898,
+          "avg_sigma": 0.6608,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "minimalist design"
+          ],
+          "overlap_count": 1,
+          "overlap_fraction": 0.1,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "sleek cabinetry",
+            "subtle elegance",
+            "soft diffused lighting",
+            "minimalist design"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "neutral color palette",
+            "subtle elegance",
+            "modern simplicity",
+            "open space layout"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "simple chair design",
+            "Neutral tones",
+            "Natural light",
+            "minimalist design"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "simple chair design",
+            "Soft textures",
+            "Natural light"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "simple chair design",
+            "subtle elegance",
+            "Natural light"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.4,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        3,
+        1,
+        0,
+        2
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "clean lines",
+            "soft ambient lighting",
+            "open space layout",
+            "subtle elegance",
+            "neutral color palette",
+            "natural wood table",
+            "modern simplicity"
+          ],
+          "tags_only_in_worse": [
+            "Warm lighting",
+            "Modern elegance",
+            "Neutral tones",
+            "Textured fabrics",
+            "Simple layout",
+            "Casual elegance",
+            "minimalist design"
+          ],
+          "shared_tags": [
+            "simple chair design",
+            "Soft textures",
+            "Natural light"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 0,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "clean lines",
+            "soft ambient lighting",
+            "simple chair design",
+            "Natural light",
+            "natural wood table",
+            "Soft textures"
+          ],
+          "tags_only_in_worse": [
+            "curtained backdrop",
+            "ceramic pots",
+            "modern aesthetic",
+            "sleek cabinetry",
+            "soft diffused lighting",
+            "minimalist design"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "subtle elegance",
+            "modern simplicity",
+            "open space layout"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "clean lines",
+            "soft ambient lighting",
+            "open space layout",
+            "neutral color palette",
+            "natural wood table",
+            "Soft textures",
+            "modern simplicity"
+          ],
+          "tags_only_in_worse": [
+            "Neutral tones",
+            "sleek modern desk",
+            "warm wood tones",
+            "sleek cabinetry",
+            "soft diffused lighting",
+            "contemporary elegance",
+            "minimalist design"
+          ],
+          "shared_tags": [
+            "simple chair design",
+            "subtle elegance",
+            "Natural light"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "Warm lighting",
+            "Modern elegance",
+            "Neutral tones",
+            "Textured fabrics",
+            "simple chair design",
+            "Simple layout",
+            "Natural light",
+            "Casual elegance",
+            "Soft textures"
+          ],
+          "tags_only_in_worse": [
+            "open space layout",
+            "curtained backdrop",
+            "subtle elegance",
+            "ceramic pots",
+            "modern aesthetic",
+            "neutral color palette",
+            "sleek cabinetry",
+            "soft diffused lighting",
+            "modern simplicity"
+          ],
+          "shared_tags": [
+            "minimalist design"
+          ],
+          "num_differentiating": 18
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "Warm lighting",
+            "Modern elegance",
+            "Textured fabrics",
+            "Simple layout",
+            "Casual elegance",
+            "Soft textures"
+          ],
+          "tags_only_in_worse": [
+            "sleek modern desk",
+            "warm wood tones",
+            "subtle elegance",
+            "sleek cabinetry",
+            "soft diffused lighting",
+            "contemporary elegance"
+          ],
+          "shared_tags": [
+            "simple chair design",
+            "Neutral tones",
+            "Natural light",
+            "minimalist design"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "open space layout",
+            "curtained backdrop",
+            "ceramic pots",
+            "modern aesthetic",
+            "neutral color palette",
+            "modern simplicity"
+          ],
+          "tags_only_in_worse": [
+            "Neutral tones",
+            "sleek modern desk",
+            "warm wood tones",
+            "simple chair design",
+            "Natural light",
+            "contemporary elegance"
+          ],
+          "shared_tags": [
+            "sleek cabinetry",
+            "subtle elegance",
+            "soft diffused lighting",
+            "minimalist design"
+          ],
+          "num_differentiating": 12
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_22",
+          "text": "soft ambient lighting",
+          "mu_before": 0.4096,
+          "mu_after": 0.6991,
+          "mu_delta": 0.2895,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "open space layout",
+          "mu_before": 0.8898,
+          "mu_after": 1.093,
+          "mu_delta": 0.2032,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "subtle elegance",
+          "mu_before": 0.7994,
+          "mu_after": 0.7131,
+          "mu_delta": -0.0863,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "clean lines",
+          "mu_before": 0.5,
+          "mu_after": 0.7895,
+          "mu_delta": 0.2895,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "natural wood table",
+          "mu_before": 0.5,
+          "mu_after": 0.7895,
+          "mu_delta": 0.2895,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "neutral color palette",
+          "mu_before": 0.709,
+          "mu_after": 0.9123,
+          "mu_delta": 0.2032,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_18",
+          "text": "modern simplicity",
+          "mu_before": 0.5904,
+          "mu_after": 0.7936,
+          "mu_delta": 0.2032,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_29",
+          "text": "Simple layout",
+          "mu_before": 0.5,
+          "mu_after": 0.5863,
+          "mu_delta": 0.0863,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_31",
+          "text": "Warm lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.5863,
+          "mu_delta": 0.0863,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_28",
+          "text": "Neutral tones",
+          "mu_before": 0.5,
+          "mu_after": 0.2968,
+          "mu_delta": -0.2032,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_32",
+          "text": "Casual elegance",
+          "mu_before": 0.5,
+          "mu_after": 0.5863,
+          "mu_delta": 0.0863,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_30",
+          "text": "Modern elegance",
+          "mu_before": 0.5,
+          "mu_after": 0.5863,
+          "mu_delta": 0.0863,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_33",
+          "text": "Textured fabrics",
+          "mu_before": 0.5,
+          "mu_after": 0.5863,
+          "mu_delta": 0.0863,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "minimalist design",
+          "mu_before": 0.7994,
+          "mu_after": 0.5099,
+          "mu_delta": -0.2895,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_27",
+          "text": "Soft textures",
+          "mu_before": 0.5,
+          "mu_after": 0.8759,
+          "mu_delta": 0.3759,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_26",
+          "text": "Natural light",
+          "mu_before": 0.5,
+          "mu_after": 0.5863,
+          "mu_delta": 0.0863,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "simple chair design",
+          "mu_before": 0.5,
+          "mu_after": 0.5863,
+          "mu_delta": 0.0863,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_17",
+          "text": "curtained backdrop",
+          "mu_before": 0.5904,
+          "mu_after": 0.5041,
+          "mu_delta": -0.0863,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "sleek cabinetry",
+          "mu_before": 0.7994,
+          "mu_after": 0.4236,
+          "mu_delta": -0.3759,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_16",
+          "text": "ceramic pots",
+          "mu_before": 0.5904,
+          "mu_after": 0.5041,
+          "mu_delta": -0.0863,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "soft diffused lighting",
+          "mu_before": 0.7994,
+          "mu_after": 0.4236,
+          "mu_delta": -0.3759,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "modern aesthetic",
+          "mu_before": 0.5904,
+          "mu_after": 0.5041,
+          "mu_delta": -0.0863,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_19",
+          "text": "contemporary elegance",
+          "mu_before": 0.5904,
+          "mu_after": 0.3008,
+          "mu_delta": -0.2896,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_20",
+          "text": "warm wood tones",
+          "mu_before": 0.5904,
+          "mu_after": 0.3008,
+          "mu_delta": -0.2896,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_21",
+          "text": "sleek modern desk",
+          "mu_before": 0.5904,
+          "mu_after": 0.3008,
+          "mu_delta": -0.2896,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_7",
+          "text": "open space layout",
+          "mu": 1.093,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_1",
+          "text": "neutral color palette",
+          "mu": 0.9123,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_27",
+          "text": "Soft textures",
+          "mu": 0.8759,
+          "sigma": 0.644
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_18",
+          "text": "modern simplicity",
+          "mu": 0.7936,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_2",
+          "text": "natural wood table",
+          "mu": 0.7895,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_6",
+          "text": "clean lines",
+          "mu": 0.7895,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_9",
+          "text": "subtle elegance",
+          "mu": 0.7131,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_22",
+          "text": "soft ambient lighting",
+          "mu": 0.6991,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_29",
+          "text": "Simple layout",
+          "mu": 0.5863,
+          "sigma": 0.644
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_30",
+          "text": "Modern elegance",
+          "mu": 0.5863,
+          "sigma": 0.644
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": 0.1102,
+          "max": 1.093,
+          "mean": 0.5,
+          "std": 0.241
+        },
+        "sigma_distribution": {
+          "min": 0.5925,
+          "max": 0.644,
+          "mean": 0.6198
+        },
+        "tags_updated": 25,
+        "unique_tags_updated": 25,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 13.666666666666666,
+        "ranking_received": [
+          3,
+          1,
+          0,
+          2
+        ],
+        "best_option_strategy": "challenger",
+        "worst_option_strategy": "ucb",
+        "pairwise_accuracy_before_update": 0.3333333333333333,
+        "ranking_log_likelihood_before_update": -4.422212935616216
+      }
+    },
+    {
+      "round_num": 3,
+      "timestamp": "2026-02-21T14:52:09.459932",
+      "parameters": {
+        "beta": 1.3333,
+        "max_overlap": 0.45,
+        "learning_rate": 0.1152
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_7",
+              "text": "open space layout",
+              "mu": 1.093,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "neutral color palette",
+              "mu": 0.9123,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_27",
+              "text": "Soft textures",
+              "mu": 0.8759,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_18",
+              "text": "modern simplicity",
+              "mu": 0.7936,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "natural wood table",
+              "mu": 0.7895,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "clean lines",
+              "mu": 0.7895,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "subtle elegance",
+              "mu": 0.7131,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "soft ambient lighting",
+              "mu": 0.6991,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_29",
+              "text": "Simple layout",
+              "mu": 0.5863,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_30",
+              "text": "Modern elegance",
+              "mu": 0.5863,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.7839,
+          "avg_sigma": 0.6079,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_15",
+              "text": "cozy atmosphere",
+              "mu": 0.2006,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "wooden desk",
+              "mu": 0.1102,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "minimalist decor",
+              "mu": 0.2006,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_23",
+              "text": "curtain-filtered daylight",
+              "mu": 0.4096,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "natural lighting",
+              "mu": 0.1102,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_25",
+              "text": "Scandinavian design",
+              "mu": 0.4096,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "calm atmosphere",
+              "mu": 0.1102,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_24",
+              "text": "spacious layout",
+              "mu": 0.4096,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "simple chair design",
+              "mu": 0.5863,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "large windows",
+              "mu": 0.2006,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.2747,
+          "avg_sigma": 0.644,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_26",
+              "text": "Natural light",
+              "mu": 0.5863,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_31",
+              "text": "Warm lighting",
+              "mu": 0.5863,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "soft ambient lighting",
+              "mu": 0.6991,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_32",
+              "text": "Casual elegance",
+              "mu": 0.5863,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_30",
+              "text": "Modern elegance",
+              "mu": 0.5863,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "modern aesthetic",
+              "mu": 0.5041,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_33",
+              "text": "Textured fabrics",
+              "mu": 0.5863,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist design",
+              "mu": 0.5099,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "neutral color palette",
+              "mu": 0.9123,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_18",
+              "text": "modern simplicity",
+              "mu": 0.7936,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.6351,
+          "avg_sigma": 0.6182,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_27",
+              "text": "Soft textures",
+              "mu": 0.8759,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_31",
+              "text": "Warm lighting",
+              "mu": 0.5863,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_28",
+              "text": "Neutral tones",
+              "mu": 0.2968,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "ceramic pots",
+              "mu": 0.5041,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "open space layout",
+              "mu": 1.093,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_32",
+              "text": "Casual elegance",
+              "mu": 0.5863,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "clean lines",
+              "mu": 0.7895,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "subtle elegance",
+              "mu": 0.7131,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_33",
+              "text": "Textured fabrics",
+              "mu": 0.5863,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_17",
+              "text": "curtained backdrop",
+              "mu": 0.5041,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.6536,
+          "avg_sigma": 0.6182,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [],
+          "overlap_count": 0,
+          "overlap_fraction": 0.0,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "neutral color palette",
+            "Modern elegance",
+            "soft ambient lighting",
+            "modern simplicity"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "Soft textures",
+            "clean lines",
+            "subtle elegance",
+            "open space layout"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [],
+          "overlap_count": 0,
+          "overlap_fraction": 0.0,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [],
+          "overlap_count": 0,
+          "overlap_fraction": 0.0,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "Warm lighting",
+            "Textured fabrics",
+            "Casual elegance"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.45,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        1,
+        0,
+        3,
+        2
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 1,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "Scandinavian design",
+            "natural lighting",
+            "simple chair design",
+            "calm atmosphere",
+            "curtain-filtered daylight",
+            "cozy atmosphere",
+            "spacious layout",
+            "large windows",
+            "minimalist decor",
+            "wooden desk"
+          ],
+          "tags_only_in_worse": [
+            "Modern elegance",
+            "clean lines",
+            "soft ambient lighting",
+            "open space layout",
+            "subtle elegance",
+            "Simple layout",
+            "neutral color palette",
+            "natural wood table",
+            "Soft textures",
+            "modern simplicity"
+          ],
+          "shared_tags": [],
+          "num_differentiating": 20
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 3,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "Scandinavian design",
+            "natural lighting",
+            "simple chair design",
+            "calm atmosphere",
+            "curtain-filtered daylight",
+            "cozy atmosphere",
+            "spacious layout",
+            "large windows",
+            "minimalist decor",
+            "wooden desk"
+          ],
+          "tags_only_in_worse": [
+            "Warm lighting",
+            "Neutral tones",
+            "clean lines",
+            "open space layout",
+            "Textured fabrics",
+            "subtle elegance",
+            "ceramic pots",
+            "curtained backdrop",
+            "Casual elegance",
+            "Soft textures"
+          ],
+          "shared_tags": [],
+          "num_differentiating": 20
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 2,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "Scandinavian design",
+            "natural lighting",
+            "simple chair design",
+            "calm atmosphere",
+            "curtain-filtered daylight",
+            "cozy atmosphere",
+            "spacious layout",
+            "large windows",
+            "minimalist decor",
+            "wooden desk"
+          ],
+          "tags_only_in_worse": [
+            "Warm lighting",
+            "Modern elegance",
+            "soft ambient lighting",
+            "Textured fabrics",
+            "modern aesthetic",
+            "Natural light",
+            "neutral color palette",
+            "Casual elegance",
+            "modern simplicity",
+            "minimalist design"
+          ],
+          "shared_tags": [],
+          "num_differentiating": 20
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "Modern elegance",
+            "soft ambient lighting",
+            "Simple layout",
+            "neutral color palette",
+            "natural wood table",
+            "modern simplicity"
+          ],
+          "tags_only_in_worse": [
+            "Warm lighting",
+            "Neutral tones",
+            "Textured fabrics",
+            "curtained backdrop",
+            "ceramic pots",
+            "Casual elegance"
+          ],
+          "shared_tags": [
+            "Soft textures",
+            "clean lines",
+            "subtle elegance",
+            "open space layout"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "clean lines",
+            "open space layout",
+            "subtle elegance",
+            "Simple layout",
+            "natural wood table",
+            "Soft textures"
+          ],
+          "tags_only_in_worse": [
+            "Warm lighting",
+            "Textured fabrics",
+            "modern aesthetic",
+            "Natural light",
+            "Casual elegance",
+            "minimalist design"
+          ],
+          "shared_tags": [
+            "neutral color palette",
+            "Modern elegance",
+            "soft ambient lighting",
+            "modern simplicity"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "Neutral tones",
+            "clean lines",
+            "open space layout",
+            "subtle elegance",
+            "ceramic pots",
+            "curtained backdrop",
+            "Soft textures"
+          ],
+          "tags_only_in_worse": [
+            "Modern elegance",
+            "soft ambient lighting",
+            "modern aesthetic",
+            "Natural light",
+            "neutral color palette",
+            "modern simplicity",
+            "minimalist design"
+          ],
+          "shared_tags": [
+            "Warm lighting",
+            "Textured fabrics",
+            "Casual elegance"
+          ],
+          "num_differentiating": 14
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_15",
+          "text": "cozy atmosphere",
+          "mu_before": 0.2006,
+          "mu_after": 0.4714,
+          "mu_delta": 0.2709,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "wooden desk",
+          "mu_before": 0.1102,
+          "mu_after": 0.381,
+          "mu_delta": 0.2709,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "minimalist decor",
+          "mu_before": 0.2006,
+          "mu_after": 0.4714,
+          "mu_delta": 0.2709,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_23",
+          "text": "curtain-filtered daylight",
+          "mu_before": 0.4096,
+          "mu_after": 0.6805,
+          "mu_delta": 0.2709,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "natural lighting",
+          "mu_before": 0.1102,
+          "mu_after": 0.381,
+          "mu_delta": 0.2709,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_25",
+          "text": "Scandinavian design",
+          "mu_before": 0.4096,
+          "mu_after": 0.6805,
+          "mu_delta": 0.2709,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "calm atmosphere",
+          "mu_before": 0.1102,
+          "mu_after": 0.381,
+          "mu_delta": 0.2709,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_24",
+          "text": "spacious layout",
+          "mu_before": 0.4096,
+          "mu_after": 0.6805,
+          "mu_delta": 0.2709,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "simple chair design",
+          "mu_before": 0.5863,
+          "mu_after": 0.8572,
+          "mu_delta": 0.2709,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "large windows",
+          "mu_before": 0.2006,
+          "mu_after": 0.4714,
+          "mu_delta": 0.2709,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_27",
+          "text": "Soft textures",
+          "mu_before": 0.8759,
+          "mu_after": 0.8808,
+          "mu_delta": 0.005,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_29",
+          "text": "Simple layout",
+          "mu_before": 0.5863,
+          "mu_after": 0.6726,
+          "mu_delta": 0.0863,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_22",
+          "text": "soft ambient lighting",
+          "mu_before": 0.6991,
+          "mu_after": 0.5096,
+          "mu_delta": -0.1895,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "open space layout",
+          "mu_before": 1.093,
+          "mu_after": 1.098,
+          "mu_delta": 0.005,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_30",
+          "text": "Modern elegance",
+          "mu_before": 0.5863,
+          "mu_after": 0.3968,
+          "mu_delta": -0.1895,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "natural wood table",
+          "mu_before": 0.7895,
+          "mu_after": 0.8758,
+          "mu_delta": 0.0863,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "clean lines",
+          "mu_before": 0.7895,
+          "mu_after": 0.7945,
+          "mu_delta": 0.005,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "subtle elegance",
+          "mu_before": 0.7131,
+          "mu_after": 0.7181,
+          "mu_delta": 0.005,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "neutral color palette",
+          "mu_before": 0.9123,
+          "mu_after": 0.7227,
+          "mu_delta": -0.1895,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_18",
+          "text": "modern simplicity",
+          "mu_before": 0.7936,
+          "mu_after": 0.6041,
+          "mu_delta": -0.1895,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_31",
+          "text": "Warm lighting",
+          "mu_before": 0.5863,
+          "mu_after": 0.2292,
+          "mu_delta": -0.3572,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_28",
+          "text": "Neutral tones",
+          "mu_before": 0.2968,
+          "mu_after": 0.2155,
+          "mu_delta": -0.0813,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_16",
+          "text": "ceramic pots",
+          "mu_before": 0.5041,
+          "mu_after": 0.4228,
+          "mu_delta": -0.0813,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_32",
+          "text": "Casual elegance",
+          "mu_before": 0.5863,
+          "mu_after": 0.2292,
+          "mu_delta": -0.3572,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_33",
+          "text": "Textured fabrics",
+          "mu_before": 0.5863,
+          "mu_after": 0.2292,
+          "mu_delta": -0.3572,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_17",
+          "text": "curtained backdrop",
+          "mu_before": 0.5041,
+          "mu_after": 0.4228,
+          "mu_delta": -0.0813,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_26",
+          "text": "Natural light",
+          "mu_before": 0.5863,
+          "mu_after": 0.3105,
+          "mu_delta": -0.2758,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "modern aesthetic",
+          "mu_before": 0.5041,
+          "mu_after": 0.2282,
+          "mu_delta": -0.2758,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "minimalist design",
+          "mu_before": 0.5099,
+          "mu_after": 0.2341,
+          "mu_delta": -0.2758,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_7",
+          "text": "open space layout",
+          "mu": 1.098,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_27",
+          "text": "Soft textures",
+          "mu": 0.8808,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_2",
+          "text": "natural wood table",
+          "mu": 0.8758,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_5",
+          "text": "simple chair design",
+          "mu": 0.8572,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_6",
+          "text": "clean lines",
+          "mu": 0.7945,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_1",
+          "text": "neutral color palette",
+          "mu": 0.7227,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_9",
+          "text": "subtle elegance",
+          "mu": 0.7181,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_23",
+          "text": "curtain-filtered daylight",
+          "mu": 0.6805,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_24",
+          "text": "spacious layout",
+          "mu": 0.6805,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_25",
+          "text": "Scandinavian design",
+          "mu": 0.6805,
+          "sigma": 0.5925
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": 0.2155,
+          "max": 1.098,
+          "mean": 0.5,
+          "std": 0.2284
+        },
+        "sigma_distribution": {
+          "min": 0.5451,
+          "max": 0.5925,
+          "mean": 0.5771
+        },
+        "tags_updated": 29,
+        "unique_tags_updated": 29,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 16.333333333333332,
+        "ranking_received": [
+          1,
+          0,
+          3,
+          2
+        ],
+        "best_option_strategy": "explore",
+        "worst_option_strategy": "ucb",
+        "pairwise_accuracy_before_update": 0.5,
+        "ranking_log_likelihood_before_update": -5.068891164360015
+      }
+    },
+    {
+      "round_num": 4,
+      "timestamp": "2026-02-21T14:53:00.985770",
+      "parameters": {
+        "beta": 1.0,
+        "max_overlap": 0.55,
+        "learning_rate": 0.1129
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_7",
+              "text": "open space layout",
+              "mu": 1.098,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_27",
+              "text": "Soft textures",
+              "mu": 0.8808,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "natural wood table",
+              "mu": 0.8758,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "simple chair design",
+              "mu": 0.8572,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "clean lines",
+              "mu": 0.7945,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "neutral color palette",
+              "mu": 0.7227,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "subtle elegance",
+              "mu": 0.7181,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_23",
+              "text": "curtain-filtered daylight",
+              "mu": 0.6805,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_24",
+              "text": "spacious layout",
+              "mu": 0.6805,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_25",
+              "text": "Scandinavian design",
+              "mu": 0.6805,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.7989,
+          "avg_sigma": 0.5688,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_15",
+              "text": "cozy atmosphere",
+              "mu": 0.4714,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "sleek cabinetry",
+              "mu": 0.4236,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "wooden desk",
+              "mu": 0.381,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "minimalist decor",
+              "mu": 0.4714,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "soft diffused lighting",
+              "mu": 0.4236,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "natural lighting",
+              "mu": 0.381,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "contemporary elegance",
+              "mu": 0.3008,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "calm atmosphere",
+              "mu": 0.381,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "simple chair design",
+              "mu": 0.8572,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "large windows",
+              "mu": 0.4714,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.4563,
+          "avg_sigma": 0.5925,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_26",
+              "text": "Natural light",
+              "mu": 0.3105,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_29",
+              "text": "Simple layout",
+              "mu": 0.6726,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_23",
+              "text": "curtain-filtered daylight",
+              "mu": 0.6805,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "soft ambient lighting",
+              "mu": 0.5096,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_30",
+              "text": "Modern elegance",
+              "mu": 0.3968,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "natural wood table",
+              "mu": 0.8758,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "clean lines",
+              "mu": 0.7945,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_25",
+              "text": "Scandinavian design",
+              "mu": 0.6805,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_24",
+              "text": "spacious layout",
+              "mu": 0.6805,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_18",
+              "text": "modern simplicity",
+              "mu": 0.6041,
+              "sigma": 0.5451,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.6205,
+          "avg_sigma": 0.5735,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_27",
+              "text": "Soft textures",
+              "mu": 0.8808,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "warm wood tones",
+              "mu": 0.3008,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_29",
+              "text": "Simple layout",
+              "mu": 0.6726,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "minimalist decor",
+              "mu": 0.4714,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "open space layout",
+              "mu": 1.098,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "natural wood table",
+              "mu": 0.8758,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "clean lines",
+              "mu": 0.7945,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "simple chair design",
+              "mu": 0.8572,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_18",
+              "text": "modern simplicity",
+              "mu": 0.6041,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_21",
+              "text": "sleek modern desk",
+              "mu": 0.3008,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.6856,
+          "avg_sigma": 0.5735,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "simple chair design"
+          ],
+          "overlap_count": 1,
+          "overlap_fraction": 0.1,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "Scandinavian design",
+            "clean lines",
+            "curtain-filtered daylight",
+            "natural wood table",
+            "spacious layout"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "clean lines",
+            "open space layout",
+            "simple chair design",
+            "natural wood table",
+            "Soft textures"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [],
+          "overlap_count": 0,
+          "overlap_fraction": 0.0,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "simple chair design",
+            "minimalist decor"
+          ],
+          "overlap_count": 2,
+          "overlap_fraction": 0.2,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "clean lines",
+            "natural wood table",
+            "Simple layout",
+            "modern simplicity"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.55,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        0,
+        3,
+        1,
+        2
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 0,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "Scandinavian design",
+            "subtle elegance",
+            "curtain-filtered daylight",
+            "neutral color palette",
+            "spacious layout"
+          ],
+          "tags_only_in_worse": [
+            "sleek modern desk",
+            "warm wood tones",
+            "Simple layout",
+            "minimalist decor",
+            "modern simplicity"
+          ],
+          "shared_tags": [
+            "clean lines",
+            "open space layout",
+            "simple chair design",
+            "natural wood table",
+            "Soft textures"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "Scandinavian design",
+            "clean lines",
+            "open space layout",
+            "subtle elegance",
+            "curtain-filtered daylight",
+            "neutral color palette",
+            "natural wood table",
+            "spacious layout",
+            "Soft textures"
+          ],
+          "tags_only_in_worse": [
+            "natural lighting",
+            "calm atmosphere",
+            "sleek cabinetry",
+            "soft diffused lighting",
+            "cozy atmosphere",
+            "large windows",
+            "minimalist decor",
+            "wooden desk",
+            "contemporary elegance"
+          ],
+          "shared_tags": [
+            "simple chair design"
+          ],
+          "num_differentiating": 18
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "open space layout",
+            "simple chair design",
+            "subtle elegance",
+            "neutral color palette",
+            "Soft textures"
+          ],
+          "tags_only_in_worse": [
+            "Modern elegance",
+            "soft ambient lighting",
+            "Natural light",
+            "Simple layout",
+            "modern simplicity"
+          ],
+          "shared_tags": [
+            "Scandinavian design",
+            "clean lines",
+            "curtain-filtered daylight",
+            "natural wood table",
+            "spacious layout"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "clean lines",
+            "sleek modern desk",
+            "open space layout",
+            "warm wood tones",
+            "Simple layout",
+            "natural wood table",
+            "Soft textures",
+            "modern simplicity"
+          ],
+          "tags_only_in_worse": [
+            "natural lighting",
+            "calm atmosphere",
+            "sleek cabinetry",
+            "soft diffused lighting",
+            "cozy atmosphere",
+            "large windows",
+            "wooden desk",
+            "contemporary elegance"
+          ],
+          "shared_tags": [
+            "simple chair design",
+            "minimalist decor"
+          ],
+          "num_differentiating": 16
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "sleek modern desk",
+            "open space layout",
+            "warm wood tones",
+            "simple chair design",
+            "Soft textures",
+            "minimalist decor"
+          ],
+          "tags_only_in_worse": [
+            "Scandinavian design",
+            "Modern elegance",
+            "soft ambient lighting",
+            "curtain-filtered daylight",
+            "Natural light",
+            "spacious layout"
+          ],
+          "shared_tags": [
+            "clean lines",
+            "natural wood table",
+            "Simple layout",
+            "modern simplicity"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "natural lighting",
+            "simple chair design",
+            "calm atmosphere",
+            "sleek cabinetry",
+            "soft diffused lighting",
+            "cozy atmosphere",
+            "large windows",
+            "minimalist decor",
+            "wooden desk",
+            "contemporary elegance"
+          ],
+          "tags_only_in_worse": [
+            "Scandinavian design",
+            "Modern elegance",
+            "clean lines",
+            "soft ambient lighting",
+            "curtain-filtered daylight",
+            "Simple layout",
+            "Natural light",
+            "natural wood table",
+            "spacious layout",
+            "modern simplicity"
+          ],
+          "shared_tags": [],
+          "num_differentiating": 20
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_23",
+          "text": "curtain-filtered daylight",
+          "mu_before": 0.6805,
+          "mu_after": 0.6785,
+          "mu_delta": -0.002,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "subtle elegance",
+          "mu_before": 0.7181,
+          "mu_after": 0.9889,
+          "mu_delta": 0.2708,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_25",
+          "text": "Scandinavian design",
+          "mu_before": 0.6805,
+          "mu_after": 0.6785,
+          "mu_delta": -0.002,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_24",
+          "text": "spacious layout",
+          "mu_before": 0.6805,
+          "mu_after": 0.6785,
+          "mu_delta": -0.002,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "neutral color palette",
+          "mu_before": 0.7227,
+          "mu_after": 0.9935,
+          "mu_delta": 0.2708,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_29",
+          "text": "Simple layout",
+          "mu_before": 0.6726,
+          "mu_after": 0.4816,
+          "mu_delta": -0.191,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "minimalist decor",
+          "mu_before": 0.4714,
+          "mu_after": 0.4734,
+          "mu_delta": 0.002,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_20",
+          "text": "warm wood tones",
+          "mu_before": 0.3008,
+          "mu_after": 0.3826,
+          "mu_delta": 0.0818,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_18",
+          "text": "modern simplicity",
+          "mu_before": 0.6041,
+          "mu_after": 0.4131,
+          "mu_delta": -0.191,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_21",
+          "text": "sleek modern desk",
+          "mu_before": 0.3008,
+          "mu_after": 0.3826,
+          "mu_delta": 0.0818,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_27",
+          "text": "Soft textures",
+          "mu_before": 0.8808,
+          "mu_after": 1.2334,
+          "mu_delta": 0.3526,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "open space layout",
+          "mu_before": 1.098,
+          "mu_after": 1.4506,
+          "mu_delta": 0.3526,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "natural wood table",
+          "mu_before": 0.8758,
+          "mu_after": 0.9556,
+          "mu_delta": 0.0798,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "clean lines",
+          "mu_before": 0.7945,
+          "mu_after": 0.8743,
+          "mu_delta": 0.0798,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_15",
+          "text": "cozy atmosphere",
+          "mu_before": 0.4714,
+          "mu_after": 0.3916,
+          "mu_delta": -0.0798,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "sleek cabinetry",
+          "mu_before": 0.4236,
+          "mu_after": 0.3437,
+          "mu_delta": -0.0798,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "wooden desk",
+          "mu_before": 0.381,
+          "mu_after": 0.3012,
+          "mu_delta": -0.0798,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "soft diffused lighting",
+          "mu_before": 0.4236,
+          "mu_after": 0.3437,
+          "mu_delta": -0.0798,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "natural lighting",
+          "mu_before": 0.381,
+          "mu_after": 0.3012,
+          "mu_delta": -0.0798,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_19",
+          "text": "contemporary elegance",
+          "mu_before": 0.3008,
+          "mu_after": 0.221,
+          "mu_delta": -0.0798,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "calm atmosphere",
+          "mu_before": 0.381,
+          "mu_after": 0.3012,
+          "mu_delta": -0.0798,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "large windows",
+          "mu_before": 0.4714,
+          "mu_after": 0.3916,
+          "mu_delta": -0.0798,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "simple chair design",
+          "mu_before": 0.8572,
+          "mu_after": 1.13,
+          "mu_delta": 0.2728,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_26",
+          "text": "Natural light",
+          "mu_before": 0.3105,
+          "mu_after": 0.0377,
+          "mu_delta": -0.2728,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_22",
+          "text": "soft ambient lighting",
+          "mu_before": 0.5096,
+          "mu_after": 0.2368,
+          "mu_delta": -0.2728,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_30",
+          "text": "Modern elegance",
+          "mu_before": 0.3968,
+          "mu_after": 0.124,
+          "mu_delta": -0.2728,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_7",
+          "text": "open space layout",
+          "mu": 1.4506,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_27",
+          "text": "Soft textures",
+          "mu": 1.2334,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_5",
+          "text": "simple chair design",
+          "mu": 1.13,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_1",
+          "text": "neutral color palette",
+          "mu": 0.9935,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_9",
+          "text": "subtle elegance",
+          "mu": 0.9889,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_2",
+          "text": "natural wood table",
+          "mu": 0.9556,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_6",
+          "text": "clean lines",
+          "mu": 0.8743,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_23",
+          "text": "curtain-filtered daylight",
+          "mu": 0.6785,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_24",
+          "text": "spacious layout",
+          "mu": 0.6785,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_25",
+          "text": "Scandinavian design",
+          "mu": 0.6785,
+          "sigma": 0.5451
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": 0.0377,
+          "max": 1.4506,
+          "mean": 0.5,
+          "std": 0.3409
+        },
+        "sigma_distribution": {
+          "min": 0.5015,
+          "max": 0.5925,
+          "mean": 0.5417
+        },
+        "tags_updated": 26,
+        "unique_tags_updated": 26,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 14.333333333333334,
+        "ranking_received": [
+          0,
+          3,
+          1,
+          2
+        ],
+        "best_option_strategy": "exploit",
+        "worst_option_strategy": "ucb",
+        "pairwise_accuracy_before_update": 0.8333333333333334,
+        "ranking_log_likelihood_before_update": -3.580749458328492
+      }
+    },
+    {
+      "round_num": 5,
+      "timestamp": "2026-02-21T14:54:04.876175",
+      "parameters": {
+        "beta": 0.6667,
+        "max_overlap": 0.55,
+        "learning_rate": 0.1107
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_7",
+              "text": "open space layout",
+              "mu": 1.4506,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_27",
+              "text": "Soft textures",
+              "mu": 1.2334,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "simple chair design",
+              "mu": 1.13,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "neutral color palette",
+              "mu": 0.9935,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "subtle elegance",
+              "mu": 0.9889,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "natural wood table",
+              "mu": 0.9556,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "clean lines",
+              "mu": 0.8743,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_23",
+              "text": "curtain-filtered daylight",
+              "mu": 0.6785,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_24",
+              "text": "spacious layout",
+              "mu": 0.6785,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_25",
+              "text": "Scandinavian design",
+              "mu": 0.6785,
+              "sigma": 0.5451,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.9662,
+          "avg_sigma": 0.5233,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_5",
+              "text": "simple chair design",
+              "mu": 1.13,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "sleek cabinetry",
+              "mu": 0.3437,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_31",
+              "text": "Warm lighting",
+              "mu": 0.2292,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_28",
+              "text": "Neutral tones",
+              "mu": 0.2155,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "soft diffused lighting",
+              "mu": 0.3437,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_32",
+              "text": "Casual elegance",
+              "mu": 0.2292,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "calm atmosphere",
+              "mu": 0.3012,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_33",
+              "text": "Textured fabrics",
+              "mu": 0.2292,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist design",
+              "mu": 0.2341,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "modern aesthetic",
+              "mu": 0.2282,
+              "sigma": 0.5451,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.3484,
+          "avg_sigma": 0.564,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_29",
+              "text": "Simple layout",
+              "mu": 0.4816,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_23",
+              "text": "curtain-filtered daylight",
+              "mu": 0.6785,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "minimalist decor",
+              "mu": 0.4734,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "large windows",
+              "mu": 0.3916,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "ceramic pots",
+              "mu": 0.4228,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "subtle elegance",
+              "mu": 0.9889,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "clean lines",
+              "mu": 0.8743,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_25",
+              "text": "Scandinavian design",
+              "mu": 0.6785,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_24",
+              "text": "spacious layout",
+              "mu": 0.6785,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_17",
+              "text": "curtained backdrop",
+              "mu": 0.4228,
+              "sigma": 0.5451,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.6091,
+          "avg_sigma": 0.5364,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_15",
+              "text": "cozy atmosphere",
+              "mu": 0.3916,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "warm wood tones",
+              "mu": 0.3826,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_29",
+              "text": "Simple layout",
+              "mu": 0.4816,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "minimalist decor",
+              "mu": 0.4734,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "ceramic pots",
+              "mu": 0.4228,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "open space layout",
+              "mu": 1.4506,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "clean lines",
+              "mu": 0.8743,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "natural wood table",
+              "mu": 0.9556,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "simple chair design",
+              "mu": 1.13,
+              "sigma": 0.5451,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "neutral color palette",
+              "mu": 0.9935,
+              "sigma": 0.5015,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.7556,
+          "avg_sigma": 0.5276,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "simple chair design"
+          ],
+          "overlap_count": 1,
+          "overlap_fraction": 0.1,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "Scandinavian design",
+            "clean lines",
+            "subtle elegance",
+            "curtain-filtered daylight",
+            "spacious layout"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "clean lines",
+            "open space layout",
+            "simple chair design",
+            "neutral color palette",
+            "natural wood table"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [],
+          "overlap_count": 0,
+          "overlap_fraction": 0.0,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "simple chair design"
+          ],
+          "overlap_count": 1,
+          "overlap_fraction": 0.1,
+          "max_allowed": 0.55,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "minimalist decor",
+            "clean lines",
+            "ceramic pots",
+            "Simple layout"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.55,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "Scandinavian design",
+            "clean lines",
+            "open space layout",
+            "subtle elegance",
+            "curtain-filtered daylight",
+            "neutral color palette",
+            "natural wood table",
+            "spacious layout",
+            "Soft textures"
+          ],
+          "tags_only_in_worse": [
+            "Warm lighting",
+            "Neutral tones",
+            "Textured fabrics",
+            "calm atmosphere",
+            "modern aesthetic",
+            "sleek cabinetry",
+            "soft diffused lighting",
+            "Casual elegance",
+            "minimalist design"
+          ],
+          "shared_tags": [
+            "simple chair design"
+          ],
+          "num_differentiating": 18
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 3,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "Scandinavian design",
+            "subtle elegance",
+            "curtain-filtered daylight",
+            "spacious layout",
+            "Soft textures"
+          ],
+          "tags_only_in_worse": [
+            "warm wood tones",
+            "ceramic pots",
+            "Simple layout",
+            "cozy atmosphere",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "clean lines",
+            "open space layout",
+            "simple chair design",
+            "neutral color palette",
+            "natural wood table"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "open space layout",
+            "simple chair design",
+            "neutral color palette",
+            "natural wood table",
+            "Soft textures"
+          ],
+          "tags_only_in_worse": [
+            "curtained backdrop",
+            "ceramic pots",
+            "Simple layout",
+            "large windows",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "Scandinavian design",
+            "clean lines",
+            "subtle elegance",
+            "curtain-filtered daylight",
+            "spacious layout"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "Warm lighting",
+            "Neutral tones",
+            "Textured fabrics",
+            "calm atmosphere",
+            "modern aesthetic",
+            "sleek cabinetry",
+            "soft diffused lighting",
+            "Casual elegance",
+            "minimalist design"
+          ],
+          "tags_only_in_worse": [
+            "clean lines",
+            "open space layout",
+            "warm wood tones",
+            "ceramic pots",
+            "Simple layout",
+            "neutral color palette",
+            "natural wood table",
+            "cozy atmosphere",
+            "minimalist decor"
+          ],
+          "shared_tags": [
+            "simple chair design"
+          ],
+          "num_differentiating": 18
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "Warm lighting",
+            "Neutral tones",
+            "Textured fabrics",
+            "simple chair design",
+            "calm atmosphere",
+            "modern aesthetic",
+            "sleek cabinetry",
+            "soft diffused lighting",
+            "Casual elegance",
+            "minimalist design"
+          ],
+          "tags_only_in_worse": [
+            "Scandinavian design",
+            "clean lines",
+            "subtle elegance",
+            "ceramic pots",
+            "curtain-filtered daylight",
+            "Simple layout",
+            "curtained backdrop",
+            "spacious layout",
+            "large windows",
+            "minimalist decor"
+          ],
+          "shared_tags": [],
+          "num_differentiating": 20
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "open space layout",
+            "warm wood tones",
+            "simple chair design",
+            "neutral color palette",
+            "natural wood table",
+            "cozy atmosphere"
+          ],
+          "tags_only_in_worse": [
+            "Scandinavian design",
+            "curtained backdrop",
+            "subtle elegance",
+            "curtain-filtered daylight",
+            "spacious layout",
+            "large windows"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "clean lines",
+            "ceramic pots",
+            "Simple layout"
+          ],
+          "num_differentiating": 12
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_27",
+          "text": "Soft textures",
+          "mu_before": 1.2334,
+          "mu_after": 1.4931,
+          "mu_delta": 0.2596,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_23",
+          "text": "curtain-filtered daylight",
+          "mu_before": 0.6785,
+          "mu_after": 0.6775,
+          "mu_delta": -0.0009,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "open space layout",
+          "mu_before": 1.4506,
+          "mu_after": 1.6304,
+          "mu_delta": 0.1798,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "subtle elegance",
+          "mu_before": 0.9889,
+          "mu_after": 0.9879,
+          "mu_delta": -0.0009,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "natural wood table",
+          "mu_before": 0.9556,
+          "mu_after": 1.1354,
+          "mu_delta": 0.1798,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "clean lines",
+          "mu_before": 0.8743,
+          "mu_after": 0.7935,
+          "mu_delta": -0.0808,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_25",
+          "text": "Scandinavian design",
+          "mu_before": 0.6785,
+          "mu_after": 0.6775,
+          "mu_delta": -0.0009,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_24",
+          "text": "spacious layout",
+          "mu_before": 0.6785,
+          "mu_after": 0.6775,
+          "mu_delta": -0.0009,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "neutral color palette",
+          "mu_before": 0.9935,
+          "mu_after": 1.1733,
+          "mu_delta": 0.1798,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "sleek cabinetry",
+          "mu_before": 0.3437,
+          "mu_after": 0.4245,
+          "mu_delta": 0.0808,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_31",
+          "text": "Warm lighting",
+          "mu_before": 0.2292,
+          "mu_after": 0.31,
+          "mu_delta": 0.0808,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_28",
+          "text": "Neutral tones",
+          "mu_before": 0.2155,
+          "mu_after": 0.2962,
+          "mu_delta": 0.0808,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "soft diffused lighting",
+          "mu_before": 0.3437,
+          "mu_after": 0.4245,
+          "mu_delta": 0.0808,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_32",
+          "text": "Casual elegance",
+          "mu_before": 0.2292,
+          "mu_after": 0.31,
+          "mu_delta": 0.0808,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "calm atmosphere",
+          "mu_before": 0.3012,
+          "mu_after": 0.382,
+          "mu_delta": 0.0808,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_33",
+          "text": "Textured fabrics",
+          "mu_before": 0.2292,
+          "mu_after": 0.31,
+          "mu_delta": 0.0808,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "minimalist design",
+          "mu_before": 0.2341,
+          "mu_after": 0.3148,
+          "mu_delta": 0.0808,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "modern aesthetic",
+          "mu_before": 0.2282,
+          "mu_after": 0.309,
+          "mu_delta": 0.0808,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_15",
+          "text": "cozy atmosphere",
+          "mu_before": 0.3916,
+          "mu_after": 0.3118,
+          "mu_delta": -0.0798,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_29",
+          "text": "Simple layout",
+          "mu_before": 0.4816,
+          "mu_after": 0.1412,
+          "mu_delta": -0.3404,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "minimalist decor",
+          "mu_before": 0.4734,
+          "mu_after": 0.133,
+          "mu_delta": -0.3404,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_16",
+          "text": "ceramic pots",
+          "mu_before": 0.4228,
+          "mu_after": 0.0823,
+          "mu_delta": -0.3404,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_20",
+          "text": "warm wood tones",
+          "mu_before": 0.3826,
+          "mu_after": 0.3028,
+          "mu_delta": -0.0798,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "simple chair design",
+          "mu_before": 1.13,
+          "mu_after": 1.3906,
+          "mu_delta": 0.2606,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_17",
+          "text": "curtained backdrop",
+          "mu_before": 0.4228,
+          "mu_after": 0.1622,
+          "mu_delta": -0.2606,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "large windows",
+          "mu_before": 0.3916,
+          "mu_after": 0.131,
+          "mu_delta": -0.2606,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_7",
+          "text": "open space layout",
+          "mu": 1.6304,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_27",
+          "text": "Soft textures",
+          "mu": 1.4931,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_5",
+          "text": "simple chair design",
+          "mu": 1.3906,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_1",
+          "text": "neutral color palette",
+          "mu": 1.1733,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_2",
+          "text": "natural wood table",
+          "mu": 1.1354,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_9",
+          "text": "subtle elegance",
+          "mu": 0.9879,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_6",
+          "text": "clean lines",
+          "mu": 0.7935,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_23",
+          "text": "curtain-filtered daylight",
+          "mu": 0.6775,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_24",
+          "text": "spacious layout",
+          "mu": 0.6775,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_25",
+          "text": "Scandinavian design",
+          "mu": 0.6775,
+          "sigma": 0.5015
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": 0.0377,
+          "max": 1.6304,
+          "mean": 0.5,
+          "std": 0.4181
+        },
+        "sigma_distribution": {
+          "min": 0.4614,
+          "max": 0.5451,
+          "mean": 0.5084
+        },
+        "tags_updated": 26,
+        "unique_tags_updated": 26,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 14.666666666666666,
+        "ranking_received": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "best_option_strategy": "exploit",
+        "worst_option_strategy": "ucb",
+        "pairwise_accuracy_before_update": 0.6666666666666666,
+        "ranking_log_likelihood_before_update": -3.8062340805064925
+      }
+    }
+  ],
+  "final": {
+    "timestamp": "2026-02-21T14:55:39.147972",
+    "rounds_completed": 5,
+    "total_comparisons": 30,
+    "total_tag_updates": 131,
+    "final_tags": [
+      {
+        "rank": 1,
+        "text": "open space layout",
+        "weight": 0.1662,
+        "final_mu": 1.6304,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 10,
+        "times_in_winner": 4,
+        "times_in_loser": 0,
+        "win_rate": 0.4
+      },
+      {
+        "rank": 2,
+        "text": "Soft textures",
+        "weight": 0.1449,
+        "final_mu": 1.4931,
+        "final_sigma": 0.5015,
+        "category": "positive_other",
+        "times_shown": 7,
+        "times_in_winner": 3,
+        "times_in_loser": 0,
+        "win_rate": 0.429
+      },
+      {
+        "rank": 3,
+        "text": "simple chair design",
+        "weight": 0.1308,
+        "final_mu": 1.3906,
+        "final_sigma": 0.5015,
+        "category": "positive_other",
+        "times_shown": 14,
+        "times_in_winner": 5,
+        "times_in_loser": 2,
+        "win_rate": 0.357
+      },
+      {
+        "rank": 4,
+        "text": "neutral color palette",
+        "weight": 0.1052,
+        "final_mu": 1.1733,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 9,
+        "times_in_winner": 4,
+        "times_in_loser": 1,
+        "win_rate": 0.444
+      },
+      {
+        "rank": 5,
+        "text": "natural wood table",
+        "weight": 0.1013,
+        "final_mu": 1.1354,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 9,
+        "times_in_winner": 4,
+        "times_in_loser": 2,
+        "win_rate": 0.444
+      },
+      {
+        "rank": 6,
+        "text": "subtle elegance",
+        "weight": 0.0874,
+        "final_mu": 0.9879,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 9,
+        "times_in_winner": 4,
+        "times_in_loser": 2,
+        "win_rate": 0.444
+      },
+      {
+        "rank": 7,
+        "text": "clean lines",
+        "weight": 0.072,
+        "final_mu": 0.7935,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 11,
+        "times_in_winner": 4,
+        "times_in_loser": 3,
+        "win_rate": 0.364
+      },
+      {
+        "rank": 8,
+        "text": "curtain-filtered daylight",
+        "weight": 0.0641,
+        "final_mu": 0.6775,
+        "final_sigma": 0.5015,
+        "category": "positive_other",
+        "times_shown": 6,
+        "times_in_winner": 3,
+        "times_in_loser": 2,
+        "win_rate": 0.5
+      },
+      {
+        "rank": 9,
+        "text": "spacious layout",
+        "weight": 0.0641,
+        "final_mu": 0.6775,
+        "final_sigma": 0.5015,
+        "category": "positive_other",
+        "times_shown": 6,
+        "times_in_winner": 3,
+        "times_in_loser": 2,
+        "win_rate": 0.5
+      },
+      {
+        "rank": 10,
+        "text": "Scandinavian design",
+        "weight": 0.0641,
+        "final_mu": 0.6775,
+        "final_sigma": 0.5015,
+        "category": "positive_other",
+        "times_shown": 6,
+        "times_in_winner": 3,
+        "times_in_loser": 2,
+        "win_rate": 0.5
+      }
+    ],
+    "final_trajectories": {
+      "open space layout": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.8898,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 1.093,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 1.098,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 1.4506,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 1.6304,
+          "sigma": 0.4614
+        }
+      ],
+      "Soft textures": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 2,
+          "mu": 0.8759,
+          "sigma": 0.644
+        },
+        {
+          "round": 3,
+          "mu": 0.8808,
+          "sigma": 0.5925
+        },
+        {
+          "round": 4,
+          "mu": 1.2334,
+          "sigma": 0.5451
+        },
+        {
+          "round": 5,
+          "mu": 1.4931,
+          "sigma": 0.5015
+        }
+      ],
+      "simple chair design": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 2,
+          "mu": 0.5863,
+          "sigma": 0.644
+        },
+        {
+          "round": 3,
+          "mu": 0.8572,
+          "sigma": 0.5925
+        },
+        {
+          "round": 4,
+          "mu": 1.13,
+          "sigma": 0.5451
+        },
+        {
+          "round": 5,
+          "mu": 1.3906,
+          "sigma": 0.5015
+        }
+      ],
+      "neutral color palette": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.709,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.9123,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.7227,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 0.9935,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 1.1733,
+          "sigma": 0.4614
+        }
+      ],
+      "natural wood table": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.7895,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.8758,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 0.9556,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 1.1354,
+          "sigma": 0.4614
+        }
+      ],
+      "subtle elegance": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.7994,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.7131,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.7181,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 0.9889,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 0.9879,
+          "sigma": 0.4614
+        }
+      ],
+      "clean lines": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.7895,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.7945,
+          "sigma": 0.5451
+        },
+        {
+          "round": 4,
+          "mu": 0.8743,
+          "sigma": 0.5015
+        },
+        {
+          "round": 5,
+          "mu": 0.7935,
+          "sigma": 0.4614
+        }
+      ],
+      "curtain-filtered daylight": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.4096,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.4096,
+          "sigma": 0.644
+        },
+        {
+          "round": 3,
+          "mu": 0.6805,
+          "sigma": 0.5925
+        },
+        {
+          "round": 4,
+          "mu": 0.6785,
+          "sigma": 0.5451
+        },
+        {
+          "round": 5,
+          "mu": 0.6775,
+          "sigma": 0.5015
+        }
+      ],
+      "spacious layout": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.4096,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.4096,
+          "sigma": 0.644
+        },
+        {
+          "round": 3,
+          "mu": 0.6805,
+          "sigma": 0.5925
+        },
+        {
+          "round": 4,
+          "mu": 0.6785,
+          "sigma": 0.5451
+        },
+        {
+          "round": 5,
+          "mu": 0.6775,
+          "sigma": 0.5015
+        }
+      ],
+      "Scandinavian design": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.4096,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.4096,
+          "sigma": 0.644
+        },
+        {
+          "round": 3,
+          "mu": 0.6805,
+          "sigma": 0.5925
+        },
+        {
+          "round": 4,
+          "mu": 0.6785,
+          "sigma": 0.5451
+        },
+        {
+          "round": 5,
+          "mu": 0.6775,
+          "sigma": 0.5015
+        }
+      ]
+    },
+    "convergence_analysis": {
+      "top_10_stability": "10/10 tags same as previous round",
+      "mu_spread": 1.5927,
+      "avg_final_sigma": 0.5084,
+      "min_final_sigma": 0.4614,
+      "converged": false
+    },
+    "warnings_summary": {
+      "total": 1,
+      "by_type": {
+        "low_neutral_count": 1
+      }
+    }
+  },
+  "warnings": [
+    {
+      "type": "low_neutral_count",
+      "message": "Only 0 neutral tags. Exploration may be limited.",
+      "timestamp": "2026-02-21T14:49:54.314245"
+    }
+  ],
+  "tag_trajectories": {
+    "pos_0": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.7994,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.5099,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.2341,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.2341,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.3148,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_1": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.709,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.9123,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.7227,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.9935,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 1.1733,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_2": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.7895,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.8758,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.9556,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 1.1354,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_3": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.7994,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4236,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.4236,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.3437,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.4245,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_4": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.7994,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4236,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.4236,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.3437,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.4245,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_5": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.5863,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.8572,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 1.13,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 1.3906,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_6": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.7895,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.7945,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.8743,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 0.7935,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_7": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.8898,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 1.093,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 1.098,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 1.4506,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 1.6304,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_8": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5904,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.5041,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.2282,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.2282,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.309,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_9": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.7994,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.7131,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.7181,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.9889,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 0.9879,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_10": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.1102,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.1102,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.381,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.3012,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.382,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_11": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.1102,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.1102,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.381,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.3012,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.3012,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_12": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.1102,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.1102,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.381,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.3012,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.3012,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_13": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.2006,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.2006,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.4714,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.4734,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.133,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_14": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.2006,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.2006,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.4714,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.3916,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.131,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_15": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.2006,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.2006,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.4714,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.3916,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.3118,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_16": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5904,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.5041,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.4228,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.4228,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.0823,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_17": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5904,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.5041,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.4228,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.4228,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.1622,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_18": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5904,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.7936,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.6041,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.4131,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 0.4131,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_19": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5904,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.3008,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.3008,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.221,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.221,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_20": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5904,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.3008,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.3008,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.3826,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.3028,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_21": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5904,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.3008,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.3008,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.3826,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.3826,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_22": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4096,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.6991,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.5096,
+        "sigma": 0.5451
+      },
+      {
+        "round": 4,
+        "mu": 0.2368,
+        "sigma": 0.5015
+      },
+      {
+        "round": 5,
+        "mu": 0.2368,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_23": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4096,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4096,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.6805,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.6785,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.6775,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_24": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4096,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4096,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.6805,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.6785,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.6775,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_25": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4096,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4096,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.6805,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.6785,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.6775,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_26": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.5863,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.3105,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.0377,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.0377,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_27": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.8759,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.8808,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 1.2334,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 1.4931,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_28": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.2968,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.2155,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.2155,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": 0.2962,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_29": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.5863,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.6726,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.4816,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.1412,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_30": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.5863,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.3968,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.124,
+        "sigma": 0.5451
+      },
+      {
+        "round": 5,
+        "mu": 0.124,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_31": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.5863,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.2292,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.2292,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": 0.31,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_32": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.5863,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.2292,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.2292,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": 0.31,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_33": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.5863,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.2292,
+        "sigma": 0.5925
+      },
+      {
+        "round": 4,
+        "mu": 0.2292,
+        "sigma": 0.5925
+      },
+      {
+        "round": 5,
+        "mu": 0.31,
+        "sigma": 0.5451
+      }
+    ]
+  }
+}

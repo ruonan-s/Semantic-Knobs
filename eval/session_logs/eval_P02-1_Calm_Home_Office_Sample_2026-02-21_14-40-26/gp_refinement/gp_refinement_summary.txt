@@ -1,0 +1,125 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26
+Started: 2026-02-21T14:49:54.313171
+Rounds: 5
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 34
+  Neutral tags: 0
+  Total: 34
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.50 | minimalist design, neutral color palette, natural wood table...
+    [1] explore      | avg_μ=+0.50 | cozy atmosphere, wooden desk, minimalist decor...
+    [2] ucb          | avg_μ=+0.50 | curtained backdrop, warm wood tones, ceramic pots...
+    [3] challenger   | avg_μ=+0.50 | wooden desk, curtain-filtered daylight, soft ambient lighting...
+  Ranking: [0, 2, 3, 1]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. open space layout         μ=+0.890 σ=0.644
+    2. minimalist design         μ=+0.799 σ=0.644
+    3. sleek cabinetry           μ=+0.799 σ=0.644
+    4. soft diffused lighting    μ=+0.799 σ=0.644
+    5. subtle elegance           μ=+0.799 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.72 | open space layout, minimalist design, sleek cabinetry...
+    [1] explore      | avg_μ=+0.53 | Soft textures, Natural light, Simple layout...
+    [2] ucb          | avg_μ=+0.65 | Natural light, warm wood tones, sleek cabinetry...
+    [3] challenger   | avg_μ=+0.59 | Soft textures, Natural light, soft ambient lighting...
+  Ranking: [3, 1, 0, 2]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. open space layout         μ=+1.093 σ=0.593
+    2. neutral color palette     μ=+0.912 σ=0.593
+    3. Soft textures             μ=+0.876 σ=0.644
+    4. modern simplicity         μ=+0.794 σ=0.593
+    5. natural wood table        μ=+0.789 σ=0.593
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.78 | open space layout, neutral color palette, Soft textures...
+    [1] explore      | avg_μ=+0.27 | cozy atmosphere, wooden desk, minimalist decor...
+    [2] ucb          | avg_μ=+0.64 | Natural light, Warm lighting, soft ambient lighting...
+    [3] challenger   | avg_μ=+0.65 | Soft textures, Warm lighting, Neutral tones...
+  Ranking: [1, 0, 3, 2]
+  Comparisons: 6
+  Tags updated: 29
+  Top 5 after round:
+    1. open space layout         μ=+1.098 σ=0.545
+    2. Soft textures             μ=+0.881 σ=0.593
+    3. natural wood table        μ=+0.876 σ=0.545
+    4. simple chair design       μ=+0.857 σ=0.593
+    5. clean lines               μ=+0.794 σ=0.545
+
+----------------------------------------------------------------------
+ROUND 4 (β=1.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.80 | open space layout, Soft textures, natural wood table...
+    [1] explore      | avg_μ=+0.46 | cozy atmosphere, sleek cabinetry, wooden desk...
+    [2] ucb          | avg_μ=+0.62 | Natural light, Simple layout, curtain-filtered daylight...
+    [3] challenger   | avg_μ=+0.69 | Soft textures, warm wood tones, Simple layout...
+  Ranking: [0, 3, 1, 2]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. open space layout         μ=+1.451 σ=0.501
+    2. Soft textures             μ=+1.233 σ=0.545
+    3. simple chair design       μ=+1.130 σ=0.545
+    4. neutral color palette     μ=+0.994 σ=0.501
+    5. subtle elegance           μ=+0.989 σ=0.501
+
+----------------------------------------------------------------------
+ROUND 5 (β=0.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.97 | open space layout, Soft textures, simple chair design...
+    [1] explore      | avg_μ=+0.35 | simple chair design, sleek cabinetry, Warm lighting...
+    [2] ucb          | avg_μ=+0.61 | Simple layout, curtain-filtered daylight, minimalist decor...
+    [3] challenger   | avg_μ=+0.76 | cozy atmosphere, warm wood tones, Simple layout...
+  Ranking: [0, 1, 3, 2]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. open space layout         μ=+1.630 σ=0.461
+    2. Soft textures             μ=+1.493 σ=0.501
+    3. simple chair design       μ=+1.391 σ=0.501
+    4. neutral color palette     μ=+1.173 σ=0.461
+    5. natural wood table        μ=+1.135 σ=0.461
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. open space layout              | w=0.166 | μ=+1.630 | win_rate=40%
+   2. Soft textures                  | w=0.145 | μ=+1.493 | win_rate=43%
+   3. simple chair design            | w=0.131 | μ=+1.391 | win_rate=36%
+   4. neutral color palette          | w=0.105 | μ=+1.173 | win_rate=44%
+   5. natural wood table             | w=0.101 | μ=+1.135 | win_rate=44%
+   6. subtle elegance                | w=0.087 | μ=+0.988 | win_rate=44%
+   7. clean lines                    | w=0.072 | μ=+0.793 | win_rate=36%
+   8. curtain-filtered daylight      | w=0.064 | μ=+0.677 | win_rate=50%
+   9. spacious layout                | w=0.064 | μ=+0.677 | win_rate=50%
+  10. Scandinavian design            | w=0.064 | μ=+0.677 | win_rate=50%
+
+  Convergence: False
+  Top-10 stability: 10/10 tags same as previous round
+
+======================================================================
+WARNINGS (1)
+======================================================================
+  [low_neutral_count] Only 0 neutral tags. Exploration may be limited.

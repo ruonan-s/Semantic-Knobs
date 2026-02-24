@@ -1,0 +1,421 @@
+{
+  "stage": "hitl_refinement_v2",
+  "session_id": "eval_P04-1_Calm_Home_Office_Sample_2026-02-22_15-49-31",
+  "timestamp": "2026-02-22T16:23:19.602981",
+  "rounds_completed": 4,
+  "is_converged": false,
+  "tags": [
+    "Wooden furniture",
+    "warm wood tones",
+    "Warm lighting",
+    "sleek cabinetry",
+    "Casual elegance",
+    "soft ambient lighting",
+    "curtain-filtered daylight",
+    "Textured fabrics",
+    "clean lines",
+    "simple chair design"
+  ],
+  "weights": {
+    "Wooden furniture": 0.2257407161324353,
+    "warm wood tones": 0.12607825529221334,
+    "Warm lighting": 0.10195157935842869,
+    "sleek cabinetry": 0.10121597976530934,
+    "Casual elegance": 0.0910130206154483,
+    "soft ambient lighting": 0.08259997680380679,
+    "curtain-filtered daylight": 0.07469730095835,
+    "Textured fabrics": 0.06983816965782749,
+    "clean lines": 0.06878364783964024,
+    "simple chair design": 0.058081353576540616
+  },
+  "tag_details": [
+    {
+      "rank": 1,
+      "tag": "Wooden furniture",
+      "weight": 0.2257407161324353
+    },
+    {
+      "rank": 2,
+      "tag": "warm wood tones",
+      "weight": 0.12607825529221334
+    },
+    {
+      "rank": 3,
+      "tag": "Warm lighting",
+      "weight": 0.10195157935842869
+    },
+    {
+      "rank": 4,
+      "tag": "sleek cabinetry",
+      "weight": 0.10121597976530934
+    },
+    {
+      "rank": 5,
+      "tag": "Casual elegance",
+      "weight": 0.0910130206154483
+    },
+    {
+      "rank": 6,
+      "tag": "soft ambient lighting",
+      "weight": 0.08259997680380679
+    },
+    {
+      "rank": 7,
+      "tag": "curtain-filtered daylight",
+      "weight": 0.07469730095835
+    },
+    {
+      "rank": 8,
+      "tag": "Textured fabrics",
+      "weight": 0.06983816965782749
+    },
+    {
+      "rank": 9,
+      "tag": "clean lines",
+      "weight": 0.06878364783964024
+    },
+    {
+      "rank": 10,
+      "tag": "simple chair design",
+      "weight": 0.058081353576540616
+    }
+  ],
+  "all_tag_details": [
+    {
+      "text": "Wooden furniture",
+      "final_mu": 1.8765,
+      "final_sigma": 0.3905,
+      "category": "positive_other",
+      "times_shown": 6,
+      "win_rate": 0.6666666666666666
+    },
+    {
+      "text": "warm wood tones",
+      "final_mu": 1.2941,
+      "final_sigma": 0.3905,
+      "category": "positive_other",
+      "times_shown": 8,
+      "win_rate": 0.375
+    },
+    {
+      "text": "Warm lighting",
+      "final_mu": 1.0817,
+      "final_sigma": 0.4614,
+      "category": "positive_other",
+      "times_shown": 7,
+      "win_rate": 0.42857142857142855
+    },
+    {
+      "text": "sleek cabinetry",
+      "final_mu": 1.0744,
+      "final_sigma": 0.4244,
+      "category": "neutral_other",
+      "times_shown": 5,
+      "win_rate": 0.8
+    },
+    {
+      "text": "Casual elegance",
+      "final_mu": 0.9682,
+      "final_sigma": 0.4244,
+      "category": "positive_other",
+      "times_shown": 9,
+      "win_rate": 0.4444444444444444
+    },
+    {
+      "text": "soft ambient lighting",
+      "final_mu": 0.8712,
+      "final_sigma": 0.4614,
+      "category": "positive_other",
+      "times_shown": 7,
+      "win_rate": 0.2857142857142857
+    },
+    {
+      "text": "curtain-filtered daylight",
+      "final_mu": 0.7706,
+      "final_sigma": 0.4244,
+      "category": "positive_other",
+      "times_shown": 7,
+      "win_rate": 0.2857142857142857
+    },
+    {
+      "text": "Textured fabrics",
+      "final_mu": 0.7033,
+      "final_sigma": 0.3905,
+      "category": "positive_other",
+      "times_shown": 9,
+      "win_rate": 0.3333333333333333
+    },
+    {
+      "text": "clean lines",
+      "final_mu": 0.6881,
+      "final_sigma": 0.3905,
+      "category": "neutral_other",
+      "times_shown": 4,
+      "win_rate": 0.5
+    },
+    {
+      "text": "simple chair design",
+      "final_mu": 0.519,
+      "final_sigma": 0.4244,
+      "category": "neutral_other",
+      "times_shown": 7,
+      "win_rate": 0.5714285714285714
+    },
+    {
+      "text": "wooden desk",
+      "final_mu": 0.118,
+      "final_sigma": 0.4816,
+      "category": "positive_other",
+      "times_shown": 4,
+      "win_rate": 0.0
+    },
+    {
+      "text": "calm atmosphere",
+      "final_mu": 0.0665,
+      "final_sigma": 0.4914,
+      "category": "positive_other",
+      "times_shown": 8,
+      "win_rate": 0.125
+    },
+    {
+      "text": "earthy tones",
+      "final_mu": 0.0528,
+      "final_sigma": 0.5925,
+      "category": "neutral_other",
+      "times_shown": 2,
+      "win_rate": 0.5
+    },
+    {
+      "text": "plush gray chair",
+      "final_mu": 0.0479,
+      "final_sigma": 0.5925,
+      "category": "neutral_other",
+      "times_shown": 2,
+      "win_rate": 0.5
+    },
+    {
+      "text": "luxurious materials",
+      "final_mu": 0.0479,
+      "final_sigma": 0.5925,
+      "category": "neutral_other",
+      "times_shown": 2,
+      "win_rate": 0.5
+    },
+    {
+      "text": "spacious layout",
+      "final_mu": 0.0479,
+      "final_sigma": 0.5925,
+      "category": "neutral_other",
+      "times_shown": 2,
+      "win_rate": 0.5
+    },
+    {
+      "text": "Natural light",
+      "final_mu": 0.0435,
+      "final_sigma": 0.4914,
+      "category": "positive_other",
+      "times_shown": 4,
+      "win_rate": 0.0
+    },
+    {
+      "text": "Soft textures",
+      "final_mu": 0.0435,
+      "final_sigma": 0.4914,
+      "category": "positive_other",
+      "times_shown": 4,
+      "win_rate": 0.0
+    },
+    {
+      "text": "textured wall paneling",
+      "final_mu": -0.0429,
+      "final_sigma": 0.4914,
+      "category": "positive_other",
+      "times_shown": 5,
+      "win_rate": 0.0
+    },
+    {
+      "text": "subtle elegance",
+      "final_mu": -0.055,
+      "final_sigma": 0.4914,
+      "category": "positive_other",
+      "times_shown": 7,
+      "win_rate": 0.0
+    },
+    {
+      "text": "modern simplicity",
+      "final_mu": -0.1195,
+      "final_sigma": 0.5925,
+      "category": "neutral_other",
+      "times_shown": 2,
+      "win_rate": 0.5
+    },
+    {
+      "text": "floor-to-ceiling curtains",
+      "final_mu": -0.1248,
+      "final_sigma": 0.5028,
+      "category": "positive_other",
+      "times_shown": 5,
+      "win_rate": 0.2
+    },
+    {
+      "text": "lush greenery",
+      "final_mu": -0.1499,
+      "final_sigma": 0.5235,
+      "category": "positive_other",
+      "times_shown": 5,
+      "win_rate": 0.0
+    },
+    {
+      "text": "soft diffused lighting",
+      "final_mu": -0.1526,
+      "final_sigma": 0.4914,
+      "category": "positive_other",
+      "times_shown": 6,
+      "win_rate": 0.0
+    },
+    {
+      "text": "cozy atmosphere",
+      "final_mu": -0.1582,
+      "final_sigma": 0.5235,
+      "category": "positive_other",
+      "times_shown": 5,
+      "win_rate": 0.0
+    },
+    {
+      "text": "modern aesthetic",
+      "final_mu": -0.2914,
+      "final_sigma": 0.5925,
+      "category": "neutral_other",
+      "times_shown": 2,
+      "win_rate": 0.0
+    },
+    {
+      "text": "natural lighting",
+      "final_mu": -0.2914,
+      "final_sigma": 0.5925,
+      "category": "neutral_other",
+      "times_shown": 2,
+      "win_rate": 0.0
+    },
+    {
+      "text": "stone accents",
+      "final_mu": -0.2948,
+      "final_sigma": 0.5925,
+      "category": "neutral_other",
+      "times_shown": 2,
+      "win_rate": 0.0
+    },
+    {
+      "text": "minimalist design",
+      "final_mu": -0.3893,
+      "final_sigma": 0.644,
+      "category": "neutral_other",
+      "times_shown": 3,
+      "win_rate": 0.3333333333333333
+    },
+    {
+      "text": "neutral color palette",
+      "final_mu": -0.3893,
+      "final_sigma": 0.644,
+      "category": "neutral_other",
+      "times_shown": 3,
+      "win_rate": 0.3333333333333333
+    },
+    {
+      "text": "sophisticated atmosphere",
+      "final_mu": -0.4628,
+      "final_sigma": 0.6311,
+      "category": "neutral_other",
+      "times_shown": 1,
+      "win_rate": 0.0
+    },
+    {
+      "text": "Neutral tones",
+      "final_mu": -0.4628,
+      "final_sigma": 0.6311,
+      "category": "neutral_other",
+      "times_shown": 1,
+      "win_rate": 0.0
+    },
+    {
+      "text": "Simple layout",
+      "final_mu": -0.4628,
+      "final_sigma": 0.6311,
+      "category": "neutral_other",
+      "times_shown": 1,
+      "win_rate": 0.0
+    },
+    {
+      "text": "open space layout",
+      "final_mu": -0.4805,
+      "final_sigma": 0.5925,
+      "category": "neutral_other",
+      "times_shown": 2,
+      "win_rate": 0.0
+    },
+    {
+      "text": "Scandinavian design",
+      "final_mu": -0.5698,
+      "final_sigma": 0.644,
+      "category": "neutral_other",
+      "times_shown": 1,
+      "win_rate": 0.0
+    },
+    {
+      "text": "Modern elegance",
+      "final_mu": -0.5698,
+      "final_sigma": 0.644,
+      "category": "neutral_other",
+      "times_shown": 1,
+      "win_rate": 0.0
+    },
+    {
+      "text": "minimalist decor",
+      "final_mu": -0.5882,
+      "final_sigma": 0.6311,
+      "category": "neutral_other",
+      "times_shown": 2,
+      "win_rate": 0.0
+    },
+    {
+      "text": "natural wood table",
+      "final_mu": -0.5975,
+      "final_sigma": 0.644,
+      "category": "neutral_other",
+      "times_shown": 1,
+      "win_rate": 0.0
+    },
+    {
+      "text": "contemporary elegance",
+      "final_mu": -0.6565,
+      "final_sigma": 0.5925,
+      "category": "neutral_other",
+      "times_shown": 2,
+      "win_rate": 0.0
+    },
+    {
+      "text": "sleek modern desk",
+      "final_mu": -0.6565,
+      "final_sigma": 0.5925,
+      "category": "neutral_other",
+      "times_shown": 2,
+      "win_rate": 0.0
+    },
+    {
+      "text": "ceramic pots",
+      "final_mu": -0.6741,
+      "final_sigma": 0.6311,
+      "category": "neutral_other",
+      "times_shown": 1,
+      "win_rate": 0.0
+    },
+    {
+      "text": "curtained backdrop",
+      "final_mu": -0.6741,
+      "final_sigma": 0.6311,
+      "category": "neutral_other",
+      "times_shown": 1,
+      "win_rate": 0.0
+    }
+  ]
+}

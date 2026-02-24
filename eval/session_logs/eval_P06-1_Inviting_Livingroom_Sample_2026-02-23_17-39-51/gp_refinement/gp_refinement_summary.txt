@@ -1,0 +1,109 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_P06-1_Inviting_Livingroom_Sample_2026-02-23_17-39-51
+Started: 2026-02-23T17:52:16.596820
+Rounds: 4
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 25
+  Neutral tags: 0
+  Total: 25
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.50 | neutral color palette, large window, soft textures...
+    [1] explore      | avg_μ=+0.50 | large glass windows, natural light, modern elegance...
+    [2] ucb          | avg_μ=+0.50 | modern classic style, soft natural lighting, contemporary artwork...
+    [3] challenger   | avg_μ=+0.50 | natural light, modern elegance, inviting cozy atmosphere...
+  Ranking: [1, 0, 3, 2]
+  Comparisons: 6
+  Tags updated: 24
+  Top 5 after round:
+    1. large glass windows       μ=+0.890 σ=0.644
+    2. modern elegance           μ=+0.799 σ=0.644
+    3. organic shapes            μ=+0.799 σ=0.644
+    4. cozy atmosphere           μ=+0.799 σ=0.644
+    5. cushioned seating         μ=+0.799 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.74 | large glass windows, modern elegance, organic shapes...
+    [1] explore      | avg_μ=+0.55 | inviting atmosphere, lush greenery view, neutral color palette...
+    [2] ucb          | avg_μ=+0.54 | modern classic style, large glass windows, inviting cozy atmosphere...
+    [3] challenger   | avg_μ=+0.54 | soft natural lighting, lush greenery view, contemporary artwork...
+  Ranking: [0, 1, 2, 3]
+  Comparisons: 6
+  Tags updated: 24
+  Top 5 after round:
+    1. large glass windows       μ=+1.179 σ=0.593
+    2. cushioned seating         μ=+0.999 σ=0.593
+    3. natural light             μ=+0.995 σ=0.593
+    4. botanical accents         μ=+0.995 σ=0.593
+    5. soft textures             μ=+0.966 σ=0.593
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.91 | large glass windows, cushioned seating, natural light...
+    [1] explore      | avg_μ=+0.59 | inviting atmosphere, lush greenery view, neutral color palette...
+    [2] ucb          | avg_μ=+0.53 | modern classic style, inviting atmosphere, natural light...
+    [3] challenger   | avg_μ=+0.51 | inviting atmosphere, soft natural lighting, lush greenery view...
+  Ranking: [0, 3, 1, 2]
+  Comparisons: 6
+  Tags updated: 23
+  Top 5 after round:
+    1. large glass windows       μ=+1.456 σ=0.545
+    2. botanical accents         μ=+1.357 σ=0.545
+    3. cushioned seating         μ=+1.275 σ=0.545
+    4. soft textures             μ=+1.157 σ=0.545
+    5. natural light             μ=+0.994 σ=0.545
+
+----------------------------------------------------------------------
+ROUND 4 (β=1.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+1.08 | large glass windows, botanical accents, cushioned seating...
+    [1] explore      | avg_μ=+0.60 | inviting atmosphere, lush greenery view, neutral color palette...
+    [2] ucb          | avg_μ=+0.56 | large glass windows, inviting cozy atmosphere, modern elegance...
+    [3] challenger   | avg_μ=+0.70 | inviting atmosphere, soft natural lighting, lush greenery view...
+  Ranking: [0, 1, 2, 3]
+  Comparisons: 6
+  Tags updated: 22
+  Top 5 after round:
+    1. botanical accents         μ=+1.627 σ=0.501
+    2. large glass windows       μ=+1.456 σ=0.545
+    3. cushioned seating         μ=+1.272 σ=0.501
+    4. natural light             μ=+1.264 σ=0.501
+    5. soft textures             μ=+1.238 σ=0.501
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. botanical accents              | w=0.149 | μ=+1.627 | win_rate=67%
+   2. large glass windows            | w=0.126 | μ=+1.456 | win_rate=33%
+   3. cushioned seating              | w=0.105 | μ=+1.272 | win_rate=67%
+   4. natural light                  | w=0.104 | μ=+1.264 | win_rate=67%
+   5. soft textures                  | w=0.101 | μ=+1.238 | win_rate=38%
+   6. open layout                    | w=0.095 | μ=+1.171 | win_rate=57%
+   7. modern elegance                | w=0.093 | μ=+1.159 | win_rate=31%
+   8. inviting atmosphere            | w=0.084 | μ=+1.047 | win_rate=30%
+   9. cozy atmosphere                | w=0.072 | μ=+0.902 | win_rate=50%
+  10. organic shapes                 | w=0.072 | μ=+0.898 | win_rate=50%
+
+  Convergence: False
+  Top-10 stability: 10/10 tags same as previous round
+
+======================================================================
+WARNINGS (3)
+======================================================================
+  [low_neutral_count] Only 0 neutral tags. Exploration may be limited.
+  [diversity_violation] Round 1: Options 1 and 3 have 50% overlap (max 40%)
+  [diversity_violation] Round 3: Options 1 and 3 have 50% overlap (max 45%)

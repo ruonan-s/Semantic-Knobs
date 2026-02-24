@@ -97,6 +97,9 @@ function App() {
   const [isSavingRanking, setIsSavingRanking] = useState(false);
   // Track if current ranking was just saved (for feedback)
   const [rankingSaved, setRankingSaved] = useState(false);
+  // Reflect panel state
+  const [showReflect, setShowReflect] = useState(false);
+  const [reflectData, setReflectData] = useState(null);
   
   // HITL Refinement state
   const [hitlRound, setHitlRound] = useState(1);
@@ -1249,6 +1252,25 @@ function App() {
     }
   };
 
+  const loadReflectImages = async () => {
+    const sessionLog = selectedSessionLog || sessionId;
+    if (!sessionLog) return;
+    try {
+      const res = await fetch('/api/eval/reflect-images', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_log: sessionLog })
+      });
+      if (!res.ok) throw new Error(`Failed to load reflect images: ${res.status}`);
+      const data = await res.json();
+      setReflectData(data.locations);
+      setShowReflect(true);
+    } catch (error) {
+      console.error('Error loading reflect images:', error);
+      addStatusMessage(`Error loading reflect images: ${error.message}`);
+    }
+  };
+
   // Load comparison images for a location (helper that takes session log)
   const loadComparisonImagesForSession = async (sessionLog, locationName, isInitialRound = false) => {
     if (!sessionLog) return;
@@ -1751,12 +1773,6 @@ function App() {
       ) : stage === 'manual_tag_weights' ? (
         // ============== MANUAL TAG CUSTOMIZATION STAGE ==============
         <div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-            <h2 style={{ margin: 0 }}>User Customization: Pick 10 Tags</h2>
-            <div style={{ color: '#666', fontSize: '14px' }}>
-              {descriptor} | Session: {sessionId}
-            </div>
-          </div>
 
           <div style={{
             padding: '16px',
@@ -1919,6 +1935,8 @@ function App() {
             onRollback={handleHITLRollback}
             bestPicks={hitlBestPicks}
             statusMessage={hitlStatusMessage}
+            adjective={adjective}
+            descriptor={descriptor}
           />
           
           {/* Back button */}
@@ -2162,6 +2180,31 @@ function App() {
             >
               ← Back to Sessions
             </button>
+            
+            {/* Reflect button */}
+            <button
+              onClick={() => {
+                if (showReflect) {
+                  setShowReflect(false);
+                } else {
+                  loadReflectImages();
+                }
+              }}
+              style={{
+                marginTop: '10px',
+                width: '100%',
+                padding: '10px',
+                backgroundColor: showReflect ? '#6f42c1' : '#8b5cf6',
+                color: 'white',
+                border: 'none',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                fontWeight: '500'
+              }}
+            >
+              {showReflect ? 'Hide Reflect' : 'Reflect'}
+            </button>
           </div>
           
           {/* Main area - Image comparison and ranking */}
@@ -2185,7 +2228,7 @@ function App() {
                 {/* Header */}
                 <div style={{ marginBottom: '20px' }}>
                   <h2 style={{ margin: 0, color: '#333' }}>
-                    Context: {adjective} {currentRankingLocation}
+                    Context: <span style={{ color: '#8b5cf6', fontWeight: '700' }}>{adjective}</span> {currentRankingLocation}
                   </h2>
                   <p style={{ color: '#666', margin: '5px 0 0 0' }}>
                     Rank the images based on how much you like each space, from most liked (1) to least liked ({comparisonImages.length || DEFAULT_RANK_COUNT}).
@@ -2521,6 +2564,53 @@ function App() {
               </>
             )}
           </div>
+
+          {/* Reflect Panel */}
+          {showReflect && reflectData && (
+            <div style={{
+              marginTop: '20px',
+              padding: '20px',
+              backgroundColor: '#f8f9fa',
+              borderRadius: '12px',
+              border: '1px solid #e9ecef'
+            }}>
+              <h3 style={{ margin: '0 0 15px 0', color: '#333' }}>
+                Reflect: <span style={{ color: '#8b5cf6', fontWeight: '700' }}>{adjective}</span>
+              </h3>
+              <div style={{ overflowX: 'auto' }}>
+                <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+                  <thead>
+                    <tr>
+                      <th style={{ padding: '8px 12px', textAlign: 'left', fontSize: '13px', color: '#666', borderBottom: '1px solid #dee2e6', whiteSpace: 'nowrap' }}></th>
+                      {reflectData.map(loc => (
+                        <th key={loc.name} style={{ padding: '8px 12px', textAlign: 'center', fontSize: '13px', color: '#333', fontWeight: '600', borderBottom: '1px solid #dee2e6' }}>
+                          {loc.name}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style={{ padding: '8px 12px', fontSize: '13px', color: '#666', fontWeight: '600', whiteSpace: 'nowrap', verticalAlign: 'middle' }}>User Customized</td>
+                      {reflectData.map(loc => (
+                        <td key={loc.name} style={{ padding: '8px' }}>
+                          <img src={loc.user_customized} alt={`User customized - ${loc.name}`} style={{ width: '140px', height: '140px', objectFit: 'cover', borderRadius: '8px', border: '2px solid #007bff' }} />
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td style={{ padding: '8px 12px', fontSize: '13px', color: '#666', fontWeight: '600', whiteSpace: 'nowrap', verticalAlign: 'middle' }}>Ours</td>
+                      {reflectData.map(loc => (
+                        <td key={loc.name} style={{ padding: '8px' }}>
+                          <img src={loc.ours} alt={`Ours - ${loc.name}`} style={{ width: '140px', height: '140px', objectFit: 'cover', borderRadius: '8px', border: '2px solid #8b5cf6' }} />
+                        </td>
+                      ))}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
         </div>
       ) : stage === 'slider_generation' ? (
         // ============== SLIDER GENERATION ==============
@@ -2979,25 +3069,6 @@ function App() {
 
           {/* Action Buttons */}
           <div style={{ display: 'flex', gap: '10px', marginTop: '20px', flexWrap: 'wrap' }}>
-            {/* Slot-Based Refinement Button (Primary) */}
-            <button
-              onClick={handleStartSlotRefinement}
-              disabled={!selectedImage || isLoading || !conceptSystemReady}
-              style={{
-                padding: '12px 24px',
-                backgroundColor: isLoading ? '#ccc' : (selectedImage && conceptSystemReady ? '#8b5cf6' : '#ccc'),
-                color: 'white',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: (!selectedImage || isLoading || !conceptSystemReady) ? 'not-allowed' : 'pointer',
-                fontSize: '16px',
-                fontWeight: '500',
-                transition: 'background-color 0.3s ease'
-              }}
-            >
-              {isLoading ? 'Processing...' : 'Slot Refinement'}
-            </button>
-            
             {/* User Customization + GP Refinement */}
             <button
               onClick={handleStartManualCustomization}
@@ -3014,26 +3085,7 @@ function App() {
                 transition: 'background-color 0.3s ease'
               }}
             >
-              {isLoading ? 'Processing...' : 'User Customization → GP Refinement'}
-            </button>
-            
-            {/* Skip to Evaluation Button */}
-            <button
-              onClick={handleSkipToSlider}
-              disabled={!selectedImage || isLoading}
-              style={{
-                padding: '12px 24px',
-                backgroundColor: isLoading ? '#ccc' : (selectedImage ? '#28a745' : '#ccc'),
-                color: 'white',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: (!selectedImage || isLoading) ? 'not-allowed' : 'pointer',
-                fontSize: '16px',
-                fontWeight: '500',
-                transition: 'background-color 0.3s ease'
-              }}
-            >
-              {isLoading ? 'Processing...' : 'Skip to Evaluation →'}
+              {isLoading ? 'Processing...' : 'Refinement Stage'}
             </button>
             
             {/* Back to Sessions Button */}

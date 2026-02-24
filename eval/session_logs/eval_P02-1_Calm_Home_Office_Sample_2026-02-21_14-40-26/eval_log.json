@@ -1,0 +1,245 @@
+{
+  "user_id": "P02-1",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26",
+  "created_at": "2026-02-21T14:40:26.852103",
+  "events": [
+    {
+      "timestamp": "2026-02-21T14:40:26.852108",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Calm_Home_Office_Sample"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:49:40.324246",
+      "type": "save_manual_weights",
+      "data": {
+        "selected_image_id": "impression_0_0",
+        "tag_count": 10,
+        "weights_file": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/impression/user_manual_weights.json"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:49:54.314924",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Calm Home Office",
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:51:07.363382",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          0,
+          2,
+          3,
+          1
+        ],
+        "image_variance": 0.076,
+        "beta": 2.0,
+        "tags_updated": 25,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:52:09.380973",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 2,
+        "ranking": [
+          3,
+          1,
+          0,
+          2
+        ],
+        "image_variance": 0.1312,
+        "beta": 1.667,
+        "tags_updated": 25,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:53:00.910903",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 3,
+        "ranking": [
+          1,
+          0,
+          3,
+          2
+        ],
+        "image_variance": 0.1558,
+        "beta": 1.333,
+        "tags_updated": 29,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:54:04.742981",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 4,
+        "ranking": [
+          0,
+          3,
+          1,
+          2
+        ],
+        "image_variance": 0.0779,
+        "beta": 1.0,
+        "tags_updated": 26,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:54:49.605257",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 5,
+        "ranking": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "image_variance": 0.1113,
+        "beta": 0.667,
+        "tags_updated": 26,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:55:39.156135",
+      "type": "hitl_finalize",
+      "data": {
+        "rounds_completed": 5,
+        "total_comparisons": 30,
+        "final_tags": [
+          "open space layout",
+          "Soft textures",
+          "simple chair design",
+          "neutral color palette",
+          "natural wood table"
+        ],
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:56:22.223849",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_0_0",
+        "concept_count": 19,
+        "gp_mode": true
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:56:22.378308",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:56:44.762794",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:57:04.092357",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bedroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:57:26.668613",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:57:45.906914",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Kitchen",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:58:08.578970",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:58:27.857836",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Reading Nook",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:58:50.535056",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:59:09.788131",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Livingroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:59:32.432314",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T14:59:51.706755",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bathroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T15:00:14.354494",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    }
+  ]
+}

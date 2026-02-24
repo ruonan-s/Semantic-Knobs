@@ -1,0 +1,228 @@
+{
+  "user_id": "P05-2",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P05-2_Inspiring_Reading_Nook_Sample_2026-02-23_16-32-37",
+  "created_at": "2026-02-23T16:32:37.629091",
+  "events": [
+    {
+      "timestamp": "2026-02-23T16:32:37.629101",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Inspiring_Reading_Nook_Sample"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:40:38.981136",
+      "type": "save_manual_weights",
+      "data": {
+        "selected_image_id": "impression_0_0",
+        "tag_count": 10,
+        "weights_file": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P05-2_Inspiring_Reading_Nook_Sample_2026-02-23_16-32-37/impression/user_manual_weights.json"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:40:43.762266",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Inspiring Reading Nook",
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:42:03.041665",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          1,
+          2,
+          0,
+          3
+        ],
+        "image_variance": 0.1855,
+        "beta": 2.0,
+        "tags_updated": 25,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:43:01.119936",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 2,
+        "ranking": [
+          3,
+          0,
+          1,
+          2
+        ],
+        "image_variance": 0.2231,
+        "beta": 1.667,
+        "tags_updated": 26,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:44:01.620448",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 3,
+        "ranking": [
+          2,
+          3,
+          1,
+          0
+        ],
+        "image_variance": 0.2064,
+        "beta": 1.333,
+        "tags_updated": 28,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:45:08.992380",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 4,
+        "ranking": [
+          3,
+          1,
+          2,
+          0
+        ],
+        "image_variance": 0.1864,
+        "beta": 1.0,
+        "tags_updated": 27,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:46:07.021925",
+      "type": "hitl_finalize",
+      "data": {
+        "rounds_completed": 4,
+        "total_comparisons": 24,
+        "final_tags": [
+          "cozy reading nook",
+          "wooden furniture",
+          "curved architecture",
+          "calming aesthetic",
+          "floating shelves"
+        ],
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:46:17.185299",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_0_0",
+        "concept_count": 22,
+        "gp_mode": true
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:46:17.334359",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:46:39.739466",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:46:58.951597",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Kitchen",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:47:21.545417",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:47:40.718691",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bedroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:48:03.285638",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:48:22.427902",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Home Office",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:48:44.960732",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:49:04.127471",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bathroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:49:26.726428",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:49:45.933956",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Livingroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T16:50:08.518723",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    }
+  ]
+}

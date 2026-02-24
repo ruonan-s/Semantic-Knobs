@@ -1,0 +1,162 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_P04-1_Calm_Home_Office_Sample_2026-02-22_15-49-31
+Started: 2026-02-22T16:13:40.909998
+Rounds: 7
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 17
+  Neutral tags: 25
+  Total: 42
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.26 | soft diffused lighting, floor-to-ceiling curtains, subtle elegance...
+    [1] explore      | avg_μ=+0.34 | textured wall paneling, curtain-filtered daylight, neutral color palette...
+    [2] ucb          | avg_μ=+0.18 | simple chair design, neutral color palette, Wooden furniture...
+    [3] challenger   | avg_μ=+0.18 | curtain-filtered daylight, open space layout, subtle elegance...
+  Ranking: [2, 3, 1, 0]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. Wooden furniture          μ=+0.797 σ=0.644
+    2. Warm lighting             μ=+0.797 σ=0.644
+    3. Casual elegance           μ=+0.797 σ=0.644
+    4. Textured fabrics          μ=+0.797 σ=0.644
+    5. warm wood tones           μ=+0.500 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.45 | Wooden furniture, Warm lighting, Casual elegance...
+    [1] explore      | avg_μ=+0.12 | minimalist decor, wooden desk, subtle elegance...
+    [2] ucb          | avg_μ=+0.24 | minimalist decor, simple chair design, textured wall paneling...
+    [3] challenger   | avg_μ=+0.34 | textured wall paneling, sleek modern desk, modern simplicity...
+  Ranking: [0, 1, 3, 2]
+  Comparisons: 6
+  Tags updated: 28
+  Top 5 after round:
+    1. Wooden furniture          μ=+0.997 σ=0.593
+    2. Warm lighting             μ=+0.997 σ=0.593
+    3. Casual elegance           μ=+0.798 σ=0.593
+    4. soft ambient lighting     μ=+0.786 σ=0.593
+    5. curtain-filtered daylight μ=+0.786 σ=0.593
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.59 | Wooden furniture, Warm lighting, Casual elegance...
+    [1] explore      | avg_μ=+0.16 | wooden desk, luxurious materials, subtle elegance...
+    [2] ucb          | avg_μ=+0.22 | textured wall paneling, simple chair design, Wooden furniture...
+    [3] challenger   | avg_μ=+0.37 | curtain-filtered daylight, Wooden furniture, Neutral tones...
+  Ranking: [0, 1, 3, 2]
+  Comparisons: 6
+  Tags updated: 28
+  Top 5 after round:
+    1. Casual elegance           μ=+1.074 σ=0.545
+    2. Warm lighting             μ=+0.996 σ=0.545
+    3. soft ambient lighting     μ=+0.979 σ=0.545
+    4. curtain-filtered daylight μ=+0.979 σ=0.545
+    5. Wooden furniture          μ=+0.913 σ=0.545
+
+----------------------------------------------------------------------
+ROUND 4 (β=1.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.73 | Casual elegance, Warm lighting, soft ambient lighting...
+    [1] explore      | avg_μ=+0.19 | neutral color palette, wooden desk, subtle elegance...
+    [2] ucb          | avg_μ=+0.34 | curtain-filtered daylight, open space layout, earthy tones...
+    [3] challenger   | avg_μ=+0.57 | luxurious materials, subtle elegance, Casual elegance...
+  Ranking: [0, 1, 3, 2]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. Warm lighting             μ=+1.186 σ=0.501
+    2. Wooden furniture          μ=+1.184 σ=0.501
+    3. Textured fabrics          μ=+1.094 σ=0.501
+    4. Casual elegance           μ=+0.993 σ=0.501
+    5. curtain-filtered daylight μ=+0.980 σ=0.501
+
+----------------------------------------------------------------------
+ROUND 5 (β=0.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.84 | Warm lighting, Wooden furniture, Textured fabrics...
+    [1] explore      | avg_μ=-0.06 | textured wall paneling, minimalist decor, subtle elegance...
+    [2] ucb          | avg_μ=+0.50 | simple chair design, curtain-filtered daylight, wooden desk...
+    [3] challenger   | avg_μ=+0.59 | Wooden furniture, Neutral tones, calm atmosphere...
+  Ranking: [1, 3, 2, 0]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. Warm lighting             μ=+1.015 σ=0.461
+    2. Wooden furniture          μ=+1.013 σ=0.461
+    3. Textured fabrics          μ=+0.923 σ=0.461
+    4. floor-to-ceiling curtains μ=+0.859 σ=0.545
+    5. Casual elegance           μ=+0.739 σ=0.461
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.78 | Wooden furniture, Warm lighting, Textured fabrics...
+    [1] explore      | avg_μ=+0.00 | textured wall paneling, wooden desk, luxurious materials...
+    [2] ucb          | avg_μ=+0.27 | simple chair design, curtain-filtered daylight, open space layout...
+    [3] challenger   | avg_μ=+0.42 | subtle elegance, Casual elegance, calm atmosphere...
+  Ranking: [0, 1, 3, 2]
+  Comparisons: 6
+  Tags updated: 29
+  Top 5 after round:
+    1. Wooden furniture          μ=+1.532 σ=0.424
+    2. Warm lighting             μ=+1.274 σ=0.501
+    3. soft ambient lighting     μ=+1.064 σ=0.501
+    4. curtain-filtered daylight μ=+0.963 σ=0.461
+    5. warm wood tones           μ=+0.950 σ=0.424
+
+----------------------------------------------------------------------
+ROUND 4 (β=1.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.91 | Wooden furniture, Warm lighting, soft ambient lighting...
+    [1] explore      | avg_μ=+0.02 | textured wall paneling, wooden desk, Neutral tones...
+    [2] ucb          | avg_μ=+0.30 | simple chair design, modern simplicity, Wooden furniture...
+    [3] challenger   | avg_μ=+0.52 | sleek modern desk, curtain-filtered daylight, subtle elegance...
+  Ranking: [2, 0, 1, 3]
+  Comparisons: 6
+  Tags updated: 27
+  Top 5 after round:
+    1. Wooden furniture          μ=+1.877 σ=0.391
+    2. warm wood tones           μ=+1.294 σ=0.391
+    3. Warm lighting             μ=+1.082 σ=0.461
+    4. sleek cabinetry           μ=+1.074 σ=0.424
+    5. Casual elegance           μ=+0.968 σ=0.424
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. Wooden furniture               | w=0.226 | μ=+1.877 | win_rate=67%
+   2. warm wood tones                | w=0.126 | μ=+1.294 | win_rate=38%
+   3. Warm lighting                  | w=0.102 | μ=+1.082 | win_rate=43%
+   4. sleek cabinetry                | w=0.101 | μ=+1.074 | win_rate=80%
+   5. Casual elegance                | w=0.091 | μ=+0.968 | win_rate=44%
+   6. soft ambient lighting          | w=0.083 | μ=+0.871 | win_rate=29%
+   7. curtain-filtered daylight      | w=0.075 | μ=+0.771 | win_rate=29%
+   8. Textured fabrics               | w=0.070 | μ=+0.703 | win_rate=33%
+   9. clean lines                    | w=0.069 | μ=+0.688 | win_rate=50%
+  10. simple chair design            | w=0.058 | μ=+0.519 | win_rate=57%
+
+  Convergence: False
+  Top-10 stability: 9/10 tags same as previous round
+
+======================================================================
+WARNINGS (2)
+======================================================================
+  [rollback] Rolled back from round 5 to round 4. Boosted: ['simple chair design', 'curtain-filtered daylight', 'Wooden furniture'], Penalized: ['textured wall paneling', 'sleek modern desk', 'modern simplicity']
+  [rollback] Rolled back from round 4 to round 2. Boosted: ['warm wood tones', 'simple chair design', 'curtain-filtered daylight'], Penalized: ['floor-to-ceiling curtains', 'textured wall paneling', 'minimalist decor']

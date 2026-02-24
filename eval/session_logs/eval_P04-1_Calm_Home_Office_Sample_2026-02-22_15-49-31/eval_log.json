@@ -1,0 +1,323 @@
+{
+  "user_id": "P04-1",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P04-1_Calm_Home_Office_Sample_2026-02-22_15-49-31",
+  "created_at": "2026-02-22T15:49:31.962769",
+  "events": [
+    {
+      "timestamp": "2026-02-22T15:49:31.962779",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Calm_Home_Office_Sample"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:13:14.273218",
+      "type": "save_manual_weights",
+      "data": {
+        "selected_image_id": "impression_3_0",
+        "tag_count": 10,
+        "weights_file": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P04-1_Calm_Home_Office_Sample_2026-02-22_15-49-31/impression/user_manual_weights.json"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:13:40.910596",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Calm Home Office",
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:14:51.880860",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          2,
+          3,
+          1,
+          0
+        ],
+        "image_variance": 0.1127,
+        "beta": 2.0,
+        "tags_updated": 26,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:15:46.316658",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 2,
+        "ranking": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "image_variance": 0.1224,
+        "beta": 1.667,
+        "tags_updated": 28,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:16:59.153181",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 3,
+        "ranking": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "image_variance": 0.142,
+        "beta": 1.333,
+        "tags_updated": 28,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:18:18.295030",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 4,
+        "ranking": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "image_variance": 0.1764,
+        "beta": 1.0,
+        "tags_updated": 25,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:19:14.155228",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 5,
+        "ranking": [
+          1,
+          3,
+          2,
+          0
+        ],
+        "image_variance": 0.1387,
+        "beta": 0.667,
+        "tags_updated": 25,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:20:11.443957",
+      "type": "hitl_rollback",
+      "data": {
+        "from_round": 5,
+        "to_round": 4,
+        "tags_boosted": [
+          "simple chair design",
+          "curtain-filtered daylight",
+          "Wooden furniture",
+          "clean lines",
+          "Casual elegance"
+        ],
+        "tags_penalized": [
+          "textured wall paneling",
+          "sleek modern desk",
+          "modern simplicity",
+          "subtle elegance",
+          "Soft textures"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:20:52.132213",
+      "type": "hitl_rollback",
+      "data": {
+        "from_round": 4,
+        "to_round": 2,
+        "tags_boosted": [
+          "warm wood tones",
+          "simple chair design",
+          "curtain-filtered daylight",
+          "Wooden furniture",
+          "clean lines"
+        ],
+        "tags_penalized": [
+          "floor-to-ceiling curtains",
+          "textured wall paneling",
+          "minimalist decor",
+          "wooden desk",
+          "Soft textures"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:21:37.456209",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 3,
+        "ranking": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "image_variance": 0.1526,
+        "beta": 1.333,
+        "tags_updated": 29,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:22:29.259377",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 4,
+        "ranking": [
+          2,
+          0,
+          1,
+          3
+        ],
+        "image_variance": 0.1155,
+        "beta": 1.0,
+        "tags_updated": 27,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:23:19.603464",
+      "type": "hitl_finalize",
+      "data": {
+        "rounds_completed": 4,
+        "total_comparisons": 24,
+        "final_tags": [
+          "Wooden furniture",
+          "warm wood tones",
+          "Warm lighting",
+          "sleek cabinetry",
+          "Casual elegance"
+        ],
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:23:37.532511",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_3_0",
+        "concept_count": 16,
+        "gp_mode": true
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:23:37.686676",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:24:00.192621",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:24:49.106437",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Reading Nook",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:25:11.625510",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:25:30.729463",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Kitchen",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:25:53.322218",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:26:12.509410",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bedroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:26:35.145593",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:26:54.373132",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bathroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:27:17.001492",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:27:36.222542",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Livingroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T16:27:58.822150",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    }
+  ]
+}

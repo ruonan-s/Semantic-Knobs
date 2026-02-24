@@ -1,0 +1,56 @@
+[10:53:36] Starting IMPRESSION stage (Optimized Parallel)
+[10:53:36] Created folder: sessions/[fast]_cozy_bedroom_2026-01-02_10-53-36/impression
+[10:53:36] Generating concepts with user preferences...
+[10:53:36] Starting sequential concept design for impression
+[10:53:36] Design attempt 1/3
+[10:53:45] Generated 4 concepts
+[10:53:45] Generated 4 concepts
+[10:53:45] Saved scenes to: impression.json
+[10:53:45] Generating images and extracting tags in parallel for all 4 scenes...
+[10:53:45] Starting parallel image generation with immediate tag extraction for 4 scenes in impression
+[10:53:45] Starting parallel image generation 0 for impression
+[10:53:45] Starting parallel image generation 1 for impression
+[10:53:45] Starting parallel image generation 3 for impression
+[10:53:45] Starting parallel image generation 2 for impression
+[10:53:45] Scene 1: Bohemian Earthy Haven
+[10:53:45] Scene 0: Serene Scandinavian Hygge
+[10:53:45] Scene 3: Classic Opulent Sanctuary
+[10:53:45] Calling Gemini API for scene 1 (attempt 1/3)...
+[10:53:45] Calling Gemini API for scene 0 (attempt 1/3)...
+[10:53:45] Scene 2: Rustic Cabin Retreat
+[10:53:45] Calling Gemini API for scene 2 (attempt 1/3)...
+[10:53:45] Calling Gemini API for scene 3 (attempt 1/3)...
+[10:53:48] API response received for scene 2: 2 total parts, 1 image parts
+[10:53:48] Processing image 2 for scene 2...
+[10:53:48] API response received for scene 0: 2 total parts, 1 image parts
+[10:53:48] Processing image 2 for scene 0...
+[10:53:48] Saved: impression_2_0.png for scene 2
+[10:53:48] Scene 2 'Rustic Cabin Retreat': Successfully generated 1 images!
+[10:53:48] Extracting tags for impression_2_0.png (scene 2)...
+[10:53:48] Saved: impression_0_0.png for scene 0
+[10:53:48] Scene 0 'Serene Scandinavian Hygge': Successfully generated 1 images!
+[10:53:48] Extracting tags for impression_0_0.png (scene 0)...
+[10:53:49] API response received for scene 1: 2 total parts, 1 image parts
+[10:53:49] Processing image 2 for scene 1...
+[10:53:49] API response received for scene 3: 2 total parts, 1 image parts
+[10:53:49] Processing image 2 for scene 3...
+[10:53:49] Saved: impression_1_0.png for scene 1
+[10:53:49] Scene 1 'Bohemian Earthy Haven': Successfully generated 1 images!
+[10:53:49] Extracting tags for impression_1_0.png (scene 1)...
+[10:53:49] Saved: impression_3_0.png for scene 3
+[10:53:49] Scene 3 'Classic Opulent Sanctuary': Successfully generated 1 images!
+[10:53:49] Extracting tags for impression_3_0.png (scene 3)...
+[10:53:55] Extracted 12 tags from impression_0_0.png (scene 0)
+[10:53:55] ✅ Completed parallel generation + tag extraction for scene 0
+[10:53:55] Extracted 12 tags from impression_2_0.png (scene 2)
+[10:53:55] ✅ Completed parallel generation + tag extraction for scene 2
+[10:53:55] Extracted 12 tags from impression_3_0.png (scene 3)
+[10:53:55] ✅ Completed parallel generation + tag extraction for scene 3
+[10:53:56] Extracted 12 tags from impression_1_0.png (scene 1)
+[10:53:56] ✅ Completed parallel generation + tag extraction for scene 1
+[10:53:56] Parallel image generation with tag extraction completed: 4/4 scenes successful
+[10:53:56] Total tags extracted: 48
+[10:53:56] Successfully generated images and extracted tags for 4 scenes in parallel
+[10:53:56] Saved 48 total tags to: visual_tags.json
+[10:53:56] IMPRESSION stage completed successfully! (Optimized Parallel)
+[10:53:56] Generated 4 concepts with 4 total images

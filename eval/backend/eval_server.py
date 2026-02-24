@@ -2754,6 +2754,45 @@ def get_session_locations(session_log: str):
     return {"generated_locations": generated}
 
 
+class ReflectRequest(BaseModel):
+    session_log: str
+
+
+@app.post("/api/eval/reflect-images")
+def get_reflect_images(request: ReflectRequest):
+    """
+    Return user_customized and personalized (alpha) images for every location,
+    used for the side-by-side reflect panel.
+    """
+    session_folder = SESSION_LOGS_DIR / request.session_log
+    if not session_folder.exists():
+        raise HTTPException(404, f"Session log not found: {request.session_log}")
+
+    slider_dir = session_folder / "slider"
+    if not slider_dir.exists():
+        raise HTTPException(404, f"Slider directory not found")
+
+    locations = []
+    for loc_folder in sorted(slider_dir.iterdir()):
+        if not loc_folder.is_dir():
+            continue
+
+        user_customized_path = loc_folder / "user_customized.png"
+        alpha_images = list(loc_folder.glob("eval_alpha_1.00_*.png"))
+
+        if not user_customized_path.exists() or not alpha_images:
+            continue
+
+        loc_name = loc_folder.name
+        locations.append({
+            "name": loc_name,
+            "user_customized": f"/session_logs/{request.session_log}/slider/{loc_name}/user_customized.png",
+            "ours": f"/session_logs/{request.session_log}/slider/{loc_name}/{alpha_images[0].name}",
+        })
+
+    return {"locations": locations}
+
+
 # ============== Health check ==============
 
 @app.get("/api/health")

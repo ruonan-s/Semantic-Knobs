@@ -1,0 +1,84 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_P05-1_Inviting_Livingroom_Sample_2026-02-23_15-58-58
+Started: 2026-02-23T16:18:50.767043
+Rounds: 3
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 26
+  Neutral tags: 13
+  Total: 39
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.26 | neutral color palette, cozy textiles, ambient lighting...
+    [1] explore      | avg_μ=+0.42 | earthy color palette, inviting atmosphere, large glass windows...
+    [2] ucb          | avg_μ=+0.34 | warm lighting, wooden elements, ambient lighting...
+    [3] challenger   | avg_μ=+0.50 | natural materials, ambient lighting, inviting atmosphere...
+  Ranking: [1, 3, 0, 2]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. inviting atmosphere       μ=+0.887 σ=0.644
+    2. lush greenery view        μ=+0.887 σ=0.644
+    3. minimalist decor          μ=+0.797 σ=0.644
+    4. warm wood flooring        μ=+0.797 σ=0.644
+    5. large glass windows       μ=+0.797 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.49 | inviting atmosphere, lush greenery view, minimalist decor...
+    [1] explore      | avg_μ=+0.21 | cozy textiles, ambient lighting, modern elegance...
+    [2] ucb          | avg_μ=+0.46 | natural materials, cushioned seating, shelves with artifacts...
+    [3] challenger   | avg_μ=+0.56 | inviting atmosphere, large window, natural light...
+  Ranking: [2, 0, 3, 1]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. large glass windows       μ=+1.167 σ=0.593
+    2. minimalist decor          μ=+1.078 σ=0.593
+    3. lush greenery view        μ=+0.971 σ=0.593
+    4. large window              μ=+0.905 σ=0.593
+    5. inviting atmosphere       μ=+0.882 σ=0.593
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.60 | large glass windows, minimalist decor, lush greenery view...
+    [1] explore      | avg_μ=+0.04 | warm lighting, ornate patterns, wooden elements...
+    [2] ucb          | avg_μ=+0.76 | earthy color palette, natural materials, inviting atmosphere...
+    [3] challenger   | avg_μ=+0.69 | earthy color palette, natural materials, cozy textiles...
+  Ranking: [0, 3, 1, 2]
+  Comparisons: 6
+  Tags updated: 28
+  Top 5 after round:
+    1. large glass windows       μ=+1.524 σ=0.545
+    2. lush greenery view        μ=+1.328 σ=0.545
+    3. cushioned seating         μ=+1.232 σ=0.545
+    4. large window              μ=+1.180 σ=0.545
+    5. minimalist decor          μ=+1.073 σ=0.545
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. large glass windows            | w=0.159 | μ=+1.524 | win_rate=60%
+   2. lush greenery view             | w=0.131 | μ=+1.328 | win_rate=40%
+   3. cushioned seating              | w=0.119 | μ=+1.232 | win_rate=50%
+   4. large window                   | w=0.113 | μ=+1.180 | win_rate=60%
+   5. minimalist decor               | w=0.101 | μ=+1.073 | win_rate=38%
+   6. earthy color palette           | w=0.090 | μ=+0.959 | win_rate=40%
+   7. inviting atmosphere            | w=0.083 | μ=+0.877 | win_rate=33%
+   8. natural materials              | w=0.068 | μ=+0.677 | win_rate=25%
+   9. shelves with artifacts         | w=0.068 | μ=+0.677 | win_rate=25%
+  10. soft natural lighting          | w=0.068 | μ=+0.677 | win_rate=25%
+
+  Convergence: False
+  Top-10 stability: 10/10 tags same as previous round

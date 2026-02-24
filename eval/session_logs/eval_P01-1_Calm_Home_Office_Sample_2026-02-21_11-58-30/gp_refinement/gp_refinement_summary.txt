@@ -1,0 +1,143 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_P01-1_Calm_Home_Office_Sample_2026-02-21_11-58-30
+Started: 2026-02-21T12:02:31.226631
+Rounds: 6
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 32
+  Neutral tags: 2
+  Total: 34
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.34 | neutral color palette, natural wood table, sleek cabinetry...
+    [1] explore      | avg_μ=+0.42 | stone accents, earthy tones, natural lighting...
+    [2] ucb          | avg_μ=+0.42 | ceramic pots, modern simplicity, Modern elegance...
+    [3] challenger   | avg_μ=+0.50 | sleek modern desk, textured wall paneling, sophisticated atmosphere...
+  Ranking: [1, 3, 0, 2]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. wooden desk               μ=+0.889 σ=0.644
+    2. minimalist decor          μ=+0.889 σ=0.644
+    3. lush greenery             μ=+0.889 σ=0.644
+    4. natural lighting          μ=+0.799 σ=0.644
+    5. large windows             μ=+0.799 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.57 | wooden desk, minimalist decor, lush greenery...
+    [1] explore      | avg_μ=+0.32 | Neutral tones, Soft textures, Simple layout...
+    [2] ucb          | avg_μ=+0.57 | stone accents, textured wall paneling, sophisticated atmosphere...
+    [3] challenger   | avg_μ=+0.61 | Soft textures, soft diffused lighting, earthy tones...
+  Ranking: [0, 1, 3, 2]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. wooden desk               μ=+1.175 σ=0.593
+    2. lush greenery             μ=+1.089 σ=0.593
+    3. large windows             μ=+1.085 σ=0.593
+    4. earthy tones              μ=+0.999 σ=0.593
+    5. sleek modern desk         μ=+0.876 σ=0.593
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.72 | wooden desk, lush greenery, large windows...
+    [1] explore      | avg_μ=+0.14 | ceramic pots, modern simplicity, curtained backdrop...
+    [2] ucb          | avg_μ=+0.72 | Neutral tones, Simple layout, Casual elegance...
+    [3] challenger   | avg_μ=+0.59 | Neutral tones, Soft textures, Simple layout...
+  Ranking: [0, 2, 1, 3]
+  Comparisons: 6
+  Tags updated: 28
+  Top 5 after round:
+    1. large windows             μ=+1.440 σ=0.545
+    2. lush greenery             μ=+1.360 σ=0.545
+    3. earthy tones              μ=+1.353 σ=0.545
+    4. sleek modern desk         μ=+1.231 σ=0.545
+    5. wooden desk               μ=+1.170 σ=0.545
+
+----------------------------------------------------------------------
+ROUND 4 (β=1.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.93 | large windows, lush greenery, earthy tones...
+    [1] explore      | avg_μ=+0.16 | ceramic pots, Modern elegance, cozy atmosphere...
+    [2] ucb          | avg_μ=+0.71 | Neutral tones, Modern elegance, stone accents...
+    [3] challenger   | avg_μ=+0.85 | Simple layout, Casual elegance, earthy tones...
+  Ranking: [0, 3, 2, 1]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. large windows             μ=+1.683 σ=0.501
+    2. earthy tones              μ=+1.682 σ=0.501
+    3. lush greenery             μ=+1.604 σ=0.501
+    4. sleek modern desk         μ=+1.559 σ=0.501
+    5. wooden desk               μ=+1.425 σ=0.501
+
+----------------------------------------------------------------------
+ROUND 5 (β=0.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+1.13 | large windows, earthy tones, lush greenery...
+    [1] explore      | avg_μ=+0.09 | Soft textures, textured wall paneling, Textured fabrics...
+    [2] ucb          | avg_μ=+0.67 | Modern elegance, Simple layout, stone accents...
+    [3] challenger   | avg_μ=+1.01 | Neutral tones, Casual elegance, earthy tones...
+  Ranking: [2, 3, 0, 1]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. large windows             μ=+1.916 σ=0.461
+    2. earthy tones              μ=+1.668 σ=0.461
+    3. wooden desk               μ=+1.657 σ=0.461
+    4. lush greenery             μ=+1.590 σ=0.461
+    5. sleek modern desk         μ=+1.475 σ=0.461
+
+----------------------------------------------------------------------
+ROUND 6 (β=0.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+1.16 | large windows, earthy tones, wooden desk...
+    [1] explore      | avg_μ=-0.05 | ceramic pots, Modern elegance, soft diffused lighting...
+    [2] ucb          | avg_μ=+1.06 | Modern elegance, Simple layout, Casual elegance...
+    [3] challenger   | avg_μ=+1.28 | stone accents, earthy tones, Casual elegance...
+  Ranking: [3, 0, 1, 2]
+  Comparisons: 6
+  Tags updated: 23
+  Top 5 after round:
+    1. earthy tones              μ=+1.986 σ=0.424
+    2. large windows             μ=+1.979 σ=0.424
+    3. sleek modern desk         μ=+1.794 σ=0.424
+    4. wooden desk               μ=+1.720 σ=0.424
+    5. lush greenery             μ=+1.653 σ=0.424
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. earthy tones                   | w=0.159 | μ=+1.986 | win_rate=46%
+   2. large windows                  | w=0.158 | μ=+1.979 | win_rate=46%
+   3. sleek modern desk              | w=0.131 | μ=+1.794 | win_rate=44%
+   4. wooden desk                    | w=0.122 | μ=+1.720 | win_rate=50%
+   5. lush greenery                  | w=0.114 | μ=+1.653 | win_rate=38%
+   6. stone accents                  | w=0.092 | μ=+1.444 | win_rate=55%
+   7. natural lighting               | w=0.062 | μ=+1.041 | win_rate=33%
+   8. Casual elegance                | w=0.057 | μ=+0.966 | win_rate=25%
+   9. Warm lighting                  | w=0.053 | μ=+0.892 | win_rate=29%
+  10. Natural light                  | w=0.052 | μ=+0.880 | win_rate=22%
+
+  Convergence: False
+  Top-10 stability: 9/10 tags same as previous round
+
+======================================================================
+WARNINGS (1)
+======================================================================
+  [low_neutral_count] Only 2 neutral tags. Exploration may be limited.

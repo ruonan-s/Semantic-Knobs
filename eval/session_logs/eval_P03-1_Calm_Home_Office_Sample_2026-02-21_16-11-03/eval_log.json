@@ -1,0 +1,262 @@
+{
+  "user_id": "P03-1",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-1_Calm_Home_Office_Sample_2026-02-21_16-11-03",
+  "created_at": "2026-02-21T16:11:03.844578",
+  "events": [
+    {
+      "timestamp": "2026-02-21T16:11:03.844583",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Calm_Home_Office_Sample"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:15:05.468494",
+      "type": "save_manual_weights",
+      "data": {
+        "selected_image_id": "impression_2_0",
+        "tag_count": 10,
+        "weights_file": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-1_Calm_Home_Office_Sample_2026-02-21_16-11-03/impression/user_manual_weights.json"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:15:31.913292",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Calm Home Office",
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:17:13.480235",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          3,
+          0,
+          1,
+          2
+        ],
+        "image_variance": 0.1677,
+        "beta": 2.0,
+        "tags_updated": 25,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:19:09.170940",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 2,
+        "ranking": [
+          1,
+          2,
+          3,
+          0
+        ],
+        "image_variance": 0.1042,
+        "beta": 1.667,
+        "tags_updated": 25,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:20:50.275878",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 3,
+        "ranking": [
+          1,
+          0,
+          2,
+          3
+        ],
+        "image_variance": 0.1295,
+        "beta": 1.333,
+        "tags_updated": 26,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:22:09.375900",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 4,
+        "ranking": [
+          2,
+          1,
+          3,
+          0
+        ],
+        "image_variance": 0.1134,
+        "beta": 1.0,
+        "tags_updated": 26,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:23:45.250750",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 5,
+        "ranking": [
+          2,
+          3,
+          1,
+          0
+        ],
+        "image_variance": 0.1039,
+        "beta": 0.667,
+        "tags_updated": 26,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:24:51.775889",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 6,
+        "ranking": [
+          0,
+          3,
+          2,
+          1
+        ],
+        "image_variance": 0.1402,
+        "beta": 0.333,
+        "tags_updated": 23,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:26:00.672096",
+      "type": "hitl_finalize",
+      "data": {
+        "rounds_completed": 6,
+        "total_comparisons": 36,
+        "final_tags": [
+          "wooden desk",
+          "Neutral tones",
+          "soft ambient lighting",
+          "Textured fabrics",
+          "luxurious materials"
+        ],
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:26:20.409673",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_2_0",
+        "concept_count": 17,
+        "gp_mode": true
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:26:20.574085",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:26:42.849295",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:27:22.525335",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bedroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:27:44.933183",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:28:04.112363",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Kitchen",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:28:26.601899",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:28:45.797340",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bathroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:29:08.266419",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:29:27.489245",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Livingroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:29:49.962581",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:30:09.182029",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Reading Nook",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-21T16:30:31.710586",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    }
+  ]
+}

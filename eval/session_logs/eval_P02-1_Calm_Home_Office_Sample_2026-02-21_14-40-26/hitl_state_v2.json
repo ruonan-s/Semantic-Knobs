@@ -1,0 +1,3369 @@
+{
+  "version": "2.0",
+  "session_id": "eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26",
+  "round_count": 5,
+  "generation_counter": 6,
+  "is_initialized": true,
+  "is_converged": false,
+  "rankings_history": [
+    [
+      0,
+      2,
+      3,
+      1
+    ],
+    [
+      3,
+      1,
+      0,
+      2
+    ],
+    [
+      1,
+      0,
+      3,
+      2
+    ],
+    [
+      0,
+      3,
+      1,
+      2
+    ],
+    [
+      0,
+      1,
+      3,
+      2
+    ]
+  ],
+  "compositions_history": [
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "minimalist design",
+          "neutral color palette",
+          "natural wood table",
+          "sleek cabinetry",
+          "soft diffused lighting",
+          "simple chair design",
+          "clean lines",
+          "open space layout",
+          "modern aesthetic",
+          "subtle elegance"
+        ],
+        "weights": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "mus": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_0_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "cozy atmosphere",
+          "wooden desk",
+          "minimalist decor",
+          "natural lighting",
+          "modern aesthetic",
+          "natural wood table",
+          "clean lines",
+          "calm atmosphere",
+          "simple chair design",
+          "large windows"
+        ],
+        "weights": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "mus": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_0_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "curtained backdrop",
+          "warm wood tones",
+          "ceramic pots",
+          "open space layout",
+          "modern aesthetic",
+          "contemporary elegance",
+          "simple chair design",
+          "minimalist design",
+          "modern simplicity",
+          "sleek modern desk"
+        ],
+        "weights": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "mus": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_0_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "wooden desk",
+          "curtain-filtered daylight",
+          "soft ambient lighting",
+          "natural lighting",
+          "Scandinavian design",
+          "calm atmosphere",
+          "spacious layout",
+          "simple chair design",
+          "minimalist design",
+          "neutral color palette"
+        ],
+        "weights": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "mus": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_0_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "open space layout",
+          "minimalist design",
+          "sleek cabinetry",
+          "soft diffused lighting",
+          "subtle elegance",
+          "neutral color palette",
+          "modern aesthetic",
+          "ceramic pots",
+          "curtained backdrop",
+          "modern simplicity"
+        ],
+        "weights": [
+          1.1219,
+          1.0538,
+          1.0538,
+          1.0538,
+          1.0538,
+          0.9915,
+          0.9179,
+          0.9179,
+          0.9179,
+          0.9179
+        ],
+        "mus": [
+          0.8898,
+          0.7994,
+          0.7994,
+          0.7994,
+          0.7994,
+          0.709,
+          0.5904,
+          0.5904,
+          0.5904,
+          0.5904
+        ],
+        "sigmas": [
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_1_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "Soft textures",
+          "Natural light",
+          "Simple layout",
+          "Warm lighting",
+          "Neutral tones",
+          "Casual elegance",
+          "Modern elegance",
+          "simple chair design",
+          "minimalist design",
+          "Textured fabrics"
+        ],
+        "weights": [
+          0.9775,
+          0.9775,
+          0.9775,
+          0.9775,
+          0.9775,
+          0.9775,
+          0.9775,
+          0.9775,
+          1.2024,
+          0.9775
+        ],
+        "mus": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.7994,
+          0.5
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.644,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_1_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "Natural light",
+          "warm wood tones",
+          "sleek cabinetry",
+          "Neutral tones",
+          "soft diffused lighting",
+          "subtle elegance",
+          "contemporary elegance",
+          "simple chair design",
+          "minimalist design",
+          "sleek modern desk"
+        ],
+        "weights": [
+          0.9041,
+          0.9581,
+          1.1033,
+          0.9041,
+          1.1033,
+          1.1033,
+          0.9581,
+          0.9041,
+          1.1033,
+          0.9581
+        ],
+        "mus": [
+          0.5,
+          0.5904,
+          0.7994,
+          0.5,
+          0.7994,
+          0.7994,
+          0.5904,
+          0.5,
+          0.7994,
+          0.5904
+        ],
+        "sigmas": [
+          0.7,
+          0.644,
+          0.644,
+          0.7,
+          0.644,
+          0.644,
+          0.644,
+          0.7,
+          0.644,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_1_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "Soft textures",
+          "Natural light",
+          "soft ambient lighting",
+          "open space layout",
+          "subtle elegance",
+          "natural wood table",
+          "clean lines",
+          "simple chair design",
+          "neutral color palette",
+          "modern simplicity"
+        ],
+        "weights": [
+          0.9358,
+          0.9358,
+          0.8837,
+          1.2229,
+          1.1461,
+          0.9358,
+          0.9358,
+          0.9358,
+          1.0758,
+          0.9927
+        ],
+        "mus": [
+          0.5,
+          0.5,
+          0.4096,
+          0.8898,
+          0.7994,
+          0.5,
+          0.5,
+          0.5,
+          0.709,
+          0.5904
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.7,
+          0.644,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_1_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "open space layout",
+          "neutral color palette",
+          "Soft textures",
+          "modern simplicity",
+          "natural wood table",
+          "clean lines",
+          "subtle elegance",
+          "soft ambient lighting",
+          "Simple layout",
+          "Modern elegance"
+        ],
+        "weights": [
+          1.2318,
+          1.0832,
+          1.0564,
+          0.9993,
+          0.9966,
+          0.9966,
+          0.9478,
+          0.9393,
+          0.8746,
+          0.8746
+        ],
+        "mus": [
+          1.093,
+          0.9123,
+          0.8759,
+          0.7936,
+          0.7895,
+          0.7895,
+          0.7131,
+          0.6991,
+          0.5863,
+          0.5863
+        ],
+        "sigmas": [
+          0.5925,
+          0.5925,
+          0.644,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.644,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_2_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "cozy atmosphere",
+          "wooden desk",
+          "minimalist decor",
+          "curtain-filtered daylight",
+          "natural lighting",
+          "Scandinavian design",
+          "calm atmosphere",
+          "spacious layout",
+          "simple chair design",
+          "large windows"
+        ],
+        "weights": [
+          0.9445,
+          0.8916,
+          0.9445,
+          1.0865,
+          0.8916,
+          1.0865,
+          0.8916,
+          1.0865,
+          1.2321,
+          0.9445
+        ],
+        "mus": [
+          0.2006,
+          0.1102,
+          0.2006,
+          0.4096,
+          0.1102,
+          0.4096,
+          0.1102,
+          0.4096,
+          0.5863,
+          0.2006
+        ],
+        "sigmas": [
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_2_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "Natural light",
+          "Warm lighting",
+          "soft ambient lighting",
+          "Casual elegance",
+          "Modern elegance",
+          "modern aesthetic",
+          "Textured fabrics",
+          "minimalist design",
+          "neutral color palette",
+          "modern simplicity"
+        ],
+        "weights": [
+          0.9633,
+          0.9633,
+          1.0385,
+          0.9633,
+          0.9633,
+          0.9136,
+          0.9633,
+          0.9169,
+          1.206,
+          1.1084
+        ],
+        "mus": [
+          0.5863,
+          0.5863,
+          0.6991,
+          0.5863,
+          0.5863,
+          0.5041,
+          0.5863,
+          0.5099,
+          0.9123,
+          0.7936
+        ],
+        "sigmas": [
+          0.644,
+          0.644,
+          0.5925,
+          0.644,
+          0.644,
+          0.5925,
+          0.644,
+          0.5925,
+          0.5925,
+          0.5925
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_2_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "Soft textures",
+          "Warm lighting",
+          "Neutral tones",
+          "ceramic pots",
+          "open space layout",
+          "Casual elegance",
+          "clean lines",
+          "subtle elegance",
+          "Textured fabrics",
+          "curtained backdrop"
+        ],
+        "weights": [
+          1.1469,
+          0.9423,
+          0.7892,
+          0.8943,
+          1.3442,
+          0.9423,
+          1.0796,
+          1.0246,
+          0.9423,
+          0.8943
+        ],
+        "mus": [
+          0.8759,
+          0.5863,
+          0.2968,
+          0.5041,
+          1.093,
+          0.5863,
+          0.7895,
+          0.7131,
+          0.5863,
+          0.5041
+        ],
+        "sigmas": [
+          0.644,
+          0.644,
+          0.644,
+          0.5925,
+          0.5925,
+          0.644,
+          0.5925,
+          0.5925,
+          0.644,
+          0.5925
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_2_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "open space layout",
+          "Soft textures",
+          "natural wood table",
+          "simple chair design",
+          "clean lines",
+          "neutral color palette",
+          "subtle elegance",
+          "curtain-filtered daylight",
+          "spacious layout",
+          "Scandinavian design"
+        ],
+        "weights": [
+          1.225,
+          1.0509,
+          1.0473,
+          1.0341,
+          0.9916,
+          0.946,
+          0.9431,
+          0.9206,
+          0.9206,
+          0.9206
+        ],
+        "mus": [
+          1.098,
+          0.8808,
+          0.8758,
+          0.8572,
+          0.7945,
+          0.7227,
+          0.7181,
+          0.6805,
+          0.6805,
+          0.6805
+        ],
+        "sigmas": [
+          0.5451,
+          0.5925,
+          0.5451,
+          0.5925,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5925,
+          0.5925,
+          0.5925
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_3_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "cozy atmosphere",
+          "sleek cabinetry",
+          "wooden desk",
+          "minimalist decor",
+          "soft diffused lighting",
+          "natural lighting",
+          "contemporary elegance",
+          "calm atmosphere",
+          "simple chair design",
+          "large windows"
+        ],
+        "weights": [
+          1.0026,
+          0.9713,
+          0.9448,
+          1.0026,
+          0.9713,
+          0.9448,
+          0.8976,
+          0.9448,
+          1.3176,
+          1.0026
+        ],
+        "mus": [
+          0.4714,
+          0.4236,
+          0.381,
+          0.4714,
+          0.4236,
+          0.381,
+          0.3008,
+          0.381,
+          0.8572,
+          0.4714
+        ],
+        "sigmas": [
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_3_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "Natural light",
+          "Simple layout",
+          "curtain-filtered daylight",
+          "soft ambient lighting",
+          "Modern elegance",
+          "natural wood table",
+          "clean lines",
+          "Scandinavian design",
+          "spacious layout",
+          "modern simplicity"
+        ],
+        "weights": [
+          0.8159,
+          1.0266,
+          1.032,
+          0.9223,
+          0.8594,
+          1.1827,
+          1.1164,
+          1.032,
+          1.032,
+          0.9806
+        ],
+        "mus": [
+          0.3105,
+          0.6726,
+          0.6805,
+          0.5096,
+          0.3968,
+          0.8758,
+          0.7945,
+          0.6805,
+          0.6805,
+          0.6041
+        ],
+        "sigmas": [
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5451,
+          0.5925,
+          0.5451,
+          0.5451,
+          0.5925,
+          0.5925,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_3_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "Soft textures",
+          "warm wood tones",
+          "Simple layout",
+          "minimalist decor",
+          "open space layout",
+          "natural wood table",
+          "clean lines",
+          "simple chair design",
+          "modern simplicity",
+          "sleek modern desk"
+        ],
+        "weights": [
+          1.119,
+          0.7732,
+          0.9713,
+          0.855,
+          1.3095,
+          1.1151,
+          1.054,
+          1.1006,
+          0.929,
+          0.7732
+        ],
+        "mus": [
+          0.8808,
+          0.3008,
+          0.6726,
+          0.4714,
+          1.098,
+          0.8758,
+          0.7945,
+          0.8572,
+          0.6041,
+          0.3008
+        ],
+        "sigmas": [
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5925,
+          0.5451,
+          0.5925
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_3_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "open space layout",
+          "Soft textures",
+          "simple chair design",
+          "neutral color palette",
+          "subtle elegance",
+          "natural wood table",
+          "clean lines",
+          "curtain-filtered daylight",
+          "spacious layout",
+          "Scandinavian design"
+        ],
+        "weights": [
+          1.383,
+          1.1781,
+          1.095,
+          0.9979,
+          0.9948,
+          0.9732,
+          0.9232,
+          0.8183,
+          0.8183,
+          0.8183
+        ],
+        "mus": [
+          1.4506,
+          1.2334,
+          1.13,
+          0.9935,
+          0.9889,
+          0.9556,
+          0.8743,
+          0.6785,
+          0.6785,
+          0.6785
+        ],
+        "sigmas": [
+          0.5015,
+          0.5451,
+          0.5451,
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5451,
+          0.5451,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_4_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "simple chair design",
+          "sleek cabinetry",
+          "Warm lighting",
+          "Neutral tones",
+          "soft diffused lighting",
+          "Casual elegance",
+          "calm atmosphere",
+          "Textured fabrics",
+          "minimalist design",
+          "modern aesthetic"
+        ],
+        "weights": [
+          1.7277,
+          0.9685,
+          0.8998,
+          0.8921,
+          0.9685,
+          0.8998,
+          0.9421,
+          0.8998,
+          0.9025,
+          0.8992
+        ],
+        "mus": [
+          1.13,
+          0.3437,
+          0.2292,
+          0.2155,
+          0.3437,
+          0.2292,
+          0.3012,
+          0.2292,
+          0.2341,
+          0.2282
+        ],
+        "sigmas": [
+          0.5451,
+          0.5451,
+          0.5925,
+          0.5925,
+          0.5451,
+          0.5925,
+          0.5451,
+          0.5925,
+          0.5451,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_4_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "Simple layout",
+          "curtain-filtered daylight",
+          "minimalist decor",
+          "large windows",
+          "ceramic pots",
+          "subtle elegance",
+          "clean lines",
+          "Scandinavian design",
+          "spacious layout",
+          "curtained backdrop"
+        ],
+        "weights": [
+          0.9088,
+          1.0339,
+          0.904,
+          0.8592,
+          0.8759,
+          1.2889,
+          1.1855,
+          1.0339,
+          1.0339,
+          0.8759
+        ],
+        "mus": [
+          0.4816,
+          0.6785,
+          0.4734,
+          0.3916,
+          0.4228,
+          0.9889,
+          0.8743,
+          0.6785,
+          0.6785,
+          0.4228
+        ],
+        "sigmas": [
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5015,
+          0.5015,
+          0.5451,
+          0.5451,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_4_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "cozy atmosphere",
+          "warm wood tones",
+          "Simple layout",
+          "minimalist decor",
+          "ceramic pots",
+          "open space layout",
+          "clean lines",
+          "natural wood table",
+          "simple chair design",
+          "neutral color palette"
+        ],
+        "weights": [
+          0.7668,
+          0.7629,
+          0.8076,
+          0.8037,
+          0.7805,
+          1.5831,
+          1.0356,
+          1.0952,
+          1.2402,
+          1.1246
+        ],
+        "mus": [
+          0.3916,
+          0.3826,
+          0.4816,
+          0.4734,
+          0.4228,
+          1.4506,
+          0.8743,
+          0.9556,
+          1.13,
+          0.9935
+        ],
+        "sigmas": [
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5451,
+          0.5015
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_4_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "open space layout",
+          "Soft textures",
+          "simple chair design",
+          "neutral color palette",
+          "natural wood table",
+          "subtle elegance",
+          "clean lines",
+          "curtain-filtered daylight",
+          "spacious layout",
+          "Scandinavian design"
+        ],
+        "weights": [
+          1.4413,
+          1.2991,
+          1.205,
+          1.0348,
+          1.0087,
+          0.9161,
+          0.8131,
+          0.7606,
+          0.7606,
+          0.7606
+        ],
+        "mus": [
+          1.6304,
+          1.4931,
+          1.3906,
+          1.1733,
+          1.1354,
+          0.9879,
+          0.7935,
+          0.6775,
+          0.6775,
+          0.6775
+        ],
+        "sigmas": [
+          0.4614,
+          0.5015,
+          0.5015,
+          0.4614,
+          0.4614,
+          0.4614,
+          0.4614,
+          0.5015,
+          0.5015,
+          0.5015
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_5_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "Natural light",
+          "wooden desk",
+          "Neutral tones",
+          "Warm lighting",
+          "natural lighting",
+          "Casual elegance",
+          "Modern elegance",
+          "contemporary elegance",
+          "Textured fabrics",
+          "sleek modern desk"
+        ],
+        "weights": [
+          0.865,
+          1.0253,
+          1.0218,
+          1.0313,
+          1.0253,
+          1.0313,
+          0.9129,
+          0.9719,
+          1.0313,
+          1.0839
+        ],
+        "mus": [
+          0.0377,
+          0.3012,
+          0.2962,
+          0.31,
+          0.3012,
+          0.31,
+          0.124,
+          0.221,
+          0.31,
+          0.3826
+        ],
+        "sigmas": [
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_5_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "Soft textures",
+          "sleek cabinetry",
+          "soft diffused lighting",
+          "natural wood table",
+          "clean lines",
+          "Scandinavian design",
+          "calm atmosphere",
+          "spacious layout",
+          "neutral color palette",
+          "modern simplicity"
+        ],
+        "weights": [
+          1.6246,
+          0.7769,
+          0.7769,
+          1.2363,
+          0.9748,
+          0.9046,
+          0.7584,
+          0.9046,
+          1.2712,
+          0.7718
+        ],
+        "mus": [
+          1.4931,
+          0.4245,
+          0.4245,
+          1.1354,
+          0.7935,
+          0.6775,
+          0.382,
+          0.6775,
+          1.1733,
+          0.4131
+        ],
+        "sigmas": [
+          0.5015,
+          0.5015,
+          0.5015,
+          0.4614,
+          0.4614,
+          0.5015,
+          0.5015,
+          0.5015,
+          0.4614,
+          0.5015
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_5_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "Soft textures",
+          "sleek cabinetry",
+          "soft diffused lighting",
+          "open space layout",
+          "clean lines",
+          "subtle elegance",
+          "simple chair design",
+          "minimalist design",
+          "neutral color palette",
+          "modern simplicity"
+        ],
+        "weights": [
+          1.4067,
+          0.7021,
+          0.7021,
+          1.5648,
+          0.8666,
+          0.981,
+          1.3021,
+          0.6638,
+          1.113,
+          0.6979
+        ],
+        "mus": [
+          1.4931,
+          0.4245,
+          0.4245,
+          1.6304,
+          0.7935,
+          0.9879,
+          1.3906,
+          0.3148,
+          1.1733,
+          0.4131
+        ],
+        "sigmas": [
+          0.5015,
+          0.5015,
+          0.5015,
+          0.4614,
+          0.4614,
+          0.4614,
+          0.5015,
+          0.5015,
+          0.4614,
+          0.5015
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_5_img_3.png"
+      }
+    ]
+  ],
+  "tag_states": {
+    "pos_0": {
+      "text": "minimalist design",
+      "category": "positive_other",
+      "mu": 0.314848,
+      "sigma": 0.501475,
+      "times_shown": 8,
+      "times_in_winner": 1,
+      "times_in_loser": 2
+    },
+    "pos_1": {
+      "text": "neutral color palette",
+      "category": "positive_other",
+      "mu": 1.173316,
+      "sigma": 0.461357,
+      "times_shown": 9,
+      "times_in_winner": 4,
+      "times_in_loser": 1
+    },
+    "pos_2": {
+      "text": "natural wood table",
+      "category": "positive_other",
+      "mu": 1.135434,
+      "sigma": 0.461357,
+      "times_shown": 9,
+      "times_in_winner": 4,
+      "times_in_loser": 2
+    },
+    "pos_3": {
+      "text": "sleek cabinetry",
+      "category": "positive_other",
+      "mu": 0.424538,
+      "sigma": 0.501475,
+      "times_shown": 5,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "pos_4": {
+      "text": "soft diffused lighting",
+      "category": "positive_other",
+      "mu": 0.424538,
+      "sigma": 0.501475,
+      "times_shown": 5,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "pos_5": {
+      "text": "simple chair design",
+      "category": "positive_other",
+      "mu": 1.390554,
+      "sigma": 0.501475,
+      "times_shown": 14,
+      "times_in_winner": 5,
+      "times_in_loser": 2
+    },
+    "pos_6": {
+      "text": "clean lines",
+      "category": "positive_other",
+      "mu": 0.793522,
+      "sigma": 0.461357,
+      "times_shown": 11,
+      "times_in_winner": 4,
+      "times_in_loser": 3
+    },
+    "pos_7": {
+      "text": "open space layout",
+      "category": "positive_other",
+      "mu": 1.63041,
+      "sigma": 0.461357,
+      "times_shown": 10,
+      "times_in_winner": 4,
+      "times_in_loser": 0
+    },
+    "pos_8": {
+      "text": "modern aesthetic",
+      "category": "positive_other",
+      "mu": 0.309035,
+      "sigma": 0.501475,
+      "times_shown": 6,
+      "times_in_winner": 1,
+      "times_in_loser": 2
+    },
+    "pos_9": {
+      "text": "subtle elegance",
+      "category": "positive_other",
+      "mu": 0.987915,
+      "sigma": 0.461357,
+      "times_shown": 9,
+      "times_in_winner": 4,
+      "times_in_loser": 2
+    },
+    "pos_10": {
+      "text": "calm atmosphere",
+      "category": "positive_other",
+      "mu": 0.382026,
+      "sigma": 0.501475,
+      "times_shown": 5,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "pos_11": {
+      "text": "natural lighting",
+      "category": "positive_other",
+      "mu": 0.301236,
+      "sigma": 0.545082,
+      "times_shown": 4,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "pos_12": {
+      "text": "wooden desk",
+      "category": "positive_other",
+      "mu": 0.301236,
+      "sigma": 0.545082,
+      "times_shown": 4,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "pos_13": {
+      "text": "minimalist decor",
+      "category": "positive_other",
+      "mu": 0.13299,
+      "sigma": 0.501475,
+      "times_shown": 6,
+      "times_in_winner": 1,
+      "times_in_loser": 2
+    },
+    "pos_14": {
+      "text": "large windows",
+      "category": "positive_other",
+      "mu": 0.131041,
+      "sigma": 0.501475,
+      "times_shown": 4,
+      "times_in_winner": 1,
+      "times_in_loser": 2
+    },
+    "pos_15": {
+      "text": "cozy atmosphere",
+      "category": "positive_other",
+      "mu": 0.311786,
+      "sigma": 0.501475,
+      "times_shown": 4,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "pos_16": {
+      "text": "ceramic pots",
+      "category": "positive_other",
+      "mu": 0.082325,
+      "sigma": 0.501475,
+      "times_shown": 5,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "pos_17": {
+      "text": "curtained backdrop",
+      "category": "positive_other",
+      "mu": 0.162169,
+      "sigma": 0.501475,
+      "times_shown": 4,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "pos_18": {
+      "text": "modern simplicity",
+      "category": "positive_other",
+      "mu": 0.413078,
+      "sigma": 0.501475,
+      "times_shown": 7,
+      "times_in_winner": 1,
+      "times_in_loser": 2
+    },
+    "pos_19": {
+      "text": "contemporary elegance",
+      "category": "positive_other",
+      "mu": 0.221025,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "pos_20": {
+      "text": "warm wood tones",
+      "category": "positive_other",
+      "mu": 0.30278,
+      "sigma": 0.501475,
+      "times_shown": 4,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "pos_21": {
+      "text": "sleek modern desk",
+      "category": "positive_other",
+      "mu": 0.382624,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "pos_22": {
+      "text": "soft ambient lighting",
+      "category": "positive_other",
+      "mu": 0.23681,
+      "sigma": 0.501475,
+      "times_shown": 5,
+      "times_in_winner": 1,
+      "times_in_loser": 2
+    },
+    "pos_23": {
+      "text": "curtain-filtered daylight",
+      "category": "positive_other",
+      "mu": 0.677537,
+      "sigma": 0.501475,
+      "times_shown": 6,
+      "times_in_winner": 3,
+      "times_in_loser": 2
+    },
+    "pos_24": {
+      "text": "spacious layout",
+      "category": "positive_other",
+      "mu": 0.677537,
+      "sigma": 0.501475,
+      "times_shown": 6,
+      "times_in_winner": 3,
+      "times_in_loser": 2
+    },
+    "pos_25": {
+      "text": "Scandinavian design",
+      "category": "positive_other",
+      "mu": 0.677537,
+      "sigma": 0.501475,
+      "times_shown": 6,
+      "times_in_winner": 3,
+      "times_in_loser": 2
+    },
+    "pos_26": {
+      "text": "Natural light",
+      "category": "positive_other",
+      "mu": 0.037686,
+      "sigma": 0.545082,
+      "times_shown": 5,
+      "times_in_winner": 1,
+      "times_in_loser": 3
+    },
+    "pos_27": {
+      "text": "Soft textures",
+      "category": "positive_other",
+      "mu": 1.493086,
+      "sigma": 0.501475,
+      "times_shown": 7,
+      "times_in_winner": 3,
+      "times_in_loser": 0
+    },
+    "pos_28": {
+      "text": "Neutral tones",
+      "category": "positive_other",
+      "mu": 0.296245,
+      "sigma": 0.545082,
+      "times_shown": 4,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "pos_29": {
+      "text": "Simple layout",
+      "category": "positive_other",
+      "mu": 0.141209,
+      "sigma": 0.501475,
+      "times_shown": 6,
+      "times_in_winner": 0,
+      "times_in_loser": 2
+    },
+    "pos_30": {
+      "text": "Modern elegance",
+      "category": "positive_other",
+      "mu": 0.124012,
+      "sigma": 0.545082,
+      "times_shown": 4,
+      "times_in_winner": 0,
+      "times_in_loser": 2
+    },
+    "pos_31": {
+      "text": "Warm lighting",
+      "category": "positive_other",
+      "mu": 0.309972,
+      "sigma": 0.545082,
+      "times_shown": 4,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "pos_32": {
+      "text": "Casual elegance",
+      "category": "positive_other",
+      "mu": 0.309972,
+      "sigma": 0.545082,
+      "times_shown": 4,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "pos_33": {
+      "text": "Textured fabrics",
+      "category": "positive_other",
+      "mu": 0.309972,
+      "sigma": 0.545082,
+      "times_shown": 4,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    }
+  },
+  "tag_states_snapshots": {
+    "1": {
+      "pos_0": {
+        "text": "minimalist design",
+        "category": "positive_other",
+        "mu": 0.7994287999804113,
+        "sigma": 0.644,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_1": {
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "mu": 0.7090351999863248,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_2": {
+        "text": "natural wood table",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_3": {
+        "text": "sleek cabinetry",
+        "category": "positive_other",
+        "mu": 0.7994287999804113,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_4": {
+        "text": "soft diffused lighting",
+        "category": "positive_other",
+        "mu": 0.7994287999804113,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_5": {
+        "text": "simple chair design",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_6": {
+        "text": "clean lines",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_7": {
+        "text": "open space layout",
+        "category": "positive_other",
+        "mu": 0.8898223999744976,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_8": {
+        "text": "modern aesthetic",
+        "category": "positive_other",
+        "mu": 0.5903935999940864,
+        "sigma": 0.644,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_9": {
+        "text": "subtle elegance",
+        "category": "positive_other",
+        "mu": 0.7994287999804113,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_10": {
+        "text": "calm atmosphere",
+        "category": "positive_other",
+        "mu": 0.11017760002550236,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_11": {
+        "text": "natural lighting",
+        "category": "positive_other",
+        "mu": 0.11017760002550236,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_12": {
+        "text": "wooden desk",
+        "category": "positive_other",
+        "mu": 0.11017760002550236,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_13": {
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "mu": 0.20057120001958878,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_14": {
+        "text": "large windows",
+        "category": "positive_other",
+        "mu": 0.20057120001958878,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_15": {
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "mu": 0.20057120001958878,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_16": {
+        "text": "ceramic pots",
+        "category": "positive_other",
+        "mu": 0.5903935999940864,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_17": {
+        "text": "curtained backdrop",
+        "category": "positive_other",
+        "mu": 0.5903935999940864,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_18": {
+        "text": "modern simplicity",
+        "category": "positive_other",
+        "mu": 0.5903935999940864,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_19": {
+        "text": "contemporary elegance",
+        "category": "positive_other",
+        "mu": 0.5903935999940864,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_20": {
+        "text": "warm wood tones",
+        "category": "positive_other",
+        "mu": 0.5903935999940864,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_21": {
+        "text": "sleek modern desk",
+        "category": "positive_other",
+        "mu": 0.5903935999940864,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_22": {
+        "text": "soft ambient lighting",
+        "category": "positive_other",
+        "mu": 0.4096064000059136,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_23": {
+        "text": "curtain-filtered daylight",
+        "category": "positive_other",
+        "mu": 0.4096064000059136,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_24": {
+        "text": "spacious layout",
+        "category": "positive_other",
+        "mu": 0.4096064000059136,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_25": {
+        "text": "Scandinavian design",
+        "category": "positive_other",
+        "mu": 0.4096064000059136,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_26": {
+        "text": "Natural light",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_27": {
+        "text": "Soft textures",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_28": {
+        "text": "Neutral tones",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_29": {
+        "text": "Simple layout",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_30": {
+        "text": "Modern elegance",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_31": {
+        "text": "Warm lighting",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_32": {
+        "text": "Casual elegance",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_33": {
+        "text": "Textured fabrics",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      }
+    },
+    "2": {
+      "pos_0": {
+        "text": "minimalist design",
+        "category": "positive_other",
+        "mu": 0.5098951418098805,
+        "sigma": 0.59248,
+        "times_shown": 6,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_1": {
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "mu": 0.9122566622708742,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "pos_2": {
+        "text": "natural wood table",
+        "category": "positive_other",
+        "mu": 0.7895336581705308,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_3": {
+        "text": "sleek cabinetry",
+        "category": "positive_other",
+        "mu": 0.42355344938372197,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_4": {
+        "text": "soft diffused lighting",
+        "category": "positive_other",
+        "mu": 0.42355344938372197,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_5": {
+        "text": "simple chair design",
+        "category": "positive_other",
+        "mu": 0.5863121958859815,
+        "sigma": 0.644,
+        "times_shown": 7,
+        "times_in_winner": 2,
+        "times_in_loser": 2
+      },
+      "pos_6": {
+        "text": "clean lines",
+        "category": "positive_other",
+        "mu": 0.7895336581705308,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_7": {
+        "text": "open space layout",
+        "category": "positive_other",
+        "mu": 1.093043862259047,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "pos_8": {
+        "text": "modern aesthetic",
+        "category": "positive_other",
+        "mu": 0.5040814041081049,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_9": {
+        "text": "subtle elegance",
+        "category": "positive_other",
+        "mu": 0.7130871075542529,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_10": {
+        "text": "calm atmosphere",
+        "category": "positive_other",
+        "mu": 0.11017760002550236,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_11": {
+        "text": "natural lighting",
+        "category": "positive_other",
+        "mu": 0.11017760002550236,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_12": {
+        "text": "wooden desk",
+        "category": "positive_other",
+        "mu": 0.11017760002550236,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_13": {
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "mu": 0.20057120001958878,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_14": {
+        "text": "large windows",
+        "category": "positive_other",
+        "mu": 0.20057120001958878,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_15": {
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "mu": 0.20057120001958878,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_16": {
+        "text": "ceramic pots",
+        "category": "positive_other",
+        "mu": 0.5040814041081049,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_17": {
+        "text": "curtained backdrop",
+        "category": "positive_other",
+        "mu": 0.5040814041081049,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_18": {
+        "text": "modern simplicity",
+        "category": "positive_other",
+        "mu": 0.7936150622786358,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_19": {
+        "text": "contemporary elegance",
+        "category": "positive_other",
+        "mu": 0.3008304452833786,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_20": {
+        "text": "warm wood tones",
+        "category": "positive_other",
+        "mu": 0.3008304452833786,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_21": {
+        "text": "sleek modern desk",
+        "category": "positive_other",
+        "mu": 0.3008304452833786,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_22": {
+        "text": "soft ambient lighting",
+        "category": "positive_other",
+        "mu": 0.6991400581764444,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_23": {
+        "text": "curtain-filtered daylight",
+        "category": "positive_other",
+        "mu": 0.4096064000059136,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_24": {
+        "text": "spacious layout",
+        "category": "positive_other",
+        "mu": 0.4096064000059136,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_25": {
+        "text": "Scandinavian design",
+        "category": "positive_other",
+        "mu": 0.4096064000059136,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_26": {
+        "text": "Natural light",
+        "category": "positive_other",
+        "mu": 0.5863121958859815,
+        "sigma": 0.644,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_27": {
+        "text": "Soft textures",
+        "category": "positive_other",
+        "mu": 0.8758753505966893,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_28": {
+        "text": "Neutral tones",
+        "category": "positive_other",
+        "mu": 0.2967785377154506,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_29": {
+        "text": "Simple layout",
+        "category": "positive_other",
+        "mu": 0.5863416924261584,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_30": {
+        "text": "Modern elegance",
+        "category": "positive_other",
+        "mu": 0.5863416924261584,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_31": {
+        "text": "Warm lighting",
+        "category": "positive_other",
+        "mu": 0.5863416924261584,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_32": {
+        "text": "Casual elegance",
+        "category": "positive_other",
+        "mu": 0.5863416924261584,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_33": {
+        "text": "Textured fabrics",
+        "category": "positive_other",
+        "mu": 0.5863416924261584,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      }
+    },
+    "3": {
+      "pos_0": {
+        "text": "minimalist design",
+        "category": "positive_other",
+        "mu": 0.23405851095408792,
+        "sigma": 0.5450816,
+        "times_shown": 7,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_1": {
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "mu": 0.7227159022713339,
+        "sigma": 0.5450816,
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_2": {
+        "text": "natural wood table",
+        "category": "positive_other",
+        "mu": 0.8758295290267831,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_3": {
+        "text": "sleek cabinetry",
+        "category": "positive_other",
+        "mu": 0.42355344938372197,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_4": {
+        "text": "soft diffused lighting",
+        "category": "positive_other",
+        "mu": 0.42355344938372197,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_5": {
+        "text": "simple chair design",
+        "category": "positive_other",
+        "mu": 0.8571762007555025,
+        "sigma": 0.59248,
+        "times_shown": 8,
+        "times_in_winner": 3,
+        "times_in_loser": 2
+      },
+      "pos_6": {
+        "text": "clean lines",
+        "category": "positive_other",
+        "mu": 0.7945062841568024,
+        "sigma": 0.5450816,
+        "times_shown": 5,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_7": {
+        "text": "open space layout",
+        "category": "positive_other",
+        "mu": 1.0980164882453187,
+        "sigma": 0.5450816,
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "pos_8": {
+        "text": "modern aesthetic",
+        "category": "positive_other",
+        "mu": 0.2282447732523123,
+        "sigma": 0.5450816,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_9": {
+        "text": "subtle elegance",
+        "category": "positive_other",
+        "mu": 0.7180597335405244,
+        "sigma": 0.5450816,
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_10": {
+        "text": "calm atmosphere",
+        "category": "positive_other",
+        "mu": 0.38104160489502337,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_11": {
+        "text": "natural lighting",
+        "category": "positive_other",
+        "mu": 0.38104160489502337,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_12": {
+        "text": "wooden desk",
+        "category": "positive_other",
+        "mu": 0.38104160489502337,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_13": {
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "mu": 0.4714352048891098,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_14": {
+        "text": "large windows",
+        "category": "positive_other",
+        "mu": 0.4714352048891098,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_15": {
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "mu": 0.4714352048891098,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_16": {
+        "text": "ceramic pots",
+        "category": "positive_other",
+        "mu": 0.4227581592381242,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_17": {
+        "text": "curtained backdrop",
+        "category": "positive_other",
+        "mu": 0.4227581592381242,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_18": {
+        "text": "modern simplicity",
+        "category": "positive_other",
+        "mu": 0.6040743022790955,
+        "sigma": 0.5450816,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_19": {
+        "text": "contemporary elegance",
+        "category": "positive_other",
+        "mu": 0.3008304452833786,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_20": {
+        "text": "warm wood tones",
+        "category": "positive_other",
+        "mu": 0.3008304452833786,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_21": {
+        "text": "sleek modern desk",
+        "category": "positive_other",
+        "mu": 0.3008304452833786,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_22": {
+        "text": "soft ambient lighting",
+        "category": "positive_other",
+        "mu": 0.5095992981769042,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_23": {
+        "text": "curtain-filtered daylight",
+        "category": "positive_other",
+        "mu": 0.6804704048754346,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_24": {
+        "text": "spacious layout",
+        "category": "positive_other",
+        "mu": 0.6804704048754346,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_25": {
+        "text": "Scandinavian design",
+        "category": "positive_other",
+        "mu": 0.6804704048754346,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_26": {
+        "text": "Natural light",
+        "category": "positive_other",
+        "mu": 0.3104755650301889,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_27": {
+        "text": "Soft textures",
+        "category": "positive_other",
+        "mu": 0.8808479765829609,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_28": {
+        "text": "Neutral tones",
+        "category": "positive_other",
+        "mu": 0.2154552928454699,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_29": {
+        "text": "Simple layout",
+        "category": "positive_other",
+        "mu": 0.6726375632824108,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_30": {
+        "text": "Modern elegance",
+        "category": "positive_other",
+        "mu": 0.3968009324266181,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_31": {
+        "text": "Warm lighting",
+        "category": "positive_other",
+        "mu": 0.22918181670038512,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_32": {
+        "text": "Casual elegance",
+        "category": "positive_other",
+        "mu": 0.22918181670038512,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_33": {
+        "text": "Textured fabrics",
+        "category": "positive_other",
+        "mu": 0.22918181670038512,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      }
+    },
+    "4": {
+      "pos_0": {
+        "text": "minimalist design",
+        "category": "positive_other",
+        "mu": 0.23405851095408792,
+        "sigma": 0.5450816,
+        "times_shown": 7,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_1": {
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "mu": 0.993517216839344,
+        "sigma": 0.5014750720000001,
+        "times_shown": 7,
+        "times_in_winner": 3,
+        "times_in_loser": 1
+      },
+      "pos_2": {
+        "text": "natural wood table",
+        "category": "positive_other",
+        "mu": 0.955635007330156,
+        "sigma": 0.5014750720000001,
+        "times_shown": 7,
+        "times_in_winner": 3,
+        "times_in_loser": 2
+      },
+      "pos_3": {
+        "text": "sleek cabinetry",
+        "category": "positive_other",
+        "mu": 0.34374797108034905,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_4": {
+        "text": "soft diffused lighting",
+        "category": "positive_other",
+        "mu": 0.34374797108034905,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_5": {
+        "text": "simple chair design",
+        "category": "positive_other",
+        "mu": 1.129965312477927,
+        "sigma": 0.5450816,
+        "times_shown": 11,
+        "times_in_winner": 4,
+        "times_in_loser": 2
+      },
+      "pos_6": {
+        "text": "clean lines",
+        "category": "positive_other",
+        "mu": 0.8743117624601753,
+        "sigma": 0.5014750720000001,
+        "times_shown": 8,
+        "times_in_winner": 3,
+        "times_in_loser": 2
+      },
+      "pos_7": {
+        "text": "open space layout",
+        "category": "positive_other",
+        "mu": 1.4506110782711161,
+        "sigma": 0.5014750720000001,
+        "times_shown": 8,
+        "times_in_winner": 3,
+        "times_in_loser": 0
+      },
+      "pos_8": {
+        "text": "modern aesthetic",
+        "category": "positive_other",
+        "mu": 0.2282447732523123,
+        "sigma": 0.5450816,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_9": {
+        "text": "subtle elegance",
+        "category": "positive_other",
+        "mu": 0.9888610481085346,
+        "sigma": 0.5014750720000001,
+        "times_shown": 7,
+        "times_in_winner": 3,
+        "times_in_loser": 1
+      },
+      "pos_10": {
+        "text": "calm atmosphere",
+        "category": "positive_other",
+        "mu": 0.30123612659165044,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_11": {
+        "text": "natural lighting",
+        "category": "positive_other",
+        "mu": 0.30123612659165044,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_12": {
+        "text": "wooden desk",
+        "category": "positive_other",
+        "mu": 0.30123612659165044,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_13": {
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "mu": 0.47342300204352394,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_14": {
+        "text": "large windows",
+        "category": "positive_other",
+        "mu": 0.39162972658573686,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_15": {
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "mu": 0.39162972658573686,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_16": {
+        "text": "ceramic pots",
+        "category": "positive_other",
+        "mu": 0.4227581592381242,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_17": {
+        "text": "curtained backdrop",
+        "category": "positive_other",
+        "mu": 0.4227581592381242,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_18": {
+        "text": "modern simplicity",
+        "category": "positive_other",
+        "mu": 0.4130784660144583,
+        "sigma": 0.5014750720000001,
+        "times_shown": 7,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_19": {
+        "text": "contemporary elegance",
+        "category": "positive_other",
+        "mu": 0.22102496698000568,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_20": {
+        "text": "warm wood tones",
+        "category": "positive_other",
+        "mu": 0.3826237207411657,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_21": {
+        "text": "sleek modern desk",
+        "category": "positive_other",
+        "mu": 0.3826237207411657,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_22": {
+        "text": "soft ambient lighting",
+        "category": "positive_other",
+        "mu": 0.23681018645447982,
+        "sigma": 0.5014750720000001,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_23": {
+        "text": "curtain-filtered daylight",
+        "category": "positive_other",
+        "mu": 0.6784826077210204,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_24": {
+        "text": "spacious layout",
+        "category": "positive_other",
+        "mu": 0.6784826077210204,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_25": {
+        "text": "Scandinavian design",
+        "category": "positive_other",
+        "mu": 0.6784826077210204,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_26": {
+        "text": "Natural light",
+        "category": "positive_other",
+        "mu": 0.037686453307764545,
+        "sigma": 0.5450816,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 3
+      },
+      "pos_27": {
+        "text": "Soft textures",
+        "category": "positive_other",
+        "mu": 1.2334425666087583,
+        "sigma": 0.5450816,
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "pos_28": {
+        "text": "Neutral tones",
+        "category": "positive_other",
+        "mu": 0.2154552928454699,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_29": {
+        "text": "Simple layout",
+        "category": "positive_other",
+        "mu": 0.4816417270177735,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_30": {
+        "text": "Modern elegance",
+        "category": "positive_other",
+        "mu": 0.12401182070419375,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "pos_31": {
+        "text": "Warm lighting",
+        "category": "positive_other",
+        "mu": 0.22918181670038512,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_32": {
+        "text": "Casual elegance",
+        "category": "positive_other",
+        "mu": 0.22918181670038512,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_33": {
+        "text": "Textured fabrics",
+        "category": "positive_other",
+        "mu": 0.22918181670038512,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      }
+    },
+    "5": {
+      "pos_0": {
+        "text": "minimalist design",
+        "category": "positive_other",
+        "mu": 0.31484828038392265,
+        "sigma": 0.5014750720000001,
+        "times_shown": 8,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_1": {
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "mu": 1.173316348176841,
+        "sigma": 0.4613570662400001,
+        "times_shown": 9,
+        "times_in_winner": 4,
+        "times_in_loser": 1
+      },
+      "pos_2": {
+        "text": "natural wood table",
+        "category": "positive_other",
+        "mu": 1.135434138667653,
+        "sigma": 0.4613570662400001,
+        "times_shown": 9,
+        "times_in_winner": 4,
+        "times_in_loser": 2
+      },
+      "pos_3": {
+        "text": "sleek cabinetry",
+        "category": "positive_other",
+        "mu": 0.4245377405101838,
+        "sigma": 0.5014750720000001,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_4": {
+        "text": "soft diffused lighting",
+        "category": "positive_other",
+        "mu": 0.4245377405101838,
+        "sigma": 0.5014750720000001,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_5": {
+        "text": "simple chair design",
+        "category": "positive_other",
+        "mu": 1.3905542132452586,
+        "sigma": 0.5014750720000001,
+        "times_shown": 14,
+        "times_in_winner": 5,
+        "times_in_loser": 2
+      },
+      "pos_6": {
+        "text": "clean lines",
+        "category": "positive_other",
+        "mu": 0.7935219930303405,
+        "sigma": 0.4613570662400001,
+        "times_shown": 11,
+        "times_in_winner": 4,
+        "times_in_loser": 3
+      },
+      "pos_7": {
+        "text": "open space layout",
+        "category": "positive_other",
+        "mu": 1.630410209608613,
+        "sigma": 0.4613570662400001,
+        "times_shown": 10,
+        "times_in_winner": 4,
+        "times_in_loser": 0
+      },
+      "pos_8": {
+        "text": "modern aesthetic",
+        "category": "positive_other",
+        "mu": 0.30903454268214703,
+        "sigma": 0.5014750720000001,
+        "times_shown": 6,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_9": {
+        "text": "subtle elegance",
+        "category": "positive_other",
+        "mu": 0.9879152271914216,
+        "sigma": 0.4613570662400001,
+        "times_shown": 9,
+        "times_in_winner": 4,
+        "times_in_loser": 2
+      },
+      "pos_10": {
+        "text": "calm atmosphere",
+        "category": "positive_other",
+        "mu": 0.3820258960214852,
+        "sigma": 0.5014750720000001,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_11": {
+        "text": "natural lighting",
+        "category": "positive_other",
+        "mu": 0.30123612659165044,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_12": {
+        "text": "wooden desk",
+        "category": "positive_other",
+        "mu": 0.30123612659165044,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_13": {
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "mu": 0.13299015276347065,
+        "sigma": 0.5014750720000001,
+        "times_shown": 6,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_14": {
+        "text": "large windows",
+        "category": "positive_other",
+        "mu": 0.13104082581840526,
+        "sigma": 0.5014750720000001,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_15": {
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "mu": 0.3117857780730152,
+        "sigma": 0.5014750720000001,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_16": {
+        "text": "ceramic pots",
+        "category": "positive_other",
+        "mu": 0.08232530995807091,
+        "sigma": 0.5014750720000001,
+        "times_shown": 5,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_17": {
+        "text": "curtained backdrop",
+        "category": "positive_other",
+        "mu": 0.1621692584707926,
+        "sigma": 0.5014750720000001,
+        "times_shown": 4,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_18": {
+        "text": "modern simplicity",
+        "category": "positive_other",
+        "mu": 0.4130784660144583,
+        "sigma": 0.5014750720000001,
+        "times_shown": 7,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_19": {
+        "text": "contemporary elegance",
+        "category": "positive_other",
+        "mu": 0.22102496698000568,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_20": {
+        "text": "warm wood tones",
+        "category": "positive_other",
+        "mu": 0.30277977222844404,
+        "sigma": 0.5014750720000001,
+        "times_shown": 4,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_21": {
+        "text": "sleek modern desk",
+        "category": "positive_other",
+        "mu": 0.3826237207411657,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_22": {
+        "text": "soft ambient lighting",
+        "category": "positive_other",
+        "mu": 0.23681018645447982,
+        "sigma": 0.5014750720000001,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_23": {
+        "text": "curtain-filtered daylight",
+        "category": "positive_other",
+        "mu": 0.6775367868039074,
+        "sigma": 0.5014750720000001,
+        "times_shown": 6,
+        "times_in_winner": 3,
+        "times_in_loser": 2
+      },
+      "pos_24": {
+        "text": "spacious layout",
+        "category": "positive_other",
+        "mu": 0.6775367868039074,
+        "sigma": 0.5014750720000001,
+        "times_shown": 6,
+        "times_in_winner": 3,
+        "times_in_loser": 2
+      },
+      "pos_25": {
+        "text": "Scandinavian design",
+        "category": "positive_other",
+        "mu": 0.6775367868039074,
+        "sigma": 0.5014750720000001,
+        "times_shown": 6,
+        "times_in_winner": 3,
+        "times_in_loser": 2
+      },
+      "pos_26": {
+        "text": "Natural light",
+        "category": "positive_other",
+        "mu": 0.037686453307764545,
+        "sigma": 0.5450816,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 3
+      },
+      "pos_27": {
+        "text": "Soft textures",
+        "category": "positive_other",
+        "mu": 1.4930856464589768,
+        "sigma": 0.5014750720000001,
+        "times_shown": 7,
+        "times_in_winner": 3,
+        "times_in_loser": 0
+      },
+      "pos_28": {
+        "text": "Neutral tones",
+        "category": "positive_other",
+        "mu": 0.2962450622753046,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_29": {
+        "text": "Simple layout",
+        "category": "positive_other",
+        "mu": 0.14120887773772023,
+        "sigma": 0.5014750720000001,
+        "times_shown": 6,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "pos_30": {
+        "text": "Modern elegance",
+        "category": "positive_other",
+        "mu": 0.12401182070419375,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "pos_31": {
+        "text": "Warm lighting",
+        "category": "positive_other",
+        "mu": 0.3099715861302198,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_32": {
+        "text": "Casual elegance",
+        "category": "positive_other",
+        "mu": 0.3099715861302198,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_33": {
+        "text": "Textured fabrics",
+        "category": "positive_other",
+        "mu": 0.3099715861302198,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      }
+    }
+  },
+  "best_picks": {
+    "1": {
+      "round": 1,
+      "option_id": 0,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_0_img_0.png",
+      "tags": [
+        "minimalist design",
+        "neutral color palette",
+        "natural wood table",
+        "sleek cabinetry",
+        "soft diffused lighting",
+        "simple chair design",
+        "clean lines",
+        "open space layout",
+        "modern aesthetic",
+        "subtle elegance"
+      ],
+      "weights": [
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999
+      ],
+      "strategy": "exploit"
+    },
+    "2": {
+      "round": 2,
+      "option_id": 3,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_1_img_3.png",
+      "tags": [
+        "Soft textures",
+        "Natural light",
+        "soft ambient lighting",
+        "open space layout",
+        "subtle elegance",
+        "natural wood table",
+        "clean lines",
+        "simple chair design",
+        "neutral color palette",
+        "modern simplicity"
+      ],
+      "weights": [
+        0.9357535990125847,
+        0.9357535990125847,
+        0.883687338833031,
+        1.2229384875171168,
+        1.1460512776057112,
+        0.9357535990125847,
+        0.9357535990125847,
+        0.9357535990125847,
+        1.075809311398357,
+        0.992745589582861
+      ],
+      "strategy": "challenger"
+    },
+    "3": {
+      "round": 3,
+      "option_id": 1,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_2_img_1.png",
+      "tags": [
+        "cozy atmosphere",
+        "wooden desk",
+        "minimalist decor",
+        "curtain-filtered daylight",
+        "natural lighting",
+        "Scandinavian design",
+        "calm atmosphere",
+        "spacious layout",
+        "simple chair design",
+        "large windows"
+      ],
+      "weights": [
+        0.944456066498809,
+        0.8916376653933605,
+        0.944456066498809,
+        1.086535001463414,
+        0.8916376653933605,
+        1.086535001463414,
+        0.8916376653933605,
+        1.086535001463414,
+        1.2321137999332505,
+        0.944456066498809
+      ],
+      "strategy": "explore"
+    },
+    "4": {
+      "round": 4,
+      "option_id": 0,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_3_img_0.png",
+      "tags": [
+        "open space layout",
+        "Soft textures",
+        "natural wood table",
+        "simple chair design",
+        "clean lines",
+        "neutral color palette",
+        "subtle elegance",
+        "curtain-filtered daylight",
+        "spacious layout",
+        "Scandinavian design"
+      ],
+      "weights": [
+        1.2249915223254015,
+        1.05093479768249,
+        1.0473425736021098,
+        1.0341473746489254,
+        0.9915753426202173,
+        0.9459762675142053,
+        0.9431303293680455,
+        0.9206339307462021,
+        0.9206339307462021,
+        0.9206339307462021
+      ],
+      "strategy": "exploit"
+    },
+    "5": {
+      "round": 5,
+      "option_id": 0,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P02-1_Calm_Home_Office_Sample_2026-02-21_14-40-26/hitl/round_4_img_0.png",
+      "tags": [
+        "open space layout",
+        "Soft textures",
+        "simple chair design",
+        "neutral color palette",
+        "subtle elegance",
+        "natural wood table",
+        "clean lines",
+        "curtain-filtered daylight",
+        "spacious layout",
+        "Scandinavian design"
+      ],
+      "weights": [
+        1.3829672309729315,
+        1.1780727539717826,
+        1.0950319397220696,
+        0.9978785036219859,
+        0.99479146165288,
+        0.9731749314072501,
+        0.9232005162672988,
+        0.8182942207946,
+        0.8182942207946,
+        0.8182942207946
+      ],
+      "strategy": "exploit"
+    }
+  },
+  "positive_tags": [
+    "minimalist design",
+    "neutral color palette",
+    "natural wood table",
+    "sleek cabinetry",
+    "soft diffused lighting",
+    "simple chair design",
+    "clean lines",
+    "open space layout",
+    "modern aesthetic",
+    "subtle elegance",
+    "calm atmosphere",
+    "natural lighting",
+    "wooden desk",
+    "minimalist decor",
+    "large windows",
+    "cozy atmosphere",
+    "ceramic pots",
+    "curtained backdrop",
+    "modern simplicity",
+    "contemporary elegance",
+    "warm wood tones",
+    "sleek modern desk",
+    "soft ambient lighting",
+    "curtain-filtered daylight",
+    "spacious layout",
+    "Scandinavian design",
+    "Natural light",
+    "Soft textures",
+    "Neutral tones",
+    "Simple layout",
+    "Modern elegance",
+    "Warm lighting",
+    "Casual elegance",
+    "Textured fabrics"
+  ],
+  "neutral_tags": [],
+  "selected_image_tags": [],
+  "base_prompt": "Calm Home Office",
+  "negative_prompt": "illustration, plan view, bird's-eye view, cartoon, anime, isometric, diorama, miniature, 3D render, CGI, concept art, stylized, toon shading, human",
+  "timestamp": "2026-02-21T14:55:20.767707"
+}

@@ -1,0 +1,102 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_P05-2_Inspiring_Reading_Nook_Sample_2026-02-23_16-32-37
+Started: 2026-02-23T16:40:43.761541
+Rounds: 4
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 18
+  Neutral tags: 23
+  Total: 41
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.26 | floor-to-ceiling windows, natural light, minimalist decor...
+    [1] explore      | avg_μ=+0.42 | wooden furniture, wooden bookshelves, cozy atmosphere...
+    [2] ucb          | avg_μ=+0.26 | textured materials, relaxing atmosphere, minimalist decor...
+    [3] challenger   | avg_μ=+0.18 | rich mahogany finish, minimalist decor, wooden bookshelves...
+  Ranking: [1, 2, 0, 3]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. cozy reading nook         μ=+0.795 σ=0.644
+    2. cozy atmosphere           μ=+0.795 σ=0.644
+    3. wooden furniture          μ=+0.795 σ=0.644
+    4. calming aesthetic         μ=+0.795 σ=0.644
+    5. wooden flooring           μ=+0.705 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.46 | cozy reading nook, cozy atmosphere, wooden furniture...
+    [1] explore      | avg_μ=+0.19 | natural light, minimalist decor, antique map decor...
+    [2] ucb          | avg_μ=+0.46 | textured materials, relaxing atmosphere, antique map decor...
+    [3] challenger   | avg_μ=+0.42 | wooden bookshelves, cozy atmosphere, wooden flooring...
+  Ranking: [3, 0, 1, 2]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. wooden flooring           μ=+0.995 σ=0.593
+    2. curved architecture       μ=+0.965 σ=0.593
+    3. wooden furniture          μ=+0.882 σ=0.593
+    4. cozy atmosphere           μ=+0.881 σ=0.593
+    5. wooden bookshelves        μ=+0.787 σ=0.593
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.60 | wooden flooring, curved architecture, wooden furniture...
+    [1] explore      | avg_μ=+0.16 | natural light, minimalist decor, wooden flooring...
+    [2] ucb          | avg_μ=+0.44 | textured materials, relaxing atmosphere, cozy atmosphere...
+    [3] challenger   | avg_μ=+0.42 | wooden furniture, cosy nook, wooden bookshelves...
+  Ranking: [2, 3, 1, 0]
+  Comparisons: 6
+  Tags updated: 28
+  Top 5 after round:
+    1. cozy reading nook         μ=+0.955 σ=0.545
+    2. calming aesthetic         μ=+0.955 σ=0.545
+    3. floating shelves          μ=+0.951 σ=0.545
+    4. cozy atmosphere           μ=+0.881 σ=0.545
+    5. shelved artifacts         μ=+0.788 σ=0.545
+
+----------------------------------------------------------------------
+ROUND 4 (β=1.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.58 | cozy reading nook, calming aesthetic, floating shelves...
+    [1] explore      | avg_μ=+0.08 | natural light, minimalist decor, warm accent lights...
+    [2] ucb          | avg_μ=+0.67 | wooden furniture, textured materials, relaxing atmosphere...
+    [3] challenger   | avg_μ=+0.49 | wooden furniture, cosy nook, wooden bookshelves...
+  Ranking: [3, 1, 2, 0]
+  Comparisons: 6
+  Tags updated: 27
+  Top 5 after round:
+    1. cozy reading nook         μ=+0.958 σ=0.501
+    2. wooden furniture          μ=+0.881 σ=0.501
+    3. curved architecture       μ=+0.880 σ=0.501
+    4. calming aesthetic         μ=+0.877 σ=0.501
+    5. floating shelves          μ=+0.873 σ=0.501
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. cozy reading nook              | w=0.120 | μ=+0.958 | win_rate=43%
+   2. wooden furniture               | w=0.111 | μ=+0.881 | win_rate=33%
+   3. curved architecture            | w=0.111 | μ=+0.880 | win_rate=33%
+   4. calming aesthetic              | w=0.111 | μ=+0.877 | win_rate=38%
+   5. floating shelves               | w=0.111 | μ=+0.873 | win_rate=38%
+   6. wooden flooring                | w=0.102 | μ=+0.798 | win_rate=27%
+   7. wooden bookshelves             | w=0.101 | μ=+0.786 | win_rate=43%
+   8. cozy atmosphere                | w=0.078 | μ=+0.529 | win_rate=38%
+   9. shelved artifacts              | w=0.077 | μ=+0.517 | win_rate=50%
+  10. textured materials             | w=0.076 | μ=+0.498 | win_rate=25%
+
+  Convergence: False
+  Top-10 stability: 9/10 tags same as previous round

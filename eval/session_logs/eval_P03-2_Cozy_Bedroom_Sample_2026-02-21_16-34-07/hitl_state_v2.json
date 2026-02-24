@@ -1,0 +1,3864 @@
+{
+  "version": "2.0",
+  "session_id": "eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07",
+  "round_count": 6,
+  "generation_counter": 7,
+  "is_initialized": true,
+  "is_converged": false,
+  "rankings_history": [
+    [
+      2,
+      1,
+      0,
+      3
+    ],
+    [
+      3,
+      0,
+      1,
+      2
+    ],
+    [
+      1,
+      0,
+      2,
+      3
+    ],
+    [
+      0,
+      3,
+      2,
+      1
+    ],
+    [
+      3,
+      2,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      3,
+      2
+    ]
+  ],
+  "compositions_history": [
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "wooden flooring",
+          "warm lighting",
+          "earthy tones",
+          "woven textures",
+          "natural materials",
+          "large window view",
+          "earthy color palette",
+          "neutral bedding",
+          "soft lighting",
+          "simple layout"
+        ],
+        "weights": [
+          1.1319,
+          1.1319,
+          1.1319,
+          1.1319,
+          1.1319,
+          1.1319,
+          1.1319,
+          0.6922,
+          0.6922,
+          0.6922
+        ],
+        "mus": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.3,
+          -0.3,
+          -0.3
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_0_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "warm tones",
+          "soft ambient lighting",
+          "plush bedding",
+          "elegant armchair",
+          "simple layout",
+          "neutral bedding",
+          "soft lighting",
+          "rich color palette",
+          "cozy atmosphere",
+          "large window view"
+        ],
+        "weights": [
+          1.1883,
+          1.1883,
+          1.1883,
+          1.1883,
+          0.7175,
+          0.7175,
+          0.7175,
+          1.1883,
+          0.7175,
+          1.1883
+        ],
+        "mus": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.3,
+          -0.3,
+          -0.3,
+          0.5,
+          -0.3,
+          0.5
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_0_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "textured textiles",
+          "bohemian style",
+          "earthy tones",
+          "modern wall art",
+          "layered textiles",
+          "airy space",
+          "soft lighting",
+          "wooden furniture",
+          "natural materials",
+          "large window view"
+        ],
+        "weights": [
+          0.8208,
+          0.8208,
+          1.4182,
+          0.8208,
+          0.8208,
+          0.8208,
+          0.8208,
+          0.8208,
+          1.4182,
+          1.4182
+        ],
+        "mus": [
+          -0.3,
+          -0.3,
+          0.5,
+          -0.3,
+          -0.3,
+          -0.3,
+          -0.3,
+          -0.3,
+          0.5,
+          0.5
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_0_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "eclectic decor",
+          "earthy color palette",
+          "warm tones",
+          "elegant armchair",
+          "stone fireplace",
+          "wooden flooring",
+          "vintage rugs",
+          "rich color palette",
+          "natural materials",
+          "warm lighting"
+        ],
+        "weights": [
+          0.6922,
+          1.1319,
+          1.1319,
+          1.1319,
+          0.6922,
+          1.1319,
+          0.6922,
+          1.1319,
+          1.1319,
+          1.1319
+        ],
+        "mus": [
+          -0.3,
+          0.5,
+          0.5,
+          0.5,
+          -0.3,
+          0.5,
+          -0.3,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_0_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "large window view",
+          "earthy tones",
+          "plush bedding",
+          "soft ambient lighting",
+          "woven textures",
+          "natural materials",
+          "warm tones",
+          "soft lighting",
+          "modern wall art",
+          "textured textiles"
+        ],
+        "weights": [
+          1.3042,
+          1.22,
+          1.1265,
+          1.1265,
+          0.9974,
+          0.9949,
+          0.9252,
+          0.7696,
+          0.7679,
+          0.7679
+        ],
+        "mus": [
+          0.7928,
+          0.7021,
+          0.5907,
+          0.5907,
+          0.4131,
+          0.4093,
+          0.2979,
+          -0.0072,
+          -0.0109,
+          -0.0109
+        ],
+        "sigmas": [
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_1_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "woven textures",
+          "log cabin style",
+          "earthy color palette",
+          "natural lighting",
+          "earthy tones",
+          "wooden ceiling beams",
+          "wooden flooring",
+          "natural materials",
+          "warm lighting",
+          "large window view"
+        ],
+        "weights": [
+          1.1174,
+          0.7177,
+          0.9184,
+          0.7177,
+          1.3802,
+          0.7177,
+          0.9184,
+          1.1145,
+          0.9184,
+          1.4796
+        ],
+        "mus": [
+          0.4131,
+          -0.3,
+          0.1203,
+          -0.3,
+          0.7021,
+          -0.3,
+          0.1203,
+          0.4093,
+          0.1203,
+          0.7928
+        ],
+        "sigmas": [
+          0.644,
+          0.7,
+          0.644,
+          0.7,
+          0.644,
+          0.7,
+          0.644,
+          0.644,
+          0.644,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_1_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "woven textures",
+          "warm tones",
+          "bohemian style",
+          "soft ambient lighting",
+          "plush bedding",
+          "layered textiles",
+          "elegant armchair",
+          "airy space",
+          "wooden furniture",
+          "rich color palette"
+        ],
+        "weights": [
+          1.1014,
+          1.0178,
+          0.836,
+          1.2507,
+          1.2507,
+          0.836,
+          1.0178,
+          0.836,
+          0.836,
+          1.0178
+        ],
+        "mus": [
+          0.4131,
+          0.2979,
+          -0.0109,
+          0.5907,
+          0.5907,
+          -0.0109,
+          0.2979,
+          -0.0109,
+          -0.0109,
+          0.2979
+        ],
+        "sigmas": [
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_1_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "warm tones",
+          "nature-inspired decor",
+          "soft ambient lighting",
+          "earthy tones",
+          "elegant armchair",
+          "luxurious drapes",
+          "wooden flooring",
+          "gold accents",
+          "rich color palette",
+          "large window view"
+        ],
+        "weights": [
+          1.0023,
+          0.7012,
+          1.2298,
+          1.3355,
+          1.0023,
+          0.7012,
+          0.8934,
+          0.7012,
+          1.0023,
+          1.4307
+        ],
+        "mus": [
+          0.2979,
+          -0.3,
+          0.5907,
+          0.7021,
+          0.2979,
+          -0.3,
+          0.1203,
+          -0.3,
+          0.2979,
+          0.7928
+        ],
+        "sigmas": [
+          0.644,
+          0.7,
+          0.644,
+          0.644,
+          0.644,
+          0.7,
+          0.644,
+          0.7,
+          0.644,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_1_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "large window view",
+          "earthy tones",
+          "soft ambient lighting",
+          "natural materials",
+          "plush bedding",
+          "warm tones",
+          "wooden flooring",
+          "soft lighting",
+          "modern wall art",
+          "textured textiles"
+        ],
+        "weights": [
+          1.5114,
+          1.4093,
+          1.121,
+          0.9345,
+          0.9232,
+          0.921,
+          0.8851,
+          0.7659,
+          0.7643,
+          0.7643
+        ],
+        "mus": [
+          1.0806,
+          0.9899,
+          0.678,
+          0.4079,
+          0.3888,
+          0.3852,
+          0.3221,
+          0.0788,
+          0.075,
+          0.075
+        ],
+        "sigmas": [
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_2_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "woven textures",
+          "earthy color palette",
+          "traditional layout",
+          "earthy tones",
+          "neutral bedding",
+          "wooden flooring",
+          "classic furniture",
+          "natural materials",
+          "warm lighting",
+          "large window view"
+        ],
+        "weights": [
+          0.8744,
+          0.8274,
+          0.6875,
+          1.6198,
+          0.6888,
+          0.9931,
+          0.6875,
+          1.0522,
+          0.8274,
+          1.7419
+        ],
+        "mus": [
+          0.1239,
+          0.0329,
+          -0.3,
+          0.9899,
+          -0.2962,
+          0.3221,
+          -0.3,
+          0.4079,
+          0.0329,
+          1.0806
+        ],
+        "sigmas": [
+          0.5925,
+          0.5925,
+          0.7,
+          0.5925,
+          0.644,
+          0.5925,
+          0.7,
+          0.5925,
+          0.5925,
+          0.5925
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_2_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "warm tones",
+          "nature-inspired decor",
+          "soft ambient lighting",
+          "earthy tones",
+          "luxurious drapes",
+          "elegant armchair",
+          "wooden flooring",
+          "gold accents",
+          "rich color palette",
+          "cozy atmosphere"
+        ],
+        "weights": [
+          1.0339,
+          0.8048,
+          1.2722,
+          1.6159,
+          0.8048,
+          0.9762,
+          0.9911,
+          0.8048,
+          0.9762,
+          0.7199
+        ],
+        "mus": [
+          0.3852,
+          -0.0108,
+          0.678,
+          0.9899,
+          -0.0108,
+          0.2992,
+          0.3221,
+          -0.0108,
+          0.2992,
+          -0.2093
+        ],
+        "sigmas": [
+          0.5925,
+          0.644,
+          0.5925,
+          0.5925,
+          0.644,
+          0.5925,
+          0.5925,
+          0.644,
+          0.5925,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_2_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "woven textures",
+          "log cabin style",
+          "natural lighting",
+          "warm tones",
+          "soft ambient lighting",
+          "plush bedding",
+          "elegant armchair",
+          "simple layout",
+          "rich color palette",
+          "large window view"
+        ],
+        "weights": [
+          0.8804,
+          0.6615,
+          0.6615,
+          1.0438,
+          1.2855,
+          1.0464,
+          0.9853,
+          0.6928,
+          0.9853,
+          1.7575
+        ],
+        "mus": [
+          0.1239,
+          -0.3873,
+          -0.3873,
+          0.3852,
+          0.678,
+          0.3888,
+          0.2992,
+          -0.2962,
+          0.2992,
+          1.0806
+        ],
+        "sigmas": [
+          0.5925,
+          0.644,
+          0.644,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.644,
+          0.5925,
+          0.5925
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_2_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "earthy tones",
+          "large window view",
+          "natural materials",
+          "wooden flooring",
+          "soft ambient lighting",
+          "warm lighting",
+          "earthy color palette",
+          "soft lighting",
+          "modern wall art",
+          "textured textiles"
+        ],
+        "weights": [
+          1.6176,
+          1.4873,
+          1.114,
+          0.9919,
+          0.8681,
+          0.8267,
+          0.8267,
+          0.7569,
+          0.7553,
+          0.7553
+        ],
+        "mus": [
+          1.2719,
+          1.1649,
+          0.7741,
+          0.604,
+          0.3958,
+          0.3152,
+          0.3152,
+          0.1627,
+          0.1589,
+          0.1589
+        ],
+        "sigmas": [
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_3_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "woven textures",
+          "eclectic decor",
+          "earthy color palette",
+          "earthy tones",
+          "stone fireplace",
+          "vintage rugs",
+          "classic furniture",
+          "natural materials",
+          "warm lighting",
+          "large window view"
+        ],
+        "weights": [
+          0.8217,
+          0.5718,
+          0.9245,
+          1.8721,
+          0.5718,
+          0.5718,
+          0.7571,
+          1.2688,
+          0.9245,
+          1.716
+        ],
+        "mus": [
+          0.1242,
+          -0.5928,
+          0.3152,
+          1.2719,
+          -0.5928,
+          -0.5928,
+          -0.0177,
+          0.7741,
+          0.3152,
+          1.1649
+        ],
+        "sigmas": [
+          0.5451,
+          0.644,
+          0.5451,
+          0.5451,
+          0.644,
+          0.644,
+          0.644,
+          0.5451,
+          0.5451,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_3_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "warm tones",
+          "nature-inspired decor",
+          "traditional layout",
+          "soft ambient lighting",
+          "earthy tones",
+          "modern wall art",
+          "plush bedding",
+          "neutral bedding",
+          "soft lighting",
+          "large window view"
+        ],
+        "weights": [
+          0.8009,
+          0.7169,
+          0.7477,
+          0.96,
+          1.8382,
+          0.8278,
+          0.8439,
+          0.7493,
+          0.8297,
+          1.6855
+        ],
+        "mus": [
+          0.103,
+          -0.0951,
+          -0.0177,
+          0.3958,
+          1.2719,
+          0.1589,
+          0.1908,
+          -0.014,
+          0.1627,
+          1.1649
+        ],
+        "sigmas": [
+          0.5451,
+          0.5925,
+          0.644,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5925,
+          0.5451,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_3_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "woven textures",
+          "warm tones",
+          "soft ambient lighting",
+          "plush bedding",
+          "luxurious drapes",
+          "wooden flooring",
+          "gold accents",
+          "natural materials",
+          "warm lighting",
+          "large window view"
+        ],
+        "weights": [
+          0.8258,
+          0.8154,
+          0.9794,
+          0.8597,
+          0.7288,
+          1.129,
+          0.7288,
+          1.2765,
+          0.9294,
+          1.7274
+        ],
+        "mus": [
+          0.1242,
+          0.103,
+          0.3958,
+          0.1908,
+          -0.0951,
+          0.604,
+          -0.0951,
+          0.7741,
+          0.3152,
+          1.1649
+        ],
+        "sigmas": [
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5451,
+          0.5925,
+          0.5451,
+          0.5925,
+          0.5451,
+          0.5451,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_3_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "earthy tones",
+          "large window view",
+          "wooden flooring",
+          "natural materials",
+          "soft ambient lighting",
+          "warm lighting",
+          "earthy color palette",
+          "textured textiles",
+          "soft lighting",
+          "modern wall art"
+        ],
+        "weights": [
+          1.3929,
+          1.367,
+          1.1772,
+          1.093,
+          0.9642,
+          0.8134,
+          0.7755,
+          0.8314,
+          0.7936,
+          0.7918
+        ],
+        "mus": [
+          1.1896,
+          1.1649,
+          0.962,
+          0.8568,
+          0.671,
+          0.3979,
+          0.3156,
+          0.4346,
+          0.3557,
+          0.3519
+        ],
+        "sigmas": [
+          0.5015,
+          0.5451,
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5015
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_4_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "woven textures",
+          "earthy tones",
+          "elegant armchair",
+          "wooden ceiling beams",
+          "simple layout",
+          "wooden flooring",
+          "rich color palette",
+          "cozy atmosphere",
+          "warm lighting",
+          "large window view"
+        ],
+        "weights": [
+          0.7378,
+          1.757,
+          0.7386,
+          0.6275,
+          0.5764,
+          1.4672,
+          0.7386,
+          0.6564,
+          0.9784,
+          1.7222
+        ],
+        "mus": [
+          -0.0688,
+          1.1896,
+          -0.0669,
+          -0.3873,
+          -0.5782,
+          0.962,
+          -0.0669,
+          -0.2936,
+          0.3979,
+          1.1649
+        ],
+        "sigmas": [
+          0.5015,
+          0.5015,
+          0.5451,
+          0.644,
+          0.5925,
+          0.5015,
+          0.5451,
+          0.5925,
+          0.5015,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_4_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "textured textiles",
+          "warm tones",
+          "traditional layout",
+          "plush bedding",
+          "modern wall art",
+          "luxurious drapes",
+          "wooden flooring",
+          "gold accents",
+          "warm lighting",
+          "large window view"
+        ],
+        "weights": [
+          0.9987,
+          0.8107,
+          0.723,
+          0.8545,
+          0.9459,
+          0.7587,
+          1.4608,
+          0.7587,
+          0.9747,
+          1.7144
+        ],
+        "mus": [
+          0.4346,
+          0.1025,
+          -0.1005,
+          0.1904,
+          0.3519,
+          -0.0128,
+          0.962,
+          -0.0128,
+          0.3979,
+          1.1649
+        ],
+        "sigmas": [
+          0.5015,
+          0.5015,
+          0.5925,
+          0.5015,
+          0.5015,
+          0.5451,
+          0.5015,
+          0.5451,
+          0.5015,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_4_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "textured textiles",
+          "warm tones",
+          "soft ambient lighting",
+          "earthy tones",
+          "plush bedding",
+          "luxurious drapes",
+          "neutral bedding",
+          "classic furniture",
+          "natural materials",
+          "large window view"
+        ],
+        "weights": [
+          0.9283,
+          0.7601,
+          1.0869,
+          1.599,
+          0.7993,
+          0.7136,
+          0.683,
+          0.6207,
+          1.2408,
+          1.5681
+        ],
+        "mus": [
+          0.4346,
+          0.1025,
+          0.671,
+          1.1896,
+          0.1904,
+          -0.0128,
+          -0.0967,
+          -0.293,
+          0.8568,
+          1.1649
+        ],
+        "sigmas": [
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5015,
+          0.5451,
+          0.5451,
+          0.5925,
+          0.5015,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_4_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "large window view",
+          "earthy tones",
+          "natural materials",
+          "soft ambient lighting",
+          "wooden flooring",
+          "plush bedding",
+          "warm tones",
+          "textured textiles",
+          "modern wall art",
+          "luxurious drapes"
+        ],
+        "weights": [
+          1.3236,
+          1.2703,
+          1.2128,
+          1.0637,
+          0.9506,
+          0.8636,
+          0.8189,
+          0.958,
+          0.7724,
+          0.7661
+        ],
+        "mus": [
+          1.1649,
+          1.1096,
+          1.0463,
+          0.8605,
+          0.6922,
+          0.5402,
+          0.4523,
+          0.7041,
+          0.3516,
+          0.337
+        ],
+        "sigmas": [
+          0.5451,
+          0.4614,
+          0.4614,
+          0.4614,
+          0.4614,
+          0.4614,
+          0.4614,
+          0.4614,
+          0.4614,
+          0.5015
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_5_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "woven textures",
+          "bohemian style",
+          "earthy tones",
+          "elegant armchair",
+          "airy space",
+          "wooden flooring",
+          "wooden furniture",
+          "rich color palette",
+          "warm lighting",
+          "large window view"
+        ],
+        "weights": [
+          0.6793,
+          0.6932,
+          1.8049,
+          0.6799,
+          0.6932,
+          1.3028,
+          0.6932,
+          0.6799,
+          0.8848,
+          1.8886
+        ],
+        "mus": [
+          -0.3382,
+          -0.2988,
+          1.1096,
+          -0.3364,
+          -0.2988,
+          0.6922,
+          -0.2988,
+          -0.3364,
+          0.1281,
+          1.1649
+        ],
+        "sigmas": [
+          0.4614,
+          0.5925,
+          0.4614,
+          0.5015,
+          0.5925,
+          0.4614,
+          0.5925,
+          0.5015,
+          0.4614,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_5_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "earthy color palette",
+          "traditional layout",
+          "earthy tones",
+          "plush bedding",
+          "luxurious drapes",
+          "neutral bedding",
+          "wooden flooring",
+          "soft lighting",
+          "natural materials",
+          "large window view"
+        ],
+        "weights": [
+          0.7784,
+          0.678,
+          1.4003,
+          0.9371,
+          0.8261,
+          0.7516,
+          1.0362,
+          0.7966,
+          1.3348,
+          1.4609
+        ],
+        "mus": [
+          0.2353,
+          -0.0204,
+          1.1096,
+          0.5402,
+          0.337,
+          0.1731,
+          0.6922,
+          0.2753,
+          1.0463,
+          1.1649
+        ],
+        "sigmas": [
+          0.4614,
+          0.5451,
+          0.4614,
+          0.4614,
+          0.5015,
+          0.5015,
+          0.4614,
+          0.4614,
+          0.4614,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_5_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "earthy color palette",
+          "textured textiles",
+          "soft ambient lighting",
+          "plush bedding",
+          "neutral bedding",
+          "wooden flooring",
+          "soft lighting",
+          "gold accents",
+          "classic furniture",
+          "large window view"
+        ],
+        "weights": [
+          0.8259,
+          1.1205,
+          1.2538,
+          1.0015,
+          0.7962,
+          1.1113,
+          0.846,
+          0.7497,
+          0.7137,
+          1.5813
+        ],
+        "mus": [
+          0.2353,
+          0.7041,
+          0.8605,
+          0.5402,
+          0.1731,
+          0.6922,
+          0.2753,
+          0.0672,
+          -0.0232,
+          1.1649
+        ],
+        "sigmas": [
+          0.4614,
+          0.4614,
+          0.4614,
+          0.4614,
+          0.5015,
+          0.4614,
+          0.4614,
+          0.5015,
+          0.5451,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_5_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "earthy tones",
+          "large window view",
+          "natural materials",
+          "soft ambient lighting",
+          "warm tones",
+          "wooden flooring",
+          "plush bedding",
+          "textured textiles",
+          "modern wall art",
+          "luxurious drapes"
+        ],
+        "weights": [
+          1.2656,
+          1.2442,
+          1.1415,
+          1.1395,
+          0.9131,
+          0.9011,
+          0.7837,
+          1.0228,
+          0.8576,
+          0.731
+        ],
+        "mus": [
+          1.1881,
+          1.1649,
+          1.0452,
+          1.0427,
+          0.7131,
+          0.6922,
+          0.4606,
+          0.8863,
+          0.6124,
+          0.336
+        ],
+        "sigmas": [
+          0.4244,
+          0.5451,
+          0.4244,
+          0.4244,
+          0.4244,
+          0.4614,
+          0.4244,
+          0.4244,
+          0.4244,
+          0.4614
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_6_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "woven textures",
+          "earthy tones",
+          "layered textiles",
+          "elegant armchair",
+          "wooden flooring",
+          "vintage rugs",
+          "rich color palette",
+          "eclectic decor",
+          "warm lighting",
+          "large window view"
+        ],
+        "weights": [
+          0.7114,
+          1.9397,
+          0.6965,
+          0.7121,
+          1.3117,
+          0.5389,
+          0.7121,
+          0.5389,
+          0.936,
+          1.9028
+        ],
+        "mus": [
+          -0.2586,
+          1.1881,
+          -0.2988,
+          -0.2568,
+          0.6922,
+          -0.8681,
+          -0.2568,
+          -0.8681,
+          0.2077,
+          1.1649
+        ],
+        "sigmas": [
+          0.4244,
+          0.4244,
+          0.5925,
+          0.4614,
+          0.4614,
+          0.5925,
+          0.4614,
+          0.5925,
+          0.4244,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_6_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "warm tones",
+          "textured textiles",
+          "nature-inspired decor",
+          "bohemian style",
+          "soft ambient lighting",
+          "earthy tones",
+          "luxurious drapes",
+          "airy space",
+          "natural materials",
+          "large window view"
+        ],
+        "weights": [
+          0.9976,
+          1.1233,
+          0.6059,
+          0.5948,
+          1.2569,
+          1.4015,
+          0.7889,
+          0.5948,
+          1.2593,
+          1.377
+        ],
+        "mus": [
+          0.7131,
+          0.8863,
+          -0.1778,
+          -0.2192,
+          1.0427,
+          1.1881,
+          0.336,
+          -0.2192,
+          1.0452,
+          1.1649
+        ],
+        "sigmas": [
+          0.4244,
+          0.4244,
+          0.5451,
+          0.5451,
+          0.4244,
+          0.4244,
+          0.4614,
+          0.5451,
+          0.4244,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_6_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "warm tones",
+          "textured textiles",
+          "soft ambient lighting",
+          "earthy tones",
+          "wooden flooring",
+          "gold accents",
+          "soft lighting",
+          "natural materials",
+          "warm lighting",
+          "large window view"
+        ],
+        "weights": [
+          0.9576,
+          1.0757,
+          1.2013,
+          1.3372,
+          0.9447,
+          0.6359,
+          0.62,
+          1.2035,
+          0.7099,
+          1.3141
+        ],
+        "mus": [
+          0.7131,
+          0.8863,
+          1.0427,
+          1.1881,
+          0.6922,
+          -0.0113,
+          -0.065,
+          1.0452,
+          0.2077,
+          1.1649
+        ],
+        "sigmas": [
+          0.4244,
+          0.4244,
+          0.4244,
+          0.4244,
+          0.4614,
+          0.4614,
+          0.4244,
+          0.4244,
+          0.4244,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_6_img_3.png"
+      }
+    ]
+  ],
+  "tag_states": {
+    "pos_0": {
+      "text": "wooden flooring",
+      "category": "positive_other",
+      "mu": 0.692236,
+      "sigma": 0.461357,
+      "times_shown": 16,
+      "times_in_winner": 4,
+      "times_in_loser": 3
+    },
+    "pos_1": {
+      "text": "warm lighting",
+      "category": "positive_other",
+      "mu": 0.207716,
+      "sigma": 0.424449,
+      "times_shown": 11,
+      "times_in_winner": 2,
+      "times_in_loser": 3
+    },
+    "pos_2": {
+      "text": "earthy tones",
+      "category": "positive_other",
+      "mu": 1.188101,
+      "sigma": 0.424449,
+      "times_shown": 17,
+      "times_in_winner": 6,
+      "times_in_loser": 3
+    },
+    "pos_3": {
+      "text": "woven textures",
+      "category": "positive_other",
+      "mu": -0.258635,
+      "sigma": 0.424449,
+      "times_shown": 10,
+      "times_in_winner": 1,
+      "times_in_loser": 4
+    },
+    "pos_4": {
+      "text": "natural materials",
+      "category": "positive_other",
+      "mu": 1.045203,
+      "sigma": 0.424449,
+      "times_shown": 14,
+      "times_in_winner": 5,
+      "times_in_loser": 3
+    },
+    "pos_5": {
+      "text": "large window view",
+      "category": "positive_other",
+      "mu": 1.164878,
+      "sigma": 0.545082,
+      "times_shown": 21,
+      "times_in_winner": 6,
+      "times_in_loser": 4
+    },
+    "pos_6": {
+      "text": "earthy color palette",
+      "category": "positive_other",
+      "mu": -0.105102,
+      "sigma": 0.424449,
+      "times_shown": 9,
+      "times_in_winner": 2,
+      "times_in_loser": 3
+    },
+    "pos_7": {
+      "text": "warm tones",
+      "category": "positive_other",
+      "mu": 0.713105,
+      "sigma": 0.424449,
+      "times_shown": 13,
+      "times_in_winner": 3,
+      "times_in_loser": 3
+    },
+    "pos_8": {
+      "text": "rich color palette",
+      "category": "positive_other",
+      "mu": -0.256791,
+      "sigma": 0.461357,
+      "times_shown": 8,
+      "times_in_winner": 1,
+      "times_in_loser": 4
+    },
+    "pos_9": {
+      "text": "elegant armchair",
+      "category": "positive_other",
+      "mu": -0.256791,
+      "sigma": 0.461357,
+      "times_shown": 8,
+      "times_in_winner": 1,
+      "times_in_loser": 4
+    },
+    "pos_10": {
+      "text": "plush bedding",
+      "category": "positive_other",
+      "mu": 0.4606,
+      "sigma": 0.424449,
+      "times_shown": 12,
+      "times_in_winner": 2,
+      "times_in_loser": 3
+    },
+    "pos_11": {
+      "text": "soft ambient lighting",
+      "category": "positive_other",
+      "mu": 1.042697,
+      "sigma": 0.424449,
+      "times_shown": 14,
+      "times_in_winner": 4,
+      "times_in_loser": 2
+    },
+    "neu_0": {
+      "text": "neutral bedding",
+      "category": "neutral_other",
+      "mu": -0.167287,
+      "sigma": 0.461357,
+      "times_shown": 7,
+      "times_in_winner": 2,
+      "times_in_loser": 1
+    },
+    "neu_1": {
+      "text": "soft lighting",
+      "category": "neutral_other",
+      "mu": -0.065043,
+      "sigma": 0.424449,
+      "times_shown": 10,
+      "times_in_winner": 2,
+      "times_in_loser": 1
+    },
+    "neu_2": {
+      "text": "simple layout",
+      "category": "neutral_other",
+      "mu": -0.84763,
+      "sigma": 0.545082,
+      "times_shown": 4,
+      "times_in_winner": 0,
+      "times_in_loser": 2
+    },
+    "neu_3": {
+      "text": "cozy atmosphere",
+      "category": "neutral_other",
+      "mu": -0.563048,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "neu_4": {
+      "text": "modern wall art",
+      "category": "neutral_other",
+      "mu": 0.612385,
+      "sigma": 0.424449,
+      "times_shown": 8,
+      "times_in_winner": 3,
+      "times_in_loser": 0
+    },
+    "neu_5": {
+      "text": "textured textiles",
+      "category": "neutral_other",
+      "mu": 0.886347,
+      "sigma": 0.424449,
+      "times_shown": 9,
+      "times_in_winner": 4,
+      "times_in_loser": 0
+    },
+    "neu_6": {
+      "text": "airy space",
+      "category": "neutral_other",
+      "mu": -0.219158,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "neu_7": {
+      "text": "bohemian style",
+      "category": "neutral_other",
+      "mu": -0.219158,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "neu_8": {
+      "text": "wooden furniture",
+      "category": "neutral_other",
+      "mu": -0.219158,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "neu_9": {
+      "text": "layered textiles",
+      "category": "neutral_other",
+      "mu": -0.298762,
+      "sigma": 0.59248,
+      "times_shown": 2,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "neu_10": {
+      "text": "vintage rugs",
+      "category": "neutral_other",
+      "mu": -0.868078,
+      "sigma": 0.59248,
+      "times_shown": 2,
+      "times_in_winner": 0,
+      "times_in_loser": 2
+    },
+    "neu_11": {
+      "text": "eclectic decor",
+      "category": "neutral_other",
+      "mu": -0.868078,
+      "sigma": 0.59248,
+      "times_shown": 2,
+      "times_in_winner": 0,
+      "times_in_loser": 2
+    },
+    "neu_12": {
+      "text": "stone fireplace",
+      "category": "neutral_other",
+      "mu": -0.868078,
+      "sigma": 0.59248,
+      "times_shown": 2,
+      "times_in_winner": 0,
+      "times_in_loser": 2
+    },
+    "neu_13": {
+      "text": "natural lighting",
+      "category": "neutral_other",
+      "mu": -0.669264,
+      "sigma": 0.59248,
+      "times_shown": 2,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "neu_14": {
+      "text": "log cabin style",
+      "category": "neutral_other",
+      "mu": -0.669264,
+      "sigma": 0.59248,
+      "times_shown": 2,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "neu_15": {
+      "text": "wooden ceiling beams",
+      "category": "neutral_other",
+      "mu": -0.656811,
+      "sigma": 0.59248,
+      "times_shown": 2,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "neu_16": {
+      "text": "nature-inspired decor",
+      "category": "neutral_other",
+      "mu": -0.177777,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 1,
+      "times_in_loser": 0
+    },
+    "neu_17": {
+      "text": "luxurious drapes",
+      "category": "neutral_other",
+      "mu": 0.335965,
+      "sigma": 0.461357,
+      "times_shown": 7,
+      "times_in_winner": 3,
+      "times_in_loser": 1
+    },
+    "neu_18": {
+      "text": "gold accents",
+      "category": "neutral_other",
+      "mu": -0.0113,
+      "sigma": 0.461357,
+      "times_shown": 5,
+      "times_in_winner": 1,
+      "times_in_loser": 0
+    },
+    "neu_19": {
+      "text": "classic furniture",
+      "category": "neutral_other",
+      "mu": -0.101763,
+      "sigma": 0.501475,
+      "times_shown": 4,
+      "times_in_winner": 2,
+      "times_in_loser": 1
+    },
+    "neu_20": {
+      "text": "traditional layout",
+      "category": "neutral_other",
+      "mu": -0.282258,
+      "sigma": 0.501475,
+      "times_shown": 4,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    }
+  },
+  "tag_states_snapshots": {
+    "1": {
+      "pos_0": {
+        "text": "wooden flooring",
+        "category": "positive_other",
+        "mu": 0.12027294903832242,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_1": {
+        "text": "warm lighting",
+        "category": "positive_other",
+        "mu": 0.12027294903832242,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_2": {
+        "text": "earthy tones",
+        "category": "positive_other",
+        "mu": 0.7021320718929169,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_3": {
+        "text": "woven textures",
+        "category": "positive_other",
+        "mu": 0.4130803782430478,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_4": {
+        "text": "natural materials",
+        "category": "positive_other",
+        "mu": 0.4093246426881916,
+        "sigma": 0.644,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_5": {
+        "text": "large window view",
+        "category": "positive_other",
+        "mu": 0.7928074292047254,
+        "sigma": 0.644,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_6": {
+        "text": "earthy color palette",
+        "category": "positive_other",
+        "mu": 0.12027294903832242,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_7": {
+        "text": "warm tones",
+        "category": "positive_other",
+        "mu": 0.29786792810708307,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_8": {
+        "text": "rich color palette",
+        "category": "positive_other",
+        "mu": 0.29786792810708307,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_9": {
+        "text": "elegant armchair",
+        "category": "positive_other",
+        "mu": 0.29786792810708307,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_10": {
+        "text": "plush bedding",
+        "category": "positive_other",
+        "mu": 0.5906753573118084,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_11": {
+        "text": "soft ambient lighting",
+        "category": "positive_other",
+        "mu": 0.5906753573118084,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_0": {
+        "text": "neutral bedding",
+        "category": "neutral_other",
+        "mu": -0.2962442644451438,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_1": {
+        "text": "soft lighting",
+        "category": "neutral_other",
+        "mu": -0.007192570795274633,
+        "sigma": 0.644,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_2": {
+        "text": "simple layout",
+        "category": "neutral_other",
+        "mu": -0.2962442644451438,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_3": {
+        "text": "cozy atmosphere",
+        "category": "neutral_other",
+        "mu": -0.2093246426881916,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_4": {
+        "text": "modern wall art",
+        "category": "neutral_other",
+        "mu": -0.010948306350130832,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_5": {
+        "text": "textured textiles",
+        "category": "neutral_other",
+        "mu": -0.010948306350130832,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_6": {
+        "text": "airy space",
+        "category": "neutral_other",
+        "mu": -0.010948306350130832,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_7": {
+        "text": "bohemian style",
+        "category": "neutral_other",
+        "mu": -0.010948306350130832,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_8": {
+        "text": "wooden furniture",
+        "category": "neutral_other",
+        "mu": -0.010948306350130832,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_9": {
+        "text": "layered textiles",
+        "category": "neutral_other",
+        "mu": -0.010948306350130832,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_10": {
+        "text": "vintage rugs",
+        "category": "neutral_other",
+        "mu": -0.5928074292047254,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_11": {
+        "text": "eclectic decor",
+        "category": "neutral_other",
+        "mu": -0.5928074292047254,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_12": {
+        "text": "stone fireplace",
+        "category": "neutral_other",
+        "mu": -0.5928074292047254,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_13": {
+        "text": "natural lighting",
+        "category": "neutral_other",
+        "mu": -0.3,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_14": {
+        "text": "log cabin style",
+        "category": "neutral_other",
+        "mu": -0.3,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_15": {
+        "text": "wooden ceiling beams",
+        "category": "neutral_other",
+        "mu": -0.3,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_16": {
+        "text": "nature-inspired decor",
+        "category": "neutral_other",
+        "mu": -0.3,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_17": {
+        "text": "luxurious drapes",
+        "category": "neutral_other",
+        "mu": -0.3,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_18": {
+        "text": "gold accents",
+        "category": "neutral_other",
+        "mu": -0.3,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_19": {
+        "text": "classic furniture",
+        "category": "neutral_other",
+        "mu": -0.3,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_20": {
+        "text": "traditional layout",
+        "category": "neutral_other",
+        "mu": -0.3,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      }
+    },
+    "2": {
+      "pos_0": {
+        "text": "wooden flooring",
+        "category": "positive_other",
+        "mu": 0.3221215740638236,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_1": {
+        "text": "warm lighting",
+        "category": "positive_other",
+        "mu": 0.0329281959977229,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_2": {
+        "text": "earthy tones",
+        "category": "positive_other",
+        "mu": 0.989945829213179,
+        "sigma": 0.59248,
+        "times_shown": 5,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "pos_3": {
+        "text": "woven textures",
+        "category": "positive_other",
+        "mu": 0.12388700017694709,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_4": {
+        "text": "natural materials",
+        "category": "positive_other",
+        "mu": 0.40794502194235294,
+        "sigma": 0.59248,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_5": {
+        "text": "large window view",
+        "category": "positive_other",
+        "mu": 1.0806211865249873,
+        "sigma": 0.59248,
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "pos_6": {
+        "text": "earthy color palette",
+        "category": "positive_other",
+        "mu": 0.0329281959977229,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_7": {
+        "text": "warm tones",
+        "category": "positive_other",
+        "mu": 0.3852126811476826,
+        "sigma": 0.59248,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_8": {
+        "text": "rich color palette",
+        "category": "positive_other",
+        "mu": 0.2992475488529217,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_9": {
+        "text": "elegant armchair",
+        "category": "positive_other",
+        "mu": 0.2992475488529217,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_10": {
+        "text": "plush bedding",
+        "category": "positive_other",
+        "mu": 0.38882673228630726,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_11": {
+        "text": "soft ambient lighting",
+        "category": "positive_other",
+        "mu": 0.678020110352408,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_0": {
+        "text": "neutral bedding",
+        "category": "neutral_other",
+        "mu": -0.2962442644451438,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_1": {
+        "text": "soft lighting",
+        "category": "neutral_other",
+        "mu": 0.07877256149948628,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_2": {
+        "text": "simple layout",
+        "category": "neutral_other",
+        "mu": -0.2962442644451438,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_3": {
+        "text": "cozy atmosphere",
+        "category": "neutral_other",
+        "mu": -0.2093246426881916,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_4": {
+        "text": "modern wall art",
+        "category": "neutral_other",
+        "mu": 0.07501682594463008,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_5": {
+        "text": "textured textiles",
+        "category": "neutral_other",
+        "mu": 0.07501682594463008,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_6": {
+        "text": "airy space",
+        "category": "neutral_other",
+        "mu": -0.2987620636703929,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_7": {
+        "text": "bohemian style",
+        "category": "neutral_other",
+        "mu": -0.2987620636703929,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_8": {
+        "text": "wooden furniture",
+        "category": "neutral_other",
+        "mu": -0.2987620636703929,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_9": {
+        "text": "layered textiles",
+        "category": "neutral_other",
+        "mu": -0.2987620636703929,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_10": {
+        "text": "vintage rugs",
+        "category": "neutral_other",
+        "mu": -0.5928074292047254,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_11": {
+        "text": "eclectic decor",
+        "category": "neutral_other",
+        "mu": -0.5928074292047254,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_12": {
+        "text": "stone fireplace",
+        "category": "neutral_other",
+        "mu": -0.5928074292047254,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_13": {
+        "text": "natural lighting",
+        "category": "neutral_other",
+        "mu": -0.3873447530405995,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_14": {
+        "text": "log cabin style",
+        "category": "neutral_other",
+        "mu": -0.3873447530405995,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_15": {
+        "text": "wooden ceiling beams",
+        "category": "neutral_other",
+        "mu": -0.3873447530405995,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_16": {
+        "text": "nature-inspired decor",
+        "category": "neutral_other",
+        "mu": -0.010806621933899307,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_17": {
+        "text": "luxurious drapes",
+        "category": "neutral_other",
+        "mu": -0.010806621933899307,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_18": {
+        "text": "gold accents",
+        "category": "neutral_other",
+        "mu": -0.010806621933899307,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_19": {
+        "text": "classic furniture",
+        "category": "neutral_other",
+        "mu": -0.3,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_20": {
+        "text": "traditional layout",
+        "category": "neutral_other",
+        "mu": -0.3,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      }
+    },
+    "3": {
+      "pos_0": {
+        "text": "wooden flooring",
+        "category": "positive_other",
+        "mu": 0.604040523630432,
+        "sigma": 0.5450816,
+        "times_shown": 7,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_1": {
+        "text": "warm lighting",
+        "category": "positive_other",
+        "mu": 0.315187104252186,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_2": {
+        "text": "earthy tones",
+        "category": "positive_other",
+        "mu": 1.2718647787797874,
+        "sigma": 0.5450816,
+        "times_shown": 8,
+        "times_in_winner": 3,
+        "times_in_loser": 0
+      },
+      "pos_3": {
+        "text": "woven textures",
+        "category": "positive_other",
+        "mu": 0.12422695886480177,
+        "sigma": 0.5450816,
+        "times_shown": 6,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_4": {
+        "text": "natural materials",
+        "category": "positive_other",
+        "mu": 0.7741211138051347,
+        "sigma": 0.5450816,
+        "times_shown": 7,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_5": {
+        "text": "large window view",
+        "category": "positive_other",
+        "mu": 1.1648783288211606,
+        "sigma": 0.5450816,
+        "times_shown": 9,
+        "times_in_winner": 3,
+        "times_in_loser": 1
+      },
+      "pos_6": {
+        "text": "earthy color palette",
+        "category": "positive_other",
+        "mu": 0.315187104252186,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_7": {
+        "text": "warm tones",
+        "category": "positive_other",
+        "mu": 0.1029537728932195,
+        "sigma": 0.5450816,
+        "times_shown": 8,
+        "times_in_winner": 1,
+        "times_in_loser": 3
+      },
+      "pos_8": {
+        "text": "rich color palette",
+        "category": "positive_other",
+        "mu": -0.06692854300986012,
+        "sigma": 0.5450816,
+        "times_shown": 6,
+        "times_in_winner": 1,
+        "times_in_loser": 3
+      },
+      "pos_9": {
+        "text": "elegant armchair",
+        "category": "positive_other",
+        "mu": -0.06692854300986012,
+        "sigma": 0.5450816,
+        "times_shown": 6,
+        "times_in_winner": 1,
+        "times_in_loser": 3
+      },
+      "pos_10": {
+        "text": "plush bedding",
+        "category": "positive_other",
+        "mu": 0.19082496632801757,
+        "sigma": 0.5450816,
+        "times_shown": 5,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "pos_11": {
+        "text": "soft ambient lighting",
+        "category": "positive_other",
+        "mu": 0.39576120209794485,
+        "sigma": 0.5450816,
+        "times_shown": 7,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "neu_0": {
+        "text": "neutral bedding",
+        "category": "neutral_other",
+        "mu": -0.013985356190680698,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_1": {
+        "text": "soft lighting",
+        "category": "neutral_other",
+        "mu": 0.162689745107805,
+        "sigma": 0.5450816,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_2": {
+        "text": "simple layout",
+        "category": "neutral_other",
+        "mu": -0.5781632140117523,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_3": {
+        "text": "cozy atmosphere",
+        "category": "neutral_other",
+        "mu": -0.293581784984365,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_4": {
+        "text": "modern wall art",
+        "category": "neutral_other",
+        "mu": 0.1589340095529488,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_5": {
+        "text": "textured textiles",
+        "category": "neutral_other",
+        "mu": 0.1589340095529488,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_6": {
+        "text": "airy space",
+        "category": "neutral_other",
+        "mu": -0.2987620636703929,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_7": {
+        "text": "bohemian style",
+        "category": "neutral_other",
+        "mu": -0.2987620636703929,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_8": {
+        "text": "wooden furniture",
+        "category": "neutral_other",
+        "mu": -0.2987620636703929,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_9": {
+        "text": "layered textiles",
+        "category": "neutral_other",
+        "mu": -0.2987620636703929,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_10": {
+        "text": "vintage rugs",
+        "category": "neutral_other",
+        "mu": -0.5928074292047254,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_11": {
+        "text": "eclectic decor",
+        "category": "neutral_other",
+        "mu": -0.5928074292047254,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_12": {
+        "text": "stone fireplace",
+        "category": "neutral_other",
+        "mu": -0.5928074292047254,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_13": {
+        "text": "natural lighting",
+        "category": "neutral_other",
+        "mu": -0.6692637026072079,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_14": {
+        "text": "log cabin style",
+        "category": "neutral_other",
+        "mu": -0.6692637026072079,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_15": {
+        "text": "wooden ceiling beams",
+        "category": "neutral_other",
+        "mu": -0.3873447530405995,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_16": {
+        "text": "nature-inspired decor",
+        "category": "neutral_other",
+        "mu": -0.0950637642300727,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_17": {
+        "text": "luxurious drapes",
+        "category": "neutral_other",
+        "mu": -0.0950637642300727,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_18": {
+        "text": "gold accents",
+        "category": "neutral_other",
+        "mu": -0.0950637642300727,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_19": {
+        "text": "classic furniture",
+        "category": "neutral_other",
+        "mu": -0.017741091745536897,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_20": {
+        "text": "traditional layout",
+        "category": "neutral_other",
+        "mu": -0.017741091745536897,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      }
+    },
+    "4": {
+      "pos_0": {
+        "text": "wooden flooring",
+        "category": "positive_other",
+        "mu": 0.9620249193588403,
+        "sigma": 0.5014750720000001,
+        "times_shown": 9,
+        "times_in_winner": 3,
+        "times_in_loser": 1
+      },
+      "pos_1": {
+        "text": "warm lighting",
+        "category": "positive_other",
+        "mu": 0.3979007668517137,
+        "sigma": 0.5014750720000001,
+        "times_shown": 7,
+        "times_in_winner": 2,
+        "times_in_loser": 2
+      },
+      "pos_2": {
+        "text": "earthy tones",
+        "category": "positive_other",
+        "mu": 1.1895943232136847,
+        "sigma": 0.5014750720000001,
+        "times_shown": 11,
+        "times_in_winner": 4,
+        "times_in_loser": 1
+      },
+      "pos_3": {
+        "text": "woven textures",
+        "category": "positive_other",
+        "mu": -0.06877331869797597,
+        "sigma": 0.5014750720000001,
+        "times_shown": 8,
+        "times_in_winner": 1,
+        "times_in_loser": 3
+      },
+      "pos_4": {
+        "text": "natural materials",
+        "category": "positive_other",
+        "mu": 0.8568347764046624,
+        "sigma": 0.5014750720000001,
+        "times_shown": 10,
+        "times_in_winner": 3,
+        "times_in_loser": 2
+      },
+      "pos_5": {
+        "text": "large window view",
+        "category": "positive_other",
+        "mu": 1.1648783288211606,
+        "sigma": 0.5450816,
+        "times_shown": 13,
+        "times_in_winner": 4,
+        "times_in_loser": 2
+      },
+      "pos_6": {
+        "text": "earthy color palette",
+        "category": "positive_other",
+        "mu": 0.3156303112856109,
+        "sigma": 0.5014750720000001,
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 2
+      },
+      "pos_7": {
+        "text": "warm tones",
+        "category": "positive_other",
+        "mu": 0.10251056585979457,
+        "sigma": 0.5014750720000001,
+        "times_shown": 10,
+        "times_in_winner": 1,
+        "times_in_loser": 3
+      },
+      "pos_8": {
+        "text": "rich color palette",
+        "category": "positive_other",
+        "mu": -0.06692854300986012,
+        "sigma": 0.5450816,
+        "times_shown": 6,
+        "times_in_winner": 1,
+        "times_in_loser": 3
+      },
+      "pos_9": {
+        "text": "elegant armchair",
+        "category": "positive_other",
+        "mu": -0.06692854300986012,
+        "sigma": 0.5450816,
+        "times_shown": 6,
+        "times_in_winner": 1,
+        "times_in_loser": 3
+      },
+      "pos_10": {
+        "text": "plush bedding",
+        "category": "positive_other",
+        "mu": 0.19038175929459264,
+        "sigma": 0.5014750720000001,
+        "times_shown": 7,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "pos_11": {
+        "text": "soft ambient lighting",
+        "category": "positive_other",
+        "mu": 0.6710319352268254,
+        "sigma": 0.5014750720000001,
+        "times_shown": 10,
+        "times_in_winner": 2,
+        "times_in_loser": 2
+      },
+      "neu_0": {
+        "text": "neutral bedding",
+        "category": "neutral_other",
+        "mu": -0.09669901879020842,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_1": {
+        "text": "soft lighting",
+        "category": "neutral_other",
+        "mu": 0.35569002267058275,
+        "sigma": 0.5014750720000001,
+        "times_shown": 7,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_2": {
+        "text": "simple layout",
+        "category": "neutral_other",
+        "mu": -0.5781632140117523,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_3": {
+        "text": "cozy atmosphere",
+        "category": "neutral_other",
+        "mu": -0.293581784984365,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_4": {
+        "text": "modern wall art",
+        "category": "neutral_other",
+        "mu": 0.35193428711572655,
+        "sigma": 0.5014750720000001,
+        "times_shown": 5,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_5": {
+        "text": "textured textiles",
+        "category": "neutral_other",
+        "mu": 0.4346479497152542,
+        "sigma": 0.5014750720000001,
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_6": {
+        "text": "airy space",
+        "category": "neutral_other",
+        "mu": -0.2987620636703929,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_7": {
+        "text": "bohemian style",
+        "category": "neutral_other",
+        "mu": -0.2987620636703929,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_8": {
+        "text": "wooden furniture",
+        "category": "neutral_other",
+        "mu": -0.2987620636703929,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_9": {
+        "text": "layered textiles",
+        "category": "neutral_other",
+        "mu": -0.2987620636703929,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_10": {
+        "text": "vintage rugs",
+        "category": "neutral_other",
+        "mu": -0.8680781623336059,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "neu_11": {
+        "text": "eclectic decor",
+        "category": "neutral_other",
+        "mu": -0.8680781623336059,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "neu_12": {
+        "text": "stone fireplace",
+        "category": "neutral_other",
+        "mu": -0.8680781623336059,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "neu_13": {
+        "text": "natural lighting",
+        "category": "neutral_other",
+        "mu": -0.6692637026072079,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_14": {
+        "text": "log cabin style",
+        "category": "neutral_other",
+        "mu": -0.6692637026072079,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_15": {
+        "text": "wooden ceiling beams",
+        "category": "neutral_other",
+        "mu": -0.3873447530405995,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_16": {
+        "text": "nature-inspired decor",
+        "category": "neutral_other",
+        "mu": -0.17777742682960043,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_17": {
+        "text": "luxurious drapes",
+        "category": "neutral_other",
+        "mu": -0.01279330866396991,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_18": {
+        "text": "gold accents",
+        "category": "neutral_other",
+        "mu": -0.01279330866396991,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_19": {
+        "text": "classic furniture",
+        "category": "neutral_other",
+        "mu": -0.2930118248744174,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_20": {
+        "text": "traditional layout",
+        "category": "neutral_other",
+        "mu": -0.10045475434506462,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      }
+    },
+    "5": {
+      "pos_0": {
+        "text": "wooden flooring",
+        "category": "positive_other",
+        "mu": 0.6922363077982261,
+        "sigma": 0.4613570662400001,
+        "times_shown": 12,
+        "times_in_winner": 3,
+        "times_in_loser": 2
+      },
+      "pos_1": {
+        "text": "warm lighting",
+        "category": "positive_other",
+        "mu": 0.1281121552910996,
+        "sigma": 0.4613570662400001,
+        "times_shown": 10,
+        "times_in_winner": 2,
+        "times_in_loser": 3
+      },
+      "pos_2": {
+        "text": "earthy tones",
+        "category": "positive_other",
+        "mu": 1.109560835887219,
+        "sigma": 0.4613570662400001,
+        "times_shown": 14,
+        "times_in_winner": 5,
+        "times_in_loser": 2
+      },
+      "pos_3": {
+        "text": "woven textures",
+        "category": "positive_other",
+        "mu": -0.3382397215289987,
+        "sigma": 0.4613570662400001,
+        "times_shown": 9,
+        "times_in_winner": 1,
+        "times_in_loser": 4
+      },
+      "pos_4": {
+        "text": "natural materials",
+        "category": "positive_other",
+        "mu": 1.0462676919092195,
+        "sigma": 0.4613570662400001,
+        "times_shown": 12,
+        "times_in_winner": 4,
+        "times_in_loser": 2
+      },
+      "pos_5": {
+        "text": "large window view",
+        "category": "positive_other",
+        "mu": 1.1648783288211606,
+        "sigma": 0.5450816,
+        "times_shown": 17,
+        "times_in_winner": 5,
+        "times_in_loser": 3
+      },
+      "pos_6": {
+        "text": "earthy color palette",
+        "category": "positive_other",
+        "mu": 0.23527461522955384,
+        "sigma": 0.4613570662400001,
+        "times_shown": 7,
+        "times_in_winner": 2,
+        "times_in_loser": 2
+      },
+      "pos_7": {
+        "text": "warm tones",
+        "category": "positive_other",
+        "mu": 0.45233266474687445,
+        "sigma": 0.4613570662400001,
+        "times_shown": 12,
+        "times_in_winner": 2,
+        "times_in_loser": 3
+      },
+      "pos_8": {
+        "text": "rich color palette",
+        "category": "positive_other",
+        "mu": -0.33639494584088286,
+        "sigma": 0.5014750720000001,
+        "times_shown": 7,
+        "times_in_winner": 1,
+        "times_in_loser": 4
+      },
+      "pos_9": {
+        "text": "elegant armchair",
+        "category": "positive_other",
+        "mu": -0.33639494584088286,
+        "sigma": 0.5014750720000001,
+        "times_shown": 7,
+        "times_in_winner": 1,
+        "times_in_loser": 4
+      },
+      "pos_10": {
+        "text": "plush bedding",
+        "category": "positive_other",
+        "mu": 0.5402038581816725,
+        "sigma": 0.4613570662400001,
+        "times_shown": 9,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      },
+      "pos_11": {
+        "text": "soft ambient lighting",
+        "category": "positive_other",
+        "mu": 0.8604648507313823,
+        "sigma": 0.4613570662400001,
+        "times_shown": 12,
+        "times_in_winner": 3,
+        "times_in_loser": 2
+      },
+      "neu_0": {
+        "text": "neutral bedding",
+        "category": "neutral_other",
+        "mu": 0.1730895927704057,
+        "sigma": 0.5014750720000001,
+        "times_shown": 5,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_1": {
+        "text": "soft lighting",
+        "category": "neutral_other",
+        "mu": 0.27533432661452567,
+        "sigma": 0.4613570662400001,
+        "times_shown": 8,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_2": {
+        "text": "simple layout",
+        "category": "neutral_other",
+        "mu": -0.847629616842775,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "neu_3": {
+        "text": "cozy atmosphere",
+        "category": "neutral_other",
+        "mu": -0.5630481878153877,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_4": {
+        "text": "modern wall art",
+        "category": "neutral_other",
+        "mu": 0.3516120783861352,
+        "sigma": 0.4613570662400001,
+        "times_shown": 7,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_5": {
+        "text": "textured textiles",
+        "category": "neutral_other",
+        "mu": 0.704114352546277,
+        "sigma": 0.4613570662400001,
+        "times_shown": 7,
+        "times_in_winner": 3,
+        "times_in_loser": 0
+      },
+      "neu_6": {
+        "text": "airy space",
+        "category": "neutral_other",
+        "mu": -0.2987620636703929,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_7": {
+        "text": "bohemian style",
+        "category": "neutral_other",
+        "mu": -0.2987620636703929,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_8": {
+        "text": "wooden furniture",
+        "category": "neutral_other",
+        "mu": -0.2987620636703929,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_9": {
+        "text": "layered textiles",
+        "category": "neutral_other",
+        "mu": -0.2987620636703929,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_10": {
+        "text": "vintage rugs",
+        "category": "neutral_other",
+        "mu": -0.8680781623336059,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "neu_11": {
+        "text": "eclectic decor",
+        "category": "neutral_other",
+        "mu": -0.8680781623336059,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "neu_12": {
+        "text": "stone fireplace",
+        "category": "neutral_other",
+        "mu": -0.8680781623336059,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "neu_13": {
+        "text": "natural lighting",
+        "category": "neutral_other",
+        "mu": -0.6692637026072079,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_14": {
+        "text": "log cabin style",
+        "category": "neutral_other",
+        "mu": -0.6692637026072079,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_15": {
+        "text": "wooden ceiling beams",
+        "category": "neutral_other",
+        "mu": -0.6568111558716223,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_16": {
+        "text": "nature-inspired decor",
+        "category": "neutral_other",
+        "mu": -0.17777742682960043,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_17": {
+        "text": "luxurious drapes",
+        "category": "neutral_other",
+        "mu": 0.33702879022310994,
+        "sigma": 0.5014750720000001,
+        "times_shown": 5,
+        "times_in_winner": 2,
+        "times_in_loser": 0
+      },
+      "neu_18": {
+        "text": "gold accents",
+        "category": "neutral_other",
+        "mu": 0.06724017866249583,
+        "sigma": 0.5014750720000001,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_19": {
+        "text": "classic furniture",
+        "category": "neutral_other",
+        "mu": -0.02322321331380328,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "neu_20": {
+        "text": "traditional layout",
+        "category": "neutral_other",
+        "mu": -0.02042126701859888,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      }
+    },
+    "6": {
+      "pos_0": {
+        "text": "wooden flooring",
+        "category": "positive_other",
+        "mu": 0.6922363077982261,
+        "sigma": 0.4613570662400001,
+        "times_shown": 16,
+        "times_in_winner": 4,
+        "times_in_loser": 3
+      },
+      "pos_1": {
+        "text": "warm lighting",
+        "category": "positive_other",
+        "mu": 0.20771649426865568,
+        "sigma": 0.4244485009408001,
+        "times_shown": 11,
+        "times_in_winner": 2,
+        "times_in_loser": 3
+      },
+      "pos_2": {
+        "text": "earthy tones",
+        "category": "positive_other",
+        "mu": 1.1881009060908672,
+        "sigma": 0.4244485009408001,
+        "times_shown": 17,
+        "times_in_winner": 6,
+        "times_in_loser": 3
+      },
+      "pos_3": {
+        "text": "woven textures",
+        "category": "positive_other",
+        "mu": -0.25863538255144264,
+        "sigma": 0.4244485009408001,
+        "times_shown": 10,
+        "times_in_winner": 1,
+        "times_in_loser": 4
+      },
+      "pos_4": {
+        "text": "natural materials",
+        "category": "positive_other",
+        "mu": 1.0452034231353113,
+        "sigma": 0.4244485009408001,
+        "times_shown": 14,
+        "times_in_winner": 5,
+        "times_in_loser": 3
+      },
+      "pos_5": {
+        "text": "large window view",
+        "category": "positive_other",
+        "mu": 1.1648783288211606,
+        "sigma": 0.5450816,
+        "times_shown": 21,
+        "times_in_winner": 6,
+        "times_in_loser": 4
+      },
+      "pos_6": {
+        "text": "earthy color palette",
+        "category": "positive_other",
+        "mu": -0.10510235787602273,
+        "sigma": 0.4244485009408001,
+        "times_shown": 9,
+        "times_in_winner": 2,
+        "times_in_loser": 3
+      },
+      "pos_7": {
+        "text": "warm tones",
+        "category": "positive_other",
+        "mu": 0.7131052988748949,
+        "sigma": 0.4244485009408001,
+        "times_shown": 13,
+        "times_in_winner": 3,
+        "times_in_loser": 3
+      },
+      "pos_8": {
+        "text": "rich color palette",
+        "category": "positive_other",
+        "mu": -0.2567906068633268,
+        "sigma": 0.4613570662400001,
+        "times_shown": 8,
+        "times_in_winner": 1,
+        "times_in_loser": 4
+      },
+      "pos_9": {
+        "text": "elegant armchair",
+        "category": "positive_other",
+        "mu": -0.2567906068633268,
+        "sigma": 0.4613570662400001,
+        "times_shown": 8,
+        "times_in_winner": 1,
+        "times_in_loser": 4
+      },
+      "pos_10": {
+        "text": "plush bedding",
+        "category": "positive_other",
+        "mu": 0.4605995192041164,
+        "sigma": 0.4244485009408001,
+        "times_shown": 12,
+        "times_in_winner": 2,
+        "times_in_loser": 3
+      },
+      "pos_11": {
+        "text": "soft ambient lighting",
+        "category": "positive_other",
+        "mu": 1.0426974146557548,
+        "sigma": 0.4244485009408001,
+        "times_shown": 14,
+        "times_in_winner": 4,
+        "times_in_loser": 2
+      },
+      "neu_0": {
+        "text": "neutral bedding",
+        "category": "neutral_other",
+        "mu": -0.16728738033517088,
+        "sigma": 0.4613570662400001,
+        "times_shown": 7,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "neu_1": {
+        "text": "soft lighting",
+        "category": "neutral_other",
+        "mu": -0.0650426464910509,
+        "sigma": 0.4244485009408001,
+        "times_shown": 10,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "neu_2": {
+        "text": "simple layout",
+        "category": "neutral_other",
+        "mu": -0.847629616842775,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "neu_3": {
+        "text": "cozy atmosphere",
+        "category": "neutral_other",
+        "mu": -0.5630481878153877,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_4": {
+        "text": "modern wall art",
+        "category": "neutral_other",
+        "mu": 0.6123847125141556,
+        "sigma": 0.4244485009408001,
+        "times_shown": 8,
+        "times_in_winner": 3,
+        "times_in_loser": 0
+      },
+      "neu_5": {
+        "text": "textured textiles",
+        "category": "neutral_other",
+        "mu": 0.8863469164706494,
+        "sigma": 0.4244485009408001,
+        "times_shown": 9,
+        "times_in_winner": 4,
+        "times_in_loser": 0
+      },
+      "neu_6": {
+        "text": "airy space",
+        "category": "neutral_other",
+        "mu": -0.2191577246928368,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_7": {
+        "text": "bohemian style",
+        "category": "neutral_other",
+        "mu": -0.2191577246928368,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_8": {
+        "text": "wooden furniture",
+        "category": "neutral_other",
+        "mu": -0.2191577246928368,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_9": {
+        "text": "layered textiles",
+        "category": "neutral_other",
+        "mu": -0.2987620636703929,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "neu_10": {
+        "text": "vintage rugs",
+        "category": "neutral_other",
+        "mu": -0.8680781623336059,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "neu_11": {
+        "text": "eclectic decor",
+        "category": "neutral_other",
+        "mu": -0.8680781623336059,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "neu_12": {
+        "text": "stone fireplace",
+        "category": "neutral_other",
+        "mu": -0.8680781623336059,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 2
+      },
+      "neu_13": {
+        "text": "natural lighting",
+        "category": "neutral_other",
+        "mu": -0.6692637026072079,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_14": {
+        "text": "log cabin style",
+        "category": "neutral_other",
+        "mu": -0.6692637026072079,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_15": {
+        "text": "wooden ceiling beams",
+        "category": "neutral_other",
+        "mu": -0.6568111558716223,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "neu_16": {
+        "text": "nature-inspired decor",
+        "category": "neutral_other",
+        "mu": -0.17777742682960043,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_17": {
+        "text": "luxurious drapes",
+        "category": "neutral_other",
+        "mu": 0.33596452144920186,
+        "sigma": 0.4613570662400001,
+        "times_shown": 7,
+        "times_in_winner": 3,
+        "times_in_loser": 1
+      },
+      "neu_18": {
+        "text": "gold accents",
+        "category": "neutral_other",
+        "mu": -0.011299891541152157,
+        "sigma": 0.4613570662400001,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "neu_19": {
+        "text": "classic furniture",
+        "category": "neutral_other",
+        "mu": -0.10176328351745127,
+        "sigma": 0.5014750720000001,
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "neu_20": {
+        "text": "traditional layout",
+        "category": "neutral_other",
+        "mu": -0.2822581699205274,
+        "sigma": 0.5014750720000001,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      }
+    }
+  },
+  "best_picks": {
+    "1": {
+      "round": 1,
+      "option_id": 2,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_0_img_2.png",
+      "tags": [
+        "textured textiles",
+        "bohemian style",
+        "earthy tones",
+        "modern wall art",
+        "layered textiles",
+        "airy space",
+        "soft lighting",
+        "wooden furniture",
+        "natural materials",
+        "large window view"
+      ],
+      "weights": [
+        0.8207831060268684,
+        0.8207831060268684,
+        1.4181727526039738,
+        0.8207831060268684,
+        0.8207831060268684,
+        0.8207831060268684,
+        0.8207831060268684,
+        0.8207831060268684,
+        1.4181727526039738,
+        1.4181727526039738
+      ],
+      "strategy": "ucb"
+    },
+    "2": {
+      "round": 2,
+      "option_id": 3,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_1_img_3.png",
+      "tags": [
+        "warm tones",
+        "nature-inspired decor",
+        "soft ambient lighting",
+        "earthy tones",
+        "elegant armchair",
+        "luxurious drapes",
+        "wooden flooring",
+        "gold accents",
+        "rich color palette",
+        "large window view"
+      ],
+      "weights": [
+        1.0022734763115342,
+        0.7012390336111038,
+        1.2298366681103883,
+        1.3355392110775293,
+        1.0022734763115342,
+        0.7012390336111038,
+        0.8934245205471254,
+        0.7012390336111038,
+        1.0022734763115342,
+        1.4306620704970419
+      ],
+      "strategy": "challenger"
+    },
+    "3": {
+      "round": 3,
+      "option_id": 1,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_2_img_1.png",
+      "tags": [
+        "woven textures",
+        "earthy color palette",
+        "traditional layout",
+        "earthy tones",
+        "neutral bedding",
+        "wooden flooring",
+        "classic furniture",
+        "natural materials",
+        "warm lighting",
+        "large window view"
+      ],
+      "weights": [
+        0.8744356629814796,
+        0.8273896963899261,
+        0.6874836372344997,
+        1.6198161031536353,
+        0.6888162329930805,
+        0.9930714634686966,
+        0.6874836372344997,
+        1.0521931950990016,
+        0.8273896963899261,
+        1.7419206750552545
+      ],
+      "strategy": "explore"
+    },
+    "4": {
+      "round": 4,
+      "option_id": 0,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_3_img_0.png",
+      "tags": [
+        "earthy tones",
+        "large window view",
+        "natural materials",
+        "wooden flooring",
+        "soft ambient lighting",
+        "warm lighting",
+        "earthy color palette",
+        "soft lighting",
+        "modern wall art",
+        "textured textiles"
+      ],
+      "weights": [
+        1.617602911828485,
+        1.487298156860266,
+        1.1140417621487528,
+        0.9919364877300351,
+        0.8681060554156965,
+        0.8267074483850566,
+        0.8267074483850566,
+        0.756925186562853,
+        0.7553372713419002,
+        0.7553372713419002
+      ],
+      "strategy": "exploit"
+    },
+    "5": {
+      "round": 5,
+      "option_id": 3,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_4_img_3.png",
+      "tags": [
+        "textured textiles",
+        "warm tones",
+        "soft ambient lighting",
+        "earthy tones",
+        "plush bedding",
+        "luxurious drapes",
+        "neutral bedding",
+        "classic furniture",
+        "natural materials",
+        "large window view"
+      ],
+      "weights": [
+        0.9282638391788088,
+        0.760129790405394,
+        1.0869083624017661,
+        1.599046455103328,
+        0.7993299676492515,
+        0.7136496595492744,
+        0.6830410232329227,
+        0.6207074266413307,
+        1.2407769449702077,
+        1.5681465308677165
+      ],
+      "strategy": "challenger"
+    },
+    "6": {
+      "round": 6,
+      "option_id": 0,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P03-2_Cozy_Bedroom_Sample_2026-02-21_16-34-07/hitl/round_5_img_0.png",
+      "tags": [
+        "large window view",
+        "earthy tones",
+        "natural materials",
+        "soft ambient lighting",
+        "wooden flooring",
+        "plush bedding",
+        "warm tones",
+        "textured textiles",
+        "modern wall art",
+        "luxurious drapes"
+      ],
+      "weights": [
+        1.3235881140817607,
+        1.270297249367918,
+        1.2128316299743205,
+        1.0637015302609845,
+        0.9506117986358975,
+        0.8635510953864336,
+        0.8189485623945088,
+        0.9579875780646411,
+        0.7724196497528304,
+        0.766062792080705
+      ],
+      "strategy": "exploit"
+    }
+  },
+  "positive_tags": [
+    "wooden flooring",
+    "warm lighting",
+    "earthy tones",
+    "woven textures",
+    "natural materials",
+    "large window view",
+    "earthy color palette",
+    "warm tones",
+    "rich color palette",
+    "elegant armchair",
+    "plush bedding",
+    "soft ambient lighting"
+  ],
+  "neutral_tags": [
+    "neutral bedding",
+    "soft lighting",
+    "simple layout",
+    "cozy atmosphere",
+    "modern wall art",
+    "textured textiles",
+    "airy space",
+    "bohemian style",
+    "wooden furniture",
+    "layered textiles",
+    "vintage rugs",
+    "eclectic decor",
+    "stone fireplace",
+    "natural lighting",
+    "log cabin style",
+    "wooden ceiling beams",
+    "nature-inspired decor",
+    "luxurious drapes",
+    "gold accents",
+    "classic furniture",
+    "traditional layout"
+  ],
+  "selected_image_tags": [],
+  "base_prompt": "cozy bedroom",
+  "negative_prompt": "illustration, plan view, bird's-eye view, cartoon, anime, isometric, diorama, miniature, 3D render, CGI, concept art, stylized, toon shading, human",
+  "timestamp": "2026-02-21T16:54:32.524000"
+}

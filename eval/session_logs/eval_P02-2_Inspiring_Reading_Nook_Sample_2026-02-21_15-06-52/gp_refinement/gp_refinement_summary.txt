@@ -1,0 +1,125 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_P02-2_Inspiring_Reading_Nook_Sample_2026-02-21_15-06-52
+Started: 2026-02-21T15:15:32.719044
+Rounds: 5
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 31
+  Neutral tags: 0
+  Total: 31
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.50 | floor-to-ceiling windows, natural light, minimalist decor...
+    [1] explore      | avg_μ=+0.50 | shelved artifacts, ornate ceiling details, cozy reading nook...
+    [2] ucb          | avg_μ=+0.50 | soft lighting, modern lamp, cozy atmosphere...
+    [3] challenger   | avg_μ=+0.50 | ornate ceiling details, calming aesthetic, clean lines...
+  Ranking: [3, 2, 1, 0]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. clean lines               μ=+0.799 σ=0.644
+    2. calming aesthetic         μ=+0.799 σ=0.644
+    3. warm materials            μ=+0.799 σ=0.644
+    4. cosy nook                 μ=+0.799 σ=0.644
+    5. wooden bookshelves        μ=+0.709 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.71 | clean lines, calming aesthetic, warm materials...
+    [1] explore      | avg_μ=+0.44 | soft ambient lighting, vibrant color scheme, warm accent lights...
+    [2] ucb          | avg_μ=+0.63 | soft ambient lighting, vibrant color scheme, modern lamp...
+    [3] challenger   | avg_μ=+0.59 | shelved artifacts, vibrant color scheme, calming aesthetic...
+  Ranking: [3, 0, 1, 2]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. clean lines               μ=+1.175 σ=0.593
+    2. warm materials            μ=+1.175 σ=0.593
+    3. calming aesthetic         μ=+0.885 σ=0.593
+    4. simple layout             μ=+0.880 σ=0.593
+    5. ornate ceiling details    μ=+0.796 σ=0.593
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.85 | clean lines, warm materials, calming aesthetic...
+    [1] explore      | avg_μ=+0.28 | soft ambient lighting, vibrant color scheme, warm accent lights...
+    [2] ucb          | avg_μ=+0.64 | soft lighting, calming aesthetic, cozy reading nook...
+    [3] challenger   | avg_μ=+0.64 | soft lighting, ornate ceiling details, calming aesthetic...
+  Ranking: [2, 0, 3, 1]
+  Comparisons: 6
+  Tags updated: 29
+  Top 5 after round:
+    1. clean lines               μ=+1.255 σ=0.545
+    2. simple layout             μ=+1.235 σ=0.545
+    3. warm materials            μ=+1.169 σ=0.545
+    4. calming aesthetic         μ=+1.154 σ=0.545
+    5. cozy reading nook         μ=+1.054 σ=0.545
+
+----------------------------------------------------------------------
+ROUND 4 (β=1.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+1.01 | clean lines, simple layout, warm materials...
+    [1] explore      | avg_μ=-0.01 | soft ambient lighting, vibrant color scheme, organic textures...
+    [2] ucb          | avg_μ=+0.90 | shelved artifacts, calming aesthetic, cozy reading nook...
+    [3] challenger   | avg_μ=+0.79 | shelved artifacts, warm accent lights, cozy reading nook...
+  Ranking: [3, 2, 1, 0]
+  Comparisons: 6
+  Tags updated: 28
+  Top 5 after round:
+    1. clean lines               μ=+1.251 σ=0.501
+    2. warm materials            μ=+1.243 σ=0.501
+    3. cozy reading nook         μ=+1.128 σ=0.501
+    4. classic rug               μ=+1.128 σ=0.501
+    5. floor-to-ceiling windows  μ=+1.123 σ=0.501
+
+----------------------------------------------------------------------
+ROUND 5 (β=0.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+1.07 | clean lines, warm materials, cozy reading nook...
+    [1] explore      | avg_μ=-0.02 | organic textures, wooden flooring, open layout...
+    [2] ucb          | avg_μ=+0.86 | soft lighting, cozy reading nook, floating shelves...
+    [3] challenger   | avg_μ=+0.90 | shelved artifacts, warm accent lights, ornate ceiling details...
+  Ranking: [0, 3, 2, 1]
+  Comparisons: 6
+  Tags updated: 27
+  Top 5 after round:
+    1. clean lines               μ=+1.569 σ=0.461
+    2. floor-to-ceiling windows  μ=+1.440 σ=0.461
+    3. shelved artifacts         μ=+1.440 σ=0.461
+    4. warm materials            μ=+1.405 σ=0.461
+    5. classic rug               μ=+1.374 σ=0.461
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. clean lines                    | w=0.127 | μ=+1.569 | win_rate=50%
+   2. floor-to-ceiling windows       | w=0.112 | μ=+1.440 | win_rate=36%
+   3. shelved artifacts              | w=0.112 | μ=+1.440 | win_rate=43%
+   4. warm materials                 | w=0.108 | μ=+1.405 | win_rate=40%
+   5. classic rug                    | w=0.105 | μ=+1.374 | win_rate=50%
+   6. cozy reading nook              | w=0.104 | μ=+1.362 | win_rate=40%
+   7. natural light                  | w=0.088 | μ=+1.200 | win_rate=67%
+   8. simple layout                  | w=0.088 | μ=+1.200 | win_rate=38%
+   9. calming aesthetic              | w=0.082 | μ=+1.125 | win_rate=36%
+  10. soft lighting                  | w=0.074 | μ=+1.024 | win_rate=38%
+
+  Convergence: False
+  Top-10 stability: 10/10 tags same as previous round
+
+======================================================================
+WARNINGS (1)
+======================================================================
+  [low_neutral_count] Only 0 neutral tags. Exploration may be limited.

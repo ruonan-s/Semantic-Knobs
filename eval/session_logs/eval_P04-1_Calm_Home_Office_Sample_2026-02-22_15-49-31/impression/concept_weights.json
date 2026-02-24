@@ -1,0 +1,386 @@
+{
+  "stage": "impression",
+  "session_id": "eval_P04-1_Calm_Home_Office_Sample_2026-02-22_15-49-31",
+  "timestamp": "2026-02-22T16:23:37.530844",
+  "num_concepts": 16,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 1938,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "Soft textures",
+      "weight": 0.09852023422718048,
+      "score": 1.5684053897857666,
+      "utility_std": 1.0117027759552002,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Soft textures"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "Textured fabrics",
+      "weight": 0.09825107455253601,
+      "score": 1.5656695365905762,
+      "utility_std": 1.0117027759552002,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Textured fabrics"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "Warm lighting",
+      "weight": 0.09675784409046173,
+      "score": 1.5503547191619873,
+      "utility_std": 1.0117027759552002,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Warm lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "Wooden furniture",
+      "weight": 0.08151096850633621,
+      "score": 1.3788809776306152,
+      "utility_std": 1.0117027759552002,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Wooden furniture"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "Natural light",
+      "weight": 0.07267988473176956,
+      "score": 1.2642079591751099,
+      "utility_std": 1.0117027759552002,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Natural light"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "soft diffused lighting",
+      "weight": 0.06918995082378387,
+      "score": 1.2149990797042847,
+      "utility_std": 1.0117027759552002,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "soft diffused lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "Casual elegance",
+      "weight": 0.06753529608249664,
+      "score": 1.190793752670288,
+      "utility_std": 1.0117027759552002,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "Casual elegance"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "calm atmosphere",
+      "weight": 0.05924653261899948,
+      "score": 1.0598506927490234,
+      "utility_std": 1.0117027759552002,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "calm atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "warm wood tones",
+      "weight": 0.056118763983249664,
+      "score": 1.0056135654449463,
+      "utility_std": 1.0117027759552002,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm wood tones"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "lush greenery",
+      "weight": 0.04990673065185547,
+      "score": 0.8882992267608643,
+      "utility_std": 1.0117027759552002,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "lush greenery"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_10",
+      "label": "curtain-filtered daylight",
+      "weight": 0.049157727509737015,
+      "score": 0.8731774091720581,
+      "utility_std": 1.0117027759552002,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "curtain-filtered daylight"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_11",
+      "label": "textured wall paneling",
+      "weight": 0.0484798289835453,
+      "score": 0.8592911958694458,
+      "utility_std": 1.0117027759552002,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "textured wall paneling"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_12",
+      "label": "wooden desk",
+      "weight": 0.0459907129406929,
+      "score": 0.8065828680992126,
+      "utility_std": 1.0117027759552002,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden desk"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_13",
+      "label": "floor-to-ceiling curtains",
+      "weight": 0.03949933126568794,
+      "score": 0.6544271111488342,
+      "utility_std": 1.0117027759552002,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "floor-to-ceiling curtains"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_14",
+      "label": "luxurious materials",
+      "weight": 0.03670211881399155,
+      "score": 0.5809779167175293,
+      "utility_std": 1.0117027759552002,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "luxurious materials"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_15",
+      "label": "curtained backdrop",
+      "weight": 0.030453024432063103,
+      "score": 0.394328773021698,
+      "utility_std": 1.0117027759552002,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "curtained backdrop"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_3_0_3",
+      "text": "Soft textures",
+      "utility": 1.5684053897857666,
+      "uncertainty": 1.0117027759552002,
+      "weight": 0.09852023422718048,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_11",
+      "text": "Textured fabrics",
+      "utility": 1.5656695365905762,
+      "uncertainty": 1.0117027759552002,
+      "weight": 0.09825107455253601,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_9",
+      "text": "Warm lighting",
+      "utility": 1.5503547191619873,
+      "uncertainty": 1.0117027759552002,
+      "weight": 0.09675784409046173,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_5",
+      "text": "Wooden furniture",
+      "utility": 1.3788809776306152,
+      "uncertainty": 1.0117027759552002,
+      "weight": 0.08151096850633621,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_1",
+      "text": "Natural light",
+      "utility": 1.2642079591751099,
+      "uncertainty": 1.0117027759552002,
+      "weight": 0.07267988473176956,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_4",
+      "text": "soft diffused lighting",
+      "utility": 1.2149990797042847,
+      "uncertainty": 1.0117027759552002,
+      "weight": 0.06918995082378387,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_10",
+      "text": "Casual elegance",
+      "utility": 1.190793752670288,
+      "uncertainty": 1.0117027759552002,
+      "weight": 0.06753529608249664,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_11",
+      "text": "calm atmosphere",
+      "utility": 1.0598506927490234,
+      "uncertainty": 1.0117027759552002,
+      "weight": 0.05924653261899948,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_1",
+      "text": "warm wood tones",
+      "utility": 1.0056135654449463,
+      "uncertainty": 1.0117027759552002,
+      "weight": 0.056118763983249664,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_3",
+      "text": "lush greenery",
+      "utility": 0.8882992267608643,
+      "uncertainty": 1.0117027759552002,
+      "weight": 0.04990673065185547,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_8",
+      "text": "curtain-filtered daylight",
+      "utility": 0.8731774091720581,
+      "uncertainty": 1.0117027759552002,
+      "weight": 0.049157727509737015,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_10",
+      "text": "textured wall paneling",
+      "utility": 0.8592911958694458,
+      "uncertainty": 1.0117027759552002,
+      "weight": 0.0484798289835453,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "wooden desk",
+      "utility": 0.8065828680992126,
+      "uncertainty": 1.0117027759552002,
+      "weight": 0.0459907129406929,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_5",
+      "text": "floor-to-ceiling curtains",
+      "utility": 0.6544271111488342,
+      "uncertainty": 1.0117027759552002,
+      "weight": 0.03949933126568794,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_7",
+      "text": "luxurious materials",
+      "utility": 0.5809779167175293,
+      "uncertainty": 1.0117027759552002,
+      "weight": 0.03670211881399155,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_10",
+      "text": "curtained backdrop",
+      "utility": 0.394328773021698,
+      "uncertainty": 1.0117027759552002,
+      "weight": 0.030453024432063103,
+      "source_image_idx": 1,
+      "category": "positive"
+    }
+  ]
+}
