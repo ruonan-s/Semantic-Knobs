@@ -1,0 +1,48 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_P10-2_Contemplative_Bedroom_2026-02-24_15-33-07
+Started: 2026-02-24T15:40:36.923079
+Rounds: 1
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 30
+  Neutral tags: 3
+  Total: 33
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.26 | minimalist design, soft natural lighting, clean lines...
+    [1] explore      | avg_μ=+0.42 | minimalist decor, minimalist design, neutral color palette...
+    [2] ucb          | avg_μ=+0.42 | textured throw blanket, sheer curtains, plush bedding...
+    [3] challenger   | avg_μ=+0.50 | natural light, organic materials, soft natural lighting...
+  Ranking: [3, 2, 0, 1]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. natural light             μ=+0.797 σ=0.644
+    2. serene bedroom setting    μ=+0.797 σ=0.644
+    3. organic materials         μ=+0.797 σ=0.644
+    4. rustic side table         μ=+0.797 σ=0.644
+    5. decorative branches       μ=+0.797 σ=0.644
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. natural light                  | w=0.109 | μ=+0.797 | win_rate=100%
+   2. serene bedroom setting         | w=0.109 | μ=+0.797 | win_rate=100%
+   3. organic materials              | w=0.109 | μ=+0.797 | win_rate=100%
+   4. rustic side table              | w=0.109 | μ=+0.797 | win_rate=100%
+   5. decorative branches            | w=0.109 | μ=+0.797 | win_rate=100%
+   6. soft natural lighting          | w=0.100 | μ=+0.708 | win_rate=50%
+   7. sheer curtains                 | w=0.089 | μ=+0.590 | win_rate=0%
+   8. ambient warm lighting          | w=0.089 | μ=+0.590 | win_rate=0%
+   9. plush bedding                  | w=0.089 | μ=+0.590 | win_rate=0%
+  10. simple nightstands             | w=0.089 | μ=+0.590 | win_rate=0%
+
+  Convergence: Unknown
+  Top-10 stability: N/A

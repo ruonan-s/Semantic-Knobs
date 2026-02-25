@@ -1,0 +1,250 @@
+{
+  "user_id": "P08-1",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P08-1_Inspiring_Reading_Nook_Sample_2026-02-24_13-43-27",
+  "created_at": "2026-02-24T13:43:27.303549",
+  "events": [
+    {
+      "timestamp": "2026-02-24T13:43:27.303556",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Inspiring_Reading_Nook_Sample"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:57:56.302473",
+      "type": "save_manual_weights",
+      "data": {
+        "selected_image_id": "impression_0_0",
+        "tag_count": 10,
+        "weights_file": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P08-1_Inspiring_Reading_Nook_Sample_2026-02-24_13-43-27/impression/user_manual_weights.json"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:58:26.390898",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Inspiring Reading Nook",
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:59:47.354105",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          0,
+          2,
+          3,
+          1
+        ],
+        "image_variance": 0.2148,
+        "beta": 2.0,
+        "tags_updated": 24,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:01:06.552262",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 2,
+        "ranking": [
+          3,
+          0,
+          1,
+          2
+        ],
+        "image_variance": 0.1632,
+        "beta": 1.667,
+        "tags_updated": 23,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:02:17.320312",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 3,
+        "ranking": [
+          2,
+          0,
+          1,
+          3
+        ],
+        "image_variance": 0.1614,
+        "beta": 1.333,
+        "tags_updated": 23,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:03:07.832704",
+      "type": "hitl_rollback",
+      "data": {
+        "from_round": 3,
+        "to_round": 2,
+        "tags_boosted": [
+          "textured materials",
+          "soft lighting",
+          "cozy atmosphere",
+          "cozy seating area",
+          "whimsical mural"
+        ],
+        "tags_penalized": [
+          "contemporary design",
+          "open layout",
+          "organic textures",
+          "floor-to-ceiling windows",
+          "simple layout"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:04:05.705855",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 3,
+        "ranking": [
+          2,
+          0,
+          1,
+          3
+        ],
+        "image_variance": 0.1815,
+        "beta": 1.333,
+        "tags_updated": 25,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:05:04.228538",
+      "type": "hitl_finalize",
+      "data": {
+        "rounds_completed": 3,
+        "total_comparisons": 18,
+        "final_tags": [
+          "floating shelves",
+          "plush cushions",
+          "textured materials",
+          "cozy seating area",
+          "curved architecture"
+        ],
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:05:26.057544",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_0_0",
+        "concept_count": 20,
+        "gp_mode": true
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:05:26.111358",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:05:48.420559",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:06:22.801707",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Livingroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:06:45.174419",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:07:04.204094",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bathroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:07:26.677659",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:07:45.790181",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Home Office",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:08:08.193832",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:08:27.285248",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bedroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:08:49.784791",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:09:08.895764",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Kitchen",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T14:09:31.353480",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    }
+  ]
+}

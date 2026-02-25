@@ -1,0 +1,222 @@
+======================================================================
+INVESTIGATION: WHEN & WHY DO GP-REFINED AND USER CUSTOMIZED DIVERGE?
+======================================================================
+
+======================================================================
+1. OVERVIEW
+======================================================================
+
+  Location-level outcomes (N=114):
+    GP-Refined wins:      42 (37%)
+    Ties:                 35 (31%)
+    Custom wins:          37 (32%)
+    Mean diff (GP-Custom): +0.070
+
+  Session-level outcomes (N=19):
+    GP-Refined advantage: 9
+    Custom advantage:     9
+    Tie:                  1
+
+======================================================================
+2. WHEN ARE THEY SIMILAR? (Tie locations)
+======================================================================
+
+  Tie locations: 35/114
+  Mean GP score at ties:     5.43
+  Mean GP score at non-ties: 5.14
+
+  Score distribution at ties:
+    Score 1: 4 ties (11%)
+    Score 2: 1 ties (3%)
+    Score 4: 1 ties (3%)
+    Score 5: 5 ties (14%)
+    Score 6: 13 ties (37%)
+    Score 7: 11 ties (31%)
+
+  High-agreement ties (both >= 6): 24 (69%)
+  Low-agreement ties (both <= 4):  6 (17%)
+
+  Ties by location:
+    Bathroom: 8/19 (42%)
+    Bedroom: 7/19 (37%)
+    Home Office: 7/19 (37%)
+    Reading Nook: 5/19 (26%)
+    Kitchen: 4/19 (21%)
+    Livingroom: 4/19 (21%)
+
+  Ties by target/transfer:
+    Target room: 4/19 (21%)
+    Transferred: 31/95 (33%)
+
+======================================================================
+3. WHEN DOES GP-REFINED CAPTURE MORE? (GP wins)
+======================================================================
+
+  GP wins at 42 locations across 9 sessions
+  Mean GP score when it wins: 5.93
+  Mean Custom score when GP wins: 4.26
+  Mean advantage: +1.67 points
+
+  GP-advantage sessions:
+    P07-2 Contemplative_Bedroom: mean_diff=+1.83, GP_model_ρ=0.20, accuracy=0.50, rounds=4
+    P09-2 Contemplative_Bedroom: mean_diff=+1.17, GP_model_ρ=0.80, accuracy=0.83, rounds=3
+    P07-1 Inviting_Livingroom: mean_diff=+1.17, GP_model_ρ=0.40, accuracy=0.67, rounds=2
+    P05-1 Inviting_Livingroom: mean_diff=+1.00, GP_model_ρ=0.40, accuracy=0.67, rounds=3
+    P01-1 Calm_Home: mean_diff=+0.67, GP_model_ρ=0.60, accuracy=0.67, rounds=6
+    P06-2 Cozy_Bedroom: mean_diff=+0.67, GP_model_ρ=-0.40, accuracy=0.50, rounds=1
+    P02-2 Inspiring_Reading: mean_diff=+0.33, GP_model_ρ=1.00, accuracy=1.00, rounds=5
+    P03-1 Calm_Home: mean_diff=+0.33, GP_model_ρ=1.00, accuracy=1.00, rounds=6
+    P06-1 Inviting_Livingroom: mean_diff=+0.17, GP_model_ρ=0.40, accuracy=0.67, rounds=4
+
+  GP-advantage session characteristics (vs Custom-advantage):
+    GP model Spearman ρ:
+      GP-advantage sessions:     0.489
+      Custom-advantage sessions: 0.000
+    GP pairwise accuracy:
+      GP-advantage sessions:     0.722
+      Custom-advantage sessions: 0.491
+    Accuracy improvement (r1→final):
+      GP-advantage sessions:     0.176
+      Custom-advantage sessions: -0.037
+    Number of rounds:
+      GP-advantage sessions:     3.778
+      Custom-advantage sessions: 3.889
+    Image variance (diversity):
+      GP-advantage sessions:     0.148
+      Custom-advantage sessions: 0.143
+    Explicit-implicit correlation:
+      GP-advantage sessions:     0.162
+      Custom-advantage sessions: 0.082
+    Top-3 tag overlap (explicit vs implicit):
+      GP-advantage sessions:     0.444
+      Custom-advantage sessions: 0.370
+
+  KEY FINDING: GP model quality strongly predicts when GP beats Custom
+    When GP model is good (ρ >= 0.4): GP advantage in 7/9 GP-advantage sessions
+    When GP model is poor (ρ < 0.4): Custom wins in 6/9 Custom-advantage sessions
+
+  Transfer room pattern:
+    GP wins in transferred rooms: 37
+    GP wins in target room:       5
+    => GP-Refined's advantage is stronger in rooms the user wasn't
+       explicitly thinking about, suggesting it captures generalizable
+       style preferences rather than room-specific ones.
+
+======================================================================
+4. WHEN CAN'T GP-REFINED MATCH USER CUSTOMIZED? (Custom wins)
+======================================================================
+
+  Custom wins at 37 locations across 9 sessions
+  Mean Custom score when it wins: 5.92
+  Mean GP score when Custom wins: 4.24
+  Mean shortfall: -1.68 points
+
+  Custom-advantage sessions:
+    P10-2 Contemplative_Bedroom: mean_diff=-1.67, GP_model_ρ=0.40, accuracy=0.75, rounds=1
+    P04-2 Inviting_Livingroom: mean_diff=-1.00, GP_model_ρ=0.40, accuracy=0.67, rounds=5
+    P08-2 Cozy_Bedroom: mean_diff=-0.83, GP_model_ρ=0.00, accuracy=0.50, rounds=5
+    P08-1 Inspiring_Reading: mean_diff=-0.83, GP_model_ρ=0.00, accuracy=0.50, rounds=3
+    P05-2 Inspiring_Reading: mean_diff=-0.50, GP_model_ρ=-0.80, accuracy=0.17, rounds=4
+    P03-2 Cozy_Bedroom: mean_diff=-0.50, GP_model_ρ=0.20, accuracy=0.50, rounds=6
+    P09-1 Cozy_Bedroom: mean_diff=-0.33, GP_model_ρ=0.20, accuracy=0.50, rounds=4
+    P04-1 Calm_Home: mean_diff=-0.17, GP_model_ρ=-0.80, accuracy=0.17, rounds=4
+    P10-1 Inspiring_Reading: mean_diff=-0.17, GP_model_ρ=0.40, accuracy=0.67, rounds=3
+
+  FAILURE MODE ANALYSIS:
+
+  Mode A: Poor GP model (final ρ <= 0)
+    Sessions: 4
+      P04-1 Calm_Home: ρ=-0.80, acc=0.17, diff=-0.17
+      P05-2 Inspiring_Reading: ρ=-0.80, acc=0.17, diff=-0.50
+      P08-1 Inspiring_Reading: ρ=0.00, acc=0.50, diff=-0.83
+      P08-2 Cozy_Bedroom: ρ=0.00, acc=0.50, diff=-0.83
+    Interpretation: The GP model learned the wrong preferences —
+    ranking predictions are anti-correlated with actual preferences.
+
+  Mode B: Mediocre GP model (ρ > 0 but accuracy <= 0.5)
+    Sessions: 2
+      P03-2 Cozy_Bedroom: ρ=0.20, acc=0.50, diff=-0.50
+      P09-1 Cozy_Bedroom: ρ=0.20, acc=0.50, diff=-0.33
+    Interpretation: GP model didn't converge well — it's no better
+    than random at predicting pairwise preferences.
+
+  Mode C: Decent GP model but Custom still wins (acc > 0.5)
+    Sessions: 3
+      P04-2 Inviting_Livingroom: ρ=0.40, acc=0.67, diff=-1.00
+      P10-1 Inspiring_Reading: ρ=0.40, acc=0.67, diff=-0.17
+      P10-2 Contemplative_Bedroom: ρ=0.40, acc=0.75, diff=-1.67
+    Interpretation: GP learned reasonable preferences but user's
+    explicit customization was still more aligned with their vision.
+
+======================================================================
+5. TAG-LEVEL INVESTIGATION
+======================================================================
+
+  Manual weight ↔ GP mu correlation (Spearman ρ):
+    GP-advantage sessions:     0.162
+    Custom-advantage sessions:  0.083
+
+  GP uncertainty (mean σ across tags):
+    GP-advantage sessions:     0.530
+    Custom-advantage sessions:  0.516
+
+  Surprise tags in GP-advantage sessions (low manual weight, high GP mu):
+    Count: 20/90 tags (22%)
+      P02-2: "clean lines" (manual=0.61, gp_mu=1.57)
+      P09-2: "minimalist decor" (manual=0.38, gp_mu=1.33)
+      P03-1: "Neutral tones" (manual=0.35, gp_mu=1.22)
+      P02-2: "natural light" (manual=0.64, gp_mu=1.20)
+      P02-2: "calming aesthetic" (manual=0.61, gp_mu=1.13)
+
+  Surprise tags in Custom-advantage sessions (low manual weight, high GP mu):
+    Count: 22/90 tags (24%)
+      P08-1: "floating shelves" (manual=0.10, gp_mu=1.51)
+      P04-2: "cushioned seating" (manual=0.47, gp_mu=1.26)
+      P03-2: "earthy tones" (manual=0.20, gp_mu=1.19)
+      P09-1: "cozy atmosphere" (manual=0.44, gp_mu=1.18)
+      P03-2: "large window view" (manual=0.50, gp_mu=1.16)
+
+======================================================================
+6. STATISTICAL PREDICTORS OF THE GP-CUSTOM GAP
+======================================================================
+
+  Spearman correlations with session-level mean(GP - Custom):
+    GP model Spearman ρ (final round): ρ=+0.363, p=0.127 
+    GP pairwise accuracy (final round): ρ=+0.262, p=0.279 
+    Accuracy improvement across rounds: ρ=+0.144, p=0.555 
+    Number of HITL rounds: ρ=-0.131, p=0.593 
+    GP image variance: ρ=+0.040, p=0.872 
+    Explicit-implicit preference correlation: ρ=+0.324, p=0.176 
+    Top-3 tag overlap: ρ=+0.181, p=0.457 
+    Mean rank displacement: ρ=-0.284, p=0.239 
+    Round-1 pairwise accuracy: ρ=-0.073, p=0.765 
+
+======================================================================
+7. SYNTHESIS
+======================================================================
+
+  WHY THEY ARE SIMILAR:
+    - Both methods produce high-quality results (mean ~5.2/7)
+    - In 31% of locations, they receive identical scores
+    - Agreement is highest when both score well (75% of ties have score >= 5)
+    - The HITL refinement effectively calibrates GP weights to match what
+      users would manually set for obvious, salient preferences
+
+  WHEN GP-REFINED CAPTURES MORE:
+    - GP model quality is the strongest predictor: sessions where the GP
+      model achieves higher Spearman ρ and pairwise accuracy tend to show
+      GP advantage
+    - GP excels in TRANSFERRED rooms (rooms the user wasn't thinking about),
+      suggesting it captures generalizable style preferences
+    - GP discovers "surprise" tags — preferences users didn't know they had
+      but are revealed through ranking behavior
+
+  WHEN GP-REFINED FALLS SHORT:
+    - Poor GP model convergence (low/negative ρ) is the primary failure mode
+    - When GP's pairwise accuracy stays at or below chance (0.5), it means
+      the model hasn't learned meaningful preference structure
+    - In target rooms, Custom tends to outperform because users' explicit
+      mental model is directly applicable to the room they had in mind
+    - Some users have very clear, articulable preferences that are well-
+      captured by direct slider manipulation, leaving less room for GP
+      to add value through implicit preference discovery

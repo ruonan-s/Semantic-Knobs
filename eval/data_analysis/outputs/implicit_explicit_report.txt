@@ -1,0 +1,77 @@
+======================================================================
+IMPLICIT vs EXPLICIT PREFERENCE ANALYSIS
+======================================================================
+
+1. EXPLICIT-IMPLICIT DIVERGENCE
+--------------------------------------------------
+   Spearman ρ (manual weights vs GP mus):
+     Mean: 0.103, Median: 0.061
+     Range: [-0.578, 0.717]
+     Significant correlations (p<.05): 2/19
+     => In 17/19 sessions, explicit and implicit preferences are NOT significantly correlated
+   Wilcoxon test (ρ > 0): W=124.0, p=0.1290
+
+   Top-3 tag overlap (explicit vs implicit):
+     Mean: 0.386 (1.0 = perfect agreement)
+     Distribution: {np.float64(0.0): np.int64(5), np.float64(0.333): np.int64(7), np.float64(0.667): np.int64(6), np.float64(1.0): np.int64(1)}
+
+   Mean rank displacement: 3.03 positions
+
+
+2. FIRST-ROUND SURPRISE (exploit = manual-weight-based option)
+--------------------------------------------------
+   Exploit option chosen as #1: 3/19 (16%)
+   Mean exploit rank: 2.68 (1 = best, 4 = worst)
+   Exploit rank distribution: {np.int64(1): np.int64(3), np.int64(2): np.int64(5), np.int64(3): np.int64(6), np.int64(4): np.int64(5)}
+   Binomial test (exploit top > 25% chance): p=0.8887
+
+   Prior-based prediction correct for top option: 6/19 (32%)
+   Mean round-1 pairwise accuracy: 0.535 (chance = 0.5)
+
+
+3. TAG SURPRISE ANALYSIS
+--------------------------------------------------
+   Surprise tags (rank improved by >= 2 positions): 66/190 (35%)
+   Mean rank change for surprises: +4.0 positions
+
+   Top-10 surprise tags (biggest rank jumps):
+     P04-2: "cushioned seating" manual_rank=10 -> gp_rank=2 (manual_w=0.47, gp_mu=1.26)
+     P08-1: "floating shelves" manual_rank=9 -> gp_rank=1 (manual_w=0.10, gp_mu=1.51)
+     P08-2: "textured textiles" manual_rank=9 -> gp_rank=1 (manual_w=0.10, gp_mu=1.07)
+     P01-1: "wooden desk" manual_rank=9 -> gp_rank=2 (manual_w=0.68, gp_mu=1.72)
+     P03-1: "Neutral tones" manual_rank=8 -> gp_rank=1 (manual_w=0.35, gp_mu=1.22)
+     P03-1: "minimalist design" manual_rank=10 -> gp_rank=3 (manual_w=0.21, gp_mu=0.89)
+     P03-2: "natural materials" manual_rank=10 -> gp_rank=3 (manual_w=0.06, gp_mu=1.05)
+     P09-1: "modern wall art" manual_rank=9 -> gp_rank=2 (manual_w=0.05, gp_mu=0.89)
+     P10-2: "organic materials" manual_rank=8 -> gp_rank=1 (manual_w=0.43, gp_mu=0.80)
+     P03-2: "earthy tones" manual_rank=7 -> gp_rank=1 (manual_w=0.20, gp_mu=1.19)
+
+
+4. DIVERGENCE PREDICTS GP ADVANTAGE
+--------------------------------------------------
+   Explicit-Implicit ρ vs GP advantage: ρ=0.315, p=0.189
+   Explicit-Implicit ρ vs GP advantage (transfer only): ρ=0.329, p=0.168
+   Top-3 Overlap vs GP advantage: ρ=0.181, p=0.459
+   Top-3 Overlap vs GP advantage (transfer only): ρ=0.176, p=0.472
+   Mean Rank Displacement vs GP advantage: ρ=-0.280, p=0.245
+   Mean Rank Displacement vs GP advantage (transfer only): ρ=-0.303, p=0.207
+
+   High divergence sessions (ρ <= 0.06, n=10):
+     Mean GP advantage: -0.233
+     Mean GP advantage (transfer): -0.220
+   Low divergence sessions (ρ > 0.06, n=9):
+     Mean GP advantage: 0.407
+     Mean GP advantage (transfer): 0.467
+
+
+5. TRANSFER AS EVIDENCE OF IMPLICIT PREFERENCE CAPTURE
+--------------------------------------------------
+   GP advantage in target room: mean=-0.105
+   GP advantage in transferred rooms: mean=0.105
+   Difference: 0.211
+   => GP-Refined benefits more in transferred rooms, suggesting it
+      captures deeper style preferences that generalize beyond the
+      specific room the user was thinking about
+   Mann-Whitney U (transfer > target): U=209.0, p=0.2047
+
+======================================================================

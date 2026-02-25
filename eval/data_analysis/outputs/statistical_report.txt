@@ -1,0 +1,47 @@
+======================================================================
+STATISTICAL ANALYSIS REPORT
+======================================================================
+
+1. FRIEDMAN TEST (overall method effect)
+   chi2(3) = 19.2424, p = 0.0002
+   N = 10 participants
+   Result: ** (p < .01)
+
+2. WILCOXON SIGNED-RANK TESTS (pairwise, Holm-corrected)
+   gp_refined vs baseline_text
+     mean diff = 1.242, W = 0.0, p_raw = 0.0039, p_corr = 0.0156, r = 0.913
+     * (p < .05)
+   gp_refined vs style_transfer
+     mean diff = 1.875, W = 1.0, p_raw = 0.0039, p_corr = 0.0156, r = 0.913
+     * (p < .05)
+   user_customized vs baseline_text
+     mean diff = 1.142, W = 6.0, p_raw = 0.0273, p_corr = 0.0547, r = 0.698
+     ~ (marginal)
+   user_customized vs style_transfer
+     mean diff = 1.775, W = 0.0, p_raw = 0.002, p_corr = 0.0098, r = 0.979
+     ** (p < .01)
+   gp_refined vs user_customized
+     mean diff = 0.1, W = 24.0, p_raw = 0.7695, p_corr = 0.7695, r = 0.093
+     n.s.
+
+3. BOOTSTRAP 95% CONFIDENCE INTERVALS
+   gp_uplift_vs_baseline: mean = 1.242 [0.708, 1.817] (excludes 0)
+   custom_uplift_vs_baseline: mean = 1.142 [0.392, 1.9] (excludes 0)
+   gp_uplift_vs_style: mean = 1.875 [1.142, 2.608] (excludes 0)
+   custom_uplift_vs_style: mean = 1.775 [1.2, 2.4] (excludes 0)
+   gp_vs_custom: mean = 0.1 [-0.325, 0.55] (includes 0)
+
+4. SPEARMAN CORRELATIONS (GP quality vs outcome)
+   final_spearman_vs_gp_score: rho = 0.195, p = 0.4233, n = 19 -- n.s.
+   final_accuracy_vs_gp_score: rho = 0.044, p = 0.8574, n = 19 -- n.s.
+   n_rounds_vs_gp_score: rho = 0.244, p = 0.3133, n = 19 -- n.s.
+
+5. MANN-WHITNEY U (target room vs transferred rooms)
+   gp_refined: target_room vs transferred
+     target mean = 5.526, transfer mean = 5.168
+     U = 934.5, p = 0.8042 -- n.s.
+   user_customized: target_room vs transferred
+     target mean = 5.632, transfer mean = 5.063
+     U = 1075.5, p = 0.1771 -- n.s.
+
+======================================================================

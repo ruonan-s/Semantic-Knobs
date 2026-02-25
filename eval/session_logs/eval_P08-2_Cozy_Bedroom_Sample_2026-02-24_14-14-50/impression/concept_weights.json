@@ -1,0 +1,455 @@
+{
+  "stage": "impression",
+  "session_id": "eval_P08-2_Cozy_Bedroom_Sample_2026-02-24_14-14-50",
+  "timestamp": "2026-02-24T14:29:22.170095",
+  "num_concepts": 19,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 1432,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "warm lighting",
+      "weight": 0.12695568799972534,
+      "score": 1.7484941482543945,
+      "utility_std": 1.0030481815338135,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "indoor plants",
+      "weight": 0.10184869170188904,
+      "score": 1.528144359588623,
+      "utility_std": 1.0030481815338135,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "indoor plants"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "layered textiles",
+      "weight": 0.08271343261003494,
+      "score": 1.320038080215454,
+      "utility_std": 1.0030481815338135,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "layered textiles"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "large window view",
+      "weight": 0.06907287985086441,
+      "score": 1.1398181915283203,
+      "utility_std": 1.0030481815338135,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large window view"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "stone fireplace",
+      "weight": 0.05897708609700203,
+      "score": 0.9818050265312195,
+      "utility_std": 1.0030481815338135,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "stone fireplace"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "rich color palette",
+      "weight": 0.058361805975437164,
+      "score": 0.9713176488876343,
+      "utility_std": 1.0030481815338135,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "rich color palette"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "plush bedding",
+      "weight": 0.05717252194881439,
+      "score": 0.9507293701171875,
+      "utility_std": 1.0030481815338135,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "plush bedding"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "opulent atmosphere",
+      "weight": 0.05128899961709976,
+      "score": 0.8421323299407959,
+      "utility_std": 1.0030481815338135,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "opulent atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "luxurious drapes",
+      "weight": 0.04572539031505585,
+      "score": 0.7273098230361938,
+      "utility_std": 1.0030481815338135,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "luxurious drapes"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "woven textures",
+      "weight": 0.04224501550197601,
+      "score": 0.6481423377990723,
+      "utility_std": 1.0030481815338135,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "woven textures"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_10",
+      "label": "natural materials",
+      "weight": 0.03854364529252052,
+      "score": 0.5564473867416382,
+      "utility_std": 1.0030481815338135,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "natural materials"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_11",
+      "label": "airy space",
+      "weight": 0.03841670975089073,
+      "score": 0.5531484484672546,
+      "utility_std": 1.0030481815338135,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "airy space"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_12",
+      "label": "earthy tones",
+      "weight": 0.0364479199051857,
+      "score": 0.5005404949188232,
+      "utility_std": 1.0030481815338135,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "earthy tones"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_13",
+      "label": "bohemian style",
+      "weight": 0.035447925329208374,
+      "score": 0.47272077202796936,
+      "utility_std": 1.0030481815338135,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "bohemian style"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_14",
+      "label": "log cabin style",
+      "weight": 0.03230445086956024,
+      "score": 0.37986111640930176,
+      "utility_std": 1.0030481815338135,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "log cabin style"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_15",
+      "label": "gold accents",
+      "weight": 0.03203115612268448,
+      "score": 0.3713650703430176,
+      "utility_std": 1.0030481815338135,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "gold accents"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_16",
+      "label": "vintage rugs",
+      "weight": 0.03162635490298271,
+      "score": 0.35864686965942383,
+      "utility_std": 1.0030481815338135,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "vintage rugs"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_17",
+      "label": "neutral bedding",
+      "weight": 0.030993282794952393,
+      "score": 0.33842653036117554,
+      "utility_std": 1.0030481815338135,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "neutral bedding"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_18",
+      "label": "nature-inspired decor",
+      "weight": 0.029826954007148743,
+      "score": 0.30006855726242065,
+      "utility_std": 1.0030481815338135,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "nature-inspired decor"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_1_0_1",
+      "text": "warm lighting",
+      "utility": 1.7484941482543945,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.12695568799972534,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_4",
+      "text": "indoor plants",
+      "utility": 1.528144359588623,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.10184869170188904,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_9",
+      "text": "layered textiles",
+      "utility": 1.320038080215454,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.08271343261003494,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_3",
+      "text": "large window view",
+      "utility": 1.1398181915283203,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.06907287985086441,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_2",
+      "text": "stone fireplace",
+      "utility": 0.9818050265312195,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.05897708609700203,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_3",
+      "text": "rich color palette",
+      "utility": 0.9713176488876343,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.058361805975437164,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_7",
+      "text": "plush bedding",
+      "utility": 0.9507293701171875,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.05717252194881439,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_10",
+      "text": "opulent atmosphere",
+      "utility": 0.8421323299407959,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.05128899961709976,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_1",
+      "text": "luxurious drapes",
+      "utility": 0.7273098230361938,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.04572539031505585,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_5",
+      "text": "woven textures",
+      "utility": 0.6481423377990723,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.04224501550197601,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_11",
+      "text": "natural materials",
+      "utility": 0.5564473867416382,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.03854364529252052,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_11",
+      "text": "airy space",
+      "utility": 0.5531484484672546,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.03841670975089073,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_2",
+      "text": "earthy tones",
+      "utility": 0.5005404949188232,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.0364479199051857,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_0",
+      "text": "bohemian style",
+      "utility": 0.47272077202796936,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.035447925329208374,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_6",
+      "text": "log cabin style",
+      "utility": 0.37986111640930176,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.03230445086956024,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_6",
+      "text": "gold accents",
+      "utility": 0.3713650703430176,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.03203115612268448,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_9",
+      "text": "vintage rugs",
+      "utility": 0.35864686965942383,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.03162635490298271,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_4",
+      "text": "neutral bedding",
+      "utility": 0.33842653036117554,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.030993282794952393,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_11",
+      "text": "nature-inspired decor",
+      "utility": 0.30006855726242065,
+      "uncertainty": 1.0030481815338135,
+      "weight": 0.029826954007148743,
+      "source_image_idx": 2,
+      "category": "positive"
+    }
+  ]
+}

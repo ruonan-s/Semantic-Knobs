@@ -1,0 +1,5578 @@
+{
+  "metadata": {
+    "session_id": "eval_P08-1_Inspiring_Reading_Nook_Sample_2026-02-24_13-43-27",
+    "log_version": "1.0",
+    "start_time": "2026-02-24T13:58:26.390289",
+    "end_time": "2026-02-24T14:05:04.221612"
+  },
+  "initialization": {
+    "session_id": "eval_P08-1_Inspiring_Reading_Nook_Sample_2026-02-24_13-43-27",
+    "timestamp": "2026-02-24T13:58:26.390289",
+    "config": {
+      "max_rounds": 999,
+      "tags_per_option": 10,
+      "base_learning_rate": 0.12,
+      "sigma_shrink_factor": 0.92,
+      "priors": {
+        "positive_selected": {
+          "mu": 1.0,
+          "sigma": 0.5
+        },
+        "positive_other": {
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        "neutral_selected": {
+          "mu": 0.0,
+          "sigma": 0.5
+        },
+        "neutral_other": {
+          "mu": -0.3,
+          "sigma": 0.7
+        }
+      }
+    },
+    "input_summary": {
+      "total_positive": 18,
+      "total_neutral": 18,
+      "total_tags": 36,
+      "in_selected_images": 0
+    },
+    "categories": {
+      "positive_selected": {
+        "count": 0,
+        "tags": []
+      },
+      "positive_other": {
+        "count": 18,
+        "tags": [
+          "floor-to-ceiling windows",
+          "natural light",
+          "wooden flooring",
+          "indoor plants",
+          "open layout",
+          "cozy seating area",
+          "cozy reading nook",
+          "shelved artifacts",
+          "cozy atmosphere",
+          "soft lighting",
+          "cosy nook",
+          "vibrant color scheme",
+          "whimsical mural",
+          "curved architecture",
+          "plush cushions",
+          "floating shelves",
+          "textured materials",
+          "relaxing atmosphere"
+        ]
+      },
+      "neutral_selected": {
+        "count": 0,
+        "tags": []
+      },
+      "neutral_other": {
+        "count": 18,
+        "tags": [
+          "organic textures",
+          "stone accent wall",
+          "zen atmosphere",
+          "contemporary design",
+          "warm ambient lighting",
+          "elegant wooden paneling",
+          "neutral color palette",
+          "wooden furniture",
+          "textured throw blanket",
+          "modern lamp",
+          "simple layout",
+          "clean lines",
+          "calming aesthetic",
+          "warm materials",
+          "soft ambient lighting",
+          "star-shaped pillow",
+          "warm accent lights",
+          "foliage decor"
+        ]
+      }
+    },
+    "all_tags": [
+      {
+        "tag_id": "pos_0",
+        "text": "floor-to-ceiling windows",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_1",
+        "text": "natural light",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_2",
+        "text": "wooden flooring",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_3",
+        "text": "indoor plants",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_4",
+        "text": "open layout",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_5",
+        "text": "cozy seating area",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_6",
+        "text": "cozy reading nook",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_7",
+        "text": "shelved artifacts",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_8",
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_9",
+        "text": "soft lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_10",
+        "text": "cosy nook",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_11",
+        "text": "vibrant color scheme",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_12",
+        "text": "whimsical mural",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_13",
+        "text": "curved architecture",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_14",
+        "text": "plush cushions",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_15",
+        "text": "floating shelves",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_16",
+        "text": "textured materials",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_17",
+        "text": "relaxing atmosphere",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_0",
+        "text": "organic textures",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_1",
+        "text": "stone accent wall",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_2",
+        "text": "zen atmosphere",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_3",
+        "text": "contemporary design",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_4",
+        "text": "warm ambient lighting",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_5",
+        "text": "elegant wooden paneling",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_6",
+        "text": "neutral color palette",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_7",
+        "text": "wooden furniture",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_8",
+        "text": "textured throw blanket",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_9",
+        "text": "modern lamp",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_10",
+        "text": "simple layout",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_11",
+        "text": "clean lines",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_12",
+        "text": "calming aesthetic",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_13",
+        "text": "warm materials",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_14",
+        "text": "soft ambient lighting",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_15",
+        "text": "star-shaped pillow",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_16",
+        "text": "warm accent lights",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_17",
+        "text": "foliage decor",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      }
+    ],
+    "prior_ordering": "positive_selected > positive_other > neutral_selected > neutral_other"
+  },
+  "rounds": [
+    {
+      "round_num": 1,
+      "timestamp": "2026-02-24T13:58:26.409686",
+      "parameters": {
+        "beta": 2.0,
+        "max_overlap": 0.4,
+        "learning_rate": 0.12
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_0",
+              "text": "floor-to-ceiling windows",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "natural light",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "wooden flooring",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "indoor plants",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "open layout",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "cozy seating area",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "cozy reading nook",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "organic textures",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_1",
+              "text": "stone accent wall",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "zen atmosphere",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.26,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "neu_1",
+              "text": "stone accent wall",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "soft lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "whimsical mural",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "cosy nook",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "wooden flooring",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "cozy seating area",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "vibrant color scheme",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "shelved artifacts",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "natural light",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.42,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_15",
+              "text": "floating shelves",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_17",
+              "text": "relaxing atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_3",
+              "text": "contemporary design",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "textured materials",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "open layout",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "cozy reading nook",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "cozy seating area",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "curved architecture",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "plush cushions",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "natural light",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.42,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_7",
+              "text": "shelved artifacts",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_4",
+              "text": "warm ambient lighting",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "open layout",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "soft lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_6",
+              "text": "neutral color palette",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "cozy seating area",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_5",
+              "text": "elegant wooden paneling",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "cozy reading nook",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "indoor plants",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.26,
+          "avg_sigma": 0.7,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "cozy seating area",
+            "wooden flooring",
+            "natural light",
+            "stone accent wall"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "cozy seating area",
+            "cozy reading nook",
+            "natural light",
+            "open layout"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "cozy seating area",
+            "cozy reading nook",
+            "indoor plants",
+            "open layout"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "cozy seating area",
+            "natural light"
+          ],
+          "overlap_count": 2,
+          "overlap_fraction": 0.2,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "cozy seating area",
+            "cozy atmosphere",
+            "soft lighting",
+            "shelved artifacts"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "cozy seating area",
+            "cozy reading nook",
+            "open layout"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.4,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        0,
+        2,
+        3,
+        1
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "zen atmosphere",
+            "indoor plants",
+            "floor-to-ceiling windows",
+            "wooden flooring",
+            "stone accent wall",
+            "organic textures"
+          ],
+          "tags_only_in_worse": [
+            "contemporary design",
+            "curved architecture",
+            "plush cushions",
+            "relaxing atmosphere",
+            "textured materials",
+            "floating shelves"
+          ],
+          "shared_tags": [
+            "cozy seating area",
+            "cozy reading nook",
+            "natural light",
+            "open layout"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 3,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "zen atmosphere",
+            "floor-to-ceiling windows",
+            "natural light",
+            "wooden flooring",
+            "stone accent wall",
+            "organic textures"
+          ],
+          "tags_only_in_worse": [
+            "cozy atmosphere",
+            "elegant wooden paneling",
+            "soft lighting",
+            "warm ambient lighting",
+            "shelved artifacts",
+            "neutral color palette"
+          ],
+          "shared_tags": [
+            "cozy seating area",
+            "cozy reading nook",
+            "indoor plants",
+            "open layout"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "open layout",
+            "zen atmosphere",
+            "indoor plants",
+            "floor-to-ceiling windows",
+            "cozy reading nook",
+            "organic textures"
+          ],
+          "tags_only_in_worse": [
+            "vibrant color scheme",
+            "cozy atmosphere",
+            "soft lighting",
+            "shelved artifacts",
+            "cosy nook",
+            "whimsical mural"
+          ],
+          "shared_tags": [
+            "cozy seating area",
+            "wooden flooring",
+            "natural light",
+            "stone accent wall"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "contemporary design",
+            "curved architecture",
+            "plush cushions",
+            "natural light",
+            "relaxing atmosphere",
+            "textured materials",
+            "floating shelves"
+          ],
+          "tags_only_in_worse": [
+            "cozy atmosphere",
+            "elegant wooden paneling",
+            "soft lighting",
+            "warm ambient lighting",
+            "shelved artifacts",
+            "indoor plants",
+            "neutral color palette"
+          ],
+          "shared_tags": [
+            "cozy seating area",
+            "cozy reading nook",
+            "open layout"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "open layout",
+            "contemporary design",
+            "curved architecture",
+            "plush cushions",
+            "cozy reading nook",
+            "relaxing atmosphere",
+            "textured materials",
+            "floating shelves"
+          ],
+          "tags_only_in_worse": [
+            "vibrant color scheme",
+            "cozy atmosphere",
+            "soft lighting",
+            "shelved artifacts",
+            "wooden flooring",
+            "cosy nook",
+            "stone accent wall",
+            "whimsical mural"
+          ],
+          "shared_tags": [
+            "cozy seating area",
+            "natural light"
+          ],
+          "num_differentiating": 16
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "open layout",
+            "elegant wooden paneling",
+            "indoor plants",
+            "warm ambient lighting",
+            "cozy reading nook",
+            "neutral color palette"
+          ],
+          "tags_only_in_worse": [
+            "vibrant color scheme",
+            "natural light",
+            "wooden flooring",
+            "cosy nook",
+            "stone accent wall",
+            "whimsical mural"
+          ],
+          "shared_tags": [
+            "cozy seating area",
+            "cozy atmosphere",
+            "soft lighting",
+            "shelved artifacts"
+          ],
+          "num_differentiating": 12
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "neu_2",
+          "text": "zen atmosphere",
+          "mu_before": -0.3,
+          "mu_after": -0.0028,
+          "mu_delta": 0.2972,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_1",
+          "text": "stone accent wall",
+          "mu_before": -0.3,
+          "mu_after": -0.3,
+          "mu_delta": -0.0,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "wooden flooring",
+          "mu_before": 0.5,
+          "mu_after": 0.5,
+          "mu_delta": -0.0,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "organic textures",
+          "mu_before": -0.3,
+          "mu_after": -0.0028,
+          "mu_delta": 0.2972,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "floor-to-ceiling windows",
+          "mu_before": 0.5,
+          "mu_after": 0.7972,
+          "mu_delta": 0.2972,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "indoor plants",
+          "mu_before": 0.5,
+          "mu_after": 0.7068,
+          "mu_delta": 0.2068,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_15",
+          "text": "floating shelves",
+          "mu_before": 0.5,
+          "mu_after": 0.5904,
+          "mu_delta": 0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_17",
+          "text": "relaxing atmosphere",
+          "mu_before": 0.5,
+          "mu_after": 0.5904,
+          "mu_delta": 0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_3",
+          "text": "contemporary design",
+          "mu_before": -0.3,
+          "mu_after": -0.2096,
+          "mu_delta": 0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_16",
+          "text": "textured materials",
+          "mu_before": 0.5,
+          "mu_after": 0.5904,
+          "mu_delta": 0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "curved architecture",
+          "mu_before": 0.5,
+          "mu_after": 0.5904,
+          "mu_delta": 0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "plush cushions",
+          "mu_before": 0.5,
+          "mu_after": 0.5904,
+          "mu_delta": 0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "natural light",
+          "mu_before": 0.5,
+          "mu_after": 0.5904,
+          "mu_delta": 0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_4",
+          "text": "warm ambient lighting",
+          "mu_before": -0.3,
+          "mu_after": -0.3904,
+          "mu_delta": -0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "soft lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.1124,
+          "mu_delta": -0.3876,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "cozy atmosphere",
+          "mu_before": 0.5,
+          "mu_after": 0.1124,
+          "mu_delta": -0.3876,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_6",
+          "text": "neutral color palette",
+          "mu_before": -0.3,
+          "mu_after": -0.3904,
+          "mu_delta": -0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_5",
+          "text": "elegant wooden paneling",
+          "mu_before": -0.3,
+          "mu_after": -0.3904,
+          "mu_delta": -0.0904,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "shelved artifacts",
+          "mu_before": 0.5,
+          "mu_after": 0.1124,
+          "mu_delta": -0.3876,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "open layout",
+          "mu_before": 0.5,
+          "mu_after": 0.7972,
+          "mu_delta": 0.2972,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "cozy reading nook",
+          "mu_before": 0.5,
+          "mu_after": 0.7972,
+          "mu_delta": 0.2972,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "whimsical mural",
+          "mu_before": 0.5,
+          "mu_after": 0.2028,
+          "mu_delta": -0.2972,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "vibrant color scheme",
+          "mu_before": 0.5,
+          "mu_after": 0.2028,
+          "mu_delta": -0.2972,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "cosy nook",
+          "mu_before": 0.5,
+          "mu_after": 0.2028,
+          "mu_delta": -0.2972,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_4",
+          "text": "open layout",
+          "mu": 0.7972,
+          "sigma": 0.644
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_6",
+          "text": "cozy reading nook",
+          "mu": 0.7972,
+          "sigma": 0.644
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_0",
+          "text": "floor-to-ceiling windows",
+          "mu": 0.7972,
+          "sigma": 0.644
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_3",
+          "text": "indoor plants",
+          "mu": 0.7068,
+          "sigma": 0.644
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_13",
+          "text": "curved architecture",
+          "mu": 0.5904,
+          "sigma": 0.644
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_14",
+          "text": "plush cushions",
+          "mu": 0.5904,
+          "sigma": 0.644
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_15",
+          "text": "floating shelves",
+          "mu": 0.5904,
+          "sigma": 0.644
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_16",
+          "text": "textured materials",
+          "mu": 0.5904,
+          "sigma": 0.644
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_17",
+          "text": "relaxing atmosphere",
+          "mu": 0.5904,
+          "sigma": 0.644
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_1",
+          "text": "natural light",
+          "mu": 0.5904,
+          "sigma": 0.644
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.3904,
+          "max": 0.7972,
+          "mean": 0.1,
+          "std": 0.421
+        },
+        "sigma_distribution": {
+          "min": 0.644,
+          "max": 0.7,
+          "mean": 0.6627
+        },
+        "tags_updated": 24,
+        "unique_tags_updated": 24,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 13.0,
+        "ranking_received": [
+          0,
+          2,
+          3,
+          1
+        ],
+        "best_option_strategy": "exploit",
+        "worst_option_strategy": "explore",
+        "pairwise_accuracy_before_update": 0.25,
+        "ranking_log_likelihood_before_update": -4.275780402950484
+      }
+    },
+    {
+      "round_num": 2,
+      "timestamp": "2026-02-24T13:59:47.482843",
+      "parameters": {
+        "beta": 1.6667,
+        "max_overlap": 0.4,
+        "learning_rate": 0.1176
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_4",
+              "text": "open layout",
+              "mu": 0.7972,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "cozy reading nook",
+              "mu": 0.7972,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "floor-to-ceiling windows",
+              "mu": 0.7972,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "indoor plants",
+              "mu": 0.7068,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "curved architecture",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "plush cushions",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_15",
+              "text": "floating shelves",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "organic textures",
+              "mu": -0.0028,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "zen atmosphere",
+              "mu": -0.0028,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_3",
+              "text": "contemporary design",
+              "mu": -0.2096,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.4654,
+          "avg_sigma": 0.644,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_4",
+              "text": "open layout",
+              "mu": 0.7972,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_9",
+              "text": "modern lamp",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "wooden flooring",
+              "mu": 0.5,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "cozy reading nook",
+              "mu": 0.7972,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_7",
+              "text": "wooden furniture",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_8",
+              "text": "textured throw blanket",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "cozy seating area",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "floor-to-ceiling windows",
+              "mu": 0.7972,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "indoor plants",
+              "mu": 0.7068,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "natural light",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.3789,
+          "avg_sigma": 0.6664,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "neu_2",
+              "text": "zen atmosphere",
+              "mu": -0.0028,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_17",
+              "text": "relaxing atmosphere",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "textured materials",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_7",
+              "text": "wooden furniture",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "organic textures",
+              "mu": -0.0028,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "cozy seating area",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "curved architecture",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "vibrant color scheme",
+              "mu": 0.2028,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "indoor plants",
+              "mu": 0.7068,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "cosy nook",
+              "mu": 0.2028,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.3078,
+          "avg_sigma": 0.6552,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_15",
+              "text": "floating shelves",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "textured materials",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "shelved artifacts",
+              "mu": 0.1124,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "soft lighting",
+              "mu": 0.1124,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "cozy atmosphere",
+              "mu": 0.1124,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "cozy seating area",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "curved architecture",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "whimsical mural",
+              "mu": 0.2028,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "plush cushions",
+              "mu": 0.5904,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "indoor plants",
+              "mu": 0.7068,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.4108,
+          "avg_sigma": 0.6496,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "cozy reading nook",
+            "indoor plants",
+            "floor-to-ceiling windows",
+            "open layout"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "zen atmosphere",
+            "curved architecture",
+            "indoor plants",
+            "organic textures"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "curved architecture",
+            "floating shelves",
+            "plush cushions",
+            "indoor plants"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "cozy seating area",
+            "wooden furniture",
+            "indoor plants"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "cozy seating area",
+            "indoor plants"
+          ],
+          "overlap_count": 2,
+          "overlap_fraction": 0.2,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "cozy seating area",
+            "curved architecture",
+            "indoor plants",
+            "textured materials"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        3,
+        0,
+        1,
+        2
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 3,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "cozy atmosphere",
+            "soft lighting",
+            "shelved artifacts",
+            "cozy seating area",
+            "whimsical mural",
+            "textured materials"
+          ],
+          "tags_only_in_worse": [
+            "open layout",
+            "zen atmosphere",
+            "contemporary design",
+            "floor-to-ceiling windows",
+            "cozy reading nook",
+            "organic textures"
+          ],
+          "shared_tags": [
+            "curved architecture",
+            "floating shelves",
+            "plush cushions",
+            "indoor plants"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "cozy atmosphere",
+            "curved architecture",
+            "soft lighting",
+            "plush cushions",
+            "shelved artifacts",
+            "whimsical mural",
+            "textured materials",
+            "floating shelves"
+          ],
+          "tags_only_in_worse": [
+            "wooden furniture",
+            "textured throw blanket",
+            "open layout",
+            "floor-to-ceiling windows",
+            "cozy reading nook",
+            "natural light",
+            "wooden flooring",
+            "modern lamp"
+          ],
+          "shared_tags": [
+            "cozy seating area",
+            "indoor plants"
+          ],
+          "num_differentiating": 16
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "cozy atmosphere",
+            "plush cushions",
+            "soft lighting",
+            "shelved artifacts",
+            "whimsical mural",
+            "floating shelves"
+          ],
+          "tags_only_in_worse": [
+            "vibrant color scheme",
+            "wooden furniture",
+            "zen atmosphere",
+            "cosy nook",
+            "relaxing atmosphere",
+            "organic textures"
+          ],
+          "shared_tags": [
+            "cozy seating area",
+            "curved architecture",
+            "indoor plants",
+            "textured materials"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "zen atmosphere",
+            "contemporary design",
+            "curved architecture",
+            "plush cushions",
+            "organic textures",
+            "floating shelves"
+          ],
+          "tags_only_in_worse": [
+            "wooden furniture",
+            "textured throw blanket",
+            "cozy seating area",
+            "wooden flooring",
+            "natural light",
+            "modern lamp"
+          ],
+          "shared_tags": [
+            "cozy reading nook",
+            "indoor plants",
+            "floor-to-ceiling windows",
+            "open layout"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "open layout",
+            "contemporary design",
+            "plush cushions",
+            "floor-to-ceiling windows",
+            "cozy reading nook",
+            "floating shelves"
+          ],
+          "tags_only_in_worse": [
+            "vibrant color scheme",
+            "wooden furniture",
+            "cozy seating area",
+            "cosy nook",
+            "relaxing atmosphere",
+            "textured materials"
+          ],
+          "shared_tags": [
+            "zen atmosphere",
+            "curved architecture",
+            "indoor plants",
+            "organic textures"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "textured throw blanket",
+            "open layout",
+            "floor-to-ceiling windows",
+            "cozy reading nook",
+            "natural light",
+            "wooden flooring",
+            "modern lamp"
+          ],
+          "tags_only_in_worse": [
+            "vibrant color scheme",
+            "zen atmosphere",
+            "curved architecture",
+            "cosy nook",
+            "relaxing atmosphere",
+            "organic textures",
+            "textured materials"
+          ],
+          "shared_tags": [
+            "cozy seating area",
+            "wooden furniture",
+            "indoor plants"
+          ],
+          "num_differentiating": 14
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_16",
+          "text": "textured materials",
+          "mu_before": 0.5904,
+          "mu_after": 0.5914,
+          "mu_delta": 0.001,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "soft lighting",
+          "mu_before": 0.1124,
+          "mu_after": 0.4014,
+          "mu_delta": 0.289,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "cozy atmosphere",
+          "mu_before": 0.1124,
+          "mu_after": 0.4014,
+          "mu_delta": 0.289,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "cozy seating area",
+          "mu_before": 0.5,
+          "mu_after": 0.4134,
+          "mu_delta": -0.0866,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "whimsical mural",
+          "mu_before": 0.2028,
+          "mu_after": 0.4918,
+          "mu_delta": 0.289,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "shelved artifacts",
+          "mu_before": 0.1124,
+          "mu_after": 0.4014,
+          "mu_delta": 0.289,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_2",
+          "text": "zen atmosphere",
+          "mu_before": -0.0028,
+          "mu_after": -0.2041,
+          "mu_delta": -0.2014,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_3",
+          "text": "contemporary design",
+          "mu_before": -0.2096,
+          "mu_after": -0.123,
+          "mu_delta": 0.0866,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "open layout",
+          "mu_before": 0.7972,
+          "mu_after": 0.7962,
+          "mu_delta": -0.001,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "cozy reading nook",
+          "mu_before": 0.7972,
+          "mu_after": 0.7962,
+          "mu_delta": -0.001,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "organic textures",
+          "mu_before": -0.0028,
+          "mu_after": -0.2041,
+          "mu_delta": -0.2014,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "floor-to-ceiling windows",
+          "mu_before": 0.7972,
+          "mu_after": 0.7962,
+          "mu_delta": -0.001,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_15",
+          "text": "floating shelves",
+          "mu_before": 0.5904,
+          "mu_after": 0.966,
+          "mu_delta": 0.3756,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "curved architecture",
+          "mu_before": 0.5904,
+          "mu_after": 0.678,
+          "mu_delta": 0.0876,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "plush cushions",
+          "mu_before": 0.5904,
+          "mu_after": 0.966,
+          "mu_delta": 0.3756,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_9",
+          "text": "modern lamp",
+          "mu_before": -0.3,
+          "mu_after": -0.3876,
+          "mu_delta": -0.0876,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "wooden flooring",
+          "mu_before": 0.5,
+          "mu_after": 0.4124,
+          "mu_delta": -0.0876,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_7",
+          "text": "wooden furniture",
+          "mu_before": -0.3,
+          "mu_after": -0.6756,
+          "mu_delta": -0.3756,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_8",
+          "text": "textured throw blanket",
+          "mu_before": -0.3,
+          "mu_after": -0.3876,
+          "mu_delta": -0.0876,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "natural light",
+          "mu_before": 0.5904,
+          "mu_after": 0.5028,
+          "mu_delta": -0.0876,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_17",
+          "text": "relaxing atmosphere",
+          "mu_before": 0.5904,
+          "mu_after": 0.3024,
+          "mu_delta": -0.288,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "vibrant color scheme",
+          "mu_before": 0.2028,
+          "mu_after": -0.0852,
+          "mu_delta": -0.288,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "cosy nook",
+          "mu_before": 0.2028,
+          "mu_after": -0.0852,
+          "mu_delta": -0.288,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_14",
+          "text": "plush cushions",
+          "mu": 0.966,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_15",
+          "text": "floating shelves",
+          "mu": 0.966,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_4",
+          "text": "open layout",
+          "mu": 0.7962,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_6",
+          "text": "cozy reading nook",
+          "mu": 0.7962,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_0",
+          "text": "floor-to-ceiling windows",
+          "mu": 0.7962,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_3",
+          "text": "indoor plants",
+          "mu": 0.7068,
+          "sigma": 0.644
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_13",
+          "text": "curved architecture",
+          "mu": 0.678,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_16",
+          "text": "textured materials",
+          "mu": 0.5914,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_1",
+          "text": "natural light",
+          "mu": 0.5028,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_12",
+          "text": "whimsical mural",
+          "mu": 0.4918,
+          "sigma": 0.5925
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.6756,
+          "max": 0.966,
+          "mean": 0.1,
+          "std": 0.4791
+        },
+        "sigma_distribution": {
+          "min": 0.5925,
+          "max": 0.7,
+          "mean": 0.6293
+        },
+        "tags_updated": 23,
+        "unique_tags_updated": 23,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 13.0,
+        "ranking_received": [
+          3,
+          0,
+          1,
+          2
+        ],
+        "best_option_strategy": "challenger",
+        "worst_option_strategy": "ucb",
+        "pairwise_accuracy_before_update": 0.6666666666666666,
+        "ranking_log_likelihood_before_update": -4.0521052675534115
+      }
+    },
+    {
+      "round_num": 3,
+      "timestamp": "2026-02-24T14:01:06.573657",
+      "parameters": {
+        "beta": 1.3333,
+        "max_overlap": 0.45,
+        "learning_rate": 0.1152
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_14",
+              "text": "plush cushions",
+              "mu": 0.966,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_15",
+              "text": "floating shelves",
+              "mu": 0.966,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "open layout",
+              "mu": 0.7962,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "cozy reading nook",
+              "mu": 0.7962,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "floor-to-ceiling windows",
+              "mu": 0.7962,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "indoor plants",
+              "mu": 0.7068,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "curved architecture",
+              "mu": 0.678,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_3",
+              "text": "contemporary design",
+              "mu": -0.123,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "organic textures",
+              "mu": -0.2041,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "zen atmosphere",
+              "mu": -0.2041,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5174,
+          "avg_sigma": 0.5976,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_4",
+              "text": "open layout",
+              "mu": 0.7962,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "wooden flooring",
+              "mu": 0.4124,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "cozy reading nook",
+              "mu": 0.7962,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_12",
+              "text": "calming aesthetic",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "cozy seating area",
+              "mu": 0.4134,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_11",
+              "text": "clean lines",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "floor-to-ceiling windows",
+              "mu": 0.7962,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "indoor plants",
+              "mu": 0.7068,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_10",
+              "text": "simple layout",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "natural light",
+              "mu": 0.5028,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.3524,
+          "avg_sigma": 0.635,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_16",
+              "text": "textured materials",
+              "mu": 0.5914,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "shelved artifacts",
+              "mu": 0.4014,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "floor-to-ceiling windows",
+              "mu": 0.7962,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "open layout",
+              "mu": 0.7962,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "whimsical mural",
+              "mu": 0.4918,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "cozy atmosphere",
+              "mu": 0.4014,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "soft lighting",
+              "mu": 0.4014,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "plush cushions",
+              "mu": 0.966,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "indoor plants",
+              "mu": 0.7068,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_10",
+              "text": "simple layout",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5253,
+          "avg_sigma": 0.6084,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_15",
+              "text": "floating shelves",
+              "mu": 0.966,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_17",
+              "text": "relaxing atmosphere",
+              "mu": 0.3024,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "textured materials",
+              "mu": 0.5914,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_13",
+              "text": "warm materials",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "cozy reading nook",
+              "mu": 0.7962,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_14",
+              "text": "soft ambient lighting",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "whimsical mural",
+              "mu": 0.4918,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "plush cushions",
+              "mu": 0.966,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "indoor plants",
+              "mu": 0.7068,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "natural light",
+              "mu": 0.5028,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.4723,
+          "avg_sigma": 0.6191,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "cozy reading nook",
+            "indoor plants",
+            "floor-to-ceiling windows",
+            "open layout"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "indoor plants",
+            "plush cushions",
+            "floor-to-ceiling windows",
+            "open layout"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "floating shelves",
+            "plush cushions",
+            "indoor plants",
+            "cozy reading nook"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "simple layout",
+            "indoor plants",
+            "floor-to-ceiling windows",
+            "open layout"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "natural light",
+            "indoor plants",
+            "cozy reading nook"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "whimsical mural",
+            "textured materials",
+            "plush cushions",
+            "indoor plants"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.45,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        2,
+        0,
+        1,
+        3
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 2,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "cozy atmosphere",
+            "soft lighting",
+            "shelved artifacts",
+            "simple layout",
+            "whimsical mural",
+            "textured materials"
+          ],
+          "tags_only_in_worse": [
+            "contemporary design",
+            "zen atmosphere",
+            "curved architecture",
+            "cozy reading nook",
+            "organic textures",
+            "floating shelves"
+          ],
+          "shared_tags": [
+            "indoor plants",
+            "plush cushions",
+            "floor-to-ceiling windows",
+            "open layout"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "cozy atmosphere",
+            "plush cushions",
+            "soft lighting",
+            "shelved artifacts",
+            "whimsical mural",
+            "textured materials"
+          ],
+          "tags_only_in_worse": [
+            "cozy reading nook",
+            "cozy seating area",
+            "wooden flooring",
+            "natural light",
+            "calming aesthetic",
+            "clean lines"
+          ],
+          "shared_tags": [
+            "simple layout",
+            "indoor plants",
+            "floor-to-ceiling windows",
+            "open layout"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 3,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "cozy atmosphere",
+            "open layout",
+            "soft lighting",
+            "floor-to-ceiling windows",
+            "shelved artifacts",
+            "simple layout"
+          ],
+          "tags_only_in_worse": [
+            "cozy reading nook",
+            "natural light",
+            "relaxing atmosphere",
+            "soft ambient lighting",
+            "floating shelves",
+            "warm materials"
+          ],
+          "shared_tags": [
+            "whimsical mural",
+            "textured materials",
+            "plush cushions",
+            "indoor plants"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "contemporary design",
+            "zen atmosphere",
+            "curved architecture",
+            "plush cushions",
+            "organic textures",
+            "floating shelves"
+          ],
+          "tags_only_in_worse": [
+            "cozy seating area",
+            "wooden flooring",
+            "simple layout",
+            "natural light",
+            "calming aesthetic",
+            "clean lines"
+          ],
+          "shared_tags": [
+            "cozy reading nook",
+            "indoor plants",
+            "floor-to-ceiling windows",
+            "open layout"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 3,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "open layout",
+            "contemporary design",
+            "zen atmosphere",
+            "curved architecture",
+            "floor-to-ceiling windows",
+            "organic textures"
+          ],
+          "tags_only_in_worse": [
+            "natural light",
+            "relaxing atmosphere",
+            "textured materials",
+            "whimsical mural",
+            "soft ambient lighting",
+            "warm materials"
+          ],
+          "shared_tags": [
+            "floating shelves",
+            "plush cushions",
+            "indoor plants",
+            "cozy reading nook"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "open layout",
+            "floor-to-ceiling windows",
+            "cozy seating area",
+            "wooden flooring",
+            "calming aesthetic",
+            "simple layout",
+            "clean lines"
+          ],
+          "tags_only_in_worse": [
+            "plush cushions",
+            "relaxing atmosphere",
+            "textured materials",
+            "whimsical mural",
+            "soft ambient lighting",
+            "floating shelves",
+            "warm materials"
+          ],
+          "shared_tags": [
+            "natural light",
+            "indoor plants",
+            "cozy reading nook"
+          ],
+          "num_differentiating": 14
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_16",
+          "text": "textured materials",
+          "mu_before": 0.5914,
+          "mu_after": 0.5913,
+          "mu_delta": -0.0001,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "soft lighting",
+          "mu_before": 0.4014,
+          "mu_after": 0.6846,
+          "mu_delta": 0.2832,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "cozy atmosphere",
+          "mu_before": 0.4014,
+          "mu_after": 0.6846,
+          "mu_delta": 0.2832,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "whimsical mural",
+          "mu_before": 0.4918,
+          "mu_after": 0.4917,
+          "mu_delta": -0.0001,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "shelved artifacts",
+          "mu_before": 0.4014,
+          "mu_after": 0.6846,
+          "mu_delta": 0.2832,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_10",
+          "text": "simple layout",
+          "mu_before": -0.3,
+          "mu_after": -0.1017,
+          "mu_delta": 0.1983,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_15",
+          "text": "floating shelves",
+          "mu_before": 0.966,
+          "mu_after": 0.7677,
+          "mu_delta": -0.1983,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_2",
+          "text": "zen atmosphere",
+          "mu_before": -0.2041,
+          "mu_after": -0.1192,
+          "mu_delta": 0.0849,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_3",
+          "text": "contemporary design",
+          "mu_before": -0.123,
+          "mu_after": -0.0381,
+          "mu_delta": 0.0849,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "organic textures",
+          "mu_before": -0.2041,
+          "mu_after": -0.1192,
+          "mu_delta": 0.0849,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "curved architecture",
+          "mu_before": 0.678,
+          "mu_after": 0.763,
+          "mu_delta": 0.0849,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "cozy reading nook",
+          "mu_before": 0.7962,
+          "mu_after": 0.513,
+          "mu_delta": -0.2832,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "plush cushions",
+          "mu_before": 0.966,
+          "mu_after": 1.0509,
+          "mu_delta": 0.0848,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "wooden flooring",
+          "mu_before": 0.4124,
+          "mu_after": 0.3275,
+          "mu_delta": -0.0848,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_12",
+          "text": "calming aesthetic",
+          "mu_before": -0.3,
+          "mu_after": -0.3848,
+          "mu_delta": -0.0848,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "cozy seating area",
+          "mu_before": 0.4134,
+          "mu_after": 0.3285,
+          "mu_delta": -0.0848,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_11",
+          "text": "clean lines",
+          "mu_before": -0.3,
+          "mu_after": -0.3848,
+          "mu_delta": -0.0848,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "natural light",
+          "mu_before": 0.5028,
+          "mu_after": 0.1346,
+          "mu_delta": -0.3681,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "open layout",
+          "mu_before": 0.7962,
+          "mu_after": 1.0795,
+          "mu_delta": 0.2833,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "floor-to-ceiling windows",
+          "mu_before": 0.7962,
+          "mu_after": 1.0795,
+          "mu_delta": 0.2833,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_17",
+          "text": "relaxing atmosphere",
+          "mu_before": 0.3024,
+          "mu_after": 0.0191,
+          "mu_delta": -0.2833,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_13",
+          "text": "warm materials",
+          "mu_before": -0.3,
+          "mu_after": -0.5833,
+          "mu_delta": -0.2833,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_14",
+          "text": "soft ambient lighting",
+          "mu_before": -0.3,
+          "mu_after": -0.5833,
+          "mu_delta": -0.2833,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_4",
+          "text": "open layout",
+          "mu": 1.0795,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_0",
+          "text": "floor-to-ceiling windows",
+          "mu": 1.0795,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_14",
+          "text": "plush cushions",
+          "mu": 1.0509,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_15",
+          "text": "floating shelves",
+          "mu": 0.7677,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_13",
+          "text": "curved architecture",
+          "mu": 0.763,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_3",
+          "text": "indoor plants",
+          "mu": 0.7068,
+          "sigma": 0.644
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_7",
+          "text": "shelved artifacts",
+          "mu": 0.6846,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_8",
+          "text": "cozy atmosphere",
+          "mu": 0.6846,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_9",
+          "text": "soft lighting",
+          "mu": 0.6846,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_16",
+          "text": "textured materials",
+          "mu": 0.5913,
+          "sigma": 0.5451
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.6756,
+          "max": 1.0795,
+          "mean": 0.1,
+          "std": 0.523
+        },
+        "sigma_distribution": {
+          "min": 0.5451,
+          "max": 0.7,
+          "mean": 0.5977
+        },
+        "tags_updated": 23,
+        "unique_tags_updated": 23,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 12.333333333333334,
+        "ranking_received": [
+          2,
+          0,
+          1,
+          3
+        ],
+        "best_option_strategy": "ucb",
+        "worst_option_strategy": "challenger",
+        "pairwise_accuracy_before_update": 0.5,
+        "ranking_log_likelihood_before_update": -4.1010062899281765
+      }
+    },
+    {
+      "round_num": 3,
+      "timestamp": "2026-02-24T14:03:07.849709",
+      "parameters": {
+        "beta": 1.3333,
+        "max_overlap": 0.45,
+        "learning_rate": 0.1152
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_14",
+              "text": "plush cushions",
+              "mu": 1.1467,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_15",
+              "text": "floating shelves",
+              "mu": 1.1467,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "curved architecture",
+              "mu": 0.8587,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "indoor plants",
+              "mu": 0.7972,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "textured materials",
+              "mu": 0.7721,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "whimsical mural",
+              "mu": 0.7628,
+              "sigma": 0.4614,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "open layout",
+              "mu": 0.7058,
+              "sigma": 0.5806,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_2",
+              "text": "zen atmosphere",
+              "mu": -0.2041,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "organic textures",
+              "mu": -0.2945,
+              "sigma": 0.5806,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_11",
+              "text": "clean lines",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5392,
+          "avg_sigma": 0.5513,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "neu_11",
+              "text": "clean lines",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_13",
+              "text": "warm materials",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "open layout",
+              "mu": 0.7058,
+              "sigma": 0.5806,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "cosy nook",
+              "mu": -0.1756,
+              "sigma": 0.5806,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "wooden flooring",
+              "mu": 0.322,
+              "sigma": 0.5806,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_12",
+              "text": "calming aesthetic",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "vibrant color scheme",
+              "mu": -0.1756,
+              "sigma": 0.5806,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "cozy reading nook",
+              "mu": 0.7058,
+              "sigma": 0.5806,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "indoor plants",
+              "mu": 0.7972,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "natural light",
+              "mu": 0.4124,
+              "sigma": 0.5806,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.1692,
+          "avg_sigma": 0.6176,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_15",
+              "text": "floating shelves",
+              "mu": 1.1467,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "textured materials",
+              "mu": 0.7721,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_13",
+              "text": "warm materials",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "cozy atmosphere",
+              "mu": 0.5821,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_12",
+              "text": "calming aesthetic",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "cozy seating area",
+              "mu": 0.6844,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "curved architecture",
+              "mu": 0.8587,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "plush cushions",
+              "mu": 1.1467,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "cozy reading nook",
+              "mu": 0.7058,
+              "sigma": 0.5806,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "shelved artifacts",
+              "mu": 0.4917,
+              "sigma": 0.5451,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5788,
+          "avg_sigma": 0.5535,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_17",
+              "text": "relaxing atmosphere",
+              "mu": 0.2121,
+              "sigma": 0.5806,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "floor-to-ceiling windows",
+              "mu": 0.4348,
+              "sigma": 0.5465,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "soft lighting",
+              "mu": 0.5821,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "cozy atmosphere",
+              "mu": 0.5821,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_14",
+              "text": "soft ambient lighting",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "curved architecture",
+              "mu": 0.8587,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_15",
+              "text": "star-shaped pillow",
+              "mu": -0.3904,
+              "sigma": 0.686,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "plush cushions",
+              "mu": 1.1467,
+              "sigma": 0.5015,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "cozy reading nook",
+              "mu": 0.7058,
+              "sigma": 0.5806,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "indoor plants",
+              "mu": 0.7972,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.4629,
+          "avg_sigma": 0.5692,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "clean lines",
+            "indoor plants",
+            "open layout"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "curved architecture",
+            "floating shelves",
+            "plush cushions",
+            "textured materials"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "curved architecture",
+            "plush cushions",
+            "indoor plants"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "calming aesthetic",
+            "warm materials",
+            "cozy reading nook"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "indoor plants",
+            "cozy reading nook"
+          ],
+          "overlap_count": 2,
+          "overlap_fraction": 0.2,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "curved architecture",
+            "cozy atmosphere",
+            "plush cushions",
+            "cozy reading nook"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.45,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        2,
+        0,
+        1,
+        3
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 2,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "cozy atmosphere",
+            "shelved artifacts",
+            "cozy seating area",
+            "calming aesthetic",
+            "cozy reading nook",
+            "warm materials"
+          ],
+          "tags_only_in_worse": [
+            "open layout",
+            "zen atmosphere",
+            "indoor plants",
+            "organic textures",
+            "whimsical mural",
+            "clean lines"
+          ],
+          "shared_tags": [
+            "curved architecture",
+            "floating shelves",
+            "plush cushions",
+            "textured materials"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "cozy atmosphere",
+            "curved architecture",
+            "plush cushions",
+            "shelved artifacts",
+            "cozy seating area",
+            "textured materials",
+            "floating shelves"
+          ],
+          "tags_only_in_worse": [
+            "vibrant color scheme",
+            "open layout",
+            "indoor plants",
+            "natural light",
+            "wooden flooring",
+            "cosy nook",
+            "clean lines"
+          ],
+          "shared_tags": [
+            "calming aesthetic",
+            "warm materials",
+            "cozy reading nook"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 3,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "shelved artifacts",
+            "cozy seating area",
+            "calming aesthetic",
+            "textured materials",
+            "floating shelves",
+            "warm materials"
+          ],
+          "tags_only_in_worse": [
+            "soft lighting",
+            "floor-to-ceiling windows",
+            "indoor plants",
+            "relaxing atmosphere",
+            "soft ambient lighting",
+            "star-shaped pillow"
+          ],
+          "shared_tags": [
+            "curved architecture",
+            "cozy atmosphere",
+            "plush cushions",
+            "cozy reading nook"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "zen atmosphere",
+            "curved architecture",
+            "plush cushions",
+            "organic textures",
+            "whimsical mural",
+            "textured materials",
+            "floating shelves"
+          ],
+          "tags_only_in_worse": [
+            "vibrant color scheme",
+            "cozy reading nook",
+            "natural light",
+            "wooden flooring",
+            "calming aesthetic",
+            "cosy nook",
+            "warm materials"
+          ],
+          "shared_tags": [
+            "clean lines",
+            "indoor plants",
+            "open layout"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 3,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "open layout",
+            "zen atmosphere",
+            "organic textures",
+            "whimsical mural",
+            "textured materials",
+            "floating shelves",
+            "clean lines"
+          ],
+          "tags_only_in_worse": [
+            "cozy atmosphere",
+            "soft lighting",
+            "floor-to-ceiling windows",
+            "cozy reading nook",
+            "relaxing atmosphere",
+            "soft ambient lighting",
+            "star-shaped pillow"
+          ],
+          "shared_tags": [
+            "curved architecture",
+            "plush cushions",
+            "indoor plants"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "vibrant color scheme",
+            "open layout",
+            "natural light",
+            "wooden flooring",
+            "calming aesthetic",
+            "cosy nook",
+            "clean lines",
+            "warm materials"
+          ],
+          "tags_only_in_worse": [
+            "cozy atmosphere",
+            "curved architecture",
+            "plush cushions",
+            "soft lighting",
+            "floor-to-ceiling windows",
+            "relaxing atmosphere",
+            "soft ambient lighting",
+            "star-shaped pillow"
+          ],
+          "shared_tags": [
+            "indoor plants",
+            "cozy reading nook"
+          ],
+          "num_differentiating": 16
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "neu_13",
+          "text": "warm materials",
+          "mu_before": -0.3,
+          "mu_after": -0.1042,
+          "mu_delta": 0.1958,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "cozy atmosphere",
+          "mu_before": 0.5821,
+          "mu_after": 0.5805,
+          "mu_delta": -0.0016,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_12",
+          "text": "calming aesthetic",
+          "mu_before": -0.3,
+          "mu_after": -0.1042,
+          "mu_delta": 0.1958,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "cozy seating area",
+          "mu_before": 0.6844,
+          "mu_after": 0.9608,
+          "mu_delta": 0.2764,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "cozy reading nook",
+          "mu_before": 0.7058,
+          "mu_after": 0.6237,
+          "mu_delta": -0.0822,
+          "sigma_before": 0.686,
+          "sigma_after": 0.5342,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "shelved artifacts",
+          "mu_before": 0.4917,
+          "mu_after": 0.7681,
+          "mu_delta": 0.2764,
+          "sigma_before": 0.644,
+          "sigma_after": 0.5015,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_2",
+          "text": "zen atmosphere",
+          "mu_before": -0.2041,
+          "mu_after": -0.122,
+          "mu_delta": 0.0822,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "open layout",
+          "mu_before": 0.7058,
+          "mu_after": 0.7074,
+          "mu_delta": 0.0016,
+          "sigma_before": 0.7457,
+          "sigma_after": 0.5342,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "whimsical mural",
+          "mu_before": 0.7628,
+          "mu_after": 0.845,
+          "mu_delta": 0.0822,
+          "sigma_before": 0.5451,
+          "sigma_after": 0.4244,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "organic textures",
+          "mu_before": -0.2945,
+          "mu_after": -0.2123,
+          "mu_delta": 0.0822,
+          "sigma_before": 0.686,
+          "sigma_after": 0.5342,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_11",
+          "text": "clean lines",
+          "mu_before": -0.3,
+          "mu_after": -0.2984,
+          "mu_delta": 0.0016,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "indoor plants",
+          "mu_before": 0.7972,
+          "mu_after": 0.5208,
+          "mu_delta": -0.2764,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_15",
+          "text": "floating shelves",
+          "mu_before": 1.1467,
+          "mu_after": 1.5053,
+          "mu_delta": 0.3586,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_16",
+          "text": "textured materials",
+          "mu_before": 0.7721,
+          "mu_after": 1.1307,
+          "mu_delta": 0.3586,
+          "sigma_before": 0.644,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "curved architecture",
+          "mu_before": 0.8587,
+          "mu_after": 0.9393,
+          "mu_delta": 0.0806,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "plush cushions",
+          "mu_before": 1.1467,
+          "mu_after": 1.2273,
+          "mu_delta": 0.0806,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "cosy nook",
+          "mu_before": -0.1756,
+          "mu_after": -0.2562,
+          "mu_delta": -0.0806,
+          "sigma_before": 0.686,
+          "sigma_after": 0.5342,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "wooden flooring",
+          "mu_before": 0.322,
+          "mu_after": 0.2414,
+          "mu_delta": -0.0806,
+          "sigma_before": 0.686,
+          "sigma_after": 0.5342,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "vibrant color scheme",
+          "mu_before": -0.1756,
+          "mu_after": -0.2562,
+          "mu_delta": -0.0806,
+          "sigma_before": 0.686,
+          "sigma_after": 0.5342,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "natural light",
+          "mu_before": 0.4124,
+          "mu_after": 0.3318,
+          "mu_delta": -0.0806,
+          "sigma_before": 0.686,
+          "sigma_after": 0.5342,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_17",
+          "text": "relaxing atmosphere",
+          "mu_before": 0.2121,
+          "mu_after": -0.0659,
+          "mu_delta": -0.278,
+          "sigma_before": 0.686,
+          "sigma_after": 0.5342,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "soft lighting",
+          "mu_before": 0.5821,
+          "mu_after": 0.3041,
+          "mu_delta": -0.278,
+          "sigma_before": 0.5925,
+          "sigma_after": 0.4614,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_14",
+          "text": "soft ambient lighting",
+          "mu_before": -0.3,
+          "mu_after": -0.578,
+          "mu_delta": -0.278,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_15",
+          "text": "star-shaped pillow",
+          "mu_before": -0.3904,
+          "mu_after": -0.6683,
+          "mu_delta": -0.278,
+          "sigma_before": 0.8105,
+          "sigma_after": 0.6311,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "floor-to-ceiling windows",
+          "mu_before": 0.4348,
+          "mu_after": 0.1568,
+          "mu_delta": -0.278,
+          "sigma_before": 0.6457,
+          "sigma_after": 0.5028,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_15",
+          "text": "floating shelves",
+          "mu": 1.5053,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_14",
+          "text": "plush cushions",
+          "mu": 1.2273,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_16",
+          "text": "textured materials",
+          "mu": 1.1307,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_5",
+          "text": "cozy seating area",
+          "mu": 0.9608,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_13",
+          "text": "curved architecture",
+          "mu": 0.9393,
+          "sigma": 0.4614
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_12",
+          "text": "whimsical mural",
+          "mu": 0.845,
+          "sigma": 0.4244
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_7",
+          "text": "shelved artifacts",
+          "mu": 0.7681,
+          "sigma": 0.5015
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_4",
+          "text": "open layout",
+          "mu": 0.7074,
+          "sigma": 0.5342
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_6",
+          "text": "cozy reading nook",
+          "mu": 0.6237,
+          "sigma": 0.5342
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_8",
+          "text": "cozy atmosphere",
+          "mu": 0.5805,
+          "sigma": 0.4614
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.6756,
+          "max": 1.5053,
+          "mean": 0.1,
+          "std": 0.5931
+        },
+        "sigma_distribution": {
+          "min": 0.4244,
+          "max": 0.686,
+          "mean": 0.5649
+        },
+        "tags_updated": 25,
+        "unique_tags_updated": 25,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 13.666666666666666,
+        "ranking_received": [
+          2,
+          0,
+          1,
+          3
+        ],
+        "best_option_strategy": "ucb",
+        "worst_option_strategy": "challenger",
+        "pairwise_accuracy_before_update": 0.6666666666666666,
+        "ranking_log_likelihood_before_update": -3.6542536283336515
+      }
+    }
+  ],
+  "final": {
+    "timestamp": "2026-02-24T14:05:04.221075",
+    "rounds_completed": 4,
+    "total_comparisons": 24,
+    "total_tag_updates": 95,
+    "final_tags": [
+      {
+        "rank": 1,
+        "text": "floating shelves",
+        "weight": 0.171,
+        "final_mu": 1.5053,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 5,
+        "times_in_winner": 2,
+        "times_in_loser": 0,
+        "win_rate": 0.4
+      },
+      {
+        "rank": 2,
+        "text": "plush cushions",
+        "weight": 0.1295,
+        "final_mu": 1.2273,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 1,
+        "win_rate": 0.333
+      },
+      {
+        "rank": 3,
+        "text": "textured materials",
+        "weight": 0.1176,
+        "final_mu": 1.1307,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 5,
+        "times_in_winner": 2,
+        "times_in_loser": 1,
+        "win_rate": 0.4
+      },
+      {
+        "rank": 4,
+        "text": "cozy seating area",
+        "weight": 0.0992,
+        "final_mu": 0.9608,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 8,
+        "times_in_winner": 3,
+        "times_in_loser": 2,
+        "win_rate": 0.375
+      },
+      {
+        "rank": 5,
+        "text": "curved architecture",
+        "weight": 0.0971,
+        "final_mu": 0.9393,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 7,
+        "times_in_winner": 2,
+        "times_in_loser": 2,
+        "win_rate": 0.286
+      },
+      {
+        "rank": 6,
+        "text": "whimsical mural",
+        "weight": 0.0883,
+        "final_mu": 0.845,
+        "final_sigma": 0.4244,
+        "category": "positive_other",
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1,
+        "win_rate": 0.333
+      },
+      {
+        "rank": 7,
+        "text": "shelved artifacts",
+        "weight": 0.0818,
+        "final_mu": 0.7681,
+        "final_sigma": 0.5015,
+        "category": "positive_other",
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 1,
+        "win_rate": 0.5
+      },
+      {
+        "rank": 8,
+        "text": "open layout",
+        "weight": 0.077,
+        "final_mu": 0.7074,
+        "final_sigma": 0.5342,
+        "category": "positive_other",
+        "times_shown": 7,
+        "times_in_winner": 1,
+        "times_in_loser": 0,
+        "win_rate": 0.143
+      },
+      {
+        "rank": 9,
+        "text": "cozy reading nook",
+        "weight": 0.0708,
+        "final_mu": 0.6237,
+        "final_sigma": 0.5342,
+        "category": "positive_other",
+        "times_shown": 8,
+        "times_in_winner": 2,
+        "times_in_loser": 1,
+        "win_rate": 0.25
+      },
+      {
+        "rank": 10,
+        "text": "cozy atmosphere",
+        "weight": 0.0678,
+        "final_mu": 0.5805,
+        "final_sigma": 0.4614,
+        "category": "positive_other",
+        "times_shown": 5,
+        "times_in_winner": 2,
+        "times_in_loser": 2,
+        "win_rate": 0.4
+      }
+    ],
+    "final_trajectories": {
+      "floating shelves": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5904,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.966,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.7677,
+          "sigma": 0.5451
+        },
+        {
+          "round": 3,
+          "mu": 1.5053,
+          "sigma": 0.4614
+        }
+      ],
+      "plush cushions": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5904,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.966,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 1.0509,
+          "sigma": 0.5451
+        },
+        {
+          "round": 3,
+          "mu": 1.2273,
+          "sigma": 0.4614
+        }
+      ],
+      "textured materials": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5904,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.5914,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.5913,
+          "sigma": 0.5451
+        },
+        {
+          "round": 3,
+          "mu": 1.1307,
+          "sigma": 0.4614
+        }
+      ],
+      "cozy seating area": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 2,
+          "mu": 0.4134,
+          "sigma": 0.644
+        },
+        {
+          "round": 3,
+          "mu": 0.3285,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.9608,
+          "sigma": 0.4614
+        }
+      ],
+      "curved architecture": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5904,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.678,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.763,
+          "sigma": 0.5451
+        },
+        {
+          "round": 3,
+          "mu": 0.9393,
+          "sigma": 0.4614
+        }
+      ],
+      "whimsical mural": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.2028,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.4918,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.4917,
+          "sigma": 0.5451
+        },
+        {
+          "round": 3,
+          "mu": 0.845,
+          "sigma": 0.4244
+        }
+      ],
+      "shelved artifacts": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.1124,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.4014,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.6846,
+          "sigma": 0.5451
+        },
+        {
+          "round": 3,
+          "mu": 0.7681,
+          "sigma": 0.5015
+        }
+      ],
+      "open layout": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.7972,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.7962,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 1.0795,
+          "sigma": 0.5451
+        },
+        {
+          "round": 3,
+          "mu": 0.7074,
+          "sigma": 0.5342
+        }
+      ],
+      "cozy reading nook": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.7972,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.7962,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.513,
+          "sigma": 0.5451
+        },
+        {
+          "round": 3,
+          "mu": 0.6237,
+          "sigma": 0.5342
+        }
+      ],
+      "cozy atmosphere": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.1124,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.4014,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.6846,
+          "sigma": 0.5451
+        },
+        {
+          "round": 3,
+          "mu": 0.5805,
+          "sigma": 0.4614
+        }
+      ]
+    },
+    "convergence_analysis": {
+      "top_10_stability": "7/10 tags same as previous round",
+      "mu_spread": 2.1809,
+      "avg_final_sigma": 0.5649,
+      "min_final_sigma": 0.4244,
+      "converged": false
+    },
+    "warnings_summary": {
+      "total": 1,
+      "by_type": {
+        "rollback": 1
+      }
+    }
+  },
+  "warnings": [
+    {
+      "type": "rollback",
+      "message": "Rolled back from round 3 to round 2. Boosted: ['textured materials', 'soft lighting', 'cozy atmosphere'], Penalized: ['contemporary design', 'open layout', 'organic textures']",
+      "timestamp": "2026-02-24T14:03:07.832638"
+    }
+  ],
+  "tag_trajectories": {
+    "pos_0": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.7972,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.7962,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 1.0795,
+        "sigma": 0.5451
+      },
+      {
+        "round": 3,
+        "mu": 0.1568,
+        "sigma": 0.5028
+      }
+    ],
+    "pos_1": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5904,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.5028,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.1346,
+        "sigma": 0.5451
+      },
+      {
+        "round": 3,
+        "mu": 0.3318,
+        "sigma": 0.5342
+      }
+    ],
+    "pos_2": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4124,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.3275,
+        "sigma": 0.5451
+      },
+      {
+        "round": 3,
+        "mu": 0.2414,
+        "sigma": 0.5342
+      }
+    ],
+    "pos_3": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.7068,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.7068,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.7068,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.5208,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_4": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.7972,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.7962,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 1.0795,
+        "sigma": 0.5451
+      },
+      {
+        "round": 3,
+        "mu": 0.7074,
+        "sigma": 0.5342
+      }
+    ],
+    "pos_5": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.4134,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.3285,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.9608,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_6": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.7972,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.7962,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.513,
+        "sigma": 0.5451
+      },
+      {
+        "round": 3,
+        "mu": 0.6237,
+        "sigma": 0.5342
+      }
+    ],
+    "pos_7": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.1124,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4014,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.6846,
+        "sigma": 0.5451
+      },
+      {
+        "round": 3,
+        "mu": 0.7681,
+        "sigma": 0.5015
+      }
+    ],
+    "pos_8": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.1124,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4014,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.6846,
+        "sigma": 0.5451
+      },
+      {
+        "round": 3,
+        "mu": 0.5805,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_9": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.1124,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4014,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.6846,
+        "sigma": 0.5451
+      },
+      {
+        "round": 3,
+        "mu": 0.3041,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_10": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.2028,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.0852,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.0852,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.2562,
+        "sigma": 0.5342
+      }
+    ],
+    "pos_11": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.2028,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.0852,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.0852,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.2562,
+        "sigma": 0.5342
+      }
+    ],
+    "pos_12": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.2028,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4918,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.4917,
+        "sigma": 0.5451
+      },
+      {
+        "round": 3,
+        "mu": 0.845,
+        "sigma": 0.4244
+      }
+    ],
+    "pos_13": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5904,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.678,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.763,
+        "sigma": 0.5451
+      },
+      {
+        "round": 3,
+        "mu": 0.9393,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_14": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5904,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.966,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 1.0509,
+        "sigma": 0.5451
+      },
+      {
+        "round": 3,
+        "mu": 1.2273,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_15": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5904,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.966,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.7677,
+        "sigma": 0.5451
+      },
+      {
+        "round": 3,
+        "mu": 1.5053,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_16": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5904,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.5914,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.5913,
+        "sigma": 0.5451
+      },
+      {
+        "round": 3,
+        "mu": 1.1307,
+        "sigma": 0.4614
+      }
+    ],
+    "pos_17": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5904,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.3024,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.0191,
+        "sigma": 0.5451
+      },
+      {
+        "round": 3,
+        "mu": -0.0659,
+        "sigma": 0.5342
+      }
+    ],
+    "neu_0": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.0028,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.2041,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.1192,
+        "sigma": 0.5451
+      },
+      {
+        "round": 3,
+        "mu": -0.2123,
+        "sigma": 0.5342
+      }
+    ],
+    "neu_1": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.3,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.3904,
+        "sigma": 0.6311
+      }
+    ],
+    "neu_2": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.0028,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.2041,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.1192,
+        "sigma": 0.5451
+      },
+      {
+        "round": 3,
+        "mu": -0.122,
+        "sigma": 0.5451
+      }
+    ],
+    "neu_3": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.2096,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.123,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.0381,
+        "sigma": 0.5451
+      },
+      {
+        "round": 3,
+        "mu": -0.3037,
+        "sigma": 0.569
+      }
+    ],
+    "neu_4": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3904,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.3904,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.3904,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.3904,
+        "sigma": 0.644
+      }
+    ],
+    "neu_5": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3904,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.3904,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.3904,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.3904,
+        "sigma": 0.644
+      }
+    ],
+    "neu_6": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3904,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.3904,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.3904,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.3904,
+        "sigma": 0.644
+      }
+    ],
+    "neu_7": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.6756,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.6756,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.6756,
+        "sigma": 0.644
+      }
+    ],
+    "neu_8": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3876,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.3876,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.3876,
+        "sigma": 0.644
+      }
+    ],
+    "neu_9": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3876,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.3876,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.3876,
+        "sigma": 0.644
+      }
+    ],
+    "neu_10": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": -0.1017,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.4807,
+        "sigma": 0.6723
+      }
+    ],
+    "neu_11": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": -0.3848,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.2984,
+        "sigma": 0.644
+      }
+    ],
+    "neu_12": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": -0.3848,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.1042,
+        "sigma": 0.644
+      }
+    ],
+    "neu_13": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": -0.5833,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.1042,
+        "sigma": 0.644
+      }
+    ],
+    "neu_14": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": -0.5833,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": -0.578,
+        "sigma": 0.644
+      }
+    ],
+    "neu_15": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": -0.6683,
+        "sigma": 0.6311
+      }
+    ],
+    "neu_16": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": -0.3904,
+        "sigma": 0.686
+      }
+    ],
+    "neu_17": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 3,
+        "mu": -0.3904,
+        "sigma": 0.686
+      }
+    ]
+  }
+}

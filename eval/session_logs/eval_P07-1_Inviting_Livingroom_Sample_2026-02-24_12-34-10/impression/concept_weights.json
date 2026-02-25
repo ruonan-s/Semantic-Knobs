@@ -1,0 +1,248 @@
+{
+  "stage": "impression",
+  "session_id": "eval_P07_Inviting_Livingroom_Sample_2026-02-24_12-34-10",
+  "timestamp": "2026-02-24T12:54:57.931250",
+  "num_concepts": 10,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 1462,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "candles for warmth",
+      "weight": 0.11810816079378128,
+      "score": 0.6536026000976562,
+      "utility_std": 1.012770652770996,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "candles for warmth"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "large window",
+      "weight": 0.10882558673620224,
+      "score": 0.5717483162879944,
+      "utility_std": 1.012770652770996,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large window"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "ambient lighting",
+      "weight": 0.1077488586306572,
+      "score": 0.561805009841919,
+      "utility_std": 1.012770652770996,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "ambient lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "plush sofas",
+      "weight": 0.10759972035884857,
+      "score": 0.5604197978973389,
+      "utility_std": 1.012770652770996,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "plush sofas"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "wooden coffee table",
+      "weight": 0.10599667578935623,
+      "score": 0.5454095005989075,
+      "utility_std": 1.012770652770996,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden coffee table"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "soft textures",
+      "weight": 0.0977567657828331,
+      "score": 0.46448424458503723,
+      "utility_std": 1.012770652770996,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "soft textures"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "cozy textiles",
+      "weight": 0.09238630533218384,
+      "score": 0.4079805612564087,
+      "utility_std": 1.012770652770996,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "cozy textiles"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "inviting atmosphere",
+      "weight": 0.09008438885211945,
+      "score": 0.38274866342544556,
+      "utility_std": 1.012770652770996,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "inviting atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "modern elegance",
+      "weight": 0.0874054953455925,
+      "score": 0.35256001353263855,
+      "utility_std": 1.012770652770996,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "modern elegance"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "neutral color palette",
+      "weight": 0.08408807963132858,
+      "score": 0.31386658549308777,
+      "utility_std": 1.012770652770996,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "neutral color palette"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_0_0_8",
+      "text": "candles for warmth",
+      "utility": 0.6536026000976562,
+      "uncertainty": 1.012770652770996,
+      "weight": 0.11810816079378128,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_3",
+      "text": "large window",
+      "utility": 0.5717483162879944,
+      "uncertainty": 1.012770652770996,
+      "weight": 0.10882558673620224,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_2",
+      "text": "ambient lighting",
+      "utility": 0.561805009841919,
+      "uncertainty": 1.012770652770996,
+      "weight": 0.1077488586306572,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_7",
+      "text": "plush sofas",
+      "utility": 0.5604197978973389,
+      "uncertainty": 1.012770652770996,
+      "weight": 0.10759972035884857,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_6",
+      "text": "wooden coffee table",
+      "utility": 0.5454095005989075,
+      "uncertainty": 1.012770652770996,
+      "weight": 0.10599667578935623,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_5",
+      "text": "soft textures",
+      "utility": 0.46448424458503723,
+      "uncertainty": 1.012770652770996,
+      "weight": 0.0977567657828331,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_1",
+      "text": "cozy textiles",
+      "utility": 0.4079805612564087,
+      "uncertainty": 1.012770652770996,
+      "weight": 0.09238630533218384,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_10",
+      "text": "inviting atmosphere",
+      "utility": 0.38274866342544556,
+      "uncertainty": 1.012770652770996,
+      "weight": 0.09008438885211945,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_11",
+      "text": "modern elegance",
+      "utility": 0.35256001353263855,
+      "uncertainty": 1.012770652770996,
+      "weight": 0.0874054953455925,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_1",
+      "text": "neutral color palette",
+      "utility": 0.31386658549308777,
+      "uncertainty": 1.012770652770996,
+      "weight": 0.08408807963132858,
+      "source_image_idx": 3,
+      "category": "positive"
+    }
+  ]
+}

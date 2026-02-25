@@ -1,0 +1,413 @@
+{
+  "user_id": "P07",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P07_Inviting_Livingroom_Sample_2026-02-24_12-34-10",
+  "created_at": "2026-02-24T12:34:10.937993",
+  "events": [
+    {
+      "timestamp": "2026-02-24T12:34:10.938003",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Inviting_Livingroom_Sample"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:39:04.239007",
+      "type": "save_manual_weights",
+      "data": {
+        "selected_image_id": "impression_0_0",
+        "tag_count": 10,
+        "weights_file": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P07_Inviting_Livingroom_Sample_2026-02-24_12-34-10/impression/user_manual_weights.json"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:39:27.072033",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Inviting Livingroom",
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:41:05.163303",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          1,
+          0,
+          2,
+          3
+        ],
+        "image_variance": 0.1657,
+        "beta": 2.0,
+        "tags_updated": 25,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:42:09.780048",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 2,
+        "ranking": [
+          1,
+          2,
+          3,
+          0
+        ],
+        "image_variance": 0.2047,
+        "beta": 1.667,
+        "tags_updated": 24,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:43:09.822943",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 3,
+        "ranking": [
+          1,
+          0,
+          3,
+          2
+        ],
+        "image_variance": 0.159,
+        "beta": 1.333,
+        "tags_updated": 25,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:44:36.242835",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 4,
+        "ranking": [
+          3,
+          2,
+          0,
+          1
+        ],
+        "image_variance": 0.1102,
+        "beta": 1.0,
+        "tags_updated": 22,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:45:47.626061",
+      "type": "hitl_rollback",
+      "data": {
+        "from_round": 4,
+        "to_round": 1,
+        "tags_boosted": [
+          "plush sofas",
+          "layered rugs",
+          "warm wood flooring",
+          "modern elegance",
+          "candles for warmth"
+        ],
+        "tags_penalized": [
+          "cozy textiles",
+          "botanical accents",
+          "wooden coffee table",
+          "curved seating",
+          "woven textures"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:46:31.957879",
+      "type": "hitl_rollback",
+      "data": {
+        "from_round": 1,
+        "to_round": 1,
+        "tags_boosted": [
+          "layered rugs",
+          "inviting atmosphere",
+          "plush sofas",
+          "layered rugs",
+          "natural light"
+        ],
+        "tags_penalized": [
+          "modern rustic style",
+          "cozy atmosphere",
+          "open layout",
+          "modern classic style",
+          "vibrant colors"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:47:23.264141",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 2,
+        "ranking": [
+          1,
+          0,
+          3,
+          2
+        ],
+        "image_variance": 0.0737,
+        "beta": 1.667,
+        "tags_updated": 28,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:48:11.508214",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 3,
+        "ranking": [
+          2,
+          1,
+          3,
+          0
+        ],
+        "image_variance": 0.1139,
+        "beta": 1.333,
+        "tags_updated": 25,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:49:01.841844",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 4,
+        "ranking": [
+          3,
+          2,
+          1,
+          0
+        ],
+        "image_variance": 0.1129,
+        "beta": 1.0,
+        "tags_updated": 27,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:50:12.790400",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 5,
+        "ranking": [
+          0,
+          3,
+          2,
+          1
+        ],
+        "image_variance": 0.1907,
+        "beta": 0.667,
+        "tags_updated": 26,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:51:23.525886",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 6,
+        "ranking": [
+          2,
+          1,
+          0,
+          3
+        ],
+        "image_variance": 0.127,
+        "beta": 0.333,
+        "tags_updated": 24,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:52:25.370930",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 7,
+        "ranking": [
+          0,
+          2,
+          3,
+          1
+        ],
+        "image_variance": 0.1453,
+        "beta": 0.2,
+        "tags_updated": 23,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:53:23.098486",
+      "type": "hitl_rollback",
+      "data": {
+        "from_round": 7,
+        "to_round": 1,
+        "tags_boosted": [
+          "inviting atmosphere",
+          "lush greenery view",
+          "neutral color palette",
+          "plush sofas",
+          "inviting atmosphere"
+        ],
+        "tags_penalized": [
+          "elegant marble fireplace",
+          "woven textures",
+          "curved seating",
+          "soft natural lighting",
+          "trimmed large windows"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:54:08.056001",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 2,
+        "ranking": [
+          0,
+          2,
+          1,
+          3
+        ],
+        "image_variance": 0.2126,
+        "beta": 1.667,
+        "tags_updated": 28,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:54:42.364956",
+      "type": "hitl_finalize",
+      "data": {
+        "rounds_completed": 2,
+        "total_comparisons": 12,
+        "final_tags": [
+          "modern elegance",
+          "inviting atmosphere",
+          "plush sofas",
+          "neutral color palette",
+          "soft textures"
+        ],
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:54:57.932420",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_0_0",
+        "concept_count": 10,
+        "gp_mode": true
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:54:58.016813",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:55:20.445203",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:56:13.421575",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Kitchen",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:56:35.831321",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:56:54.949470",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bedroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:57:17.531836",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:57:36.730235",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bathroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:57:59.320093",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:58:18.476521",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Reading Nook",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:58:41.080391",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:59:00.184634",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Home Office",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T12:59:22.796549",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    }
+  ]
+}

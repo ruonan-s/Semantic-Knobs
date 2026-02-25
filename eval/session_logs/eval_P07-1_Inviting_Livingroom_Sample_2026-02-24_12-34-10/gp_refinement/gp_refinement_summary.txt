@@ -1,0 +1,235 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_P07_Inviting_Livingroom_Sample_2026-02-24_12-34-10
+Started: 2026-02-24T12:39:27.066207
+Rounds: 11
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 20
+  Neutral tags: 23
+  Total: 43
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.26 | neutral color palette, cozy textiles, ambient lighting...
+    [1] explore      | avg_μ=+0.34 | inviting atmosphere, plush sofas, layered rugs...
+    [2] ucb          | avg_μ=+0.42 | open layout, soft natural lighting, trimmed large windows...
+    [3] challenger   | avg_μ=+0.34 | earthy color palette, plush sofas, minimalist decor...
+  Ranking: [1, 0, 2, 3]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. inviting atmosphere       μ=+0.799 σ=0.644
+    2. modern elegance           μ=+0.799 σ=0.644
+    3. natural light             μ=+0.799 σ=0.644
+    4. neutral color palette     μ=+0.799 σ=0.644
+    5. soft textures             μ=+0.590 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.48 | inviting atmosphere, modern elegance, natural light...
+    [1] explore      | avg_μ=+0.24 | cozy textiles, ambient lighting, botanical accents...
+    [2] ucb          | avg_μ=+0.42 | inviting atmosphere, open layout, cozy textiles...
+    [3] challenger   | avg_μ=+0.54 | cozy textiles, plush sofas, trimmed large windows...
+  Ranking: [1, 2, 3, 0]
+  Comparisons: 6
+  Tags updated: 24
+  Top 5 after round:
+    1. neutral color palette     μ=+0.711 σ=0.593
+    2. wooden coffee table       μ=+0.699 σ=0.593
+    3. inviting atmosphere       μ=+0.600 σ=0.593
+    4. cozy textiles             μ=+0.590 σ=0.644
+    5. soft textures             μ=+0.588 σ=0.593
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.44 | neutral color palette, wooden coffee table, inviting atmosphere...
+    [1] explore      | avg_μ=+0.28 | organic shapes, warm lighting, inviting cozy atmosphere...
+    [2] ucb          | avg_μ=+0.56 | open layout, modern classic style, minimalist decor...
+    [3] challenger   | avg_μ=+0.50 | inviting atmosphere, cozy textiles, trimmed large windows...
+  Ranking: [1, 0, 3, 2]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. soft textures             μ=+0.870 σ=0.545
+    2. neutral color palette     μ=+0.797 σ=0.545
+    3. large window              μ=+0.767 σ=0.545
+    4. natural light             μ=+0.709 σ=0.545
+    5. ambient lighting          μ=+0.661 σ=0.545
+
+----------------------------------------------------------------------
+ROUND 4 (β=1.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.54 | soft textures, neutral color palette, large window...
+    [1] explore      | avg_μ=+0.32 | cozy atmosphere, cozy textiles, plush sofas...
+    [2] ucb          | avg_μ=+0.29 | cozy textiles, organic shapes, warm lighting...
+    [3] challenger   | avg_μ=+0.56 | inviting atmosphere, cozy textiles, trimmed large windows...
+  Ranking: [3, 2, 0, 1]
+  Comparisons: 6
+  Tags updated: 22
+  Top 5 after round:
+    1. soft textures             μ=+1.145 σ=0.501
+    2. natural light             μ=+0.901 σ=0.501
+    3. inviting atmosphere       μ=+0.792 σ=0.501
+    4. wooden coffee table       μ=+0.776 σ=0.501
+    5. neutral color palette     μ=+0.714 σ=0.501
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.64 | modern elegance, natural light, inviting atmosphere...
+    [1] explore      | avg_μ=+0.11 | cozy textiles, ambient lighting, botanical accents...
+    [2] ucb          | avg_μ=+0.46 | inviting atmosphere, open layout, trimmed large windows...
+    [3] challenger   | avg_μ=+0.43 | inviting atmosphere, cozy textiles, organic shapes...
+  Ranking: [1, 0, 3, 2]
+  Comparisons: 6
+  Tags updated: 28
+  Top 5 after round:
+    1. natural light             μ=+1.168 σ=0.461
+    2. modern elegance           μ=+1.086 σ=0.461
+    3. plush sofas               μ=+0.776 σ=0.501
+    4. inviting atmosphere       μ=+0.713 σ=0.501
+    5. layered rugs              μ=+0.694 σ=0.501
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.63 | natural light, modern elegance, plush sofas...
+    [1] explore      | avg_μ=+0.29 | cozy textiles, ambient lighting, cushioned seating...
+    [2] ucb          | avg_μ=+0.39 | inviting atmosphere, cozy textiles, botanical accents...
+    [3] challenger   | avg_μ=+0.36 | inviting atmosphere, cozy textiles, contemporary artwork...
+  Ranking: [2, 1, 3, 0]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. natural light             μ=+0.896 σ=0.424
+    2. wooden coffee table       μ=+0.870 σ=0.534
+    3. elegant marble fireplace  μ=+0.862 σ=0.534
+    4. modern elegance           μ=+0.814 σ=0.424
+    5. candles for warmth        μ=+0.773 σ=0.461
+
+----------------------------------------------------------------------
+ROUND 4 (β=1.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.65 | natural light, wooden coffee table, elegant marble fireplace...
+    [1] explore      | avg_μ=-0.01 | cozy atmosphere, open layout, trimmed large windows...
+    [2] ucb          | avg_μ=+0.65 | plush sofas, natural light, wooden coffee table...
+    [3] challenger   | avg_μ=+0.55 | inviting atmosphere, layered rugs, natural light...
+  Ranking: [3, 2, 1, 0]
+  Comparisons: 6
+  Tags updated: 27
+  Top 5 after round:
+    1. natural light             μ=+0.975 σ=0.391
+    2. soft textures             μ=+0.949 σ=0.461
+    3. soft natural lighting     μ=+0.936 σ=0.491
+    4. modern elegance           μ=+0.893 σ=0.391
+    5. candles for warmth        μ=+0.852 σ=0.424
+
+----------------------------------------------------------------------
+ROUND 5 (β=0.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.66 | natural light, soft textures, soft natural lighting...
+    [1] explore      | avg_μ=-0.08 | open layout, trimmed large windows, cozy textiles...
+    [2] ucb          | avg_μ=+0.67 | inviting atmosphere, minimalist decor, natural light...
+    [3] challenger   | avg_μ=+0.66 | plush sofas, minimalist decor, layered rugs...
+  Ranking: [0, 3, 2, 1]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. soft textures             μ=+1.280 σ=0.424
+    2. modern elegance           μ=+1.224 σ=0.359
+    3. natural light             μ=+1.223 σ=0.359
+    4. soft natural lighting     μ=+1.110 σ=0.452
+    5. candles for warmth        μ=+1.099 σ=0.391
+
+----------------------------------------------------------------------
+ROUND 6 (β=0.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.89 | soft textures, modern elegance, natural light...
+    [1] explore      | avg_μ=-0.26 | earthy color palette, open layout, trimmed large windows...
+    [2] ucb          | avg_μ=+0.81 | plush sofas, minimalist decor, layered rugs...
+    [3] challenger   | avg_μ=+0.89 | plush sofas, layered rugs, minimalist decor...
+  Ranking: [2, 1, 0, 3]
+  Comparisons: 6
+  Tags updated: 24
+  Top 5 after round:
+    1. candles for warmth        μ=+1.283 σ=0.359
+    2. soft textures             μ=+1.211 σ=0.391
+    3. modern elegance           μ=+1.155 σ=0.331
+    4. soft natural lighting     μ=+1.041 σ=0.416
+    5. natural light             μ=+0.897 σ=0.331
+
+----------------------------------------------------------------------
+ROUND 7 (β=0.20)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.87 | candles for warmth, soft textures, modern elegance...
+    [1] explore      | avg_μ=-0.18 | open layout, trimmed large windows, cozy textiles...
+    [2] ucb          | avg_μ=+0.76 | plush sofas, layered rugs, wooden coffee table...
+    [3] challenger   | avg_μ=+0.91 | plush sofas, natural light, wooden coffee table...
+  Ranking: [0, 2, 3, 1]
+  Comparisons: 6
+  Tags updated: 23
+  Top 5 after round:
+    1. candles for warmth        μ=+1.438 σ=0.331
+    2. soft textures             μ=+1.435 σ=0.359
+    3. modern elegance           μ=+1.379 σ=0.304
+    4. soft natural lighting     μ=+1.265 σ=0.383
+    5. elegant marble fireplace  μ=+1.064 σ=0.383
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.65 | inviting atmosphere, neutral color palette, natural light...
+    [1] explore      | avg_μ=+0.15 | open layout, cozy textiles, modern classic style...
+    [2] ucb          | avg_μ=+0.38 | inviting atmosphere, plush sofas, layered rugs...
+    [3] challenger   | avg_μ=+0.48 | inviting atmosphere, open layout, cozy textiles...
+  Ranking: [0, 2, 1, 3]
+  Comparisons: 6
+  Tags updated: 28
+  Top 5 after round:
+    1. modern elegance           μ=+1.163 σ=0.545
+    2. inviting atmosphere       μ=+1.131 σ=0.461
+    3. plush sofas               μ=+1.116 σ=0.461
+    4. neutral color palette     μ=+1.046 σ=0.461
+    5. soft textures             μ=+1.037 σ=0.501
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. modern elegance                | w=0.128 | μ=+1.163 | win_rate=100%
+   2. inviting atmosphere            | w=0.124 | μ=+1.131 | win_rate=50%
+   3. plush sofas                    | w=0.122 | μ=+1.116 | win_rate=50%
+   4. neutral color palette          | w=0.114 | μ=+1.046 | win_rate=40%
+   5. soft textures                  | w=0.113 | μ=+1.037 | win_rate=50%
+   6. natural light                  | w=0.105 | μ=+0.962 | win_rate=67%
+   7. candles for warmth             | w=0.085 | μ=+0.749 | win_rate=40%
+   8. warm wood flooring             | w=0.074 | μ=+0.621 | win_rate=50%
+   9. lush greenery view             | w=0.074 | μ=+0.613 | win_rate=50%
+  10. open layout design             | w=0.060 | μ=+0.412 | win_rate=0%
+
+  Convergence: False
+  Top-10 stability: 5/10 tags same as previous round
+
+======================================================================
+WARNINGS (3)
+======================================================================
+  [rollback] Rolled back from round 4 to round 1. Boosted: ['plush sofas', 'layered rugs', 'warm wood flooring'], Penalized: ['cozy textiles', 'botanical accents', 'wooden coffee table']
+  [rollback] Rolled back from round 1 to round 1. Boosted: ['layered rugs', 'inviting atmosphere', 'plush sofas'], Penalized: ['modern rustic style', 'cozy atmosphere', 'open layout']
+  [rollback] Rolled back from round 7 to round 1. Boosted: ['inviting atmosphere', 'lush greenery view', 'neutral color palette'], Penalized: ['elegant marble fireplace', 'woven textures', 'curved seating']

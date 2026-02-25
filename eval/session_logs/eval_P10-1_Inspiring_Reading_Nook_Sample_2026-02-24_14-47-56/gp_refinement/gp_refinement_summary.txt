@@ -1,0 +1,144 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56
+Started: 2026-02-24T15:15:53.104941
+Rounds: 6
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 33
+  Neutral tags: 1
+  Total: 34
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.42 | floor-to-ceiling windows, natural light, minimalist decor...
+    [1] explore      | avg_μ=+0.42 | cozy reading nook, wooden bookshelves, floor-to-ceiling windows...
+    [2] ucb          | avg_μ=+0.42 | cozy atmosphere, shelved artifacts, wooden flooring...
+    [3] challenger   | avg_μ=+0.50 | modern lamp, wooden bookshelves, wooden flooring...
+  Ranking: [3, 2, 1, 0]
+  Comparisons: 6
+  Tags updated: 24
+  Top 5 after round:
+    1. modern lamp               μ=+0.798 σ=0.644
+    2. calming aesthetic         μ=+0.798 σ=0.644
+    3. cosy nook                 μ=+0.798 σ=0.644
+    4. zen atmosphere            μ=+0.708 σ=0.644
+    5. wooden bookshelves        μ=+0.708 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.57 | modern lamp, calming aesthetic, cosy nook...
+    [1] explore      | avg_μ=+0.39 | plush cushions, curved architecture, foliage decor...
+    [2] ucb          | avg_μ=+0.62 | wooden furniture, relaxing atmosphere, soft ambient lighting...
+    [3] challenger   | avg_μ=+0.60 | modern lamp, cozy seating area, wooden flooring...
+  Ranking: [1, 3, 2, 0]
+  Comparisons: 6
+  Tags updated: 27
+  Top 5 after round:
+    1. organic textures          μ=+0.787 σ=0.644
+    2. whimsical mural           μ=+0.787 σ=0.644
+    3. curved architecture       μ=+0.786 σ=0.644
+    4. plush cushions            μ=+0.786 σ=0.644
+    5. floating shelves          μ=+0.786 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.64 | organic textures, whimsical mural, curved architecture...
+    [1] explore      | avg_μ=+0.25 | cozy reading nook, minimalist decor, natural light...
+    [2] ucb          | avg_μ=+0.67 | plush cushions, relaxing atmosphere, foliage decor...
+    [3] challenger   | avg_μ=+0.67 | modern lamp, curved architecture, foliage decor...
+  Ranking: [3, 2, 1, 0]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. textured throw blanket    μ=+1.043 σ=0.545
+    2. wooden flooring           μ=+1.043 σ=0.545
+    3. cozy seating area         μ=+1.043 σ=0.545
+    4. foliage decor             μ=+0.869 σ=0.593
+    5. modern lamp               μ=+0.793 σ=0.545
+
+----------------------------------------------------------------------
+ROUND 4 (β=1.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.70 | textured throw blanket, wooden flooring, cozy seating area...
+    [1] explore      | avg_μ=+0.11 | wooden bookshelves, minimalist decor, natural light...
+    [2] ucb          | avg_μ=+0.57 | plush cushions, modern lamp, curved architecture...
+    [3] challenger   | avg_μ=+0.77 | foliage decor, textured throw blanket, textured materials...
+  Ranking: [0, 2, 3, 1]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. wooden flooring           μ=+1.306 σ=0.501
+    2. textured throw blanket    μ=+1.300 σ=0.501
+    3. cozy seating area         μ=+1.220 σ=0.501
+    4. modern lamp               μ=+1.135 σ=0.501
+    5. curved architecture       μ=+1.127 σ=0.545
+
+----------------------------------------------------------------------
+ROUND 5 (β=0.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.93 | wooden flooring, textured throw blanket, cozy seating area...
+    [1] explore      | avg_μ=+0.18 | cozy atmosphere, cozy reading nook, shelved artifacts...
+    [2] ucb          | avg_μ=+0.70 | plush cushions, modern lamp, curved architecture...
+    [3] challenger   | avg_μ=+0.82 | curved architecture, foliage decor, textured throw blanket...
+  Ranking: [1, 2, 0, 3]
+  Comparisons: 6
+  Tags updated: 27
+  Top 5 after round:
+    1. wooden flooring           μ=+1.233 σ=0.461
+    2. cozy seating area         μ=+1.231 σ=0.461
+    3. soft lighting             μ=+0.975 σ=0.461
+    4. textured throw blanket    μ=+0.969 σ=0.461
+    5. warm accent lights        μ=+0.890 σ=0.501
+
+----------------------------------------------------------------------
+ROUND 6 (β=0.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.80 | wooden flooring, cozy seating area, soft lighting...
+    [1] explore      | avg_μ=+0.03 | cozy reading nook, wooden bookshelves, minimalist decor...
+    [2] ucb          | avg_μ=+0.85 | modern lamp, relaxing atmosphere, curved architecture...
+    [3] challenger   | avg_μ=+0.84 | cozy seating area, shelved artifacts, curved architecture...
+  Ranking: [3, 2, 0, 1]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. cozy seating area         μ=+1.471 σ=0.424
+    2. soft lighting             μ=+1.215 σ=0.424
+    3. wooden flooring           μ=+1.151 σ=0.424
+    4. textured throw blanket    μ=+1.137 σ=0.424
+    5. warm accent lights        μ=+1.130 σ=0.461
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. wooden flooring                | w=0.119 | μ=+1.213 | win_rate=33%
+   2. foliage decor                  | w=0.118 | μ=+1.209 | win_rate=50%
+   3. textured throw blanket         | w=0.109 | μ=+1.128 | win_rate=25%
+   4. cozy seating area              | w=0.109 | μ=+1.128 | win_rate=33%
+   5. wooden furniture               | w=0.109 | μ=+1.125 | win_rate=33%
+   6. curved architecture            | w=0.092 | μ=+0.955 | win_rate=67%
+   7. floating shelves               | w=0.092 | μ=+0.955 | win_rate=67%
+   8. modern lamp                    | w=0.085 | μ=+0.878 | win_rate=40%
+   9. warm accent lights             | w=0.084 | μ=+0.870 | win_rate=67%
+  10. soft lighting                  | w=0.084 | μ=+0.870 | win_rate=33%
+
+  Convergence: False
+  Top-10 stability: 8/10 tags same as previous round
+
+======================================================================
+WARNINGS (2)
+======================================================================
+  [low_neutral_count] Only 1 neutral tags. Exploration may be limited.
+  [rollback] Rolled back from round 6 to round 3. Boosted: ['wooden furniture', 'foliage decor', 'modern lamp'], Penalized: ['open layout', 'warm materials', 'cozy atmosphere']

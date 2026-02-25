@@ -1,0 +1,102 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_P07-2_Contemplative_Bedroom_2026-02-24_13-06-00
+Started: 2026-02-24T13:09:01.949642
+Rounds: 4
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 15
+  Neutral tags: 20
+  Total: 35
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.26 | wooden floor, sheer curtains, simple nightstands...
+    [1] explore      | avg_μ=+0.34 | concrete walls, earthy palette, industrial aesthetic...
+    [2] ucb          | avg_μ=+0.10 | spacious layout, urban view, neutral color palette...
+    [3] challenger   | avg_μ=+0.26 | earthy palette, ambient warm lighting, linen bedding...
+  Ranking: [1, 0, 3, 2]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. concrete walls            μ=+0.795 σ=0.644
+    2. dark bedding              μ=+0.795 σ=0.644
+    3. oversized artwork         μ=+0.795 σ=0.644
+    4. organic materials         μ=+0.794 σ=0.644
+    5. earthy palette            μ=+0.705 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.50 | concrete walls, dark bedding, oversized artwork...
+    [1] explore      | avg_μ=+0.26 | sheer curtains, simple nightstands, textured throw blanket...
+    [2] ucb          | avg_μ=+0.16 | concrete walls, urban view, neutral color palette...
+    [3] challenger   | avg_μ=+0.39 | concrete walls, sheer curtains, soft lighting...
+  Ranking: [0, 3, 2, 1]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. concrete walls            μ=+1.080 σ=0.593
+    2. oversized artwork         μ=+1.080 σ=0.593
+    3. dark bedding              μ=+1.079 σ=0.593
+    4. calm ambiance             μ=+0.990 σ=0.593
+    5. earthy palette            μ=+0.989 σ=0.593
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.75 | concrete walls, oversized artwork, dark bedding...
+    [1] explore      | avg_μ=+0.09 | sheer curtains, open layout, simple nightstands...
+    [2] ucb          | avg_μ=+0.14 | urban view, neutral color palette, soft lighting...
+    [3] challenger   | avg_μ=+0.39 | concrete walls, sheer curtains, ambient warm lighting...
+  Ranking: [0, 3, 2, 1]
+  Comparisons: 6
+  Tags updated: 28
+  Top 5 after round:
+    1. concrete walls            μ=+1.427 σ=0.545
+    2. dark bedding              μ=+1.345 σ=0.545
+    3. calm ambiance             μ=+1.337 σ=0.545
+    4. oversized artwork         μ=+1.265 σ=0.545
+    5. industrial aesthetic      μ=+1.254 σ=0.545
+
+----------------------------------------------------------------------
+ROUND 4 (β=1.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.99 | concrete walls, dark bedding, calm ambiance...
+    [1] explore      | avg_μ=-0.10 | spacious layout, sheer curtains, simple nightstands...
+    [2] ucb          | avg_μ=+0.47 | concrete walls, urban view, earthy palette...
+    [3] challenger   | avg_μ=+0.61 | sheer curtains, industrial aesthetic, minimalistic decor...
+  Ranking: [3, 2, 0, 1]
+  Comparisons: 6
+  Tags updated: 26
+  Top 5 after round:
+    1. dark bedding              μ=+1.591 σ=0.501
+    2. calm ambiance             μ=+1.583 σ=0.501
+    3. oversized artwork         μ=+1.438 σ=0.501
+    4. industrial aesthetic      μ=+1.427 σ=0.501
+    5. concrete walls            μ=+1.415 σ=0.501
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. dark bedding                   | w=0.152 | μ=+1.591 | win_rate=67%
+   2. calm ambiance                  | w=0.151 | μ=+1.583 | win_rate=40%
+   3. oversized artwork              | w=0.131 | μ=+1.438 | win_rate=50%
+   4. industrial aesthetic           | w=0.129 | μ=+1.427 | win_rate=50%
+   5. concrete walls                 | w=0.128 | μ=+1.415 | win_rate=38%
+   6. earthy palette                 | w=0.107 | μ=+1.242 | win_rate=50%
+   7. organic materials              | w=0.075 | μ=+0.885 | win_rate=33%
+   8. wooden accents                 | w=0.049 | μ=+0.463 | win_rate=50%
+   9. soft natural lighting          | w=0.040 | μ=+0.246 | win_rate=38%
+  10. wooden floor                   | w=0.039 | μ=+0.219 | win_rate=22%
+
+  Convergence: False
+  Top-10 stability: 9/10 tags same as previous round

@@ -1,0 +1,78 @@
+======================================================================
+GP-REFINED vs USER CUSTOMIZED: DEEP-DIVE ANALYSIS
+======================================================================
+
+Overall: N=114 location-level pairs
+  GP wins: 42, Ties: 35, Custom wins: 37
+  Mean diff: 0.070, Median: 0.0
+  SD: 1.611
+
+  Wilcoxon signed-rank (location-level): W=1492.0, p=0.6590, r=0.050
+  Sign test: GP=42, Custom=37, p=0.6530
+
+------------------------------------------------------------
+BY PARTICIPANT (participant-level mean diff)
+participant
+P01    0.667
+P02    0.167
+P03   -0.083
+P04   -0.583
+P05    0.250
+P06    0.417
+P07    1.500
+P08   -0.833
+P09    0.417
+P10   -0.917
+Name: diff, dtype: float64
+
+  Wilcoxon (participant-level): W=24.0, p=0.7480
+  Bootstrap 95% CI on participant-level mean: [-0.325, 0.542]
+
+------------------------------------------------------------
+TARGET ROOM vs TRANSFERRED ROOMS
+  Target room: mean=-0.105, GP wins=5, Custom wins=10, ties=4
+  Transferred: mean=0.105, GP wins=37, Custom wins=27, ties=31
+  Mann-Whitney U (target vs transfer diff): U=763.5, p=0.2809
+
+------------------------------------------------------------
+BY LOCATION
+              mean_diff  gp_wins  custom_wins  ties   n
+location                                               
+Livingroom        0.474        8            7     4  19
+Reading Nook      0.368        8            6     5  19
+Bedroom           0.105        5            7     7  19
+Bathroom          0.000        7            4     8  19
+Home Office      -0.053        6            6     7  19
+Kitchen          -0.474        8            7     4  19
+
+------------------------------------------------------------
+GP DIAGNOSTICS AS PREDICTORS OF GP-CUSTOM GAP
+  n_rounds: rho=-0.131, p=0.593
+  spearman_rho: rho=0.363, p=0.127
+  pairwise_accuracy: rho=0.262, p=0.279
+  image_variance: rho=0.040, p=0.872
+  hitl_duration_s: rho=-0.049, p=0.841
+
+------------------------------------------------------------
+SCORE AGREEMENT / CONCORDANCE
+  Both score >= 6: 41/114 (36%)
+  Both score <= 4: 16/114 (14%)
+  Only GP >= 6: 25 (22%)
+  Only Custom >= 6: 20 (18%)
+  Spearman correlation between GP and Custom scores: rho=0.438, p=0.0000
+  Cohen's kappa (high >= 6 vs not): 0.202
+
+------------------------------------------------------------
+WHEN DOES GP-REFINED HAVE AN ADVANTAGE?
+
+  GP advantage sessions (n=9):
+    n_rounds: mean=3.778, median=4.000
+    spearman_rho: mean=0.489, median=0.400
+    pairwise_accuracy: mean=0.722, median=0.667
+
+  Custom advantage sessions (n=10):
+    n_rounds: mean=4.000, median=4.000
+    spearman_rho: mean=0.040, median=0.200
+    pairwise_accuracy: mean=0.508, median=0.500
+
+======================================================================

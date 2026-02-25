@@ -1,0 +1,228 @@
+{
+  "user_id": "P07-2",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P07-2_Contemplative_Bedroom_2026-02-24_13-06-00",
+  "created_at": "2026-02-24T13:06:00.530179",
+  "events": [
+    {
+      "timestamp": "2026-02-24T13:06:00.530189",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Contemplative_Bedroom"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:08:53.388391",
+      "type": "save_manual_weights",
+      "data": {
+        "selected_image_id": "impression_3_0",
+        "tag_count": 10,
+        "weights_file": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P07-2_Contemplative_Bedroom_2026-02-24_13-06-00/impression/user_manual_weights.json"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:09:01.950159",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Contemplative Bedroom",
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:09:49.927997",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          1,
+          0,
+          3,
+          2
+        ],
+        "image_variance": 0.1249,
+        "beta": 2.0,
+        "tags_updated": 25,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:10:47.120119",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 2,
+        "ranking": [
+          0,
+          3,
+          2,
+          1
+        ],
+        "image_variance": 0.0872,
+        "beta": 1.667,
+        "tags_updated": 26,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:11:44.138623",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 3,
+        "ranking": [
+          0,
+          3,
+          2,
+          1
+        ],
+        "image_variance": 0.1212,
+        "beta": 1.333,
+        "tags_updated": 28,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:12:24.412157",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 4,
+        "ranking": [
+          3,
+          2,
+          0,
+          1
+        ],
+        "image_variance": 0.161,
+        "beta": 1.0,
+        "tags_updated": 26,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:13:17.975737",
+      "type": "hitl_finalize",
+      "data": {
+        "rounds_completed": 4,
+        "total_comparisons": 24,
+        "final_tags": [
+          "dark bedding",
+          "calm ambiance",
+          "oversized artwork",
+          "industrial aesthetic",
+          "concrete walls"
+        ],
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:13:34.225548",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_3_0",
+        "concept_count": 11,
+        "gp_mode": true
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:13:34.266520",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:13:56.538133",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:14:15.788338",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bathroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:14:38.251268",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:14:57.523477",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Home Office",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:15:20.007139",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:15:39.167980",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Livingroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:16:01.644777",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:16:20.887558",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Reading Nook",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:16:43.425437",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:17:02.558453",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Kitchen",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T13:17:25.063536",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "friedman": {
+    "test": "Friedman",
+    "chi2": 19.2424,
+    "df": 3,
+    "p_value": 0.0002,
+    "significance": "** (p < .01)",
+    "n_participants": 10
+  },
+  "wilcoxon": [
+    {
+      "comparison": "gp_refined vs baseline_text",
+      "mean_diff": 1.242,
+      "statistic": 0.0,
+      "p_raw": 0.0039,
+      "effect_size_r": 0.913,
+      "n": 10,
+      "n_nonzero": 9,
+      "p_corrected": 0.0156,
+      "significance": "* (p < .05)"
+    },
+    {
+      "comparison": "gp_refined vs style_transfer",
+      "mean_diff": 1.875,
+      "statistic": 1.0,
+      "p_raw": 0.0039,
+      "effect_size_r": 0.913,
+      "n": 10,
+      "n_nonzero": 10,
+      "p_corrected": 0.0156,
+      "significance": "* (p < .05)"
+    },
+    {
+      "comparison": "user_customized vs baseline_text",
+      "mean_diff": 1.142,
+      "statistic": 6.0,
+      "p_raw": 0.0273,
+      "effect_size_r": 0.698,
+      "n": 10,
+      "n_nonzero": 10,
+      "p_corrected": 0.0547,
+      "significance": "~ (marginal)"
+    },
+    {
+      "comparison": "user_customized vs style_transfer",
+      "mean_diff": 1.775,
+      "statistic": 0.0,
+      "p_raw": 0.002,
+      "effect_size_r": 0.979,
+      "n": 10,
+      "n_nonzero": 10,
+      "p_corrected": 0.0098,
+      "significance": "** (p < .01)"
+    },
+    {
+      "comparison": "gp_refined vs user_customized",
+      "mean_diff": 0.1,
+      "statistic": 24.0,
+      "p_raw": 0.7695,
+      "effect_size_r": 0.093,
+      "n": 10,
+      "n_nonzero": 10,
+      "p_corrected": 0.7695,
+      "significance": "n.s."
+    }
+  ],
+  "bootstrap": [
+    {
+      "comparison": "gp_uplift_vs_baseline",
+      "observed_mean_diff": 1.242,
+      "ci_lower": 0.708,
+      "ci_upper": 1.817,
+      "ci_level": 0.95,
+      "excludes_zero": true
+    },
+    {
+      "comparison": "custom_uplift_vs_baseline",
+      "observed_mean_diff": 1.142,
+      "ci_lower": 0.392,
+      "ci_upper": 1.9,
+      "ci_level": 0.95,
+      "excludes_zero": true
+    },
+    {
+      "comparison": "gp_uplift_vs_style",
+      "observed_mean_diff": 1.875,
+      "ci_lower": 1.142,
+      "ci_upper": 2.608,
+      "ci_level": 0.95,
+      "excludes_zero": true
+    },
+    {
+      "comparison": "custom_uplift_vs_style",
+      "observed_mean_diff": 1.775,
+      "ci_lower": 1.2,
+      "ci_upper": 2.4,
+      "ci_level": 0.95,
+      "excludes_zero": true
+    },
+    {
+      "comparison": "gp_vs_custom",
+      "observed_mean_diff": 0.1,
+      "ci_lower": -0.325,
+      "ci_upper": 0.55,
+      "ci_level": 0.95,
+      "excludes_zero": false
+    }
+  ],
+  "correlations": [
+    {
+      "test": "Spearman correlation",
+      "variables": "final_spearman_vs_gp_score",
+      "rho": 0.195,
+      "p_value": 0.4233,
+      "n": 19,
+      "significance": "n.s."
+    },
+    {
+      "test": "Spearman correlation",
+      "variables": "final_accuracy_vs_gp_score",
+      "rho": 0.044,
+      "p_value": 0.8574,
+      "n": 19,
+      "significance": "n.s."
+    },
+    {
+      "test": "Spearman correlation",
+      "variables": "n_rounds_vs_gp_score",
+      "rho": 0.244,
+      "p_value": 0.3133,
+      "n": 19,
+      "significance": "n.s."
+    }
+  ],
+  "target_transfer": [
+    {
+      "test": "Mann-Whitney U",
+      "comparison": "gp_refined: target_room vs transferred",
+      "target_mean": 5.526,
+      "transfer_mean": 5.168,
+      "U_statistic": 934.5,
+      "p_value": 0.8042,
+      "n_target": 19,
+      "n_transfer": 95,
+      "significance": "n.s."
+    },
+    {
+      "test": "Mann-Whitney U",
+      "comparison": "user_customized: target_room vs transferred",
+      "target_mean": 5.632,
+      "transfer_mean": 5.063,
+      "U_statistic": 1075.5,
+      "p_value": 0.1771,
+      "n_target": 19,
+      "n_transfer": 95,
+      "significance": "n.s."
+    }
+  ]
+}

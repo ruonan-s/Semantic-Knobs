@@ -1,0 +1,340 @@
+{
+  "stage": "impression",
+  "session_id": "eval_P09-1_Cozy_Bedroom_Sample_2026-02-24_16-02-47",
+  "timestamp": "2026-02-24T16:22:03.303718",
+  "num_concepts": 14,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 2079,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "soft lighting",
+      "weight": 0.12022629380226135,
+      "score": 1.6098089218139648,
+      "utility_std": 1.0061639547348022,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "soft lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "cozy atmosphere",
+      "weight": 0.09642908722162247,
+      "score": 1.389241099357605,
+      "utility_std": 1.0061639547348022,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "cozy atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "simple layout",
+      "weight": 0.0901511088013649,
+      "score": 1.321920394897461,
+      "utility_std": 1.0061639547348022,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "simple layout"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "airy space",
+      "weight": 0.08625858277082443,
+      "score": 1.277782678604126,
+      "utility_std": 1.0061639547348022,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "airy space"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "minimalist decor",
+      "weight": 0.07316428422927856,
+      "score": 1.11314058303833,
+      "utility_std": 1.0061639547348022,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "minimalist decor"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "neutral bedding",
+      "weight": 0.07188655436038971,
+      "score": 1.095522403717041,
+      "utility_std": 1.0061639547348022,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "neutral bedding"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "plush bedding",
+      "weight": 0.07183820009231567,
+      "score": 1.0948495864868164,
+      "utility_std": 1.0061639547348022,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "plush bedding"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "large window view",
+      "weight": 0.06641361117362976,
+      "score": 1.0163352489471436,
+      "utility_std": 1.0061639547348022,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "large window view"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "modern wall art",
+      "weight": 0.05998454988002777,
+      "score": 0.9145202040672302,
+      "utility_std": 1.0061639547348022,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "modern wall art"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "vintage rugs",
+      "weight": 0.05467633157968521,
+      "score": 0.8218640089035034,
+      "utility_std": 1.0061639547348022,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "vintage rugs"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_10",
+      "label": "wooden flooring",
+      "weight": 0.05373474210500717,
+      "score": 0.8044930100440979,
+      "utility_std": 1.0061639547348022,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden flooring"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_11",
+      "label": "textured textiles",
+      "weight": 0.05346492677927017,
+      "score": 0.7994590401649475,
+      "utility_std": 1.0061639547348022,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "textured textiles"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_12",
+      "label": "stone fireplace",
+      "weight": 0.05305525287985802,
+      "score": 0.7917669415473938,
+      "utility_std": 1.0061639547348022,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "stone fireplace"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_13",
+      "label": "indoor plants",
+      "weight": 0.04871644079685211,
+      "score": 0.7064496278762817,
+      "utility_std": 1.0061639547348022,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "indoor plants"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_0_0_5",
+      "text": "soft lighting",
+      "utility": 1.6098089218139648,
+      "uncertainty": 1.0061639547348022,
+      "weight": 0.12022629380226135,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_5",
+      "text": "cozy atmosphere",
+      "utility": 1.389241099357605,
+      "uncertainty": 1.0061639547348022,
+      "weight": 0.09642908722162247,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_7",
+      "text": "simple layout",
+      "utility": 1.321920394897461,
+      "uncertainty": 1.0061639547348022,
+      "weight": 0.0901511088013649,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_11",
+      "text": "airy space",
+      "utility": 1.277782678604126,
+      "uncertainty": 1.0061639547348022,
+      "weight": 0.08625858277082443,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_0",
+      "text": "minimalist decor",
+      "utility": 1.11314058303833,
+      "uncertainty": 1.0061639547348022,
+      "weight": 0.07316428422927856,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_4",
+      "text": "neutral bedding",
+      "utility": 1.095522403717041,
+      "uncertainty": 1.0061639547348022,
+      "weight": 0.07188655436038971,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_7",
+      "text": "plush bedding",
+      "utility": 1.0948495864868164,
+      "uncertainty": 1.0061639547348022,
+      "weight": 0.07183820009231567,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_3",
+      "text": "large window view",
+      "utility": 1.0163352489471436,
+      "uncertainty": 1.0061639547348022,
+      "weight": 0.06641361117362976,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_9",
+      "text": "modern wall art",
+      "utility": 0.9145202040672302,
+      "uncertainty": 1.0061639547348022,
+      "weight": 0.05998454988002777,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_9",
+      "text": "vintage rugs",
+      "utility": 0.8218640089035034,
+      "uncertainty": 1.0061639547348022,
+      "weight": 0.05467633157968521,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_2",
+      "text": "wooden flooring",
+      "utility": 0.8044930100440979,
+      "uncertainty": 1.0061639547348022,
+      "weight": 0.05373474210500717,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_10",
+      "text": "textured textiles",
+      "utility": 0.7994590401649475,
+      "uncertainty": 1.0061639547348022,
+      "weight": 0.05346492677927017,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_2",
+      "text": "stone fireplace",
+      "utility": 0.7917669415473938,
+      "uncertainty": 1.0061639547348022,
+      "weight": 0.05305525287985802,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_4",
+      "text": "indoor plants",
+      "utility": 0.7064496278762817,
+      "uncertainty": 1.0061639547348022,
+      "weight": 0.04871644079685211,
+      "source_image_idx": 1,
+      "category": "positive"
+    }
+  ]
+}

@@ -1,0 +1,4122 @@
+{
+  "metadata": {
+    "session_id": "eval_P09-2_Contemplative_Bedroom_2026-02-24_16-30-17",
+    "log_version": "1.0",
+    "start_time": "2026-02-24T16:38:05.873825",
+    "end_time": "2026-02-24T16:41:29.449690"
+  },
+  "initialization": {
+    "session_id": "eval_P09-2_Contemplative_Bedroom_2026-02-24_16-30-17",
+    "timestamp": "2026-02-24T16:38:05.873825",
+    "config": {
+      "max_rounds": 999,
+      "tags_per_option": 10,
+      "base_learning_rate": 0.12,
+      "sigma_shrink_factor": 0.92,
+      "priors": {
+        "positive_selected": {
+          "mu": 1.0,
+          "sigma": 0.5
+        },
+        "positive_other": {
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        "neutral_selected": {
+          "mu": 0.0,
+          "sigma": 0.5
+        },
+        "neutral_other": {
+          "mu": -0.3,
+          "sigma": 0.7
+        }
+      }
+    },
+    "input_summary": {
+      "total_positive": 24,
+      "total_neutral": 1,
+      "total_tags": 25,
+      "in_selected_images": 0
+    },
+    "categories": {
+      "positive_selected": {
+        "count": 0,
+        "tags": []
+      },
+      "positive_other": {
+        "count": 24,
+        "tags": [
+          "minimalist design",
+          "neutral color palette",
+          "open floor plan",
+          "sheer curtains",
+          "simple nightstands",
+          "textured throw blanket",
+          "neutral tones",
+          "textured walls",
+          "minimalistic decor",
+          "soft lighting",
+          "cozy atmosphere",
+          "linen bedding",
+          "organic materials",
+          "decorative branches",
+          "earthy palette",
+          "natural elegance",
+          "calm ambiance",
+          "industrial aesthetic",
+          "concrete walls",
+          "natural light",
+          "minimalist decor",
+          "dark bedding",
+          "oversized artwork",
+          "open layout"
+        ]
+      },
+      "neutral_selected": {
+        "count": 0,
+        "tags": []
+      },
+      "neutral_other": {
+        "count": 1,
+        "tags": [
+          "soft neutral tones"
+        ]
+      }
+    },
+    "all_tags": [
+      {
+        "tag_id": "pos_0",
+        "text": "minimalist design",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_1",
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_2",
+        "text": "open floor plan",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_3",
+        "text": "sheer curtains",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_4",
+        "text": "simple nightstands",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_5",
+        "text": "textured throw blanket",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_6",
+        "text": "neutral tones",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_7",
+        "text": "textured walls",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_8",
+        "text": "minimalistic decor",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_9",
+        "text": "soft lighting",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_10",
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_11",
+        "text": "linen bedding",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_12",
+        "text": "organic materials",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_13",
+        "text": "decorative branches",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_14",
+        "text": "earthy palette",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_15",
+        "text": "natural elegance",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_16",
+        "text": "calm ambiance",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_17",
+        "text": "industrial aesthetic",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_18",
+        "text": "concrete walls",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_19",
+        "text": "natural light",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_20",
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_21",
+        "text": "dark bedding",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_22",
+        "text": "oversized artwork",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "pos_23",
+        "text": "open layout",
+        "category": "positive_other",
+        "initial_mu": 0.5,
+        "initial_sigma": 0.7
+      },
+      {
+        "tag_id": "neu_0",
+        "text": "soft neutral tones",
+        "category": "neutral_other",
+        "initial_mu": -0.3,
+        "initial_sigma": 0.7
+      }
+    ],
+    "prior_ordering": "positive_selected > positive_other > neutral_selected > neutral_other"
+  },
+  "rounds": [
+    {
+      "round_num": 1,
+      "timestamp": "2026-02-24T16:38:05.897355",
+      "parameters": {
+        "beta": 2.0,
+        "max_overlap": 0.4,
+        "learning_rate": 0.12
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "neutral color palette",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_2",
+              "text": "open floor plan",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "sheer curtains",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "simple nightstands",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "textured throw blanket",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "neutral tones",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "soft neutral tones",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "textured walls",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "minimalistic decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.42,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_13",
+              "text": "decorative branches",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist design",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "neutral tones",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "earthy palette",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "organic materials",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "linen bedding",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "sheer curtains",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "soft lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "soft neutral tones",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.42,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_17",
+              "text": "industrial aesthetic",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_15",
+              "text": "natural elegance",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "simple nightstands",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "minimalist decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "calm ambiance",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_18",
+              "text": "concrete walls",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "sheer curtains",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "minimalistic decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "natural light",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "soft neutral tones",
+              "mu": -0.3,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.42,
+          "avg_sigma": 0.7,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_21",
+              "text": "dark bedding",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "cozy atmosphere",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "simple nightstands",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "soft lighting",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "oversized artwork",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "linen bedding",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "textured walls",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "sheer curtains",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "minimalistic decor",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_23",
+              "text": "open layout",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5,
+          "avg_sigma": 0.7,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "soft neutral tones",
+            "minimalist design",
+            "neutral tones",
+            "sheer curtains"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "simple nightstands",
+            "minimalistic decor",
+            "soft neutral tones",
+            "sheer curtains"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "simple nightstands",
+            "minimalistic decor",
+            "textured walls",
+            "sheer curtains"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "soft neutral tones",
+            "sheer curtains"
+          ],
+          "overlap_count": 2,
+          "overlap_fraction": 0.2,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "linen bedding",
+            "soft lighting",
+            "cozy atmosphere",
+            "sheer curtains"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "simple nightstands",
+            "minimalistic decor",
+            "sheer curtains"
+          ],
+          "overlap_count": 3,
+          "overlap_fraction": 0.3,
+          "max_allowed": 0.4,
+          "passed": true
+        }
+      ],
+      "ranking": [
+        2,
+        1,
+        3,
+        0
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 2,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "calm ambiance",
+            "natural light",
+            "simple nightstands",
+            "minimalistic decor",
+            "natural elegance",
+            "concrete walls",
+            "industrial aesthetic",
+            "minimalist decor"
+          ],
+          "tags_only_in_worse": [
+            "soft lighting",
+            "neutral tones",
+            "decorative branches",
+            "organic materials",
+            "earthy palette",
+            "linen bedding",
+            "minimalist design",
+            "cozy atmosphere"
+          ],
+          "shared_tags": [
+            "soft neutral tones",
+            "sheer curtains"
+          ],
+          "num_differentiating": 16
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 3,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "calm ambiance",
+            "natural light",
+            "natural elegance",
+            "soft neutral tones",
+            "concrete walls",
+            "industrial aesthetic",
+            "minimalist decor"
+          ],
+          "tags_only_in_worse": [
+            "soft lighting",
+            "dark bedding",
+            "textured walls",
+            "oversized artwork",
+            "linen bedding",
+            "cozy atmosphere",
+            "open layout"
+          ],
+          "shared_tags": [
+            "simple nightstands",
+            "minimalistic decor",
+            "sheer curtains"
+          ],
+          "num_differentiating": 14
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 0,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "calm ambiance",
+            "natural light",
+            "natural elegance",
+            "concrete walls",
+            "industrial aesthetic",
+            "minimalist decor"
+          ],
+          "tags_only_in_worse": [
+            "open floor plan",
+            "neutral tones",
+            "textured walls",
+            "neutral color palette",
+            "minimalist design",
+            "textured throw blanket"
+          ],
+          "shared_tags": [
+            "simple nightstands",
+            "minimalistic decor",
+            "soft neutral tones",
+            "sheer curtains"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 3,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "neutral tones",
+            "organic materials",
+            "soft neutral tones",
+            "earthy palette",
+            "decorative branches",
+            "minimalist design"
+          ],
+          "tags_only_in_worse": [
+            "simple nightstands",
+            "minimalistic decor",
+            "dark bedding",
+            "textured walls",
+            "oversized artwork",
+            "open layout"
+          ],
+          "shared_tags": [
+            "linen bedding",
+            "soft lighting",
+            "cozy atmosphere",
+            "sheer curtains"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 1,
+          "worse_option_id": 0,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "soft lighting",
+            "organic materials",
+            "earthy palette",
+            "decorative branches",
+            "linen bedding",
+            "cozy atmosphere"
+          ],
+          "tags_only_in_worse": [
+            "open floor plan",
+            "simple nightstands",
+            "minimalistic decor",
+            "textured walls",
+            "neutral color palette",
+            "textured throw blanket"
+          ],
+          "shared_tags": [
+            "soft neutral tones",
+            "minimalist design",
+            "neutral tones",
+            "sheer curtains"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "soft lighting",
+            "dark bedding",
+            "oversized artwork",
+            "linen bedding",
+            "cozy atmosphere",
+            "open layout"
+          ],
+          "tags_only_in_worse": [
+            "open floor plan",
+            "neutral tones",
+            "soft neutral tones",
+            "neutral color palette",
+            "minimalist design",
+            "textured throw blanket"
+          ],
+          "shared_tags": [
+            "simple nightstands",
+            "minimalistic decor",
+            "textured walls",
+            "sheer curtains"
+          ],
+          "num_differentiating": 12
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_17",
+          "text": "industrial aesthetic",
+          "mu_before": 0.5,
+          "mu_after": 0.799,
+          "mu_delta": 0.299,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_15",
+          "text": "natural elegance",
+          "mu_before": 0.5,
+          "mu_after": 0.799,
+          "mu_delta": 0.299,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "simple nightstands",
+          "mu_before": 0.5,
+          "mu_after": 0.4098,
+          "mu_delta": -0.0902,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_20",
+          "text": "minimalist decor",
+          "mu_before": 0.5,
+          "mu_after": 0.799,
+          "mu_delta": 0.299,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_16",
+          "text": "calm ambiance",
+          "mu_before": 0.5,
+          "mu_after": 0.799,
+          "mu_delta": 0.299,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_18",
+          "text": "concrete walls",
+          "mu_before": 0.5,
+          "mu_after": 0.799,
+          "mu_delta": 0.299,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "minimalistic decor",
+          "mu_before": 0.5,
+          "mu_after": 0.4098,
+          "mu_delta": -0.0902,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_19",
+          "text": "natural light",
+          "mu_before": 0.5,
+          "mu_after": 0.799,
+          "mu_delta": 0.299,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "decorative branches",
+          "mu_before": 0.5,
+          "mu_after": 0.5902,
+          "mu_delta": 0.0902,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "cozy atmosphere",
+          "mu_before": 0.5,
+          "mu_after": 0.5002,
+          "mu_delta": 0.0002,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "neutral tones",
+          "mu_before": 0.5,
+          "mu_after": 0.291,
+          "mu_delta": -0.209,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "minimalist design",
+          "mu_before": 0.5,
+          "mu_after": 0.291,
+          "mu_delta": -0.209,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "earthy palette",
+          "mu_before": 0.5,
+          "mu_after": 0.5902,
+          "mu_delta": 0.0902,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "organic materials",
+          "mu_before": 0.5,
+          "mu_after": 0.5902,
+          "mu_delta": 0.0902,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "linen bedding",
+          "mu_before": 0.5,
+          "mu_after": 0.5002,
+          "mu_delta": 0.0002,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "soft lighting",
+          "mu_before": 0.5,
+          "mu_after": 0.5002,
+          "mu_delta": 0.0002,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "soft neutral tones",
+          "mu_before": -0.3,
+          "mu_after": -0.21,
+          "mu_delta": 0.09,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_21",
+          "text": "dark bedding",
+          "mu_before": 0.5,
+          "mu_after": 0.41,
+          "mu_delta": -0.09,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_22",
+          "text": "oversized artwork",
+          "mu_before": 0.5,
+          "mu_after": 0.41,
+          "mu_delta": -0.09,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "textured walls",
+          "mu_before": 0.5,
+          "mu_after": 0.1107,
+          "mu_delta": -0.3893,
+          "sigma_before": 0.8989,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_23",
+          "text": "open layout",
+          "mu_before": 0.5,
+          "mu_after": 0.41,
+          "mu_delta": -0.09,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "open floor plan",
+          "mu_before": 0.5,
+          "mu_after": 0.2007,
+          "mu_delta": -0.2993,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "neutral color palette",
+          "mu_before": 0.5,
+          "mu_after": 0.2007,
+          "mu_delta": -0.2993,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "textured throw blanket",
+          "mu_before": 0.5,
+          "mu_after": 0.2007,
+          "mu_delta": -0.2993,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_15",
+          "text": "natural elegance",
+          "mu": 0.799,
+          "sigma": 0.644
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_16",
+          "text": "calm ambiance",
+          "mu": 0.799,
+          "sigma": 0.644
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_17",
+          "text": "industrial aesthetic",
+          "mu": 0.799,
+          "sigma": 0.644
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_18",
+          "text": "concrete walls",
+          "mu": 0.799,
+          "sigma": 0.644
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_19",
+          "text": "natural light",
+          "mu": 0.799,
+          "sigma": 0.644
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_20",
+          "text": "minimalist decor",
+          "mu": 0.799,
+          "sigma": 0.644
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_12",
+          "text": "organic materials",
+          "mu": 0.5902,
+          "sigma": 0.644
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_13",
+          "text": "decorative branches",
+          "mu": 0.5902,
+          "sigma": 0.644
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_14",
+          "text": "earthy palette",
+          "mu": 0.5902,
+          "sigma": 0.644
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_9",
+          "text": "soft lighting",
+          "mu": 0.5002,
+          "sigma": 0.644
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.21,
+          "max": 0.799,
+          "mean": 0.468,
+          "std": 0.252
+        },
+        "sigma_distribution": {
+          "min": 0.644,
+          "max": 0.7,
+          "mean": 0.6462
+        },
+        "tags_updated": 24,
+        "unique_tags_updated": 24,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 13.0,
+        "ranking_received": [
+          2,
+          1,
+          3,
+          0
+        ],
+        "best_option_strategy": "ucb",
+        "worst_option_strategy": "exploit",
+        "pairwise_accuracy_before_update": 0.4166666666666667,
+        "ranking_log_likelihood_before_update": -4.182078533711461
+      }
+    },
+    {
+      "round_num": 2,
+      "timestamp": "2026-02-24T16:39:00.115134",
+      "parameters": {
+        "beta": 1.6667,
+        "max_overlap": 0.4,
+        "learning_rate": 0.1176
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_15",
+              "text": "natural elegance",
+              "mu": 0.799,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "calm ambiance",
+              "mu": 0.799,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_17",
+              "text": "industrial aesthetic",
+              "mu": 0.799,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_18",
+              "text": "concrete walls",
+              "mu": 0.799,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "natural light",
+              "mu": 0.799,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "minimalist decor",
+              "mu": 0.799,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "organic materials",
+              "mu": 0.5902,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "soft neutral tones",
+              "mu": -0.21,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "decorative branches",
+              "mu": 0.5902,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "earthy palette",
+              "mu": 0.5902,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.6355,
+          "avg_sigma": 0.644,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_2",
+              "text": "open floor plan",
+              "mu": 0.2007,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "neutral color palette",
+              "mu": 0.2007,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "simple nightstands",
+              "mu": 0.4098,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist design",
+              "mu": 0.291,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "neutral tones",
+              "mu": 0.291,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "textured walls",
+              "mu": 0.1107,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "sheer curtains",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "minimalistic decor",
+              "mu": 0.4098,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "textured throw blanket",
+              "mu": 0.2007,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "soft neutral tones",
+              "mu": -0.21,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.2404,
+          "avg_sigma": 0.6496,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_21",
+              "text": "dark bedding",
+              "mu": 0.41,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_17",
+              "text": "industrial aesthetic",
+              "mu": 0.799,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_15",
+              "text": "natural elegance",
+              "mu": 0.799,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "cozy atmosphere",
+              "mu": 0.5002,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "soft lighting",
+              "mu": 0.5002,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "minimalist decor",
+              "mu": 0.799,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "oversized artwork",
+              "mu": 0.41,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "sheer curtains",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "linen bedding",
+              "mu": 0.5002,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "natural light",
+              "mu": 0.799,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.6017,
+          "avg_sigma": 0.6496,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_17",
+              "text": "industrial aesthetic",
+              "mu": 0.799,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_15",
+              "text": "natural elegance",
+              "mu": 0.799,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "cozy atmosphere",
+              "mu": 0.5002,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "soft lighting",
+              "mu": 0.5002,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "minimalist decor",
+              "mu": 0.799,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "sheer curtains",
+              "mu": 0.5,
+              "sigma": 0.7,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_18",
+              "text": "concrete walls",
+              "mu": 0.799,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "organic materials",
+              "mu": 0.5902,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "calm ambiance",
+              "mu": 0.799,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_23",
+              "text": "open layout",
+              "mu": 0.41,
+              "sigma": 0.644,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.6496,
+          "avg_sigma": 0.6496,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "soft neutral tones"
+          ],
+          "overlap_count": 1,
+          "overlap_fraction": 0.1,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "natural elegance",
+            "industrial aesthetic",
+            "natural light",
+            "minimalist decor"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "calm ambiance",
+            "organic materials",
+            "natural elegance",
+            "concrete walls",
+            "industrial aesthetic",
+            "minimalist decor"
+          ],
+          "overlap_count": 6,
+          "overlap_fraction": 0.6,
+          "max_allowed": 0.4,
+          "passed": false
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "sheer curtains"
+          ],
+          "overlap_count": 1,
+          "overlap_fraction": 0.1,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "sheer curtains"
+          ],
+          "overlap_count": 1,
+          "overlap_fraction": 0.1,
+          "max_allowed": 0.4,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "soft lighting",
+            "sheer curtains",
+            "natural elegance",
+            "industrial aesthetic",
+            "cozy atmosphere",
+            "minimalist decor"
+          ],
+          "overlap_count": 6,
+          "overlap_fraction": 0.6,
+          "max_allowed": 0.4,
+          "passed": false
+        }
+      ],
+      "ranking": [
+        3,
+        2,
+        0,
+        1
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "concrete walls",
+            "open layout",
+            "organic materials",
+            "calm ambiance"
+          ],
+          "tags_only_in_worse": [
+            "oversized artwork",
+            "linen bedding",
+            "dark bedding",
+            "natural light"
+          ],
+          "shared_tags": [
+            "soft lighting",
+            "sheer curtains",
+            "natural elegance",
+            "industrial aesthetic",
+            "cozy atmosphere",
+            "minimalist decor"
+          ],
+          "num_differentiating": 8
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 0,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "open layout",
+            "soft lighting",
+            "cozy atmosphere",
+            "sheer curtains"
+          ],
+          "tags_only_in_worse": [
+            "soft neutral tones",
+            "earthy palette",
+            "decorative branches",
+            "natural light"
+          ],
+          "shared_tags": [
+            "calm ambiance",
+            "organic materials",
+            "natural elegance",
+            "concrete walls",
+            "industrial aesthetic",
+            "minimalist decor"
+          ],
+          "num_differentiating": 8
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "soft lighting",
+            "calm ambiance",
+            "organic materials",
+            "natural elegance",
+            "concrete walls",
+            "industrial aesthetic",
+            "cozy atmosphere",
+            "open layout",
+            "minimalist decor"
+          ],
+          "tags_only_in_worse": [
+            "open floor plan",
+            "neutral tones",
+            "simple nightstands",
+            "minimalistic decor",
+            "textured walls",
+            "soft neutral tones",
+            "neutral color palette",
+            "minimalist design",
+            "textured throw blanket"
+          ],
+          "shared_tags": [
+            "sheer curtains"
+          ],
+          "num_differentiating": 18
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "soft lighting",
+            "sheer curtains",
+            "dark bedding",
+            "oversized artwork",
+            "linen bedding",
+            "cozy atmosphere"
+          ],
+          "tags_only_in_worse": [
+            "calm ambiance",
+            "organic materials",
+            "soft neutral tones",
+            "earthy palette",
+            "concrete walls",
+            "decorative branches"
+          ],
+          "shared_tags": [
+            "natural elegance",
+            "industrial aesthetic",
+            "natural light",
+            "minimalist decor"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "soft lighting",
+            "natural light",
+            "dark bedding",
+            "natural elegance",
+            "industrial aesthetic",
+            "oversized artwork",
+            "linen bedding",
+            "cozy atmosphere",
+            "minimalist decor"
+          ],
+          "tags_only_in_worse": [
+            "open floor plan",
+            "neutral tones",
+            "simple nightstands",
+            "minimalistic decor",
+            "textured walls",
+            "soft neutral tones",
+            "neutral color palette",
+            "minimalist design",
+            "textured throw blanket"
+          ],
+          "shared_tags": [
+            "sheer curtains"
+          ],
+          "num_differentiating": 18
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "calm ambiance",
+            "natural light",
+            "organic materials",
+            "natural elegance",
+            "earthy palette",
+            "concrete walls",
+            "industrial aesthetic",
+            "decorative branches",
+            "minimalist decor"
+          ],
+          "tags_only_in_worse": [
+            "open floor plan",
+            "neutral tones",
+            "sheer curtains",
+            "simple nightstands",
+            "minimalistic decor",
+            "textured walls",
+            "neutral color palette",
+            "minimalist design",
+            "textured throw blanket"
+          ],
+          "shared_tags": [
+            "soft neutral tones"
+          ],
+          "num_differentiating": 18
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_18",
+          "text": "concrete walls",
+          "mu_before": 0.799,
+          "mu_after": 0.9919,
+          "mu_delta": 0.1928,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_16",
+          "text": "calm ambiance",
+          "mu_before": 0.799,
+          "mu_after": 0.9919,
+          "mu_delta": 0.1928,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_23",
+          "text": "open layout",
+          "mu_before": 0.41,
+          "mu_after": 0.6925,
+          "mu_delta": 0.2825,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "organic materials",
+          "mu_before": 0.5902,
+          "mu_after": 0.7831,
+          "mu_delta": 0.1928,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_11",
+          "text": "linen bedding",
+          "mu_before": 0.5002,
+          "mu_after": 0.5839,
+          "mu_delta": 0.0837,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_19",
+          "text": "natural light",
+          "mu_before": 0.799,
+          "mu_after": 0.7931,
+          "mu_delta": -0.0059,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_21",
+          "text": "dark bedding",
+          "mu_before": 0.41,
+          "mu_after": 0.4937,
+          "mu_delta": 0.0837,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_22",
+          "text": "oversized artwork",
+          "mu_before": 0.41,
+          "mu_after": 0.4937,
+          "mu_delta": 0.0837,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "sheer curtains",
+          "mu_before": 0.5,
+          "mu_after": 0.5896,
+          "mu_delta": 0.0896,
+          "sigma_before": 0.827,
+          "sigma_after": 0.644,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "soft lighting",
+          "mu_before": 0.5002,
+          "mu_after": 0.8664,
+          "mu_delta": 0.3662,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "cozy atmosphere",
+          "mu_before": 0.5002,
+          "mu_after": 0.8664,
+          "mu_delta": 0.3662,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "earthy palette",
+          "mu_before": 0.5902,
+          "mu_after": 0.5006,
+          "mu_delta": -0.0896,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "soft neutral tones",
+          "mu_before": -0.21,
+          "mu_after": -0.5762,
+          "mu_delta": -0.3662,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "decorative branches",
+          "mu_before": 0.5902,
+          "mu_after": 0.5006,
+          "mu_delta": -0.0896,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_17",
+          "text": "industrial aesthetic",
+          "mu_before": 0.799,
+          "mu_after": 1.0756,
+          "mu_delta": 0.2766,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_15",
+          "text": "natural elegance",
+          "mu_before": 0.799,
+          "mu_after": 1.0756,
+          "mu_delta": 0.2766,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_20",
+          "text": "minimalist decor",
+          "mu_before": 0.799,
+          "mu_after": 1.0756,
+          "mu_delta": 0.2766,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "open floor plan",
+          "mu_before": 0.2007,
+          "mu_after": -0.0758,
+          "mu_delta": -0.2766,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "neutral color palette",
+          "mu_before": 0.2007,
+          "mu_after": -0.0758,
+          "mu_delta": -0.2766,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "simple nightstands",
+          "mu_before": 0.4098,
+          "mu_after": 0.1332,
+          "mu_delta": -0.2766,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "minimalist design",
+          "mu_before": 0.291,
+          "mu_after": 0.0144,
+          "mu_delta": -0.2766,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "neutral tones",
+          "mu_before": 0.291,
+          "mu_after": 0.0144,
+          "mu_delta": -0.2766,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "textured walls",
+          "mu_before": 0.1107,
+          "mu_after": -0.1658,
+          "mu_delta": -0.2766,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "minimalistic decor",
+          "mu_before": 0.4098,
+          "mu_after": 0.1332,
+          "mu_delta": -0.2766,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "textured throw blanket",
+          "mu_before": 0.2007,
+          "mu_after": -0.0758,
+          "mu_delta": -0.2766,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5925,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_15",
+          "text": "natural elegance",
+          "mu": 1.0756,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_17",
+          "text": "industrial aesthetic",
+          "mu": 1.0756,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_20",
+          "text": "minimalist decor",
+          "mu": 1.0756,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_16",
+          "text": "calm ambiance",
+          "mu": 0.9919,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_18",
+          "text": "concrete walls",
+          "mu": 0.9919,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_9",
+          "text": "soft lighting",
+          "mu": 0.8664,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_10",
+          "text": "cozy atmosphere",
+          "mu": 0.8664,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_19",
+          "text": "natural light",
+          "mu": 0.7931,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_12",
+          "text": "organic materials",
+          "mu": 0.7831,
+          "sigma": 0.5925
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_23",
+          "text": "open layout",
+          "mu": 0.6925,
+          "sigma": 0.5925
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.5762,
+          "max": 1.0756,
+          "mean": 0.468,
+          "std": 0.4594
+        },
+        "sigma_distribution": {
+          "min": 0.5925,
+          "max": 0.644,
+          "mean": 0.5945
+        },
+        "tags_updated": 25,
+        "unique_tags_updated": 25,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 13.666666666666666,
+        "ranking_received": [
+          3,
+          2,
+          0,
+          1
+        ],
+        "best_option_strategy": "challenger",
+        "worst_option_strategy": "explore",
+        "pairwise_accuracy_before_update": 0.6666666666666666,
+        "ranking_log_likelihood_before_update": -3.4344594192350892
+      }
+    },
+    {
+      "round_num": 3,
+      "timestamp": "2026-02-24T16:39:42.859732",
+      "parameters": {
+        "beta": 1.3333,
+        "max_overlap": 0.45,
+        "learning_rate": 0.1152
+      },
+      "options": [
+        {
+          "option_id": 0,
+          "strategy": "exploit",
+          "tags": [
+            {
+              "tag_id": "pos_15",
+              "text": "natural elegance",
+              "mu": 1.0756,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_17",
+              "text": "industrial aesthetic",
+              "mu": 1.0756,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "minimalist decor",
+              "mu": 1.0756,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "calm ambiance",
+              "mu": 0.9919,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_18",
+              "text": "concrete walls",
+              "mu": 0.9919,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "soft lighting",
+              "mu": 0.8664,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "cozy atmosphere",
+              "mu": 0.8664,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "soft neutral tones",
+              "mu": -0.5762,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_19",
+              "text": "natural light",
+              "mu": 0.7931,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_12",
+              "text": "organic materials",
+              "mu": 0.7831,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.7943,
+          "avg_sigma": 0.5925,
+          "image_path": null
+        },
+        {
+          "option_id": 1,
+          "strategy": "explore",
+          "tags": [
+            {
+              "tag_id": "pos_2",
+              "text": "open floor plan",
+              "mu": -0.0758,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_1",
+              "text": "neutral color palette",
+              "mu": -0.0758,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_4",
+              "text": "simple nightstands",
+              "mu": 0.1332,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_0",
+              "text": "minimalist design",
+              "mu": 0.0144,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_6",
+              "text": "neutral tones",
+              "mu": 0.0144,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_7",
+              "text": "textured walls",
+              "mu": -0.1658,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "sheer curtains",
+              "mu": 0.5896,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_8",
+              "text": "minimalistic decor",
+              "mu": 0.1332,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_5",
+              "text": "textured throw blanket",
+              "mu": -0.0758,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "soft neutral tones",
+              "mu": -0.5762,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": -0.0085,
+          "avg_sigma": 0.5976,
+          "image_path": null
+        },
+        {
+          "option_id": 2,
+          "strategy": "ucb",
+          "tags": [
+            {
+              "tag_id": "pos_21",
+              "text": "dark bedding",
+              "mu": 0.4937,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_15",
+              "text": "natural elegance",
+              "mu": 1.0756,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_13",
+              "text": "decorative branches",
+              "mu": 0.5006,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "soft lighting",
+              "mu": 0.8664,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_14",
+              "text": "earthy palette",
+              "mu": 0.5006,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "minimalist decor",
+              "mu": 1.0756,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_22",
+              "text": "oversized artwork",
+              "mu": 0.4937,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "linen bedding",
+              "mu": 0.5839,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "neu_0",
+              "text": "soft neutral tones",
+              "mu": -0.5762,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_23",
+              "text": "open layout",
+              "mu": 0.6925,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.5706,
+          "avg_sigma": 0.5925,
+          "image_path": null
+        },
+        {
+          "option_id": 3,
+          "strategy": "challenger",
+          "tags": [
+            {
+              "tag_id": "pos_17",
+              "text": "industrial aesthetic",
+              "mu": 1.0756,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_15",
+              "text": "natural elegance",
+              "mu": 1.0756,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_10",
+              "text": "cozy atmosphere",
+              "mu": 0.8664,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_20",
+              "text": "minimalist decor",
+              "mu": 1.0756,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_16",
+              "text": "calm ambiance",
+              "mu": 0.9919,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_18",
+              "text": "concrete walls",
+              "mu": 0.9919,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_3",
+              "text": "sheer curtains",
+              "mu": 0.5896,
+              "sigma": 0.644,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_11",
+              "text": "linen bedding",
+              "mu": 0.5839,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_9",
+              "text": "soft lighting",
+              "mu": 0.8664,
+              "sigma": 0.5925,
+              "weight": null
+            },
+            {
+              "tag_id": "pos_23",
+              "text": "open layout",
+              "mu": 0.6925,
+              "sigma": 0.5925,
+              "weight": null
+            }
+          ],
+          "avg_mu": 0.8809,
+          "avg_sigma": 0.5976,
+          "image_path": null
+        }
+      ],
+      "diversity_checks": [
+        {
+          "option_a": 0,
+          "option_b": 1,
+          "shared_tags": [
+            "soft neutral tones"
+          ],
+          "overlap_count": 1,
+          "overlap_fraction": 0.1,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 2,
+          "shared_tags": [
+            "natural elegance",
+            "soft neutral tones",
+            "soft lighting",
+            "minimalist decor"
+          ],
+          "overlap_count": 4,
+          "overlap_fraction": 0.4,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 0,
+          "option_b": 3,
+          "shared_tags": [
+            "soft lighting",
+            "calm ambiance",
+            "natural elegance",
+            "concrete walls",
+            "industrial aesthetic",
+            "cozy atmosphere",
+            "minimalist decor"
+          ],
+          "overlap_count": 7,
+          "overlap_fraction": 0.7,
+          "max_allowed": 0.45,
+          "passed": false
+        },
+        {
+          "option_a": 1,
+          "option_b": 2,
+          "shared_tags": [
+            "soft neutral tones"
+          ],
+          "overlap_count": 1,
+          "overlap_fraction": 0.1,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 1,
+          "option_b": 3,
+          "shared_tags": [
+            "sheer curtains"
+          ],
+          "overlap_count": 1,
+          "overlap_fraction": 0.1,
+          "max_allowed": 0.45,
+          "passed": true
+        },
+        {
+          "option_a": 2,
+          "option_b": 3,
+          "shared_tags": [
+            "minimalist decor",
+            "soft lighting",
+            "linen bedding",
+            "open layout",
+            "natural elegance"
+          ],
+          "overlap_count": 5,
+          "overlap_fraction": 0.5,
+          "max_allowed": 0.45,
+          "passed": false
+        }
+      ],
+      "ranking": [
+        3,
+        0,
+        2,
+        1
+      ],
+      "comparisons": [
+        {
+          "better_option_id": 3,
+          "worse_option_id": 0,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "linen bedding",
+            "open layout",
+            "sheer curtains"
+          ],
+          "tags_only_in_worse": [
+            "soft neutral tones",
+            "organic materials",
+            "natural light"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "soft lighting",
+            "calm ambiance",
+            "concrete walls",
+            "industrial aesthetic",
+            "cozy atmosphere",
+            "natural elegance"
+          ],
+          "num_differentiating": 6
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 2,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "sheer curtains",
+            "calm ambiance",
+            "concrete walls",
+            "industrial aesthetic",
+            "cozy atmosphere"
+          ],
+          "tags_only_in_worse": [
+            "dark bedding",
+            "soft neutral tones",
+            "earthy palette",
+            "oversized artwork",
+            "decorative branches"
+          ],
+          "shared_tags": [
+            "minimalist decor",
+            "soft lighting",
+            "linen bedding",
+            "open layout",
+            "natural elegance"
+          ],
+          "num_differentiating": 10
+        },
+        {
+          "better_option_id": 3,
+          "worse_option_id": 1,
+          "rank_distance": 3,
+          "preference_strength": 1.0,
+          "tags_only_in_better": [
+            "soft lighting",
+            "calm ambiance",
+            "natural elegance",
+            "concrete walls",
+            "industrial aesthetic",
+            "linen bedding",
+            "cozy atmosphere",
+            "open layout",
+            "minimalist decor"
+          ],
+          "tags_only_in_worse": [
+            "open floor plan",
+            "neutral tones",
+            "simple nightstands",
+            "minimalistic decor",
+            "textured walls",
+            "soft neutral tones",
+            "neutral color palette",
+            "minimalist design",
+            "textured throw blanket"
+          ],
+          "shared_tags": [
+            "sheer curtains"
+          ],
+          "num_differentiating": 18
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 2,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "natural light",
+            "calm ambiance",
+            "organic materials",
+            "concrete walls",
+            "industrial aesthetic",
+            "cozy atmosphere"
+          ],
+          "tags_only_in_worse": [
+            "dark bedding",
+            "earthy palette",
+            "oversized artwork",
+            "decorative branches",
+            "linen bedding",
+            "open layout"
+          ],
+          "shared_tags": [
+            "natural elegance",
+            "soft neutral tones",
+            "soft lighting",
+            "minimalist decor"
+          ],
+          "num_differentiating": 12
+        },
+        {
+          "better_option_id": 0,
+          "worse_option_id": 1,
+          "rank_distance": 2,
+          "preference_strength": 0.6,
+          "tags_only_in_better": [
+            "minimalist decor",
+            "soft lighting",
+            "natural light",
+            "calm ambiance",
+            "organic materials",
+            "concrete walls",
+            "industrial aesthetic",
+            "cozy atmosphere",
+            "natural elegance"
+          ],
+          "tags_only_in_worse": [
+            "open floor plan",
+            "neutral tones",
+            "sheer curtains",
+            "simple nightstands",
+            "minimalistic decor",
+            "textured walls",
+            "neutral color palette",
+            "minimalist design",
+            "textured throw blanket"
+          ],
+          "shared_tags": [
+            "soft neutral tones"
+          ],
+          "num_differentiating": 18
+        },
+        {
+          "better_option_id": 2,
+          "worse_option_id": 1,
+          "rank_distance": 1,
+          "preference_strength": 0.3,
+          "tags_only_in_better": [
+            "soft lighting",
+            "dark bedding",
+            "natural elegance",
+            "earthy palette",
+            "oversized artwork",
+            "decorative branches",
+            "linen bedding",
+            "open layout",
+            "minimalist decor"
+          ],
+          "tags_only_in_worse": [
+            "open floor plan",
+            "neutral tones",
+            "sheer curtains",
+            "simple nightstands",
+            "minimalistic decor",
+            "textured walls",
+            "neutral color palette",
+            "minimalist design",
+            "textured throw blanket"
+          ],
+          "shared_tags": [
+            "soft neutral tones"
+          ],
+          "num_differentiating": 18
+        }
+      ],
+      "tag_updates": [
+        {
+          "tag_id": "pos_11",
+          "text": "linen bedding",
+          "mu_before": 0.5839,
+          "mu_after": 0.7622,
+          "mu_delta": 0.1782,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_23",
+          "text": "open layout",
+          "mu_before": 0.6925,
+          "mu_after": 0.8707,
+          "mu_delta": 0.1782,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_3",
+          "text": "sheer curtains",
+          "mu_before": 0.5896,
+          "mu_after": 0.6007,
+          "mu_delta": 0.011,
+          "sigma_before": 0.827,
+          "sigma_after": 0.5925,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_19",
+          "text": "natural light",
+          "mu_before": 0.7931,
+          "mu_after": 0.8683,
+          "mu_delta": 0.0751,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "neu_0",
+          "text": "soft neutral tones",
+          "mu_before": -0.5762,
+          "mu_after": -0.8406,
+          "mu_delta": -0.2644,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_12",
+          "text": "organic materials",
+          "mu_before": 0.7831,
+          "mu_after": 0.8582,
+          "mu_delta": 0.0751,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_17",
+          "text": "industrial aesthetic",
+          "mu_before": 1.0756,
+          "mu_after": 1.4151,
+          "mu_delta": 0.3395,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_10",
+          "text": "cozy atmosphere",
+          "mu_before": 0.8664,
+          "mu_after": 1.206,
+          "mu_delta": 0.3395,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_18",
+          "text": "concrete walls",
+          "mu_before": 0.9919,
+          "mu_after": 1.3314,
+          "mu_delta": 0.3395,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_16",
+          "text": "calm ambiance",
+          "mu_before": 0.9919,
+          "mu_after": 1.3314,
+          "mu_delta": 0.3395,
+          "sigma_before": 0.7609,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_13",
+          "text": "decorative branches",
+          "mu_before": 0.5006,
+          "mu_after": 0.4144,
+          "mu_delta": -0.0862,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_14",
+          "text": "earthy palette",
+          "mu_before": 0.5006,
+          "mu_after": 0.4144,
+          "mu_delta": -0.0862,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_22",
+          "text": "oversized artwork",
+          "mu_before": 0.4937,
+          "mu_after": 0.4076,
+          "mu_delta": -0.0862,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_21",
+          "text": "dark bedding",
+          "mu_before": 0.4937,
+          "mu_after": 0.4076,
+          "mu_delta": -0.0862,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_15",
+          "text": "natural elegance",
+          "mu_before": 1.0756,
+          "mu_after": 1.329,
+          "mu_delta": 0.2534,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_20",
+          "text": "minimalist decor",
+          "mu_before": 1.0756,
+          "mu_after": 1.329,
+          "mu_delta": 0.2534,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_9",
+          "text": "soft lighting",
+          "mu_before": 0.8664,
+          "mu_after": 1.1198,
+          "mu_delta": 0.2534,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_better",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_2",
+          "text": "open floor plan",
+          "mu_before": -0.0758,
+          "mu_after": -0.3292,
+          "mu_delta": -0.2534,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_1",
+          "text": "neutral color palette",
+          "mu_before": -0.0758,
+          "mu_after": -0.3292,
+          "mu_delta": -0.2534,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_4",
+          "text": "simple nightstands",
+          "mu_before": 0.1332,
+          "mu_after": -0.1202,
+          "mu_delta": -0.2534,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_0",
+          "text": "minimalist design",
+          "mu_before": 0.0144,
+          "mu_after": -0.239,
+          "mu_delta": -0.2534,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_6",
+          "text": "neutral tones",
+          "mu_before": 0.0144,
+          "mu_after": -0.239,
+          "mu_delta": -0.2534,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_7",
+          "text": "textured walls",
+          "mu_before": -0.1658,
+          "mu_after": -0.4192,
+          "mu_delta": -0.2534,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_8",
+          "text": "minimalistic decor",
+          "mu_before": 0.1332,
+          "mu_after": -0.1202,
+          "mu_delta": -0.2534,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        },
+        {
+          "tag_id": "pos_5",
+          "text": "textured throw blanket",
+          "mu_before": -0.0758,
+          "mu_after": -0.3292,
+          "mu_delta": -0.2534,
+          "sigma_before": 0.7,
+          "sigma_after": 0.5451,
+          "update_reason": "in_worse",
+          "from_comparison": "multiple"
+        }
+      ],
+      "top_10_after": [
+        {
+          "rank": 1,
+          "tag_id": "pos_17",
+          "text": "industrial aesthetic",
+          "mu": 1.4151,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 2,
+          "tag_id": "pos_16",
+          "text": "calm ambiance",
+          "mu": 1.3314,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 3,
+          "tag_id": "pos_18",
+          "text": "concrete walls",
+          "mu": 1.3314,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 4,
+          "tag_id": "pos_15",
+          "text": "natural elegance",
+          "mu": 1.329,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 5,
+          "tag_id": "pos_20",
+          "text": "minimalist decor",
+          "mu": 1.329,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 6,
+          "tag_id": "pos_10",
+          "text": "cozy atmosphere",
+          "mu": 1.206,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 7,
+          "tag_id": "pos_9",
+          "text": "soft lighting",
+          "mu": 1.1198,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 8,
+          "tag_id": "pos_23",
+          "text": "open layout",
+          "mu": 0.8707,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 9,
+          "tag_id": "pos_19",
+          "text": "natural light",
+          "mu": 0.8683,
+          "sigma": 0.5451
+        },
+        {
+          "rank": 10,
+          "tag_id": "pos_12",
+          "text": "organic materials",
+          "mu": 0.8582,
+          "sigma": 0.5451
+        }
+      ],
+      "diagnostics": {
+        "mu_distribution": {
+          "min": -0.8406,
+          "max": 1.4151,
+          "mean": 0.468,
+          "std": 0.6791
+        },
+        "sigma_distribution": {
+          "min": 0.5451,
+          "max": 0.5925,
+          "mean": 0.547
+        },
+        "tags_updated": 25,
+        "unique_tags_updated": 25,
+        "comparisons_made": 6,
+        "avg_differentiating_tags": 13.666666666666666,
+        "ranking_received": [
+          3,
+          0,
+          2,
+          1
+        ],
+        "best_option_strategy": "challenger",
+        "worst_option_strategy": "explore",
+        "pairwise_accuracy_before_update": 0.8333333333333334,
+        "ranking_log_likelihood_before_update": -2.533836293839543
+      }
+    }
+  ],
+  "final": {
+    "timestamp": "2026-02-24T16:41:29.449604",
+    "rounds_completed": 3,
+    "total_comparisons": 18,
+    "total_tag_updates": 74,
+    "final_tags": [
+      {
+        "rank": 1,
+        "text": "industrial aesthetic",
+        "weight": 0.1256,
+        "final_mu": 1.4151,
+        "final_sigma": 0.5451,
+        "category": "positive_other",
+        "times_shown": 6,
+        "times_in_winner": 3,
+        "times_in_loser": 0,
+        "win_rate": 0.5
+      },
+      {
+        "rank": 2,
+        "text": "calm ambiance",
+        "weight": 0.1155,
+        "final_mu": 1.3314,
+        "final_sigma": 0.5451,
+        "category": "positive_other",
+        "times_shown": 5,
+        "times_in_winner": 3,
+        "times_in_loser": 0,
+        "win_rate": 0.6
+      },
+      {
+        "rank": 3,
+        "text": "concrete walls",
+        "weight": 0.1155,
+        "final_mu": 1.3314,
+        "final_sigma": 0.5451,
+        "category": "positive_other",
+        "times_shown": 5,
+        "times_in_winner": 3,
+        "times_in_loser": 0,
+        "win_rate": 0.6
+      },
+      {
+        "rank": 4,
+        "text": "natural elegance",
+        "weight": 0.1152,
+        "final_mu": 1.329,
+        "final_sigma": 0.5451,
+        "category": "positive_other",
+        "times_shown": 7,
+        "times_in_winner": 3,
+        "times_in_loser": 0,
+        "win_rate": 0.429
+      },
+      {
+        "rank": 5,
+        "text": "minimalist decor",
+        "weight": 0.1152,
+        "final_mu": 1.329,
+        "final_sigma": 0.5451,
+        "category": "positive_other",
+        "times_shown": 7,
+        "times_in_winner": 3,
+        "times_in_loser": 0,
+        "win_rate": 0.429
+      },
+      {
+        "rank": 6,
+        "text": "cozy atmosphere",
+        "weight": 0.1019,
+        "final_mu": 1.206,
+        "final_sigma": 0.5451,
+        "category": "positive_other",
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 0,
+        "win_rate": 0.333
+      },
+      {
+        "rank": 7,
+        "text": "soft lighting",
+        "weight": 0.0935,
+        "final_mu": 1.1198,
+        "final_sigma": 0.5451,
+        "category": "positive_other",
+        "times_shown": 7,
+        "times_in_winner": 2,
+        "times_in_loser": 0,
+        "win_rate": 0.286
+      },
+      {
+        "rank": 8,
+        "text": "open layout",
+        "weight": 0.0729,
+        "final_mu": 0.8707,
+        "final_sigma": 0.5451,
+        "category": "positive_other",
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 0,
+        "win_rate": 0.5
+      },
+      {
+        "rank": 9,
+        "text": "natural light",
+        "weight": 0.0727,
+        "final_mu": 0.8683,
+        "final_sigma": 0.5451,
+        "category": "positive_other",
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 0,
+        "win_rate": 0.25
+      },
+      {
+        "rank": 10,
+        "text": "organic materials",
+        "weight": 0.072,
+        "final_mu": 0.8582,
+        "final_sigma": 0.5451,
+        "category": "positive_other",
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 0,
+        "win_rate": 0.25
+      }
+    ],
+    "final_trajectories": {
+      "industrial aesthetic": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.799,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 1.0756,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 1.4151,
+          "sigma": 0.5451
+        }
+      ],
+      "calm ambiance": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.799,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.9919,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 1.3314,
+          "sigma": 0.5451
+        }
+      ],
+      "concrete walls": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.799,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.9919,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 1.3314,
+          "sigma": 0.5451
+        }
+      ],
+      "natural elegance": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.799,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 1.0756,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 1.329,
+          "sigma": 0.5451
+        }
+      ],
+      "minimalist decor": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.799,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 1.0756,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 1.329,
+          "sigma": 0.5451
+        }
+      ],
+      "cozy atmosphere": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5002,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.8664,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 1.206,
+          "sigma": 0.5451
+        }
+      ],
+      "soft lighting": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5002,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.8664,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 1.1198,
+          "sigma": 0.5451
+        }
+      ],
+      "open layout": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.41,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.6925,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.8707,
+          "sigma": 0.5451
+        }
+      ],
+      "natural light": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.799,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.7931,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.8683,
+          "sigma": 0.5451
+        }
+      ],
+      "organic materials": [
+        {
+          "round": 0,
+          "mu": 0.5,
+          "sigma": 0.7
+        },
+        {
+          "round": 1,
+          "mu": 0.5902,
+          "sigma": 0.644
+        },
+        {
+          "round": 2,
+          "mu": 0.7831,
+          "sigma": 0.5925
+        },
+        {
+          "round": 3,
+          "mu": 0.8582,
+          "sigma": 0.5451
+        }
+      ]
+    },
+    "convergence_analysis": {
+      "top_10_stability": "10/10 tags same as previous round",
+      "mu_spread": 2.2557,
+      "avg_final_sigma": 0.547,
+      "min_final_sigma": 0.5451,
+      "converged": false
+    },
+    "warnings_summary": {
+      "total": 7,
+      "by_type": {
+        "low_neutral_count": 1,
+        "diversity_violation": 6
+      }
+    }
+  },
+  "warnings": [
+    {
+      "type": "low_neutral_count",
+      "message": "Only 1 neutral tags. Exploration may be limited.",
+      "timestamp": "2026-02-24T16:38:05.873903"
+    },
+    {
+      "type": "diversity_violation",
+      "message": "Round 2: Options 0 and 3 have 60% overlap (max 40%)",
+      "timestamp": "2026-02-24T16:39:00.115232"
+    },
+    {
+      "type": "diversity_violation",
+      "message": "Round 2: Options 2 and 3 have 60% overlap (max 40%)",
+      "timestamp": "2026-02-24T16:39:00.115244"
+    },
+    {
+      "type": "diversity_violation",
+      "message": "Round 3: Options 0 and 3 have 70% overlap (max 45%)",
+      "timestamp": "2026-02-24T16:39:42.859828"
+    },
+    {
+      "type": "diversity_violation",
+      "message": "Round 3: Options 2 and 3 have 50% overlap (max 45%)",
+      "timestamp": "2026-02-24T16:39:42.859842"
+    },
+    {
+      "type": "diversity_violation",
+      "message": "Round 4: Options 0 and 3 have 60% overlap (max 55%)",
+      "timestamp": "2026-02-24T16:40:34.412520"
+    },
+    {
+      "type": "diversity_violation",
+      "message": "Round 4: Options 2 and 3 have 60% overlap (max 55%)",
+      "timestamp": "2026-02-24T16:40:34.412533"
+    }
+  ],
+  "tag_trajectories": {
+    "pos_0": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.291,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.0144,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.239,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_1": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.2007,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.0758,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.3292,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_2": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.2007,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.0758,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.3292,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_3": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 2,
+        "mu": 0.5896,
+        "sigma": 0.644
+      },
+      {
+        "round": 3,
+        "mu": 0.6007,
+        "sigma": 0.5925
+      }
+    ],
+    "pos_4": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4098,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.1332,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.1202,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_5": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.2007,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.0758,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.3292,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_6": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.291,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.0144,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.239,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_7": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.1107,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.1658,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.4192,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_8": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.4098,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.1332,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.1202,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_9": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5002,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.8664,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 1.1198,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_10": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5002,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.8664,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 1.206,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_11": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5002,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.5839,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.7622,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_12": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5902,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.7831,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.8582,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_13": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5902,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.5006,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.4144,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_14": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.5902,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.5006,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.4144,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_15": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.799,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 1.0756,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 1.329,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_16": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.799,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.9919,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 1.3314,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_17": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.799,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 1.0756,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 1.4151,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_18": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.799,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.9919,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 1.3314,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_19": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.799,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.7931,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.8683,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_20": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.799,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 1.0756,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 1.329,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_21": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.41,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4937,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.4076,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_22": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.41,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.4937,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.4076,
+        "sigma": 0.5451
+      }
+    ],
+    "pos_23": [
+      {
+        "round": 0,
+        "mu": 0.5,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": 0.41,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": 0.6925,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": 0.8707,
+        "sigma": 0.5451
+      }
+    ],
+    "neu_0": [
+      {
+        "round": 0,
+        "mu": -0.3,
+        "sigma": 0.7
+      },
+      {
+        "round": 1,
+        "mu": -0.21,
+        "sigma": 0.644
+      },
+      {
+        "round": 2,
+        "mu": -0.5762,
+        "sigma": 0.5925
+      },
+      {
+        "round": 3,
+        "mu": -0.8406,
+        "sigma": 0.5451
+      }
+    ]
+  }
+}

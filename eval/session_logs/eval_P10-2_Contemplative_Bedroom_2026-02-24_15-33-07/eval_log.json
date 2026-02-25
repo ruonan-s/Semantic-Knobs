@@ -1,0 +1,177 @@
+{
+  "user_id": "P10-2",
+  "session_folder": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-2_Contemplative_Bedroom_2026-02-24_15-33-07",
+  "created_at": "2026-02-24T15:33:07.687767",
+  "events": [
+    {
+      "timestamp": "2026-02-24T15:33:07.687773",
+      "type": "session_start",
+      "data": {
+        "predefined_session": "Contemplative_Bedroom"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T15:40:25.075508",
+      "type": "save_manual_weights",
+      "data": {
+        "selected_image_id": "impression_2_0",
+        "tag_count": 10,
+        "weights_file": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-2_Contemplative_Bedroom_2026-02-24_15-33-07/impression/user_manual_weights.json"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T15:40:36.924714",
+      "type": "hitl_initialize",
+      "data": {
+        "round_count": 0,
+        "is_restored": false,
+        "base_prompt": "Contemplative Bedroom",
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T15:41:28.300814",
+      "type": "hitl_ranking",
+      "data": {
+        "round": 1,
+        "ranking": [
+          3,
+          2,
+          0,
+          1
+        ],
+        "image_variance": 0.0935,
+        "beta": 2.0,
+        "tags_updated": 26,
+        "is_converged": false
+      }
+    },
+    {
+      "timestamp": "2026-02-24T15:42:21.883799",
+      "type": "hitl_finalize",
+      "data": {
+        "rounds_completed": 1,
+        "total_comparisons": 6,
+        "final_tags": [
+          "natural light",
+          "serene bedroom setting",
+          "organic materials",
+          "rustic side table",
+          "decorative branches"
+        ],
+        "version": "v2_tag_level_gp"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T15:42:41.258590",
+      "type": "skip_to_slider",
+      "data": {
+        "selected_image_id": "impression_2_0",
+        "concept_count": 20,
+        "gp_mode": true
+      }
+    },
+    {
+      "timestamp": "2026-02-24T15:42:41.298792",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T15:43:03.592703",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T15:43:22.713342",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Bathroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T15:43:45.218607",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T15:44:04.372970",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Kitchen",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T15:44:26.888937",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T15:44:46.065508",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Livingroom",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T15:45:08.611106",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T15:45:28.031864",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Home Office",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T15:45:50.558447",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T15:46:09.732351",
+      "type": "slider_generation_start",
+      "data": {
+        "location": "Reading Nook",
+        "mode": "exploration_weights"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T15:46:32.301899",
+      "type": "slider_generation_complete",
+      "data": {
+        "success": true,
+        "image_count": 2,
+        "method": "hitl_v2"
+      }
+    }
+  ]
+}

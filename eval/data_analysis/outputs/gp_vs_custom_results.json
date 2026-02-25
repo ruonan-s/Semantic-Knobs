@@ -1,0 +1,59 @@
+{
+  "wilcoxon_location": {
+    "W": 1492.0,
+    "p": 0.659,
+    "r": 0.05
+  },
+  "sign_test": {
+    "gp_wins": 42,
+    "custom_wins": 37,
+    "p": 0.653
+  },
+  "wilcoxon_participant": {
+    "W": 24.0,
+    "p": 0.748
+  },
+  "bootstrap_participant": {
+    "mean": 0.1,
+    "ci_lo": -0.325,
+    "ci_hi": 0.542
+  },
+  "target_vs_transfer": {
+    "U": 763.5,
+    "p": 0.2809,
+    "target_mean": -0.105,
+    "transfer_mean": 0.105
+  },
+  "predictors": [
+    {
+      "variable": "n_rounds",
+      "rho": -0.131,
+      "p": 0.593
+    },
+    {
+      "variable": "spearman_rho",
+      "rho": 0.363,
+      "p": 0.127
+    },
+    {
+      "variable": "pairwise_accuracy",
+      "rho": 0.262,
+      "p": 0.279
+    },
+    {
+      "variable": "image_variance",
+      "rho": 0.04,
+      "p": 0.872
+    },
+    {
+      "variable": "hitl_duration_s",
+      "rho": -0.049,
+      "p": 0.841
+    }
+  ],
+  "score_correlation": {
+    "rho": 0.438,
+    "p": 0.0
+  },
+  "cohen_kappa": 0.202
+}

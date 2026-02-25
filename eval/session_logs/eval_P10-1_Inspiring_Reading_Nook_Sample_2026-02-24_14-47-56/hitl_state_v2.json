@@ -1,0 +1,2254 @@
+{
+  "version": "2.0",
+  "session_id": "eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56",
+  "round_count": 3,
+  "generation_counter": 8,
+  "is_initialized": true,
+  "is_converged": false,
+  "rankings_history": [
+    [
+      3,
+      2,
+      1,
+      0
+    ],
+    [
+      1,
+      3,
+      2,
+      0
+    ],
+    [
+      3,
+      2,
+      1,
+      0
+    ]
+  ],
+  "compositions_history": [
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "floor-to-ceiling windows",
+          "natural light",
+          "minimalist decor",
+          "organic textures",
+          "wooden flooring",
+          "neutral color palette",
+          "indoor plants",
+          "warm materials",
+          "open layout",
+          "cozy seating area"
+        ],
+        "weights": [
+          1.0389,
+          1.0389,
+          1.0389,
+          1.0389,
+          1.0389,
+          1.0389,
+          1.0389,
+          0.6503,
+          1.0389,
+          1.0389
+        ],
+        "mus": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.3,
+          0.5,
+          0.5
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_0_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "cozy reading nook",
+          "wooden bookshelves",
+          "floor-to-ceiling windows",
+          "indoor plants",
+          "classic rug",
+          "plush velvet chair",
+          "warm ambient lighting",
+          "organic textures",
+          "zen atmosphere",
+          "warm materials"
+        ],
+        "weights": [
+          1.0389,
+          1.0389,
+          1.0389,
+          1.0389,
+          1.0389,
+          1.0389,
+          1.0389,
+          1.0389,
+          1.0389,
+          0.6503
+        ],
+        "mus": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.3
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_0_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "cozy atmosphere",
+          "shelved artifacts",
+          "wooden flooring",
+          "textured throw blanket",
+          "traditional library atmosphere",
+          "soft lighting",
+          "organic textures",
+          "cozy seating area",
+          "wooden furniture",
+          "warm materials"
+        ],
+        "weights": [
+          1.0389,
+          1.0389,
+          1.0389,
+          1.0389,
+          1.0389,
+          1.0389,
+          1.0389,
+          1.0389,
+          1.0389,
+          0.6503
+        ],
+        "mus": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.3
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_0_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "modern lamp",
+          "wooden bookshelves",
+          "wooden flooring",
+          "zen atmosphere",
+          "calming aesthetic",
+          "warm ambient lighting",
+          "open layout",
+          "organic textures",
+          "cozy seating area",
+          "cosy nook"
+        ],
+        "weights": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "mus": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_0_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "modern lamp",
+          "calming aesthetic",
+          "cosy nook",
+          "zen atmosphere",
+          "wooden bookshelves",
+          "warm ambient lighting",
+          "shelved artifacts",
+          "warm materials",
+          "traditional library atmosphere",
+          "cozy atmosphere"
+        ],
+        "weights": [
+          1.1244,
+          1.1244,
+          1.1244,
+          1.0564,
+          1.0564,
+          1.0564,
+          0.9762,
+          0.5291,
+          0.9762,
+          0.9762
+        ],
+        "mus": [
+          0.7981,
+          0.7981,
+          0.7981,
+          0.7081,
+          0.7081,
+          0.7081,
+          0.5906,
+          -0.5981,
+          0.5906,
+          0.5906
+        ],
+        "sigmas": [
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_1_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "plush cushions",
+          "curved architecture",
+          "foliage decor",
+          "soft ambient lighting",
+          "textured materials",
+          "warm accent lights",
+          "organic textures",
+          "whimsical mural",
+          "warm materials",
+          "floating shelves"
+        ],
+        "weights": [
+          1.0476,
+          1.0476,
+          1.0476,
+          1.0476,
+          1.0476,
+          1.0476,
+          1.0476,
+          1.0476,
+          0.5715,
+          1.0476
+        ],
+        "mus": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.5981,
+          0.5
+        ],
+        "sigmas": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.644,
+          0.7
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_1_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "wooden furniture",
+          "relaxing atmosphere",
+          "soft ambient lighting",
+          "warm ambient lighting",
+          "soft lighting",
+          "whimsical mural",
+          "organic textures",
+          "modern lamp",
+          "zen atmosphere",
+          "cosy nook"
+        ],
+        "weights": [
+          0.9765,
+          0.9209,
+          0.9209,
+          1.0568,
+          0.9765,
+          0.9209,
+          0.9209,
+          1.1249,
+          1.0568,
+          1.1249
+        ],
+        "mus": [
+          0.5906,
+          0.5,
+          0.5,
+          0.7081,
+          0.5906,
+          0.5,
+          0.5,
+          0.7981,
+          0.7081,
+          0.7981
+        ],
+        "sigmas": [
+          0.644,
+          0.7,
+          0.7,
+          0.644,
+          0.644,
+          0.7,
+          0.7,
+          0.644,
+          0.644,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_1_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "modern lamp",
+          "cozy seating area",
+          "wooden flooring",
+          "textured throw blanket",
+          "calming aesthetic",
+          "plush velvet chair",
+          "open layout",
+          "whimsical mural",
+          "organic textures",
+          "warm ambient lighting"
+        ],
+        "weights": [
+          1.1409,
+          0.9892,
+          0.9892,
+          0.9895,
+          1.1409,
+          0.8811,
+          0.9324,
+          0.9327,
+          0.9327,
+          1.0714
+        ],
+        "mus": [
+          0.7981,
+          0.59,
+          0.59,
+          0.5906,
+          0.7981,
+          0.41,
+          0.4994,
+          0.5,
+          0.5,
+          0.7081
+        ],
+        "sigmas": [
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.7,
+          0.7,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_1_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "organic textures",
+          "whimsical mural",
+          "curved architecture",
+          "plush cushions",
+          "floating shelves",
+          "warm accent lights",
+          "foliage decor",
+          "warm materials",
+          "textured materials",
+          "soft ambient lighting"
+        ],
+        "weights": [
+          1.0614,
+          1.0614,
+          1.0603,
+          1.0603,
+          1.0603,
+          1.0603,
+          1.0603,
+          0.5153,
+          1.0603,
+          1.0
+        ],
+        "mus": [
+          0.787,
+          0.787,
+          0.7856,
+          0.7856,
+          0.7856,
+          0.7856,
+          0.7856,
+          -0.5995,
+          0.7856,
+          0.699
+        ],
+        "sigmas": [
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.5925,
+          0.644,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_2_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "cozy reading nook",
+          "minimalist decor",
+          "natural light",
+          "indoor plants",
+          "floor-to-ceiling windows",
+          "classic rug",
+          "soft ambient lighting",
+          "organic textures",
+          "neutral color palette",
+          "warm materials"
+        ],
+        "weights": [
+          1.0679,
+          0.9295,
+          0.9295,
+          0.8782,
+          0.8782,
+          1.0679,
+          1.314,
+          1.4042,
+          0.9295,
+          0.601
+        ],
+        "mus": [
+          0.41,
+          0.2013,
+          0.2013,
+          0.1113,
+          0.1113,
+          0.41,
+          0.699,
+          0.787,
+          0.2013,
+          -0.5995
+        ],
+        "sigmas": [
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.644,
+          0.5925
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_2_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "plush cushions",
+          "relaxing atmosphere",
+          "foliage decor",
+          "wooden flooring",
+          "soft ambient lighting",
+          "textured throw blanket",
+          "calming aesthetic",
+          "open layout",
+          "organic textures",
+          "cozy seating area"
+        ],
+        "weights": [
+          1.078,
+          0.8466,
+          1.078,
+          1.0021,
+          1.0162,
+          1.0024,
+          0.9514,
+          0.9442,
+          1.0791,
+          1.0021
+        ],
+        "mus": [
+          0.7856,
+          0.4134,
+          0.7856,
+          0.678,
+          0.699,
+          0.6786,
+          0.5992,
+          0.5875,
+          0.787,
+          0.678
+        ],
+        "sigmas": [
+          0.644,
+          0.644,
+          0.644,
+          0.5925,
+          0.644,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.644,
+          0.5925
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_2_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "modern lamp",
+          "curved architecture",
+          "foliage decor",
+          "wooden flooring",
+          "textured throw blanket",
+          "soft lighting",
+          "warm accent lights",
+          "cozy seating area",
+          "wooden furniture",
+          "floating shelves"
+        ],
+        "weights": [
+          0.8993,
+          1.077,
+          1.077,
+          1.0011,
+          1.0015,
+          0.8945,
+          1.077,
+          1.0011,
+          0.8945,
+          1.077
+        ],
+        "mus": [
+          0.5126,
+          0.7856,
+          0.7856,
+          0.678,
+          0.6786,
+          0.5039,
+          0.7856,
+          0.678,
+          0.5039,
+          0.7856
+        ],
+        "sigmas": [
+          0.5925,
+          0.644,
+          0.644,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.644,
+          0.5925,
+          0.5925,
+          0.644
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_2_img_3.png"
+      }
+    ],
+    [
+      {
+        "option_id": 0,
+        "strategy": "exploit",
+        "tag_labels": [
+          "wooden flooring",
+          "foliage decor",
+          "textured throw blanket",
+          "cozy seating area",
+          "wooden furniture",
+          "curved architecture",
+          "floating shelves",
+          "warm materials",
+          "modern lamp",
+          "warm accent lights"
+        ],
+        "weights": [
+          1.1872,
+          1.1839,
+          1.118,
+          1.1176,
+          1.1153,
+          0.993,
+          0.993,
+          0.4083,
+          0.9444,
+          0.9393
+        ],
+        "mus": [
+          1.2128,
+          1.2089,
+          1.1283,
+          1.1277,
+          1.1248,
+          0.9549,
+          0.9549,
+          -1.2194,
+          0.8783,
+          0.8698
+        ],
+        "sigmas": [
+          0.4614,
+          0.4244,
+          0.5015,
+          0.5015,
+          0.3905,
+          0.5015,
+          0.5015,
+          0.513,
+          0.5015,
+          0.5451
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_3_img_0.png"
+      },
+      {
+        "option_id": 1,
+        "strategy": "explore",
+        "tag_labels": [
+          "plush cushions",
+          "cozy reading nook",
+          "classic rug",
+          "soft ambient lighting",
+          "floor-to-ceiling windows",
+          "textured materials",
+          "plush velvet chair",
+          "warm ambient lighting",
+          "whimsical mural",
+          "warm materials"
+        ],
+        "weights": [
+          1.202,
+          1.0023,
+          1.0023,
+          1.0664,
+          0.7891,
+          1.1321,
+          1.1272,
+          1.0695,
+          1.1332,
+          0.4759
+        ],
+        "mus": [
+          0.5881,
+          0.3268,
+          0.3268,
+          0.4183,
+          -0.0569,
+          0.5041,
+          0.498,
+          0.4226,
+          0.5055,
+          -1.2194
+        ],
+        "sigmas": [
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5806,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.5925,
+          0.513
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_3_img_1.png"
+      },
+      {
+        "option_id": 2,
+        "strategy": "ucb",
+        "tag_labels": [
+          "modern lamp",
+          "relaxing atmosphere",
+          "curved architecture",
+          "wooden flooring",
+          "calming aesthetic",
+          "soft lighting",
+          "open layout",
+          "organic textures",
+          "cozy seating area",
+          "floating shelves"
+        ],
+        "weights": [
+          1.0234,
+          0.7664,
+          1.0783,
+          1.2975,
+          0.901,
+          1.0174,
+          0.8487,
+          0.7702,
+          1.2189,
+          1.0783
+        ],
+        "mus": [
+          0.8783,
+          0.4123,
+          0.9549,
+          1.2128,
+          0.6832,
+          0.8697,
+          0.5864,
+          0.4213,
+          1.1277,
+          0.9549
+        ],
+        "sigmas": [
+          0.5015,
+          0.5806,
+          0.5015,
+          0.4614,
+          0.5451,
+          0.5015,
+          0.5342,
+          0.5806,
+          0.5015,
+          0.5015
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_3_img_2.png"
+      },
+      {
+        "option_id": 3,
+        "strategy": "challenger",
+        "tag_labels": [
+          "plush cushions",
+          "cosy nook",
+          "wooden bookshelves",
+          "wooden flooring",
+          "foliage decor",
+          "calming aesthetic",
+          "soft lighting",
+          "cozy seating area",
+          "wooden furniture",
+          "floating shelves"
+        ],
+        "weights": [
+          0.8243,
+          0.7162,
+          0.7149,
+          1.2503,
+          1.2467,
+          0.8733,
+          0.984,
+          1.1755,
+          1.173,
+          1.0418
+        ],
+        "mus": [
+          0.5881,
+          0.3395,
+          0.3361,
+          1.2128,
+          1.2089,
+          0.6832,
+          0.8697,
+          1.1277,
+          1.1248,
+          0.9549
+        ],
+        "sigmas": [
+          0.5925,
+          0.5806,
+          0.5806,
+          0.4614,
+          0.4244,
+          0.5451,
+          0.5015,
+          0.5015,
+          0.3905,
+          0.5015
+        ],
+        "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_3_img_3.png"
+      }
+    ]
+  ],
+  "tag_states": {
+    "pos_0": {
+      "text": "floor-to-ceiling windows",
+      "category": "positive_other",
+      "mu": -0.056928,
+      "sigma": 0.58063,
+      "times_shown": 3,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "pos_1": {
+      "text": "natural light",
+      "category": "positive_other",
+      "mu": 0.033078,
+      "sigma": 0.58063,
+      "times_shown": 2,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "pos_2": {
+      "text": "minimalist decor",
+      "category": "positive_other",
+      "mu": 0.033078,
+      "sigma": 0.58063,
+      "times_shown": 2,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "pos_3": {
+      "text": "organic textures",
+      "category": "positive_other",
+      "mu": 0.421253,
+      "sigma": 0.58063,
+      "times_shown": 10,
+      "times_in_winner": 2,
+      "times_in_loser": 2
+    },
+    "pos_4": {
+      "text": "wooden flooring",
+      "category": "positive_other",
+      "mu": 1.212783,
+      "sigma": 0.461357,
+      "times_shown": 6,
+      "times_in_winner": 2,
+      "times_in_loser": 1
+    },
+    "pos_5": {
+      "text": "neutral color palette",
+      "category": "positive_other",
+      "mu": 0.033078,
+      "sigma": 0.58063,
+      "times_shown": 2,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "pos_6": {
+      "text": "indoor plants",
+      "category": "positive_other",
+      "mu": -0.056928,
+      "sigma": 0.58063,
+      "times_shown": 3,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "pos_7": {
+      "text": "open layout",
+      "category": "positive_other",
+      "mu": 0.586408,
+      "sigma": 0.53418,
+      "times_shown": 4,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "pos_8": {
+      "text": "cozy seating area",
+      "category": "positive_other",
+      "mu": 1.127742,
+      "sigma": 0.501475,
+      "times_shown": 6,
+      "times_in_winner": 2,
+      "times_in_loser": 1
+    },
+    "pos_9": {
+      "text": "zen atmosphere",
+      "category": "positive_other",
+      "mu": 0.249503,
+      "sigma": 0.58063,
+      "times_shown": 4,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "pos_10": {
+      "text": "wooden bookshelves",
+      "category": "positive_other",
+      "mu": 0.336116,
+      "sigma": 0.58063,
+      "times_shown": 3,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "pos_11": {
+      "text": "warm ambient lighting",
+      "category": "positive_other",
+      "mu": 0.422557,
+      "sigma": 0.59248,
+      "times_shown": 5,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "pos_12": {
+      "text": "plush velvet chair",
+      "category": "positive_other",
+      "mu": 0.498007,
+      "sigma": 0.59248,
+      "times_shown": 2,
+      "times_in_winner": 0,
+      "times_in_loser": 0
+    },
+    "pos_13": {
+      "text": "cozy reading nook",
+      "category": "positive_other",
+      "mu": 0.326815,
+      "sigma": 0.59248,
+      "times_shown": 2,
+      "times_in_winner": 0,
+      "times_in_loser": 0
+    },
+    "pos_14": {
+      "text": "classic rug",
+      "category": "positive_other",
+      "mu": 0.326815,
+      "sigma": 0.59248,
+      "times_shown": 2,
+      "times_in_winner": 0,
+      "times_in_loser": 0
+    },
+    "pos_15": {
+      "text": "shelved artifacts",
+      "category": "positive_other",
+      "mu": 0.133498,
+      "sigma": 0.569018,
+      "times_shown": 2,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "pos_16": {
+      "text": "traditional library atmosphere",
+      "category": "positive_other",
+      "mu": 0.133498,
+      "sigma": 0.569018,
+      "times_shown": 2,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "pos_17": {
+      "text": "cozy atmosphere",
+      "category": "positive_other",
+      "mu": 0.218539,
+      "sigma": 0.58063,
+      "times_shown": 2,
+      "times_in_winner": 0,
+      "times_in_loser": 1
+    },
+    "pos_18": {
+      "text": "soft lighting",
+      "category": "positive_other",
+      "mu": 0.86968,
+      "sigma": 0.501475,
+      "times_shown": 3,
+      "times_in_winner": 1,
+      "times_in_loser": 0
+    },
+    "pos_19": {
+      "text": "wooden furniture",
+      "category": "positive_other",
+      "mu": 1.124803,
+      "sigma": 0.390493,
+      "times_shown": 3,
+      "times_in_winner": 1,
+      "times_in_loser": 0
+    },
+    "pos_20": {
+      "text": "textured throw blanket",
+      "category": "positive_other",
+      "mu": 1.128299,
+      "sigma": 0.501475,
+      "times_shown": 4,
+      "times_in_winner": 1,
+      "times_in_loser": 0
+    },
+    "pos_21": {
+      "text": "modern lamp",
+      "category": "positive_other",
+      "mu": 0.878293,
+      "sigma": 0.501475,
+      "times_shown": 5,
+      "times_in_winner": 2,
+      "times_in_loser": 1
+    },
+    "pos_22": {
+      "text": "calming aesthetic",
+      "category": "positive_other",
+      "mu": 0.683169,
+      "sigma": 0.545082,
+      "times_shown": 4,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "pos_23": {
+      "text": "cosy nook",
+      "category": "positive_other",
+      "mu": 0.339509,
+      "sigma": 0.58063,
+      "times_shown": 3,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "pos_24": {
+      "text": "soft ambient lighting",
+      "category": "positive_other",
+      "mu": 0.418281,
+      "sigma": 0.59248,
+      "times_shown": 5,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "pos_25": {
+      "text": "whimsical mural",
+      "category": "positive_other",
+      "mu": 0.505479,
+      "sigma": 0.59248,
+      "times_shown": 4,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "pos_26": {
+      "text": "curved architecture",
+      "category": "positive_other",
+      "mu": 0.95485,
+      "sigma": 0.501475,
+      "times_shown": 3,
+      "times_in_winner": 2,
+      "times_in_loser": 1
+    },
+    "pos_27": {
+      "text": "plush cushions",
+      "category": "positive_other",
+      "mu": 0.588072,
+      "sigma": 0.59248,
+      "times_shown": 3,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "pos_28": {
+      "text": "floating shelves",
+      "category": "positive_other",
+      "mu": 0.95485,
+      "sigma": 0.501475,
+      "times_shown": 3,
+      "times_in_winner": 2,
+      "times_in_loser": 1
+    },
+    "pos_29": {
+      "text": "warm accent lights",
+      "category": "positive_other",
+      "mu": 0.86981,
+      "sigma": 0.545082,
+      "times_shown": 3,
+      "times_in_winner": 2,
+      "times_in_loser": 1
+    },
+    "pos_30": {
+      "text": "foliage decor",
+      "category": "positive_other",
+      "mu": 1.208925,
+      "sigma": 0.424449,
+      "times_shown": 4,
+      "times_in_winner": 2,
+      "times_in_loser": 1
+    },
+    "pos_31": {
+      "text": "textured materials",
+      "category": "positive_other",
+      "mu": 0.504079,
+      "sigma": 0.59248,
+      "times_shown": 2,
+      "times_in_winner": 1,
+      "times_in_loser": 1
+    },
+    "pos_32": {
+      "text": "relaxing atmosphere",
+      "category": "positive_other",
+      "mu": 0.412339,
+      "sigma": 0.58063,
+      "times_shown": 2,
+      "times_in_winner": 0,
+      "times_in_loser": 0
+    },
+    "neu_0": {
+      "text": "warm materials",
+      "category": "neutral_other",
+      "mu": -1.21935,
+      "sigma": 0.513026,
+      "times_shown": 7,
+      "times_in_winner": 1,
+      "times_in_loser": 3
+    }
+  },
+  "tag_states_snapshots": {
+    "1": {
+      "pos_0": {
+        "text": "floor-to-ceiling windows",
+        "category": "positive_other",
+        "mu": 0.11129094132212669,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_1": {
+        "text": "natural light",
+        "category": "positive_other",
+        "mu": 0.20129729216976067,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_2": {
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "mu": 0.20129729216976067,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_3": {
+        "text": "organic textures",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_4": {
+        "text": "wooden flooring",
+        "category": "positive_other",
+        "mu": 0.590006350847634,
+        "sigma": 0.644,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_5": {
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "mu": 0.20129729216976067,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_6": {
+        "text": "indoor plants",
+        "category": "positive_other",
+        "mu": 0.11129094132212669,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_7": {
+        "text": "open layout",
+        "category": "positive_other",
+        "mu": 0.4994433293525483,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_8": {
+        "text": "cozy seating area",
+        "category": "positive_other",
+        "mu": 0.590006350847634,
+        "sigma": 0.644,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_9": {
+        "text": "zen atmosphere",
+        "category": "positive_other",
+        "mu": 0.7081396863351537,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_10": {
+        "text": "wooden bookshelves",
+        "category": "positive_other",
+        "mu": 0.7081396863351537,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_11": {
+        "text": "warm ambient lighting",
+        "category": "positive_other",
+        "mu": 0.7081396863351537,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_12": {
+        "text": "plush velvet chair",
+        "category": "positive_other",
+        "mu": 0.409993649152366,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_13": {
+        "text": "cozy reading nook",
+        "category": "positive_other",
+        "mu": 0.409993649152366,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_14": {
+        "text": "classic rug",
+        "category": "positive_other",
+        "mu": 0.409993649152366,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_15": {
+        "text": "shelved artifacts",
+        "category": "positive_other",
+        "mu": 0.5905630214950857,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_16": {
+        "text": "traditional library atmosphere",
+        "category": "positive_other",
+        "mu": 0.5905630214950857,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_17": {
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "mu": 0.5905630214950857,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_18": {
+        "text": "soft lighting",
+        "category": "positive_other",
+        "mu": 0.5905630214950857,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_19": {
+        "text": "wooden furniture",
+        "category": "positive_other",
+        "mu": 0.5905630214950857,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_20": {
+        "text": "textured throw blanket",
+        "category": "positive_other",
+        "mu": 0.5905630214950857,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_21": {
+        "text": "modern lamp",
+        "category": "positive_other",
+        "mu": 0.7981460371827876,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_22": {
+        "text": "calming aesthetic",
+        "category": "positive_other",
+        "mu": 0.7981460371827876,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_23": {
+        "text": "cosy nook",
+        "category": "positive_other",
+        "mu": 0.7981460371827876,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_24": {
+        "text": "soft ambient lighting",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_25": {
+        "text": "whimsical mural",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_26": {
+        "text": "curved architecture",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_27": {
+        "text": "plush cushions",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_28": {
+        "text": "floating shelves",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_29": {
+        "text": "warm accent lights",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_30": {
+        "text": "foliage decor",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_31": {
+        "text": "textured materials",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_32": {
+        "text": "relaxing atmosphere",
+        "category": "positive_other",
+        "mu": 0.5,
+        "sigma": 0.7,
+        "times_shown": 0,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_0": {
+        "text": "warm materials",
+        "category": "neutral_other",
+        "mu": -0.5981460371827876,
+        "sigma": 0.644,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      }
+    },
+    "2": {
+      "pos_0": {
+        "text": "floor-to-ceiling windows",
+        "category": "positive_other",
+        "mu": 0.11129094132212669,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_1": {
+        "text": "natural light",
+        "category": "positive_other",
+        "mu": 0.20129729216976067,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_2": {
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "mu": 0.20129729216976067,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_3": {
+        "text": "organic textures",
+        "category": "positive_other",
+        "mu": 0.786982866012424,
+        "sigma": 0.644,
+        "times_shown": 7,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_4": {
+        "text": "wooden flooring",
+        "category": "positive_other",
+        "mu": 0.6780193050753154,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_5": {
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "mu": 0.20129729216976067,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_6": {
+        "text": "indoor plants",
+        "category": "positive_other",
+        "mu": 0.11129094132212669,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_7": {
+        "text": "open layout",
+        "category": "positive_other",
+        "mu": 0.5874562835802297,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_8": {
+        "text": "cozy seating area",
+        "category": "positive_other",
+        "mu": 0.6780193050753154,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_9": {
+        "text": "zen atmosphere",
+        "category": "positive_other",
+        "mu": 0.334543552181636,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_10": {
+        "text": "wooden bookshelves",
+        "category": "positive_other",
+        "mu": 0.4211568203227297,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_11": {
+        "text": "warm ambient lighting",
+        "category": "positive_other",
+        "mu": 0.4225565064093173,
+        "sigma": 0.59248,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_12": {
+        "text": "plush velvet chair",
+        "category": "positive_other",
+        "mu": 0.4980066033800474,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_13": {
+        "text": "cozy reading nook",
+        "category": "positive_other",
+        "mu": 0.409993649152366,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_14": {
+        "text": "classic rug",
+        "category": "positive_other",
+        "mu": 0.409993649152366,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_15": {
+        "text": "shelved artifacts",
+        "category": "positive_other",
+        "mu": 0.3035801554826617,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_16": {
+        "text": "traditional library atmosphere",
+        "category": "positive_other",
+        "mu": 0.3035801554826617,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_17": {
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "mu": 0.3035801554826617,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_18": {
+        "text": "soft lighting",
+        "category": "positive_other",
+        "mu": 0.503949753353992,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_19": {
+        "text": "wooden furniture",
+        "category": "positive_other",
+        "mu": 0.503949753353992,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_20": {
+        "text": "textured throw blanket",
+        "category": "positive_other",
+        "mu": 0.678575975722767,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_21": {
+        "text": "modern lamp",
+        "category": "positive_other",
+        "mu": 0.5125628572569513,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_22": {
+        "text": "calming aesthetic",
+        "category": "positive_other",
+        "mu": 0.599176125398045,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_23": {
+        "text": "cosy nook",
+        "category": "positive_other",
+        "mu": 0.42454990302927,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_24": {
+        "text": "soft ambient lighting",
+        "category": "positive_other",
+        "mu": 0.6989699117847425,
+        "sigma": 0.644,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_25": {
+        "text": "whimsical mural",
+        "category": "positive_other",
+        "mu": 0.786982866012424,
+        "sigma": 0.644,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_26": {
+        "text": "curved architecture",
+        "category": "positive_other",
+        "mu": 0.7855831799258364,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_27": {
+        "text": "plush cushions",
+        "category": "positive_other",
+        "mu": 0.7855831799258364,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_28": {
+        "text": "floating shelves",
+        "category": "positive_other",
+        "mu": 0.7855831799258364,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_29": {
+        "text": "warm accent lights",
+        "category": "positive_other",
+        "mu": 0.7855831799258364,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_30": {
+        "text": "foliage decor",
+        "category": "positive_other",
+        "mu": 0.7855831799258364,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_31": {
+        "text": "textured materials",
+        "category": "positive_other",
+        "mu": 0.7855831799258364,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_32": {
+        "text": "relaxing atmosphere",
+        "category": "positive_other",
+        "mu": 0.4133867318589063,
+        "sigma": 0.644,
+        "times_shown": 1,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_0": {
+        "text": "warm materials",
+        "category": "neutral_other",
+        "mu": -0.5995457232693752,
+        "sigma": 0.59248,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 2
+      }
+    },
+    "3": {
+      "pos_0": {
+        "text": "floor-to-ceiling windows",
+        "category": "positive_other",
+        "mu": 0.02811275999843213,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_1": {
+        "text": "natural light",
+        "category": "positive_other",
+        "mu": 0.1181191108460661,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_2": {
+        "text": "minimalist decor",
+        "category": "positive_other",
+        "mu": 0.1181191108460661,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_3": {
+        "text": "organic textures",
+        "category": "positive_other",
+        "mu": 0.5062935697910098,
+        "sigma": 0.59248,
+        "times_shown": 10,
+        "times_in_winner": 2,
+        "times_in_loser": 2
+      },
+      "pos_4": {
+        "text": "wooden flooring",
+        "category": "positive_other",
+        "mu": 1.0427012691027784,
+        "sigma": 0.5450816,
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_5": {
+        "text": "neutral color palette",
+        "category": "positive_other",
+        "mu": 0.1181191108460661,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_6": {
+        "text": "indoor plants",
+        "category": "positive_other",
+        "mu": 0.02811275999843213,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_7": {
+        "text": "open layout",
+        "category": "positive_other",
+        "mu": 0.6714489513862787,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_8": {
+        "text": "cozy seating area",
+        "category": "positive_other",
+        "mu": 1.0427012691027784,
+        "sigma": 0.5450816,
+        "times_shown": 6,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_9": {
+        "text": "zen atmosphere",
+        "category": "positive_other",
+        "mu": 0.334543552181636,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_10": {
+        "text": "wooden bookshelves",
+        "category": "positive_other",
+        "mu": 0.4211568203227297,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_11": {
+        "text": "warm ambient lighting",
+        "category": "positive_other",
+        "mu": 0.4225565064093173,
+        "sigma": 0.59248,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_12": {
+        "text": "plush velvet chair",
+        "category": "positive_other",
+        "mu": 0.4980066033800474,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_13": {
+        "text": "cozy reading nook",
+        "category": "positive_other",
+        "mu": 0.32681546782867144,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_14": {
+        "text": "classic rug",
+        "category": "positive_other",
+        "mu": 0.32681546782867144,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "pos_15": {
+        "text": "shelved artifacts",
+        "category": "positive_other",
+        "mu": 0.3035801554826617,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_16": {
+        "text": "traditional library atmosphere",
+        "category": "positive_other",
+        "mu": 0.3035801554826617,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_17": {
+        "text": "cozy atmosphere",
+        "category": "positive_other",
+        "mu": 0.3035801554826617,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 1
+      },
+      "pos_18": {
+        "text": "soft lighting",
+        "category": "positive_other",
+        "mu": 0.7846390495754061,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_19": {
+        "text": "wooden furniture",
+        "category": "positive_other",
+        "mu": 0.7846390495754061,
+        "sigma": 0.5450816,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_20": {
+        "text": "textured throw blanket",
+        "category": "positive_other",
+        "mu": 1.04325793975023,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 0
+      },
+      "pos_21": {
+        "text": "modern lamp",
+        "category": "positive_other",
+        "mu": 0.7932521534783654,
+        "sigma": 0.5450816,
+        "times_shown": 5,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_22": {
+        "text": "calming aesthetic",
+        "category": "positive_other",
+        "mu": 0.683168793204094,
+        "sigma": 0.5450816,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_23": {
+        "text": "cosy nook",
+        "category": "positive_other",
+        "mu": 0.42454990302927,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_24": {
+        "text": "soft ambient lighting",
+        "category": "positive_other",
+        "mu": 0.4182806155633284,
+        "sigma": 0.59248,
+        "times_shown": 5,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_25": {
+        "text": "whimsical mural",
+        "category": "positive_other",
+        "mu": 0.5054790833086554,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_26": {
+        "text": "curved architecture",
+        "category": "positive_other",
+        "mu": 0.784768693443482,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_27": {
+        "text": "plush cushions",
+        "category": "positive_other",
+        "mu": 0.5880720650281168,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_28": {
+        "text": "floating shelves",
+        "category": "positive_other",
+        "mu": 0.784768693443482,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_29": {
+        "text": "warm accent lights",
+        "category": "positive_other",
+        "mu": 0.784768693443482,
+        "sigma": 0.59248,
+        "times_shown": 3,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_30": {
+        "text": "foliage decor",
+        "category": "positive_other",
+        "mu": 0.868761361249531,
+        "sigma": 0.59248,
+        "times_shown": 4,
+        "times_in_winner": 2,
+        "times_in_loser": 1
+      },
+      "pos_31": {
+        "text": "textured materials",
+        "category": "positive_other",
+        "mu": 0.5040793972220678,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 1,
+        "times_in_loser": 1
+      },
+      "pos_32": {
+        "text": "relaxing atmosphere",
+        "category": "positive_other",
+        "mu": 0.49737939966495526,
+        "sigma": 0.59248,
+        "times_shown": 2,
+        "times_in_winner": 0,
+        "times_in_loser": 0
+      },
+      "neu_0": {
+        "text": "warm materials",
+        "category": "neutral_other",
+        "mu": -0.9642276872968383,
+        "sigma": 0.5450816,
+        "times_shown": 7,
+        "times_in_winner": 1,
+        "times_in_loser": 3
+      }
+    }
+  },
+  "best_picks": {
+    "1": {
+      "round": 1,
+      "option_id": 3,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_0_img_3.png",
+      "tags": [
+        "modern lamp",
+        "wooden bookshelves",
+        "wooden flooring",
+        "zen atmosphere",
+        "calming aesthetic",
+        "warm ambient lighting",
+        "open layout",
+        "organic textures",
+        "cozy seating area",
+        "cosy nook"
+      ],
+      "weights": [
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999
+      ],
+      "strategy": "challenger"
+    },
+    "2": {
+      "round": 2,
+      "option_id": 1,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_1_img_1.png",
+      "tags": [
+        "plush cushions",
+        "curved architecture",
+        "foliage decor",
+        "soft ambient lighting",
+        "textured materials",
+        "warm accent lights",
+        "organic textures",
+        "whimsical mural",
+        "warm materials",
+        "floating shelves"
+      ],
+      "weights": [
+        1.047607150856382,
+        1.047607150856382,
+        1.047607150856382,
+        1.047607150856382,
+        1.047607150856382,
+        1.047607150856382,
+        1.047607150856382,
+        1.047607150856382,
+        0.5715356422925625,
+        1.047607150856382
+      ],
+      "strategy": "explore"
+    },
+    "3": {
+      "round": 3,
+      "option_id": 3,
+      "image_path": "/home/nancy/Semantic-Knobs/eval/session_logs/eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56/hitl/round_2_img_3.png",
+      "tags": [
+        "modern lamp",
+        "curved architecture",
+        "foliage decor",
+        "wooden flooring",
+        "textured throw blanket",
+        "soft lighting",
+        "warm accent lights",
+        "cozy seating area",
+        "wooden furniture",
+        "floating shelves"
+      ],
+      "weights": [
+        0.8993119853344927,
+        1.0769879355780951,
+        1.0769879355780951,
+        1.0011494144323965,
+        1.0015212715338666,
+        0.8944580859772336,
+        1.0769879355780951,
+        1.0011494144323965,
+        0.8944580859772336,
+        1.0769879355780951
+      ],
+      "strategy": "challenger"
+    }
+  },
+  "positive_tags": [
+    "floor-to-ceiling windows",
+    "natural light",
+    "minimalist decor",
+    "organic textures",
+    "wooden flooring",
+    "neutral color palette",
+    "indoor plants",
+    "open layout",
+    "cozy seating area",
+    "zen atmosphere",
+    "wooden bookshelves",
+    "warm ambient lighting",
+    "plush velvet chair",
+    "cozy reading nook",
+    "classic rug",
+    "shelved artifacts",
+    "traditional library atmosphere",
+    "cozy atmosphere",
+    "soft lighting",
+    "wooden furniture",
+    "textured throw blanket",
+    "modern lamp",
+    "calming aesthetic",
+    "cosy nook",
+    "soft ambient lighting",
+    "whimsical mural",
+    "curved architecture",
+    "plush cushions",
+    "floating shelves",
+    "warm accent lights",
+    "foliage decor",
+    "textured materials",
+    "relaxing atmosphere"
+  ],
+  "neutral_tags": [
+    "warm materials"
+  ],
+  "selected_image_tags": [],
+  "base_prompt": "Inspiring Reading Nook",
+  "negative_prompt": "illustration, plan view, bird's-eye view, cartoon, anime, isometric, diorama, miniature, 3D render, CGI, concept art, stylized, toon shading, human",
+  "timestamp": "2026-02-24T15:24:22.501979"
+}

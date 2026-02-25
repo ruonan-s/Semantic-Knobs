@@ -1,0 +1,95 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_P09-2_Contemplative_Bedroom_2026-02-24_16-30-17
+Started: 2026-02-24T16:38:05.873825
+Rounds: 3
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 24
+  Neutral tags: 1
+  Total: 25
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.42 | minimalist design, neutral color palette, open floor plan...
+    [1] explore      | avg_μ=+0.42 | decorative branches, cozy atmosphere, minimalist design...
+    [2] ucb          | avg_μ=+0.42 | industrial aesthetic, natural elegance, simple nightstands...
+    [3] challenger   | avg_μ=+0.50 | dark bedding, cozy atmosphere, simple nightstands...
+  Ranking: [2, 1, 3, 0]
+  Comparisons: 6
+  Tags updated: 24
+  Top 5 after round:
+    1. natural elegance          μ=+0.799 σ=0.644
+    2. calm ambiance             μ=+0.799 σ=0.644
+    3. industrial aesthetic      μ=+0.799 σ=0.644
+    4. concrete walls            μ=+0.799 σ=0.644
+    5. natural light             μ=+0.799 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.64 | natural elegance, calm ambiance, industrial aesthetic...
+    [1] explore      | avg_μ=+0.24 | open floor plan, neutral color palette, simple nightstands...
+    [2] ucb          | avg_μ=+0.60 | dark bedding, industrial aesthetic, natural elegance...
+    [3] challenger   | avg_μ=+0.65 | industrial aesthetic, natural elegance, cozy atmosphere...
+  Ranking: [3, 2, 0, 1]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. natural elegance          μ=+1.076 σ=0.593
+    2. industrial aesthetic      μ=+1.076 σ=0.593
+    3. minimalist decor          μ=+1.076 σ=0.593
+    4. calm ambiance             μ=+0.992 σ=0.593
+    5. concrete walls            μ=+0.992 σ=0.593
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.79 | natural elegance, industrial aesthetic, minimalist decor...
+    [1] explore      | avg_μ=-0.01 | open floor plan, neutral color palette, simple nightstands...
+    [2] ucb          | avg_μ=+0.57 | dark bedding, natural elegance, decorative branches...
+    [3] challenger   | avg_μ=+0.88 | industrial aesthetic, natural elegance, cozy atmosphere...
+  Ranking: [3, 0, 2, 1]
+  Comparisons: 6
+  Tags updated: 25
+  Top 5 after round:
+    1. industrial aesthetic      μ=+1.415 σ=0.545
+    2. calm ambiance             μ=+1.331 σ=0.545
+    3. concrete walls            μ=+1.331 σ=0.545
+    4. natural elegance          μ=+1.329 σ=0.545
+    5. minimalist decor          μ=+1.329 σ=0.545
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. industrial aesthetic           | w=0.126 | μ=+1.415 | win_rate=50%
+   2. calm ambiance                  | w=0.116 | μ=+1.331 | win_rate=60%
+   3. concrete walls                 | w=0.116 | μ=+1.331 | win_rate=60%
+   4. natural elegance               | w=0.115 | μ=+1.329 | win_rate=43%
+   5. minimalist decor               | w=0.115 | μ=+1.329 | win_rate=43%
+   6. cozy atmosphere                | w=0.102 | μ=+1.206 | win_rate=33%
+   7. soft lighting                  | w=0.093 | μ=+1.120 | win_rate=29%
+   8. open layout                    | w=0.073 | μ=+0.871 | win_rate=50%
+   9. natural light                  | w=0.073 | μ=+0.868 | win_rate=25%
+  10. organic materials              | w=0.072 | μ=+0.858 | win_rate=25%
+
+  Convergence: False
+  Top-10 stability: 10/10 tags same as previous round
+
+======================================================================
+WARNINGS (7)
+======================================================================
+  [low_neutral_count] Only 1 neutral tags. Exploration may be limited.
+  [diversity_violation] Round 2: Options 0 and 3 have 60% overlap (max 40%)
+  [diversity_violation] Round 2: Options 2 and 3 have 60% overlap (max 40%)
+  [diversity_violation] Round 3: Options 0 and 3 have 70% overlap (max 45%)
+  [diversity_violation] Round 3: Options 2 and 3 have 50% overlap (max 45%)
+  [diversity_violation] Round 4: Options 0 and 3 have 60% overlap (max 55%)
+  [diversity_violation] Round 4: Options 2 and 3 have 60% overlap (max 55%)

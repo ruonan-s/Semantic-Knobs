@@ -1,0 +1,122 @@
+======================================================================
+GP REFINEMENT SESSION SUMMARY
+======================================================================
+Session: eval_P09-1_Cozy_Bedroom_Sample_2026-02-24_16-02-47
+Started: 2026-02-24T16:17:05.788442
+Rounds: 4
+
+----------------------------------------------------------------------
+INITIALIZATION
+----------------------------------------------------------------------
+  Positive tags: 20
+  Neutral tags: 0
+  Total: 20
+
+----------------------------------------------------------------------
+ROUND 1 (β=2.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.50 | minimalist decor, wooden flooring, indoor plants...
+    [1] explore      | avg_μ=+0.50 | vintage rugs, large window view, airy space...
+    [2] ucb          | avg_μ=+0.50 | traditional layout, plush bedding, soft lighting...
+    [3] challenger   | avg_μ=+0.50 | airy space, simple layout, minimalist decor...
+  Ranking: [3, 0, 1, 2]
+  Comparisons: 6
+  Tags updated: 16
+  Top 5 after round:
+    1. cozy atmosphere           μ=+0.890 σ=0.644
+    2. modern wall art           μ=+0.890 σ=0.644
+    3. airy space                μ=+0.709 σ=0.644
+    4. warm lighting             μ=+0.709 σ=0.644
+    5. woven textures            μ=+0.709 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 2 (β=1.67)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.67 | cozy atmosphere, modern wall art, airy space...
+    [1] explore      | avg_μ=+0.50 | vintage rugs, large window view, wooden flooring...
+    [2] ucb          | avg_μ=+0.43 | traditional layout, plush bedding, wooden flooring...
+    [3] challenger   | avg_μ=+0.63 | modern wall art, vintage rugs, airy space...
+  Ranking: [1, 0, 3, 2]
+  Comparisons: 6
+  Tags updated: 19
+  Top 5 after round:
+    1. cozy atmosphere           μ=+1.177 σ=0.593
+    2. modern wall art           μ=+0.889 σ=0.593
+    3. minimalist decor          μ=+0.788 σ=0.644
+    4. airy space                μ=+0.708 σ=0.593
+    5. stone fireplace           μ=+0.698 σ=0.593
+
+----------------------------------------------------------------------
+ROUND 3 (β=1.33)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.76 | cozy atmosphere, modern wall art, minimalist decor...
+    [1] explore      | avg_μ=+0.61 | wooden flooring, simple layout, minimalist decor...
+    [2] ucb          | avg_μ=+0.42 | traditional layout, plush bedding, large window view...
+    [3] challenger   | avg_μ=+0.71 | large window view, airy space, wooden flooring...
+  Ranking: [3, 2, 1, 0]
+  Comparisons: 6
+  Tags updated: 17
+  Top 5 after round:
+    1. cozy atmosphere           μ=+1.177 σ=0.593
+    2. modern wall art           μ=+0.889 σ=0.545
+    3. minimalist decor          μ=+0.788 σ=0.644
+    4. large window view         μ=+0.784 σ=0.545
+    5. bright natural light      μ=+0.782 σ=0.644
+
+----------------------------------------------------------------------
+ROUND 4 (β=1.00)
+----------------------------------------------------------------------
+  Options:
+    [0] exploit      | avg_μ=+0.79 | cozy atmosphere, modern wall art, minimalist decor...
+    [1] explore      | avg_μ=+0.55 | indoor plants, wooden flooring, simple layout...
+    [2] ucb          | avg_μ=+0.41 | traditional layout, plush bedding, vintage rugs...
+    [3] challenger   | avg_μ=+0.70 | large window view, indoor plants, wooden flooring...
+  Ranking: [0, 2, 1, 3]
+  Comparisons: 6
+  Tags updated: 17
+  Top 5 after round:
+    1. cozy atmosphere           μ=+1.177 σ=0.545
+    2. airy space                μ=+1.065 σ=0.501
+    3. stone fireplace           μ=+0.973 σ=0.501
+    4. modern wall art           μ=+0.889 σ=0.545
+    5. simple layout             μ=+0.885 σ=0.545
+
+======================================================================
+FINAL SELECTION
+======================================================================
+   1. cozy atmosphere                | w=0.134 | μ=+1.177 | win_rate=36%
+   2. airy space                     | w=0.120 | μ=+1.065 | win_rate=38%
+   3. stone fireplace                | w=0.109 | μ=+0.973 | win_rate=60%
+   4. modern wall art                | w=0.101 | μ=+0.889 | win_rate=30%
+   5. simple layout                  | w=0.100 | μ=+0.885 | win_rate=33%
+   6. minimalist decor               | w=0.091 | μ=+0.788 | win_rate=27%
+   7. large window view              | w=0.090 | μ=+0.784 | win_rate=43%
+   8. bright natural light           | w=0.090 | μ=+0.782 | win_rate=27%
+   9. soft lighting                  | w=0.090 | μ=+0.777 | win_rate=43%
+  10. wooden flooring                | w=0.075 | μ=+0.595 | win_rate=27%
+
+  Convergence: False
+  Top-10 stability: 10/10 tags same as previous round
+
+======================================================================
+WARNINGS (16)
+======================================================================
+  [low_neutral_count] Only 0 neutral tags. Exploration may be limited.
+  [diversity_violation] Round 1: Options 0 and 2 have 60% overlap (max 40%)
+  [diversity_violation] Round 1: Options 0 and 3 have 70% overlap (max 40%)
+  [diversity_violation] Round 1: Options 1 and 3 have 70% overlap (max 40%)
+  [diversity_violation] Round 1: Options 2 and 3 have 50% overlap (max 40%)
+  [diversity_violation] Round 2: Options 0 and 3 have 70% overlap (max 40%)
+  [diversity_violation] Round 2: Options 1 and 3 have 60% overlap (max 40%)
+  [diversity_violation] Round 2: Options 2 and 3 have 50% overlap (max 40%)
+  [diversity_violation] Round 3: Options 0 and 2 have 50% overlap (max 45%)
+  [diversity_violation] Round 3: Options 0 and 3 have 70% overlap (max 45%)
+  [diversity_violation] Round 3: Options 1 and 3 have 60% overlap (max 45%)
+  [diversity_violation] Round 3: Options 2 and 3 have 50% overlap (max 45%)
+  [diversity_violation] Round 4: Options 0 and 3 have 70% overlap (max 55%)
+  [diversity_violation] Round 4: Options 1 and 3 have 70% overlap (max 55%)
+  [diversity_violation] Round 5: Options 0 and 3 have 70% overlap (max 55%)
+  [diversity_violation] Round 5: Options 1 and 3 have 70% overlap (max 55%)

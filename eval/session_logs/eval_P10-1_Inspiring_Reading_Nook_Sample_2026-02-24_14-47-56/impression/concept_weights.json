@@ -1,0 +1,593 @@
+{
+  "stage": "impression",
+  "session_id": "eval_P10-1_Inspiring_Reading_Nook_Sample_2026-02-24_14-47-56",
+  "timestamp": "2026-02-24T15:24:49.303672",
+  "num_concepts": 25,
+  "gp_mode": true,
+  "raw_tag_mode": true,
+  "n_preference_pairs": 1434,
+  "is_fitted": true,
+  "deduplication_params": {
+    "k": 10,
+    "min_cos_distance": 0.15
+  },
+  "concept_weights": [
+    {
+      "concept_id": "tag_0",
+      "label": "cozy seating area",
+      "weight": 0.0686541199684143,
+      "score": 1.310774564743042,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "cozy seating area"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_1",
+      "label": "indoor plants",
+      "weight": 0.06322105973958969,
+      "score": 1.2283308506011963,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "indoor plants"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_2",
+      "label": "floor-to-ceiling windows",
+      "weight": 0.057109471410512924,
+      "score": 1.1266634464263916,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "floor-to-ceiling windows"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_3",
+      "label": "cozy atmosphere",
+      "weight": 0.05626782774925232,
+      "score": 1.1118162870407104,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "cozy atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_4",
+      "label": "soft lighting",
+      "weight": 0.05285793915390968,
+      "score": 1.0493013858795166,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "soft lighting"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_5",
+      "label": "wooden flooring",
+      "weight": 0.04256952181458473,
+      "score": 0.8328319787979126,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden flooring"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_6",
+      "label": "organic textures",
+      "weight": 0.04239404574036598,
+      "score": 0.8287012577056885,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "organic textures"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_7",
+      "label": "traditional library atmosphere",
+      "weight": 0.04072880744934082,
+      "score": 0.7886289358139038,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "traditional library atmosphere"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_8",
+      "label": "neutral color palette",
+      "weight": 0.0406375527381897,
+      "score": 0.7863860130310059,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "neutral color palette"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_9",
+      "label": "foliage decor",
+      "weight": 0.03986600786447525,
+      "score": 0.7672173976898193,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "foliage decor"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_10",
+      "label": "shelved artifacts",
+      "weight": 0.03920059651136398,
+      "score": 0.7503852844238281,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "shelved artifacts"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_11",
+      "label": "plush cushions",
+      "weight": 0.03852313756942749,
+      "score": 0.7329525351524353,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "plush cushions"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_12",
+      "label": "warm accent lights",
+      "weight": 0.03728259354829788,
+      "score": 0.700219988822937,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm accent lights"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_13",
+      "label": "calming aesthetic",
+      "weight": 0.0367266945540905,
+      "score": 0.6851972937583923,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "calming aesthetic"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_14",
+      "label": "minimalist decor",
+      "weight": 0.03494682535529137,
+      "score": 0.6355210542678833,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "minimalist decor"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_15",
+      "label": "floating shelves",
+      "weight": 0.03456562012434006,
+      "score": 0.6245530247688293,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "floating shelves"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_16",
+      "label": "wooden bookshelves",
+      "weight": 0.03298792988061905,
+      "score": 0.5778351426124573,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "wooden bookshelves"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_17",
+      "label": "open layout",
+      "weight": 0.03256786987185478,
+      "score": 0.5650196075439453,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "open layout"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_18",
+      "label": "plush velvet chair",
+      "weight": 0.03241008520126343,
+      "score": 0.560163140296936,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "plush velvet chair"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_19",
+      "label": "warm materials",
+      "weight": 0.031128132715821266,
+      "score": 0.5198054313659668,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "warm materials"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_20",
+      "label": "modern lamp",
+      "weight": 0.030852407217025757,
+      "score": 0.5109082460403442,
+      "utility_std": 1.0060783624649048,
+      "category": "positive",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "modern lamp"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_21",
+      "label": "classic rug",
+      "weight": 0.030039731413125992,
+      "score": 0.48421430587768555,
+      "utility_std": 1.0060783624649048,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "classic rug"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_22",
+      "label": "textured throw blanket",
+      "weight": 0.029749130830168724,
+      "score": 0.4744933247566223,
+      "utility_std": 1.0060783624649048,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "textured throw blanket"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_23",
+      "label": "curved architecture",
+      "weight": 0.027497410774230957,
+      "score": 0.3957853317260742,
+      "utility_std": 1.0060783624649048,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "curved architecture"
+      ],
+      "is_raw_tag": true
+    },
+    {
+      "concept_id": "tag_24",
+      "label": "whimsical mural",
+      "weight": 0.027215491980314255,
+      "score": 0.3854798376560211,
+      "utility_std": 1.0060783624649048,
+      "category": "neutral",
+      "like_count": 0,
+      "dislike_count": 0,
+      "member_tag_ids": [
+        "whimsical mural"
+      ],
+      "is_raw_tag": true
+    }
+  ],
+  "raw_tag_details": [
+    {
+      "tag_id": "tag_impression_impression_0_0_9",
+      "text": "cozy seating area",
+      "utility": 1.310774564743042,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.0686541199684143,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_7",
+      "text": "indoor plants",
+      "utility": 1.2283308506011963,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.06322105973958969,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_0",
+      "text": "floor-to-ceiling windows",
+      "utility": 1.1266634464263916,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.057109471410512924,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_1",
+      "text": "cozy atmosphere",
+      "utility": 1.1118162870407104,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.05626782774925232,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_2",
+      "text": "soft lighting",
+      "utility": 1.0493013858795166,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.05285793915390968,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_4",
+      "text": "wooden flooring",
+      "utility": 0.8328319787979126,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.04256952181458473,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_3",
+      "text": "organic textures",
+      "utility": 0.8287012577056885,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.04239404574036598,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_11",
+      "text": "traditional library atmosphere",
+      "utility": 0.7886289358139038,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.04072880744934082,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_6",
+      "text": "neutral color palette",
+      "utility": 0.7863860130310059,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.0406375527381897,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_9",
+      "text": "foliage decor",
+      "utility": 0.7672173976898193,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.03986600786447525,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_9",
+      "text": "shelved artifacts",
+      "utility": 0.7503852844238281,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.03920059651136398,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_5",
+      "text": "plush cushions",
+      "utility": 0.7329525351524353,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.03852313756942749,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_8",
+      "text": "warm accent lights",
+      "utility": 0.700219988822937,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.03728259354829788,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_10",
+      "text": "calming aesthetic",
+      "utility": 0.6851972937583923,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.0367266945540905,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_2",
+      "text": "minimalist decor",
+      "utility": 0.6355210542678833,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.03494682535529137,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_7",
+      "text": "floating shelves",
+      "utility": 0.6245530247688293,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.03456562012434006,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_0",
+      "text": "wooden bookshelves",
+      "utility": 0.5778351426124573,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.03298792988061905,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_0_0_8",
+      "text": "open layout",
+      "utility": 0.5650196075439453,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.03256786987185478,
+      "source_image_idx": 0,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_3",
+      "text": "plush velvet chair",
+      "utility": 0.560163140296936,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.03241008520126343,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_11",
+      "text": "warm materials",
+      "utility": 0.5198054313659668,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.031128132715821266,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_6",
+      "text": "modern lamp",
+      "utility": 0.5109082460403442,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.030852407217025757,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_1_0_8",
+      "text": "classic rug",
+      "utility": 0.48421430587768555,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.030039731413125992,
+      "source_image_idx": 1,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_2_0_5",
+      "text": "textured throw blanket",
+      "utility": 0.4744933247566223,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.029749130830168724,
+      "source_image_idx": 2,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_4",
+      "text": "curved architecture",
+      "utility": 0.3957853317260742,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.027497410774230957,
+      "source_image_idx": 3,
+      "category": "positive"
+    },
+    {
+      "tag_id": "tag_impression_impression_3_0_3",
+      "text": "whimsical mural",
+      "utility": 0.3854798376560211,
+      "uncertainty": 1.0060783624649048,
+      "weight": 0.027215491980314255,
+      "source_image_idx": 3,
+      "category": "positive"
+    }
+  ]
+}
